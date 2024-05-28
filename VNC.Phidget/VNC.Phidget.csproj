@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+      <TargetFrameworks>net6.0-windows</TargetFrameworks>
+      <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+      <VersionPrefix>1.0.0</VersionPrefix>
+      <VersionSuffix>indevelopment-11</VersionSuffix>
+      <FileVersion>2023.12.18A</FileVersion>
+      <Company>VNC</Company>
+      <Description>Layer on top of Phidgets21</Description>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <!--<PackageReference Include="VNC.Core" Version="2.1.2" />-->
+        <ProjectReference Include="..\..\VNC\VNC.Core\VNC.Core.csproj" />
+        <ProjectReference Include="..\VNCPhidget21\VNCPhidget21.Configuration\VNCPhidget21.Configuration.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Phidget21.NET">
+            <HintPath>..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+        </Reference>
+    </ItemGroup>    
+
+</Project>

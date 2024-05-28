@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Sensors>
+  <Sensor Assembly="" Type="" Name="Base Value" />
+  <Sensor Name="1101 - IR Distance Adapter 4-30cm" />
+  <Sensor Name="1101 - IR Distance Adapter 10-80cm" />
+  <Sensor Name="1101 - IR Distance Adapter 20-150cm" />
+  <Sensor Name="1102 - IR Reflective Sensor 5mm" />
+  <Sensor Name="1103 - IR Reflective Sensor 10cm" />
+  <Sensor Name="1104 - Vibration Sensor" />
+  <Sensor Name="1105 - Light Sensor" />
+  <Sensor Name="1106 - Force Sensor" />
+  <Sensor Name="1107 - Humidity Sensor" />
+  <Sensor Name="1108 - Magnetic Sensor" />
+  <Sensor Name="1109 - Rotation Sensor" />
+  <Sensor Name="1110 - Touch Sensor" />
+  <Sensor Name="1111 - Motion Sensor" />
+  <Sensor Name="1112 - Slider Sensor" />
+  <Sensor Name="1113 - Mini Joystick Sensor [X]" />
+  <Sensor Name="1113 - Mini Joystick Sensor [Y]" />
+  <Sensor Name="1115 - Pressure Sensor" />
+  <Sensor Name="1116 - Multi-turn Rotation Sensor" />
+  <Sensor Name="1117 - Voltage Sensor" />
+  <Sensor Name="1118 - 50Amp Current Sensor [AC]" />
+  <Sensor Name="1118 - 50Amp Current Sensor [DC]" />
+  <Sensor Name="1119 - 20Amp Current Sensor [AC]" />
+  <Sensor Name="1119 - 20Amp Current Sensor [DC]" />
+  <Sensor Name="1120 - FlexiForce Adapter Board" />
+  <Sensor Name="1121 - Voltage Divider" />
+  <Sensor Name="1122 - 30Amp Current Sensor [AC]" />
+  <Sensor Name="1122 - 30Amp Current Sensor [DC]" />
+  <Sensor Name="1123 - Precision Voltage Sensor" />
+  <Sensor Name="1124 - Precision Temperature Sensor" />
+  <Sensor Name="1125 - Humidity/Temperature Sensor [H]" />
+  <Sensor Name="1125 - Humidity/Temperature Sensor [T]" />
+  <Sensor Name="1126 - Differential Gas Pressure Sensor" />
+  <Sensor Name="1127 - Precision Light Sensor" />
+  <Sensor Name="1128 - Sonar Sensor" />
+  <Sensor Name="1129 - Touch Sensor" />
+  <Sensor Name="1130 - pH Adapter Board [pH]" />
+  <Sensor Name="1130 - pH Adapter Board [ORP]" />
+  <Sensor Name="1131 - Thin Force Sensor" />
+  <Sensor Name="1132 - 4-20 mA Adapter" />
+  <Sensor Name="1133 - Sound Sensor" />
+  <Sensor Name="1134 - Switchable Voltage Divider" />
+  <Sensor Name="1135 - Precision Voltage Sensor" />
+  <Sensor Name="1136 - Differential Gas Pressure Sensor ±2 kPa" />
+  <Sensor Name="1137 - Differential Gas Pressure Sensor ±7 kPa" />
+  <Sensor Name="1138 - Differential Gas Pressure Sensor 50 kPa" />
+  <Sensor Name="1139 - Differential Gas Pressure Sensor 100 kPa" />
+  <Sensor Name="1140 - Absolute Gas Pressure Sensor 20-400 kPa" />
+  <Sensor Name="1141 - Absolute Gas Pressure Sensor 15-115 kPa" />
+  <Sensor Name="1142 - Light Sensor 1000 lux" />
+  <Sensor Name="1143 - Light Sensor 70000 lux" />
+  <Sensor Name="3120-3123 - FC22 Compression Load Cell" />
+  <Sensor Name="3500-3503 - i-Snail Current Sensor" />
+</Sensors>

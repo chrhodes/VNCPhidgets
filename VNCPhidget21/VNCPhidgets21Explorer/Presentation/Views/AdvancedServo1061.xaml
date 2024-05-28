@@ -1,0 +1,882 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidgets21Explorer.Presentation.Views.AdvancedServo1061"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+        
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    
+    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"    
+
+    xmlns:phidget="clr-namespace:Phidgets;assembly=Phidget21.NET"
+
+    
+    xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:localc="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
+    
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    
+    xmlns:prism="http://prismlibrary.com/"   
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource AdvancedServo1061Background}"
+    
+    d:DesignWidth="800" 
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>
+    <!--xmlns:phidgetServoServo="clr-namespace:Phidgets.ServoServo;assembly=Phidget21.NET"-->
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <localc:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
+        <XmlDataProvider x:Key="AdvancedServoList" Source="/Resources/AdvancedServoList.xml" XPath="AdvancedServos/AdvancedServo" />
+        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
+        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToAdvancedServo1061WrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplateAdvancedServo1061"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplateAdvancedServo1061X"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+        <localc:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+    </vncmvvm:ViewBase.Resources>
+    
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:AdvancedServo1061ViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+    
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="AdvancedServo1061" />
+            <TextBlock Text="{Binding Message}" />
+            <Button Content="Say Hello"
+                    Command="{Binding SayHelloCommand}" />
+        </StackPanel>
+        
+        --><!-- This is useful for debugging V VM constructor issues --><!--
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>-->
+
+    <DockPanel Margin="5">
+        
+        <views:HostSelector DockPanel.Dock="Top" />
+
+        <!-- This is useful for debugging V VM constructor issues -->
+
+        <DockPanel DockPanel.Dock="Bottom" >
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5">
+                <Label Content="Message:" />
+                <Label Content="{Binding Message}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
+                <Label Content="V:" />
+                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
+                <Label Content="VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+
+        </DockPanel>
+
+        <!--<views:PerformanceSelector DockPanel.Dock="Bottom" />-->
+
+        <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+
+            <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
+
+                <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:ComboBoxEdit Width="150" 
+                                          ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
+                                          SelectedItem="{Binding SelectedAdvancedServo}"
+                                          SelectedIndex="0"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True" 
+                                  Background="White" 
+                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" >
+
+                    <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <Button 
+		                    Command="{Binding OpenAdvancedServoCommand }"
+		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
+		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutGroup Header="Center and Intialize Motion" View="GroupBox" Orientation="Horizontal"
+                                  HorizontalAlignment="Right"
+                                  Margin="0,0,0,-5" Padding="-5">
+
+                    <dxlc:LayoutItem Margin="-5">
+                        <Button 
+		                    Command="{Binding InitializeSlowAdvancedServoCommand }"
+		                    Content="{Binding InitializeSlowAdvancedServoContent, FallbackValue='Slow' }"
+		                    ToolTip="{Binding InitializeSlowAdvancedServoToolTip, FallbackValue='Initialize Slow and Center Position' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="-5">
+                        <Button 
+		                    Command="{Binding InitializeMediumAdvancedServoCommand }"
+		                    Content="{Binding InitializeMediumAdvancedServoContent, FallbackValue='Medium' }"
+		                    ToolTip="{Binding InitializeMediumAdvancedServoToolTip, FallbackValue='Initialize Medium and Center Position' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="-5">
+                        <Button 
+		                    Command="{Binding InitializeFastAdvancedServoCommand }"
+		                    Content="{Binding InitializeFastAdvancedServoContent, FallbackValue='Fast' }"
+		                    ToolTip="{Binding InitializeFastAdvancedServoToolTip, FallbackValue='Initialize Fast and Center Position' }" />
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <Button 
+                		Command="{Binding RefreshAdvancedServoCommand }"
+                		Content="{Binding RefreshAdvancedServoContent, FallbackValue='Refresh' }"
+                		ToolTip="{Binding RefreshAdvancedServoToolTip, FallbackValue='Refresh ToolTip' }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <Button 
+                		    Command="{Binding CloseAdvancedServoCommand }"
+                		    Content="{Binding CloseAdvancedServoContent, FallbackValue='Close' }"
+                		    ToolTip="{Binding CloseAdvancedServoToolTip, FallbackValue='Close ToolTip' }" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lgPhidgetStatus" Header="PhidgetDevice Status"  Orientation="Vertical" View="GroupBox" 
+                                  IsCollapsible="True" IsCollapsed="True"  >
+
+                <controls:PhidgetDevice x:Name="Phidget1" Margin="-10,-10,-10,0" 
+                               AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+
+                    <dxe:CheckEdit
+                            Content="Log CurrentChange Events"
+                            IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                    <dxe:CheckEdit
+                            Content="Log PositionChange Events"
+                            IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
+                    <dxe:CheckEdit
+                            Content="Log VelocityChange Events"
+                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+                </dxlc:LayoutGroup>
+                
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
+                                  IsCollapsible="True" IsCollapsed="False" Padding="-5" >
+
+                <dxlc:LayoutGroup Header="Servo S0" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[0].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[0].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[0].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[0].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[0].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[0].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[0].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[0].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[0].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[0].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[0].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[0].PositionRange}"/>
+                    
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[0].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[0].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[0].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[0].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[0].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[0].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[0].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[0].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[0].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[0].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[0].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[0].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[0].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S1" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[1].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[1].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[1].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[1].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[1].Current, Mode=OneWay}"/>
+                    
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[1].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[1].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[1].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[1].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[1].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[1].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[1].PositionRange}"/>
+
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[1].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[1].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[1].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[1].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[1].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[1].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[1].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[1].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[1].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[1].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[1].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[1].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[1].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S2" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[2].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[2].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[2].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[2].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[2].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[2].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[2].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[2].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[2].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[2].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[2].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[2].PositionRange}"/>
+
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[2].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[2].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[2].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[2].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[2].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[2].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[2].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[2].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[2].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[2].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[2].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[2].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[2].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S3" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[3].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[3].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[3].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[3].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[3].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[3].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[3].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[3].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[3].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[3].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[3].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[3].PositionRange}"/>
+
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[3].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[3].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[3].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[3].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[3].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[3].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[3].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[3].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[3].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[3].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[3].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[3].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[3].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S4" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[4].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[4].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[4].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[4].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[4].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[4].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[4].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[4].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[4].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[4].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[4].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[4].PositionRange}"/>
+
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[4].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[4].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[4].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[4].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[4].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[4].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[4].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[4].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[4].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[4].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[4].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[4].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[4].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S5" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[5].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl
+                        Engaged="{Binding AdvancedServoProperties[5].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[5].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[5].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[5].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[5].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[5].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[5].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[5].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[5].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[5].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[5].PositionRange}"/>
+                    
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                            <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[5].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[5].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+                        
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[5].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[5].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[5].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[5].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[5].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[5].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[5].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[5].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[5].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[5].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[5].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="0"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S6" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[6].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+                    
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[6].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[6].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[6].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[6].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[6].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[6].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[6].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[6].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[6].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[6].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[6].PositionRange}"/>
+
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[6].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[6].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[6].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[6].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[6].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[6].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[6].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[6].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[6].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[6].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[6].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[6].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[6].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="6"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Header="Servo S7" View="GroupBox" Orientation="Vertical" Padding="-5" >
+
+                    <dxlc:LayoutItem Label="Type" LabelPosition="Top">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+                                          SelectedIndex="0"
+                                          EditValue="{ Binding Path=AdvancedServoProperties[7].ServoType,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                    </dxlc:LayoutItem>
+
+                    <controls:ServoStateControl 
+                        Engaged="{Binding AdvancedServoProperties[7].Engaged, Mode=TwoWay}" 
+                        SpeedRamping="{Binding AdvancedServoProperties[7].SpeedRamping, Mode=TwoWay}" 
+                        Stopped="{Binding AdvancedServoProperties[7].Stopped, Mode=OneWay}"
+                        Current="{Binding AdvancedServoProperties[7].Current, Mode=OneWay}"/>
+
+                    <controls:PositionControl 
+                        DeviceMin="{Binding AdvancedServoProperties[7].DevicePositionMin, Mode=OneWay}" 
+                        Min="{Binding AdvancedServoProperties[7].PositionMin, Mode=TwoWay}" 
+                        Current="{Binding AdvancedServoProperties[7].Position, Mode=TwoWay}" 
+                        Max="{Binding AdvancedServoProperties[7].PositionMax, Mode=TwoWay}"
+                        DeviceMax="{Binding AdvancedServoProperties[7].DevicePositionMax, Mode=OneWay}"
+                        ServoIndex="{Binding AdvancedServoProperties[7].ServoIndex}"
+                        PositionRange="{Binding AdvancedServoProperties[7].PositionRange}"/>
+
+                    <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                        <dxe:CheckEdit IsChecked="{Binding AdvancedServoProperties[7].SpeedRamping}" Content="Speed Ramping"
+                            Background="{Binding AdvancedServoProperties[7].SpeedRamping, Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                        <!--</dxlc:LayoutItem>-->
+
+                        <controls:VelocityControl 
+                            Min="{Binding AdvancedServoProperties[7].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[7].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding AdvancedServoProperties[7].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[7].VelocityMax, Mode=OneWay}"/>
+
+                        <controls:AccelerationControl 
+                            Min="{Binding AdvancedServoProperties[7].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding AdvancedServoProperties[7].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding AdvancedServoProperties[7].AccelerationMax, Mode=OneWay}"/>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical" 
+                                      IsCollapsible="True" IsCollapsed="True" >
+
+                        <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[7].MinimumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="MaximumPulseWidth" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[7].MaximumPulseWidth, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Degress" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[7].Degrees, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="VelocityMax" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AdvancedServoProperties[7].VelocityMax, Mode=TwoWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        		Command="{Binding ConfigureServo2Command }"
+                        		CommandParameter="7"
+                        		Content="{Binding ConfigureServo2Content, FallbackValue='ConfigureServo2' }"
+                        		ToolTip="{Binding ConfigureServo2ToolTip, FallbackValue='ConfigureServo2 ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+
+    </DockPanel>
+
+</vncmvvm:ViewBase>

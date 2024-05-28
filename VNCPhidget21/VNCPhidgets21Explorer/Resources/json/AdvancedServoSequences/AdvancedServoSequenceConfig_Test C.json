@@ -1,0 +1,124 @@
+{
+  "AdvancedServoSequences": [
+    //
+    // Test C Engage and Center Servos and CallSequences
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Test C Engage and Center Servos and Call Sequences", 
+      "Description": "Engage and Center Servos 0,1,2 4,5,6 and Call 48284 IK", 
+      "BeforeActionLoopSequences" : [
+          { "Name": "48284-IK 001122-500ms", "SequenceType": "IK" }
+      ],
+      "StartActionLoopSequences" : [
+          { "Name": "48284-IK DO0-250ms", "SequenceType": "IK" }
+      ],
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 115, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 114, "Acceleration": 250, "VelocityLimit": 100 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": 119, "Acceleration": 250, "VelocityLimit": 100 }
+      ],
+      "EndActionLoopSequences" : [
+          { "Name": "48284-IK DO1-250ms", "SequenceType": "IK" }
+      ],
+      "AfterActionLoopSequences" : [
+          { "Name": "48284-IK 012012-250ms", "SequenceType": "IK" }
+      ],
+      "NextSequence": { "Name": "99415-Test C All Servos to PositionMin", "SequenceType": "AS" }
+    },
+    //
+    // All Servos to PositionMin
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Test C All Servos to PositionMin",
+      "Description": "Parallel Set all servos to PostionMin (-1) (based on TYPE) in Parallel VelocityLimit: 500",
+      "BeforeActionLoopSequences" : [
+          { "Name": "48284-IK 001122-500ms", "SequenceType": "IK" }
+      ],
+      "StartActionLoopSequences" : [
+          { "Name": "48284-IK DO1-250ms", "SequenceType": "IK" }
+      ],
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -1, "Acceleration": 1000, "VelocityLimit": 500 }
+      ],
+      "EndActionLoopSequences" : [
+          { "Name": "48284-IK DO2-250ms", "SequenceType": "IK" }
+      ],
+      "AfterActionLoopSequences" : [
+          { "Name": "48284-IK 012012-250ms", "SequenceType": "IK" }
+      ],
+      "NextSequence": { "Name": "99415-Test C All Servos to PositionMax", "SequenceType": "AS" }
+    },
+    //
+    // All Servos to PositionMax
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Test C All Servos to PositionMax",
+      "Description": "Set all servos to PostionMax (-2) (based on TYPE) Sequentially VelocityLimit: 1000",
+      "BeforeActionLoopSequences" : [
+          { "Name": "48284-IK 001122-500ms", "SequenceType": "IK" }
+      ],
+      "StartActionLoopSequences" : [
+          { "Name": "48284-IK DO2-250ms", "SequenceType": "IK" }
+      ],
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 }
+      ],
+      "EndActionLoopSequences" : [
+          { "Name": "48284-IK DO0-250ms", "SequenceType": "IK" }
+      ],
+      "AfterActionLoopSequences" : [
+          { "Name": "48284-IK 012012-250ms", "SequenceType": "IK" }
+      ],
+      "NextSequence": { "Name": "99415-Test C Re-Center Servos", "SequenceType": "AS" }
+    },
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Test C Re-Center Servos", 
+      "Description": "Engage and Center Servos 0,1,2 4,5,6", 
+      "BeforeActionLoopSequences" : [
+          { "Name": "48284-IK 001122-500ms", "SequenceType": "IK" }
+      ],
+      "StartActionLoopSequences" : [
+          { "Name": "48284-IK DO0-250ms", "SequenceType": "IK" }
+      ],
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 114 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": 119 }
+      ],
+      "EndActionLoopSequences" : [
+          { "Name": "48284-IK DO1-250ms", "SequenceType": "IK" }
+      ],
+      "AfterActionLoopSequences" : [
+          { "Name": "48284-IK 012-250ms", "SequenceType": "IK" }
+      ],
+    },
+  ]
+}

@@ -1,0 +1,5 @@
+usr/include/*.h
+usr/include/mos/*.h	/usr/include/mos
+usr/include/mos/kv/*.h	/usr/include/mos/kv
+usr/lib/*/pkgconfig/*		/usr/lib/@DEB_HOST_MULTIARCH@/pkgconfig
+usr/lib/*/libphidget22.so	/usr/lib/@DEB_HOST_MULTIARCH@

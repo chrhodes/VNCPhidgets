@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+override_dh_auto_configure:
+	dh_auto_configure -- --disable-static --disable-ldconfig --enable-zeroconf --enable-spi
+
+override_dh_auto_build:
+	make
+
+override_dh_strip:
+	dh_strip -p libphidget22 --dbg-package=libphidget22-dbg
+	
+LIBFILE=debian/libphidget22.install
+DEVFILE=debian/libphidget22-dev.install
+
+clean:
+	dh clean --with autoreconf --with autotools-dev
+ifneq ($(filter debian8,$(DEB_BUILD_PROFILES)),)
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < ${LIBFILE}.in > ${LIBFILE}
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < ${DEVFILE}.in > ${DEVFILE}
+else ifneq ($(filter debian9,$(DEB_BUILD_PROFILES)),)
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < ${LIBFILE}.in > ${LIBFILE}
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < ${DEVFILE}.in > ${DEVFILE}
+else ifneq ($(filter ubuntu16,$(DEB_BUILD_PROFILES)),)
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < ${LIBFILE}.in > ${LIBFILE}
+	sed 's/@DEB_HOST_MULTIARCH@/$(DEB_HOST_MULTIARCH)/g' < ${DEVFILE}.in > ${DEVFILE}
+else
+	cp ${LIBFILE}.6 ${LIBFILE}
+	cp ${DEVFILE}.6 ${DEVFILE}
+endif
+
+%:
+	dh $@ --with autoreconf --with autotools-dev

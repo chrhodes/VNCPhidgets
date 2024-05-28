@@ -1,0 +1,101 @@
+﻿using System;
+
+using VNC;
+using VNC.Core.Mvvm;
+
+namespace VNCPhidgets21Explorer.Presentation.Views
+{
+    public partial class PerformanceSelector : ViewBase, IInstanceCountV
+    {
+        #region Constructors, Initialization, and Load
+        
+        public PerformanceSelector()
+        {
+            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountV++;
+            InitializeComponent();
+
+            // Expose ViewModel
+
+            // If View First with ViewModel in Xaml
+
+            // ViewModel = (IHostSelectorViewModel)DataContext;
+
+            // Can create directly
+            // ViewModel = HostSelectorViewModel();
+
+            InitializeView();
+
+            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        
+        
+        private void InitializeView()
+        {
+            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+
+            lgAdvancedServoSequences.IsCollapsed = true;
+            lgInterfaceKitSequences.IsCollapsed = true;
+            lgStepperSequences.IsCollapsed = true;
+            
+            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        
+        #endregion
+
+        #region Enums (None)
+
+
+        #endregion
+
+        #region Structures (None)
+
+
+        #endregion
+
+        #region Fields and Properties (None)
+
+
+        #endregion
+
+        #region Event Handlers (None)
+
+
+        #endregion
+
+        #region Commands (None)
+         
+        #endregion
+
+        #region Public Methods (None)
+
+
+        #endregion
+
+        #region Protected Methods (None)
+
+
+        #endregion
+
+        #region Private Methods (None)
+
+
+        #endregion   
+        
+        #region IInstanceCount
+
+        private static int _instanceCountV;
+
+        public int InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        #endregion
+    }
+}

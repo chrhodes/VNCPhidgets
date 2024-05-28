@@ -1,0 +1,1266 @@
+{
+  "AdvancedServoSequences": [
+    //
+    // Engage and Center Servos
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Engage and Center Servos", 
+      "Description": "Engage and Center Servos 0,1,2 4,5,6", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 113 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 123 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 115 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 114 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": 119 }
+      ]
+    },
+    //
+    // All Servos to PositionMin
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-All Servos to PositionMin",
+      "Description": "Parallel Set all servos to PostionMin (-1) (based on TYPE) in Parallel VelocityLimit: 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 500 }
+      ]
+    },
+    //
+    // All Servos to PositionMax
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-All Servos to PositionMax",
+      "Description": "Set all servos to PostionMax (-2) (based on TYPE) Sequentially VelocityLimit: 1000",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 1000 }
+      ]
+    },
+    //
+    // All Servos to PositionMin Slow
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-All Servos to PositionMin Slow",
+      "Description": "Parallel Set all servos to PostionMin Slowly (-1) (based on TYPE) VelocityLimit: 75",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -1, "VelocityLimit": 75 }
+      ]
+    },
+    //
+    // All Servos to PositionMax Slow
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-All Servos to PositionMax Slow",
+      "Description": "Set all servos to PostionMax Slowly (-2) (based on TYPE) VelocityLimit: 100",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 3, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 },
+        { "ServoIndex": 7, "Engaged": true, "TargetPosition": -2, "VelocityLimit": 100 }
+      ]
+    },    
+    //
+    // Engage All Servos
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Engage All Servos", "Description": "Engage 0,1,2,3,4,5,6,7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
+        { "ServoIndex": 3, "Engaged": true },
+        { "ServoIndex": 4, "Engaged": true },
+        { "ServoIndex": 5, "Engaged": true },
+        { "ServoIndex": 6, "Engaged": true },
+        { "ServoIndex": 7, "Engaged": true },
+      ]
+    },
+    //
+    // DisEngage All Servos
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-DisEngage All Servos", "Description": "DisEngage 0,1,2,3,4,5,6,7", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false },
+        { "ServoIndex": 3, "Engaged": false },
+        { "ServoIndex": 4, "Engaged": false },
+        { "ServoIndex": 5, "Engaged": false },
+        { "ServoIndex": 6, "Engaged": false },
+        { "ServoIndex": 7, "Engaged": false },
+      ]
+    },
+    //
+    // Reset Position Limits (RPL)
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Reset Position Limits (RPL)",
+      "Description": "Resets PositionMin and PositionMax to defaults for DEFAULT device",
+      "UsageNotes" : "Can be called with Servos not Engaged",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 1, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 2, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 3, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 4, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 5, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 6, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 7, "ServoType": 0, "PositionMin": -1, "PositionMax": -1 },
+      ]
+    },
+    //
+    // Relative Test
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Relative Test", 
+      "Description": "Test Relative Position Action",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 0, "RelativePosition": -30 },
+        { "ServoIndex": 0, "RelativePosition": -30 },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "RelativePosition": 10  },
+        { "ServoIndex": 0, "Engaged": false  }
+      ]
+    },
+    //
+    // Servo0
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Servo0", 
+      "Description": "SEQUENCE DESCRIPTION", 
+      "Loops": 3, "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
+        { "ServoIndex": 0, "TargetPosition": 90 },
+        { "ServoIndex": 0, "TargetPosition": 100 },
+        { "ServoIndex": 0, "TargetPosition": 110 },
+        { "ServoIndex": 0, "TargetPosition": 100  },
+        { "ServoIndex": 0, "TargetPosition": 90 },
+      ],
+      "NextSequence": { "Name": "99415-Servo1", "SequenceType": "AS" }
+    },
+    //
+    // Servo1
+    //
+    {
+      "Name": "99415-Servo1",
+      "Actions": [
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
+        { "ServoIndex": 1, "TargetPosition": 90 },
+        { "ServoIndex": 1, "TargetPosition": 100 },
+        { "ServoIndex": 1, "TargetPosition": 110 },
+        { "ServoIndex": 1, "TargetPosition": 100  },
+        { "ServoIndex": 1, "TargetPosition": 90 },
+      ],
+      "NextSequence": { "Name": "99415-Servo2", "SequenceType": "AS" }
+    },
+    //
+    // Servo2
+    //
+    {
+      "Name": "99415-Servo2",
+      "Actions": [
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
+        { "ServoIndex": 2, "TargetPosition": 90 },
+        { "ServoIndex": 2, "TargetPosition": 100 },
+        { "ServoIndex": 2, "TargetPosition": 110 },
+        { "ServoIndex": 2, "TargetPosition": 100 },
+        { "ServoIndex": 2, "TargetPosition": 90 },
+        { "ServoIndex": 2, "Engaged": false  }
+      ]
+    },
+    //
+    // Sequence ServoFin
+    //
+    {
+      "Name": "99415-Sequence ServoFin",
+      "Description": "Disenage Servos {0.1.2}",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false }
+      ]
+    },
+    //
+    // Servo4
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Servo4",
+      "Description": "Moves Servo 4, then 5, then 6 using NextSequence",
+      "Actions": [
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
+        { "ServoIndex": 4, "TargetPosition": 90 },
+        { "ServoIndex": 4, "TargetPosition": 100 },
+        { "ServoIndex": 4, "TargetPosition": 110 },
+        { "ServoIndex": 4, "TargetPosition": 100  },
+        { "ServoIndex": 4, "TargetPosition": 90 },
+        { "ServoIndex": 4, "Engaged": false  }
+      ],
+      "NextSequence": { "Name": "99415-Servo5", "SequenceType": "AS" }
+    },
+    //
+    // Servo5
+    //
+    {
+      "Name": "99415-Servo5",
+      "Actions": [
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
+        { "ServoIndex": 5, "TargetPosition": 90 },
+        { "ServoIndex": 5, "TargetPosition": 100 },
+        { "ServoIndex": 5, "TargetPosition": 110 },
+        { "ServoIndex": 5, "TargetPosition": 100  },
+        { "ServoIndex": 5, "TargetPosition": 90 },
+        { "ServoIndex": 5, "Engaged": false  }
+      ],
+      "NextSequence": { "Name": "99415-Servo6", "SequenceType": "AS" }
+    },
+    //
+    // Servo6
+    //
+    {
+      "Name": "99415-Servo6",
+      "Actions": [
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 200 },
+        { "ServoIndex": 6, "TargetPosition": 90 },
+        { "ServoIndex": 6, "TargetPosition": 100 },
+        { "ServoIndex": 6, "TargetPosition": 110 },
+        { "ServoIndex": 6, "TargetPosition": 100  },
+        { "ServoIndex": 6, "TargetPosition": 90 },
+        { "ServoIndex": 6, "Engaged": false  }
+      ],
+      "NextSequence": { "Name": "99415-Sequence ServoFin", "SequenceType": "AS" }
+    },
+    //********************************************************************************
+    //
+    // Parallel All (PA)
+    //
+    //********************************************************************************
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Parallel All (PA)", 
+      "Description": "SEQUENCE DESCRIPTION",
+      "UsageNotes": "Servos expected to be Centered and Engaged",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -20 },
+        { "ServoIndex": 1, "RelativePosition": -40 },
+        { "ServoIndex": 2, "RelativePosition": -60 },
+        { "ServoIndex": 4, "RelativePosition": 20 },
+        { "ServoIndex": 5, "RelativePosition": 40 },
+        { "ServoIndex": 6, "RelativePosition": 60 }
+      ],
+     "NextSequence": { "Name": "99415-PA Step2", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PA Step2", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 }
+      ],
+      "NextSequence": { "Name": "99415-PA Step3", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PA Step3", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5},
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 6, "RelativePosition": 5}
+      ],
+      "NextSequence": { "Name": "99415-PA Step4", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PA Step4",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 }
+      ],
+      "NextSequence": { "Name": "99415-PA Step5", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PA Step5", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5},
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 6, "RelativePosition": 5}
+      ],
+      "NextSequence": { "Name": "99415-PA Step6", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PA Step6", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        { "ServoIndex": 1, "RelativePosition": -20 },
+        { "ServoIndex": 2, "RelativePosition": -30 },
+        { "ServoIndex": 4, "RelativePosition": 10 },
+        { "ServoIndex": 5, "RelativePosition": 20 },
+        { "ServoIndex": 6, "RelativePosition": 30 }
+      ],
+      "NextSequence": { "Name": "99415-PA Step7", "SequenceType": "AS" }
+    },
+    {
+      "Name": "99415-PA Step7", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 10 },
+        { "ServoIndex": 1, "RelativePosition": 20 },
+        { "ServoIndex": 2, "RelativePosition": 30 },
+        { "ServoIndex": 4, "RelativePosition": -10 },
+        { "ServoIndex": 5, "RelativePosition": -20 },
+        { "ServoIndex": 6, "RelativePosition": -30 }
+      ],
+      "NextSequence": { "Name": "99415-PA Step8", "SequenceType": "AS" }
+    },
+    {
+      "Name": "99415-PA Step8", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 20 },
+        { "ServoIndex": 1, "RelativePosition": 40 },
+        { "ServoIndex": 2, "RelativePosition": 60 },
+        { "ServoIndex": 4, "RelativePosition": -20 },
+        { "ServoIndex": 5, "RelativePosition": -40 },
+        { "ServoIndex": 6, "RelativePosition": -60 }
+      ]
+    },
+    //
+    // Debug Sequence
+    //
+    { 
+      "SerialNumber": 99415,
+      "Name": "99415-Debug Sequence",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 1, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 2, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 3, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 4, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 5, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 6, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 7, "PositionMin": -1, "PositionMax": -1 },
+      ],
+      "NextSequence": { "Name": "99415-Debug Sequence Step1", "SequenceType": "AS" },
+    },
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Debug Sequence Step1",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 }
+      ],
+      "NextSequence": { "Name": "99415-Parallel Pairs 1 (PP1)", "SequenceType": "AS" }
+    },
+    //
+    // Parallel Pairs 1 (PP1)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Parallel Pairs 1 (PP1)",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
+        { "ServoIndex": 4, "Engaged": true },
+        { "ServoIndex": 5, "Engaged": true },
+        { "ServoIndex": 6, "Engaged": true }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step2", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step2",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -20 },
+        { "ServoIndex": 4, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step3", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step3",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -30 },
+        { "ServoIndex": 5, "RelativePosition": 30 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step4", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step4",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -40 },
+        { "ServoIndex": 6, "RelativePosition": 40 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step5", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step5",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": 10 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step6", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step6",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -15 },
+        { "ServoIndex": 5, "RelativePosition": 15 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step7", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -20 },
+        { "ServoIndex": 6, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step8", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step8",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": 10 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step9", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step9",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -15 },
+        { "ServoIndex": 5, "RelativePosition": 15 }
+      ],
+      "NextSequence": { "Name": "99415-PP1 Step10", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP1 Step10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -20 },
+        { "ServoIndex": 6, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" }
+    },
+    //
+    // Parallel Pairs 2 (PP2)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Parallel Pairs 2 (PP2)", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
+        { "ServoIndex": 4, "Engaged": true },
+        { "ServoIndex": 5, "Engaged": true },
+        { "ServoIndex": 6, "Engaged": true }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step2", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step2", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 20 },
+        { "ServoIndex": 4, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step3", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "PP2 Step3", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": 30 },
+        { "ServoIndex": 5, "RelativePosition": 30 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step4", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step4", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 40 },
+        { "ServoIndex": 6, "RelativePosition": 40 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step5", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step5", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 10 },
+        { "ServoIndex": 4, "RelativePosition": 10 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step6", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step6", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": 15 },
+        { "ServoIndex": 5, "RelativePosition": 15 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step7", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step7", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 20 },
+        { "ServoIndex": 6, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step8", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step8", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": -10 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step9", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step9", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -15 },
+        { "ServoIndex": 5, "RelativePosition": -15 }
+      ],
+      "NextSequence": { "Name": "99415-PP2 Step10", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP2 Step10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -20 },
+        { "ServoIndex": 6, "RelativePosition": -20 }
+      ],
+      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" }
+    },
+    //
+    // Parallel Pairs 3 (PP3)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Parallel Pairs 3 (PP3)",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
+        { "ServoIndex": 4, "Engaged": true },
+        { "ServoIndex": 5, "Engaged": true },
+        { "ServoIndex": 6, "Engaged": true }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step2", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step2", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 20 },
+        { "ServoIndex": 4, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step3", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step3", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": 30 },
+        { "ServoIndex": 5, "RelativePosition": 30 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step4", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step4", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 40 },
+        { "ServoIndex": 6, "RelativePosition": 40 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step5", "SequenceType": "AS" },
+    },
+    { 
+      "Name": "99415-PP3 Step5", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -20 },
+        { "ServoIndex": 4, "RelativePosition": -20 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step6", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step6", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -30 },
+        { "ServoIndex": 5, "RelativePosition": -30 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step7", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step7", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -40 },
+        { "ServoIndex": 6, "RelativePosition": -40 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step8", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step8", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 40 },
+        { "ServoIndex": 4, "RelativePosition": 40 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step9", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step9", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": 30 },
+        { "ServoIndex": 5, "RelativePosition": 30 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step10", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step10", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 20 },
+        { "ServoIndex": 6, "RelativePosition": 20 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step11", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP3 Step11", "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -40 },
+        { "ServoIndex": 4, "RelativePosition": -40 }
+      ],
+      "NextSequence": { "Name": "99415-PP3 Step12", "SequenceType": "AS" }
+    },
+    { "Name": "99415-PP3 Step12", 
+      "ExecuteActionsInParallel": true,
+      "NextSequence": { "Name": "99415-PP3 Step13", "SequenceType": "AS" },
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -30 },
+        { "ServoIndex": 5, "RelativePosition": -30 }
+      ]
+    },
+    { 
+      "Name": "99415-PP3 Step13", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -20 },
+        { "ServoIndex": 6, "RelativePosition": -20 }
+      ],
+      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" }
+    },
+    //
+    // Parallel Pairs 4 (PP4)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Parallel Pairs 4 (PP4)",
+      "Description": "SEQUENCE DESCRIPTION",
+      "Loops": 1,
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "VelocityLimit": 75 },
+        { "ServoIndex": 1, "Engaged": true, "VelocityLimit": 150 },
+        { "ServoIndex": 2, "Engaged": true, "VelocityLimit": 300},
+        { "ServoIndex": 4, "Engaged": true, "VelocityLimit": 75 },
+        { "ServoIndex": 5, "Engaged": true, "VelocityLimit": 150 },
+        { "ServoIndex": 6, "Engaged": true, "VelocityLimit": 300 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step2", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step2", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 6, "TargetPosition": -1 },
+        { "ServoIndex": 2, "TargetPosition": -2 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step3", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step3", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 5, "TargetPosition": -1 },
+        { "ServoIndex": 1, "TargetPosition": -2 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step4", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step4", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "TargetPosition": -1, "Duration": 500 },
+        { "ServoIndex": 0, "TargetPosition": -2, "Duration": 500}
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step5", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step5", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -90},
+        { "ServoIndex": 6, "RelativePosition": 90 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step6", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step6", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -90 },
+        { "ServoIndex": 5, "RelativePosition": 90 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step7", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step7", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -90 },
+        { "ServoIndex": 4, "RelativePosition": 90 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step8", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step8", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -90 },
+        { "ServoIndex": 4, "RelativePosition": 90 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step9", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step9", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -90 },
+        { "ServoIndex": 5, "RelativePosition": 90 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step10", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step10", "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": -95, "Duration": 1000 },
+        { "ServoIndex": 6, "RelativePosition": 95, "Duration": 1000 }
+      ],
+      "NextSequence": { "Name": "99415-PP4 Step11", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 Step11", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "VelocityLimit": 50 },
+        { "ServoIndex": 1, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "VelocityLimit": 200 },
+        { "ServoIndex": 4, "VelocityLimit": 200 },
+        { "ServoIndex": 5, "VelocityLimit": 100},
+        { "ServoIndex": 6, "VelocityLimit": 50 },
+      ],
+      "NextSequence": { "Name": "99415-PP4 LastStep", "SequenceType": "AS" }
+    },
+    { 
+      "Name": "99415-PP4 LastStep", 
+      "ExecuteActionsInParallel": true,
+      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
+    },
+    //
+    // Acceleration(10000) VelocityLimit(5000)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration(10000) VelocityLimit(5000)", 
+      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
+      ]
+    },
+    //
+    // Acceleration(5000) VelocityLimit(1000)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration(5000) VelocityLimit(1000)", 
+      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
+      ]
+    },
+    //
+    // Acceleration(500) VelocityLimit(100)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration(500) VelocityLimit(100)", 
+      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 }
+      ]
+    },
+    //
+    // Acceleration(50) VelocityLimit(25)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration(50) VelocityLimit(25)", 
+      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 }
+      ]
+    },
+    //
+    // Acceleration(25) VelocityLimit(10)
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration(25) VelocityLimit(10)", 
+      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 1, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 2, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 3, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 4, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 5, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 6, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
+        { "ServoIndex": 7, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 }
+      ]
+    },
+    //
+    // Acceleration +500
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration +500",
+      "Description": "Increase Acceleration by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 500 },
+        { "ServoIndex": 1, "RelativeAcceleration": 500 },
+        { "ServoIndex": 2, "RelativeAcceleration": 500 },
+        { "ServoIndex": 3, "RelativeAcceleration": 500 },
+        { "ServoIndex": 4, "RelativeAcceleration": 500 },
+        { "ServoIndex": 5, "RelativeAcceleration": 500 },
+        { "ServoIndex": 6, "RelativeAcceleration": 500 },
+        { "ServoIndex": 7, "RelativeAcceleration": 500 }
+      ]
+    },
+    //
+    // Acceleration +100
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration +100",
+      "Description": "Increase Acceleration by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 100 },
+        { "ServoIndex": 1, "RelativeAcceleration": 100 },
+        { "ServoIndex": 2, "RelativeAcceleration": 100 },
+        { "ServoIndex": 3, "RelativeAcceleration": 100 },
+        { "ServoIndex": 4, "RelativeAcceleration": 100 },
+        { "ServoIndex": 5, "RelativeAcceleration": 100 },
+        { "ServoIndex": 6, "RelativeAcceleration": 100 },
+        { "ServoIndex": 7, "RelativeAcceleration": 100 }
+      ]
+    },
+    //
+    // Acceleration +50
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration +50",
+      "Description": "Increase Acceleration by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 50 },
+        { "ServoIndex": 1, "RelativeAcceleration": 50 },
+        { "ServoIndex": 2, "RelativeAcceleration": 50 },
+        { "ServoIndex": 3, "RelativeAcceleration": 50 },
+        { "ServoIndex": 4, "RelativeAcceleration": 50 },
+        { "ServoIndex": 5, "RelativeAcceleration": 50 },
+        { "ServoIndex": 6, "RelativeAcceleration": 50 },
+        { "ServoIndex": 7, "RelativeAcceleration": 50 }
+      ]
+    },
+    //
+    // Acceleration +10
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration +10",
+      "Description": "Increase Acceleration by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 10 },
+        { "ServoIndex": 1, "RelativeAcceleration": 10 },
+        { "ServoIndex": 2, "RelativeAcceleration": 10 },
+        { "ServoIndex": 3, "RelativeAcceleration": 10 },
+        { "ServoIndex": 4, "RelativeAcceleration": 10 },
+        { "ServoIndex": 5, "RelativeAcceleration": 10 },
+        { "ServoIndex": 6, "RelativeAcceleration": 10 },
+        { "ServoIndex": 7, "RelativeAcceleration": 10 }
+      ]
+    },
+    //
+    // Acceleration -10
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration -10",
+      "Description": "Reduce Acceleration by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -10 },
+        { "ServoIndex": 1, "RelativeAcceleration": -10 },
+        { "ServoIndex": 2, "RelativeAcceleration": -10 },
+        { "ServoIndex": 3, "RelativeAcceleration": -10 },
+        { "ServoIndex": 4, "RelativeAcceleration": -10 },
+        { "ServoIndex": 5, "RelativeAcceleration": -10 },
+        { "ServoIndex": 6, "RelativeAcceleration": -10 },
+        { "ServoIndex": 7, "RelativeAcceleration": -10 }
+      ]
+    },
+    //
+    // Acceleration -50
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration -50",
+      "Description": "Reduce Acceleration by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -50 },
+        { "ServoIndex": 1, "RelativeAcceleration": -50 },
+        { "ServoIndex": 2, "RelativeAcceleration": -50 },
+        { "ServoIndex": 3, "RelativeAcceleration": -50 },
+        { "ServoIndex": 4, "RelativeAcceleration": -50 },
+        { "ServoIndex": 5, "RelativeAcceleration": -50 },
+        { "ServoIndex": 6, "RelativeAcceleration": -50 },
+        { "ServoIndex": 7, "RelativeAcceleration": -50 }
+      ]
+    },
+    //
+    // Acceleration -100
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration -100",
+      "Description": "Reduce Acceleration by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -100 },
+        { "ServoIndex": 1, "RelativeAcceleration": -100 },
+        { "ServoIndex": 2, "RelativeAcceleration": -100 },
+        { "ServoIndex": 3, "RelativeAcceleration": -100 },
+        { "ServoIndex": 4, "RelativeAcceleration": -100 },
+        { "ServoIndex": 5, "RelativeAcceleration": -100 },
+        { "ServoIndex": 6, "RelativeAcceleration": -100 },
+        { "ServoIndex": 7, "RelativeAcceleration": -100 }
+      ]
+    },
+    //
+    // Acceleration -500
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-Acceleration -500",
+      "Description": "Reduce Acceleration by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -500 },
+        { "ServoIndex": 1, "RelativeAcceleration": -500 },
+        { "ServoIndex": 2, "RelativeAcceleration": -500 },
+        { "ServoIndex": 3, "RelativeAcceleration": -500 },
+        { "ServoIndex": 4, "RelativeAcceleration": -500 },
+        { "ServoIndex": 5, "RelativeAcceleration": -500 },
+        { "ServoIndex": 6, "RelativeAcceleration": -500 },
+        { "ServoIndex": 7, "RelativeAcceleration": -500 }
+      ]
+    },
+    //
+    // VelocityLimit +500
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit +500",
+      "Description": "Increase VelocityLimit by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 500 }
+      ]
+    },
+    //
+    // VelocityLimit +100
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit +100",
+      "Description": "Increase VelocityLimit by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 100 }
+      ]
+    },
+    //
+    // VelocityLimit +50
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit +50",
+      "Description": "Increase VelocityLimit by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 50 }
+      ]
+    },
+    //
+    // VelocityLimit +10
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit +10",
+      "Description": "Increase VelocityLimit by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 10 }
+      ]
+    },
+    //
+    // VelocityLimit -10
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit -10",
+      "Description": "Reduce VelocityLimit by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -10 }
+      ]
+    },
+    //
+    // VelocityLimit -50
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit -50",
+      "Description": "Reduce VelocityLimit by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -50 }
+      ]
+    },
+    //
+    // VelocityLimit -100
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit -100",
+      "Description": "Reduce VelocityLimit by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -100 }
+      ]
+    },
+    //
+    // VelocityLimit -500
+    //
+    {
+      "SerialNumber": 99415,
+      "Name": "99415-VelocityLimit -500",
+      "Description": "Reduce VelocityLimit by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -500 }
+      ]
+    },
+  ]
+}

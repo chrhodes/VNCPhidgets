@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{218B56C7-99ED-4CC0-A736-3962E62C637D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Explore</RootNamespace>
+    <AssemblyName>Explore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Phidget21.NET">
+      <HintPath>..\..\..\LIbraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEventHandler.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="DistanceSensorEventArgs.cs" />
+    <Compile Include="LightShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LightShow.Designer.cs">
+      <DependentUpon>LightShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayLights.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayLights.Designer.cs">
+      <DependentUpon>PlayLights.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlaySounds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaySounds.Designer.cs">
+      <DependentUpon>PlaySounds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensor1101 GP2D12.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sensor1101 GP2D12.designer.cs">
+      <DependentUpon>Sensor1101 GP2D12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sensor1101 GP2D120.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sensor1101 GP2D120.designer.cs">
+      <DependentUpon>Sensor1101 GP2D120.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sensor1101 GP2Y0A02YK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sensor1101 GP2Y0A02YK.designer.cs">
+      <DependentUpon>Sensor1101 GP2Y0A02YK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sensor1111.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Sensor1111.designer.cs">
+      <DependentUpon>Sensor1111.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Sounds.cs" />
+    <Compile Include="ucLightGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLightGrid.designer.cs">
+      <DependentUpon>ucLightGrid.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LightShow.resx">
+      <DependentUpon>LightShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayLights.resx">
+      <DependentUpon>PlayLights.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaySounds.resx">
+      <DependentUpon>PlaySounds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Sensor1101 GP2D12.resx">
+      <DependentUpon>Sensor1101 GP2D12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor1101 GP2D120.resx">
+      <DependentUpon>Sensor1101 GP2D120.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor1101 GP2Y0A02YK.resx">
+      <DependentUpon>Sensor1101 GP2Y0A02YK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sensor1111.resx">
+      <DependentUpon>Sensor1111.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLightGrid.resx">
+      <DependentUpon>ucLightGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServiceReference1\DebugLightGridApplication.wsdl" />
+    <None Include="Service References\ServiceReference1\DebugLightGridApplication.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\DebugLightGridApplication1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceReference1\ucLightGrid.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DebugLightGrid\DebugLightGrid.csproj">
+      <Project>{72714944-127B-4F07-A9DD-6F16CA499C49}</Project>
+      <Name>DebugLightGrid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DebugWindow\DebugWindow.csproj">
+      <Project>{BA6CCA1D-EDF5-4549-BE87-E6F9DB89ABE9}</Project>
+      <Name>DebugWindow</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\DebugLightGridApplication.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

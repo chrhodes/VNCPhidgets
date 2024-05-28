@@ -1,0 +1,1053 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="class">
+      <UniqueIdentifier>{c4687f35-5702-43f4-aca1-7ff96001f049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="device">
+      <UniqueIdentifier>{45d14665-7fb5-4da2-9071-14afdafcb011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext">
+      <UniqueIdentifier>{fdd104eb-99ab-4e8c-9dd8-3a94617e6c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="network">
+      <UniqueIdentifier>{121c7d8d-9c0e-4bb0-9d85-26fcaa3acaef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="plat">
+      <UniqueIdentifier>{1095c99e-c317-4dd3-826b-2d1f9fdb1b22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{6a2b44e8-caef-4a80-8c6e-56eedbde81cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\mos">
+      <UniqueIdentifier>{1474d949-e516-4789-9d1e-d139e8fdee18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\mos\kv">
+      <UniqueIdentifier>{7954b85b-bfe1-44f2-b884-94c3a862d25a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="plat\android">
+      <UniqueIdentifier>{df4823df-cedb-460a-9681-2acae046c2c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="java">
+      <UniqueIdentifier>{14c83fff-a552-48a2-a56c-7449fdbb09b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="java\ARM">
+      <UniqueIdentifier>{afc27602-531b-4bdf-b690-08d3920d6b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="java\ARM\Debug">
+      <UniqueIdentifier>{9833c24a-a54d-48bf-9511-6735d91b3ed9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ext\mdnsclient">
+      <UniqueIdentifier>{b2168040-b457-4b97-bd4d-ff7630246c0b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\class\accelerometer.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\accelerometer.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\currentinput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\currentinput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dataadapter.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dcmotor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dcmotor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\digitalinput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\digitalinput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\digitaloutput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\digitaloutput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\distancesensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\encoder.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\encoder.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\firmwareupgrade.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\firmwareupgrade.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\frequencycounter.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\frequencycounter.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\generic.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\generic.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\gps.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\gps.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\gyroscope.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\gyroscope.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\hub.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\hub.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\humiditysensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\humiditysensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\ir.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\ir.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\lcd.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\lcd.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\lightsensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\lightsensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\magnetometer.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\magnetometer.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\powerguard.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\powerguard.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\pressuresensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\pressuresensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\rcservo.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\rcservo.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\resistanceinput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\resistanceinput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\rfid.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\rfid.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\soundsensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\spatial.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\spatial.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\stepper.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\stepper.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\temperaturesensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\temperaturesensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageinput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageinput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageoutput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageoutput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageratioinput.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageratioinput.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\accelerometerdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\advancedservodevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\analogdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\bridgedevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\encoderdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\firmwareupgradedevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\frequencycounterdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\genericdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\gpsdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\hubdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\interfacekitdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\irdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\leddevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\meshdongledevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\motorcontroldevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\phsensordevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\rfiddevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\servodevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\spatialdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\stepperdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\temperaturesensordevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\textlcddevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\vintdevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\cvtutf.c">
+      <Filter>ext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\kv\kv.c">
+      <Filter>ext\mos\kv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\kv\kvent.c">
+      <Filter>ext\mos\kv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\kv\parse.c">
+      <Filter>ext\mos\kv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\kv\scan.c">
+      <Filter>ext\mos\kv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\base.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\base64.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\crc32.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\ctype.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\endswith.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\getcwd.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\getenv.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\getopt.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\glob.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\glock.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\hexdump.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\init_daemon.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\iop.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\malloc.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\malloc-user.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\memchr.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\memcmp.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\memmem.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mkdirp.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_dl-unix.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_error-errno.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_lock-pthread.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_net.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_netops-unix.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_os.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_random-unix.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_setenv-native.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_stacktrace-gnu.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_task-pthread.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_time-unix.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_tlock.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\path.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\pkcs5_pbkdf2.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\printf-smart.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\process-unix.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\rand48.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\random.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\readdir-unix.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\readline.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\rwrlock.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\scanf.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\sha2.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\snprintf.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strcasecmp.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strchr.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strcmp.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strdup.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strlcat.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strlcpy.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strlen.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strncmp.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strncpy.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strnsep.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strnstr.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strrchr.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strrev.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strstr.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strton.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\strtrim.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\time.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\urldecode.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\urlencode.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\vasprintf.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\channel.c">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\client.c">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\network.c">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\networkcontrol.c">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\server.c">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\servers.c">
+      <Filter>network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\plat\android\com_phidget22_usb_Manager.c">
+      <Filter>plat\android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\plat\android\com_phidget22_usb_Phidget.c">
+      <Filter>plat\android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\plat\android\usbandroid.c">
+      <Filter>plat\android</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\jsmn.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\json.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\log.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\packettracker.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\packing.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\utils.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\analogsensor.c" />
+    <ClCompile Include="..\..\src\bridge.c" />
+    <ClCompile Include="..\..\src\bridge.gen.c" />
+    <ClCompile Include="..\..\src\constants.c" />
+    <ClCompile Include="..\..\src\devices.c" />
+    <ClCompile Include="..\..\src\devices.gen.c" />
+    <ClCompile Include="..\..\src\dispatch.c" />
+    <ClCompile Include="..\..\src\formatters.c" />
+    <ClCompile Include="..\..\src\gpp.c" />
+    <ClCompile Include="..\..\src\lightning.c" />
+    <ClCompile Include="..\..\src\manager.c" />
+    <ClCompile Include="..\..\src\mesh.c" />
+    <ClCompile Include="..\..\src\object.c" />
+    <ClCompile Include="..\..\src\phidget.c" />
+    <ClCompile Include="..\..\src\phidget22.c" />
+    <ClCompile Include="..\..\src\spi.c" />
+    <ClCompile Include="..\..\src\structio.gen.c" />
+    <ClCompile Include="..\..\src\supportedpacket.gen.c" />
+    <ClCompile Include="..\..\src\usb.c" />
+    <ClCompile Include="..\..\src\vint.c" />
+    <ClCompile Include="..\..\src\vintpackets.c" />
+    <ClCompile Include="..\..\src\vintpackets.gen.c" />
+    <ClCompile Include="..\..\src\bridgepackets.gen.c" />
+    <ClCompile Include="..\..\src\datainterval.gen.c" />
+    <ClCompile Include="..\..\src\debug.c" />
+    <ClCompile Include="..\..\src\enumutil.gen.c" />
+    <ClCompile Include="..\..\src\errorstrings.gen.c" />
+    <ClCompile Include="..\..\src\stats.c" />
+    <ClCompile Include="..\..\src\virtual.c" />
+    <ClCompile Include="..\..\src\class\bldcmotor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\bldcmotor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\capacitivetouch.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\capacitivetouch.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dataadapter.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dictionary.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dictionary.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\distancesensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\meshdongle.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\meshdongle.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\motorpositioncontroller.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\motorpositioncontroller.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\phsensor.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\phsensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\soundsensor.gen.c">
+      <Filter>class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\dictionarydevice.c">
+      <Filter>device</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\config.c">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\sha1.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_fileio-unix-user.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mos\mos_atomic-pthread.c">
+      <Filter>ext\mos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mdnsclient\dnssd_clientlib.c">
+      <Filter>ext\mdnsclient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mdnsclient\dnssd_clientstub.c">
+      <Filter>ext\mdnsclient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ext\mdnsclient\dnssd_ipc.c">
+      <Filter>ext\mdnsclient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\network\zeroconf.c">
+      <Filter>network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\class\accelerometer.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\currentinput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\dataadapter.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\dcmotor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\digitalinput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\digitaloutput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\encoder.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\firmwareupgrade.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\frequencycounter.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\generic.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\gps.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\gyroscope.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\hub.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\humiditysensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\ir.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\lcd.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\lcd.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\lightsensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\magnetometer.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\powerguard.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\pressuresensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\rcservo.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\resistanceinput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\rfid.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\soundsensor.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\spatial.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\stepper.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\temperaturesensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\voltageinput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\voltageoutput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\voltageratioinput.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\accelerometerdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\advancedservodevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\analogdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\bridgedevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\encoderdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\firmwareupgradedevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\frequencycounterdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\genericdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\gpsdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\hubdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\interfacekitdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\irdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\leddevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\meshdongledevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\motorcontroldevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\phsensordevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\rfiddevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\servodevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\spatialdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\stepperdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\temperaturesensordevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\textlcddevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\vintdevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\cvtutf.h">
+      <Filter>ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\kv\kv.h">
+      <Filter>ext\mos\kv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\kv\parse.h">
+      <Filter>ext\mos\kv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\kv\scan.h">
+      <Filter>ext\mos\kv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\bsdqueue.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\bsdtree.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\init_daemon.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_assert.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_atomic.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_base64.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_basic.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_basic_types.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_basic_types-win.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_byteorder.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_crc32.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_crc32_impl.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_dl.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_endian-i386.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_error-errno.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_fmt.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_getpasswd.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_hexdump.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_iop.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_lock.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_macrocompat.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_md5.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_net.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_netops.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_os.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_os-Linux-user.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_random.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_readdir.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_readline.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_rwrlock.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_service.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_sha1.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_sha2.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_stacktrace.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_task.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_time.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_tlock.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_typeio.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_urldecode.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\mos_urlencode.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mos\pkcs5_pbkdf2.h">
+      <Filter>ext\mos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\network\network.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\network\openremote.h">
+      <Filter>network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\plat\android\com_phidget22_usb_Manager.h">
+      <Filter>plat\android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\plat\android\com_phidget22_usb_Phidget.h">
+      <Filter>plat\android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\plat\android\phidget_jni.h">
+      <Filter>plat\android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\jsmn.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\json.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\packettracker.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\packing.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\phidgetlog.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\utils.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\analogsensor.h" />
+    <ClInclude Include="..\..\src\bridge.gen.h" />
+    <ClInclude Include="..\..\src\bridge.h" />
+    <ClInclude Include="..\..\src\bridgepackets.gen.h" />
+    <ClInclude Include="..\..\src\constants.h" />
+    <ClInclude Include="..\..\src\constantsinternal.h" />
+    <ClInclude Include="..\..\src\devices.gen.h" />
+    <ClInclude Include="..\..\src\devices.h" />
+    <ClInclude Include="..\..\src\gpp.h" />
+    <ClInclude Include="..\..\src\lightning.h" />
+    <ClInclude Include="..\..\src\locks.h" />
+    <ClInclude Include="..\..\src\macros.h" />
+    <ClInclude Include="..\..\src\manager.h" />
+    <ClInclude Include="..\..\src\mesh.h" />
+    <ClInclude Include="..\..\src\object.h" />
+    <ClInclude Include="..\..\src\phidget.h" />
+    <ClInclude Include="..\..\src\phidget22int.gen.h" />
+    <ClInclude Include="..\..\src\phidget22int.h" />
+    <ClInclude Include="..\..\src\phidgetbase.h" />
+    <ClInclude Include="..\..\src\spi.h" />
+    <ClInclude Include="..\..\src\structio.gen.h" />
+    <ClInclude Include="..\..\src\types.gen.h" />
+    <ClInclude Include="..\..\src\usb.h" />
+    <ClInclude Include="..\..\src\vint.h" />
+    <ClInclude Include="..\..\src\vintpackets.h" />
+    <ClInclude Include="..\..\src\constants.gen.h" />
+    <ClInclude Include="..\..\src\debug.h" />
+    <ClInclude Include="..\..\src\enumutil.gen.h" />
+    <ClInclude Include="..\..\src\enumutil.h" />
+    <ClInclude Include="..\..\src\errorstrings.gen.h" />
+    <ClInclude Include="..\..\src\stats.h" />
+    <ClInclude Include="..\..\src\virtual.h" />
+    <ClInclude Include="..\..\src\class\bldcmotor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\capacitivetouch.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\dataadapter.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\dictionary.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\distancesensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\meshdongle.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\motorpositioncontroller.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\phsensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\class\soundsensor.gen.h">
+      <Filter>class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\device\dictionarydevice.h">
+      <Filter>device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\phidgetconfig.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mdnsclient\dns_sd.h">
+      <Filter>ext\mdnsclient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ext\mdnsclient\dnssd_ipc.h">
+      <Filter>ext\mdnsclient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\network\zeroconf.h">
+      <Filter>network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\..\Output\Android\ARM\Debug\libphidget22java.a">
+      <Filter>java\ARM\Debug</Filter>
+    </Library>
+  </ItemGroup>
+</Project>

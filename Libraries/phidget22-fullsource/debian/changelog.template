@@ -1,0 +1,6 @@
+libphidget22 (99:VERSION-DEBIANREV) stable; urgency=low
+
+  * All debian package releases are generated from unmodified source.
+    See master changelog
+
+ -- Patrick McNeil <patrick@phidgets.com>  DATE

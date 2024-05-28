@@ -1,0 +1,2 @@
+usr/lib/*/libphidget22.so.*	/usr/lib/@DEB_HOST_MULTIARCH@
+plat/linux/udev/99-libphidget22.rules lib/udev/rules.d

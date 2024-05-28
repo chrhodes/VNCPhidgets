@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-windows</TargetFrameworks>
+        <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionSuffix>indevelopment-1</VersionSuffix>
+        <FileVersion>2023.10.30A</FileVersion>
+        <Company>VNC</Company>
+        <Description>Phidget21 Explorer Core</Description>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Prism.Core" Version="8.1.97" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!--<PackageReference Include="VNC.Core" Version="2.1.2" />-->
+      <ProjectReference Include="..\..\..\VNC\VNC.Core\VNC.Core.csproj" />
+    </ItemGroup>
+  
+</Project>

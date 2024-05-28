@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Fx.Display">
+    <Position X="8.5" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AgAEABAgAQAAQBAAAEAAAgAAAAAgAAAAAwQAAAAAAAA=</HashCode>
+      <FileName>Display.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fx.Set">
+    <Position X="4.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAACAAQAgQRACAAFBIQQAAEAAgAAECAAAAAAAACA=</HashCode>
+      <FileName>Set.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fx.FxShow">
+    <Position X="0.5" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>ghAAEAIAAQIywBAAAABAaAQQMAgKAAEEAAAgCAAAABA=</HashCode>
+      <FileName>FxShow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fx.Lights.FlashingLight">
+    <Position X="0.5" Y="13" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAkAIAAAACQAAAAAEAAAQAAAAAAAAAAAQQAAAAAgIA=</HashCode>
+      <FileName>Lights\FlashingLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fx.PhidgetFx">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PhidgetFx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fx.Lights.DisplayLight">
+    <Position X="0.5" Y="8.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAAAAEAAAAAAAAAIAAAAAIAAAAAAAAgBAEBIA=</HashCode>
+      <FileName>Lights\DisplayLight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fx.Lights.Light">
+    <Position X="7" Y="8.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAACAA=</HashCode>
+      <FileName>Lights\Light.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Fx.Lights.ILight">
+    <Position X="7" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIA=</HashCode>
+      <FileName>Lights\ILight.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

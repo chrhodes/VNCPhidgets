@@ -1,0 +1,603 @@
+{
+  "AdvancedServoSequences": [
+    //
+    // Initialize Skull
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Initialize Skulls", "Description": "Set Skull Movement and Position constraints",
+      "UsageNotes": "Does not Engage SKull",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "ServoType": 2, "PositionMin": 82, "PositionMax": 118, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 1, "ServoType": 2, "PositionMin": 70, "PositionMax": 110, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 2, "ServoType": 2, "PositionMin": 40, "PositionMax": 140, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 4, "ServoType": 2, "PositionMin": 80, "PositionMax": 116, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 5, "ServoType": 5, "PositionMin": 66, "PositionMax": 106, "Acceleration": 500, "VelocityLimit": 50 },
+        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 40, "PositionMax": 140, "Acceleration": 500, "VelocityLimit": 50 },
+        //{ "ServoIndex": 0,  }, // THis is X Axis near minimum to avoid Head snap when engaged.
+        //{ "ServoIndex": 1,  },
+        //{ "ServoIndex": 2,  },
+
+      ],
+      "NextSequence": { "Name": "Wake up Skulls", "SequenceType":  "AS" }
+    },
+    //
+    // Wake up Skull
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Wake up Skulls", "Description": "Engages Skull, Snaps to attention",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 100 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 90 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 98 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 86 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": 90 },
+      ]
+    },
+    //
+    // Sleep Skulls
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Sleep Skulls", "Description": "Put Skulls to sleep",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false },
+        { "ServoIndex": 4, "Engaged": false },
+        { "ServoIndex": 5, "Engaged": false },
+        { "ServoIndex": 6, "Engaged": false },
+      ]
+    },
+    //
+    // Skulls Center
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Center",
+      "Description": "Center Right Skull",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "TargetPosition": 100 },
+        { "ServoIndex": 1, "TargetPosition": 90 },
+        { "ServoIndex": 2, "TargetPosition": 90 },
+        { "ServoIndex": 4, "TargetPosition": 98 },
+        { "ServoIndex": 5, "TargetPosition": 86 },
+        { "ServoIndex": 6, "TargetPosition": 90 },
+      ]
+    },    
+    //
+    // Right Skull Center
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Center",
+      "Description": "Center Right Skull",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "TargetPosition": 100 },
+        { "ServoIndex": 1, "TargetPosition": 90 },
+        { "ServoIndex": 2, "TargetPosition": 90 },
+      ]
+    },
+    //
+    // Left Skull Center
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Center",
+      "Description": "Center Left Skull",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "TargetPosition": 98 },
+        { "ServoIndex": 5, "TargetPosition": 86 },
+        { "ServoIndex": 6, "TargetPosition": 90 },
+      ]
+    },
+    //
+    // Skulls Look Together
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Together", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": 10 },
+        //{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skulls Look Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Left", "Description": "Skulls Look Left",
+      "ExecuteActionsInParallel": false, "Duration": 500,
+      "Actions": [
+        { "ServoIndex": 6, "RelativePosition": -50, "Duration": 500 },
+        { "ServoIndex": 6, "RelativePosition": 25 },
+      ],
+      "NextSequence": { "Name": "Skulls Look Left2", "SequenceType":  "AS" }
+    },
+    //
+    // Skulls Look Left2
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Left2", "Description": "Skulls Look Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 6, "RelativePosition": -25 },
+        { "ServoIndex": 2, "RelativePosition": -50, "RelativeAcceleration": 1000, "RelativeVelocityLimit": 50 },
+      ]
+    },
+    //
+    // Skulls Look Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Right", "Description": "Skulls Look Right",
+      "ExecuteActionsInParallel": false, "Duration": 500,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 50, "Duration": 500 },
+        { "ServoIndex": 2, "RelativePosition": -25 },
+      ],
+      "NextSequence": { "Name": "Skulls Look Right2", "SequenceType":  "AS" }
+    },
+    //
+    // Skulls Look Right2
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Right2", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 25 },
+        { "ServoIndex": 6, "RelativePosition": 50, "RelativeAcceleration": 1000, "RelativeVelocityLimit": 50 },
+      ]
+    },    
+    //
+    // Skulls Look Apart
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Apart", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 15 },
+        { "ServoIndex": 4, "RelativePosition": -10 },
+        //{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -15 },
+      ]
+    },    
+    //
+    // Skulls Look Up Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Up Right", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },
+      ]
+    },
+    //
+    // Left Skull Look Up Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Up Right", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+      ]
+    },
+    //
+    // Right Skull Look Up Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Up Right", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },
+      ]
+    },
+    //
+    // Skulls Look Up Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Up Left", "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -5},        
+      ]
+    },    
+    //
+    // Left Skull Look Up Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Up Left", "Description": "Skull Look Up Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+      ]
+    },
+    //
+    // Right Skull Look Up Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Up Left", "Description": "Right Skull Look Up Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -5},
+      ]
+    },
+    //
+    // Skulls Look Down Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Down Right", "Description": "Skulls Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },        
+      ]
+    },    
+    //
+    // Left Skull Look Down Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Down Right", "Description": "Skull Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+      ]
+    },
+    //
+    // Right Skull Look Down Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Down Right", "Description": "Skull Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },
+      ]
+    },
+    //
+    // Skulls Look Down Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skulls Look Down Left", "Description": "Skull Look Down Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 },        
+      ]
+    },    
+    //
+    // Left Skull Look Down Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Look Down Left", "Description": "Skull Look Down Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+      ]
+    },
+    //
+    // Right Skull Look Down Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Look Down Left", "Description": "Skull Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": -5 },
+      ]
+    },
+    //
+    // Left Skull Yes
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Yes", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        { "ServoIndex": 4, "RelativePosition": -5, "Duration": 1500 },
+        { "ServoIndex": 4, "RelativePosition": 10, "Duration": 1500 },
+        { "ServoIndex": 4, "RelativePosition": -10, "Duration": 1500 },
+        { "ServoIndex": 4, "RelativePosition": 5, "Duration": 1500 },
+      ]
+    },    
+    //
+    // Right Skull Yes
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Yes", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 0, "RelativePosition": 10 },
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        { "ServoIndex": 0, "RelativePosition": 5 },
+      ]
+    },
+    //
+    // Left Skull Laugh
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Laugh", "Description": "Look up and Go nuts",
+      "ExecuteActionsInParallel": true, "Duration": 1000,
+      "Actions": [
+        { "ServoIndex": 5, "RelativePosition": -5, "Acceleration": 1000, "VelocityLimit":  200 },
+        { "ServoIndex": 4, "RelativePosition": 15 },
+      ],
+      "NextSequence": { "Name": "Left Skull Laugh2", "SequenceType":  "AS" }
+    },
+    //
+    // Left Skull Laugh2
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Laugh2",
+      "ExecuteActionsInParallel": true, "Duration": 500,
+      "Actions": [
+        { "ServoIndex": 5, "RelativePosition": 5},
+        { "ServoIndex": 4, "RelativePosition": -15, "RelativeAcceleration": -600 },
+
+      ],
+      "NextSequence": { "Name": "Left Skull Laugh3", "SequenceType":  "AS" }
+    },
+    //
+    // Left Skull Laugh3
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Left Skull Laugh3", "Description": "Move +/- 5 X,Y,Z axis 3 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 6, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
+        { "ServoIndex": 6, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -5 },
+        { "ServoIndex": 6, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -5 },
+        
+        { "ServoIndex": 5, "RelativePosition": 5 , "Acceleration": 5000, "VelocityLimit": -2 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": -5 },
+        
+        { "ServoIndex": 4, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+        { "ServoIndex": 4, "RelativePosition": 5 },
+        { "ServoIndex": 4, "RelativePosition": -5 },
+      ],
+      //"NextSequence": { "Name": "Laugh3", "SequenceType":  "AS" }
+    },    
+    //
+    // Right Skull Laugh
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Laugh", "Description": "Look up and Go nuts",
+      "ExecuteActionsInParallel": true, "Duration": 1000,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": 4, "Acceleration": 1000, "VelocityLimit": 200 },
+        { "ServoIndex": 0, "RelativePosition": 15 },
+      ],
+      "NextSequence": { "Name": "Right Skull Laugh2", "SequenceType":  "AS" }
+    },
+    //
+    // Right Skull Laugh2
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Laugh2", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": true, "Duration": 500,
+      "Actions": [
+        { "ServoIndex": 1, "RelativePosition": -4 },
+        { "ServoIndex": 0, "RelativePosition": -15, "RelativeAcceleration": -600 },
+
+      ],
+      "NextSequence": { "Name": "Right Skull Laugh3", "SequenceType":  "AS" }
+    },
+    //
+    // Right Skull Laugh3
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Right Skull Laugh3", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        { "ServoIndex": 2, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -5 },
+        
+        { "ServoIndex": 1, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        
+        { "ServoIndex": 0, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 0, "RelativePosition": -5 },
+        { "ServoIndex": 0, "RelativePosition": 5 },
+        { "ServoIndex": 0, "RelativePosition": -5 },
+      ],
+      //"NextSequence": { "Name": "Laugh3", "SequenceType":  "AS" }
+    },
+    //
+    // Skull Sigh
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skull Sigh", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": true, "Duration": 500,
+      "Actions": [
+        //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 500, "VelocityLimit": 100 },
+        { "ServoIndex": 0, "RelativePosition": -15,"Acceleration": 150, "VelocityLimit": 50 },
+      ],
+      "NextSequence": { "Name": "Skull Sigh2", "SequenceType":  "AS" }
+    },
+    //
+    // Skull Sigh2
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skull Sigh2", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": true, "Duration": 100,
+      "Actions": [
+       // { "ServoIndex": 1, "RelativePosition": 5, "RelativeAcceleration": -250, "RelativeVelocityLimit": -25 },
+        { "ServoIndex": 0, "RelativePosition": 15, "RelativeAcceleration": -100, "RelativeVelocityLimit": -25 },
+
+      ],
+      "NextSequence": { "Name": "Skull Sigh3", "SequenceType": "AS" }
+    },
+    //
+    // Skull Sigh3
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skull Sigh3", "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 2, "RelativePosition": 7, "Acceleration": 150, "VelocityLimit": 70},
+        { "ServoIndex": 2, "RelativePosition": -7 },
+        { "ServoIndex": 2, "RelativePosition": 7 },
+        { "ServoIndex": 2, "RelativePosition": -7 },
+        //{ "ServoIndex": 2, "RelativePosition": 7 },
+        //{ "ServoIndex": 2, "RelativePosition": -7 },
+      ],
+      //"NextSequence": { "Name": "Laugh3", "SequenceType":  "AS" }
+    },
+    //
+    // Skull No
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skull No", "Description": "Move left and right Z axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        { "ServoIndex": 2, "RelativePosition": -15, "Acceleration": 2000, "VelocityLimit": 150},
+        { "ServoIndex": 2, "RelativePosition": 25 },
+        { "ServoIndex": 2, "RelativePosition": -25 },
+        { "ServoIndex": 2, "RelativePosition": 15 },
+      ]
+    },
+    //
+    // Skull Maybe 1
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skull Maybe 1", "Description": "Move Y axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+      ]
+    },
+    //
+    // Skull Maybe 2
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "Skull Maybe 2", "Description": "Move Y axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        //{ "ServoIndex": 2, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": -5 },
+      ]
+    },
+  ]
+}

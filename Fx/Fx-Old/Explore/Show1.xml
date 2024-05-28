@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Show SBCHost="" SBCPort="" SetDelay="10">
+  <!--
+  Initialization creates the lights and maps the Ids to InterfaceKits and PortNumbers
+  -->
+  <Intialization>
+    <DisplayLight Id="0" InterfacekKit="" PortNumber="3" />
+    <DisplayLight Id="1" InterfacekKit="" PortNumber="7" />
+  </Intialization>
+  <Set Name="SetName" Description="">
+    <Display Loops="1">
+      <!--
+      Perhaps OnDuration/OffDuration could take -1 to mean forever.  Only one could be set, or one would always win.
+      -->
+      <DisplayLight Id="0" On="" Off="" Display="true" OnDuration="" OffDuration="" Loops="1" LoopDelay="500"/>
+      <DisplayLight />
+    </Display>
+    <Display Loops="5">
+      <DisplayLight />
+      <DisplayLight />
+    </Display>
+  </Set>
+  <Set Name="SetName" Description="">
+    <Display Loops="1">
+      <DisplayLight />
+      <DisplayLight />
+    </Display>
+    <Display Loops="5">
+      <DisplayLight />
+      <DisplayLight />
+    </Display>
+  </Set>
+</Show>

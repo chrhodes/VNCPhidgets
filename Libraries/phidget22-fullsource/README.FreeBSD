@@ -1,0 +1,60 @@
+
+FreeBSD is not a supported platform for Phidgets, but should work and has
+been tested for basic functionality.  Linux code should, for the most part,
+function without modification on FreeBSD.
+
+The library was last tested on FreeBSD 11.0-RELEASE-p1.
+
+
+Compiling
+==========
+
+	./configure && make && make install
+
+	Libraries will be installed in /usr/local/lib
+	Headers will be installed in /usr/local/include
+
+	Run ./configure --help to see compile and installation options.
+
+Linking User Code
+=================
+
+	cc prog.c -o prog -L /usr/local/lib -I /usr/local/include -lphidget22
+
+	Programs that use configure (like additional Phidget libraries or services):
+
+		./configure CFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib
+
+Notes
+=====
+
+By default, only the root user can access USB devices on FreeBSD.  To allow regular
+users to access Phidgets, without having to run as the root user, devfs rules can be
+used.  The following will allow users in the new 'usb' group to access USB devices.
+
+	1) Add a usb group
+
+		add the following line (with a unique id) to /etc/groups
+
+			usb:*:600:<users>
+
+		See group(5) for details.
+			
+
+	2) Create, or update /etc/devfs.rules
+
+		[localrules=10]
+		add path 'usb/*' mode 0660 group usb
+
+		This will set the usb devices to group usb.
+		See devfs.rules(5) for details.
+
+	3) Enable the devfs rules
+
+		Add the following line to rc.conf.
+
+		devfs_system_ruleset="localrules"
+
+	4) Reread the devfs rules
+
+		# service devfs restart

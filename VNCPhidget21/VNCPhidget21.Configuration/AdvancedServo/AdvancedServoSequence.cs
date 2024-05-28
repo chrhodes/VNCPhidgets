@@ -1,0 +1,10 @@
+﻿namespace VNCPhidget21.Configuration
+{
+    public class AdvancedServoSequence : PhidgetSequenceBase
+    {
+        /// <summary>
+        /// Array of AdvancedServoServo actions in sequence
+        /// </summary>
+        public AdvancedServoServoAction[]? Actions { get; set; }
+    }
+}

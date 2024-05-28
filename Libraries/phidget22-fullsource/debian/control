@@ -1,0 +1,45 @@
+Source: libphidget22
+Section: libs
+Priority: optional
+Maintainer: Patrick McNeil <patrick@phidgets.com>
+Build-Depends: debhelper (>= 7), autotools-dev, dh-autoreconf, libusb-1.0-0-dev
+Standards-Version: 3.7.3
+Homepage: http://www.phidgets.com
+ 
+Package: libphidget22
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}
+Description: Phidgets runtime library
+ Runtime library for the libphidgets API.
+ .
+ Phidgets are a set of "plug and play" building blocks for low cost USB 
+ sensing and control from your PC. All the USB complexity is taken care 
+ of by the robust libphidget API.
+
+Package: libphidget22-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libphidget22 (= ${binary:Version}), libusb-1.0-0-dev, ${misc:Depends}
+Description: Phidgets development files
+ This package contains Development libraries and header files for the 
+ libphidget API.
+ .
+ Phidgets are a set of "plug and play" building blocks for low cost USB
+ sensing and control from your PC. All the USB complexity is taken care 
+ of by the robust libphidget API.
+ 
+Package: libphidget22-dbg
+Section: debug
+Architecture: any
+Multi-Arch: same
+Priority: extra
+Depends: libphidget22 (= ${binary:Version}), ${misc:Depends}
+Description: Phidgets debug symbols
+ This package contains debugging symbols for the libphidget API.
+ .
+ Phidgets are a set of "plug and play" building blocks for low cost USB
+ sensing and control from your PC. All the USB complexity is taken care
+ of by the robust libphidget API.

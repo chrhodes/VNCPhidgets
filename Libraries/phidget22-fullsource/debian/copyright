@@ -1,0 +1,23 @@
+This work was packaged for Debian by:
+
+    Patrick McNeil <patrick@phidgets.com> on Wed, 13 Oct 2010 12:27:30 -0600
+
+It was downloaded from:
+
+    http://www.phidgets.com
+
+Upstream Author(s):
+
+    Phidgets Inc.
+
+Copyright:
+
+    Copyright (C) 2016 Phidgets Inc.
+	
+License:
+
+    LGPLv3
+
+The Debian packaging is:
+
+    Copyright (C) 2016 Patrick McNeil <patrick@phidgets.com>

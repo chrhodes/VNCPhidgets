@@ -1,0 +1,5 @@
+1) install in /etc/udev/rules.d
+2) unplug usb device
+3) run > udevadm control --reload-rules
+4) run > udevadm trigger
+5) plugin usb device

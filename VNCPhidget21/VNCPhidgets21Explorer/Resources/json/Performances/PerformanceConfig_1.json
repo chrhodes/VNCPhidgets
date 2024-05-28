@@ -1,0 +1,13 @@
+{
+  "Name": "PerformanceConfig_1",
+  "Description": "General Things",
+  "Performances": [
+    { 
+        "Name": "Disengage All Servos and Close Phidget",
+        "Description": "End the Show2",
+        "PerformanceSequences": [
+            { "Name": "99415-DisEngage All Servos", "SequenceType": "AS" }
+        ]
+    },
+  ]
+}

@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The <FxShow />
+  
+  Phidgets are Hosted by a host with a name/IP and a port and are Identified by a serial#.
+  When calling the Open() method one of the following overloads is used.
+  Open()
+  Open(serialNumber)
+  Open(serverID)
+  Open(serialNumber, serverID)
+  Open(ipAddress, port)
+  Open(serverID, password)  
+  Open(serialNumber, ipAddress, port)
+  Open(serialNumber, serverID, password)
+  Open(ipAddress, port, password)
+  Open(serialNumber, ipAddress, port, password)
+  
+  Currently the <Show /> is limited to a single Host.
+-->
+<FxShow Name="Show1" Description="Description of Show1" SetDelay="5000" Duration="30 Seconds">
+  <!--
+  Initialization specifies the Phidget configuration and resources that are used.
+  -->
+  <Initialization>
+    <!--
+    The <Hosts /> Element contains USB hosts.
+    Each host may contain embedded capabilites that are identified by SerialNumber.
+    Need to ensure that the InterfaceKit move with the host, although, Phidgets
+    supposedly can be opened by SerialNumber alone.
+    
+    Enable="true" to process the element, "false" to ignore.
+    TODO: Examine other Phidget boards to see if this model will work.  Likely
+    other Elements inside of Host.
+    -->
+    <Hosts>
+      <!-- SBC -->
+<!--       <Host Name="PhidgetsSBCA" IPAddress="10.0.200.1" Port="5001" Enable="true" >
+        <InterfaceKit SerialNumber="46049" Enable="true" Embedded="true" />
+      </Host> -->
+      <!-- SBC2 -->
+<!--       <Host Name="PhidgetSBC2B" IPAddress="10.0.200.2" Port="5001" Enable="true"  >
+        <InterfaceKit SerialNumber="48284" Enable="true" Embedded="true" /> -->
+<!--         <InterfaceKit Name="IFKIT_S_136645" SerialNumber="136645" Enable="true" Type="0/16/16" Embedded="false"/> 
+        <InterfaceKit Name="IFKIT_S_136647" SerialNumber="136647" Enable="true" Type="0/16/16" Embedded="fasle"/> -->
+      <!-- </Host> -->
+      <!-- SBC2 -->
+      <!--<Host Name="PhidgetSBC2C" IPAddress="10.0.200.3" Port="5001" Enable="true" >
+        <InterfaceKit SerialNumber="251831" Enable="false" Embedded="true" />
+      </Host>-->
+      <!-- SBC2 -->
+      <!--<Host Name="PhidgetSBC2D" IPAddress="10.0.200.4" Port="5001" Enable="true" >
+        <InterfaceKit SerialNumber="48301" Enable="false" Embedded="true" />
+        <InterfaceKit SerialNumber="136645" Enable="true" Embedded="false" /> 
+        <InterfaceKit SerialNumber="136647" Enable="true" Embedded="false" />
+		    <InterfaceKit SerialNumber="124744" Enable="true" Embedded="false" />
+      </Host>-->
+      <!-- Desktop -->
+      <!--<Host Name="Matrix" IPAddress="10.0.8.3" Port="5001" Enable="true" >
+		    <InterfaceKit SerialNumber="124744" Enable="true" Embedded="false" />
+		    <AdvancedServo SerialNumber="99415" Enable="true" />      
+      </Host>-->  
+      <Host Name="Tron" IPAddress="10.0.8.6" Port="5001" Enable="true" >
+		    <InterfaceKit SerialNumber="124744" Enable="true" Embedded="false" />
+		    <AdvancedServo SerialNumber="99415" Enable="true" />      
+      </Host> 
+    </Hosts>      
+    <DisplayLights>
+      <!-- This section maps the InterfaceKit PortNumbers to a Logical Id. -->
+      <DisplayLight Id="0"  InterfaceKit="136647" PortNumber="9"  Color="Green" />
+      <DisplayLight Id="1"  InterfaceKit="136647" PortNumber="14" Color="Red"/>
+      <DisplayLight Id="2"  InterfaceKit="136647" PortNumber="11" Color="White"/>
+      <DisplayLight Id="3"  InterfaceKit="136647" PortNumber="5"  Color="Green"/>
+      <DisplayLight Id="4"  InterfaceKit="136647" PortNumber="10" Color="Red"/>
+      <DisplayLight Id="5"  InterfaceKit="136647" PortNumber="3"  Color="White"/>
+      <DisplayLight Id="6"  InterfaceKit="136647" PortNumber="6"  Color="Red"/>
+      <DisplayLight Id="7"  InterfaceKit="136647" PortNumber="1"  Color="White" />
+      <DisplayLight Id="8"  InterfaceKit="136647" PortNumber="12" Color="Green"/>
+      <DisplayLight Id="9"  InterfaceKit="136647" PortNumber="13" Color="Red"/>
+      <DisplayLight Id="10" InterfaceKit="136647" PortNumber="2"  Color="White"/>
+      <DisplayLight Id="11" InterfaceKit="136647" PortNumber="4"  Color="Green"/>
+
+      <DisplayLight Id="12" InterfaceKit="136645" PortNumber="5"  Color="White" />
+      <DisplayLight Id="13" InterfaceKit="136645" PortNumber="9"  Color="Green"/>
+      <DisplayLight Id="14" InterfaceKit="136645" PortNumber="12" Color="Red"/>
+      <DisplayLight Id="15" InterfaceKit="136645" PortNumber="3"  Color="White"/>
+      <DisplayLight Id="16" InterfaceKit="136645" PortNumber="14" Color="Green"/>
+      <DisplayLight Id="17" InterfaceKit="136645" PortNumber="1"  Color="Red"/>
+      <DisplayLight Id="18" InterfaceKit="136645" PortNumber="2"  Color="Green"/>
+      <DisplayLight Id="19" InterfaceKit="136645" PortNumber="6"  Color="Red"/>
+      <DisplayLight Id="20" InterfaceKit="136645" PortNumber="13" Color="White"/>
+      <DisplayLight Id="21" InterfaceKit="136645" PortNumber="10" Color="Green"/>
+      <DisplayLight Id="22" InterfaceKit="136645" PortNumber="4"  Color="Red"/>
+      <DisplayLight Id="23" InterfaceKit="136645" PortNumber="11" Color="White"/>
+    </DisplayLights>
+  </Initialization>
+  <!--
+  <Sets /> contain a collection of <Set> descriptions.  At this point the Phidget hardware
+  should be hidden.  Not sure we want HostIP and HostPort here.
+  -->
+  <Sets>
+    <!--<Set Name="Set One" Description="Description of Set One" DisplayDelay="3000">
+      <Display Loops="5" LoopDelay="500">
+        --><!--
+      Perhaps OnDuration/OffDuration could take -1 to mean forever.  Only one could be set, or one would always win.
+      --><!--
+        <FlashingLight Id="18" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>
+        <FlashingLight Id="19" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>
+        <FlashingLight Id="20" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>
+        <FlashingLight Id="21" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>
+        <FlashingLight Id="22" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>
+        <FlashingLight Id="23" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>
+        <FlashingLight Color="Red" On="" Off="" Display="true" OnDuration="500" OffDuration="500" Loops="1" LoopDelay="500"/>        
+      </Display>
+      <Display Loops="5" LoopDelay="500">
+        <Light Id="18" On="true" Off="false"/>
+        <Light Id="19" On="false" Off="true"/>
+        --><!--<Light Color="Green" On="false" Off="true"/>--><!--
+      </Display>
+    </Set>-->
+    <!--
+  
+  -->
+    <Set Name="SetTwo" Description="Description of Set Two" DisplayDelay="3000">
+      <Display Loops="10" LoopDelay="1000">
+        <Light Id="0" On="true" Off="false"/>
+        <Light Id="1" On="false" Off="true"/>
+        <Light Id="2" On="true" Off="false"/>
+        <Light Id="3" On="false" Off="true"/>
+        <Light Id="4" On="true" Off="false"/>
+        <Light Id="5" On="false" Off="true"/>
+        <Light Id="6" On="true" Off="false"/>
+        <Light Id="7" On="false" Off="true"/>
+        <Light Id="8" On="true" Off="false"/>
+        <Light Id="9" On="false" Off="true"/>
+        <Light Id="10" On="true" Off="false"/>
+        <Light Id="11" On="false" Off="true"/>
+        <Light Id="12" On="true" Off="false"/>
+        <Light Id="13" On="false" Off="true"/>
+        <Light Id="14" On="true" Off="false"/>
+        <Light Id="15" On="false" Off="true"/>
+        <Light Id="16" On="true" Off="false"/>
+        <Light Id="17" On="false" Off="true"/>
+        <Light Id="18" On="true" Off="false"/>
+        <Light Id="19" On="false" Off="true"/>
+        <Light Id="20" On="true" Off="false"/>
+        <Light Id="21" On="false" Off="true"/>
+        <Light Id="22" On="true" Off="false"/>
+        <Light Id="23" On="false" Off="true"/>
+        
+        <Light Id="0" On="false" Off="false"/>
+        <Light Id="1" On="true" Off="true"/>
+        <Light Id="2" On="false" Off="false"/>
+        <Light Id="3" On="true" Off="true"/>
+        <Light Id="4" On="false" Off="false"/>
+        <Light Id="5" On="true" Off="true"/>
+        <Light Id="6" On="false" Off="false"/>
+        <Light Id="7" On="true" Off="true"/>
+        <Light Id="8" On="false" Off="false"/>
+        <Light Id="9" On="true" Off="true"/>
+        <Light Id="10" On="false" Off="false"/>
+        <Light Id="11" On="true" Off="true"/>
+        <Light Id="12" On="false" Off="false"/>
+        <Light Id="13" On="true" Off="true"/>
+        <Light Id="14" On="false" Off="false"/>
+        <Light Id="15" On="true" Off="true"/>
+        <Light Id="16" On="false" Off="false"/>
+        <Light Id="17" On="true" Off="true"/>
+        <Light Id="18" On="false" Off="false"/>
+        <Light Id="19" On="true" Off="true"/>
+        <Light Id="20" On="false" Off="false"/>
+        <Light Id="21" On="true" Off="true"/>
+        <Light Id="22" On="false" Off="false"/>
+        <Light Id="23" On="true" Off="true"/>        
+      </Display>
+      <Display Loops="10" LoopDelay="1000">
+        <Light Id="0" On="true" Off="false"/>
+        <Light Id="1" On="false" Off="true"/>
+        <Light Id="2" On="false" Off="false"/>
+        <Light Id="3" On="true" Off="true"/>
+        <Light Id="4" On="false" Off="false"/>
+        <Light Id="5" On="false" Off="true"/>
+        <Light Id="6" On="true" Off="false"/>
+        <Light Id="7" On="false" Off="true"/>
+        <Light Id="8" On="false" Off="false"/>
+        <Light Id="9" On="true" Off="true"/>
+        <Light Id="10" On="false" Off="false"/>
+        <Light Id="11" On="false" Off="true"/>
+        <Light Id="12" On="true" Off="false"/>
+        <Light Id="13" On="false" Off="true"/>
+        <Light Id="14" On="false" Off="false"/>
+        <Light Id="15" On="true" Off="true"/>
+        <Light Id="16" On="false" Off="false"/>
+        <Light Id="17" On="false" Off="true"/>
+        <Light Id="18" On="true" Off="false"/>
+        <Light Id="19" On="false" Off="true"/>
+        <Light Id="20" On="false" Off="false"/>
+        <Light Id="21" On="true" Off="true"/>
+        <Light Id="22" On="false" Off="false"/>
+        <Light Id="23" On="false" Off="true"/>
+
+        <Light Id="0" On="false" Off="false"/>
+        <Light Id="1" On="true" Off="true"/>
+        <Light Id="2" On="false" Off="false"/>
+        <Light Id="3" On="false" Off="true"/>
+        <Light Id="4" On="true" Off="false"/>
+        <Light Id="5" On="false" Off="true"/>
+        <Light Id="6" On="false" Off="false"/>
+        <Light Id="7" On="true" Off="true"/>
+        <Light Id="8" On="false" Off="false"/>
+        <Light Id="9" On="false" Off="true"/>
+        <Light Id="10" On="true" Off="false"/>
+        <Light Id="11" On="false" Off="true"/>
+        <Light Id="12" On="false" Off="false"/>
+        <Light Id="13" On="true" Off="true"/>
+        <Light Id="14" On="false" Off="false"/>
+        <Light Id="15" On="false" Off="true"/>
+        <Light Id="16" On="true" Off="false"/>
+        <Light Id="17" On="false" Off="true"/>
+        <Light Id="18" On="false" Off="false"/>
+        <Light Id="19" On="true" Off="true"/>
+        <Light Id="20" On="false" Off="false"/>
+        <Light Id="21" On="false" Off="true"/>
+        <Light Id="22" On="true" Off="false"/>
+        <Light Id="23" On="false" Off="true"/>
+
+        <Light Id="0" On="false" Off="false"/>
+        <Light Id="1" On="false" Off="true"/>
+        <Light Id="2" On="true" Off="false"/>
+        <Light Id="3" On="false" Off="true"/>
+        <Light Id="4" On="false" Off="false"/>
+        <Light Id="5" On="true" Off="true"/>
+        <Light Id="6" On="false" Off="false"/>
+        <Light Id="7" On="false" Off="true"/>
+        <Light Id="8" On="true" Off="false"/>
+        <Light Id="9" On="false" Off="true"/>
+        <Light Id="10" On="false" Off="false"/>
+        <Light Id="11" On="true" Off="true"/>
+        <Light Id="12" On="false" Off="false"/>
+        <Light Id="13" On="false" Off="true"/>
+        <Light Id="14" On="true" Off="false"/>
+        <Light Id="15" On="false" Off="true"/>
+        <Light Id="16" On="false" Off="false"/>
+        <Light Id="17" On="true" Off="true"/>
+        <Light Id="18" On="false" Off="false"/>
+        <Light Id="19" On="false" Off="true"/>
+        <Light Id="20" On="true" Off="false"/>
+        <Light Id="21" On="false" Off="true"/>
+        <Light Id="22" On="false" Off="false"/>
+        <Light Id="23" On="true" Off="true"/>
+      </Display>
+    </Set>
+  </Sets>
+</FxShow>

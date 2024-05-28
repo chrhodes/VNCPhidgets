@@ -1,0 +1,1010 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\analogsensor.c" />
+    <ClCompile Include="..\..\src\bridge.c" />
+    <ClCompile Include="..\..\src\bridge.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\bridgepackets.gen.c" />
+    <ClCompile Include="..\..\src\class\accelerometer.c" />
+    <ClCompile Include="..\..\src\class\accelerometer.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\bldcmotor.c" />
+    <ClCompile Include="..\..\src\class\bldcmotor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\capacitivetouch.c" />
+    <ClCompile Include="..\..\src\class\capacitivetouch.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\currentinput.c" />
+    <ClCompile Include="..\..\src\class\currentinput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dataadapter.c" />
+    <ClCompile Include="..\..\src\class\dataadapter.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dcmotor.c" />
+    <ClCompile Include="..\..\src\class\dcmotor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\dictionary.c" />
+    <ClCompile Include="..\..\src\class\dictionary.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\digitalinput.c" />
+    <ClCompile Include="..\..\src\class\digitalinput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\digitaloutput.c" />
+    <ClCompile Include="..\..\src\class\digitaloutput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\distancesensor.c" />
+    <ClCompile Include="..\..\src\class\distancesensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\encoder.c" />
+    <ClCompile Include="..\..\src\class\encoder.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\firmwareupgrade.c" />
+    <ClCompile Include="..\..\src\class\firmwareupgrade.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\frequencycounter.c" />
+    <ClCompile Include="..\..\src\class\frequencycounter.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\generic.c" />
+    <ClCompile Include="..\..\src\class\generic.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\gps.c" />
+    <ClCompile Include="..\..\src\class\gps.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\gyroscope.c" />
+    <ClCompile Include="..\..\src\class\gyroscope.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\hub.c" />
+    <ClCompile Include="..\..\src\class\hub.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\humiditysensor.c" />
+    <ClCompile Include="..\..\src\class\humiditysensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\ir.c" />
+    <ClCompile Include="..\..\src\class\ir.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\lcd.c" />
+    <ClCompile Include="..\..\src\class\lcd.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\lightsensor.c" />
+    <ClCompile Include="..\..\src\class\lightsensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\magnetometer.c" />
+    <ClCompile Include="..\..\src\class\magnetometer.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\meshdongle.c" />
+    <ClCompile Include="..\..\src\class\meshdongle.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\motorpositioncontroller.c" />
+    <ClCompile Include="..\..\src\class\motorpositioncontroller.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\phsensor.c" />
+    <ClCompile Include="..\..\src\class\phsensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\powerguard.c" />
+    <ClCompile Include="..\..\src\class\powerguard.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\pressuresensor.c" />
+    <ClCompile Include="..\..\src\class\pressuresensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\rcservo.c" />
+    <ClCompile Include="..\..\src\class\rcservo.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\resistanceinput.c" />
+    <ClCompile Include="..\..\src\class\resistanceinput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\rfid.c" />
+    <ClCompile Include="..\..\src\class\rfid.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\soundsensor.c" />
+    <ClCompile Include="..\..\src\class\soundsensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\spatial.c" />
+    <ClCompile Include="..\..\src\class\spatial.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\stepper.c" />
+    <ClCompile Include="..\..\src\class\stepper.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\temperaturesensor.c" />
+    <ClCompile Include="..\..\src\class\temperaturesensor.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageinput.c" />
+    <ClCompile Include="..\..\src\class\voltageinput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageoutput.c" />
+    <ClCompile Include="..\..\src\class\voltageoutput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\class\voltageratioinput.c" />
+    <ClCompile Include="..\..\src\class\voltageratioinput.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\constants.c" />
+    <ClCompile Include="..\..\src\datainterval.gen.c" />
+    <ClCompile Include="..\..\src\debug.c" />
+    <ClCompile Include="..\..\src\devices.c" />
+    <ClCompile Include="..\..\src\devices.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\device\accelerometerdevice.c" />
+    <ClCompile Include="..\..\src\device\advancedservodevice.c" />
+    <ClCompile Include="..\..\src\device\analogdevice.c" />
+    <ClCompile Include="..\..\src\device\bridgedevice.c" />
+    <ClCompile Include="..\..\src\device\dictionarydevice.c" />
+    <ClCompile Include="..\..\src\device\encoderdevice.c" />
+    <ClCompile Include="..\..\src\device\firmwareupgradedevice.c" />
+    <ClCompile Include="..\..\src\device\frequencycounterdevice.c" />
+    <ClCompile Include="..\..\src\device\genericdevice.c" />
+    <ClCompile Include="..\..\src\device\gpsdevice.c" />
+    <ClCompile Include="..\..\src\device\hubdevice.c" />
+    <ClCompile Include="..\..\src\device\interfacekitdevice.c" />
+    <ClCompile Include="..\..\src\device\irdevice.c" />
+    <ClCompile Include="..\..\src\device\leddevice.c" />
+    <ClCompile Include="..\..\src\device\meshdongledevice.c" />
+    <ClCompile Include="..\..\src\device\motorcontroldevice.c" />
+    <ClCompile Include="..\..\src\device\phsensordevice.c" />
+    <ClCompile Include="..\..\src\device\rfiddevice.c" />
+    <ClCompile Include="..\..\src\device\servodevice.c" />
+    <ClCompile Include="..\..\src\device\spatialdevice.c" />
+    <ClCompile Include="..\..\src\device\stepperdevice.c" />
+    <ClCompile Include="..\..\src\device\temperaturesensordevice.c" />
+    <ClCompile Include="..\..\src\device\textlcddevice.c" />
+    <ClCompile Include="..\..\src\device\vintdevice.c" />
+    <ClCompile Include="..\..\src\dispatch.c" />
+    <ClCompile Include="..\..\src\enumutil.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\errorstrings.gen.c" />
+    <ClCompile Include="..\..\src\ext\cvtutf.c" />
+    <ClCompile Include="..\..\src\ext\mdnsclient\dnssd_clientlib.c" />
+    <ClCompile Include="..\..\src\ext\mdnsclient\dnssd_clientstub.c" />
+    <ClCompile Include="..\..\src\ext\mdnsclient\dnssd_ipc.c" />
+    <ClCompile Include="..\..\src\ext\mos\base.c" />
+    <ClCompile Include="..\..\src\ext\mos\base64.c" />
+    <ClCompile Include="..\..\src\ext\mos\crc32.c" />
+    <ClCompile Include="..\..\src\ext\mos\ctype.c" />
+    <ClCompile Include="..\..\src\ext\mos\endswith.c" />
+    <ClCompile Include="..\..\src\ext\mos\getcwd.c" />
+    <ClCompile Include="..\..\src\ext\mos\getenv.c" />
+    <ClCompile Include="..\..\src\ext\mos\getopt.c" />
+    <ClCompile Include="..\..\src\ext\mos\glob.c" />
+    <ClCompile Include="..\..\src\ext\mos\glock.c" />
+    <ClCompile Include="..\..\src\ext\mos\hexdump.c" />
+    <ClCompile Include="..\..\src\ext\mos\init_daemon.c" />
+    <ClCompile Include="..\..\src\ext\mos\iop.c" />
+    <ClCompile Include="..\..\src\ext\mos\kv\kv.c" />
+    <ClCompile Include="..\..\src\ext\mos\kv\kvent.c" />
+    <ClCompile Include="..\..\src\ext\mos\kv\parse.c" />
+    <ClCompile Include="..\..\src\ext\mos\kv\scan.c" />
+    <ClCompile Include="..\..\src\ext\mos\malloc-user.c" />
+    <ClCompile Include="..\..\src\ext\mos\malloc.c" />
+    <ClCompile Include="..\..\src\ext\mos\memchr.c" />
+    <ClCompile Include="..\..\src\ext\mos\memcmp.c" />
+    <ClCompile Include="..\..\src\ext\mos\memmem.c" />
+    <ClCompile Include="..\..\src\ext\mos\mkdirp.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_atomic-pthread.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_dl-unix.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_error-errno.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_fileio-unix-user.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_lock-pthread.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_net.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_netops-unix.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_os.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_random-unix.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_setenv-native.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_stacktrace-gnu.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_task-pthread.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_time-unix.c" />
+    <ClCompile Include="..\..\src\ext\mos\mos_tlock.c" />
+    <ClCompile Include="..\..\src\ext\mos\path.c" />
+    <ClCompile Include="..\..\src\ext\mos\pkcs5_pbkdf2.c" />
+    <ClCompile Include="..\..\src\ext\mos\printf-smart.c" />
+    <ClCompile Include="..\..\src\ext\mos\process-unix.c" />
+    <ClCompile Include="..\..\src\ext\mos\rand48.c" />
+    <ClCompile Include="..\..\src\ext\mos\random.c" />
+    <ClCompile Include="..\..\src\ext\mos\readdir-unix.c" />
+    <ClCompile Include="..\..\src\ext\mos\readline.c" />
+    <ClCompile Include="..\..\src\ext\mos\rwrlock.c" />
+    <ClCompile Include="..\..\src\ext\mos\scanf.c" />
+    <ClCompile Include="..\..\src\ext\mos\sha1.c" />
+    <ClCompile Include="..\..\src\ext\mos\sha2.c" />
+    <ClCompile Include="..\..\src\ext\mos\snprintf.c" />
+    <ClCompile Include="..\..\src\ext\mos\strcasecmp.c" />
+    <ClCompile Include="..\..\src\ext\mos\strchr.c" />
+    <ClCompile Include="..\..\src\ext\mos\strcmp.c" />
+    <ClCompile Include="..\..\src\ext\mos\strdup.c" />
+    <ClCompile Include="..\..\src\ext\mos\strlcat.c" />
+    <ClCompile Include="..\..\src\ext\mos\strlcpy.c" />
+    <ClCompile Include="..\..\src\ext\mos\strlen.c" />
+    <ClCompile Include="..\..\src\ext\mos\strncmp.c" />
+    <ClCompile Include="..\..\src\ext\mos\strncpy.c" />
+    <ClCompile Include="..\..\src\ext\mos\strnsep.c" />
+    <ClCompile Include="..\..\src\ext\mos\strnstr.c" />
+    <ClCompile Include="..\..\src\ext\mos\strrchr.c" />
+    <ClCompile Include="..\..\src\ext\mos\strrev.c" />
+    <ClCompile Include="..\..\src\ext\mos\strstr.c" />
+    <ClCompile Include="..\..\src\ext\mos\strton.c" />
+    <ClCompile Include="..\..\src\ext\mos\strtrim.c" />
+    <ClCompile Include="..\..\src\ext\mos\time.c" />
+    <ClCompile Include="..\..\src\ext\mos\urldecode.c" />
+    <ClCompile Include="..\..\src\ext\mos\urlencode.c" />
+    <ClCompile Include="..\..\src\ext\mos\vasprintf.c" />
+    <ClCompile Include="..\..\src\formatters.c" />
+    <ClCompile Include="..\..\src\gpp.c" />
+    <ClCompile Include="..\..\src\lightning.c" />
+    <ClCompile Include="..\..\src\manager.c" />
+    <ClCompile Include="..\..\src\mesh.c" />
+    <ClCompile Include="..\..\src\network\channel.c" />
+    <ClCompile Include="..\..\src\network\client.c" />
+    <ClCompile Include="..\..\src\network\network.c" />
+    <ClCompile Include="..\..\src\network\networkcontrol.c" />
+    <ClCompile Include="..\..\src\network\server.c" />
+    <ClCompile Include="..\..\src\network\servers.c" />
+    <ClCompile Include="..\..\src\network\zeroconf.c" />
+    <ClCompile Include="..\..\src\object.c" />
+    <ClCompile Include="..\..\src\phidget.c" />
+    <ClCompile Include="..\..\src\phidget22.c" />
+    <ClCompile Include="..\..\src\plat\android\com_phidget22_usb_Manager.c" />
+    <ClCompile Include="..\..\src\plat\android\com_phidget22_usb_Phidget.c" />
+    <ClCompile Include="..\..\src\plat\android\usbandroid.c" />
+    <ClCompile Include="..\..\src\spi.c" />
+    <ClCompile Include="..\..\src\stats.c" />
+    <ClCompile Include="..\..\src\structio.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\supportedpacket.gen.c" />
+    <ClCompile Include="..\..\src\usb.c" />
+    <ClCompile Include="..\..\src\util\config.c" />
+    <ClCompile Include="..\..\src\util\jsmn.c" />
+    <ClCompile Include="..\..\src\util\json.c" />
+    <ClCompile Include="..\..\src\util\log.c" />
+    <ClCompile Include="..\..\src\util\packettracker.c" />
+    <ClCompile Include="..\..\src\util\packing.c" />
+    <ClCompile Include="..\..\src\util\utils.c" />
+    <ClCompile Include="..\..\src\vint.c" />
+    <ClCompile Include="..\..\src\vintpackets.c" />
+    <ClCompile Include="..\..\src\vintpackets.gen.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\virtual.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\analogsensor.h" />
+    <ClInclude Include="..\..\src\bridge.gen.h" />
+    <ClInclude Include="..\..\src\bridge.h" />
+    <ClInclude Include="..\..\src\bridgepackets.gen.h" />
+    <ClInclude Include="..\..\src\class\accelerometer.gen.h" />
+    <ClInclude Include="..\..\src\class\bldcmotor.gen.h" />
+    <ClInclude Include="..\..\src\class\capacitivetouch.gen.h" />
+    <ClInclude Include="..\..\src\class\currentinput.gen.h" />
+    <ClInclude Include="..\..\src\class\dataadapter.gen.h" />
+    <ClInclude Include="..\..\src\class\dataadapter.h" />
+    <ClInclude Include="..\..\src\class\dcmotor.gen.h" />
+    <ClInclude Include="..\..\src\class\dictionary.gen.h" />
+    <ClInclude Include="..\..\src\class\digitalinput.gen.h" />
+    <ClInclude Include="..\..\src\class\digitaloutput.gen.h" />
+    <ClInclude Include="..\..\src\class\distancesensor.gen.h" />
+    <ClInclude Include="..\..\src\class\encoder.gen.h" />
+    <ClInclude Include="..\..\src\class\firmwareupgrade.gen.h" />
+    <ClInclude Include="..\..\src\class\frequencycounter.gen.h" />
+    <ClInclude Include="..\..\src\class\generic.gen.h" />
+    <ClInclude Include="..\..\src\class\gps.gen.h" />
+    <ClInclude Include="..\..\src\class\gyroscope.gen.h" />
+    <ClInclude Include="..\..\src\class\hub.gen.h" />
+    <ClInclude Include="..\..\src\class\humiditysensor.gen.h" />
+    <ClInclude Include="..\..\src\class\ir.gen.h" />
+    <ClInclude Include="..\..\src\class\lcd.gen.h" />
+    <ClInclude Include="..\..\src\class\lcd.h" />
+    <ClInclude Include="..\..\src\class\lightsensor.gen.h" />
+    <ClInclude Include="..\..\src\class\magnetometer.gen.h" />
+    <ClInclude Include="..\..\src\class\meshdongle.gen.h" />
+    <ClInclude Include="..\..\src\class\motorpositioncontroller.gen.h" />
+    <ClInclude Include="..\..\src\class\phsensor.gen.h" />
+    <ClInclude Include="..\..\src\class\powerguard.gen.h" />
+    <ClInclude Include="..\..\src\class\pressuresensor.gen.h" />
+    <ClInclude Include="..\..\src\class\rcservo.gen.h" />
+    <ClInclude Include="..\..\src\class\resistanceinput.gen.h" />
+    <ClInclude Include="..\..\src\class\rfid.gen.h" />
+    <ClInclude Include="..\..\src\class\soundsensor.gen.h" />
+    <ClInclude Include="..\..\src\class\soundsensor.h" />
+    <ClInclude Include="..\..\src\class\spatial.gen.h" />
+    <ClInclude Include="..\..\src\class\stepper.gen.h" />
+    <ClInclude Include="..\..\src\class\temperaturesensor.gen.h" />
+    <ClInclude Include="..\..\src\class\voltageinput.gen.h" />
+    <ClInclude Include="..\..\src\class\voltageoutput.gen.h" />
+    <ClInclude Include="..\..\src\class\voltageratioinput.gen.h" />
+    <ClInclude Include="..\..\src\constants.gen.h" />
+    <ClInclude Include="..\..\src\constants.h" />
+    <ClInclude Include="..\..\src\constantsinternal.h" />
+    <ClInclude Include="..\..\src\debug.h" />
+    <ClInclude Include="..\..\src\devices.gen.h" />
+    <ClInclude Include="..\..\src\devices.h" />
+    <ClInclude Include="..\..\src\device\accelerometerdevice.h" />
+    <ClInclude Include="..\..\src\device\advancedservodevice.h" />
+    <ClInclude Include="..\..\src\device\analogdevice.h" />
+    <ClInclude Include="..\..\src\device\bridgedevice.h" />
+    <ClInclude Include="..\..\src\device\dictionarydevice.h" />
+    <ClInclude Include="..\..\src\device\encoderdevice.h" />
+    <ClInclude Include="..\..\src\device\firmwareupgradedevice.h" />
+    <ClInclude Include="..\..\src\device\frequencycounterdevice.h" />
+    <ClInclude Include="..\..\src\device\genericdevice.h" />
+    <ClInclude Include="..\..\src\device\gpsdevice.h" />
+    <ClInclude Include="..\..\src\device\hubdevice.h" />
+    <ClInclude Include="..\..\src\device\interfacekitdevice.h" />
+    <ClInclude Include="..\..\src\device\irdevice.h" />
+    <ClInclude Include="..\..\src\device\leddevice.h" />
+    <ClInclude Include="..\..\src\device\meshdongledevice.h" />
+    <ClInclude Include="..\..\src\device\motorcontroldevice.h" />
+    <ClInclude Include="..\..\src\device\phsensordevice.h" />
+    <ClInclude Include="..\..\src\device\rfiddevice.h" />
+    <ClInclude Include="..\..\src\device\servodevice.h" />
+    <ClInclude Include="..\..\src\device\spatialdevice.h" />
+    <ClInclude Include="..\..\src\device\stepperdevice.h" />
+    <ClInclude Include="..\..\src\device\temperaturesensordevice.h" />
+    <ClInclude Include="..\..\src\device\textlcddevice.h" />
+    <ClInclude Include="..\..\src\device\vintdevice.h" />
+    <ClInclude Include="..\..\src\enumutil.gen.h" />
+    <ClInclude Include="..\..\src\enumutil.h" />
+    <ClInclude Include="..\..\src\errorstrings.gen.h" />
+    <ClInclude Include="..\..\src\ext\cvtutf.h" />
+    <ClInclude Include="..\..\src\ext\mdnsclient\dnssd_ipc.h" />
+    <ClInclude Include="..\..\src\ext\mdnsclient\dns_sd.h" />
+    <ClInclude Include="..\..\src\ext\mos\bsdqueue.h" />
+    <ClInclude Include="..\..\src\ext\mos\bsdtree.h" />
+    <ClInclude Include="..\..\src\ext\mos\init_daemon.h" />
+    <ClInclude Include="..\..\src\ext\mos\kv\kv.h" />
+    <ClInclude Include="..\..\src\ext\mos\kv\parse.h" />
+    <ClInclude Include="..\..\src\ext\mos\kv\scan.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_assert.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_atomic.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_base64.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_basic.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_basic_types-win.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_basic_types.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_byteorder.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_crc32.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_crc32_impl.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_dl.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_endian-i386.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_error-errno.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_fmt.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_getpasswd.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_hexdump.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_iop.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_lock.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_macrocompat.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_md5.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_net.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_netops.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_os-Linux-user.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_os.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_random.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_readdir.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_readline.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_rwrlock.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_service.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_sha1.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_sha2.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_stacktrace.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_task.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_time.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_tlock.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_typeio.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_urldecode.h" />
+    <ClInclude Include="..\..\src\ext\mos\mos_urlencode.h" />
+    <ClInclude Include="..\..\src\ext\mos\pkcs5_pbkdf2.h" />
+    <ClInclude Include="..\..\src\gpp.h" />
+    <ClInclude Include="..\..\src\lightning.h" />
+    <ClInclude Include="..\..\src\locks.h" />
+    <ClInclude Include="..\..\src\macros.h" />
+    <ClInclude Include="..\..\src\manager.h" />
+    <ClInclude Include="..\..\src\mesh.h" />
+    <ClInclude Include="..\..\src\network\network.h" />
+    <ClInclude Include="..\..\src\network\openremote.h" />
+    <ClInclude Include="..\..\src\network\zeroconf.h" />
+    <ClInclude Include="..\..\src\object.h" />
+    <ClInclude Include="..\..\src\phidget.h" />
+    <ClInclude Include="..\..\src\phidget22int.gen.h" />
+    <ClInclude Include="..\..\src\phidget22int.h" />
+    <ClInclude Include="..\..\src\phidgetbase.h" />
+    <ClInclude Include="..\..\src\plat\android\com_phidget22_usb_Manager.h" />
+    <ClInclude Include="..\..\src\plat\android\com_phidget22_usb_Phidget.h" />
+    <ClInclude Include="..\..\src\plat\android\phidget_jni.h" />
+    <ClInclude Include="..\..\src\spi.h" />
+    <ClInclude Include="..\..\src\stats.h" />
+    <ClInclude Include="..\..\src\structio.gen.h" />
+    <ClInclude Include="..\..\src\types.gen.h" />
+    <ClInclude Include="..\..\src\usb.h" />
+    <ClInclude Include="..\..\src\util\jsmn.h" />
+    <ClInclude Include="..\..\src\util\json.h" />
+    <ClInclude Include="..\..\src\util\packettracker.h" />
+    <ClInclude Include="..\..\src\util\packing.h" />
+    <ClInclude Include="..\..\src\util\phidgetconfig.h" />
+    <ClInclude Include="..\..\src\util\phidgetlog.h" />
+    <ClInclude Include="..\..\src\util\utils.h" />
+    <ClInclude Include="..\..\src\vint.h" />
+    <ClInclude Include="..\..\src\vintpackets.h" />
+    <ClInclude Include="..\..\src\virtual.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\..\Output\Android\ARM\Debug\libphidget22java.a">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Library>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{958bc0fe-7f47-4f27-8f84-eac341317b2d}</ProjectGuid>
+    <Keyword>Android</Keyword>
+    <RootNamespace>phidget22android</RootNamespace>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <ApplicationType>Android</ApplicationType>
+    <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
+    <ProjectName>phidget22</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+    <AndroidAPILevel>android-19</AndroidAPILevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>Clang_3_8</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(ProjectDir)..\..\..\..\..\..\Output\Android\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>libphidget22java</TargetName>
+    <UseMultiToolTask>true</UseMultiToolTask>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";DEBUG;_DEBUG</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";DEBUG;_DEBUG</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";DEBUG;_DEBUG</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";DEBUG;_DEBUG</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AdditionalIncludeDirectories>..\..\src;..\..\src\ext;..\..\src\ext\include;$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNIX;_ANDROID;Linux;MOS_BYTE_ORDER=MOS_LITTLE_ENDIAN;_MOS_PTHREADS;NOT_HAVE_SA_LEN;HAVE_IPV6;HAVE_LINUX;PLATFORM_NO_RLIMIT;TARGET_OS_LINUX;USES_NETLINK;MDNS_DEBUGMSGS=0;MDNS_UDS_SERVERPATH="/dev/socket/mdnsd";MDNS_USERNAME="mdnsr";NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>$(ProjectDir)\..\..\postbuild_android.bat  $(ProjectDir)..\ $(OutDir)..\..\ $(Configuration)</Command>
+    </PostBuildEvent>
+    <Link>
+      <LibraryDependencies>m;%(LibraryDependencies)</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

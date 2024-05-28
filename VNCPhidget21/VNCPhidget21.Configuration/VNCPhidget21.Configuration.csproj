@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\VNC\VNC.Core\VNC.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Phidget21.NET">
+      <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

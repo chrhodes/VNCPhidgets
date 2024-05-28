@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Explore.ApplicationEventHandler">
+    <Position X="4.25" Y="11.25" Width="2" />
+    <NestedTypes>
+      <Delegate Name="Explore.ApplicationEventHandler.ToggleF11EventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ApplicationEventHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Explore.ApplicationEventHandler.ToggleF12EventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ApplicationEventHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAgAAAAAAAAAAAAQAAAAAAEAACAAAAAAA=</HashCode>
+      <FileName>ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.MyMessageFilter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="8.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Explore.MyMessageFilter.ToggleF12KeyboardEventEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ApplicationEventHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="Explore.MyMessageFilter.ToggleF11KeyboardEventEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>ApplicationEventHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAACCAgAgAAACA=</HashCode>
+      <FileName>ApplicationEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Explore.Common" Collapsed="true">
+    <Position X="7.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAEAAAQgAAAAAAAAEAAAAAAAAAABAAAAACAAAA=</HashCode>
+      <FileName>Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.DistanceSensorEventArgs">
+    <Position X="8.75" Y="11.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAIAA=</HashCode>
+      <FileName>DistanceSensorEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.LightShow">
+    <Position X="10" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAEBEAgAADAAFhAAJECAQCACQgAAAARDAGIiRgABAUg=</HashCode>
+      <FileName>LightShow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.MainMenu">
+    <Position X="2.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAACAAgAAAAACAAAACEAEAQAAAAkAAAUIAABA=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.PlayLights">
+    <Position X="15.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>DwB4AIDxJyAQCBDAiDyAQYIiEQA4egIIovAsCAgCCcA=</HashCode>
+      <FileName>PlayLights.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.PlaySounds">
+    <Position X="12.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AwEQQTQBQCACMJBKFAqAxQyCUAEAAhAAZCYjCFhOIWw=</HashCode>
+      <FileName>PlaySounds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Program" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Sensor1101_GP2D12">
+    <Position X="2.25" Y="12" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAABAgAACAAAACAAAAAAAAEAAAAAAIAAA=</HashCode>
+      <FileName>Sensor1101 GP2D12.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Sensor1101_GP2D120" Collapsed="true">
+    <Position X="8.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAABAgAACAAAACAAAAAAAAEAAAAAAIAAA=</HashCode>
+      <FileName>Sensor1101 GP2D120.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Sensor1101_GP2Y0A02YK">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Explore.Sensor1101_GP2Y0A02YK.OutOfRangeEventHandler" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Sensor1101 GP2Y0A02YK.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>BIABAAgQACAICDAgAACAAAACAABAAQAIEAAAACAIAAA=</HashCode>
+      <FileName>Sensor1101 GP2Y0A02YK.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Sensor1111">
+    <Position X="2.25" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACAAABAgAACAAAACAAAAAAAAAAAAAgAIAAA=</HashCode>
+      <FileName>Sensor1111.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Sounds">
+    <Position X="2.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAgAgAAAAAAAAggAAAAAAAAAI=</HashCode>
+      <FileName>Sounds.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.ucLightGrid">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAgAAiAGAAQGAASDAAADAAAAAAAAAPwPAAAAMAA=</HashCode>
+      <FileName>ucLightGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Properties.Resources" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.Properties.Settings">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Explore.ServiceReference1.DisplayLightClient" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Service References\ServiceReference1\Reference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Explore.ServiceReference1.IDisplayLight" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Service References\ServiceReference1\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Explore.ServiceReference1.IDisplayLightChannel" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Service References\ServiceReference1\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
