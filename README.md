@@ -1,17 +1,9 @@
-# Utilities
-Common stuff across VNC Repos. 
+# VNCPhidgets
+Code to interact with Phidgets
 
-Includes
-- .editorconfig
-- .gitattributes
-- .gitignore
+TODO
 
-Powershell scripts to look across all VNC Repos to help
-when moving between development machines
-
-- GitPull-AllRepositories.ps1
-- GitPush-AllRepositories.ps1
-- GitStatus-AllRepositories.ps1
+More info here
   
   
   
