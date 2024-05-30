@@ -1,21 +1,27 @@
 <p>
-    <img src="Cylon EyeBall 128x128.png">
+    <img src="VNC.png">
 </p>
 # VNCPhidgets
+
 Code to interact with Phidgets
 
-Includes 
-  More info to come
-  
-  ## Support
-  
-  ## Documentation
-  
-  ## Videos &amp; Training
-  
-  ## NuGet Packages
-  
-  ## Visual Studio Templates
+## Table of Contents
+
+## How to use
+
+## Links
+
+## Contributors
+
+## Support
+
+## Documentation
+
+## Videos &amp; Training
+
+## NuGet Packages
+
+## Visual Studio Templates
   
   
   
