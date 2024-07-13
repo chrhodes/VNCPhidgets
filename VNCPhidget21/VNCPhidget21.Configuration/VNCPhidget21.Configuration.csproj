@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\VNC\VNC.Core\VNC.Core.csproj" />
+    <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
