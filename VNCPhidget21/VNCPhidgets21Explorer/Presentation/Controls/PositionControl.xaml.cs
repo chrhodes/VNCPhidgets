@@ -346,6 +346,14 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => _instanceCountV = value;
         }
 
+        private static int _instanceCountVP;
+
+        public int InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
+
         #endregion
 
         private void TrackBarEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
