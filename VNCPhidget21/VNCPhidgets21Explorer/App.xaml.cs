@@ -34,24 +34,21 @@ namespace VNCPhidgets21Explorer
 
             Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
 
-            // Get Information about VNC.Core
+            // NOTE(crhodes)
+            // Look at Application_Start event for things that should happen early.
+            //try
+            //{
+            //    VerifyApplicationPrerequisites();
 
-            Common.SetVersionInfoVNCCore();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.ToString());
+            //    MessageBox.Show(ex.InnerException.ToString());
+            //}
 
-            var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-            var appFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-
-            // Get Information about ourselves
-
-            //Common.SetVersionInfoApplication(runtimeVersion, appVersion);
-            Common.SetVersionInfoApplication(Assembly.GetExecutingAssembly(), appFileVersionInfo);
-
-            var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget.Common));
-            var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
-
-            Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
-
-            //Common.AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            // TODO(crhodes)
+            // Should this go here or in VerifyApplicationPrerequisites
 
             Directory.SetCurrentDirectory("../../../Resources/json");
 
@@ -257,8 +254,8 @@ namespace VNCPhidgets21Explorer
 
             try
             {
+                GetAndSetInformation();
                 VerifyApplicationPrerequisites();
-
             }
             catch (Exception ex)
             {
@@ -269,23 +266,33 @@ namespace VNCPhidgets21Explorer
             Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void GetAndSetInformation()
+        {
+            // Get Information about VNC.Core
+
+            Common.SetVersionInfoVNCCore();
+
+            var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
+            var appFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+
+            // Get Information about ourselves
+
+            Common.SetVersionInfoApplication(Assembly.GetExecutingAssembly(), appFileVersionInfo);
+
+            // Get Information about Phidget assembly
+
+            var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget.Common));
+            var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
+
+            Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
+        }
+
         private void VerifyApplicationPrerequisites()
         {
             //TODO(crhodes)
             // Add any necessary checks for config files, etc
             // That are required by application
 
-            //var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-
-            //Common.RuntimeVersion = versionInfo.FileVersion;
-
-            //var v = versionInfo.Comments;
-            //var v1 = versionInfo.CompanyName;
-            //var v2 = versionInfo.FileDescription;
-            //var v3 = versionInfo.FileName;
-            //var v4 = versionInfo.FileVersion;
-            //var v5 = versionInfo.ProductVersion;
-            //var v6 = versionInfo.ProductName;
         }
 
         private void Application_Activated(object sender, EventArgs e)
