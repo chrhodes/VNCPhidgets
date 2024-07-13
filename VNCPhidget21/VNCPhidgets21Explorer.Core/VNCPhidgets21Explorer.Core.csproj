@@ -16,8 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <!--<PackageReference Include="VNC.Core" Version="2.1.2" />-->
-      <ProjectReference Include="..\..\..\VNC\VNC.Core\VNC.Core.csproj" />
+      <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
     </ItemGroup>
   
 </Project>
