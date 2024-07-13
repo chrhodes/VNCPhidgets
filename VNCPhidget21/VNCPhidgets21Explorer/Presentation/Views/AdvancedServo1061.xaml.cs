@@ -108,6 +108,14 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             set => _instanceCountV = value;
         }
 
+        private static int _instanceCountVP;
+
+        public int InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
+
         #endregion
     }
 }

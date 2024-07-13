@@ -206,6 +206,21 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static int _instanceCountV;
 
+        public int InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        private static int _instanceCountVP;
+
+        public int InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
+
+        #endregion
 
         public Boolean? SpeedRamping
         {
@@ -213,13 +228,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             get => (Boolean?)GetValue(SpeedRampingProperty);
             set => SetValue(SpeedRampingProperty, value);
         }
-        public int InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
-
-        #endregion
 
         public Double? Current
         {
