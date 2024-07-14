@@ -23,6 +23,8 @@ namespace VNCPhidgets21Explorer
 
         public App()
         {
+            Common.InitializeLogging();
+
             // HACK(crhodes)
             // If don't delay a bit here, the SignalR logging infrastructure does not initialize quickly enough
             // and the first few log messages are missed.

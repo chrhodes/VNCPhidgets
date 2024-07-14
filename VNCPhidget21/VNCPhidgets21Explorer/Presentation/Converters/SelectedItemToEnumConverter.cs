@@ -7,7 +7,7 @@ using System.Windows.Markup;
 
 using DevExpress.Xpf.Printing;
 
-using Microsoft.AspNetCore.SignalR.Protocol;
+//using Microsoft.AspNetCore.SignalR.Protocol;
 
 using static Phidgets.ServoServo;
 

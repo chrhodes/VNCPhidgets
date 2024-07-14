@@ -79,7 +79,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             // Turn on logging of PropertyChanged from VNC.Core
-            LogOnPropertyChanged = false;
+            //LogOnPropertyChanged = false;
 
             Message = "HackAroundViewModel says hello";
 
