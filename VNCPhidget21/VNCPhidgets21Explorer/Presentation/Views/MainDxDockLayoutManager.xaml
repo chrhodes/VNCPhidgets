@@ -15,15 +15,15 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
         
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-    
-    xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
-    
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+       
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
     xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
 
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core" 
+    
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
 
@@ -74,9 +74,22 @@
             <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
 
                 <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False">
-                    <Label Content="lg_Header Stuff Goes Here" />
-                </dxdo:LayoutPanel>
+                    
+                        <DockPanel>
+                            <Label Content="lg_Header Stuff Goes Here" DockPanel.Dock="Left" />
 
+                            <Button 
+                                Command="{Binding DeveloperModeCommand}" 
+                                ToolTip="{Binding DeveloperModeToolTip, FallbackValue='DeveloperMode ToolTip' }" 
+                                Width="48" Height="39" HorizontalAlignment="Right">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  />
+                                </Button.Background>
+                            </Button>
+                        </DockPanel>
+              
+                </dxdo:LayoutPanel>
+               
             </dxdo:LayoutGroup>
             
             <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
@@ -117,26 +130,57 @@
 
             <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >
 
+                    <dxdo:LayoutPanel>
+                        <dxlc:LayoutGroup
+                             Orientation="Vertical"  VerticalAlignment="Bottom">
+                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
+                            <Label Content="lg_Footer Stuff Goes Here" />
+                        </dxlc:LayoutGroup>
+                    </dxdo:LayoutPanel>
+
+                    <dxdo:LayoutPanel>
+
+                        <dxlc:LayoutGroup Name="lg_DeveloperMode" Orientation="Horizontal" VerticalAlignment="Bottom"
+                          View="GroupBox" Header="Developer Mode Information" IsCollapsible="True" IsCollapsed="True"
+                          Visibility="{Binding DeveloperUIMode,
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
+                            <ContentControl x:Name="vncLoggingConfig"
+                                prism:RegionManager.RegionName="{x:Static core:RegionNames.VNCLoggingConfigRegion}" />
+                            <ContentControl x:Name="vncCoreLogginConfig"
+                                prism:RegionManager.RegionName="{x:Static core:RegionNames.VNCCoreLoggingConfigRegion}" />
+                        </dxlc:LayoutGroup>
+                        
+                    </dxdo:LayoutPanel>
+
                     <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False" Caption="Tools">
 
-                        <dxlc:LayoutGroup>
-                            <!-- This is useful for debugging V VM constructor issues -->
+                        <dxlc:LayoutGroup
+                            View="Group" Orientation="Vertical" VerticalAlignment="Bottom" >
 
-                            <dxlc:LayoutItem Label="V:" >
-                                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-                            </dxlc:LayoutItem>
+                            <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding DeveloperUIMode,
+                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
+                                <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-                            <dxlc:LayoutItem Label="VM:">
-                                <TextBlock Text="{Binding InstanceCountVM}" />
-                            </dxlc:LayoutItem>
+                                <!-- This is useful for debugging V VM constructor issues -->
 
-                            <dxlc:LayoutItem>
-                                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Content="Save Layout" Click="SaveLayout_Click" />
-                                    <Button Content="Restore Layout" Click="RestoreLayout_Click" />
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="V:" />
+                                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
                                 </StackPanel>
-                            </dxlc:LayoutItem>
-                            
+
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="VP:" />
+                                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <Label Content="VM:" />
+                                    <Label Content="{Binding InstanceCountVM}" />
+                                </StackPanel>
+
+                            </StackPanel>
+
                         </dxlc:LayoutGroup>
 
                     </dxdo:LayoutPanel>
@@ -182,7 +226,7 @@
 
             </dxdo:DockLayoutManager.FloatGroups>
 
-            </dxdo:DockLayoutManager>
+        </dxdo:DockLayoutManager>
         
     </Grid>
 

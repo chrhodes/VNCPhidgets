@@ -11,6 +11,9 @@ namespace VNCPhidgets21Explorer.Core
         public static string ChildRegion = "ChildRegion";
         public static string StatusBarRegion = "StatusBarRegion";
 
+        public static string VNCLoggingConfigRegion = "VNCLoggingConfigRegion";
+        public static string VNCCoreLoggingConfigRegion = "VNCCoreLoggingConfigRegion";
+
         public static string AdvancedServo1061Region1 = "AdvancedServo1061Region1";
         public static string AdvancedServo1061Region2 = "AdvancedServo1061Region2";
         public static string AdvancedServo1061Region3 = "AdvancedServo1061Region3";

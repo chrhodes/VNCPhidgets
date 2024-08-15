@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Controls.Primitives;
 
 using Prism.Ioc;
 using Prism.Modularity;
@@ -48,7 +49,7 @@ namespace VNCPhidgets21Explorer
             // Use Main to see the AutoWireViewModel in action.
 
             //containerRegistry.Register<IMain, Main>();
-            //containerRegistry.Register<IMain, MainDxLayout>();
+            //containerRegistry.Register<IMain, MainDxLayoutControl>();
             containerRegistry.Register<IMain, MainDxDockLayoutManager>();
 
             containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
@@ -102,6 +103,7 @@ namespace VNCPhidgets21Explorer
 
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StatusBarRegion, typeof(StatusBar));
 
             _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region1, typeof(InterfaceKit1018));
             _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region2, typeof(InterfaceKit1018));
@@ -114,6 +116,10 @@ namespace VNCPhidgets21Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region1, typeof(Stepper1063));
 
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.VNCLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCLoggingConfig));
+            _regionManager.RegisterViewWithRegion(RegionNames.VNCCoreLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCCoreLoggingConfig));
+
 
             // //This loads CombinedMain into the Shell loaded in App.Xaml.cs
 

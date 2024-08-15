@@ -21,17 +21,15 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"    
 
     xmlns:phidget="clr-namespace:Phidgets;assembly=Phidget21.NET"
-
-    
-    xmlns:local="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
-    xmlns:localc="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     
     xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"      
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
     
     xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
     
@@ -53,7 +51,7 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
 
     <vncmvvm:ViewBase.Resources>
-        <localc:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
         <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
         <XmlDataProvider x:Key="AdvancedServoList" Source="/Resources/AdvancedServoList.xml" XPath="AdvancedServos/AdvancedServo" />
@@ -73,7 +71,7 @@
         <!-- <Label Content="{Binding Name}" /> -->
         <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-        <localc:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+        <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
     </vncmvvm:ViewBase.Resources>
     
     <!-- Can declare ViewModel in Xaml -->

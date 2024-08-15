@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -24,6 +25,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
+
+            DeveloperUIMode = Common.DeveloperUIMode;
 
             // TODO(crhodes)
             //
@@ -55,6 +58,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_title == value)
                     return;
                 _title = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _developerUIMode = Visibility.Visible;
+        public Visibility DeveloperUIMode
+        {
+            get => _developerUIMode;
+            set
+            {
+                if (_developerUIMode == value)
+                    return;
+                _developerUIMode = value;
                 OnPropertyChanged();
             }
         }

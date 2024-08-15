@@ -1,16 +1,23 @@
 ﻿using System;
 
+using Prism.Commands;
+using Prism.Events;
+using Prism.Services.Dialogs;
+
 using VNC;
+using VNC.Core.Events;
 using VNC.Core.Mvvm;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    public class MainDxDockLayoutManagerViewModel : ViewModelBase, IInstanceCountVM
+    public class MainDxDockLayoutManagerViewModel : EventViewModelBase, IInstanceCountVM
     {
 
         #region Constructors, Initialization, and Load
 
-        public MainDxDockLayoutManagerViewModel()
+        public MainDxDockLayoutManagerViewModel(
+            IEventAggregator eventAggregator,
+            IDialogService dialogService) : base(eventAggregator, dialogService)
         {
             Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
@@ -24,6 +31,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
+
+            DeveloperModeCommand = new DelegateCommand(DeveloperMode, DeveloperModeCanExecute);
 
             Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -56,10 +65,93 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        public DelegateCommand DeveloperModeCommand { get; set; }
+
         #endregion
 
         #region Event Handlers (none)
 
+
+        #endregion
+
+        #region Commands
+
+        #region DeveloperMode Command
+
+        //public TYPE DeveloperModeCommandParameter;
+        public string DeveloperModeContent { get; set; } = "DeveloperMode";
+        public string? DeveloperModeToolTip { get; set; } = "DeveloperMode ToolTip";
+
+        // Can get fancy and use Resources
+        //public string DeveloperModeContent { get; set; } = "ViewName_DeveloperModeContent";
+        //public string DeveloperModeToolTip { get; set; } = "ViewName_DeveloperModeContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_DeveloperModeContent">DeveloperMode</system:String>
+        //    <system:String x:Key="ViewName_DeveloperModeContentToolTip">DeveloperMode ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void DeveloperMode(TYPE value)
+        public void DeveloperMode()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called DeveloperMode";
+
+            EventAggregator.GetEvent<StatusMessageEvent>().Publish(Message);
+
+            if (Common.DeveloperMode)
+            {
+                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
+                if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Visible;
+                if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Visible;
+            }
+
+            Common.DeveloperMode = !Common.DeveloperMode;
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<DeveloperModeEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<DeveloperModeEvent>().Publish(
+            //      new DeveloperModeEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class DeveloperModeEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<DeveloperModeEvent>().Subscribe(DeveloperMode);
+
+            // End Cut Five
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool DeveloperModeCanExecute(TYPE value)
+        public bool DeveloperModeCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
 
         #endregion
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Reflection;
 
+using VNCPhidgets21Explorer.Presentation.Views;
+
 namespace VNCPhidgets21Explorer
 {
     public class Common : VNC.Core.Common
@@ -14,6 +16,9 @@ namespace VNCPhidgets21Explorer
         public new const string LOG_CATEGORY = "VNCPhidgets21Explorer";
 
         public const string cCONFIG_FILE = @"C:\temp\VNCPhidgets21Explorer_Config.xml";
+
+        public static Shell? CurrentShell;
+        public static RibbonShell? CurrentRibbonShell;
 
         public static VNC.Core.Information? InformationVNCPhidget;
 

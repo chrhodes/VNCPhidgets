@@ -42,9 +42,10 @@
 
         <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
 
-        <dxlc:LayoutGroup Name="lg_Footer"
-                          Grid.Row="1" 
-            View="Group" Orientation="Horizontal" Padding="3,0,0,0" HorizontalAlignment="Left">
+        <dxlc:LayoutGroup Name="lg_Footer" View="Group" Orientation="Horizontal"
+            Grid.Row="1"
+            Visibility="{Binding ElementName=thisControl, Path=DeveloperUIMode}"
+            Padding="3,0,0,0" >
 
             <!-- This is useful for debugging V VM constructor issues -->
 
@@ -52,11 +53,25 @@
                 <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
             </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem Label="VP:" HorizontalAlignment="Left" VerticalAlignment="Center" >
+                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+            </dxlc:LayoutItem>
+
             <dxlc:LayoutItem Label="VM:" VerticalAlignment="Center" >
                 <TextBlock Text="{Binding InstanceCountVM}" />
             </dxlc:LayoutItem>
 
-            <views:AppVersionInfo HorizontalAlignment="Left" />
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical">
+                <dxlc:LayoutItem Label="Width:" VerticalAlignment="Center" >
+                    <TextBlock Text="{Binding WindowSize.Width, StringFormat={}{0:0}}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Height:" VerticalAlignment="Center" >
+                    <TextBlock Text="{Binding WindowSize.Height, StringFormat={}{0:0}}" />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <views:AppVersionInfo HorizontalAlignment="Right" />
 
         </dxlc:LayoutGroup>
 

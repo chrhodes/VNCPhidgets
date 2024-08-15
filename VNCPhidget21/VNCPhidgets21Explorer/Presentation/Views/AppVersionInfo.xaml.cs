@@ -1,10 +1,11 @@
 ﻿using System;
 
 using VNC;
+using VNC.Core.Mvvm;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class AppVersionInfo
+    public partial class AppVersionInfo : ViewBase
     {
         #region Constructors, Initialization, and Load
         
@@ -49,7 +50,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            spMain.DataContext = Common.InformationApplication;
+           spMain.DataContext = Common.InformationApplication;
 
             Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

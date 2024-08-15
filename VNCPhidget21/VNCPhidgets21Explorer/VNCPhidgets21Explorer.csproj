@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <!--<TargetFrameworks>net6.0-windows;net48</TargetFrameworks>-->
+        <!--<TargetFrameworks>net8.0-windows;net48</TargetFrameworks>-->
         <TargetFrameworks>net8.0-windows</TargetFrameworks>      
         <OutputType>WinExe</OutputType>
         <UseWPF>true</UseWPF>
@@ -36,6 +36,10 @@
         <ApplicationIcon>Resources\Icons\ApplicationIcon-Right-Red.ico</ApplicationIcon>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\Images\VNCDeveloperMotivation.png" />
+    </ItemGroup>
+
     <!--<PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
         <ApplicationIcon>Resources\Icons\ApplicationIcon-Left-Blue.ico</ApplicationIcon>
     </PropertyGroup>-->
@@ -52,6 +56,7 @@
         <!--<PackageReference Include="EntityFramework" Version="6.4.4" />-->
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
+
     </ItemGroup>
     
     <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
@@ -81,21 +86,6 @@
         <Reference Include="System.Web" />
     </ItemGroup>
 
-    <ItemGroup>
-      <None Update="vnccoreloggingconfig-Debug.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="vnccoreloggingconfig.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="vncloggingconfig-Debug.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <None Update="vncloggingconfig.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <PlatformTarget>AnyCPU</PlatformTarget>
     </PropertyGroup>
@@ -113,13 +103,35 @@
         <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
                 <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" />
+                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.WPF.Presentation\VNC.WPF.Presentation.csproj" />                
             </ItemGroup>
         </When>
         <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
                 <PackageReference Include="VNC.Core" Version="3.0.0" />
+                <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.0.0" />
             </ItemGroup>
         </When>
     </Choose>
+
+    <ItemGroup>
+      <Resource Include="Resources\Images\VNCDeveloperMotivation.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="vnccoreloggingconfig-Debug.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vnccoreloggingconfig.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vncloggingconfig-Debug.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vncloggingconfig.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
     
 </Project>

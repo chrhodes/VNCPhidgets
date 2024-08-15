@@ -67,6 +67,11 @@
     <SolidColorBrush x:Key="ViewCBackground" Color="#C0C0FF" />
     
     <SolidColorBrush x:Key="ViewABCBackground" Color="#C0C0C0" />
+
+    <Style x:Key="uiLoggingFilterCheckEdit" TargetType="dxe:CheckEdit">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
     
     <Style x:Key="CloseTabButtonStyle" TargetType="Button">
         <Setter Property="FontSize" Value="12" />

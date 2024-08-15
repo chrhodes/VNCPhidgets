@@ -6,7 +6,6 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
 {
     class ForegroundColorConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is null)
@@ -34,6 +33,5 @@ namespace VNCPhidgets21Explorer.Presentation.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }
