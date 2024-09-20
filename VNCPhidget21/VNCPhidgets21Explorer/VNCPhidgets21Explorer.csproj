@@ -7,8 +7,8 @@
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
-        <VersionSuffix>development-12</VersionSuffix>
-        <FileVersion>2024.07.14A</FileVersion>
+        <VersionSuffix>development-13</VersionSuffix>
+        <FileVersion>2024.09.20A</FileVersion>
         <Description>Phidget21 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>

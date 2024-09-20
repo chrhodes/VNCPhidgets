@@ -39,6 +39,7 @@ namespace VNC.Phidget
 
             Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
         private void InitializePhidget()
         {
             AdvancedServo = new Phidgets.AdvancedServo();
@@ -704,7 +705,7 @@ namespace VNC.Phidget
                 Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
             }
             // NOTE(crhodes)
-            // We do not need to save Accleration and Velocity Min,Max,
+            // We do not need to save Acceleration and Velocity Min,Max,
             // they cannot change, 
             // but, useful when setting Acceleration/VelocityLimit
             // to Min/Max in PerformAction
@@ -749,7 +750,7 @@ namespace VNC.Phidget
                 // NOTE(crhodes)
                 // These can be performed without the servo being engaged.  This helps address
                 // previous values that get applied when servo engaged.
-                // The servo still snaps to last postion when enabled.  No known way to address that.
+                // The servo still snaps to last position when enabled.  No known way to address that.
 
                 if (action.Acceleration is not null)
                 {

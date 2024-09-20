@@ -16,7 +16,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
-    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"   
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"      
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     	
@@ -33,7 +34,6 @@
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
     Height="65"
 >
-
     <!-- TODO:(crhodes)
         Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
     <!-- <SolidColorBrush x:Key="AccelerationControlBackground" Color="#A0A0A0" /> -->
@@ -45,24 +45,25 @@
             <!-- <Setter Property="Background" Value="White" /> -->
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
-    
-    <!-- <vncmvvm:ViewBase.Resources> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <converters:SpinEditConverter x:Key="SpinEditConverter" />
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
-        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToAccelerationControlWrapperConverter" /> -->
-        <!-- <DataTemplate x:Key="dataTemplateAccelerationControl"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding XPath=@Name}" /> -->
-            <!-- </StackPanel> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplatePositionControl"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
 
-        <!-- <DataTemplate x:Key="dataTemplateAccelerationControlX"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding Name}" /> -->
-            <!-- </StackPanel> -->
+        <!-- <DataTemplate x:Key="dataTemplatePositionControlX"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-    <!-- </vncmvvm:ViewBase.Resources> -->
-    
+    </vncmvvm:ViewBase.Resources>
+
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
         <!-- <localvm:AccelerationControlViewModel /> -->
@@ -78,11 +79,15 @@
 
         <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
 
-            <dxe:SpinEdit EditValue="{Binding Current, Mode=TwoWay, TargetNullValue=0}" Increment="500"
-                            MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
-                            MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
-                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                            IsFloatValue="False" />
+            <dxe:SpinEdit
+                EditValue="{Binding Current, Mode=TwoWay, 
+                    TargetNullValue=0,
+                    Converter ={StaticResource SpinEditConverter}}"
+                Increment="500"
+                MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
+                MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
+                Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                IsFloatValue="False" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" Width="65" >

@@ -23,7 +23,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             lgMain.DataContext = this;
             liPositionRange.DataContext = this;
 
-
 			// Expose ViewModel
 						
             // If View First with ViewModel in Xaml

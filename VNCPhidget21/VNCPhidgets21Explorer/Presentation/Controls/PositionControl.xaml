@@ -18,6 +18,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"      
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
@@ -34,7 +36,6 @@
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
     Height="175"
 >  
-
     <!-- TODO:(crhodes)
         Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
     <!-- <SolidColorBrush x:Key="PositionControlBackground" Color="#A0A0A0" /> -->
@@ -47,7 +48,8 @@
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
     
-    <!-- <vncmvvm:ViewBase.Resources> -->
+     <vncmvvm:ViewBase.Resources>
+        <converters:SpinEditConverter x:Key="SpinEditConverter" /> 
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
         <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
@@ -62,7 +64,7 @@
                 <!-- <Label Content="{Binding Name}" /> -->
             <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-    <!-- </vncmvvm:ViewBase.Resources> -->
+     </vncmvvm:ViewBase.Resources> 
     
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
@@ -76,11 +78,13 @@
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                 <dxlc:LayoutItem Label="Device Min" LabelPosition="Top" LabelHorizontalAlignment="Right" HorizontalAlignment="Left">
-                    <dxe:TextEdit Text="{Binding DeviceMin, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Left"  />
+                    <dxe:TextEdit Text="{Binding DeviceMin, Mode=TwoWay}" 
+                                  IsReadOnly="True" HorizontalContentAlignment="Left"  />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Device Max" LabelPosition="Top" HorizontalAlignment="Right">
-                    <dxe:TextEdit Text="{Binding DeviceMax, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Right"
+                    <dxe:TextEdit Text="{Binding DeviceMax, Mode=TwoWay}" 
+                                  IsReadOnly="True" HorizontalContentAlignment="Right"
                                   Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
 
@@ -90,45 +94,60 @@
 
                 <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left">
                     <!--<dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" HorizontalContentAlignment="Right"  />-->
-                    <dxe:SpinEdit EditValue="{Binding Min, Mode=TwoWay, TargetNullValue=0}" Increment="10"
-                                    MinValue="{Binding DeviceMin, TargetNullValue=0}"
-                                    MaxValue="{Binding Current, Mode=OneWay, TargetNullValue=0}" 
-                                    Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                                    IsFloatValue="False" />
+                    <dxe:SpinEdit 
+                        EditValue="{Binding Min, Mode=TwoWay, 
+                            TargetNullValue=0,
+                            Converter={StaticResource SpinEditConverter}}"
+                        Increment="10"
+                        MinValue="{Binding DeviceMin, TargetNullValue=0}"
+                        MaxValue="{Binding Current, Mode=OneWay, TargetNullValue=0}" 
+                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="False" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" >
-                    <!--<dxe:TextEdit Text="{Binding Current, Mode=TwoWay}" HorizontalAlignment="Center" />-->
-                    <dxe:SpinEdit EditValue="{Binding Current, Mode=TwoWay, TargetNullValue=0}" Increment="1"
-                                MinValue="{Binding DeviceMin, Mode=OneWay, TargetNullValue=0}" 
-                                MaxValue="{Binding DeviceMax, Mode=OneWay, TargetNullValue=0}" 
-                                Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                                IsFloatValue="False" />
+                    <dxe:SpinEdit 
+                        EditValue="{Binding Current, Mode=TwoWay, 
+                            TargetNullValue=0, 
+                            UpdateSourceTrigger=PropertyChanged, 
+                            Converter={StaticResource SpinEditConverter}}" 
+                        Increment="1"
+                        MinValue="{Binding DeviceMin, Mode=OneWay, TargetNullValue=0}" 
+                        MaxValue="{Binding DeviceMax, Mode=OneWay, TargetNullValue=0}" 
+                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="False" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                    <!--<dxe:TextEdit Text="{Binding Max, Mode=TwoWay}" />-->
-                    <dxe:SpinEdit EditValue="{Binding Max, Mode=TwoWay, TargetNullValue=0}" Increment="10"
-                                MinValue="{Binding Current, Mode=OneWay, TargetNullValue=0}"
-                                MaxValue="{Binding DeviceMax, Mode=OneWay, TargetNullValue=0}" 
-                                Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                                IsFloatValue="False" />
+                    <dxe:SpinEdit 
+                        EditValue="{Binding Max, Mode=TwoWay, 
+                            TargetNullValue=0,
+                            Converter={StaticResource SpinEditConverter}}" 
+                        Increment="10"
+                        MinValue="{Binding Current, Mode=OneWay, TargetNullValue=0}"
+                        MaxValue="{Binding DeviceMax, Mode=OneWay, TargetNullValue=0}" 
+                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="False" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
 
-            <dxe:TrackBarEdit Value="{Binding Current, Mode=TwoWay, TargetNullValue=0}" 
-                              Minimum="{Binding Min, Mode=OneWay, TargetNullValue=0}" 
-                              Maximum="{Binding Max, Mode=OneWay, TargetNullValue=0}"
-                              MouseDoubleClick="TrackBarEdit_MouseDoubleClick" EditValueType="{x:Type sys:Decimal}"
-                              ToolTip="Double Click to Center" />
+            <dxe:TrackBarEdit 
+                Value="{Binding Current, Mode=TwoWay, TargetNullValue=0}" 
+                Minimum="{Binding Min, Mode=OneWay, TargetNullValue=0}" 
+                Maximum="{Binding Max, Mode=OneWay, TargetNullValue=0}"
+                MouseDoubleClick="TrackBarEdit_MouseDoubleClick"
+                EditValueType="{x:Type sys:Decimal}"
+                ToolTip="Double Click to Center" />
 
         </dxlc:LayoutGroup>
         
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
             <dxlc:LayoutItem>
-                <Button Content="Position Range" ToolTip="Set Position Range to Current +/- value" Click="SetPositionRange_Click"/>
+                <Button Content="Position Range" 
+                        ToolTip="Set Position Range to Current +/- value" 
+                        Click="SetPositionRange_Click"/>
                 <!--<Button 
                     Command="{Binding SetPositionRangeCommand }"
                     CommandParameter="{Binding ServoIndex}"
@@ -137,14 +156,16 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem x:Name="liPositionRange" HorizontalAlignment="Right">
-                <dxe:SpinEdit Value="{Binding PositionRange, Mode=TwoWay}" Increment="5"
-                                MinValue="0"
-                                MaxValue="100" 
-                                IsFloatValue="False" />
+                <dxe:SpinEdit 
+                    Value="{Binding PositionRange, Mode=TwoWay}" 
+                    Increment="5"
+                    MinValue="0"
+                    MaxValue="100" 
+                    IsFloatValue="False" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
-
     
     </dxlc:LayoutGroup>
+    
 </vncmvvm:ViewBase>

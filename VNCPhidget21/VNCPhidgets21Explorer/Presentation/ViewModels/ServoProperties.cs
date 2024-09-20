@@ -12,7 +12,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
     public class ServoProperties : INPCBase
     {
-        public AdvancedServoEx AdvancedServoEx { get; set; }
+        public AdvancedServoEx AdvancedServoEx 
+        { 
+            get; 
+            set; 
+        }
 
         public int ServoIndex { get; set; }
 
@@ -409,7 +413,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Centers servo based on Device{Min,Max} and Initialize Acceleration and VelocityLimit
+        /// Centers servo based on Device{Min,Max} and Initializes Acceleration and VelocityLimit
         /// </summary>
         /// <param name="centerAndInitialize"></param>
         public void CenterAndInitializeMotion(CenterAndInitialize centerAndInitialize)
@@ -451,6 +455,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
 
                 Position = (DevicePositionMax - DevicePositionMin) / 2;
+
                 if (LogPhidgetEvents)
                 {
                     Log.Trace($"End servo:{ServoIndex} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);

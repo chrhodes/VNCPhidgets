@@ -42,7 +42,8 @@ namespace VNCPhidgets21Explorer
             }
         }
 
-        public static int PhidgetOpenTimeout { get; set; } = 1000; // ms
+        //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
+        public static int? PhidgetOpenTimeout { get; set; } = null; // ms
 
         //public static void RaiseAutoHideGroupSpeedChanged()
         //{

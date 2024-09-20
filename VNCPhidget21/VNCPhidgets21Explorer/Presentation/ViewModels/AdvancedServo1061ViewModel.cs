@@ -221,7 +221,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
 
-                if (ActiveAdvancedServo is not null) ActiveAdvancedServo.LogPhidgetEvents = value;
+                if (ActiveAdvancedServo is not null)
+                {                   
+                    ActiveAdvancedServo.LogPhidgetEvents = value;
+
+                    // NOTE(crhodes)
+                    // There is some logging in ServoProperties that is handled separate
+                    // from the logging in AdvancedServoEx and PhidgetEx
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        AdvancedServoProperties[i].LogPhidgetEvents = value;
+                    }
+                }
             }
         }
 
