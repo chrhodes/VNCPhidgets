@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Windows;
+
+using DevExpress.Xpf.Core.ConditionalFormatting.Native;
 
 using Phidgets;
 
@@ -405,18 +408,30 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion Fields and Properties (None)
 
-        public enum CenterAndInitialize
+        public enum MotionScale
         {
-            Slow,
-            Medium,
-            Fast
+            Min = 1,
+            Percent01 = 1,
+            Percent02 = 2,
+            Percent03 = 3,
+            Percent04 = 4,
+            Percent05 = 5,
+            Percent10 = 10,
+            Percent15 = 15,
+            Percent20 = 20,
+            Percent25 = 25,
+            Percent35 = 35,
+            Percent50 = 50,
+            Percent75 = 75,
+            Max
         }
 
         /// <summary>
-        /// Centers servo based on Device{Min,Max} and Initializes Acceleration and VelocityLimit
+        /// Centers servo based on Device{Min,Max} if position not set
+        /// and Initializes Velocity
         /// </summary>
-        /// <param name="centerAndInitialize"></param>
-        public void CenterAndInitializeMotion(CenterAndInitialize centerAndInitialize)
+        /// <param name="motionScale"></param>
+        public void InitializeVelocity(MotionScale motionScale)
         {
             AdvancedServoServo servo = null;
 
@@ -426,43 +441,118 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"Begin servo:{ServoIndex} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} position:{(servo.Engaged ? servo.Position : "??")} ", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"Begin servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
+                    //Log.Trace($"Begin servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"Begin servo:{ServoIndex}  ", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "??")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
-                switch (centerAndInitialize)
+                switch (motionScale)
                 {
-                    case CenterAndInitialize.Slow:
-                        Acceleration = AccelerationMin;
-                        VelocityLimit = VelocityMin == 0 ? 10 : VelocityMin; // Zero will not move
-
+                    case MotionScale.Min:
+                        //Acceleration = AccelerationMin;
+                        VelocityLimit = 1; // Zero will not move
                         break;
 
-                    case CenterAndInitialize.Medium:
-                        Acceleration = AccelerationMin + ((AccelerationMax-AccelerationMin) / 2);
-                        VelocityLimit = VelocityMin + ((VelocityMax - VelocityMin) / 2);
-
-                        break;
-
-                    case CenterAndInitialize.Fast:
-                        Acceleration = AccelerationMax;
+                    case MotionScale.Max:
+                        //Acceleration = AccelerationMax;
                         VelocityLimit = VelocityMax;
+                        break;
 
+                    default:
+                        //var accelerationRange = AccelerationMax - AccelerationMin;
+                        var velocityRange = VelocityMax - VelocityMin;
+                        double percentage = (Int32)motionScale / 100.0;
+
+                        //Acceleration = AccelerationMin + (accelerationRange * percentage);
+                        VelocityLimit = VelocityMin + (velocityRange * percentage);
                         break;
                 }
 
-                Position = (DevicePositionMax - DevicePositionMin) / 2;
+                //if (servo.Position = )
+                //{
+
+                //}
+                //Position = (DevicePositionMax - DevicePositionMin) / 2;
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"End servo:{ServoIndex} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} position:{(servo.Engaged ? servo.Position : "??")} ", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"End servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
+                    //Log.Trace($"End servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"End servo:{ServoIndex}  ", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "??")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Centers servo based on Device{Min,Max} if position not set
+        /// and Initializes Acceleration
+        /// </summary>
+        /// <param name="motionScale"></param>
+        public void InitializeAcceleration (MotionScale motionScale)
+        {
+            AdvancedServoServo servo = null;
+
+            try
+            {
+                servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
+
+                if (LogPhidgetEvents)
+                {
+                    Log.Trace($"Begin servo:{ServoIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"Begin servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
+                    //Log.Trace($"Begin servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"Begin servo:{ServoIndex}  ", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "??")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                switch (motionScale)
+                {
+                    case MotionScale.Min:
+                        Acceleration = AccelerationMin;
+                        //VelocityLimit = 1; // Zero will not move
+                        break;
+
+                    case MotionScale.Max:
+                        Acceleration = AccelerationMax;
+                        //VelocityLimit = VelocityMax;
+                        break;
+
+                    default:
+                        var accelerationRange = AccelerationMax - AccelerationMin;
+                        //var velocityRange = VelocityMax - VelocityMin;
+                        double percentage = (Int32)motionScale / 100.0;
+
+                        Acceleration = AccelerationMin + (accelerationRange * percentage);
+                        //VelocityLimit = VelocityMin + (velocityRange * percentage);
+                        break;
+                }
+
+                //if (servo.Position = )
+                //{
+
+                //}
+                //Position = (DevicePositionMax - DevicePositionMin) / 2;
+
+                if (LogPhidgetEvents)
+                {
+                    Log.Trace($"End servo:{ServoIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"End servo:{ServoIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
+                    //Log.Trace($"End servo:{ServoIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
+                    //Log.Trace($"End servo:{ServoIndex}  ", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "??")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
             }

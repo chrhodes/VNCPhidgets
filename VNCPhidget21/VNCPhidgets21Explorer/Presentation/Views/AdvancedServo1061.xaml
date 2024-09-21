@@ -27,6 +27,8 @@
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
+    
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
@@ -57,7 +59,7 @@
         <XmlDataProvider x:Key="AdvancedServoList" Source="/Resources/AdvancedServoList.xml" XPath="AdvancedServos/AdvancedServo" />
         <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
-        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <vncconverters:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> 
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
         <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToAdvancedServo1061WrapperConverter" /> -->
         <!-- <DataTemplate x:Key="dataTemplateAdvancedServo1061"> -->
@@ -79,34 +81,6 @@
         <!-- <localvm:AdvancedServo1061ViewModel /> -->
     <!-- </UserControl.DataContext> -->
     
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <StackPanel>
-            <TextBlock Text="AdvancedServo1061" />
-            <TextBlock Text="{Binding Message}" />
-            <Button Content="Say Hello"
-                    Command="{Binding SayHelloCommand}" />
-        </StackPanel>
-        
-        --><!-- This is useful for debugging V VM constructor issues --><!--
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" >
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-        </StackPanel>
-
-    </Grid>-->
-
     <DockPanel Margin="5">
         
         <views:HostSelector DockPanel.Dock="Top" />
@@ -139,9 +113,9 @@
 
                 <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
                     <dxe:ComboBoxEdit Width="150" 
-                                          ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
-                                          SelectedItem="{Binding SelectedAdvancedServo}"
-                                          SelectedIndex="0"/>
+                            ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedAdvancedServo}"
+                            SelectedIndex="0"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
@@ -163,18 +137,12 @@
 		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
                 
-                <dxlc:LayoutGroup Header="Center and Intialize Motion" View="GroupBox" Orientation="Horizontal"
+                <!--<dxlc:LayoutGroup Header="Center and Intialize Motion" View="GroupBox" Orientation="Horizontal"
                                   HorizontalAlignment="Right"
-                                  Margin="0,0,0,-5" Padding="-5">
+                                  Margin="0,0,0,-5" Padding="-5">-->
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
 
-                    <dxlc:LayoutItem Margin="-5">
-                        <Button 
-		                    Command="{Binding InitializeSlowAdvancedServoCommand }"
-		                    Content="{Binding InitializeSlowAdvancedServoContent, FallbackValue='Slow' }"
-		                    ToolTip="{Binding InitializeSlowAdvancedServoToolTip, FallbackValue='Initialize Slow and Center Position' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5">
+                    <!--<dxlc:LayoutItem Margin="-5">
                         <Button 
 		                    Command="{Binding InitializeMediumAdvancedServoCommand }"
 		                    Content="{Binding InitializeMediumAdvancedServoContent, FallbackValue='Medium' }"
@@ -186,8 +154,107 @@
 		                    Command="{Binding InitializeFastAdvancedServoCommand }"
 		                    Content="{Binding InitializeFastAdvancedServoContent, FallbackValue='Fast' }"
 		                    ToolTip="{Binding InitializeFastAdvancedServoToolTip, FallbackValue='Initialize Fast and Center Position' }" />
+                    </dxlc:LayoutItem>-->
+
+                    <dxlc:LayoutItem Label="Select Velocity"
+             	        LabelPosition="Left">
+                        <!--<dxe:ComboBoxEdit		                                 
+                            EditValue="{Binding
+                    	        Path=SelectedFileFormats,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
+                        <dxe:ComboBoxEdit x:Name="cbeVelocityScale">                        
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                <dxe:RadioComboBoxStyleSettings/>
+                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            </dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxEditItem Content="Min" />
+                            <dxe:ComboBoxEditItem Content="01%" />
+                            <dxe:ComboBoxEditItem Content="02%" />
+                            <dxe:ComboBoxEditItem Content="03%" />
+                            <dxe:ComboBoxEditItem Content="04%" />                            
+                            <dxe:ComboBoxEditItem Content="05%" />
+                            <dxe:ComboBoxEditItem Content="10%" />
+                            <dxe:ComboBoxEditItem Content="15%" />
+                            <dxe:ComboBoxEditItem Content="20%" />
+                            <dxe:ComboBoxEditItem Content="25%" />
+                            <dxe:ComboBoxEditItem Content="35%" />
+                            <dxe:ComboBoxEditItem Content="50%" />
+                            <dxe:ComboBoxEditItem Content="75%" />
+                            <dxe:ComboBoxEditItem Content="Max" />
+                        </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
-                    
+
+                    <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
+                        <Button 
+		                    Command="{Binding InitializeVelocityCommand }"
+                            CommandParameter="{Binding ElementName=cbeVelocityScale, Path=EditValue}"
+		                    Content="{Binding InitializeVelocityContent, FallbackValue='Initialize Velocity' }"
+		                    ToolTip="{Binding InitializeVelocityToolTip, FallbackValue='Initialize Velocity' }" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
+
+                    <!--<dxlc:LayoutItem Margin="-5">
+                        <Button 
+                            Command="{Binding InitializeMediumAdvancedServoCommand }"
+                            Content="{Binding InitializeMediumAdvancedServoContent, FallbackValue='Medium' }"
+                            ToolTip="{Binding InitializeMediumAdvancedServoToolTip, FallbackValue='Initialize Medium and Center Position' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="-5">
+                        <Button 
+                            Command="{Binding InitializeFastAdvancedServoCommand }"
+                            Content="{Binding InitializeFastAdvancedServoContent, FallbackValue='Fast' }"
+                            ToolTip="{Binding InitializeFastAdvancedServoToolTip, FallbackValue='Initialize Fast and Center Position' }" />
+                    </dxlc:LayoutItem>-->
+
+                    <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
+                        <!--<dxe:ComboBoxEdit		                                 
+                        EditValue="{Binding
+       	                    Path=SelectedFileFormats,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
+                        <dxe:ComboBoxEdit x:Name="cbeAccelerationScale">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                <dxe:RadioComboBoxStyleSettings/>
+                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            </dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxEditItem Content="Min" />
+                            <dxe:ComboBoxEditItem Content="01%" />
+                            <dxe:ComboBoxEditItem Content="02%" />
+                            <dxe:ComboBoxEditItem Content="03%" />
+                            <dxe:ComboBoxEditItem Content="04%" />
+                            <dxe:ComboBoxEditItem Content="05%" />
+                            <dxe:ComboBoxEditItem Content="10%" />
+                            <dxe:ComboBoxEditItem Content="15%" />
+                            <dxe:ComboBoxEditItem Content="20%" />
+                            <dxe:ComboBoxEditItem Content="25%" />
+                            <dxe:ComboBoxEditItem Content="35%" />
+                            <dxe:ComboBoxEditItem Content="50%" />
+                            <dxe:ComboBoxEditItem Content="75%" />
+                            <dxe:ComboBoxEditItem Content="Max" />
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
+                        <Button 
+                            Command="{Binding InitializeAccelerationCommand }"
+                            CommandParameter="{Binding ElementName=cbeSelectAccelerationScale, Path=EditValue}"
+                            Content="{Binding InitializeAccelerationContent, FallbackValue='Initialize Acceleration' }"
+                            ToolTip="{Binding InitializeAccelerationToolTip, FallbackValue='Initialize Acceleration' }" />
+                    </dxlc:LayoutItem>
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">

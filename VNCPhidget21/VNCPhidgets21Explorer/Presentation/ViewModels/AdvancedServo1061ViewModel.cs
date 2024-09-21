@@ -58,12 +58,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //PerformanceFileName_DoubleClick_Command = new DelegateCommand(PerformanceFileName_DoubleClick);
 
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
-            InitializeSlowAdvancedServoCommand = new DelegateCommand(InitializeSlowAdvancedServo, InitializeSlowAdvancedServoCanExecute);
-            InitializeMediumAdvancedServoCommand = new DelegateCommand(InitializeMediumAdvancedServo, InitializeMediumAdvancedServoCanExecute);
-            InitializeFastAdvancedServoCommand = new DelegateCommand(InitializeFastAdvancedServo, InitializeFastAdvancedServoCanExecute);
             RefreshAdvancedServoCommand = new DelegateCommand(RefreshAdvancedServo, RefreshAdvancedServoCanExecute);
-            //SetAdvancedServoDefaultsCommand = new DelegateCommand<string>(SetAdvancedServoDefaults, SetAdvancedServoDefaultsCanExecute);
             CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
+
+            InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
+            InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
+            //InitializeMediumAdvancedServoCommand = new DelegateCommand(InitializeMediumAdvancedServo, InitializeMediumAdvancedServoCanExecute);
+            //InitializeFastAdvancedServoCommand = new DelegateCommand(InitializeFastAdvancedServo, InitializeFastAdvancedServoCanExecute);
+
 
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
 
@@ -641,13 +643,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region InitializeVelocityCommand
 
-
-        #region InitializeSlowAdvancedServo Command
-
-        public DelegateCommand InitializeSlowAdvancedServoCommand { get; set; }
-        public string InitializeSlowAdvancedServoContent { get; set; } = "Slow";
-        public string InitializeSlowAdvancedServoToolTip { get; set; } = "Initialize Slow Speed and Center Position";
+        //public DelegateCommand InitializeVelocityCommand { get; set; }
+        public DelegateCommand<string> InitializeVelocityCommand { get; set; }
+        public string InitializeVelocityContent { get; set; } = "Initilize Velocity";
+        public string InitializeVelocityToolTip { get; set; } = "Initialize Velocity using Velocity Scale";
 
         // Can get fancy and use Resources
         //public string InitializeSlowAdvancedServoContent { get; set; } = "ViewName_InitializeSlowAdvancedServoContent";
@@ -657,7 +658,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContent">InitializeSlowAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContentToolTip">InitializeSlowAdvancedServo ToolTip</system:String>  
 
-        public void InitializeSlowAdvancedServo()
+        //public void InitializeSlowAdvancedServo()
+
+        public void InitializeVelocity(string speed)
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
@@ -672,7 +675,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     for (int i = 0; i < servos.Count; i++)
                     {
-                        AdvancedServoProperties[i].CenterAndInitializeMotion(ServoProperties.CenterAndInitialize.Slow);
+                        AdvancedServoProperties[i].InitializeVelocity(ConvertStringToInitializeMotion(speed));
                     }
                 }
                 catch (Exception ex)
@@ -710,7 +713,92 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
 
-        public bool InitializeSlowAdvancedServoCanExecute()
+        //public bool InitializeSlowAdvancedServoCanExecute()
+        public bool InitializeVelocityCanExecute(string speed)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region InitializeAccelerationCommand
+
+        //public DelegateCommand InitializeVelocityCommand { get; set; }
+        public DelegateCommand<string> InitializeAccelerationCommand { get; set; }
+        public string InitializeAccelerationContent { get; set; } = "Initilize Acceleration";
+        public string InitializeAccelerationToolTip { get; set; } = "Initialize Acceleration using Acceleration Scale";
+
+        // Can get fancy and use Resources
+        //public string InitializeSlowAdvancedServoContent { get; set; } = "ViewName_InitializeSlowAdvancedServoContent";
+        //public string InitializeSlowAdvancedServoToolTip { get; set; } = "ViewName_InitializeSlowAdvancedServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContent">InitializeSlowAdvancedServo</system:String>
+        //    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContentToolTip">InitializeSlowAdvancedServo ToolTip</system:String>  
+
+        //public void InitializeSlowAdvancedServo()
+
+        public void InitializeAcceleration(string speed)
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called InitializeAcceleration";
+
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+
+                try
+                {
+                    for (int i = 0; i < servos.Count; i++)
+                    {
+                        AdvancedServoProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish(
+            //      new InitializeSlowAdvancedServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class InitializeSlowAdvancedServoEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Subscribe(InitializeSlowAdvancedServo);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        //public bool InitializeSlowAdvancedServoCanExecute()
+        public bool InitializeAccelerationCanExecute(string speed)
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -753,7 +841,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     for (int i = 0; i < servos.Count; i++)
                     {
-                        AdvancedServoProperties[i].CenterAndInitializeMotion(ServoProperties.CenterAndInitialize.Medium);
+                        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Percent50);
                     }
                 }
                 catch (Exception ex)
@@ -804,7 +892,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region InitializeFastAdvancedServo Command
 
         public DelegateCommand InitializeFastAdvancedServoCommand { get; set; }
@@ -834,7 +921,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     for (int i = 0; i < servos.Count; i++)
                     {
-                        AdvancedServoProperties[i].CenterAndInitializeMotion(ServoProperties.CenterAndInitialize.Fast);
+                        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Max);
                     }
                 }
                 catch (Exception ex)
@@ -883,7 +970,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
-
 
         #region RefreshAdvancedServo Command
 
@@ -1095,8 +1181,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //ClearDigitalInputsAndOutputs();
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeVelocityCommand.RaiseCanExecuteChanged();
+            InitializeAccelerationCommand.RaiseCanExecuteChanged();
             InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
             InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -1490,10 +1576,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeSlowAdvancedServoCommand.RaiseCanExecuteChanged();
+            InitializeVelocityCommand.RaiseCanExecuteChanged();
+            InitializeAccelerationCommand.RaiseCanExecuteChanged();
             CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
             //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
@@ -1629,6 +1713,60 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 AdvancedServoProperties[i].InitializeProperties();
             }         
+        }
+
+        private ServoProperties.MotionScale ConvertStringToInitializeMotion(string speed)
+        {
+            ServoProperties.MotionScale result = ServoProperties.MotionScale.Percent05;
+
+            switch (speed)
+            {
+                case "Min":
+                    result = ServoProperties.MotionScale.Min;
+                    break;
+
+                case "05%":
+                    result = ServoProperties.MotionScale.Percent05;
+                    break;
+
+                case "10%":
+                    result = ServoProperties.MotionScale.Percent10;
+                    break;
+
+                case "15%":
+                    result = ServoProperties.MotionScale.Percent15;
+                    break;
+
+                case "20%":
+                    result = ServoProperties.MotionScale.Percent20;
+                    break;
+
+                case "25%":
+                    result = ServoProperties.MotionScale.Percent25;
+                    break;
+
+                case "35%":
+                    result = ServoProperties.MotionScale.Percent35;
+                    break;
+
+                case "50%":
+                    result = ServoProperties.MotionScale.Percent50;
+                    break;
+
+                case "75%":
+                    result = ServoProperties.MotionScale.Percent75;
+                    break;
+
+                case "Max":
+                    result = ServoProperties.MotionScale.Max;
+                    break;
+
+                default:
+                    Log.Error($"Unexpected speed:{speed}", Common.LOG_CATEGORY);
+                    break;
+            }
+
+            return result;
         }
 
         #endregion

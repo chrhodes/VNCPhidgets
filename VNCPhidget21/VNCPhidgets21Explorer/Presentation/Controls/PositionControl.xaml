@@ -165,7 +165,19 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
-    
+
+
+        <dxlc:LayoutItem>
+            <Button Content="Swing Min to Max to Center" 
+                        ToolTip="Tests full position range (recommend slowly)" 
+                        Click="TestFullPositionRange_Click"/>
+            <!--<Button 
+                    Command="{Binding SetPositionRangeCommand }"
+                    CommandParameter="{Binding ServoIndex}"
+                    Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
+                    ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />-->
+        </dxlc:LayoutItem>
+
     </dxlc:LayoutGroup>
     
 </vncmvvm:ViewBase>

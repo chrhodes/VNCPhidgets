@@ -6,6 +6,8 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 using VNC;
 using VNC.Core.Mvvm;
 using DevExpress.Xpf.Editors;
+using DevExpress.XtraSpellChecker.Parser;
+using System.Threading;
 
 namespace VNCPhidgets21Explorer.Presentation.Controls
 {
@@ -376,6 +378,16 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             Min = Current - PositionRange;
             Max = Current + PositionRange;
+        }
+
+        private void TestFullPositionRange_Click(object sender, RoutedEventArgs e)
+        {
+            var currentPosition = Current;
+            Current = Min;
+            Thread.Sleep(3000);
+            Current = Max;
+            Thread.Sleep(3000);
+            Current = currentPosition;
         }
     }
 }
