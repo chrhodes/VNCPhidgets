@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -21,25 +22,20 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InstanceCountV++;
             InitializeComponent();
-            InitializeView();
 
             // Wire up ViewModel if needed
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IViewABCViewModel)DataContext;
+            // ViewModel = (ICatViewModel)DataContext;
 
             // Can create directly
 
-            // ViewModel = IViewABC$ViewModel();
+            // ViewModel = CatViewModel();
 
             // Can use ourselves for everything
 
             //DataContext = this;
-
-            // Or just a specific thing
-
-            //tbViewMessage.DataContext = this;
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -49,12 +45,17 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
-            InitializeComponent();
-            InitializeView();
+            InstanceCountVP++;
 
-            _viewModel = viewModel;
+            InitializeComponent();
+
+            _viewModel = viewModel;     // AppVersionInfo needs this.
             DataContext = _viewModel;
+
+            // For the rare case where the ViewModel needs to know about the View
+            // ViewModel.View = this;
+
+            InitializeView();
 
             Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
@@ -64,13 +65,54 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.View) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = _viewModel.GetType().ToString().Split('.').Last();
+
             Common.CurrentShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
-            // NOTE(crhodes)
-            // Put things here that initialize the View
-
             if (Common.VNCLogging.View) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        #region Fields and Properties
+
+        private string _viewType;
+
+        public string ViewType
+        {
+            get => _viewType;
+            set
+            {
+                if (_viewType == value)
+                {
+                    return;
+                }
+
+                _viewType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _viewModelType;
+
+        public string ViewModelType
+        {
+            get => _viewModelType;
+            set
+            {
+                if (_viewModelType == value)
+                {
+                    return;
+                }
+
+                _viewModelType = value;
+                OnPropertyChanged();
+            }
         }
 
         private Visibility _developerUIMode = Visibility.Collapsed;
@@ -86,6 +128,18 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             }
         }
 
+        #endregion
+
+        #region EventHandlers
+
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            _viewModel.WindowSize = newSize;
+        }
+
+        #endregion
 
         #region INotifyPropertyChanged
 

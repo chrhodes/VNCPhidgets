@@ -1024,8 +1024,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called EngageAndCenter";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has sideffect of setting ActivePerformancePlayer.
             // Think through whether this make sense.
+            // Also, unless we have multiple call here it only does one AdvancedServo
+            // We need a generic routine like "Engage and Center Servos
+            // that calls each of the appropriate phidgets.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 

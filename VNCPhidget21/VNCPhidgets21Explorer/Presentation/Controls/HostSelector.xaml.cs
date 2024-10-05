@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Windows;
-
-using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+using VNCPhidgets21Explorer.Presentation.Views;
+
+namespace VNCPhidgets21Explorer.Presentation.Controls
 {
     public partial class HostSelector : ViewBase, IHostSelector, IInstanceCountV
     {

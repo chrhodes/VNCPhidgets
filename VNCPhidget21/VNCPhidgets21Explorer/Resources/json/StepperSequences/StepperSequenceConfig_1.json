@@ -1,5 +1,7 @@
 {
   "StepperSequences": [
+    //These need to be updated to reflect what can be done with a Stepper motor
+    //This is from AdvancedServo
     {
       "Actions": [
         {

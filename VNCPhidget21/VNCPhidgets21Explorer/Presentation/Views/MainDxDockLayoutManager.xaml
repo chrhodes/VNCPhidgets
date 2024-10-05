@@ -133,7 +133,7 @@
                     <dxdo:LayoutPanel>
                         <dxlc:LayoutGroup
                              Orientation="Vertical"  VerticalAlignment="Bottom">
-                            <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
+                            <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />-->
                             <Label Content="lg_Footer Stuff Goes Here" />
                         </dxlc:LayoutGroup>
                     </dxdo:LayoutPanel>

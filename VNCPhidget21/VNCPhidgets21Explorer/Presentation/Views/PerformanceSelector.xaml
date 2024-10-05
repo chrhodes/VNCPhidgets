@@ -68,7 +68,7 @@
         <!-- <localvm:HostSelectorViewModel /> -->
     <!-- </UserControl.DataContext> -->
     
-    <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
+    <!--<dxlc:LayoutControl  View="Group" Orientation="Vertical" >-->
 
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
@@ -615,6 +615,6 @@
 
         </dxlc:LayoutGroup>
 
-    </dxlc:LayoutControl>
+    <!--</dxlc:LayoutControl>-->
 
 </vncmvvm:ViewBase>

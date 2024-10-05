@@ -1,4 +1,6 @@
 {
+  // Ensure that detachable Phidgets, e.g. AdvancedServo, InterfaceKit
+  // are only connected to one host
   "Hosts": [
     {
       "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5001, "Enable": true,
@@ -29,8 +31,8 @@
     {
       "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
       "AdvancedServos": [
-        { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": false }, 
-        { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": false },
+        //{ "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": false }, 
+        //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": false },
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
@@ -45,7 +47,7 @@
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": false },
         { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": false },
-        //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
+        { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
@@ -56,12 +58,12 @@
     },
     {
       "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
-      //"AdvancedServos": [
+      "AdvancedServos": [
         //{ "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
-      //],
+      ],
       "InterfaceKits": [
         { "Name": "psbc23 InterfaceKit", "SerialNumber": 48284, "Open": true, "Embedded": true },
         //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }

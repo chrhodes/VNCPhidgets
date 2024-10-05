@@ -85,7 +85,7 @@
         <!--<TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />-->
         <!-- Maybe put the Host Selection up here -->
 
-        <views:HostSelector DockPanel.Dock="Top" />
+        <controls:HostSelector DockPanel.Dock="Top" />
         
         <!-- This is useful for debugging V VM constructor issues -->
 

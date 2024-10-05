@@ -725,7 +725,6 @@ namespace VNC.Phidget
             Int64 startTicks = 0;
 
             Int32 index = action.ServoIndex;
-            AdvancedServoServo servo = AdvancedServo.servos[index];
 
             StringBuilder actionMessage = new StringBuilder();
 
@@ -734,7 +733,9 @@ namespace VNC.Phidget
                 startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
                 actionMessage.Append($"servo:{index}");
             }
-            
+
+            AdvancedServoServo servo = AdvancedServo.servos[index];
+
             try
             {
                 if (action.ServoType is not null)

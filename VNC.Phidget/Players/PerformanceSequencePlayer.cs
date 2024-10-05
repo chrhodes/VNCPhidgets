@@ -11,7 +11,7 @@ namespace VNC.Phidget.Players
 {
     // TODO(crhodes)
     // Figure out how to make this singleton
-    // Mabe as simple as creating one if needed 
+    // Maybe as simple as creating one if needed 
     // in the get of ActivePerformanceSequencePlayer
 
     public class PerformanceSequencePlayer

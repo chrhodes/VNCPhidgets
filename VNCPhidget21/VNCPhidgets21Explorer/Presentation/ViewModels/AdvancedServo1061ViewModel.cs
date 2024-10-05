@@ -76,8 +76,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //PlayPerformanceCommand = new DelegateCommand<string>(PlayPerformance, PlayPerformanceCanExecute);
             //PlaySequenceCommand = new DelegateCommand<string>(PlaySequence, PlaySequenceCanExecute);
 
-            // TODO(crhodes)
+            // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
+            // This could also come from PerformanceLibrary.
+            // See HackAroundViewModel.InitializeViewModel()
+            // Or maybe a method on something else in VNCPhidget21.Configuration
 
             HostConfigFileName = "hostconfig.json";
             //PerformanceConfigFileName = "advancedservoperformancesconfig.json";
@@ -1181,11 +1184,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //ClearDigitalInputsAndOutputs();
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
+            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+
             InitializeVelocityCommand.RaiseCanExecuteChanged();
             InitializeAccelerationCommand.RaiseCanExecuteChanged();
-            InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
-            InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
-            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+            //InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
+            //InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
+
             //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();
 
@@ -1576,9 +1582,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
+            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+
             InitializeVelocityCommand.RaiseCanExecuteChanged();
             InitializeAccelerationCommand.RaiseCanExecuteChanged();
-            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
 
             //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();

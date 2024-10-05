@@ -382,12 +382,30 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private void TestFullPositionRange_Click(object sender, RoutedEventArgs e)
         {
-            var currentPosition = Current;
-            Current = Min;
-            Thread.Sleep(3000);
-            Current = Max;
-            Thread.Sleep(3000);
-            Current = currentPosition;
+            var rea = e;
+            var s = sender;
+
+            var goToWhere = ((System.Windows.Controls.Button)sender).CommandParameter;
+
+            switch (goToWhere)
+            {
+                case "Min":
+                    Current = Min;
+                    break;
+
+                case "Center":
+                    Current = (Max - Min) / 2 + Min;
+                    break;
+
+                case "Max":
+                    Current = Max;
+                    break;
+
+                default:
+                    Log.Error($"Unknown goToWhere >{goToWhere}<", Common.LOG_CATEGORY);
+                    break;
+            }
         }
     }
 }
+

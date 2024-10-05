@@ -66,7 +66,7 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods
 
         private static void BuildPhidgetDeviceDictionary()
         {
