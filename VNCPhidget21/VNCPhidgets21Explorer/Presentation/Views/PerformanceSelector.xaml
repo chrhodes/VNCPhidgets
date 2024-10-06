@@ -314,10 +314,18 @@
 
                     <dxlc:LayoutItem>
                         <Button 
+                		        Command="{Binding InitializeServosCommand }"
+                		        CommandParameter="{Binding InitializeServosCommandParameter}"
+                		        Content="{Binding InitializeServosContent, FallbackValue='Initialize Servos' }"
+                		        ToolTip="{Binding InitializeServosToolTip, FallbackValue='Initialize Servos ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
+                    <dxlc:LayoutItem>
+                        <Button 
                 		    Command="{Binding EngageAndCenterCommand }"
                 		    CommandParameter="{Binding EngageAndCenterCommandParameter}"
-                		    Content="{Binding EngageAndCenterContent, FallbackValue='EngageAndCenter' }"
-                		    ToolTip="{Binding EngageAndCenterToolTip, FallbackValue='EngageAndCenter ToolTip' }" />
+                		    Content="{Binding EngageAndCenterContent, FallbackValue='Engage and Center' }"
+                		    ToolTip="{Binding EngageAndCenterToolTip, FallbackValue='Engage and Center ToolTip' }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem>

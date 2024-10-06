@@ -331,7 +331,11 @@ namespace VNCPhidgets21Explorer
             //TODO(crhodes)
             // Perform any required Initialization.
 
-            Directory.SetCurrentDirectory("../../../Resources/json");
+            // TODO(crhodes)
+            // Would be nice to have this loaded from config file
+            // Maybe add option to change so can select another folder at runtime.
+
+            Directory.SetCurrentDirectory("./Resources/json");
 
 #if DEBUG
             Common.DeveloperMode = true;

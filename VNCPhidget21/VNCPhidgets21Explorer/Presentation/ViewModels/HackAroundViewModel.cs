@@ -60,8 +60,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
+
+            InitializeServosCommand = new DelegateCommand(InitializeServos, InitializeServosCanExecute);
             EngageAndCenterCommand = new DelegateCommand(EngageAndCenter, EngageAndCenterCanExecute);
             ResetLimitsCommand = new DelegateCommand(ResetLimits);
+
             SetMotionParametersCommand = new DelegateCommand<string>(SetMotionParameters);
             RelativeAccelerationCommand = new DelegateCommand<Int32?>(RelativeAcceleration);
             RelativeVelocityLimitCommand = new DelegateCommand<Int32?>(RelativeVelocityLimit);
@@ -323,6 +326,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
         {                
+            -5000,
             -1000,
             -500,
             -100,
@@ -330,11 +334,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             50,
             100,
             500,
-            1000
+            1000,
+            5000
         };
 
         public List<Int32> RelativeVelocityLimitAdjustment { get; } = new List<Int32>
-        {
+        {   
+            -1000,
             -500,
             -100,
             -50,
@@ -342,7 +348,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             10,
             50,
             100,
-            500
+            500,
+            1000
         };
 
         private IEnumerable<VNCPhidgetConfig.AdvancedServoSequence> _advancedServoSequences;
@@ -996,6 +1003,99 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region AdvancedServo Individual Commands
 
+        #region InitializeServos Command
+
+        public DelegateCommand InitializeServosCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> InitializeServosCommand { get; set; }
+        //public TYPE InitializeServosCommandParameter;
+        public string InitializeServosContent { get; set; } = "InitializeServos";
+        public string InitializeServosToolTip { get; set; } = "InitializeServos ToolTip";
+
+        // Can get fancy and use Resources
+        //public string InitializeServosContent { get; set; } = "ViewName_InitializeServosContent";
+        //public string InitializeServosToolTip { get; set; } = "ViewName_InitializeServosContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_InitializeServosContent">InitializeServos</system:String>
+        //    <system:String x:Key="ViewName_InitializeServosContentToolTip">InitializeServos ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void InitializeServos(TYPE value)
+        public async void InitializeServos()
+        {
+            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called InitializeServos";
+
+            // TODO(crhodes)
+            // This has sideffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+            // Also, unless we have multiple call here it only does one AdvancedServo
+            // We need a generic routine like "Engage and Center Servos
+            // that calls each of the appropriate phidgets.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+            VNCPhidgetConfig.PerformanceSequence? advancedServoSequence =
+                new VNCPhidgetConfig.PerformanceSequence
+                {
+                    Name = "Initialize Servos",
+                    SequenceType = "AS"
+                };
+
+            await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<InitializeServosEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<InitializeServosEvent>().Publish(
+            //      new InitializeServosEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class InitializeServosEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<InitializeServosEvent>().Subscribe(InitializeServos);
+
+            // End Cut Four
+
+            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool InitializeServosCanExecute(TYPE value)
+        public bool InitializeServosCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+
+            //if (AdvancedServoSequenceConfigFileName is not null)
+            //{
+            //    return true;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
+        }
+
+        #endregion
+
         #region EngageAndCenter Command
 
         public DelegateCommand EngageAndCenterCommand { get; set; }
@@ -1035,7 +1135,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
                 new VNCPhidgetConfig.PerformanceSequence
                 {
-                    Name = "99415-Engage and Center Servos",
+                    Name = "Engage and Center Servos",
                     SequenceType = "AS"
                 };
 
@@ -1101,7 +1201,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called SetMotionParameters";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has sideffect of setting ActivePerformancePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
@@ -1207,7 +1307,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = $"Cool, you called RelativeAcceleration {relativeAcceleration}";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has sideffect of setting ActivePerformancePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();

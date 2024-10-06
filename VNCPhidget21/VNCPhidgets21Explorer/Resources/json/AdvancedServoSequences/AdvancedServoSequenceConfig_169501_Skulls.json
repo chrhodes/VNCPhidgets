@@ -6,7 +6,7 @@
     {
       "SerialNumber": 169501,
       "Name": "Initialize Skulls", "Description": "Set Skull Movement and Position constraints",
-      "UsageNotes": "Does not Engage SKull",
+      "UsageNotes": "Does not Engage Skulls",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 500, "VelocityLimit": 50 },

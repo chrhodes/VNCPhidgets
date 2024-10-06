@@ -1,0 +1,81 @@
+{
+  "AdvancedServoSequences": [
+    //
+    // Initialize Servos
+    //
+    { 
+      "SerialNumber": 169501,
+      "Name": "Initialize Servos", 
+      "Description": "Initialize All Servos", 
+      "UsageNotes": "Does not Engage Servos",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 1, "ServoType": 5, "PositionMin": 55, "PositionMax": 85, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 2, "ServoType": 5, "PositionMin": 65, "PositionMax": 95, "Acceleration": 250, "VelocityLimit": 25 },
+        //{ "ServoIndex": 4, "ServoType": 5, "PositionMin": 80, "PositionMax": 116, "Acceleration": 500, "VelocityLimit": 50 },
+        //{ "ServoIndex": 5, "ServoType": 5, "PositionMin": 66, "PositionMax": 106, "Acceleration": 500, "VelocityLimit": 50 },
+        //{ "ServoIndex": 6, "ServoType": 5, "PositionMin": 40, "PositionMax": 140, "Acceleration": 500, "VelocityLimit": 50 },
+        //{ "ServoIndex": 0,  }, // THis is X Axis near minimum to avoid Head snap when engaged.
+        //{ "ServoIndex": 1,  },
+        //{ "ServoIndex": 2,  },
+
+      ],
+      "NextSequence": { "Name": "99220-Initialize Servos", "SequenceType": "AS" }
+    },
+    //
+    // Initialize Servos
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Initialize Servos", 
+      "Description": "Initialize All Servos",
+      "UsageNotes": "Does not Engage Servos",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "ServoType": 5, "PositionMin": 80, "PositionMax": 110, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 1, "ServoType": 5, "PositionMin": 72, "PositionMax": 102, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 2, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 4, "ServoType": 5, "PositionMin": 75, "PositionMax": 105, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 5, "ServoType": 5, "PositionMin": 70, "PositionMax": 100, "Acceleration": 250, "VelocityLimit": 25 },
+        { "ServoIndex": 6, "ServoType": 5, "PositionMin": 70, "PositionMax": 100, "Acceleration": 250, "VelocityLimit": 25 },
+      ],
+      //"NextSequence": { "Name": "99220-Wake up Skulls", "SequenceType":  "AS" }
+    },
+    //
+    // Engage and Center Servos
+    //
+    {
+      "SerialNumber": 169501,
+      "Name": "Engage and Center Servos", 
+      "Description": "Engage and Center Servos",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 135 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 70 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 80 },
+        //{ "ServoIndex": 4, "Engaged": true, "TargetPosition": 98 },
+        //{ "ServoIndex": 5, "Engaged": true, "TargetPosition": 86 },
+        //{ "ServoIndex": 6, "Engaged": true, "TargetPosition": 90 },
+      ],
+      "NextSequence": { "Name": "99220-Engage and Center Servos", "SequenceType": "AS" }
+    },
+    //
+    // Engage and Center Servos
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Engage and Center Servos", 
+      "Description": "Engage and Center Servos",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 95 },
+        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 87 },
+        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 90 },
+        { "ServoIndex": 4, "Engaged": true, "TargetPosition": 90 },
+        { "ServoIndex": 5, "Engaged": true, "TargetPosition": 85 },
+        { "ServoIndex": 6, "Engaged": true, "TargetPosition": 85 },
+      ]
+    },
+  ]
+}

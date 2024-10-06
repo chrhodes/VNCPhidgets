@@ -257,6 +257,7 @@ namespace VNCPhidget21.Configuration
 
             List<string> files = new List<string>
             {
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",

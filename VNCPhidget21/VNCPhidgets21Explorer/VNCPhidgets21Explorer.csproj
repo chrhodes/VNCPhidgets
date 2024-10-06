@@ -123,6 +123,63 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\hostconfig.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_46049.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_2.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_3.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="vnccoreloggingconfig-Debug.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
