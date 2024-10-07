@@ -12,6 +12,7 @@ namespace VNC.Phidget.Players
     public class PerformancePlayer
     {
         #region Constructors, Initialization, and Load
+        
         public IEventAggregator EventAggregator { get; set; }
 
         public PerformancePlayer(IEventAggregator eventAggregator)

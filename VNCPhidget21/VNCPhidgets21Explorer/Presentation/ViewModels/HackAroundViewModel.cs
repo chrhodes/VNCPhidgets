@@ -790,7 +790,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called PlayPerformance";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformanceSequencePlayer.
+            // This has sideffect of setting ActivePerformanceSequencePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
