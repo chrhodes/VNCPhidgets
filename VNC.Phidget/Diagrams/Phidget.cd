@@ -46,5 +46,13 @@
     <Position X="8" Y="8.75" Width="2.75" />
     <TypeIdentifier />
   </Class>
+  <Class Name="Phidgets.Stepper">
+    <Position X="7.25" Y="15.75" Width="3.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.StepperStepper">
+    <Position X="9" Y="19.25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

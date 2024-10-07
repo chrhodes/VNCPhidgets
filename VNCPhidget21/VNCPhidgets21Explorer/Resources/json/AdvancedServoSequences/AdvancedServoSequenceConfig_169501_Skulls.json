@@ -1,13 +1,14 @@
 {
   "AdvancedServoSequences": [
     //
-    // Initialize Skull
+    // Initialize Skulls
     //
     {
       "SerialNumber": 169501,
-      "Name": "Initialize Skulls", "Description": "Set Skull Movement and Position constraints",
-      "UsageNotes": "Does not Engage Skulls",
-      "ExecuteActionsInParallel": true,
+      "Name": "169501-Initialize Skulls", 
+      "Description": "Set servo Movement and Position constraints",
+      "UsageNotes": "Does not Engage servos",
+      "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 0, "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 500, "VelocityLimit": 50 },
         { "ServoIndex": 1, "ServoType": 5, "PositionMin": 55, "PositionMax": 85, "Acceleration": 500, "VelocityLimit": 50 },
@@ -15,35 +16,54 @@
         //{ "ServoIndex": 4, "ServoType": 5, "PositionMin": 80, "PositionMax": 116, "Acceleration": 500, "VelocityLimit": 50 },
         //{ "ServoIndex": 5, "ServoType": 5, "PositionMin": 66, "PositionMax": 106, "Acceleration": 500, "VelocityLimit": 50 },
         //{ "ServoIndex": 6, "ServoType": 5, "PositionMin": 40, "PositionMax": 140, "Acceleration": 500, "VelocityLimit": 50 },
-        //{ "ServoIndex": 0,  }, // THis is X Axis near minimum to avoid Head snap when engaged.
-        //{ "ServoIndex": 1,  },
-        //{ "ServoIndex": 2,  },
-
       ],
-      "NextSequence": { "Name": "Wake up Skulls", "SequenceType":  "AS" }
     },
     //
-    // Wake up Skull
+    // Wake up Skulls
     //
     {
       "SerialNumber": 169501,
-      "Name": "Wake up Skulls", "Description": "Engages Skull, Snaps to attention",
+      "Name": "169501-Wake up Skulls", 
+      "Description": "Engages servos",
+      "UsageNotes": "Calls Center Skulls",
       "ExecuteActionsInParallel": true,
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "TargetPosition": 135 },
-        { "ServoIndex": 1, "Engaged": true, "TargetPosition": 70 },
-        { "ServoIndex": 2, "Engaged": true, "TargetPosition": 80 },
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
         //{ "ServoIndex": 4, "Engaged": true, "TargetPosition": 98 },
         //{ "ServoIndex": 5, "Engaged": true, "TargetPosition": 86 },
         //{ "ServoIndex": 6, "Engaged": true, "TargetPosition": 90 },
-      ]
+      ],
+      "NextSequence": { "Name": "169501-Center Skulls", "SequenceType":  "AS" }
     },
+    //
+    // Center Skulls
+    //
+    // Maybe this should be called Center Left Skull and Center Right Skull
+    // Or Center Skull012 and Skull456
+    // Maybe call two routines
+    {
+      "SerialNumber": 169501,
+      "Name": "169501-Center Skulls",
+      "Description": "Center Skulls",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "TargetPosition": 135 },
+        { "ServoIndex": 1, "TargetPosition": 70 },
+        { "ServoIndex": 2, "TargetPosition": 80 },
+        //{ "ServoIndex": 4, "TargetPosition": 98 },
+        //{ "ServoIndex": 5, "TargetPosition": 86 },
+        //{ "ServoIndex": 6, "TargetPosition": 90 },
+      ]
+    },    
     //
     // Sleep Skulls
     //
     {
       "SerialNumber": 169501,
-      "Name": "Sleep Skulls", "Description": "Put Skulls to sleep",
+      "Name": "169501-Sleep Skulls", 
+      "Description": "Disengages servos",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 0, "Engaged": false },
@@ -55,29 +75,12 @@
       ]
     },
     //
-    // Skulls Center
+    // Center Skull-012
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Center",
-      "Description": "Center Right Skull",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "TargetPosition": 100 },
-        { "ServoIndex": 1, "TargetPosition": 90 },
-        { "ServoIndex": 2, "TargetPosition": 90 },
-        //{ "ServoIndex": 4, "TargetPosition": 98 },
-        //{ "ServoIndex": 5, "TargetPosition": 86 },
-        //{ "ServoIndex": 6, "TargetPosition": 90 },
-      ]
-    },    
-    //
-    // Right Skull Center
-    //
-    {
-      "SerialNumber": 169501,
-      "Name": "Right Skull Center",
-      "Description": "Center Right Skull",
+      "Name": "169501-Center Skull-012",
+      "Description": "Center Skull using Servos 0,1,2",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "TargetPosition": 100 },
@@ -86,12 +89,12 @@
       ]
     },
     //
-    // Left Skull Center
+    // Center Skull-456"
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Center",
-      "Description": "Center Left Skull",
+      "Name": "169501-Center Skull-456",
+      "Description": "Center Skull using Servos 4,5,6",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "TargetPosition": 98 },
@@ -104,7 +107,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Together", "Description": "Skull Look Up Right",
+      "Name": "169501-Skulls Look Together", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
@@ -120,7 +123,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Left", "Description": "Skulls Look Left",
+      "Name": "169501-Skulls Look Left", "Description": "Skulls Look Left",
       "ExecuteActionsInParallel": false, "Duration": 500,
       "Actions": [
         { "ServoIndex": 6, "RelativePosition": -50, "Duration": 500 },
@@ -133,7 +136,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Left2", "Description": "Skulls Look Left",
+      "Name": "169501-Skulls Look Left2", "Description": "Skulls Look Left",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 6, "RelativePosition": -25 },
@@ -145,7 +148,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Right", "Description": "Skulls Look Right",
+      "Name": "169501-Skulls Look Right", "Description": "Skulls Look Right",
       "ExecuteActionsInParallel": false, "Duration": 500,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 50, "Duration": 500 },
@@ -158,7 +161,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Right2", "Description": "Skull Look Up Right",
+      "Name": "169501-Skulls Look Right2", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 25 },
@@ -170,7 +173,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Apart", "Description": "Skull Look Up Right",
+      "Name": "169501-Skulls Look Apart", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -10 },
@@ -182,27 +185,11 @@
       ]
     },    
     //
-    // Skulls Look Up Right
-    //
-    {
-      "SerialNumber": 169501,
-      "Name": "Skulls Look Up Right", "Description": "Skull Look Up Right",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 5 },
-        { "ServoIndex": 1, "RelativePosition": 5 },
-        { "ServoIndex": 2, "RelativePosition": 5 },
-        //{ "ServoIndex": 4, "RelativePosition": 5 },
-        //{ "ServoIndex": 5, "RelativePosition": 5 },
-        //{ "ServoIndex": 6, "RelativePosition": 5 },
-      ]
-    },
-    //
     // Left Skull Look Up Right
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Look Up Right", "Description": "Skull Look Up Right",
+      "Name": "169501-Left Skull Look Up Right", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
@@ -215,7 +202,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Look Up Right", "Description": "Skull Look Up Right",
+      "Name": "169501-Right Skull Look Up Right", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": 5 },
@@ -228,7 +215,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Up Left", "Description": "Skull Look Up Right",
+      "Name": "169501-Skulls Look Up Left", "Description": "Skull Look Up Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
@@ -244,7 +231,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Look Up Left", "Description": "Skull Look Up Left",
+      "Name": "169501-Left Skull Look Up Left", "Description": "Skull Look Up Left",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 5 },
@@ -257,7 +244,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Look Up Left", "Description": "Right Skull Look Up Left",
+      "Name": "169501-Right Skull Look Up Left", "Description": "Right Skull Look Up Left",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": 5 },
@@ -270,7 +257,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Down Right", "Description": "Skulls Look Down Right",
+      "Name": "169501-Skulls Look Down Right", "Description": "Skulls Look Down Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
@@ -286,7 +273,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Look Down Right", "Description": "Skull Look Down Right",
+      "Name": "169501-Left Skull Look Down Right", "Description": "Skull Look Down Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
@@ -299,7 +286,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Look Down Right", "Description": "Skull Look Down Right",
+      "Name": "169501-Right Skull Look Down Right", "Description": "Skull Look Down Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": -5 },
@@ -312,7 +299,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skulls Look Down Left", "Description": "Skull Look Down Left",
+      "Name": "169501-Skulls Look Down Left", "Description": "Skull Look Down Left",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
@@ -328,7 +315,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Look Down Left", "Description": "Skull Look Down Left",
+      "Name": "169501-Left Skull Look Down Left", "Description": "Skull Look Down Left",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": -5 },
@@ -341,7 +328,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Look Down Left", "Description": "Skull Look Down Right",
+      "Name": "169501-Right Skull Look Down Left", "Description": "Skull Look Down Right",
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": -5 },
@@ -354,7 +341,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Yes", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Left Skull Yes", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -371,7 +358,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Yes", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Right Skull Yes", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -388,7 +375,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Laugh", "Description": "Look up and Go nuts",
+      "Name": "169501-Left Skull Laugh", "Description": "Look up and Go nuts",
       "ExecuteActionsInParallel": true, "Duration": 1000,
       "Actions": [
         { "ServoIndex": 5, "RelativePosition": -5, "Acceleration": 1000, "VelocityLimit":  200 },
@@ -401,7 +388,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Laugh2",
+      "Name": "169501-Left Skull Laugh2",
       "ExecuteActionsInParallel": true, "Duration": 500,
       "Actions": [
         { "ServoIndex": 5, "RelativePosition": 5},
@@ -415,7 +402,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Left Skull Laugh3", "Description": "Move +/- 5 X,Y,Z axis 3 times",
+      "Name": "169501-Left Skull Laugh3", "Description": "Move +/- 5 X,Y,Z axis 3 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 6, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
@@ -446,7 +433,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Laugh", "Description": "Look up and Go nuts",
+      "Name": "169501-Right Skull Laugh", "Description": "Look up and Go nuts",
       "ExecuteActionsInParallel": true, "Duration": 1000,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": 4, "Acceleration": 1000, "VelocityLimit": 200 },
@@ -459,7 +446,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Laugh2", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Right Skull Laugh2", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": true, "Duration": 500,
       "Actions": [
         { "ServoIndex": 1, "RelativePosition": -4 },
@@ -473,7 +460,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Right Skull Laugh3", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Right Skull Laugh3", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 5, "Acceleration": 5000, "VelocityLimit": -2 },
@@ -504,7 +491,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skull Sigh", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Skull Sigh", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": true, "Duration": 500,
       "Actions": [
         //{ "ServoIndex": 1, "RelativePosition": -5, "Acceleration": 500, "VelocityLimit": 100 },
@@ -517,7 +504,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skull Sigh2", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Skull Sigh2", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": true, "Duration": 100,
       "Actions": [
        // { "ServoIndex": 1, "RelativePosition": 5, "RelativeAcceleration": -250, "RelativeVelocityLimit": -25 },
@@ -531,7 +518,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skull Sigh3", "Description": "Move up and down X axis 2 times",
+      "Name": "169501-Skull Sigh3", "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 2, "RelativePosition": 7, "Acceleration": 150, "VelocityLimit": 70},
@@ -548,7 +535,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skull No", "Description": "Move left and right Z axis 2 times",
+      "Name": "169501-Skull No", "Description": "Move left and right Z axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -565,7 +552,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skull Maybe 1", "Description": "Move Y axis 2 times",
+      "Name": "169501-Skull Maybe 1", "Description": "Move Y axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },
@@ -582,7 +569,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Skull Maybe 2", "Description": "Move Y axis 2 times",
+      "Name": "169501-Skull Maybe 2", "Description": "Move Y axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "ServoIndex": 0, "RelativePosition": -5, "Acceleration": 50, "VelocityLimit": 50 },

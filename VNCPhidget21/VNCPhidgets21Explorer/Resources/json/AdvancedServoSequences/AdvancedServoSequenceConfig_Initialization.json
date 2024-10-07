@@ -8,7 +8,7 @@
       "Name": "Initialize Servos", 
       "Description": "Initialize All Servos", 
       "UsageNotes": "Does not Engage Servos",
-      "ExecuteActionsInParallel": true,
+      "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 0, "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 250, "VelocityLimit": 25 },
         { "ServoIndex": 1, "ServoType": 5, "PositionMin": 55, "PositionMax": 85, "Acceleration": 250, "VelocityLimit": 25 },
@@ -31,7 +31,7 @@
       "Name": "99220-Initialize Servos", 
       "Description": "Initialize All Servos",
       "UsageNotes": "Does not Engage Servos",
-      "ExecuteActionsInParallel": true,
+      "ExecuteActionsInParallel": false,
       "Actions": [
         { "ServoIndex": 0, "ServoType": 5, "PositionMin": 80, "PositionMax": 110, "Acceleration": 250, "VelocityLimit": 25 },
         { "ServoIndex": 1, "ServoType": 5, "PositionMin": 72, "PositionMax": 102, "Acceleration": 250, "VelocityLimit": 25 },

@@ -126,6 +126,7 @@ namespace VNCPhidget21.Configuration
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
   
@@ -157,6 +158,7 @@ namespace VNCPhidget21.Configuration
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
 
@@ -186,6 +188,7 @@ namespace VNCPhidget21.Configuration
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             } 
 
@@ -216,6 +219,7 @@ namespace VNCPhidget21.Configuration
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
   
@@ -236,10 +240,11 @@ namespace VNCPhidget21.Configuration
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
             // for now just hard code
+            // Would be nice to control order
 
             List<string> files = new List<string>
             {
-                @"Performances\PerformanceConfig_1.json",
+                @"Performances\PerformanceConfig_InitializationAndFinalization.json",
                 @"Performances\PerformanceConfig_2.json",
                 @"Performances\PerformanceConfig_3.json",
 
@@ -254,12 +259,14 @@ namespace VNCPhidget21.Configuration
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
             // for now just hard code
+            // Would be nice to control order
 
             List<string> files = new List<string>
             {
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
@@ -274,6 +281,7 @@ namespace VNCPhidget21.Configuration
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
             // for now just hard code
+            // Would be nice to control order
 
             List<string> files = new List<string>
             {

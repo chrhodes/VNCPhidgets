@@ -68,7 +68,11 @@
         <!-- <localvm:HostSelectorViewModel /> -->
     <!-- </UserControl.DataContext> -->
     
-    <!--<dxlc:LayoutControl  View="Group" Orientation="Vertical" >-->
+    <!--
+        Need LayoutControl so all things align properly.
+        Might be able to put this in HackAround.xaml and not here 
+    -->
+    <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
 
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
@@ -93,11 +97,6 @@
 
                         </dxlc:LayoutGroup>-->
 
-                        <dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
-                            <dxe:TextEdit Width="300" HorizontalAlignment="Left"
-            		            Text="{Binding SelectedPerFormance.Name }">
-                            </dxe:TextEdit>
-                        </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
@@ -112,6 +111,12 @@
                                     <dxe:CheckedComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Width="300" HorizontalAlignment="Left"
+           		                Text="{Binding SelectedPerformance.Name }">
+                            </dxe:TextEdit>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutGroup View="Group" Orientation="Vertical"  >
@@ -163,7 +168,8 @@
                               Orientation="Horizontal" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False" >
                 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Stretch">
                     
                     <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                         
@@ -180,7 +186,7 @@
 
                     </dxlc:LayoutGroup>-->
 
-                    <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
+                    <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" LabelPosition="Left" >
                         <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
                             ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedAdvancedServoSequence}"
@@ -623,6 +629,6 @@
 
         </dxlc:LayoutGroup>
 
-    <!--</dxlc:LayoutControl>-->
+    </dxlc:LayoutControl>
 
 </vncmvvm:ViewBase>

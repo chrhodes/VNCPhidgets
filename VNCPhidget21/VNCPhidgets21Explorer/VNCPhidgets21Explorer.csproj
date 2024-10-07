@@ -165,7 +165,7 @@
         <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\PerformanceConfig_1.json">
+        <None Update="Resources\json\Performances\PerformanceConfig_InitializationAndFinalization.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\PerformanceConfig_2.json">
