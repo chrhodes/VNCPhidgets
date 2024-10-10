@@ -84,7 +84,8 @@
                     MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
                     MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
                     Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                    IsFloatValue="False" />
+                    IsFloatValue="False" 
+                    EditValueChanged="SpinEdit_EditValueChanged"/>
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right">

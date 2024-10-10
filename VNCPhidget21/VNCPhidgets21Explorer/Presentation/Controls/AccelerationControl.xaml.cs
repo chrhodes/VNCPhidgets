@@ -222,7 +222,15 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
 
         public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(AccelerationControl), 
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));   
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));
 
+        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            // NOTE(crhodes)
+            // If we don't do this the Servo does not get new value.
+            // Odd that it seemed like the UI was updating the servo before.
+            // Put a break point on ServoProperties Acceleration to see.
+            Current = Double.Parse(e.NewValue.ToString());
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Phidgets;
@@ -534,7 +535,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenAdvancedServoContent">OpenAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_OpenAdvancedServoContentToolTip">OpenAdvancedServo ToolTip</system:String>  
 
-        public void OpenAdvancedServo()
+        public async void OpenAdvancedServo()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
@@ -556,7 +557,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             ActiveAdvancedServo.LogPhidgetEvents = LogPhidgetEvents;
 
-            ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout);
+            await Task.Run(() => ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout));
+            //ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -993,14 +995,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE and fix above
         //public void RefreshAdvancedServo(TYPE value)
-        public void RefreshAdvancedServo()
+        public async void RefreshAdvancedServo()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called RefreshAdvancedServo";
 
-            RefreshAdvancedServoUIProperties();
+            await Task.Run(() => RefreshAdvancedServoUIProperties());
+            //RefreshAdvancedServoUIProperties();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1155,7 +1158,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseAdvancedServoContent">CloseAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_CloseAdvancedServoContentToolTip">CloseAdvancedServo ToolTip</system:String>  
 
-        public void CloseAdvancedServo()
+        public async void CloseAdvancedServo()
         {
             Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
@@ -1173,8 +1176,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo.AdvancedServo.CurrentChange -= ActiveAdvancedServo_CurrentChange;
             ActiveAdvancedServo.AdvancedServo.PositionChange -= ActiveAdvancedServo_PositionChange;
             ActiveAdvancedServo.AdvancedServo.VelocityChange -= ActiveAdvancedServo_VelocityChange;
- 
-            ActiveAdvancedServo.Close();
+
+            await Task.Run(() => ActiveAdvancedServo.Close());
+            //ActiveAdvancedServo.Close();
 
             DeviceAttached = false;
             UpdateAdvancedServoProperties();
@@ -1670,7 +1674,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 for (int i = 0; i < ServoCount; i++)
                 {
-                    AdvancedServoProperties[i].InitializeProperties();
+                    AdvancedServoProperties[i].InitializePropertiesToNull();
                     AdvancedServoProperties[i].AdvancedServoEx = null;
                 }
 
@@ -1718,7 +1722,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             for (int i = 0; i < 8; i++)
             {
-                AdvancedServoProperties[i].InitializeProperties();
+                AdvancedServoProperties[i].InitializePropertiesToNull();
             }         
         }
 

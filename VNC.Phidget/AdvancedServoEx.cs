@@ -678,7 +678,7 @@ namespace VNC.Phidget
                     // Which have crazy values
 
                     // NOTE(crhodes)
-                    // What happens is we don't set type?
+                    // What happens if we don't set type?
 
                     //if (servo.Type == ServoServo.ServoType.RAW_us_MODE)
                     //{
@@ -689,6 +689,17 @@ namespace VNC.Phidget
                     // This would be better if handled in HostConfig
 
                     ////servo.Type = ServoServo.ServoType.DEFAULT;
+                    ///                // NOTE(crhodes)
+                    // This is useful but where to put?
+                    Double? halfRange;
+                    Double? percent = 0.20;
+                    Double? midPoint;
+
+                    //midPoint = (DevicePositionMax - DevicePositionMin) / 2;
+                    //halfRange = midPoint * percent;
+                    //PositionMin = midPoint - halfRange;
+                    //PositionMax = midPoint + halfRange;
+                    //Position = midPoint;
 
                     SaveServoLimits(servo, index);
                 }

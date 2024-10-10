@@ -125,7 +125,7 @@ namespace VNC.Phidget
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
 
-                Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - {e.Type} {e.Code} {e.Description}", Common.LOG_CATEGORY);
+                Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {

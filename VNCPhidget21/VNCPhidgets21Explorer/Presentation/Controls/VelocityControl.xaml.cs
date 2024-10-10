@@ -71,6 +71,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
+
         private void InitializeView()
         {
             Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
@@ -259,8 +260,16 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => _instanceCountVP = value;
         }
 
+
         #endregion
 
-
+        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            // NOTE(crhodes)
+            // If we don't do this the Servo does not get new value.
+            // Odd that it seemed like the UI was updating the servo before.
+            // Put a break point on ServoProperties VelocityLimit to see.
+            Limit = Double.Parse(e.NewValue.ToString());
+        }
     }
 }
