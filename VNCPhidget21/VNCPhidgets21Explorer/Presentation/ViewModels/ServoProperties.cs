@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 
 using DevExpress.Xpf.Core.ConditionalFormatting.Native;
@@ -42,6 +43,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                         // Need to update all the properties since the type changed.
                         // NB. Even setting to the same Type causes a refresh of the properties
+
+                        // TODO(crhodes)
+                        // Maybe we should sleep for a bit to allow info to propagate
+
+                        Thread.Sleep(1);
                         GetPropertiesFromServo();
                     }
                 }
@@ -580,9 +586,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (LogPhidgetEvents)
                 {
                     Log.Trace($"servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    Log.Trace($"servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "???")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
                     Log.Trace($"servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    Log.Trace($"servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "???")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                     Log.Trace($"servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
@@ -593,8 +599,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Current = servo.Current;
 
                 SpeedRamping = servo.SpeedRamping;
+
                 AccelerationMin = servo.AccelerationMin;
-                Acceleration = servo.Acceleration;
+                Acceleration = servo.Engaged ? servo.Acceleration : null;
                 AccelerationMax = servo.AccelerationMax;
 
                 VelocityMin = servo.VelocityMin;
@@ -675,7 +682,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         /// <summary>
         /// Gets properties from Servo.  Use when ServoType changes
-        /// Sets DevicePosition{Min,Max}, Postion to midpoint, 
+        /// Sets DevicePosition{Min,Max}, Position to midpoint, 
         /// and sets Position{Min,Max} to +/- 20%
         /// </summary>
         private void GetPropertiesFromServo()
@@ -686,10 +693,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
 
+                string servoAcceleration;
+
+                try
+                {
+                    servoAcceleration = servo.Acceleration.ToString();
+                }
+                catch (PhidgetException pex)
+                {
+                    servoAcceleration = "???";
+                }                
+
                 if (LogPhidgetEvents)
                 {
                     Log.Trace($"Begin servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{servoAcceleration} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
                     Log.Trace($"Begin servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
                     Log.Trace($"Begin servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                     Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
@@ -729,7 +747,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (LogPhidgetEvents)
                 {
                     Log.Trace($"End servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "??")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{servo.Acceleration} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
                     Log.Trace($"End servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
                     Log.Trace($"End servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                     Log.Trace($"End servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);

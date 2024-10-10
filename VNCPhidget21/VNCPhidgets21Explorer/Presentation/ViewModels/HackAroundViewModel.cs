@@ -71,7 +71,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
-            ActivePerformancePlayer = GetPerformancePlayer();
+            //ActivePerformancePlayer = GetPerformancePlayer();
 
             Hosts = PerformanceLibrary.Hosts.ToList();
 
@@ -164,6 +164,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPhidgetEvents = false;
+
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
                 OnPropertyChanged();
             }
         }
@@ -547,20 +561,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        private bool _logPhidgetEvents = false;
-
-        public bool LogPhidgetEvents
-        {
-            get => _logPhidgetEvents;
-            set
-            {
-                if (_logPhidgetEvents == value)
-                    return;
-                _logPhidgetEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #region Commands
@@ -793,6 +793,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // This has sideffect of setting ActivePerformanceSequencePlayer.
             // Think through whether this make sense.
 
+            PerformancePlayer performancePlayer = GetPerformancePlayer();
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
             foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
@@ -818,7 +819,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 //}
 
-                await ActivePerformancePlayer.RunPerformanceLoops(nextPerformance);
+                await performancePlayer.RunPerformanceLoops(nextPerformance);
 
                 nextPerformance = nextPerformance?.NextPerformance;
 
@@ -838,7 +839,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     {
                         nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
 
-                        await ActivePerformancePlayer.RunPerformanceLoops(nextPerformance);
+                        await performancePlayer.RunPerformanceLoops(nextPerformance);
 
                         nextPerformance = nextPerformance?.NextPerformance;
                     }
@@ -1524,11 +1525,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private PerformancePlayer GetPerformancePlayer()
         {
-            PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator);
- 
-            performancePlayer.LogPerformance = LogPerformance;          
+            if (ActivePerformancePlayer == null)
+            {
+                ActivePerformancePlayer = new PerformancePlayer(EventAggregator);
+            }
 
-            return performancePlayer;
+            // HACK(crhodes)
+            // Need a cleaner way of handing logging.  Maybe a LoggingConfiguration class that gets passed around.
+
+            ActivePerformancePlayer.LogPerformance = LogPerformance;
+            ActivePerformancePlayer.LogPhidgetEvents = LogPhidgetEvents;
+            ActivePerformancePlayer.LogPerformanceSequence = LogPerformanceSequence;
+            ActivePerformancePlayer.LogSequenceAction = LogPerformanceSequence;
+            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
+
+            return ActivePerformancePlayer;
         }
 
         private PerformanceSequencePlayer GetPerformanceSequencePlayer()

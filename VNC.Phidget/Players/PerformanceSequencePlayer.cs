@@ -435,6 +435,8 @@ namespace VNC.Phidget.Players
             {
                 advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
+                advancedServoHost.LogPhidgetEvents = LogPhidgetEvents;
+
                 advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
                 advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
                 advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
@@ -488,6 +490,8 @@ namespace VNC.Phidget.Players
             if (phidgetDevice?.PhidgetEx is not null)
             {
                 interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
+
+                interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
 
                 interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
                 interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;

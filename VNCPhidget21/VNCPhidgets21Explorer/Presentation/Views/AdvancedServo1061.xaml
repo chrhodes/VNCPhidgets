@@ -124,7 +124,7 @@
                                   Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" >
+                <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" VerticalAlignment="Center" >
 
                     <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
 

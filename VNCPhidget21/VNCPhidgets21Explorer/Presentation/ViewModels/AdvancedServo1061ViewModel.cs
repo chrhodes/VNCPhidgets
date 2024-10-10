@@ -814,7 +814,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region InitializeMediumAdvancedServo Command
 
         public DelegateCommand InitializeMediumAdvancedServoCommand { get; set; }
@@ -1687,7 +1686,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods (none)
 
 
         #endregion
@@ -1778,35 +1777,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
-
-        //private void SetServoValue(Double property, Double? value)
-        //{
-        //    if (value is not null)
-        //    {
-        //        try
-        //        {
-        //            property = (double)value;
-        //        }
-        //        catch (PhidgetException pex)
-        //        {
-        //            Log.Error(pex, Common.LOG_CATEGORY);
-        //            // NOTE(crhodes)
-        //            // This throws exception  Humm
-        //            try
-        //            {
-        //                property = (double)value;
-        //            }
-        //            catch (PhidgetException pex2)
-        //            {
-        //                Log.Error(pex2, Common.LOG_CATEGORY);
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                Log.Error(ex, Common.LOG_CATEGORY);
-        //            }
-        //        }
-        //    }
-        //}
 
         #endregion
 

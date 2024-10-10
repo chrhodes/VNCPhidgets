@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 using Phidgets;
 using Phidgets.Events;
 
@@ -159,6 +161,10 @@ namespace VNC.Phidget
 
         internal override void Phidget_Attach(object sender, AttachEventArgs e)
         {
+            // TODO(crhodes)
+            // Do we want to try to setup a better position when attach occurs
+            // and maybe initial Acceleration and Velocity
+
             SetInitialServoType();
             base.Phidget_Attach(sender, e);
         }
@@ -652,44 +658,39 @@ namespace VNC.Phidget
 
                 // Save the device position min/max before any changes are made
 
-                for (int i = 0; i < servos.Count; i++)
+                for (int index = 0; index < servos.Count; index++)
                 {
-                    servo = servos[i];
+                    servo = servos[index];
 
-                    if (LogSequenceAction)
+                    if (LogPhidgetEvents)
                     {
-                        Log.Trace($"servo:{i} type:{servo.Type} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                        string currentPosition = servo.Engaged ? servo.Position.ToString() : "???";
+
+                        Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged} position:{currentPosition}", Common.LOG_CATEGORY);
+                        Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                        Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                        Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} positionMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
                     }
 
                     // NOTE(crhodes)
                     // Force the initial Servo Type to avoid opening something that has
-                    // been set to an unexpected Type, e.g. RAW_us_MODE
+                    // been set to an unexpected Type, e.g. RAW_us_MODE or 
+                    // Which have crazy values
+
+                    // NOTE(crhodes)
+                    // What happens is we don't set type?
 
                     //if (servo.Type == ServoServo.ServoType.RAW_us_MODE)
                     //{
-                    servo.Type = ServoServo.ServoType.DEFAULT;
+                    //servo.Type = ServoServo.ServoType.DEFAULT;
                     //}
 
                     // TODO(crhodes)
                     // This would be better if handled in HostConfig
 
-                    //servo.Type = ServoServo.ServoType.DEFAULT;
+                    ////servo.Type = ServoServo.ServoType.DEFAULT;
 
-                    // NOTE(crhodes)
-                    // We do not need to save Accleration and Velocity Min,Max,
-                    // they cannot change, 
-                    // but, useful when setting Acceleration/VelocityLimit
-                    // to Min/Max in PerformAction
-
-                    SaveServoLimits(servo, i);
-                    //InitialServoLimits[i].AccelerationMin = servo.AccelerationMin;
-                    //InitialServoLimits[i].AccelerationMax = servo.AccelerationMax;
-                    //InitialServoLimits[i].DevicePositionMin = servo.PositionMin;
-                    ////InitialServoLimits[i].PositionMin = servo.PositionMin;
-                    ////InitialServoLimits[i].PositionMax = servo.PositionMax;
-                    //InitialServoLimits[i].DevicePositionMax = servo.PositionMax;
-                    //InitialServoLimits[i].VelocityMin = servo.VelocityMin + 1; // 0 won't move
-                    //InitialServoLimits[i].VelocityMax = servo.VelocityMax;
+                    SaveServoLimits(servo, index);
                 }
             }
             catch (Exception ex)
@@ -700,15 +701,18 @@ namespace VNC.Phidget
 
         private void SaveServoLimits(AdvancedServoServo servo, Int32 index)
         {
-            if (LogSequenceAction)
+            if (LogPhidgetEvents)
             {
+                Log.Trace($"servo:{index} type:{servo.Type}", Common.LOG_CATEGORY);
+                Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
                 Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} positionMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
             }
+
             // NOTE(crhodes)
-            // We do not need to save Acceleration and Velocity Min,Max,
-            // they cannot change, 
-            // but, useful when setting Acceleration/VelocityLimit
-            // to Min/Max in PerformAction
+            // We do not need to save Acceleration Min,Max and Velocity Min,Max,
+            // they cannot change, but, useful to have available
+            // when setting Acceleration/VelocityLimit to Min/Max in PerformAction
 
             InitialServoLimits[index].AccelerationMin = servo.AccelerationMin;
             InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
@@ -743,6 +747,11 @@ namespace VNC.Phidget
                     if (LogSequenceAction) actionMessage.Append($" servoType:>{action.ServoType}<");
 
                     servo.Type = (Phidgets.ServoServo.ServoType)action.ServoType;
+
+                    // NOTE(crhodes)
+                    // Maybe we should sleep for a little bit to allow this to happen
+                    Thread.Sleep(1);
+
 
                     // Save the refreshed values
                     SaveServoLimits(servo, index);
@@ -853,6 +862,7 @@ namespace VNC.Phidget
                 if (action.TargetPosition is not null)
                 {
                     if (LogSequenceAction) actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
+
                     Double targetPosition = (Double)action.TargetPosition;
 
                     if (targetPosition < 0)
