@@ -10,25 +10,27 @@
    { 
         "Name": "Begin the Show",
         "Description": "Initialize servos and set Position Limits.  Does not Enage servos.",
+        "Loops":  1, "PlayInParallel": false,
         "PerformanceSequences": [
-            { "Name": "99220-Initialize Skulls", "SequenceType": "AS" },
-            { "Name": "169501-Initialize Skulls", "SequenceType": "AS" }
+            { "SequenceType": "AS", "Name": "99220-Initialize Skulls" },
+            { "SequenceType": "AS", "Name": "169501-Initialize Skulls" },
         ]
-    },
+   },
     { 
         "Name": "Bring to Attention",
         "Description": "Engage and Center all servos",
+        "Loops":  1, "PlayInParallel": true,
         "PerformanceSequences": [
-            { "Name": "99220-Wake up Skulls", "SequenceType": "AS" },
-            { "Name": "169501-Wake up Skulls", "SequenceType": "AS" }
+            { "SequenceType": "AS", "Name": "99220-Wake up Skulls" },
+            { "SequenceType": "AS", "Name": "169501-Wake up Skulls" }
         ]
     },
     { 
         "Name": "Disengage All Servos and Close Phidgets",
         "Description": "End the Show",
         "PerformanceSequences": [
-            { "Name": "99220-Sleep Skulls", "SequenceType": "AS" },
-            { "Name": "169501-Sleep Skulls", "SequenceType": "AS" }
+            { "SequenceType": "AS", "Name": "99220-Sleep Skulls" },
+            { "SequenceType": "AS", "Name": "169501-Sleep Skulls" }
         ]
     },
   ]

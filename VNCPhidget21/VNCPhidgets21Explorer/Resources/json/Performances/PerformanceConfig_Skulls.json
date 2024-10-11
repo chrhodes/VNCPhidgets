@@ -1,27 +1,159 @@
 {
   "Name": "PerformanceConfig_Skulls",
-  "Description": "PerformanceConfig DESCRIPTION",
+  "Description": "PerformanceConfig_Skulls DESCRIPTION",
   "Performances": [
-    //
-    // psbc2_AS DDog Skull
-    //
     {
-      "Name": "AS Move Skull 1",
+      "Name": "Routine 1",
       "Description": "",
       "Loops": 1,
       "PlayInParallel": false,
       "PerformanceSequences": [
-        { "Name": "Center Skull", "SequenceType": "AS"},
-        { "Name": "Skull Look Up Right", "SequenceType": "AS" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center", },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Look Up Right" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center"},
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Look Up Left" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center"},
       ],
-     "NextPerformance":
-     {
-        "Name": "Disengage All Servos and Close Phidget",
-        "Description": "Play All the Performances",
-        "PerformanceSequences": [
-            { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
-        ]
-      }
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
+     //   ]
+     // }
+    },
+    //
+    // Move Skulls - Routine 1
+    //
+    {
+      "Name": "99220-Skull-012 - Routine 1",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center", },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Look Up Right" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center"},
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Look Up Left" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center"},
+      ],
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
+     //   ]
+     // }
+    },
+    {
+      "Name": "99220-Skull-456 - Routine 1",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Center" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Look Up Right" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Center" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Look Up Left" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Center" },
+      ],
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
+     //   ]
+     // }
+    },
+    {
+      "Name": "169501-Skull-012 - Routine 1",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Center" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Look Up Right" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Center" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Look Up Left" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Center"},
+      ],
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+     //   ]
+     // }
+    },
+    //
+    // Move Skulls - Routine 2
+    //
+    {
+      "Name": "99220-Skull-012 - Routine 2",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center", },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Look Down Right" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center"},
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Look Down Left" },
+        { "SequenceType": "AS", "Name": "99220-Skull-012 Center"},
+      ],
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
+     //   ]
+     // }
+    },
+    {
+      "Name": "99220-Skull-456 - Routine 2",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Center" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Look Down Right" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Center" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Look Down Left" },
+        { "SequenceType": "AS", "Name": "99220-Skull-456 Center" },
+      ],
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
+     //   ]
+     // }
+    },
+    {
+      "Name": "169501-Skull-012 - Routine 2",
+      "Description": "",
+      "Loops": 1,
+      "PlayInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Center" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Look Down Right" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Center" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Look Down Left" },
+        { "SequenceType": "AS", "Name": "169501-Skull-012 Center"},
+      ],
+     //"NextPerformance":
+     //{
+     //   "Name": "Disengage All Servos and Close Phidget",
+     //   "Description": "",
+     //   "PerformanceSequences": [
+     //       { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
+     //   ]
+     // }
     },
     {
       "Name": "AS Move Skull 2",

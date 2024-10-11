@@ -75,11 +75,11 @@
       ]
     },
     //
-    // Center Skull-012
+    // Skull-012 Center
     //
     {
       "SerialNumber": 99220,
-      "Name": "99220-Center Skull-012",
+      "Name": "99220-Skull-012 Center",
       "Description": "Center Skull using Servos 0,1,2",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -89,11 +89,11 @@
       ]
     },
     //
-    // Center Skull-456
+    // Skull-456 Center
     //
     {
       "SerialNumber": 99220,
-      "Name": "99220-Center Skull-456",
+      "Name": "99220-Skull-456 Center",
       "Description": "Center Skull using Servos 4,5,6",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -105,6 +105,8 @@
     //
     // Skulls Look Up Right
     //
+      // How is this different from a Performance calling 012 then 456 in parallel
+      // Test to see how this looks
     {
       "SerialNumber": 99220,
       "Name": "99220-Skulls Look Up Right", 
@@ -119,6 +121,146 @@
         { "ServoIndex": 6, "RelativePosition": 10 },
       ]
     },
+    //
+    // Skull-012 Look Up Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-012 Look Up Right", 
+      "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 10 },
+        //{ "ServoIndex": 4, "RelativePosition": 10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        //{ "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skull-012 Look Up Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-012 Look Up Left", 
+      "Description": "Skull Look Up Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -10 },
+        //{ "ServoIndex": 4, "RelativePosition": 10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        //{ "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skull-456 Look Up Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-456 Look Up Right", 
+      "Description": "Skull Look Up Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        //{ "ServoIndex": 2, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": 10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skull-456 Look Up Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-456 Look Up Left", 
+      "Description": "Skull Look Up Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        //{ "ServoIndex": 2, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": 10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -10 },
+      ]
+    },
+
+    //
+    // Skull-012 Look Down Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-012 Look Down Right", 
+      "Description": "Skull Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": 10 },
+        //{ "ServoIndex": 4, "RelativePosition": 10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        //{ "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skull-012 Look Down Right
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-012 Look Down Left", 
+      "Description": "Skull Look Down Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativePosition": -10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 2, "RelativePosition": -10 },
+        //{ "ServoIndex": 4, "RelativePosition": 10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        //{ "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skull-456 Look Down Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-456 Look Down Right", 
+      "Description": "Skull Look Down Right",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        //{ "ServoIndex": 2, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": -10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": 10 },
+      ]
+    },
+    //
+    // Skull-456 Look Down Left
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-456 Look Down Left", 
+      "Description": "Skull Look Down Left",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        //{ "ServoIndex": 0, "RelativePosition": 10 },
+        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        //{ "ServoIndex": 2, "RelativePosition": -10 },
+        { "ServoIndex": 4, "RelativePosition": -10 },
+        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 6, "RelativePosition": -10 },
+      ]
+    },
+
+
+
     //
     // Skulls Look Left
     //
