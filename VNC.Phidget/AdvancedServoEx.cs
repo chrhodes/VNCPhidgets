@@ -10,6 +10,7 @@ using Phidgets;
 using Phidgets.Events;
 
 using Prism.Events;
+using Prism.Regions.Behaviors;
 
 using VNC.Phidget.Events;
 using VNC.Phidget.Players;
@@ -161,12 +162,10 @@ namespace VNC.Phidget
 
         internal override void Phidget_Attach(object sender, AttachEventArgs e)
         {
-            // TODO(crhodes)
-            // Do we want to try to setup a better position when attach occurs
-            // and maybe initial Acceleration and Velocity
-
-            SetInitialServoType();
+            // This handles the logging
             base.Phidget_Attach(sender, e);
+
+            SaveServoLimits();
         }
 
         private void AdvancedServo_CurrentChange(object sender, CurrentChangeEventArgs e)
@@ -649,7 +648,10 @@ namespace VNC.Phidget
 
         #region Private Methods
 
-        private void SetInitialServoType()
+        // TODO(crhodes)
+        // Do we really need this as all it does is SaveServoLimits
+
+        private void SaveServoLimits()
         {
             try
             {
@@ -662,15 +664,17 @@ namespace VNC.Phidget
                 {
                     servo = servos[index];
 
-                    if (LogPhidgetEvents)
-                    {
-                        string currentPosition = servo.Engaged ? servo.Position.ToString() : "???";
+                    //if (LogPhidgetEvents)
+                    //{
+                    //    Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged}", Common.LOG_CATEGORY);
 
-                        Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged} position:{currentPosition}", Common.LOG_CATEGORY);
-                        Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                        Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                        Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} positionMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    }
+                    //    //string currentPosition = servo.Engaged ? servo.Position.ToString() : "???";
+
+                    //    //Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged} position:{currentPosition}", Common.LOG_CATEGORY);
+                    //    //Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                    //    //Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                    //    //Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} positionMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                    //}
 
                     // NOTE(crhodes)
                     // Force the initial Servo Type to avoid opening something that has
@@ -685,22 +689,6 @@ namespace VNC.Phidget
                     //servo.Type = ServoServo.ServoType.DEFAULT;
                     //}
 
-                    // TODO(crhodes)
-                    // This would be better if handled in HostConfig
-
-                    ////servo.Type = ServoServo.ServoType.DEFAULT;
-                    ///                // NOTE(crhodes)
-                    // This is useful but where to put?
-                    Double? halfRange;
-                    Double? percent = 0.20;
-                    Double? midPoint;
-
-                    //midPoint = (DevicePositionMax - DevicePositionMin) / 2;
-                    //halfRange = midPoint * percent;
-                    //PositionMin = midPoint - halfRange;
-                    //PositionMax = midPoint + halfRange;
-                    //Position = midPoint;
-
                     SaveServoLimits(servo, index);
                 }
             }
@@ -714,10 +702,13 @@ namespace VNC.Phidget
         {
             if (LogPhidgetEvents)
             {
-                Log.Trace($"servo:{index} type:{servo.Type}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} positionMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged}" +
+                    $" accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}" +
+                    $" positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}" +
+                    $" velocityMin:{servo.VelocityMin} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+                //Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+                //Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
+                //Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
             }
 
             // NOTE(crhodes)

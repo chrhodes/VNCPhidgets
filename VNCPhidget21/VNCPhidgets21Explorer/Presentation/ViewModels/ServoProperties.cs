@@ -35,7 +35,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             get => _servoType;
             set
             {
-                if (_servoType == value) return;
+                if (_servoType == value)
+                {
+                    // We may have closed and reopened the AdvancedServo
+                    // without changing the type from the DEFAULT which is set by the PhidgetLibrary when device opened.
+                    // Refresh the UI properties as close sets all to null
+                    GetPropertiesFromServo();
+                    return; 
+                }
+
                 _servoType = value;
                 OnPropertyChanged();
 
@@ -50,6 +58,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                         // TODO(crhodes)
                         // Maybe we should sleep for a bit to allow info to propagate
+                        // Play with this by having a value in UI
 
                         Thread.Sleep(1);
                         GetPropertiesFromServo();
@@ -615,7 +624,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 // NOTE(crhodes)
                 // If RefreshPropertiesFromServo immediately after Opening but before Engaged
-                // servo.Acceleration is not set and will throw exception if accessedk
+                // servo.Acceleration is not set and will throw exception if accessed
 
                 try
                 {
@@ -779,10 +788,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         /// </summary>
         private void GetPropertiesFromServo()
         {
-            try
-            {
-                AdvancedServoServo servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
+            // TODO(crhodes)
+            // Maybe we need a version for when Servo is Engaged and when it is not Engaged.
+            // Get the servo outside of the try so we look at it in Exception(s)
 
+            AdvancedServoServo servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
+
+            try
+            {              
                 if (LogPhidgetEvents)
                 {
                     Log.Trace($"servo:{ServoIndex} engaged:{servo.Engaged}", Common.LOG_CATEGORY);
@@ -792,6 +805,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     //Log.Trace($"servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
                     //Log.Trace($"servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
+
+                // TODO(crhodes)
+                // Clean up all these comments
 
                 // These may not be set depending on state of servo
                 // Phidget Library throws exceptions which are caught and ignored.
@@ -836,18 +852,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 // Having said that, this code is only called when the ServoType changes
                 // Seems like we should set these to some sensible value and avoid exceptions
+                // Have to be careful to not step on things if servo is engaged.
 
                 Double? initialServoAcceleration = servo.AccelerationMin;
                 Double? initialServoPosition = (servo.PositionMax - servo.PositionMin) / 2; // Midpoint seems reasonable
-
-                //if (LogPhidgetEvents)
-                //{
-                //    Log.Trace($"Begin servo:{ServoIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                //    Log.Trace($"Begin servo:{ServoIndex} accelerationMin:{servo.AccelerationMin} acceleration:{servoAcceleration} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                //    Log.Trace($"Begin servo:{ServoIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                //    Log.Trace($"Begin servo:{ServoIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "???")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                //    Log.Trace($"Begin servo:{ServoIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
-                //}
 
                 Engaged = servo.Engaged;
                 Stopped = servo.Stopped;
@@ -855,8 +863,37 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 SpeedRamping = servo.SpeedRamping;
                 AccelerationMin = servo.AccelerationMin;
-                //Acceleration = AccelerationMin;
-                Acceleration = initialServoAcceleration;
+
+                if (Engaged is true)
+                {
+                    // NOTE(crhodes)
+                    // servo.Acceleration is not set when first Opening AdvancedServo
+                    // and will throw exception if accessed
+
+                    try
+                    {
+                        Acceleration = servo.Acceleration;
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        Acceleration = initialServoAcceleration;
+
+                        //    var t = pex.Type;           // PHIDGET_ERR_UNKNOWLVAL
+                        //    var d = pex.Description;    // Value is Unknown (State not yet received from device, or not yet set by user).
+                        //    var c = pex.Code;           // 9
+                        //    var m = pex.Message;        // PhidgetException 9 (Value is Unknown (State not yet received from device, or not yet set by user).)
+                        //    var s = pex.Source;         // Phidget21.NET
+                        //    var ts = pex.TargetSite;    // {Double get_Acceleration()}
+                        //    // Quietly Ignore
+                        //    // Value is Unknown(State not yet received from device, or not yet set by user).
+                        //    //Log.Error(pex, Common.LOG_CATEGORY);
+                    }
+                }
+                else
+                {
+                    Acceleration = initialServoAcceleration;
+                }
+                
                 AccelerationMax = servo.AccelerationMax;
 
                 VelocityMin = servo.VelocityMin;
@@ -868,14 +905,26 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // Make it possible to move servo without using UI to set non-zero velocity
                 //VelocityLimit = servo.VelocityLimit == 0 ? 1 : servo.VelocityLimit;
                 //VelocityLimit = servo.VelocityLimit;
-                VelocityLimit = VelocityMin + 1;
+                // Maybe this should onlyh happen if not Engaged
+
+                VelocityLimit = servo.VelocityLimit;
+                //VelocityLimit = VelocityMin + 1;
                 VelocityMax = servo.VelocityMax;
 
                 // DevicePosition{Min,Max} should only be set when ServoType changes
 
                 DevicePositionMin = servo.PositionMin;
                 PositionMin = servo.PositionMin;
-                Position = initialServoPosition;
+
+                if (Engaged is true)
+                {
+                    Position = servo.Position;
+                }
+                else
+                {
+                    Position = initialServoPosition;
+                }
+
                 PositionMax = servo.PositionMax;              
                 DevicePositionMax = servo.PositionMax;
 
@@ -911,7 +960,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
             catch (PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"servo:{ServoIndex}-{pex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {

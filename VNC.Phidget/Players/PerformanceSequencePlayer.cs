@@ -52,7 +52,10 @@ namespace VNC.Phidget.Players
         public StepperEx ActiveStepperHost { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
+        public bool LogSequenceAction {
+            get; 
+            set; 
+        }
         public bool LogActionVerification { get; set; }
 
         // AdvancedServo events
