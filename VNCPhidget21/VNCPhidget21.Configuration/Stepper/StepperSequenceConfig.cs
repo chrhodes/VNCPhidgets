@@ -6,7 +6,7 @@
         {
             new StepperSequence
             {
-                SerialNumber = 46049,
+                //SerialNumber = 46049,
                 Name="SequenceStepper 1",
 
                 Actions = new[]

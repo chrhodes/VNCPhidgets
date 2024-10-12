@@ -245,10 +245,10 @@ namespace VNCPhidget21.Configuration
             List<string> files = new List<string>
             {
                 @"Performances\PerformanceConfig_InitializationAndFinalization.json",
-                @"Performances\PerformanceConfig_2.json",
-                @"Performances\PerformanceConfig_3.json",
 
                 @"Performances\PerformanceConfig_Skulls.json",
+                //@"Performances\PerformanceConfig_2.json",
+                //@"Performances\PerformanceConfig_3.json",
             };
 
             return files;
@@ -264,13 +264,17 @@ namespace VNCPhidget21.Configuration
             List<string> files = new List<string>
             {
                 @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
+
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
+                //// These may go away after stuff moves to Initialization
+                ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
+                ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
+
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
             };
 
             return files;

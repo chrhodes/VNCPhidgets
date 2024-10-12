@@ -5,7 +5,7 @@
     //
     { 
       "SerialNumber": 169501,
-      "Name": "Initialize Servos", 
+      "Name": "169501-Initialize Skulls", 
       "Description": "Initialize All Servos", 
       "UsageNotes": "Does not Engage Servos",
       "ExecuteActionsInParallel": false,
@@ -28,7 +28,7 @@
     //
     {
       "SerialNumber": 99220,
-      "Name": "99220-Initialize Servos", 
+      "Name": "99220-Initialize Skulls", 
       "Description": "Initialize All Servos",
       "UsageNotes": "Does not Engage Servos",
       "ExecuteActionsInParallel": false,
@@ -47,7 +47,7 @@
     //
     {
       "SerialNumber": 169501,
-      "Name": "Engage and Center Servos", 
+      "Name": "169501-Wake up Skulls", 
       "Description": "Engage and Center Servos",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -65,7 +65,7 @@
     //
     {
       "SerialNumber": 99220,
-      "Name": "99220-Engage and Center Servos", 
+      "Name": "99220-Wake up Skulls", 
       "Description": "Engage and Center Servos",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -75,6 +75,62 @@
         { "ServoIndex": 4, "Engaged": true, "TargetPosition": 90 },
         { "ServoIndex": 5, "Engaged": true, "TargetPosition": 85 },
         { "ServoIndex": 6, "Engaged": true, "TargetPosition": 85 },
+      ]
+    },
+    //
+    // 169501-Skull-012 Center
+    //
+    {
+      "SerialNumber": 169501,
+      "Name": "169501-Skull-012 Center",
+      "Description": "Center Skull using Servos 0,1,2",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "TargetPosition": 135 },
+        { "ServoIndex": 1, "TargetPosition": 70 },
+        { "ServoIndex": 2, "TargetPosition": 80 },
+      ]
+    },
+    //
+    // 169501-Skull-456 Center"
+    //
+    {
+      "SerialNumber": 169501,
+      "Name": "169501-Skull-456 Center",
+      "Description": "Center Skull using Servos 4,5,6",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "TargetPosition": 98 },
+        { "ServoIndex": 5, "TargetPosition": 86 },
+        { "ServoIndex": 6, "TargetPosition": 90 },
+      ]
+    },
+    //
+    // 99220-Center Skull-012
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-012 Center",
+      "Description": "Center Skull using Servos 0,1,2",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "TargetPosition": 135 },
+        { "ServoIndex": 1, "TargetPosition": 70 },
+        { "ServoIndex": 2, "TargetPosition": 80 },
+      ]
+    },
+    //
+    // 169501-Center Skull-456"
+    //
+    {
+      "SerialNumber": 99220,
+      "Name": "99220-Skull-456 Center",
+      "Description": "Center Skull using Servos 4,5,6",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 4, "TargetPosition": 98 },
+        { "ServoIndex": 5, "TargetPosition": 86 },
+        { "ServoIndex": 6, "TargetPosition": 90 },
       ]
     },
   ]

@@ -168,7 +168,8 @@ namespace VNC.Phidget.Players
                     if (LogPerformanceSequence)
                     {
                         startTicks = Log.Trace($"Executing AS Performance Sequence" +
-                            $" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
+                            //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
+                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
                             $" name:>{advancedServoSequence?.Name}<" +
                             $" sequenceLoops:>{advancedServoSequence?.SequenceLoops}<" +
                             $" beforeActionLoopSequences:>{advancedServoSequence?.BeforeActionLoopSequences?.Count()}<" +
@@ -182,17 +183,25 @@ namespace VNC.Phidget.Players
                             $" nextSequence:>{advancedServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
-                    if (advancedServoSequence.SerialNumber is not null)
+                    //if (advancedServoSequence.SerialNumber is not null)
+                    //{
+                    //    phidgetHost = GetAdvancedServoHost((int)advancedServoSequence.SerialNumber);
+                    //}
+                    //else if (ActiveAdvancedServoHost is not null)
+                    //{
+                    //    phidgetHost = ActiveAdvancedServoHost;
+                    //}
+                    //else
+                    //{
+                    //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
+                    //    nextPerformanceSequence = null;
+                    //}
+
+                    phidgetHost = GetAdvancedServoHost((int)performanceSequence.SerialNumber);
+
+                    if (phidgetHost == null) 
                     {
-                        phidgetHost = GetAdvancedServoHost((int)advancedServoSequence.SerialNumber);
-                    }
-                    else if (ActiveAdvancedServoHost is not null)
-                    {
-                        phidgetHost = ActiveAdvancedServoHost;
-                    }
-                    else
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
                         nextPerformanceSequence = null;
                     }
 
@@ -202,7 +211,7 @@ namespace VNC.Phidget.Players
                         {
                             foreach (PerformanceSequence sequence in advancedServoSequence.BeforeActionLoopSequences)
                             {
-                                ExecutePerformanceSequence(sequence);
+                                await ExecutePerformanceSequence(sequence);
                             }
                         }
 
@@ -212,7 +221,7 @@ namespace VNC.Phidget.Players
                         {
                             foreach (PerformanceSequence sequence in advancedServoSequence.AfterActionLoopSequences)
                             {
-                                ExecutePerformanceSequence(sequence);
+                                await ExecutePerformanceSequence(sequence);
                             }
                         }
 
@@ -260,7 +269,7 @@ namespace VNC.Phidget.Players
                     if (LogPerformanceSequence)
                     {
                         startTicks = Log.Trace($"Executing IK Performance Sequence" +
-                            $" serialNumber:>{interfaceKitSequence?.SerialNumber}<" +
+                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
                             $" name:>{interfaceKitSequence?.Name}<" +
                             $" sequenceLoops:>{interfaceKitSequence?.SequenceLoops}<" +
                             $" beforeActionLoopSequences:>{interfaceKitSequence?.BeforeActionLoopSequences?.Count()}<" +
@@ -274,17 +283,25 @@ namespace VNC.Phidget.Players
                             $" nextSequence:>{interfaceKitSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
-                    if (interfaceKitSequence.SerialNumber is not null)
+                    //if (interfaceKitSequence.SerialNumber is not null)
+                    //{
+                    //    phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
+                    //}
+                    //else if (ActiveInterfaceKitHost is not null)
+                    //{
+                    //    phidgetHost = ActiveInterfaceKitHost;
+                    //}
+                    //else
+                    //{
+                    //    Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber}", Common.LOG_CATEGORY);
+                    //    nextPerformanceSequence = null;
+                    //}
+
+                    phidgetHost = GetInterfaceKitHost((int)performanceSequence.SerialNumber);
+
+                    if (phidgetHost == null)
                     {
-                        phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
-                    }
-                    else if (ActiveInterfaceKitHost is not null)
-                    {
-                        phidgetHost = ActiveInterfaceKitHost;
-                    }
-                    else
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
                         nextPerformanceSequence = null;
                     }
 
@@ -352,7 +369,7 @@ namespace VNC.Phidget.Players
                     if (LogPerformanceSequence)
                     {
                         startTicks = Log.Trace($"Executing IK Performance Sequence" +
-                            $" serialNumber:>{stepperSequence?.SerialNumber}<" +
+                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
                             $" name:>{stepperSequence?.Name}<" +
                             $" sequenceLoops:>{stepperSequence?.SequenceLoops}<" +
                             $" beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
@@ -366,17 +383,25 @@ namespace VNC.Phidget.Players
                             $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
-                    if (stepperSequence.SerialNumber is not null)
+                    //if (stepperSequence.SerialNumber is not null)
+                    //{
+                    //    phidgetHost = GetStepperHost((int)stepperSequence.SerialNumber);
+                    //}
+                    //else if (ActiveInterfaceKitHost is not null)
+                    //{
+                    //    phidgetHost = ActiveStepperHost;
+                    //}
+                    //else
+                    //{
+                    //    Log.Error($"Cannot locate host to execute SerialNumber:{stepperSequence.SerialNumber}", Common.LOG_CATEGORY);
+                    //    nextPerformanceSequence = null;
+                    //}
+
+                    phidgetHost = GetStepperHost((int)performanceSequence.SerialNumber);
+
+                    if (phidgetHost == null)
                     {
-                        phidgetHost = GetStepperHost((int)stepperSequence.SerialNumber);
-                    }
-                    else if (ActiveInterfaceKitHost is not null)
-                    {
-                        phidgetHost = ActiveStepperHost;
-                    }
-                    else
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{stepperSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
                         nextPerformanceSequence = null;
                     }
 

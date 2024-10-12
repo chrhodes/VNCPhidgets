@@ -667,7 +667,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name = "psbc21_SequenceServo0",
                 Actions = new[]
                 {

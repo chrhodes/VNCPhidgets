@@ -6,7 +6,7 @@
         {
             new AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name="localhost_SequenceServo0",
                 Actions = new[]
                 {
@@ -62,7 +62,7 @@
             },
             new AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name="psbc11_SequenceServo0",
                 Actions = new[]
                 {
@@ -118,7 +118,7 @@
             },
             new AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name="psbc21_SequenceServo0",
                 Actions = new[]
                 {
@@ -164,7 +164,7 @@
             },
             new AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name="psbc21_SequenceServo0P Configure and Engage",
                 ExecuteActionsInParallel = true,
                 Actions = new[]
@@ -247,7 +247,7 @@
             },
             new AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name="psbc21_SequenceServo0",
                 Actions = new[]
                 {
@@ -303,7 +303,7 @@
             },
             new AdvancedServoSequence
             {
-                SerialNumber = 99415,
+                //SerialNumber = 99415,
                 Name="psbc23_SequenceServo0",
                 Actions = new[]
                 {

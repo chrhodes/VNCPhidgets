@@ -85,9 +85,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.PerformanceSequence">
-    <Position X="0.5" Y="17.75" Width="2.5" />
+    <Position X="5.5" Y="15" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAAACAAAAEAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAAAGAAAAEAAIAAAAAAAA=</HashCode>
       <FileName>Performance\PerformanceSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -129,14 +129,14 @@
   <Class Name="VNCPhidget21.Configuration.PhidgetSequenceBase">
     <Position X="2.75" Y="20" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAQAoAAAAAgAAAAAAAQAAQAAAGAEEAAAEgAAAAAAgQ=</HashCode>
+      <HashCode>AAAQAoAAAAAgAAAAAAAQAAQAAACAEEAAAEgAAAAAAgQ=</HashCode>
       <FileName>PhidgetSequenceBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNCPhidget21.Configuration.PerformanceLibrary">
     <Position X="0.5" Y="0.5" Width="6" />
     <TypeIdentifier>
-      <HashCode>AAQAEAAAAEACBABAAAAAAAAgQAAgAAAIAJUAAAAQAAA=</HashCode>
+      <HashCode>AAQAEAAAAEACDABAAAAAAAAAQAAgAAAIAJUAAAAQAAA=</HashCode>
       <FileName>PerformanceLibrary.cs</FileName>
     </TypeIdentifier>
   </Class>

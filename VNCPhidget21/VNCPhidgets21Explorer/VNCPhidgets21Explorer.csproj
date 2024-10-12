@@ -123,6 +123,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
