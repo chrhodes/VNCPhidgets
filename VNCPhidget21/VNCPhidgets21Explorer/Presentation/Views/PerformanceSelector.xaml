@@ -18,6 +18,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
 
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
@@ -73,10 +74,10 @@
         Might be able to put this in HackAround.xaml and not here 
     -->
     <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
-
+          
         <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
 
-            <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top">
+            <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top">-->
                 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -96,7 +97,6 @@
                                 ToolTip="Reload Config File" Width="20"/>
 
                         </dxlc:LayoutGroup>-->
-
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
@@ -162,15 +162,34 @@
 
                 </dxlc:LayoutGroup>
 
+            <!--</dxlc:LayoutGroup>-->
+
+
+
+        </dxlc:LayoutGroup>
+        
+        <ScrollViewer>
+
+        <dxlc:LayoutGroup Header="PerformanceSequences" View="GroupBox" Orientation="Vertical" >
+
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                <controls:HostSelector />
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup x:Name="lgAdvancedServoSequences" Header="AdvancedServo Sequences" View="GroupBox" 
                               Orientation="Horizontal" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False" >
-                
+
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    
+                    <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
+
+                        <dxe:ComboBoxEdit Width="150" 
+                            ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedAdvancedServo}"
+                            SelectedIndex="0"/>
+                    </dxlc:LayoutItem>
+
                     <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                         
                         <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
@@ -214,34 +233,34 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" Background="LawnGreen" Padding="5">
-                    
-                    <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
-                    </dxlc:LayoutItem>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                      
-                        <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionLoops.Count, Mode=OneWay}" />
+                        <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Actions.Count, Mode=OneWay}" />
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionLoops.Count, Mode=OneWay}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Actions.Count, Mode=OneWay}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ExecuteActionsInParallel }" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionDuration }" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ExecuteActionsInParallel }" />
+                        <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.EndActionLoopSequences.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionDuration }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.EndActionLoopSequences.Count, Mode=OneWay}" />
-                    </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
@@ -265,7 +284,7 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Sequence Host" View="GroupBox" Orientation="Horizontal" >
+                    <!--<dxlc:LayoutGroup Header="Sequence Host" View="GroupBox" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                             <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.Name }" />
@@ -287,9 +306,9 @@
                             <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AdvancedServos[0].SerialNumber }" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
-                    <dxlc:LayoutGroup Header="Active Host" View="GroupBox" Orientation="Horizontal"
+                    <!--<dxlc:LayoutGroup Header="Active Host" View="GroupBox" Orientation="Horizontal"
                                       HorizontalAlignment="Center">
 
                         <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
@@ -312,7 +331,7 @@
                             <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.AdvancedServos[0].SerialNumber }" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                 </dxlc:LayoutGroup>
 
@@ -325,7 +344,7 @@
                 		        Content="{Binding InitializeServosContent, FallbackValue='Initialize Servos' }"
                 		        ToolTip="{Binding InitializeServosToolTip, FallbackValue='Initialize Servos ToolTip' }" />
                     </dxlc:LayoutItem>
-                    
+
                     <dxlc:LayoutItem>
                         <Button 
                 		    Command="{Binding EngageAndCenterCommand }"
@@ -358,7 +377,7 @@
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                       
+
                         <dxlc:LayoutItem>
                             <Button 
                         	    Command="{Binding RelativeAccelerationCommand }"
@@ -386,7 +405,7 @@
                                           HorizontalAlignment="Right" VerticalAlignment="Top" Width="55"
                             ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
                         </dxe:ComboBoxEdit>
-                        
+
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem  VerticalAlignment="Stretch" >
@@ -396,7 +415,7 @@
 		                    Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlaySequence' }"
 		                    ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
                     </dxlc:LayoutItem>
-                  
+
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
@@ -406,6 +425,13 @@
                               IsCollapsible="True" IsCollapsed="False" >
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
+
+                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="150" 
+                                          ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
+                                          SelectedItem="{Binding SelectedInterfaceKit}"
+                                          SelectedIndex="0"/>
+                    </dxlc:LayoutItem>
 
                     <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -473,7 +499,7 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
+                    <!--<dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                             <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Host.Name }" />
@@ -495,8 +521,8 @@
                             <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.InterfaceKits[0].SerialNumber }" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-    
+                    </dxlc:LayoutGroup>-->
+
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
@@ -520,6 +546,13 @@
                               IsCollapsible="True" IsCollapsed="False" >
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+
+                    <dxlc:LayoutItem Label="Steppers" LabelPosition="Left" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="150" 
+                                          ItemsSource="{Binding Steppers}" DisplayMember="Name" 
+                                          SelectedItem="{Binding SelectedStepper}"
+                                          SelectedIndex="0"/>
+                    </dxlc:LayoutItem>
 
                     <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
@@ -587,7 +620,7 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
+                    <!--<dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                             <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Name }" />
@@ -609,7 +642,7 @@
                             <dxe:TextEdit Text="{Binding SelectedStepperSequence.InterfaceKits[0].SerialNumber }" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
                 </dxlc:LayoutGroup>
 
@@ -623,11 +656,13 @@
 		                    ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
                     </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-
                 </dxlc:LayoutGroup>
 
-        </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            
+        </dxlc:LayoutGroup>            
+        </ScrollViewer>
+
 
     </dxlc:LayoutControl>
 

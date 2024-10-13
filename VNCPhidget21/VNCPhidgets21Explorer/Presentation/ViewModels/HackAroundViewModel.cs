@@ -71,6 +71,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
+            // TODO(crhodes)
+            // Fill out PlayStepperSequenceCommand
+
             //ActivePerformancePlayer = GetPerformancePlayer();
 
             Hosts = PerformanceLibrary.Hosts.ToList();
@@ -144,29 +147,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
-        public IEnumerable<VNCPhidgetConfig.Host> Hosts
-        {
-            get => _Hosts;
-            set
-            {
-                _Hosts = value;
-                OnPropertyChanged();
-            }
-        }
 
-        private VNCPhidgetConfig.Host _selectedHost;
-        public VNCPhidgetConfig.Host SelectedHost
-        {
-            get => _selectedHost;
-            set
-            {
-                if (_selectedHost == value)
-                    return;
-                _selectedHost = value;
-                OnPropertyChanged();
-            }
-        }
 
         private bool _logPhidgetEvents = false;
 
@@ -234,6 +215,37 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        #region Hosts
+
+        private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
+        public IEnumerable<VNCPhidgetConfig.Host> Hosts
+        {
+            get => _Hosts;
+            set
+            {
+                _Hosts = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.Host _selectedHost;
+        public VNCPhidgetConfig.Host SelectedHost
+        {
+            get => _selectedHost;
+            set
+            {
+                if (_selectedHost == value)
+                    return;
+                _selectedHost = value;
+                OnPropertyChanged();
+
+                AdvancedServos = _selectedHost.AdvancedServos?.ToList<VNCPhidgetConfig.AdvancedServo>();
+                InterfaceKits = _selectedHost.InterfaceKits?.ToList<VNCPhidgetConfig.InterfaceKit>();
+                Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
+            }
+        }
+
+        #endregion
         #region Performances
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
@@ -298,6 +310,54 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region AdvancedServo
+
+        private IEnumerable<VNCPhidgetConfig.AdvancedServo> _AdvancedServos;
+        public IEnumerable<VNCPhidgetConfig.AdvancedServo> AdvancedServos
+        {
+            get
+            {
+                if (null == _AdvancedServos)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_InterfaceKits =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+                    //    select new InterfaceKit(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _AdvancedServos;
+            }
+
+            set
+            {
+                _AdvancedServos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.AdvancedServo _selectedAdvancedServo;
+        public VNCPhidgetConfig.AdvancedServo SelectedAdvancedServo
+        {
+            get => _selectedAdvancedServo;
+            set
+            {
+                if (_selectedAdvancedServo == value)
+                    return;
+                _selectedAdvancedServo = value;
+
+                //OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+                //PlayPerformanceCommand.RaiseCanExecuteChanged();
+                //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
 
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
@@ -414,6 +474,52 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region InterfaceKit
 
+        private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
+        public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
+        {
+            get
+            {
+                if (null == _InterfaceKits)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_InterfaceKits =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+                    //    select new InterfaceKit(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _InterfaceKits;
+            }
+
+            set
+            {
+                _InterfaceKits = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.InterfaceKit _selectedInterfaceKit;
+        public VNCPhidgetConfig.InterfaceKit SelectedInterfaceKit
+        {
+            get => _selectedInterfaceKit;
+            set
+            {
+                if (_selectedInterfaceKit == value)
+                    return;
+                _selectedInterfaceKit = value;
+
+                //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
+
         private bool _displayInputChangeEvents = false;
 
         public bool LogInputChangeEvents
@@ -503,6 +609,52 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Stepper
+
+        private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
+        public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
+        {
+            get
+            {
+                if (null == _Steppers)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_InterfaceKits =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+                    //    select new InterfaceKit(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _Steppers;
+            }
+
+            set
+            {
+                _Steppers = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.Stepper _selectedStepper;
+        public VNCPhidgetConfig.Stepper SelectedStepper
+        {
+            get => _selectedStepper;
+            set
+            {
+                if (_selectedStepper == value)
+                    return;
+                _selectedStepper = value;
+
+                //OpenStepperCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
 
         private IEnumerable<VNCPhidgetConfig.StepperSequence> _stepperSequences;
         public IEnumerable<VNCPhidgetConfig.StepperSequence> StepperSequences
@@ -933,9 +1085,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 try
                 {
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
+                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
                         new VNCPhidgetConfig.PerformanceSequence
                         {
+                            SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = sequence.Name,
                             SequenceType = "AS",
                             SequenceLoops = sequence.SequenceLoops
@@ -1438,6 +1591,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     PerformanceSequence? nextPerformanceSequence = 
                         new PerformanceSequence
                         {
+                            SerialNumber = SelectedInterfaceKit.SerialNumber,
                             Name = sequence.Name,
                             SequenceType = "IK",
                             SequenceLoops = sequence.SequenceLoops

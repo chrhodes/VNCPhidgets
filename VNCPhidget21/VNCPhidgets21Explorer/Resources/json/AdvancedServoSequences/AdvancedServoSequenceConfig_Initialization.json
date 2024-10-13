@@ -21,7 +21,7 @@
         //{ "ServoIndex": 2,  },
 
       ],
-      "NextSequence": { "Name": "99220-Initialize Servos", "SequenceType": "AS" }
+      //"NextSequence": { "Name": "99220-Initialize Servos", "SequenceType": "AS" }
     },
     //
     // Initialize Servos
@@ -58,7 +58,7 @@
         //{ "ServoIndex": 5, "Engaged": true, "TargetPosition": 86 },
         //{ "ServoIndex": 6, "Engaged": true, "TargetPosition": 90 },
       ],
-      "NextSequence": { "Name": "99220-Engage and Center Servos", "SequenceType": "AS" }
+      //"NextSequence": { "Name": "99220-Engage and Center Servos", "SequenceType": "AS" }
     },
     //
     // Engage and Center Servos

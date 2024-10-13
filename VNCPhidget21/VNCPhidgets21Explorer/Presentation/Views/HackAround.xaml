@@ -54,7 +54,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Center"
             FontSize="24" />
        
-        <controls:HostSelector DockPanel.Dock="Top" />
+        <!--<controls:HostSelector DockPanel.Dock="Top" />-->
 
         <!-- This is useful for debugging V VM constructor issues -->
 
