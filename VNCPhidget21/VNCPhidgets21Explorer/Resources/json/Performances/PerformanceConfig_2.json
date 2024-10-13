@@ -9,7 +9,7 @@
       "Name": "AS Vary VelocityLimit",
       "Description": "Acceleration (500) and Different VelocityLimits 1000,500,400,300,200,100,50,40,30,20,10",
       "Loops": 1,
-      "PlayInParallel": false,
+      "PlaySequencesInParallel": false,
       "PerformanceSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -58,7 +58,7 @@
       "Name": "AS Vary Acceleration",
       "Description": "Velocity (100) and Different Accelerations 500,400,300,200,100,50,40,30,20,10",
       "Loops": 1,
-      "PlayInParallel": false,
+      "PlaySequencesInParallel": false,
       "PerformanceSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
