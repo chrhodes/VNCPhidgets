@@ -22,7 +22,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         #region IInstanceCount

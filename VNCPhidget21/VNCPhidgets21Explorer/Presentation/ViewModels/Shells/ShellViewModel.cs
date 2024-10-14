@@ -13,18 +13,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public ShellViewModel()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // Put things here that initialize the ViewModel
@@ -35,7 +37,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             InformationApplication = Common.InformationApplication;
             InformationVNCCore = Common.InformationVNCCore;
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -93,6 +95,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public Information InformationApplication { get; set; }
         public Information InformationVNCCore { get; set; }
+
+        // TODO(crhodes)
+        // Can we get rid of these?
 
         public string AssemblyVersionVNCPhidget { get => Common.InformationVNCPhidget.AssemblyInformation.Version; }
         public string AssemblyNameVNCPhidget { get => Common.InformationVNCPhidget.AssemblyInformation.Name; }

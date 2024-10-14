@@ -23,22 +23,23 @@ namespace VNCPhidgets21Explorer
 
         public App()
         {
-            Common.InitializeLogging();
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
             // HACK(crhodes)
             // If don't delay a bit here, the SignalR logging infrastructure does not initialize quickly enough
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Int64 startTicks = Log.APPLICATION_START("Initialize SignalR", Common.LOG_CATEGORY);
-
             Thread.Sleep(150);
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Enter"), Common.LOG_CATEGORY, startTicks);
 #if DEBUG
             Common.InitializeLogging(debugConfig: true);
+            VNC.Phidget.Common.InitializeLogging(debugConfig: true);
 #else
             Common.InitializeLogging();
+            VNC.Phidget.Common.InitializeLogging();
 #endif
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }

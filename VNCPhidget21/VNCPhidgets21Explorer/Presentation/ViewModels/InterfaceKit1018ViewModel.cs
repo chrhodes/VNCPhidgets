@@ -26,19 +26,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Save constructor parameters here
 
             InitializeViewModel();
-
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -64,12 +65,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "InterfaceKitViewModel says hello";
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void LoadUIConfig()
         {
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             string jsonString = File.ReadAllText(HostConfigFileName);
 
@@ -79,7 +81,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             this.Hosts = hostConfig.Hosts.ToList();
             this.Sensors2 = hostConfig.Sensors.ToList();
 
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         JsonSerializerOptions GetJsonSerializerOptions()
@@ -1959,224 +1961,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Commands
-
-        #region Command ConfigFileName DoubleClick
-
-        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
-
-        public void ConfigFileName_DoubleClick()
-        {
-            Message = "ConfigFileName_DoubleClick";
-        }
-
-        #endregion
-
-        #region OpenInterfaceKit Command
-
-        public DelegateCommand OpenInterfaceKitCommand { get; set; }
-        public string OpenInterfaceKitContent { get; set; } = "Open";
-        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
-
-        // Can get fancy and use Resources
-        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
-        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
-        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
-
-        public void OpenInterfaceKit()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called OpenInterfaceKit";
-
-            
-            ActiveInterfaceKit = new InterfaceKitEx(
-                SelectedHost.IPAddress,
-                SelectedHost.Port,
-                SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Embedded, 
-                EventAggregator);
-
-            ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
-
-            // NOTE(crhodes)
-            // Capture Digital Input and Output changes so we can update the UI
-            // The InterfaceKitEx attaches to these events also.
-            // It logs the changes if Log{Input,Output,Sensor}ChangeEvents are set to true.
-
-            ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
-            ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
-
-            // NOTE(crhodes)
-            // Let's do see if we can watch some analog data stream in.
-
-            ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
-
-            ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
-
-            ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
-            ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
-            ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
-
-            ActiveInterfaceKit.Open();
-
-            //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
-
-            //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
-            //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
-            //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
-
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
-            //      new OpenInterfaceKitEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class OpenInterfaceKitEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
-
-            // End Cut Four
-
-            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool OpenInterfaceKitCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (SelectedInterfaceKit is not null)
-            {
-                if (DeviceAttached is not null)
-                    return !(Boolean)DeviceAttached;
-                else
-                    return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-        #endregion
-
-        #region CloseInterfaceKit Command
-
-        public DelegateCommand CloseInterfaceKitCommand { get; set; }
-        public string CloseInterfaceKitContent { get; set; } = "Close";
-        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
-
-        // Can get fancy and use Resources
-        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
-        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
-        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
-
-        public void CloseInterfaceKit()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called CloseInterfaceKit";
-
-            ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
-
-            ActiveInterfaceKit.Close();
-            UpdateInterfaceKitProperties();
-            ActiveInterfaceKit = null;
-            ClearDigitalInputsAndOutputs();
-
-            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
-            //      new CloseInterfaceKitEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class CloseInterfaceKitEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
-
-            // End Cut Four
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool CloseInterfaceKitCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
-            else
-                return false;
-        }
-
-        #endregion
-
-        #region SayHello Command
-
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            Message = $"Hello from {this.GetType()}";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-
-        #endregion
-
-        #endregion
-
         #region Event Handlers
 
         private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
@@ -2535,12 +2319,238 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Publi (none)c Methods
+        #region Commands
+
+        #region Command ConfigFileName DoubleClick
+
+        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+
+        public void ConfigFileName_DoubleClick()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
+
+            Message = "ConfigFileName_DoubleClick";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region OpenInterfaceKit Command
+
+        public DelegateCommand OpenInterfaceKitCommand { get; set; }
+        public string OpenInterfaceKitContent { get; set; } = "Open";
+        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
+        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
+
+        public void OpenInterfaceKit()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenInterfaceKit) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called OpenInterfaceKit";
+
+            
+            ActiveInterfaceKit = new InterfaceKitEx(
+                SelectedHost.IPAddress,
+                SelectedHost.Port,
+                SelectedInterfaceKit.SerialNumber,
+                SelectedInterfaceKit.Embedded, 
+                EventAggregator);
+
+            ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
+
+            // NOTE(crhodes)
+            // Capture Digital Input and Output changes so we can update the UI
+            // The InterfaceKitEx attaches to these events also.
+            // It logs the changes if Log{Input,Output,Sensor}ChangeEvents are set to true.
+
+            ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
+            ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
+
+            // NOTE(crhodes)
+            // Let's do see if we can watch some analog data stream in.
+
+            ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
+
+            ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
+
+            ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+
+            ActiveInterfaceKit.Open();
+
+            //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
+
+            //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
+            //      new OpenInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class OpenInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
+
+            // End Cut Four
+
+            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool OpenInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (SelectedInterfaceKit is not null)
+            {
+                if (DeviceAttached is not null)
+                    return !(Boolean)DeviceAttached;
+                else
+                    return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        #endregion
+
+        #region CloseInterfaceKit Command
+
+        public DelegateCommand CloseInterfaceKitCommand { get; set; }
+        public string CloseInterfaceKitContent { get; set; } = "Close";
+        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
+        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
+
+        public void CloseInterfaceKit()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseInterfaceKit) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called CloseInterfaceKit";
+
+            ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
+
+            ActiveInterfaceKit.Close();
+            UpdateInterfaceKitProperties();
+            ActiveInterfaceKit = null;
+            ClearDigitalInputsAndOutputs();
+
+            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
+            //      new CloseInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class CloseInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(CloseInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool CloseInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region SayHello Command
+
+        private void SayHello()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
+
+            Message = $"Hello from {this.GetType()}";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private bool SayHelloCanExecute()
+        {
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion

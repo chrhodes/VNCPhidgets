@@ -33,14 +33,15 @@ namespace VNC.Phidget
         public AdvancedServoEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks =  Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();
 
             EventAggregator.GetEvent<AdvancedServoSequenceEvent>().Subscribe(TriggerSequence);
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializePhidget()
@@ -295,10 +296,10 @@ namespace VNC.Phidget
 
         public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)
         {
+            Int64 startTicks = 0;
+
             try
             {
-                Int64 startTicks = 0;
-
                 if (LogPerformanceSequence)
                 {
                     startTicks = Log.Trace(
@@ -370,14 +371,14 @@ namespace VNC.Phidget
                             }
                         }
                     }
-                }
-
-                if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                }     
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         /// <summary>

@@ -20,12 +20,13 @@ namespace VNC.Phidget
         /// <param name="port">Port number of Host</param>
         public PhidgetEx(string ipAddress, int port, int serialNumber)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             Host = new Host { IPAddress = ipAddress, Port = port };
             SerialNumber = serialNumber;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -136,6 +137,7 @@ namespace VNC.Phidget
         #endregion
 
         #region Commands (None)
+
 
         #endregion
 

@@ -24,37 +24,37 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Save constructor parameters here
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
             // TODO(crhodes)
             //
             
-            SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
-
+            SayHelloCommand = new DelegateCommand(SayHello, SayHelloCanExecute);
 
             ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
             ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
             ReloadInterfaceKitSequenceConfigFilesCommand = new DelegateCommand(ReloadInterfaceKitSequenceConfigFiles);
             ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
 
-            Message = "ManagePerformanceLibraryViewModel says hello";           
+            Message = "ManagePerformanceLibraryViewModel says hello";
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -100,18 +100,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ReloadPerformanceConfigFiles()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadPerformanceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadPerformanceConfigFiles Clicked";
 
             //LoadPerformancesConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadSteReloadPerformanceConfigFilespperSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ReloadAdvancedServoSequenceConfigFiles()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadAdvancedServoSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
 
@@ -120,12 +122,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //LoadAdvanceServoConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadAdvancedServoSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ReloadInterfaceKitSequenceConfigFiles()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadInterfaceKitSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
 
@@ -134,12 +137,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //LoadInterfaceKitConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadInterfaceKitSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ReloadStepperSequenceConfigFiles()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadStepperSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadStepperSequenceConfigFiles Clicked";
 
@@ -148,50 +152,52 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //LoadStepperConfig();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadStepperSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region SayHello Command
+
+        private void SayHello()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
+
+            Message = $"Hello from {this.GetType()}";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private bool SayHelloCanExecute()
+        {
+            return true;
         }
 
         #endregion
 
         #endregion
 
+        #region Event Handlers (none)
 
-        #region Event Handlers
-
-
-
-        #endregion
-
-        #region Public Methods
 
 
         #endregion
 
-        #region Protected Methods
+        #region Public Methods (none)
+
+
+        #endregion
+
+        #region Protected Methods (none)
 
 
         #endregion
 
         #region Private Methods
 
-        #region SayHello Command
 
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = $"Hello from {this.GetType()}";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-        
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-        
-        #endregion
-        
         #endregion
 
         #region IInstanceCount

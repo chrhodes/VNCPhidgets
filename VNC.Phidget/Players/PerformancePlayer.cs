@@ -21,7 +21,8 @@ namespace VNC.Phidget.Players
 
         public PerformancePlayer(IEventAggregator eventAggregator)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
 
@@ -31,7 +32,7 @@ namespace VNC.Phidget.Players
             //PerformanceSequencePlayer.LogSequenceAction = LogSequenceAction;
             //PerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -331,7 +332,16 @@ namespace VNC.Phidget.Players
 
                         Parallel.ForEach(performance.Performances, async perf =>
                         {
-                            await RunPerformanceLoops(perf);
+                            if (PerformanceLibrary.AvailablePerformances.ContainsKey(perf.Name ?? ""))
+                            {
+                                Performance loadedPerf = PerformanceLibrary.AvailablePerformances[perf.Name];
+
+                                await RunPerformanceLoops(loadedPerf);
+                            }
+                            else
+                            {
+                                Log.Error($"Cannot find performance:>{perf.Name}<", Common.LOG_CATEGORY);
+                            }
                         });
                     }
                     else
@@ -340,11 +350,17 @@ namespace VNC.Phidget.Players
 
                         foreach (Performance perf in performance.Performances)
                         {
-                            //for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
-                            //{
-                            await RunPerformanceLoops(perf);
-                            //}
-                        }
+                            if (PerformanceLibrary.AvailablePerformances.ContainsKey(perf.Name ?? ""))
+                            {
+                                Performance loadedPerf = PerformanceLibrary.AvailablePerformances[perf.Name];
+
+                                await RunPerformanceLoops(loadedPerf);
+                            }
+                            else
+                            {
+                                Log.Error($"Cannot find performance:>{perf.Name}<", Common.LOG_CATEGORY);
+                            }
+                       }
                     }
                 }
 
@@ -374,6 +390,9 @@ namespace VNC.Phidget.Players
 
         private async Task ExecutePerformanceSequences(Performance[] performanceSequences)
         {
+            Int64 startTicks = 0;
+            if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:{performanceSequences.Count()}", Common.LOG_CATEGORY);
+
             foreach (Performance callPerformance in performanceSequences)
             {
                 Performance nextPerformance = null;
@@ -397,6 +416,8 @@ namespace VNC.Phidget.Players
                     nextPerformance = null;
                 }
             }
+
+            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -407,10 +428,13 @@ namespace VNC.Phidget.Players
 
         #endregion
 
-        #region Privat (No
+        #region Private Methods
 
         private PerformanceSequencePlayer GetPerformanceSequencePlayer()
         {
+            Int64 startTicks = 0;
+            if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
             if (ActivePerformanceSequencePlayer == null)
             {
                 ActivePerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
@@ -430,6 +454,8 @@ namespace VNC.Phidget.Players
             ActivePerformanceSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
 
             ActivePerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
 
             return ActivePerformanceSequencePlayer;
         }

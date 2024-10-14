@@ -22,7 +22,8 @@ namespace VNCPhidget21.Configuration
 
         public PerformanceLibrary()
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             LoadHostsConfig();
 
@@ -32,7 +33,7 @@ namespace VNCPhidget21.Configuration
             LoadInterfaceKitSequences();
             LoadStepperSequences();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -79,9 +80,12 @@ namespace VNCPhidget21.Configuration
 
         public void LoadHostsConfig()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             string configFile = "hostconfig.json";
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
@@ -98,18 +102,20 @@ namespace VNCPhidget21.Configuration
                 Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
             }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadPerformances()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailablePerformances.Clear();
 
-
             foreach (string configFile in GetListOfPerformanceConfigFiles())
             {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
                 try
                 {
                     string jsonString = File.ReadAllText(configFile);
@@ -123,25 +129,32 @@ namespace VNCPhidget21.Configuration
                         AvailablePerformances.Add(performance.Key, performance.Value);
                     }
                 }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
+                }
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
                     Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
-  
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 
         public void LoadAdvancedServoSequences()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableAdvancedServoSequences.Clear();
 
             foreach (string configFile in GetListOfAdvancedServoConfigFiles())
             {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
                 try
                 {
                     string jsonString = File.ReadAllText(configFile);
@@ -155,6 +168,10 @@ namespace VNCPhidget21.Configuration
                         AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
                     }
                 }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+                }
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
@@ -162,16 +179,19 @@ namespace VNCPhidget21.Configuration
                 }
             }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
         public void LoadInterfaceKitSequences()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableInterfaceKitSequences.Clear();
   
             foreach (string configFile in GetListOfInterfaceKitConfigFiles())
             {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
                 try
                 {
                     string jsonString = File.ReadAllText(configFile);
@@ -185,24 +205,31 @@ namespace VNCPhidget21.Configuration
                         AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
                     }
                 }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfInterfaceKitConfigFiles()", Common.LOG_CATEGORY);
+                }
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
                     Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
-            } 
+            }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadStepperSequences()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableStepperSequences.Clear();
 
             foreach (string configFile in GetListOfStepperConfigFiles())
             {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
                 try
                 {
                     string jsonString = File.ReadAllText(configFile);
@@ -216,14 +243,18 @@ namespace VNCPhidget21.Configuration
                         AvailableStepperSequences.Add(sequence.Key, sequence.Value);
                     }
                 }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
+                }
                 catch (Exception ex)
                 {
                     Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
                     Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
-  
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -246,7 +277,10 @@ namespace VNCPhidget21.Configuration
             {
                 @"Performances\PerformanceConfig_InitializationAndFinalization.json",
 
-                @"Performances\PerformanceConfig_Skulls.json",
+                @"Performances\PerformanceConfig_Skulls_1.json",
+                @"Performances\PerformanceConfig_Skulls_2.json",
+                @"Performances\PerformanceConfig_Skulls_3.json",
+
                 //@"Performances\PerformanceConfig_2.json",
                 //@"Performances\PerformanceConfig_3.json",
             };

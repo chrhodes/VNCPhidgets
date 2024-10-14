@@ -24,18 +24,20 @@ namespace VNCPhidgets21Explorer
 
         public VNCPhidgets21ExplorerModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ModuleInitialize) startTicks = Log.MODULE_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // This is where you pick the style of what gets loaded in the Shell.
@@ -92,14 +94,15 @@ namespace VNCPhidgets21Explorer
             //containerRegistry.Register<IProgrammingLanguageLookupDataService, LookupDataService>();
             //containerRegistry.Register<IMeetingLookupDataService, LookupDataService>();
 
-            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ModuleInitialize) Log.MODULE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ModuleInitialize) startTicks = Log.MODULE_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
@@ -136,7 +139,7 @@ namespace VNCPhidgets21Explorer
             // _regionManager.RegisterViewWithRegion(RegionNames.ViewBRegion, typeof(ViewB));
             // _regionManager.RegisterViewWithRegion(RegionNames.ViewCRegion, typeof(ViewC));           
 
-            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ModuleInitialize) Log.MODULE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

@@ -15,7 +15,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         public MainDxDockLayoutManager(MainDxDockLayoutManagerViewModel viewModel)
         {
-            Int64 startTicks = Log.Trace(String.Format("Enter"), Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
@@ -23,17 +24,27 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.Trace(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void SaveLayout_Click(object sender, RoutedEventArgs e)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SaveLayout_Click) Enter", Common.LOG_CATEGORY);
+
             dlm.SaveLayoutToXml(Common.cCONFIG_FILE);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SaveLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RestoreLayout_Click(object sender, RoutedEventArgs e)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RestoreLayout_Click) Enter", Common.LOG_CATEGORY);
+
             dlm.RestoreLayoutFromXml(Common.cCONFIG_FILE);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RestoreLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #region IInstanceCount

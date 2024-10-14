@@ -13,13 +13,14 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         
         public AdvancedServo1061()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-            
-			// Expose ViewModel
-						
+
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IAdvancedServo1061ViewModel)DataContext;
@@ -27,12 +28,13 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Can create directly
             // ViewModel = AdvancedServo1061ViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         public AdvancedServo1061(IAdvancedServo1061ViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
@@ -41,19 +43,20 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             
             InitializeView();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         private void InitializeView()
         {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
             this.lgPhidgetStatus.IsCollapsed = true;
 
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

@@ -14,7 +14,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         public MainDxLayoutControl(MainDxLayoutControlViewModel viewModel)
         {
-            Int64 startTicks = Log.Trace(String.Format("Enter"), Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.Trace(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         //private void SaveLayout_Click(object sender, RoutedEventArgs e)

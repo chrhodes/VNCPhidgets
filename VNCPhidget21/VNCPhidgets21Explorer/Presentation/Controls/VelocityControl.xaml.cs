@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 using VNC;
@@ -12,15 +13,16 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         
         public VelocityControl()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
             
             lgMain.DataContext = this;
 
-			// Expose ViewModel
-						
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IVelocityControlViewModel)DataContext;
@@ -28,7 +30,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // Can create directly
             // ViewModel = VelocityControlViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // public VelocityControl(IVelocityControlViewModel viewModel)
@@ -44,6 +46,24 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
 
         private static object OnCoerceLimit(DependencyObject o, object value)
         {
@@ -71,18 +91,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
-
-        private void InitializeView()
-        {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-
-            // NOTE(crhodes)
-            // Put things here that initialize the View
-
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        #endregion
 
         #region Enums (None)
 

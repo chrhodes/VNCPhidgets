@@ -22,13 +22,14 @@ namespace VNC.Phidget.Players
 
         public PerformanceSequencePlayer(IEventAggregator eventAggregator)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
 
             ActivePerformanceSequencePlayer = this;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -52,10 +53,7 @@ namespace VNC.Phidget.Players
         public StepperEx ActiveStepperHost { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction {
-            get; 
-            set; 
-        }
+        public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
 
         // AdvancedServo events
@@ -149,6 +147,11 @@ namespace VNC.Phidget.Players
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPerformanceSequence)
+            {
+                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
         }
 

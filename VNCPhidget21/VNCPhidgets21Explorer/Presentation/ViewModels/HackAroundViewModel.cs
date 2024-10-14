@@ -32,16 +32,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -89,7 +91,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "HackAroundViewModel says hello";
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -723,7 +725,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public void ConfigFileName_DoubleClick()
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
+
             Message = "ConfigFileName_DoubleClick";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -736,18 +743,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void Button1Execute()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button1Execute) Enter", Common.LOG_CATEGORY);
 
             Message = "Button1 Clicked";
 
             PlayParty();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button1Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private async void Button2Execute()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button2Execute) Enter", Common.LOG_CATEGORY);
 
             Message = "Button2 Clicked - Opening PhidgetManager";
 
@@ -770,12 +779,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             phidgetManager.close();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button2Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Button3Execute()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button3Execute) Enter", Common.LOG_CATEGORY);
 
             Message = "Button3 Clicked - Loading PhidgetDevices";
 
@@ -806,12 +816,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //ifkEx21.Close();
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button3Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Button4Execute()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button4Execute) Enter", Common.LOG_CATEGORY);
 
             Message = "Button4 Clicked";
 
@@ -835,7 +846,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<VNC.Phidget.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button4Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //#region Reload Config Files
@@ -936,7 +947,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public async void PlayPerformance()
         {
-            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayPerformance) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
@@ -1029,6 +1041,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // End Cut Four
 
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayPerformance) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool PlayPerformanceCanExecute()
@@ -1069,7 +1083,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //public void PlaySequence(TYPE value)
         public async void PlayAdvancedServoSequence()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayAdvancedServoSequence) Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called PlayAdvancedServoSequence";
 
@@ -1134,7 +1149,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayAdvancedServoSequence) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -1179,7 +1194,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //public void InitializeServos(TYPE value)
         public async void InitializeServos()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeServos) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called InitializeServos";
@@ -1227,7 +1243,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeServos) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -1272,7 +1288,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //public void EngageAndCenter(TYPE value)
         public async void EngageAndCenter()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(EngageAndCenter) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called EngageAndCenter";
@@ -1320,7 +1337,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(EngageAndCenter) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -1349,7 +1366,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public async void SetMotionParameters(string speed)
         {
-            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SetMotionParameters) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called SetMotionParameters";
@@ -1401,6 +1419,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //      });
 
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SetMotionParameters) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -1411,13 +1431,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public async void ResetLimits()
         {
-            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ResetLimits) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = $"Cool, you called ResetLimits";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has sideffect of setting ActivePerformancePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
@@ -1445,6 +1466,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //      });
 
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(AfterCollectResetLimitsonSaved) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -1455,7 +1478,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public async void RelativeAcceleration(Int32? relativeAcceleration)
         {
-            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RelativeAcceleration) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = $"Cool, you called RelativeAcceleration {relativeAcceleration}";
@@ -1506,6 +1530,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //      });
 
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RelativeAcceleration) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -1516,13 +1542,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public async void RelativeVelocityLimit(Int32? relativeVelocityLimit)
         {
-            //Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RelativeVelocityLimit) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = $"Cool, you called RelativeVelocityLimit {relativeVelocityLimit}";
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has sideffect of setting ActivePerformancePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
@@ -1544,6 +1571,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             };
 
             await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RelativeVelocityLimit) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -1572,7 +1601,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //public void PlaySequence(TYPE value)
         public async void PlayInterfaceKitSequence()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayInterfaceKitSequence) Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called PlayInterfaceKitSequence";
 
@@ -1637,7 +1667,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayInterfaceKitSequence) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // If using CommandParameter, figure out TYPE and fix above

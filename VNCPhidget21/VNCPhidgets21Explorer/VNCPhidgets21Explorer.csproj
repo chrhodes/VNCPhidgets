@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-13</VersionSuffix>
-        <FileVersion>2024.10.10A</FileVersion>
+        <FileVersion>2024.10.14A</FileVersion>
         <Description>Phidget21 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -171,10 +171,13 @@
         <None Update="Resources\json\Performances\PerformanceConfig_3.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Skulls_2.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_1.json">
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_3.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">

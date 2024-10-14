@@ -21,12 +21,13 @@ namespace VNC.Phidget
         public StepperEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializePhidget()
@@ -174,10 +175,10 @@ namespace VNC.Phidget
 
         public async Task RunActionLoops(StepperSequence stepperSequence)
         {
+            Int64 startTicks = 0;
+
             try
             {
-                Int64 startTicks = 0;
-
                 if (LogPerformanceSequence) Log.Trace("Enter", Common.LOG_CATEGORY);
 
                 if (stepperSequence.Actions is not null)
@@ -200,13 +201,13 @@ namespace VNC.Phidget
                         }
                     }
                 }
-
-                if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 

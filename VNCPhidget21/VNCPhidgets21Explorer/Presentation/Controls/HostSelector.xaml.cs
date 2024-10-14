@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -13,13 +14,14 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         
         public HostSelector()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-            
-			// Expose ViewModel
-						
+
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IHostSelectorViewModel)DataContext;
@@ -27,7 +29,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // Can create directly
             // ViewModel = HostSelectorViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
         //public HostSelector(IHostSelectorViewModel viewModel)
@@ -46,12 +48,18 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         
         private void InitializeView()
         {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
             // NOTE(crhodes)
             // Put things here that initialize the View
-            
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
         #endregion

@@ -11,7 +11,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         
         public PerformanceSelector()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
@@ -27,13 +28,14 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InitializeView();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         
         private void InitializeView()
         {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // Put things here that initialize the View
@@ -41,8 +43,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             lgAdvancedServoSequences.IsCollapsed = true;
             lgInterfaceKitSequences.IsCollapsed = true;
             lgStepperSequences.IsCollapsed = true;
-            
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
         #endregion

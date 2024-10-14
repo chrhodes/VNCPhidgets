@@ -13,6 +13,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged
     {
+        #region Contructors, Initialization, and Load
+
         public ShellViewModel _viewModel;
 
         public Shell()
@@ -57,13 +59,13 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InitializeView();
 
-            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeView()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.View) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
             // Put things here that initialize the View
@@ -75,9 +77,10 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Common.CurrentShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
-            if (Common.VNCLogging.View) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        #endregion
 
         #region Fields and Properties
 
@@ -165,7 +168,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
-
 
         #region IInstanceCount
 

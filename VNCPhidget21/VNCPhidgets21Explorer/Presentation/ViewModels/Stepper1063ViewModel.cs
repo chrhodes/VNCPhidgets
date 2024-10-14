@@ -27,19 +27,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // Save constructor parameters here
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -63,14 +65,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //SayHelloCommand = new DelegateCommand(
             //    SayHello, SayHelloCanExecute);
                 
-            Message = "Stepper1063ViewModel says hello";           
+            Message = "Stepper1063ViewModel says hello";
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void LoadUIConfig()
         {
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             string jsonString = File.ReadAllText(HostConfigFileName);
 
@@ -81,7 +84,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Hosts = hostConfig.Hosts.ToList();
             //this.Sensors2 = phidgetConfig.Sensors.ToList();
 
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         JsonSerializerOptions GetJsonSerializerOptions()
@@ -608,7 +611,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public void ConfigFileName_DoubleClick()
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
+
             Message = "ConfigFileName_DoubleClick";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -629,7 +637,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public void OpenStepper()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenStepper) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called OpenStepper";
@@ -691,7 +700,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //OpenStepperCommand.RaiseCanExecuteChanged();
             //CloseStepperCommand.RaiseCanExecuteChanged();
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenStepper) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ActiveStepper_VelocityChange(object sender, Phidgets.Events.VelocityChangeEventArgs e)
@@ -933,7 +942,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public void CloseStepper()
         {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseStepper";
@@ -971,7 +981,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(CloseStepper) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool CloseStepperCanExecute()
@@ -1416,11 +1426,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void SayHello()
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
 
             Message = $"Hello from {this.GetType()}";
 
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
         }
         
         private bool SayHelloCanExecute()

@@ -16,7 +16,9 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         public RibbonShell(RibbonShellViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+
 
             InstanceCountV++;
             InitializeComponent();
@@ -25,13 +27,13 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             _viewModel = viewModel;
             DataContext = _viewModel;
 
-            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeView()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.View) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             Common.CurrentRibbonShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
@@ -39,7 +41,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            if (Common.VNCLogging.View) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private Visibility _developerUIMode = Visibility.Collapsed;

@@ -18,14 +18,15 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         public Ribbon(ViewModels.IRibbonViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
 
             ViewModel = viewModel;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         #region IInstanceCount

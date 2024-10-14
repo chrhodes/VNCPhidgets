@@ -3,7 +3,29 @@
   "Description": "PerformanceConfig_Skulls DESCRIPTION",
   "Performances": [
   {
-    "Name": "Routine 1 - 99220 - Skull-012",
+    "Name": "Routine 1 - Performances in Sequende",
+    "Description": "",
+    "Loops": 1,
+    "PlayPerformancesInParallel": false,
+    "Performances": [
+      { "Name":  "Routine 1 - 99220 - Skull-012 Standalone"},
+      { "Name":  "Routine 1 - 99220 - Skull-456 Standalone"},
+      { "Name":  "Routine 1 - 169501 - Skull-012 Standalone"},
+    ],
+  },
+    {
+    "Name": "Routine 1 - Performances in Parallel",
+    "Description": "",
+    "Loops": 1,
+    "PlayPerformancesInParallel": true,
+    "Performances": [
+      { "Name":  "Routine 1 - 99220 - Skull-012 Standalone"},
+      { "Name":  "Routine 1 - 99220 - Skull-456 Standalone"},
+      { "Name":  "Routine 1 - 169501 - Skull-012 Standalone"},
+    ],
+  },
+  {
+    "Name": "Routine 1 - 99220 - Skull-012 Standalone",
     "Description": "",
     "Loops": 1,
     "PlaySequencesInParallel": false,
@@ -18,10 +40,10 @@
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Down Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center"},
     ],
-    "NextPerformance": { "Name": "Routine 1 - 99220 - Skull-456" }
+    //"NextPerformance": { "Name": "Routine 1 - 99220 - Skull-456" }
   },
   {
-    "Name": "Routine 1 - 99220 - Skull-456",
+    "Name": "Routine 1 - 99220 - Skull-456 Standalone",
     "Description": "",
     "Loops": 1,
     "PlaySequencesInParallel": false,
@@ -36,10 +58,10 @@
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Down Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center"},
     ],
-    "NextPerformance": { "Name": "Routine 1 - 169501 - Skull-012" }
+    //"NextPerformance": { "Name": "Routine 1 - 169501 - Skull-012" }
   },
   {
-    "Name": "Routine 1 - 169501 - Skull-012",
+    "Name": "Routine 1 - 169501 - Skull-012 Standalone",
     "Description": "",
     "Loops": 1,
     "PlaySequencesInParallel": false,
@@ -57,7 +79,7 @@
     //"NextPerformance": { "Name": "Routine 1 - 169501 - Skull-456" }
   },
     {
-      "Name": "Routine 1 - 169501 - Skull-456",
+      "Name": "Routine 1 - 169501 - Skull-456 Standalone",
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,

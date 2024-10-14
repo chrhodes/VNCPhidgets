@@ -19,11 +19,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public MainViewModel()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         const Int32 sbc11SerialNumber = 46049;
@@ -34,7 +35,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             InstanceCountVM++;
 
@@ -42,7 +44,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -185,12 +187,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _repeats = value;
                 OnPropertyChanged();
             }
-        }   
+        }
 
 
         #endregion
 
         #region Event Handlers (none)
+
+
+        #endregion
+
+        #region Commands (none)
 
 
         #endregion
