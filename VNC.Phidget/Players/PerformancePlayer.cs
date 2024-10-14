@@ -242,6 +242,7 @@ namespace VNC.Phidget.Players
                 Log.Trace($"Running performance:{performance.Name} description:{performance.Description}" +
                     $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                     $" performanceSequences:{performance.PerformanceSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                    $" performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
                     $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                     $" loops:{performance.PerformanceLoops} duration:{performance.Duration}" +
                     $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
@@ -256,9 +257,7 @@ namespace VNC.Phidget.Players
             }
 
             // NOTE(crhodes)
-            // Then Execute PerformanceSequences loops
-            //
-            // Not sure there would ever be no PerformanceSequences
+            // Then Execute PerformanceSequence loops
 
             if (performance.PerformanceSequences is not null)
             {
@@ -287,10 +286,64 @@ namespace VNC.Phidget.Players
 
                         foreach (PerformanceSequence sequence in performance.PerformanceSequences)
                         {
-                            for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
-                            {
+                            // TODO(crhodes)
+                            // What is this loop doing?  Doesn't PerformanceSequencePlayer handle looping
+
+                            //for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
+                            //{
                                 await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
-                            }
+                            //}
+                        }
+                    }
+                }
+
+                // NOTE(crhodes)
+                // Then Sleep if necessary before next loop
+
+                if (performance.Duration is not null)
+                {
+                    if (LogPerformance)
+                    {
+                        Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
+                    }
+                    Thread.Sleep((int)performance.Duration);
+                }
+            }
+
+            // NOTE(crhodes)
+            // Then Execute Performances loops
+
+            if (performance.Performances is not null)
+            {
+                // TODO(crhodes)
+                // Maybe create a new PerformancePlayer
+                // instead of reaching for the Property.  If we do that have to initialize all the logging.
+
+                //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
+
+                PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+                for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                {
+                    if (performance.PlayPerformancesInParallel)
+                    {
+                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+
+                        Parallel.ForEach(performance.Performances, async perf =>
+                        {
+                            await RunPerformanceLoops(perf);
+                        });
+                    }
+                    else
+                    {
+                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+
+                        foreach (Performance perf in performance.Performances)
+                        {
+                            //for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
+                            //{
+                            await RunPerformanceLoops(perf);
+                            //}
                         }
                     }
                 }
@@ -332,7 +385,8 @@ namespace VNC.Phidget.Players
                     await RunPerformanceLoops(nextPerformance);
 
                     // TODO(crhodes)
-                    // Should we process Next Performance if exists.  Recursive implications need to be considered.
+                    // Should we process Next Performance if exists.
+                    // Recursive implications need to be considered.
                     // May have to detect loops.
 
                     nextPerformance = nextPerformance?.NextPerformance;

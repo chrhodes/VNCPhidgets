@@ -110,7 +110,7 @@ namespace VNC.Phidget.Players
                     if (LogPerformanceSequence) Log.Trace($"Running PerformanceSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
 
                     // NOTE(crhodes)
-                    // Each loop start back at the initial sequence
+                    // Each loop starts back at the initial sequence
                     nextPerformanceSequence = performanceSequence;
 
                     do

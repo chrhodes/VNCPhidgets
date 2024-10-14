@@ -171,7 +171,10 @@
         <None Update="Resources\json\Performances\PerformanceConfig_3.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\PerformanceConfig_Skulls.json">
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_2.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_1.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">
