@@ -53,14 +53,14 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         private void InitializeView()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             ViewType = this.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            if (Common.VNCLogging.ViewLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
         #endregion

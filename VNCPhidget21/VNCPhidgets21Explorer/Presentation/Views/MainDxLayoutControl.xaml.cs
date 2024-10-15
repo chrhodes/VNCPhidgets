@@ -39,7 +39,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            if (Common.VNCLogging.ViewModelLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private void SaveLayout_Click(object sender, RoutedEventArgs e)
