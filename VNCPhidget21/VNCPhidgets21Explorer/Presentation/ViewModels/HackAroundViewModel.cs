@@ -1373,7 +1373,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Message = "Cool, you called SetMotionParameters";
 
             // TODO(crhodes)
-            // This has sideffect of setting ActivePerformancePlayer.
+            // This has sideffect of setting ActivePerformanceSequencePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();

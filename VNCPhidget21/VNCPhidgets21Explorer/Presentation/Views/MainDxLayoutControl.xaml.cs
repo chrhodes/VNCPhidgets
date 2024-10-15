@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 using VNC;
@@ -23,7 +24,22 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             _viewModel = viewModel;
             DataContext = _viewModel;
 
+            InitializeView();
+
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+
+            if (Common.VNCLogging.ViewModelLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //private void SaveLayout_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -50,6 +51,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View

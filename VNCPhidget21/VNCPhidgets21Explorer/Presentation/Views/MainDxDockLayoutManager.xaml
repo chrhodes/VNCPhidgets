@@ -40,8 +40,17 @@
 
     <!-- d:DesignWidth="400" d:DesignHeight="400" -->
 
-        
-        <!--<dxlc:LayoutControl.AvailableItems>
+    <UserControl.Resources>
+
+        <!-- <Style x:Key="AboutLayout" > -->
+        <!-- <Setter Property="dxlc:LayoutItem.LabelPosition" Value="Top" /> -->
+        <!-- <Setter Property="dxlc:LayoutItem.LabelHorizontalAlignment" Value="Left" /> -->
+        <!-- <Setter Property="dxlc:LayoutItem.VerticalAlignment" Value="Stretch" /> -->
+        <!-- </Style> -->
+
+    </UserControl.Resources>
+
+    <!--<dxlc:LayoutControl.AvailableItems>
             
             --><!-- Add things that are optionally displayable--><!--
             
@@ -60,175 +69,131 @@
             </dxdo:LayoutPanel>
             
         </dxlc:LayoutControl.AvailableItems>-->
-    <Grid>
-        
-    <dxdo:DockLayoutManager
-        dx:StyleManager.ApplyApplicationTheme="True"
-        FontSize="12"
-        Name="dlm"       
-        FloatingMode="Desktop"
-        AutoHideExpandMode="MouseDown">
-                
-        <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
 
-            <dxdo:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+    <DockPanel>
 
-                <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False">
-                    
-                        <DockPanel>
-                            <Label Content="lg_Header Stuff Goes Here" DockPanel.Dock="Left" />
-
-                            <Button 
-                                Command="{Binding DeveloperModeCommand}" 
-                                ToolTip="{Binding DeveloperModeToolTip, FallbackValue='DeveloperMode ToolTip' }" 
-                                Width="48" Height="39" HorizontalAlignment="Right">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  />
-                                </Button.Background>
-                            </Button>
-                        </DockPanel>
-              
-                </dxdo:LayoutPanel>
-               
-            </dxdo:LayoutGroup>
-            
-            <dxdo:LayoutGroup Name="lg_Body" Orientation="Horizontal" ItemHeight="Auto" >
-
-                <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
-                </dxdo:LayoutPanel>
-                
-                <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
-                </dxdo:LayoutPanel>
-
-                <dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region2}"/>
-                </dxdo:LayoutPanel>
-
-                <dxdo:LayoutPanel Caption="AdvancedServo1061-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region3}"/>
-                </dxdo:LayoutPanel>
-
-                <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
-                </dxdo:LayoutPanel>
-                
-                <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
-                </dxdo:LayoutPanel>
-
-                <dxdo:LayoutPanel Caption="InterfaceKit888-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region2}"/>
-                </dxdo:LayoutPanel>
-
-                <dxdo:LayoutPanel Caption="InterfaceKit888-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                    <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region3}"/>
-                </dxdo:LayoutPanel>
-
-            </dxdo:LayoutGroup>
-
-            <dxdo:LayoutGroup VerticalAlignment="Bottom" Name="lg_Footer" >
-
-                    <dxdo:LayoutPanel>
-                        <dxlc:LayoutGroup
-                             Orientation="Vertical"  VerticalAlignment="Bottom">
-                            <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />-->
-                            <Label Content="lg_Footer Stuff Goes Here" />
-                        </dxlc:LayoutGroup>
-                    </dxdo:LayoutPanel>
-
-                    <dxdo:LayoutPanel>
-
-                        <dxlc:LayoutGroup Name="lg_DeveloperMode" Orientation="Horizontal" VerticalAlignment="Bottom"
-                          View="GroupBox" Header="Developer Mode Information" IsCollapsible="True" IsCollapsed="True"
-                          Visibility="{Binding DeveloperUIMode,
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
-                            <ContentControl x:Name="vncLoggingConfig"
-                                prism:RegionManager.RegionName="{x:Static core:RegionNames.VNCLoggingConfigRegion}" />
-                            <ContentControl x:Name="vncCoreLogginConfig"
-                                prism:RegionManager.RegionName="{x:Static core:RegionNames.VNCCoreLoggingConfigRegion}" />
-                        </dxlc:LayoutGroup>
-                        
-                    </dxdo:LayoutPanel>
-
-                    <dxdo:LayoutPanel AutoHidden="True" ShowCloseButton="False" Caption="Tools">
-
-                        <dxlc:LayoutGroup
-                            View="Group" Orientation="Vertical" VerticalAlignment="Bottom" >
-
-                            <StackPanel Orientation="Horizontal"
-                                Visibility="{Binding DeveloperUIMode,
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+                    Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-                                <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
+            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-                                <!-- This is useful for debugging V VM constructor issues -->
+            <!-- This is useful for debugging V VM constructor issues -->
 
-                                <StackPanel Orientation="Horizontal" Margin="5">
-                                    <Label Content="V:" />
-                                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-                                </StackPanel>
+            <StackPanel Orientation="Horizontal">
 
-                                <StackPanel Orientation="Horizontal" Margin="5">
-                                    <Label Content="VP:" />
-                                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
-                                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
+                </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="5">
-                                    <Label Content="VM:" />
-                                    <Label Content="{Binding InstanceCountVM}" />
-                                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0" >
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+                </StackPanel>
 
-                            </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
+                    <Label Content="VP:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+                </StackPanel>
 
-                        </dxlc:LayoutGroup>
+            </StackPanel>
 
-                    </dxdo:LayoutPanel>
+            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
+                <Label Content=" VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
 
-                </dxdo:LayoutGroup>
+        </StackPanel>
 
-            </dxdo:LayoutGroup>
+        <dxlc:LayoutControl Name="lc_Root"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            Orientation="Vertical">
 
-            <dxdo:DockLayoutManager.AutoHideGroups>
+            <dxlc:LayoutControl.AvailableItems>
+                <!-- Add things that are optionally displayable-->
+                <dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
+                    <StackPanel>
+                        <Label Content="lp_OptStuff1 Goes Here" />
+                        <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+                    </StackPanel>
+                </dxdo:LayoutPanel>
+                <dxdo:LayoutPanel x:Name="lp_OptStuff2" Caption="Optional Stuff2">
+                    <StackPanel>
+                        <Label Content="lp_OptStuff2 Goes Here" />
+                        <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
+                    </StackPanel>
+                </dxdo:LayoutPanel>
+            </dxlc:LayoutControl.AvailableItems>
 
-                    <dxdo:AutoHideGroup DockType="Left">
-                        <dxdo:LayoutPanel
-                            x:Name="lp_LeftStuff"
-                            Caption="Left Stuff"
-                            ItemWidth="150">
-                            <StackPanel>
-                                <Label Content="lp_LeftStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
-                            </StackPanel>
-                        </dxdo:LayoutPanel>
-                    </dxdo:AutoHideGroup>
+            <dxlc:LayoutGroup Name="lg_Header" VerticalAlignment="Top" Orientation="Vertical" >
 
-                    <dxdo:AutoHideGroup DockType="Right">
-                        <dxdo:LayoutPanel x:Name="lp_RightStuff" Caption="Right Stuff">
-                            <StackPanel>
-                                <Label Content="lp_RightStuff Goes Here" />
-                                <!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />-->
-                            </StackPanel>
-                        </dxdo:LayoutPanel>
-                    </dxdo:AutoHideGroup>
+                <Label Content="Header Stuff Goes Here" />
 
-                </dxdo:DockLayoutManager.AutoHideGroups>
+            </dxlc:LayoutGroup>
 
-            <dxdo:DockLayoutManager.FloatGroups>
+            <dxlc:LayoutGroup Name="lg_Body" VerticalAlignment="Stretch">
+                <!-- Use this if you want a LayoutManager -->
+                <dxdo:DockLayoutManager Name="dlm"   
+                    dx:StyleManager.ApplyApplicationTheme="True"
+                    FontSize="12"            
+                    FloatingMode="Desktop"
+                    AutoHideExpandMode="MouseDown">
 
-                <!--<dxdo:FloatGroup FloatLocation="100,100" FloatSize="600,600">
+                    <dxdo:LayoutGroup Name="dlm_Root" Orientation="Vertical" >
 
-                    <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False">
-                        <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
-                    </dxdo:LayoutPanel>
+                        <dxdo:LayoutGroup Orientation="Horizontal" ItemHeight="Auto" >
 
-                </dxdo:FloatGroup>-->
+                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
+                            </dxdo:LayoutPanel>
 
-            </dxdo:DockLayoutManager.FloatGroups>
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
+                            </dxdo:LayoutPanel>
 
-        </dxdo:DockLayoutManager>
-        
-    </Grid>
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region2}"/>
+                            </dxdo:LayoutPanel>
+
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region3}"/>
+                            </dxdo:LayoutPanel>
+
+                            <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
+                            </dxdo:LayoutPanel>
+
+                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
+                            </dxdo:LayoutPanel>
+
+                            <dxdo:LayoutPanel Caption="InterfaceKit888-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region2}"/>
+                            </dxdo:LayoutPanel>
+
+                            <dxdo:LayoutPanel Caption="InterfaceKit888-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region3}"/>
+                            </dxdo:LayoutPanel>
+
+                        </dxdo:LayoutGroup>
+
+                    </dxdo:LayoutGroup>
+
+                </dxdo:DockLayoutManager>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lg_Footer" VerticalAlignment="Bottom" Orientation="Vertical" >
+
+                <Label Content="Footer Stuff Goes Here" />
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+
+    </DockPanel>
 
 </vncmvvm:ViewBase>
 

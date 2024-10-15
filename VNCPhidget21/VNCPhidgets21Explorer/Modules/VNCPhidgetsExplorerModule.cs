@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Controls.Primitives;
 
 using Prism.Ioc;
 using Prism.Modularity;
@@ -47,12 +46,19 @@ namespace VNCPhidgets21Explorer
             containerRegistry.RegisterSingleton<IRibbonViewModel, RibbonViewModel>();
             containerRegistry.RegisterSingleton<IRibbon, Ribbon>();
 
-            // Pick one of these for the MainRegion
-            // Use Main to see the AutoWireViewModel in action.
+            // If you are using the Shell and the RibbonRegion
 
+            //containerRegistry.RegisterSingleton<IRibbonViewModel, ShellRibbonViewModel>();
+            //containerRegistry.RegisterSingleton<IRibbon, ShellRibbon>();
+
+            // Pick one of these for the MainRegion
+  
             //containerRegistry.Register<IMain, Main>();
             //containerRegistry.Register<IMain, MainDxLayoutControl>();
             containerRegistry.Register<IMain, MainDxDockLayoutManager>();
+
+            containerRegistry.RegisterSingleton<IStatusBarViewModel, StatusBarViewModel>();
+            containerRegistry.RegisterSingleton<StatusBar, StatusBar>();
 
             containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
             containerRegistry.Register<IInterfaceKitViewModel, InterfaceKit1018ViewModel>();

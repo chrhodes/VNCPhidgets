@@ -69,6 +69,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private System.Windows.Size _windowSize;
+        public System.Windows.Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Visibility _developerUIMode = Visibility.Visible;
         public Visibility DeveloperUIMode
         {

@@ -39,6 +39,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             //DataContext = this;
 
+            InitializeView();
+
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -69,7 +71,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             // NOTE(crhodes)
             // Put things here that initialize the View
-            // Hook eventhandlers, etc.
+            // Hook event handlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
             ViewModelType = _viewModel.GetType().ToString().Split('.').Last();

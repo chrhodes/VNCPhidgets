@@ -82,32 +82,42 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel Margin="5">
-        <!--<TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />-->
-        <!-- Maybe put the Host Selection up here -->
-
-        <controls:HostSelector DockPanel.Dock="Top" />
         
-        <!-- This is useful for debugging V VM constructor issues -->
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+                    Visibility="{Binding DeveloperUIMode,
+                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
+            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-        <DockPanel DockPanel.Dock="Bottom" >
-            
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5">
-                <Label Content="Message:" />
-                <Label Content="{Binding Message}" />
+            <!-- This is useful for debugging V VM constructor issues -->
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0" >
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
+                    <Label Content="VP:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+                </StackPanel>
+
             </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
-                <Label Content="VM:" />
+
+            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
+                <Label Content=" VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
 
-        </DockPanel>
+        </StackPanel>
 
+        <controls:HostSelector DockPanel.Dock="Top" />
+        
         <dxlc:LayoutControl Orientation="Vertical">
 
             <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >

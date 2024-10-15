@@ -44,7 +44,6 @@ namespace VNCPhidgets21Explorer
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
-
         // 01
 
         protected override void ConfigureViewModelLocator()

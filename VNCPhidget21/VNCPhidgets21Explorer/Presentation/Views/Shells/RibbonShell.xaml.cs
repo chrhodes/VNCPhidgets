@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -12,6 +13,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged
     {
+        #region Contructors, Initialization, and Load
+
         public RibbonShellViewModel _viewModel;
 
         public RibbonShell(RibbonShellViewModel viewModel)
@@ -35,6 +38,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            ViewType = this.GetType().ToString().Split('.').Last();
+
             Common.CurrentRibbonShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
@@ -42,6 +47,27 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Put things here that initialize the View
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region Fields and Properties
+
+        private string _viewType;
+
+        public string ViewType
+        {
+            get => _viewType;
+            set
+            {
+                if (_viewType == value)
+                {
+                    return;
+                }
+
+                _viewType = value;
+                OnPropertyChanged();
+            }
         }
 
         private Visibility _developerUIMode = Visibility.Collapsed;
@@ -56,6 +82,20 @@ namespace VNCPhidgets21Explorer.Presentation.Views
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region EventHandlers
+
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            _viewModel.WindowSize = newSize;
+        }
+
+        #endregion
+
 
         #region INotifyPropertyChanged
 
@@ -101,5 +141,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
+
     }
 }

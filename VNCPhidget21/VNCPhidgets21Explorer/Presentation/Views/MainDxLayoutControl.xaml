@@ -40,9 +40,96 @@
 
     <!-- d:DesignWidth="400" d:DesignHeight="400" -->
 
+    <UserControl.Resources>
 
+        <!-- <Style x:Key="AboutLayout" > -->
+        <!-- <Setter Property="dxlc:LayoutItem.LabelPosition" Value="Top" /> -->
+        <!-- <Setter Property="dxlc:LayoutItem.LabelHorizontalAlignment" Value="Left" /> -->
+        <!-- <Setter Property="dxlc:LayoutItem.VerticalAlignment" Value="Stretch" /> -->
+        <!-- </Style> -->
+
+    </UserControl.Resources>
+
+    <DockPanel>
+
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+                    Visibility="{Binding DeveloperUIMode,
+                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
+            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
+
+            <!-- This is useful for debugging V VM constructor issues -->
+
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0" >
+                    <Label Content="V:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
+                    <Label Content="VP:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
+                <Label Content=" VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+
+        </StackPanel>
+
+        <dxlc:LayoutControl Name="lc_Root"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            Orientation="Vertical">
+
+            <dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
+
+                <Label Content="Header Stuff Goes Here" />
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup
+                Name="groupContainer"
+                Orientation="Vertical"
+                View="Tabs">
+                <dxlc:LayoutGroup.GroupBoxStyle>
+                    <Style TargetType="dxlc:GroupBox">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="TitleVisibility" Value="Collapsed" />
+                    </Style>
+                </dxlc:LayoutGroup.GroupBoxStyle>
+
+                <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
+
+                <dxlc:LayoutGroup Header="Combined">
+                    <!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.CombinedMainRegion}" />-->
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lg_Footer" Orientation="Vertical" VerticalAlignment="Bottom">
+
+                <Label Content="Footer Stuff Goes Here" />
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+
+    </DockPanel>
     
-    <dxlc:LayoutControl Padding="3"
+    <!--<dxlc:LayoutControl Padding="3"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         Background="{StaticResource MainBackground}"
@@ -58,7 +145,7 @@
 
         <dxlc:LayoutControl.AvailableItems >
 
-            <!-- Add things that are optionally displayable-->
+            --><!-- Add things that are optionally displayable--><!--
 
             <dxlc:LayoutItem Label="Optional Item1">
                 
@@ -68,7 +155,7 @@
 
             </dxlc:LayoutItem>
 
-            <!--<dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
+            --><!--<dxdo:LayoutPanel x:Name="lp_OptStuff1" Caption="Optional Stuff1">
                 <StackPanel>
                     <Label Content="lp_OptStuff1 Goes Here" />
                     --><!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />--><!--
@@ -80,13 +167,9 @@
                     <Label Content="lp_OptStuff2 Goes Here" />
                     --><!--<ContentControl Template="{StaticResource AdminWindowToolBoxControlsTemplate}" />--><!--
                 </StackPanel>
-            </dxdo:LayoutPanel>-->
+            </dxdo:LayoutPanel>--><!--
 
         </dxlc:LayoutControl.AvailableItems>
-
-        <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Header">
-            <Label Content="lg_Header Stuff Goes Here" />
-        </dxlc:LayoutGroup>-->
 
         <dxlc:LayoutGroup Name="lg_Body"  >
 
@@ -110,7 +193,7 @@
                     </Style>
                 </dxlc:LayoutGroup.GroupBoxStyle>
 
-                <!-- Individual LayoutGroups go here (if you use tabs or groups)-->
+                --><!-- Individual LayoutGroups go here (if you use tabs or groups)-->
 
                 <!--<dxlc:LayoutGroup Header="VNC LiveLogViewer" TabStyle="{StaticResource TabItemStyle}">
                     
@@ -134,32 +217,12 @@
 
                         <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.LiveLogViewerEASEMainRegion}" />
 
-                </dxlc:LayoutGroup>-->
+                </dxlc:LayoutGroup>--><!--
 
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>
 
-        <!--<dxlc:LayoutGroup VerticalAlignment="Top" Name="lg_Footer">
-            --><!--<ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" MinHeight="10" />--><!--
-            <Label Content="lg_Footer Stuff Goes Here" />
-        </dxlc:LayoutGroup>-->
-
-        <dxlc:LayoutGroup Name="lg_Footer"
-            View="Group" Orientation="Horizontal" Padding="3,0,0,3" >
-
-            <!-- This is useful for debugging V VM constructor issues -->
-
-            <dxlc:LayoutItem Label="V:" HorizontalAlignment="Left" >
-                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="VM:" >
-                <TextBlock Text="{Binding InstanceCountVM}" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-    </dxlc:LayoutControl>
+    </dxlc:LayoutControl>-->
 
 </vncmvvm:ViewBase>
