@@ -402,8 +402,16 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                     Current = Min;
                     break;
 
+                case "R-5":
+                    Current = Current -= 5;
+                    break;
+
                 case "Center":
                     Current = (Max - Min) / 2 + Min;
+                    break;
+
+                case "R+5":
+                    Current = Current += 5;
                     break;
 
                 case "Max":

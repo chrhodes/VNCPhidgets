@@ -173,12 +173,24 @@
                         Click="TestFullPositionRange_Click"/>
             </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <Button Content="R-5" CommandParameter="R-5" Padding="2"
+                        ToolTip="Tests full position range (recommend slowly)" 
+                        Click="TestFullPositionRange_Click"/>
+            </dxlc:LayoutItem>
+
             <dxlc:LayoutItem>
                 <Button Content="Center" CommandParameter="Center" Padding="2"
                         ToolTip="Tests full position range (recommend slowly)" 
                         Click="TestFullPositionRange_Click"/>
             </dxlc:LayoutItem>
 
+            <dxlc:LayoutItem HorizontalAlignment="Right">
+                <Button Content="R+5" CommandParameter="R+5" Padding="2"
+                        ToolTip="Tests full position range (recommend slowly)" 
+                        Click="TestFullPositionRange_Click"/>
+            </dxlc:LayoutItem>
+            
             <dxlc:LayoutItem HorizontalAlignment="Right">
                 <Button Content="Max" CommandParameter="Max" Padding="2"
                         ToolTip="Tests full position range (recommend slowly)" 
