@@ -565,7 +565,7 @@ namespace VNC.Phidget
                 }
 
                 // TODO(crhodes)
-                // Maybe save last postion set and not bother checking servo.Position is same
+                // Maybe save last position set and not bother checking servo.Position is same
                 if (servo.Position != position) servo.Position = position;
 
                 if (LogSequenceAction)

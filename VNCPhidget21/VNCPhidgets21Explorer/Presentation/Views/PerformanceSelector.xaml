@@ -337,7 +337,7 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
 
-                    <dxlc:LayoutItem>
+                    <!--<dxlc:LayoutItem>
                         <Button 
                 		        Command="{Binding InitializeServosCommand }"
                 		        CommandParameter="{Binding InitializeServosCommandParameter}"
@@ -358,7 +358,7 @@
                 		    Command="{Binding ResetLimitsCommand }"
                 		    Content="Reset Limits"
                 		    ToolTip="Reset Position Limits to Device Min/Max" />
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>-->
 
                     <dxlc:LayoutItem>
                         <Button 

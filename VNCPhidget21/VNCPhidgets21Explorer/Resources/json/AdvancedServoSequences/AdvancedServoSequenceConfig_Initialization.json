@@ -134,5 +134,347 @@
         { "ServoIndex": 6, "TargetPosition": 90 },
       ]
     },
+        //
+    // Engage All Servos
+    //
+    { 
+      "Name": "Engage All Servos", "Description": "Engage 0,1,2,3,4,5,6,7",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": true },
+        { "ServoIndex": 1, "Engaged": true },
+        { "ServoIndex": 2, "Engaged": true },
+        { "ServoIndex": 3, "Engaged": true },
+        { "ServoIndex": 4, "Engaged": true },
+        { "ServoIndex": 5, "Engaged": true },
+        { "ServoIndex": 6, "Engaged": true },
+        { "ServoIndex": 7, "Engaged": true },
+      ]
+    },
+    //
+    // DisEngage All Servos
+    //
+    { 
+      "Name": "DisEngage All Servos", "Description": "DisEngage 0,1,2,3,4,5,6,7", 
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "Engaged": false },
+        { "ServoIndex": 1, "Engaged": false },
+        { "ServoIndex": 2, "Engaged": false },
+        { "ServoIndex": 3, "Engaged": false },
+        { "ServoIndex": 4, "Engaged": false },
+        { "ServoIndex": 5, "Engaged": false },
+        { "ServoIndex": 6, "Engaged": false },
+        { "ServoIndex": 7, "Engaged": false },
+      ]
+    },
+    //
+    // Reset Position Limits (RPL)
+    //
+    { 
+      "Name": "Reset Position Limits (RPL)",
+      "Description": "Resets PositionMin and PositionMax to defaults for DEFAULT device",
+      "UsageNotes" : "Can be called with Servos not Engaged",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoIndex": 0, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 1, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 2, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 3, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 4, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 5, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 6, "PositionMin": -1, "PositionMax": -1 },
+        { "ServoIndex": 7, "PositionMin": -1, "PositionMax": -1 },
+      ]
+    },
+    //
+    // Acceleration +500
+    //
+    {
+
+      "Name": "Acceleration +500",
+      "Description": "Increase Acceleration by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 500 },
+        { "ServoIndex": 1, "RelativeAcceleration": 500 },
+        { "ServoIndex": 2, "RelativeAcceleration": 500 },
+        { "ServoIndex": 3, "RelativeAcceleration": 500 },
+        { "ServoIndex": 4, "RelativeAcceleration": 500 },
+        { "ServoIndex": 5, "RelativeAcceleration": 500 },
+        { "ServoIndex": 6, "RelativeAcceleration": 500 },
+        { "ServoIndex": 7, "RelativeAcceleration": 500 }
+      ]
+    },
+    //
+    // Acceleration +100
+    //
+    {
+      "Name": "Acceleration +100",
+      "Description": "Increase Acceleration by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 100 },
+        { "ServoIndex": 1, "RelativeAcceleration": 100 },
+        { "ServoIndex": 2, "RelativeAcceleration": 100 },
+        { "ServoIndex": 3, "RelativeAcceleration": 100 },
+        { "ServoIndex": 4, "RelativeAcceleration": 100 },
+        { "ServoIndex": 5, "RelativeAcceleration": 100 },
+        { "ServoIndex": 6, "RelativeAcceleration": 100 },
+        { "ServoIndex": 7, "RelativeAcceleration": 100 }
+      ]
+    },
+    //
+    // Acceleration +50
+    //
+    {
+      "Name": "Acceleration +50",
+      "Description": "Increase Acceleration by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 50 },
+        { "ServoIndex": 1, "RelativeAcceleration": 50 },
+        { "ServoIndex": 2, "RelativeAcceleration": 50 },
+        { "ServoIndex": 3, "RelativeAcceleration": 50 },
+        { "ServoIndex": 4, "RelativeAcceleration": 50 },
+        { "ServoIndex": 5, "RelativeAcceleration": 50 },
+        { "ServoIndex": 6, "RelativeAcceleration": 50 },
+        { "ServoIndex": 7, "RelativeAcceleration": 50 }
+      ]
+    },
+    //
+    // Acceleration +10
+    //
+    {
+      "Name": "Acceleration +10",
+      "Description": "Increase Acceleration by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": 10 },
+        { "ServoIndex": 1, "RelativeAcceleration": 10 },
+        { "ServoIndex": 2, "RelativeAcceleration": 10 },
+        { "ServoIndex": 3, "RelativeAcceleration": 10 },
+        { "ServoIndex": 4, "RelativeAcceleration": 10 },
+        { "ServoIndex": 5, "RelativeAcceleration": 10 },
+        { "ServoIndex": 6, "RelativeAcceleration": 10 },
+        { "ServoIndex": 7, "RelativeAcceleration": 10 }
+      ]
+    },
+    //
+    // Acceleration -10
+    //
+    {
+      "Name": "Acceleration -10",
+      "Description": "Reduce Acceleration by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -10 },
+        { "ServoIndex": 1, "RelativeAcceleration": -10 },
+        { "ServoIndex": 2, "RelativeAcceleration": -10 },
+        { "ServoIndex": 3, "RelativeAcceleration": -10 },
+        { "ServoIndex": 4, "RelativeAcceleration": -10 },
+        { "ServoIndex": 5, "RelativeAcceleration": -10 },
+        { "ServoIndex": 6, "RelativeAcceleration": -10 },
+        { "ServoIndex": 7, "RelativeAcceleration": -10 }
+      ]
+    },
+    //
+    // Acceleration -50
+    //
+    {
+      "Name": "Acceleration -50",
+      "Description": "Reduce Acceleration by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -50 },
+        { "ServoIndex": 1, "RelativeAcceleration": -50 },
+        { "ServoIndex": 2, "RelativeAcceleration": -50 },
+        { "ServoIndex": 3, "RelativeAcceleration": -50 },
+        { "ServoIndex": 4, "RelativeAcceleration": -50 },
+        { "ServoIndex": 5, "RelativeAcceleration": -50 },
+        { "ServoIndex": 6, "RelativeAcceleration": -50 },
+        { "ServoIndex": 7, "RelativeAcceleration": -50 }
+      ]
+    },
+    //
+    // Acceleration -100
+    //
+    {
+      "Name": "Acceleration -100",
+      "Description": "Reduce Acceleration by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -100 },
+        { "ServoIndex": 1, "RelativeAcceleration": -100 },
+        { "ServoIndex": 2, "RelativeAcceleration": -100 },
+        { "ServoIndex": 3, "RelativeAcceleration": -100 },
+        { "ServoIndex": 4, "RelativeAcceleration": -100 },
+        { "ServoIndex": 5, "RelativeAcceleration": -100 },
+        { "ServoIndex": 6, "RelativeAcceleration": -100 },
+        { "ServoIndex": 7, "RelativeAcceleration": -100 }
+      ]
+    },
+    //
+    // Acceleration -500
+    //
+    {
+      "Name": "Acceleration -500",
+      "Description": "Reduce Acceleration by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeAcceleration": -500 },
+        { "ServoIndex": 1, "RelativeAcceleration": -500 },
+        { "ServoIndex": 2, "RelativeAcceleration": -500 },
+        { "ServoIndex": 3, "RelativeAcceleration": -500 },
+        { "ServoIndex": 4, "RelativeAcceleration": -500 },
+        { "ServoIndex": 5, "RelativeAcceleration": -500 },
+        { "ServoIndex": 6, "RelativeAcceleration": -500 },
+        { "ServoIndex": 7, "RelativeAcceleration": -500 }
+      ]
+    },
+    //
+    // VelocityLimit +500
+    //
+    {
+      "Name": "VelocityLimit +500",
+      "Description": "Increase VelocityLimit by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 500 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 500 }
+      ]
+    },
+    //
+    // VelocityLimit +100
+    //
+    {
+      "Name": "VelocityLimit +100",
+      "Description": "Increase VelocityLimit by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 100 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 100 }
+      ]
+    },
+    //
+    // VelocityLimit +50
+    //
+    {
+      "Name": "VelocityLimit +50",
+      "Description": "Increase VelocityLimit by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 50 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 50 }
+      ]
+    },
+    //
+    // VelocityLimit +10
+    //
+    {
+      "Name": "VelocityLimit +10",
+      "Description": "Increase VelocityLimit by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": 10 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": 10 }
+      ]
+    },
+    //
+    // VelocityLimit -10
+    //
+    {
+      "Name": "VelocityLimit -10",
+      "Description": "Reduce VelocityLimit by 10",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -10 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -10 }
+      ]
+    },
+    //
+    // VelocityLimit -50
+    //
+    {
+      "Name": "VelocityLimit -50",
+      "Description": "Reduce VelocityLimit by 50",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -50 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -50 }
+      ]
+    },
+    //
+    // VelocityLimit -100
+    //
+    {
+      "Name": "VelocityLimit -100",
+      "Description": "Reduce VelocityLimit by 100",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -100 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -100 }
+      ]
+    },
+    //
+    // VelocityLimit -500
+    //
+    {
+      "Name": "VelocityLimit -500",
+      "Description": "Reduce VelocityLimit by 500",
+      "ExecuteActionsInParallel": true,
+      "Actions": [
+        { "ServoIndex": 0, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 1, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 2, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 3, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 4, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 5, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 6, "RelativeVelocityLimit": -500 },
+        { "ServoIndex": 7, "RelativeVelocityLimit": -500 }
+      ]
+    },
   ]
 }

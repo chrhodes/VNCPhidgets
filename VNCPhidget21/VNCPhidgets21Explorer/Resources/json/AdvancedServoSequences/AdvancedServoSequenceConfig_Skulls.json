@@ -70,7 +70,7 @@
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
-        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
         { "ServoIndex": 2, "RelativePosition": 10 },
       ]
     },
@@ -83,7 +83,7 @@
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 0, "RelativePosition": 10 },
-        //{ "ServoIndex": 1, "RelativePosition": 5 },
+        { "ServoIndex": 1, "RelativePosition": 5 },
         { "ServoIndex": 2, "RelativePosition": -10 },
       ]
     },
@@ -96,7 +96,7 @@
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": 10 },
-        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
         { "ServoIndex": 6, "RelativePosition": 10 },
       ]
     },
@@ -109,7 +109,7 @@
       "ExecuteActionsInParallel": true,
       "Actions": [
         { "ServoIndex": 4, "RelativePosition": 10 },
-        ////{ "ServoIndex": 5, "RelativePosition": 5 },
+        { "ServoIndex": 5, "RelativePosition": 5 },
         { "ServoIndex": 6, "RelativePosition": -10 },
       ]
     },    
