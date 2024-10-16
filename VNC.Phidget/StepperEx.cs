@@ -1,13 +1,22 @@
 ﻿using System;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+
+using Phidgets;
 
 using Prism.Events;
 
+using VNC.Phidget.Events;
+using VNC.Phidget.Players;
+
 using VNCPhidget21.Configuration;
+
+using static VNC.Phidget.AdvancedstepperEx;
 
 namespace VNC.Phidget
 {
-    public class StepperEx : PhidgetEx //Stepper
+    public class StepperEx : PhidgetEx
     {
         #region Constructors, Initialization, and Load
 
@@ -22,10 +31,13 @@ namespace VNC.Phidget
             : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+
 
             EventAggregator = eventAggregator;
             InitializePhidget();
+
+            EventAggregator.GetEvent<StepperSequenceEvent>().Subscribe(TriggerSequence);
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -52,10 +64,33 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region Structures (None)
+        #region 
 
+        public struct StepperMinMax
+        {
+            //public enum LimitType
+            //{
+            //    //AccelerationMin,
+            //    //AccelerationMax,
+            //    DevicePositionMin,
+            //    PositionMin,
+            //    PositionMax,
+            //    DevicePositionMax
+            //    //VelocityMin,
+            //    //VelocityMax,
+            //}
 
-        #endregion
+            public Double AccelerationMin;
+            public Double AccelerationMax;
+            public Double DevicePositionMin;
+            //public Double PositionMin;
+            //public Double PositionMax;
+            public Double DevicePositionMax;
+            public Double VelocityMin;
+            public Double VelocityMax;
+        }
+
+        #endregionctur
 
         #region Fields and Properties
 
@@ -67,6 +102,9 @@ namespace VNC.Phidget
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
+        public bool LogActionVerification { get; set; }
+
+        public StepperMinMax[] InitialStepperLimits { get; set; } = new StepperMinMax[8];
 
         #endregion
 
@@ -179,25 +217,75 @@ namespace VNC.Phidget
 
             try
             {
-                if (LogPerformanceSequence) Log.Trace("Enter", Common.LOG_CATEGORY);
+                if (LogPerformanceSequence)
+                {
+                    startTicks = Log.Trace(
+                        $"Running Action Loops" +
+                        $" stepperSequence:>{stepperSequence.Name}<" +
+                        $" startActionLoopSequences:>{stepperSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{stepperSequence.ActionLoops}<" +
+                        $" actions:>{stepperSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{stepperSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{stepperSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                }
 
                 if (stepperSequence.Actions is not null)
                 {
                     for (int actionLoop = 0; actionLoop < stepperSequence.ActionLoops; actionLoop++)
                     {
-                        Log.Trace($"Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
+                        if (stepperSequence.StartActionLoopSequences is not null)
+                        {
+                            // TODO(crhodes)
+                            // May want to create a new player instead of reaching for the property.
+
+                            PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogSequenceAction = LogSequenceAction;
+
+                            foreach (PerformanceSequence sequence in stepperSequence.StartActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
 
                         if (stepperSequence.ExecuteActionsInParallel)
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Parallel Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            await PlaySequenceActionsInParallel(stepperSequence);
+                            Parallel.ForEach(stepperSequence.Actions, async action =>
+                            {
+                                await PerformAction(action);
+                            });
                         }
                         else
                         {
-                            if (LogPerformanceSequence) Log.Trace($"Sequential Actions Loop:{actionLoop + 1}", Common.LOG_CATEGORY);
+                            if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            await PlaySequenceActionsInSequence(stepperSequence);
+                            foreach (AdvancedstepperstepperAction action in stepperSequence.Actions)
+                            {
+                                await PerformAction(action);
+                            }
+                        }
+
+                        if (stepperSequence.ActionsDuration is not null)
+                        {
+                            if (LogSequenceAction)
+                            {
+                                Log.Trace($"Zzzzz Action:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)stepperSequence.ActionsDuration);
+                        }
+
+                        if (stepperSequence.EndActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogSequenceAction = LogSequenceAction;
+
+                            foreach (PerformanceSequence sequence in stepperSequence.EndActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
                         }
                     }
                 }
@@ -207,10 +295,268 @@ namespace VNC.Phidget
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogPerformanceSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 
+        /// <summary>
+        /// Bounds check and set acceleration
+        /// </summary>
+        /// <param name="acceleration"></param>
+        /// <param name="stepper"></param>
+        public void SetAcceleration(Double acceleration, StepperStepper stepper, Int32 index)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Begin index:{index} acceleration:{acceleration}" +
+                        $" accelerationMin:{stepper.AccelerationMin}" +
+                        //$" acceleration:{stepper.Acceleration}" + // Can't check this as it may not have been set yet
+                        $" accelerationMax:{stepper.AccelerationMax}", Common.LOG_CATEGORY);
+                }
+
+                if (acceleration < stepper.AccelerationMin)
+                {
+                    stepper.Acceleration = stepper.AccelerationMin;
+                }
+                else if (acceleration > stepper.AccelerationMax)
+                {
+                    stepper.Acceleration = stepper.AccelerationMax;
+                }
+                else
+                {
+                    stepper.Acceleration = acceleration;
+                }
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End index:{index} stepperAcceleration:{stepper.Acceleration}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index} acceleration:{acceleration}" +
+                    $" accelerationMin:{stepper.AccelerationMin}" +
+                    //$" acceleration:{stepper.Acceleration}" + // Can't check this as it may not have been set yet
+                    $" accelerationMax:{stepper.AccelerationMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set velocity
+        /// </summary>
+        /// <param name="velocityLimit"></param>
+        /// <param name="stepper"></param>
+        public void SetVelocityLimit(Double velocityLimit, StepperStepper stepper, Int32 index)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Begin index:{index}" +
+                        $" velocityLimit:{velocityLimit}" +
+                        $" stepper.velocityMin:{stepper.VelocityMin}" +
+                        $" stepper.velocityLimit:{stepper.VelocityLimit}" +
+                        $" stepper.velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
+                }
+
+                if (velocityLimit < stepper.VelocityMin)
+                {
+                    stepper.VelocityLimit = stepper.VelocityMin;
+                }
+                else if (velocityLimit > stepper.VelocityMax)
+                {
+                    stepper.VelocityLimit = stepper.VelocityMax;
+                }
+                else
+                {
+                    stepper.VelocityLimit = velocityLimit;
+                }
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End index:{index} velocityLimit:{velocityLimit} velocityLimit:{stepper.VelocityLimit}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index}" +
+                    $" velocity:{velocityLimit}" +
+                    $" stepper.velocityMin:{stepper.VelocityMin}" +
+                    $" stepper.velocityLimit:{stepper.VelocityLimit}" +
+                    $" stepper.velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMin"></param>
+        /// <param name="stepper"></param>
+        public void SetPositionMin(Double positionMin, StepperStepper stepper, Int32 index)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Begin index:{index} positionMin:{positionMin}" +
+                        $" stepper.PositionMin:{stepper.PositionMin}" +
+                        $" stepper.PositionMax:{stepper.PositionMax}" +
+                        $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+                        $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                if (positionMin < 0)
+                {
+                    positionMin = InitialStepperLimits[index].DevicePositionMin;
+                }
+                else if (positionMin < InitialStepperLimits[index].DevicePositionMin)
+                {
+                    positionMin = InitialStepperLimits[index].DevicePositionMin;
+                }
+                else if (positionMin > stepper.PositionMax)
+                {
+                    positionMin = stepper.PositionMax;
+                }
+
+                if (stepper.PositionMin != positionMin) stepper.PositionMin = positionMin;
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End index:{index} positionMin:{positionMin} stepper.PositionMin:{stepper.PositionMin}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} {pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"index:{index} positionMin:{positionMin}" +
+                    $" stepper.PositionMin:{stepper.PositionMin}" +
+                    $" stepper.PositionMax:{stepper.PositionMax}" +
+                    $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+                    $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="stepper"></param>
+        public Double SetPosition(Double position, StepperStepper stepper, Int32 index)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Begin stepper:{index} position:{position}" +
+                        $" stepper.PositionMin:{stepper.PositionMin}" +
+                        $" stepper.PositionMax:{stepper.PositionMax}" +
+                        $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+                        $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                if (position < stepper.PositionMin)
+                {
+                    position = stepper.PositionMin;
+                }
+                else if (position > stepper.PositionMax)
+                {
+                    position = stepper.PositionMax;
+                }
+
+                // TODO(crhodes)
+                // Maybe save last position set and not bother checking stepper.Position is same
+                if (stepper.Position != position) stepper.Position = position;
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End stepper:{index} position:{position} stepper.Position:{stepper.Position}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} stepper.position:{stepper.Position}" +
+                    $" stepper.PositionMin:{stepper.PositionMin}" +
+                    $" stepper.PositionMax:{stepper.PositionMax}" +
+                    $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+                    $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            return position;
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMax"></param>
+        /// <param name="stepper"></param>
+        public void SetPositionMax(Double positionMax, StepperStepper stepper, Int32 index)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Begin stepper:{index} positionMax:{positionMax}" +
+                        $" stepper.PositionMin:{stepper.PositionMin}" +
+                        $" stepper.PositionMax:{stepper.PositionMax}" +
+                        $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+                        $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                if (positionMax < 0)
+                {
+                    positionMax = InitialStepperLimits[index].DevicePositionMax;
+                }
+                else if (positionMax < stepper.PositionMin)
+                {
+                    positionMax = stepper.PositionMin;
+                }
+                else if (positionMax > InitialStepperLimits[index].DevicePositionMax)
+                {
+                    positionMax = InitialStepperLimits[index].DevicePositionMax;
+                }
+
+                if (stepper.PositionMax != positionMax) stepper.PositionMax = positionMax;
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End stepper:{index} positionMax:{positionMax} stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
         #endregion
 
         #region Protected Methods (None)
@@ -220,14 +566,294 @@ namespace VNC.Phidget
 
         #region Private Methods
 
-        private Task PlaySequenceActionsInParallel(StepperSequence stepperSequence)
+        private async Task PerformAction(StepperAction action)
         {
-            throw new NotImplementedException();
+            Int64 startTicks = 0;
+
+            Int32 index = action.StepperIndex;
+
+            StringBuilder actionMessage = new StringBuilder();
+
+            if (LogSequenceAction)
+            {
+                startTicks = Log.Trace($"Enter stepper:{index}", Common.LOG_CATEGORY);
+                actionMessage.Append($"stepper:{index}");
+            }
+
+            StepperStepper stepper = Stepper.steppers[index];
+
+            try
+            {
+                //if (action.stepperType is not null)
+                //{
+                //    if (LogSequenceAction) actionMessage.Append($" stepperType:>{action.stepperType}<");
+
+                //    stepper.Type = (Phidgets.stepperstepper.stepperType)action.stepperType;
+
+                //    // NOTE(crhodes)
+                //    // Maybe we should sleep for a little bit to allow this to happen
+                //    Thread.Sleep(1);
+
+
+                //    // Save the refreshed values
+                //    SavestepperLimits(stepper, index);
+                //}
+
+                // NOTE(crhodes)
+                // These can be performed without the stepper being engaged.  This helps address
+                // previous values that get applied when stepper engaged.
+                // The stepper still snaps to last position when enabled.  No known way to address that.
+
+                if (action.Acceleration is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
+                    var acceleration = action.Acceleration;
+
+                    if (acceleration < 0)
+                    {
+                        if (acceleration == -1)        // -1 is magic number for AccelerationMin :)
+                        {
+                            acceleration = InitialStepperLimits[index].AccelerationMin;
+                        }
+                        else if (acceleration == -2)   // -2 is magic number for AccelerationMax :)
+                        {
+                            acceleration = InitialStepperLimits[index].AccelerationMax;
+                        }
+                    }
+
+                    SetAcceleration((Double)acceleration, stepper, index);
+                }
+
+                if (action.VelocityLimit is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
+                    var velocityLimit = action.VelocityLimit;
+
+                    if (velocityLimit < 0)
+                    {
+                        if (velocityLimit == -1)        // -1 is magic number for VelocityMin :)
+                        {
+                            velocityLimit = InitialStepperLimits[index].VelocityMin;
+                        }
+                        else if (velocityLimit == -2)   // -2 is magic number for VelocityMax :)
+                        {
+                            velocityLimit = InitialStepperLimits[index].VelocityMax;
+                        }
+                    }
+
+                    SetVelocityLimit((Double)velocityLimit, stepper, index);
+                }
+
+                if (action.PositionMin is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionMin}<");
+
+                    SetPositionMin((Double)action.PositionMin, stepper, index);
+                }
+
+                if (action.PositionMax is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionMax}<");
+
+                    SetPositionMax((Double)action.PositionMax, stepper, index);
+                }
+
+                // NOTE(crhodes)
+                // Engage the stepper before doing other actions as some,
+                // e.g. TargetPosition, requires stepper to be engaged.
+
+                if (action.Engaged is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" engaged:>{action.Engaged}<");
+
+                    stepper.Engaged = (Boolean)action.Engaged;
+
+                    if ((Boolean)action.Engaged) VerifystepperEngaged(stepper, index);
+                }
+
+                //if (action.Acceleration is not null)
+                //{
+                //    if (LogSequenceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
+
+                //    SetAcceleration((Double)action.Acceleration, stepper, index);
+                //}
+
+                if (action.RelativeAcceleration is not null)
+                {
+                    var newAcceleration = stepper.Acceleration + (Double)action.RelativeAcceleration;
+                    if (LogSequenceAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
+
+                    SetAcceleration(newAcceleration, stepper, index);
+                }
+
+                //if (action.VelocityLimit is not null)
+                //{
+                //    if (LogSequenceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
+
+                //    SetVelocityLimit((Double)action.VelocityLimit, stepper, index);
+                //}
+
+                if (action.RelativeVelocityLimit is not null)
+                {
+                    var newVelocityLimit = stepper.VelocityLimit + (Double)action.RelativeVelocityLimit;
+                    if (LogSequenceAction) actionMessage.Append($" relativeVelocityLimit:>{action.RelativeVelocityLimit}< ({newVelocityLimit})");
+
+                    SetVelocityLimit(newVelocityLimit, stepper, index);
+                }
+
+                if (action.TargetPosition is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
+
+                    Double targetPosition = (Double)action.TargetPosition;
+
+                    if (targetPosition < 0)
+                    {
+                        if (action.TargetPosition == -1)        // -1 is magic number for DevicePostionMin :)
+                        {
+                            targetPosition = InitialStepperLimits[index].DevicePositionMin;
+                        }
+                        else if (action.TargetPosition == -2)   // -2 is magic number for DevicePostionMax :)
+                        {
+                            targetPosition = InitialStepperLimits[index].DevicePositionMax;
+                        }
+                    }
+
+                    VerifyNewPositionAchieved(stepper, index, SetPosition(targetPosition, stepper, index));
+                }
+
+                if (action.RelativePosition is not null)
+                {
+                    var newPosition = stepper.Position + (Double)action.RelativePosition;
+                    if (LogSequenceAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({newPosition})");
+
+                    VerifyNewPositionAchieved(stepper, index, SetPosition(newPosition, stepper, index));
+                }
+
+                if (action.Duration > 0)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
         }
 
-        private Task PlaySequenceActionsInSequence(StepperSequence stepperSequence)
+        private async void TriggerSequence(SequenceEventArgs args)
         {
-            throw new NotImplementedException();
+            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            var stepperSequence = args.stepperSequence;
+
+            await RunActionLoops(stepperSequence);
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void VerifyStepperEngaged(Phidgets.StepperStepper stepper, Int32 index)
+        {
+            Int64 startTicks = 0;
+            var msSleep = 0;
+
+            try
+            {
+                if (LogActionVerification)
+                {
+                    startTicks = Log.Trace($"Enter stepper:{index} engaged:{stepper.Engaged}", Common.LOG_CATEGORY);
+                }
+
+                do
+                {
+                    Thread.Sleep(1);
+                    msSleep++;
+                } while (stepper.Engaged != true);
+
+                if (LogActionVerification)
+                {
+                    Log.Trace($"Exit stepper:{index} engaged:{stepper.Engaged} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// This may not be needed for a Stepper
+        /// </summary>
+        /// <param name="stepper"></param>
+        /// <param name="index"></param>
+        /// <param name="targetPosition"></param>
+        private void VerifyNewPositionAchieved(Phidgets.StepperStepper stepper, Int32 index, double targetPosition)
+        {
+            Int64 startTicks = 0;
+            var msSleep = 0;
+
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    startTicks = Log.Trace($"Enter stepper:{index} targetPosition:{targetPosition}", Common.LOG_CATEGORY);
+                }
+
+                //while (stepper.Position != targetPosition)
+                //{
+                //    Thread.Sleep(1);
+                //    msSleep++;
+                //}
+
+                // NOTE(crhodes)
+                // Maybe poll velocity != 0
+                do
+                {
+                    if (LogActionVerification) Log.Trace($"stepper:{index}" +
+                        $" - velocity:{stepper.Velocity,8:0.000} position:{stepper.CurrentPosition,7:0.000}" +
+                        $" - stopped:{stepper.Stopped}", Common.LOG_CATEGORY);
+                    Thread.Sleep(1);
+                    msSleep++;
+                }
+                while (stepper.CurrentPosition != targetPosition);
+                // NOTE(crhodes)
+                // Stopped does not mean we got there.
+                //while (! stepper.Stopped ) ;
+
+                if (LogActionVerification)
+                {
+                    Log.Trace($"Exit stepper:{index} stepperPosition:{stepper.CurrentPosition,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
 
         #endregion

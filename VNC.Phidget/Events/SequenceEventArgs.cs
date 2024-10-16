@@ -6,5 +6,6 @@ namespace VNC.Phidget.Events
     {
         public AdvancedServoSequence AdvancedServoSequence { get; set; }
         public InterfaceKitSequence InterfaceKitSequence { get; set; }
+        public StepperSequence stepperSequence { get; set; }
     }
 }

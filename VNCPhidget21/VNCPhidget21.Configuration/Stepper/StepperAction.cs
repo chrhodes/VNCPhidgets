@@ -5,9 +5,9 @@ namespace VNCPhidget21.Configuration
     public class StepperAction
     {
         /// <summary>
-        /// Index of servo on board 
+        /// Index of stepper on board (likley 1)
         /// </summary>
-        public int ServoIndex { get; set; }
+        public int StepperIndex { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)

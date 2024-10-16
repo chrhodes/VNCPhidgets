@@ -4,13 +4,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
 using Phidgets;
 using Phidgets.Events;
 
 using Prism.Events;
-using Prism.Regions.Behaviors;
 
 using VNC.Phidget.Events;
 using VNC.Phidget.Players;
@@ -19,7 +16,7 @@ using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {
-    public class AdvancedServoEx : PhidgetEx // AdvancedServo
+    public class AdvancedServoEx : PhidgetEx
     {
         #region Constructors, Initialization, and Load
 
@@ -928,7 +925,7 @@ namespace VNC.Phidget
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void VerifyServoEngaged(AdvancedServoServo servo, Int32 index)
+        private void VerifyServoEngaged(Phidgets.AdvancedServoServo servo, Int32 index)
         {
             Int64 startTicks = 0;
             var msSleep = 0;

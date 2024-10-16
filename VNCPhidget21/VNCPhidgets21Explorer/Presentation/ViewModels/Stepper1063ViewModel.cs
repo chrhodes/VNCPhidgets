@@ -132,6 +132,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        #region Host
+
         private string _hostConfigFileName;
 
         public string HostConfigFileName
@@ -171,6 +173,66 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region Phidget
+
+
+        private Phidgets.Phidget _phidgetDevice;
+        public Phidgets.Phidget PhidgetDevice
+        {
+            get => _phidgetDevice;
+            set
+            {
+                if (_phidgetDevice == value)
+                    return;
+                _phidgetDevice = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPhidgetEvents = false;
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper is not null)
+                {
+                    ActiveStepper.LogPhidgetEvents = value;
+
+                    // NOTE(crhodes)
+                    // There is some logging in StepperProperties that is handled separate
+                    // from the logging in AdvancedServoEx and PhidgetEx
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        StepperProperties[i].LogPhidgetEvents = value;
+                    }
+                }
+            }
+        }
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
         public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
@@ -245,40 +307,49 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
+        private int? _stepperCount;
+        public int? StepperCount
         {
-            get => _phidgetDevice;
+            get => _stepperCount;
             set
             {
-                if (_phidgetDevice == value)
+                if (_stepperCount == value)
                     return;
-                _phidgetDevice = value;
+                _stepperCount = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool? _deviceAttached;
-        public bool? DeviceAttached
+        private StepperProperties[] _stepperProperties = new StepperProperties[8]
         {
-            get => _deviceAttached;
+            new StepperProperties() { ServoIndex = 0 },
+            new StepperProperties() { ServoIndex = 1 },
+            new StepperProperties() { ServoIndex = 2 },
+            new StepperProperties() { ServoIndex = 3 },
+            new StepperProperties() { ServoIndex = 4 },
+            new StepperProperties() { ServoIndex = 5 },
+            new StepperProperties() { ServoIndex = 6 },
+            new StepperProperties() { ServoIndex = 7 },
+        };
+
+        public StepperProperties[] StepperProperties
+        {
+            get => _stepperProperties;
             set
             {
-                if (_deviceAttached == value)
+                if (_stepperProperties == value)
                     return;
-                _deviceAttached = value;
+                _stepperProperties = value;
                 OnPropertyChanged();
             }
         }
-
-        public ICommand SayHelloCommand { get; private set; }
 
 
 
         #region Stepper Properties
 
 
-         private Double _currentMaxS0;
+        private Double _currentMaxS0;
         public Double CurrentMax_S0
         {
             get => _currentMaxS0;
@@ -1443,8 +1514,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveStepper_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                //Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                //Log.Trace($"ActiveStepper_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                DeviceAttached = ActiveStepper.Stepper.Attached;
                 // TODO(crhodes)
                 // This is where properties should be grabbed
                 UpdateStepperProperties();
@@ -1454,9 +1527,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            OpenStepperCommand.RaiseCanExecuteChanged();
+            RefreshStepperCommand.RaiseCanExecuteChanged();
+            CloseStepperCommand.RaiseCanExecuteChanged();
         }
-
-
 
         private void ActiveStepper_Detach(object sender, Phidgets.Events.DetachEventArgs e)
         {
@@ -1494,15 +1569,17 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // May not need this anymore.  Consider moving into ActiveStepper_{Attach,Detach}
 
-            if (ActiveStepper.Stepper.Attached)
+            if ((Boolean)DeviceAttached)
             {
-                DeviceAttached = ActiveStepper.Stepper.Attached;
+                //DeviceAttached = ActiveStepper.Stepper.Attached;
 
                 StepperStepperCollection steppers = ActiveStepper.Stepper.steppers;
 
                 StepperStepper stepper = null;
 
                 StepperDigitalInputCollection inputs = ActiveStepper.Stepper.inputs;
+
+                Stepper
 
                 for (int i = 0; i < steppers.Count; i++)
                 {

@@ -1635,7 +1635,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             if ((Boolean)DeviceAttached)
             {
                 AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-                Phidgets.AdvancedServoServo servo = null;
+                AdvancedServoServo servo = null;
 
                 ServoCount = servos.Count;
 
