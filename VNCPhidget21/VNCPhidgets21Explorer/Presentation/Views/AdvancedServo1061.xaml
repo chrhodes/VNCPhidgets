@@ -35,12 +35,13 @@
     
     xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
     
-    xmlns:prism="http://prismlibrary.com/"   
+    xmlns:prism="http://prismlibrary.com/"
+    
     prism:ViewModelLocator.AutoWireViewModel="False"
 
     Background="{StaticResource AdvancedServo1061Background}"
     
-    d:DesignWidth="800" 
+    d:DesignWidth="1000" 
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >
     <!--xmlns:phidgetServoServo="clr-namespace:Phidgets.ServoServo;assembly=Phidget21.NET"-->
@@ -118,17 +119,15 @@
 
         <controls:HostSelector DockPanel.Dock="Top" />
 
-        <!--<views:PerformanceSelector DockPanel.Dock="Bottom" />-->
-
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
 
                 <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
                     <dxe:ComboBoxEdit Width="150" 
-                            ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
-                            SelectedItem="{Binding SelectedAdvancedServo}"
-                            SelectedIndex="0"/>
+                        ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
+                        SelectedItem="{Binding SelectedAdvancedServo}"
+                        SelectedIndex="0"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
@@ -136,38 +135,8 @@
                                   Background="White" 
                                   Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                 </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" VerticalAlignment="Center" >
-
-                    <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
-
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                    <Button 
-		                    Command="{Binding OpenAdvancedServoCommand }"
-		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
-		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
-                </dxlc:LayoutItem>
-                
-                <!--<dxlc:LayoutGroup Header="Center and Intialize Motion" View="GroupBox" Orientation="Horizontal"
-                                  HorizontalAlignment="Right"
-                                  Margin="0,0,0,-5" Padding="-5">-->
+           
                 <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
-
-                    <!--<dxlc:LayoutItem Margin="-5">
-                        <Button 
-		                    Command="{Binding InitializeMediumAdvancedServoCommand }"
-		                    Content="{Binding InitializeMediumAdvancedServoContent, FallbackValue='Medium' }"
-		                    ToolTip="{Binding InitializeMediumAdvancedServoToolTip, FallbackValue='Initialize Medium and Center Position' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5">
-                        <Button 
-		                    Command="{Binding InitializeFastAdvancedServoCommand }"
-		                    Content="{Binding InitializeFastAdvancedServoContent, FallbackValue='Fast' }"
-		                    ToolTip="{Binding InitializeFastAdvancedServoToolTip, FallbackValue='Initialize Fast and Center Position' }" />
-                    </dxlc:LayoutItem>-->
 
                     <dxlc:LayoutItem Label="Select Velocity"
              	        LabelPosition="Left">
@@ -215,20 +184,6 @@
 
                 <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
 
-                    <!--<dxlc:LayoutItem Margin="-5">
-                        <Button 
-                            Command="{Binding InitializeMediumAdvancedServoCommand }"
-                            Content="{Binding InitializeMediumAdvancedServoContent, FallbackValue='Medium' }"
-                            ToolTip="{Binding InitializeMediumAdvancedServoToolTip, FallbackValue='Initialize Medium and Center Position' }" />
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5">
-                        <Button 
-                            Command="{Binding InitializeFastAdvancedServoCommand }"
-                            Content="{Binding InitializeFastAdvancedServoContent, FallbackValue='Fast' }"
-                            ToolTip="{Binding InitializeFastAdvancedServoToolTip, FallbackValue='Initialize Fast and Center Position' }" />
-                    </dxlc:LayoutItem>-->
-
                     <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
                         <!--<dxe:ComboBoxEdit		                                 
                         EditValue="{Binding
@@ -272,6 +227,17 @@
 
                 </dxlc:LayoutGroup>
 
+                <!--<dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                    <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+                </dxlc:LayoutItem>-->
+
+                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <Button 
+		                    Command="{Binding OpenAdvancedServoCommand }"
+		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
+		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
+                </dxlc:LayoutItem>
+                
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button 
                 		Command="{Binding RefreshAdvancedServoCommand }"
@@ -288,24 +254,33 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Name="lgPhidgetStatus" Header="PhidgetDevice Status"  Orientation="Vertical" View="GroupBox" 
-                                  IsCollapsible="True" IsCollapsed="True"  >
+            <dxlc:LayoutGroup Name="lgPhidgetStatus" View="GroupBox" Header="PhidgetDevice Status and Event Logging"  
+                              Orientation="Vertical" 
+                              IsCollapsible="True" IsCollapsed="False"  >
 
-                <controls:PhidgetDevice x:Name="Phidget1" Margin="-10,-10,-10,0" 
+                <controls:PhidgetDevice x:Name="Phidget1" Margin="-5" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
 
-                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  Margin="-5,0,-5,0"
+                                  Padding="5,0,0,0"
+                                  Background="{StaticResource PhidgetBackground}">
 
                     <dxe:CheckEdit
-                            Content="Log CurrentChange Events"
-                            IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                        Content="Log CurrentChange Events"
+                        IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
-                            Content="Log PositionChange Events"
-                            IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
+                        Content="Log PositionChange Events"
+                        IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                             Content="Log VelocityChange Events"
-                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    
                 </dxlc:LayoutGroup>
                 
             </dxlc:LayoutGroup>

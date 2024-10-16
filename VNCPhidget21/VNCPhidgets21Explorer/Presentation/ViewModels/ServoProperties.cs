@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Windows;
-
-using DevExpress.Xpf.Core.ConditionalFormatting.Native;
-using DevExpress.XtraRichEdit.Commands;
 
 using Phidgets;
 

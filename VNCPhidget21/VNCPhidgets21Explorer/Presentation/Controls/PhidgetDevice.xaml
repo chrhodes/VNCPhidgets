@@ -20,7 +20,7 @@
     Background="{StaticResource PhidgetBackground}"
 
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
-    Height="115"
+    Height="125"
 >
 <!-- NOTE(crhodes)
     Have to set the Height manually above to get the control to behave when embedded in another Xaml file.
@@ -66,9 +66,9 @@
     <!-- </UserControl.DataContext> -->
 
     <!-- Simple Layout using Grid -->
-    <dxlc:LayoutControl Orientation="Vertical">
+    <!--<dxlc:LayoutControl Orientation="Vertical" Padding="2">-->
 
-        <dxlc:LayoutGroup x:Name="lgPhidgetDevice" Orientation="Vertical" View="Group">
+        <dxlc:LayoutGroup x:Name="lgPhidgetDevice" Orientation="Vertical" View="Group" Padding="5">
             <!--<dxlc:LayoutGroup.GroupBoxStyle>
                        <Style TargetType="dxlc:GroupBox">
                            <Setter Property="Background" Value="Transparent" />
@@ -161,8 +161,14 @@
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
 
+            <!-- All Phidgets have general events, see PhidgetEx -->
+            
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <dxe:CheckEdit Content="Log Phidget Events" IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+            </dxlc:LayoutItem>
+
         </dxlc:LayoutGroup>
         
-    </dxlc:LayoutControl>
+    <!--</dxlc:LayoutControl>-->
     
 </vncmvvm:ViewBase>

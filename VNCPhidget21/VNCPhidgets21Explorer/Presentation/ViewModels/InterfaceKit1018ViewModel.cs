@@ -18,7 +18,8 @@ using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    public class InterfaceKit1018ViewModel : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
+    public class InterfaceKit1018ViewModel 
+        : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -43,25 +44,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // Turn on logging of PropertyChanged from VNC.Core
-            // We display the logging in 
-            //LogOnPropertyChanged = true;
-
             // TODO(crhodes)
             //
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
+
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
             CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
 
-            // TODO(crhodes)
+            // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
+            // This could also come from PerformanceLibrary.
+            // See HackAroundViewModel.InitializeViewModel()
+            // Or maybe a method on something else in VNCPhidget21.Configuration
 
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
-
-            //SayHelloCommand = new DelegateCommand(
-            //    SayHello, SayHelloCanExecute);
 
             Message = "InterfaceKitViewModel says hello";
 
@@ -78,8 +76,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             VNCPhidgetConfig.HostConfig ? hostConfig = 
                 JsonSerializer.Deserialize< VNCPhidgetConfig.HostConfig >
                 (jsonString, GetJsonSerializerOptions());
-            this.Hosts = hostConfig.Hosts.ToList();
-            this.Sensors2 = hostConfig.Sensors.ToList();
+
+            Hosts = hostConfig.Hosts.ToList();
+            Sensors2 = hostConfig.Sensors.ToList();
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -109,6 +108,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        private string _message;
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Host
+
         private string _hostConfigFileName;
 
         public string HostConfigFileName
@@ -124,42 +138,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        //private VNCPhidgetConfig.HostConfig _hostConfig;
-        //public VNCPhidgetConfig.HostConfig HostConfig
-        //{
-        //    get => _hostConfig;
-        //    set
-        //    {
-        //        if (_hostConfig == value)
-        //            return;
-        //        _hostConfig = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts
         {
-            get
-            {
-                if (null == _Hosts)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Hosts =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-                    //    select new Host(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Hosts;
-            }
-
+            get => _Hosts;
             set
             {
                 _Hosts = value;
@@ -180,6 +162,58 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region Phidget
+
+        private Phidgets.Phidget _phidgetDevice;
+        public Phidgets.Phidget PhidgetDevice
+        {
+            get => _phidgetDevice;
+            set
+            {
+                if (_phidgetDevice == value)
+                    return;
+                _phidgetDevice = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _logPhidgetEvents = false;
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null) ActiveInterfaceKit.LogPhidgetEvents = value;
+            }
+        }
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region InterfaceKit
+
+        #endregion
 
         private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
         public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
@@ -256,47 +290,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
-        {
-            get => _phidgetDevice;
-            set
-            {
-                if (_phidgetDevice == value)
-                    return;
-                _phidgetDevice = value;
-                OnPropertyChanged();
-            }
-        }
 
 
-        private bool _logPhidgetEvents = false;
-        public bool LogPhidgetEvents
-        {
-            get => _logPhidgetEvents;
-            set
-            {
-                if (_logPhidgetEvents == value)
-                    return;
-                _logPhidgetEvents = value;
-                OnPropertyChanged();
 
-                if (ActiveInterfaceKit is not null) ActiveInterfaceKit.LogPhidgetEvents = value;
-            }
-        }
-
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
 
         private bool _logInputChangeEvents = false;
         public bool LogInputChangeEvents
@@ -380,18 +376,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    }
         //}
 
-        private bool? _deviceAttached;
-        public bool? DeviceAttached
-        {
-            get => _deviceAttached;
-            set
-            {
-                if (_deviceAttached == value)
-                    return;
-                _deviceAttached = value;
-                OnPropertyChanged();
-            }
-        }
+
 
         //private bool? _ikAttachedToServer;
         //public bool? IkAttachedToServer
@@ -1856,108 +1841,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        #region Hosts
-
-        //private Host _HOST;
-        //public Host HOST
-        //{
-        //    get { return _HOST; }
-        //    set { _HOST = value; }
-        //}
-
-        //private Dictionary<string, Host> _HostD;
-        //public Dictionary<string, Host> HostD
-        //{
-        //    get
-        //    {
-        //        if (_HostD == null)
-        //        {
-        //            _HostD = new Dictionary<string, Host>();
-        //        }
-        //        return _HostD;
-        //    }
-        //    set
-        //    {
-        //        _HostD = value;
-        //    }
-        //}
-
-        //private IEnumerable<Host> _Hosts;
-        //public IEnumerable<Host> Hosts
-        //{
-        //    get
-        //    {
-        //        if (null == _Hosts)
-        //        {
-        //            // TODO(crhodes)
-        //            // Load this like the sensors.xml for now
-
-        //            //_Hosts =
-        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-        //            //    select new Host(
-        //            //        item.Attribute("Name").Value,
-        //            //        item.Attribute("IPAddress").Value,
-        //            //        item.Attribute("Port").Value,
-        //            //        bool.Parse(item.Attribute("Enable").Value)
-        //            //        );
-        //        }
-
-        //        return _Hosts;
-        //    }
-
-        //    set
-        //    {
-        //        _Hosts = value;
-        //    }
-        //}
-
-        #endregion
-
-        #region InterfaceKits
-
-        //private InterfaceKitEx _IK;
-        //public InterfaceKitEx IK
-        //{
-        //    get { return _IK; }
-        //    set { _IK = value; }
-        //}
-
-        //private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
-        //public Dictionary<string, InterfaceKitEx> InterfaceKitsD
-        //{
-        //    get
-        //    {
-        //        if (null == _InterfaceKitsD)
-        //        {
-        //            _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
-        //        }
-        //        return _InterfaceKitsD;
-        //    }
-        //    set
-        //    {
-        //        _InterfaceKitsD = value;
-        //    }
-        //}
-
-        //private Collection<string> _InterfaceKits;
-        //public Collection<string> InterfaceKits
-        //{
-        //    get
-        //    {
-        //        if (null == _InterfaceKits)
-        //        {
-        //            _InterfaceKits = new Collection<string>();
-        //        }
-        //        return _InterfaceKits;
-        //    }
-        //    set
-        //    {
-        //        _InterfaceKits = value;
-        //    }
-        //}
-
-        #endregion
 
         #endregion
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Phidgets;
@@ -53,18 +54,23 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
+
             OpenStepperCommand = new DelegateCommand(OpenStepper, OpenStepperCanExecute);
+            RefreshStepperCommand = new DelegateCommand(RefreshStepper, RefreshStepperCanExecute);
             CloseStepperCommand = new DelegateCommand(CloseStepper, CloseStepperCanExecute);
 
-            // TODO(crhodes)
+            InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
+            InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
+
+            // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
+            // This could also come from PerformanceLibrary.
+            // See HackAroundViewModel.InitializeViewModel()
+            // Or maybe a method on something else in VNCPhidget21.Configuration
 
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
-
-            //SayHelloCommand = new DelegateCommand(
-            //    SayHello, SayHelloCanExecute);
-                
+               
             Message = "Stepper1063ViewModel says hello";
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -112,6 +118,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        private string _message;
+
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _hostConfigFileName;
 
         public string HostConfigFileName
@@ -127,42 +147,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        //private VNCPhidgetConfig.HostConfig _hostConfig;
-        //public VNCPhidgetConfig.HostConfig HostConfig
-        //{
-        //    get => _hostConfig;
-        //    set
-        //    {
-        //        if (_hostConfig == value)
-        //            return;
-        //        _hostConfig = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts
         {
-            get
-            {
-                if (null == _Hosts)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Hosts =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-                    //    select new Host(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Hosts;
-            }
-
+            get => _Hosts;
             set
             {
                 _Hosts = value;
@@ -179,7 +167,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
-                Steppers = _selectedHost.Steppers.ToList<VNCPhidgetConfig.Stepper>();
+                Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
                 OnPropertyChanged();
             }
         }
@@ -285,19 +273,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public ICommand SayHelloCommand { get; private set; }
 
-        private string _message;
 
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
 
         #region Stepper Properties
 
@@ -906,6 +882,249 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region InitializeVelocityCommand
+
+        //public DelegateCommand InitializeVelocityCommand { get; set; }
+        public DelegateCommand<string> InitializeVelocityCommand { get; set; }
+        public string InitializeVelocityContent { get; set; } = "Initilize Velocity";
+        public string InitializeVelocityToolTip { get; set; } = "Initialize Velocity using Velocity Scale";
+
+        // Can get fancy and use Resources
+        //public string InitializeSlowStepperContent { get; set; } = "ViewName_InitializeSlowStepperContent";
+        //public string InitializeSlowStepperToolTip { get; set; } = "ViewName_InitializeSlowStepperContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_InitializeSlowStepperContent">InitializeSlowStepper</system:String>
+        //    <system:String x:Key="ViewName_InitializeSlowStepperContentToolTip">InitializeSlowStepper ToolTip</system:String>  
+
+        //public void InitializeSlowStepper()
+
+        public void InitializeVelocity(string speed)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeVelocity) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called InitializeVelocity";
+
+            if ((Boolean)DeviceAttached)
+            {
+                //StepperServoCollection servos = ActiveStepper.Stepper.servos;
+
+                try
+                {
+                    //for (int i = 0; i < servos.Count; i++)
+                    //{
+                    //    StepperProperties[i].InitializeVelocity(ConvertStringToInitializeMotion(speed));
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish(
+            //      new InitializeSlowStepperEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class InitializeSlowStepperEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Subscribe(InitializeSlowStepper);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeVelocity) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        //public bool InitializeSlowStepperCanExecute()
+        public bool InitializeVelocityCanExecute(string speed)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region InitializeAccelerationCommand
+
+        //public DelegateCommand InitializeVelocityCommand { get; set; }
+        public DelegateCommand<string> InitializeAccelerationCommand { get; set; }
+        public string InitializeAccelerationContent { get; set; } = "Initilize Acceleration";
+        public string InitializeAccelerationToolTip { get; set; } = "Initialize Acceleration using Acceleration Scale";
+
+        // Can get fancy and use Resources
+        //public string InitializeSlowStepperContent { get; set; } = "ViewName_InitializeSlowStepperContent";
+        //public string InitializeSlowStepperToolTip { get; set; } = "ViewName_InitializeSlowStepperContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_InitializeSlowStepperContent">InitializeSlowStepper</system:String>
+        //    <system:String x:Key="ViewName_InitializeSlowStepperContentToolTip">InitializeSlowStepper ToolTip</system:String>  
+
+        //public void InitializeSlowStepper()
+
+        public void InitializeAcceleration(string speed)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeAcceleration) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called InitializeAcceleration";
+
+            if ((Boolean)DeviceAttached)
+            {
+                //StepperServoCollection servos = ActiveStepper.Stepper.servos;
+
+                try
+                {
+                    //for (int i = 0; i < servos.Count; i++)
+                    //{
+                    //    StepperProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish(
+            //      new InitializeSlowStepperEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class InitializeSlowStepperEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Subscribe(InitializeSlowStepper);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeAcceleration) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+
+        //public bool InitializeSlowStepperCanExecute()
+        public bool InitializeAccelerationCanExecute(string speed)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region RefreshStepper Command
+
+        public DelegateCommand RefreshStepperCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> RefreshStepperCommand { get; set; }
+        //public TYPE RefreshStepperCommandParameter;
+        public string RefreshStepperContent { get; set; } = "Refresh";
+        public string RefreshStepperToolTip { get; set; } = "Refresh ToolTip";
+
+        // Can get fancy and use Resources
+        //public string RefreshStepperContent { get; set; } = "ViewName_RefreshStepperContent";
+        //public string RefreshStepperToolTip { get; set; } = "ViewName_RefreshStepperContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RefreshStepperContent">RefreshStepper</system:String>
+        //    <system:String x:Key="ViewName_RefreshStepperContentToolTip">RefreshStepper ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void RefreshStepper(TYPE value)
+        public async void RefreshStepper()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RefreshStepper) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called RefreshStepper";
+
+            await Task.Run(() => RefreshStepperUIProperties());
+            //RefreshStepperUIProperties();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RefreshStepperEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RefreshStepperEvent>().Publish(
+            //      new RefreshStepperEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class RefreshStepperEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RefreshStepperEvent>().Subscribe(RefreshStepper);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RefreshStepper) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool RefreshStepperCanExecute(TYPE value)
+        public bool RefreshStepperCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
         #region CloseStepper Command
 
         public DelegateCommand CloseStepperCommand { get; set; }
@@ -1237,6 +1456,39 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+
+
+        private void ActiveStepper_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            try
+            {
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveStepper_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                // TODO(crhodes)
+                // What kind of cleanup?  Maybe set ActiveStepper to null.  Clear UI
+                UpdateStepperProperties();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+
+        #endregion
+
+        #region Protected Methods
+
+
+        #endregion
+
+        #region Private Methods
+
         private void UpdateStepperProperties()
         {
             // TODO(crhodes)
@@ -1261,14 +1513,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         case 0:
                             Stopped_S0 = stepper.Stopped;
                             Engaged_S0 = stepper.Engaged;
-               
+
 
                             CurrentMax_S0 = stepper.CurrentMax;
                             Current_S0 = stepper.Current;
                             //CurrentLimit_S0 = stepper.CurrentLimit; // Thows exception
                             CurrentMin_S0 = stepper.CurrentMin;
 
- 
+
                             AccelerationMax_S0 = stepper.AccelerationMax;
                             //Acceleration_S0 = stepper.Acceleration; // Throws exception
                             AccelerationMin_S0 = stepper.AccelerationMin;
@@ -1391,56 +1643,100 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             CloseStepperCommand.RaiseCanExecuteChanged();
         }
 
-        private void ActiveStepper_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void RefreshStepperUIProperties()
         {
-            try
+            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
+
+            if ((Boolean)DeviceAttached)
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveStepper_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+                //StepperServoCollection servos = ActiveStepper.Stepper.servos;
+                //Phidgets.StepperServo servo = null;
 
-                // TODO(crhodes)
-                // What kind of cleanup?  Maybe set ActiveStepper to null.  Clear UI
-                UpdateStepperProperties();
+                //ServoCount = servos.Count;
+
+                //try
+                //{
+                //    for (int i = 0; i < ServoCount; i++)
+                //    {
+                //        StepperProperties[i].RefreshPropertiesFromServo();
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Log.Error(ex, Common.LOG_CATEGORY);
+                //}
             }
-            catch (Exception ex)
+            else
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                DeviceAttached = null;
+                InitializStepperUI();
             }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #endregion
-
-        #region Public Methods
-
-
-        #endregion
-
-        #region Protected Methods
-
-
-        #endregion
-
-        #region Private Methods
-
-        #region SayHello Command
-
-        private void SayHello()
+        private void InitializStepperUI()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
-
-            Message = $"Hello from {this.GetType()}";
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    StepperProperties[i].InitializePropertiesToNull();
+            //}
         }
-        
-        private bool SayHelloCanExecute()
+
+        private ServoProperties.MotionScale ConvertStringToInitializeMotion(string speed)
         {
-            return true;
+            ServoProperties.MotionScale result = ServoProperties.MotionScale.Percent05;
+
+            switch (speed)
+            {
+                case "Min":
+                    result = ServoProperties.MotionScale.Min;
+                    break;
+
+                case "05%":
+                    result = ServoProperties.MotionScale.Percent05;
+                    break;
+
+                case "10%":
+                    result = ServoProperties.MotionScale.Percent10;
+                    break;
+
+                case "15%":
+                    result = ServoProperties.MotionScale.Percent15;
+                    break;
+
+                case "20%":
+                    result = ServoProperties.MotionScale.Percent20;
+                    break;
+
+                case "25%":
+                    result = ServoProperties.MotionScale.Percent25;
+                    break;
+
+                case "35%":
+                    result = ServoProperties.MotionScale.Percent35;
+                    break;
+
+                case "50%":
+                    result = ServoProperties.MotionScale.Percent50;
+                    break;
+
+                case "75%":
+                    result = ServoProperties.MotionScale.Percent75;
+                    break;
+
+                case "Max":
+                    result = ServoProperties.MotionScale.Max;
+                    break;
+
+                default:
+                    Log.Error($"Unexpected speed:{speed}", Common.LOG_CATEGORY);
+                    break;
+            }
+
+            return result;
         }
-        
-        #endregion
-        
+
         #endregion
 
         #region IInstanceCount

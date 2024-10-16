@@ -50,15 +50,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // Turn on logging of PropertyChanged from VNC.Core
-            // We display the logging in 
-            //LogOnPropertyChanged = true;
-
             // TODO(crhodes)
             //
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
-            //PerformanceFileName_DoubleClick_Command = new DelegateCommand(PerformanceFileName_DoubleClick);
 
             OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
             RefreshAdvancedServoCommand = new DelegateCommand(RefreshAdvancedServo, RefreshAdvancedServoCanExecute);
@@ -66,18 +61,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
             InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
-            //InitializeMediumAdvancedServoCommand = new DelegateCommand(InitializeMediumAdvancedServo, InitializeMediumAdvancedServoCanExecute);
-            //InitializeFastAdvancedServoCommand = new DelegateCommand(InitializeFastAdvancedServo, InitializeFastAdvancedServoCanExecute);
-
 
             //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
 
             ConfigureServo2Command = new DelegateCommand<string>(ConfigureServo2, ConfigureServo2CanExecute);
 
             SetPositionRangeCommand = new DelegateCommand<string>(SetPositionRange, SetPositionRangeCanExecute);
-
-            //PlayPerformanceCommand = new DelegateCommand<string>(PlayPerformance, PlayPerformanceCanExecute);
-            //PlaySequenceCommand = new DelegateCommand<string>(PlaySequence, PlaySequenceCanExecute);
 
             // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
@@ -86,13 +75,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Or maybe a method on something else in VNCPhidget21.Configuration
 
             HostConfigFileName = "hostconfig.json";
-            //PerformanceConfigFileName = "advancedservoperformancesconfig.json";
-
             LoadUIConfig();
-            //LoadPerformancesConfig();
-
-            //SayHelloCommand = new DelegateCommand(
-            //    SayHello, SayHelloCanExecute);
 
             Message = "AdvancedServo1061ViewModel says hello";
 
@@ -140,6 +123,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        private string _message;
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Host
+
         private string _hostConfigFileName;
         public string HostConfigFileName
         {
@@ -153,33 +151,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
-
-        private string _performanceConfigFileName;
-        public string PerformanceConfigFileName
-        {
-            get => _performanceConfigFileName;
-            set
-            {
-                if (_performanceConfigFileName == value) return;
-                _performanceConfigFileName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
-
-        //private VNCPhidgetConfig.HostConfig _hostConfig;
-        //public VNCPhidgetConfig.HostConfig HostConfig
-        //{
-        //    get => _hostConfig;
-        //    set
-        //    {
-        //        if (_hostConfig == value)
-        //            return;
-        //        _hostConfig = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts
@@ -201,10 +172,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 if (_selectedHost == value)
                     return;
                 _selectedHost = value;
-                AdvancedServos = _selectedHost.AdvancedServos.ToList<VNCPhidgetConfig.AdvancedServo>();
+                AdvancedServos = _selectedHost.AdvancedServos?.ToList<VNCPhidgetConfig.AdvancedServo>();
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region Phidget
 
         private Phidgets.Phidget _phidgetDevice;
         public Phidgets.Phidget PhidgetDevice
@@ -259,18 +234,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
+        #endregion
+
+        #region AdvancedServo
+
+        #region AdvancedServo Events
 
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
@@ -289,6 +257,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
         }
+
 
         private bool _logPositionChangeEvents = false;
         public bool LogPositionChangeEvents
@@ -326,20 +295,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private bool _logPerformanceStep = false;
-        //public bool LogPerformanceStep
-        //{
-        //    get => _logPerformanceStep;
-        //    set
-        //    {
-        //        if (_logPerformanceStep == value)
-        //            return;
-        //        _logPerformanceStep = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        #region AdvancedServo Properties
+        #endregion
 
         private IEnumerable<VNCPhidgetConfig.AdvancedServo> _AdvancedServos;
         public IEnumerable<VNCPhidgetConfig.AdvancedServo> AdvancedServos
@@ -501,15 +457,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-
-
         #region Event Handlers
 
         private void ActiveAdvancedServo_Attach(object sender, Phidgets.Events.AttachEventArgs e)
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                //Phidgets.Phidget device = (Phidgets.Phidget)sender;
                 //Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
                 
                 DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
@@ -539,73 +493,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();
-        }
-
-        private void UpdateAdvancedServoProperties()
-        {
-            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
-
-            if ((Boolean)DeviceAttached)
-            {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-                Phidgets.AdvancedServoServo servo = null;
-
-                ServoCount = servos.Count;
-
-                try
-                {
-                    for (int i = 0; i < ServoCount; i++)
-                    {
-                        // NOTE(crhodes)
-                        // All the work is now done in Type.UpdateProperties()
-                        AdvancedServoProperties[i].LogPhidgetEvents = LogPhidgetEvents;
-                        AdvancedServoProperties[i].ServoType = servos[i].Type;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-            else
-            {
-                DeviceAttached = null;
-                InitializAdvancedServoUI();
-            }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void RefreshAdvancedServoUIProperties()
-        {
-            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
-
-            if ((Boolean)DeviceAttached)
-            {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-                Phidgets.AdvancedServoServo servo = null;
-
-                ServoCount = servos.Count;
-
-                try
-                {
-                    for (int i = 0; i < ServoCount; i++)
-                    {
-                        AdvancedServoProperties[i].RefreshPropertiesFromServo();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-            else
-            {
-                DeviceAttached = null;
-                InitializAdvancedServoUI();
-            }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void ActiveAdvancedServo_Detach(object sender, Phidgets.Events.DetachEventArgs e)
@@ -677,8 +564,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
-
-        public ICommand SayHelloCommand { get; private set; }
 
         #region Command ConfigFileName DoubleClick
 
@@ -1708,8 +1593,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region SayHello Command
+
+        public ICommand SayHelloCommand { get; private set; }
 
         private void SayHello()
         {
@@ -1729,6 +1615,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #endregion
+
         #region Public Methods (none)
 
 
@@ -1740,6 +1627,73 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region Private Methods
+
+        private void UpdateAdvancedServoProperties()
+        {
+            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
+
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                Phidgets.AdvancedServoServo servo = null;
+
+                ServoCount = servos.Count;
+
+                try
+                {
+                    for (int i = 0; i < ServoCount; i++)
+                    {
+                        // NOTE(crhodes)
+                        // All the work is now done in Type.UpdateProperties()
+                        AdvancedServoProperties[i].LogPhidgetEvents = LogPhidgetEvents;
+                        AdvancedServoProperties[i].ServoType = servos[i].Type;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+            else
+            {
+                DeviceAttached = null;
+                InitializAdvancedServoUI();
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void RefreshAdvancedServoUIProperties()
+        {
+            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
+
+            if ((Boolean)DeviceAttached)
+            {
+                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                Phidgets.AdvancedServoServo servo = null;
+
+                ServoCount = servos.Count;
+
+                try
+                {
+                    for (int i = 0; i < ServoCount; i++)
+                    {
+                        AdvancedServoProperties[i].RefreshPropertiesFromServo();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+            else
+            {
+                DeviceAttached = null;
+                InitializAdvancedServoUI();
+            }
+
+            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         private void InitializAdvancedServoUI()
         {

@@ -1,32 +1,36 @@
 {
-  // Ensure that detachable Phidgets, e.g. AdvancedServo, InterfaceKit
+  // Ensure that detachable Phidgets, e.g. AdvancedServo, InterfaceKit, Stepper
   // are only connected to one host
   "Hosts": [
     {
       "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5001, "Enable": true,
-      //"AdvancedServos": [
+      "AdvancedServos": [
         //{ "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },        
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
-      //],
-      //"InterfaceKits": [
+      ],
+      "InterfaceKits": [
       //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
-      //],
-      "Steppers": null
+      ],
+      "Steppers": [
+        //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
+      ],
     },
     { "Name": "psbc11", "IPAddress": "192.168.150.11", "Port": 5001, "Enable": true,
-      //"AdvancedServos": [
+      "AdvancedServos": [
         //{ "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
         //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
-      //],
+      ],
       "InterfaceKits": [
         { "Name": "psbc11 InterfaceKit", "SerialNumber": 46049, "Open": true, "Embedded": true },
         //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
-      "Steppers": null
+      "Steppers": [
+        //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
+      ],
     },
     {
       "Name": "psbc21", "IPAddress": "192.168.150.21", "Port": 5001, "Enable": true,
@@ -40,7 +44,9 @@
         { "Name": "psbc21 InterfaceKit", "SerialNumber": 48301, "Open": true, "Embedded": true },
         //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
-      "Steppers": null
+      "Steppers": [
+        //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
+      ],
     },
     {
       "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
@@ -54,7 +60,9 @@
         { "Name": "psbc22 InterfaceKit", "SerialNumber": 251831, "Open": true, "Embedded": true },
         //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
-      "Steppers": null
+      "Steppers": [
+        { "Name": "Stepper 270460", "SerialNumber": 270460 },
+      ],
     },
     {
       "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
@@ -68,7 +76,9 @@
         { "Name": "psbc23 InterfaceKit", "SerialNumber": 48284, "Open": true, "Embedded": true },
         //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
-      "Steppers": null
+      "Steppers": [
+        //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
+      ],
     }
   ],
   "Sensors": [
