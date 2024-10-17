@@ -396,11 +396,11 @@
                                        Background="{Binding Engaged_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
+                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
+                            --><!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />--><!--
                             <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S0}"
                                        Background="{Binding SpeedRamping_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>-->
 
                         <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
                             <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->

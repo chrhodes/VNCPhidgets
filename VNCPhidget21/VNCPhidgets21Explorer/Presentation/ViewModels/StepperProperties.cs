@@ -9,13 +9,35 @@ using VNC.Phidget;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    #region Fields and Properties
-
     // TODO(crhodes)
     // Not sure we need INPCBase.  See if any bindings reach for this class
 
     public class StepperProperties : INPCBase
     {
+        #region Enums and Structures
+
+        public enum MotionScale
+        {
+            Min = 1,
+            Percent01 = 1,
+            Percent02 = 2,
+            Percent03 = 3,
+            Percent04 = 4,
+            Percent05 = 5,
+            Percent10 = 10,
+            Percent15 = 15,
+            Percent20 = 20,
+            Percent25 = 25,
+            Percent35 = 35,
+            Percent50 = 50,
+            Percent75 = 75,
+            Max
+        }
+
+        #endregion
+         
+        #region Fields and Properties
+
         public StepperEx StepperEx 
         { 
             get; 
@@ -24,30 +46,30 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public int StepperIndex { get; set; }
 
-        //private Phidgets.stepperservo.ServoType? _servoType;
+        //private Phidgets.stepperstepper.stepperType? _stepperType;
 
-        //public Phidgets.stepperservo.ServoType? ServoType
+        //public Phidgets.stepperstepper.stepperType? stepperType
         //{
-        //    get => _servoType;
+        //    get => _stepperType;
         //    set
         //    {
-        //        if (_servoType == value)
+        //        if (_stepperType == value)
         //        {
         //            // We may have closed and reopened the Stepper
         //            // without changing the type from the DEFAULT which is set by the PhidgetLibrary when device opened.
         //            // Refresh the UI properties as close sets all to null
-        //            GetPropertiesFromServo();
+        //            GetPropertiesFromstepper();
         //            return; 
         //        }
 
-        //        _servoType = value;
+        //        _stepperType = value;
         //        OnPropertyChanged();
 
         //        if (StepperEx is not null)
         //        {
         //            if (StepperEx.Stepper is not null)
         //            {
-        //                StepperEx.Stepper.steppers[StepperIndex].Type = (Phidgets.stepperservo.ServoType)value;
+        //                StepperEx.Stepper.steppers[StepperIndex].Type = (Phidgets.stepperstepper.stepperType)value;
 
         //                // Need to update all the properties since the type changed.
         //                // NB. Even setting to the same Type causes a refresh of the properties
@@ -57,7 +79,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //                // Play with this by having a value in UI
 
         //                Thread.Sleep(1);
-        //                GetPropertiesFromServo();
+        //                GetPropertiesFromstepper();
         //            }
         //        }
         //    }
@@ -65,6 +87,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public bool LogPhidgetEvents { get; set; }
 
+        // TODO(crhodes)
+        // Don't think a Stepper has these
         #region Configuration
 
         private double _minimumPulseWidth = 1000;
@@ -110,25 +134,28 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Position
 
-        private Double? _devicePositionMin;
+        // NOTE(crhodes)
+        // Since Position{Min,Max} are ReadOnly, don't see need for these
 
-        /// <summary>
-        /// Initial PositionMin after ServoType change
-        /// </summary>
-        public Double? DevicePositionMin
-        {
-            get => _devicePositionMin;
-            set
-            {
-                if (_devicePositionMin == value) return;
-                _devicePositionMin = value;
-                OnPropertyChanged();
-            }
-        }
+        //private Int64? _devicePositionMin;
 
-        private Double? _positionMin;
+        ///// <summary>
+        ///// Initial PositionMin after stepperType change
+        ///// </summary>
+        //public Int64? DevicePositionMin
+        //{
+        //    get => _devicePositionMin;
+        //    set
+        //    {
+        //        if (_devicePositionMin == value) return;
+        //        _devicePositionMin = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        public Double? PositionMin
+        private Int64? _positionMin;
+
+        public Int64? PositionMin
         {
             get => _positionMin;
             set
@@ -137,40 +164,40 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _positionMin = value;
                 OnPropertyChanged();
 
-                if (value is not null)
-                {
-                    try
-                    {
-                        if (StepperEx.Stepper.steppers[StepperIndex].PositionMin != value)
-                        {
-                            StepperEx.SetPositionMin(
-                                (Double)value,
-                                StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-                        StepperEx.Stepper.steppers[StepperIndex].Position = (double)value;
-                    }
-                }
+                //    if (value is not null)
+                //    {
+                //        try
+                //        {
+                //            if (StepperEx.Stepper.steppers[StepperIndex].PositionMin != value)
+                //            {
+                //                StepperEx.SetPositionMin(
+                //                    (Double)value,
+                //                    StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
+                //            }
+                //        }
+                //        catch (PhidgetException pex)
+                //        {
+                //            Log.Error(pex, Common.LOG_CATEGORY);
+                //            StepperEx.Stepper.steppers[StepperIndex].Position = (double)value;
+                //        }
+                //    }
             }
         }
 
-        private Double? _position;
-        public Double? Position
+        private Int64? _currentPosition;
+        public Int64? CurrentPosition
         {
-            get => _position;
+            get => _currentPosition;
             set
             {
-                if (_position == value) return;
-                _position = value;
+                if (_currentPosition == value) return;
+                _currentPosition = value;
                 OnPropertyChanged();
 
                 if (value is not null)
                 {
-                    // Do not check position if Servo not engaged.
-                    // Exception will be thrown if servo.Position not set.   
+                    // Do not check position if stepper not engaged.
+                    // Exception will be thrown if stepper.Position not set.   
 
                     if (StepperEx.Stepper.Attached
                         && StepperEx.Stepper.steppers[StepperIndex].Engaged)
@@ -178,10 +205,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         try
                         {
                             // Set new position if different from current.  Why would we bother to change if same?
-                            if (StepperEx.Stepper.steppers[StepperIndex].Position != value)
+                            if (StepperEx.Stepper.steppers[StepperIndex].CurrentPosition != value)
                             {                                
-                                StepperEx.SetPosition(
-                                    (Double)value,
+                                StepperEx.SetCurrentPosition(
+                                    (Int64)value,
                                     StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
                             }
                         }
@@ -189,16 +216,62 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         {
                             // Hopefully this is never thrown.
                             Log.Error(pex, Common.LOG_CATEGORY);
-                            StepperEx.Stepper.steppers[StepperIndex].Position = (double)value;
+                            StepperEx.Stepper.steppers[StepperIndex].CurrentPosition = (Int64)value;
                         }
                     }
                     else
                     {
-                        // It is Ok to set position before engaging servo.
+                        // It is Ok to set position before engaging stepper.
                         //StepperEx.SetPosition(
                         //    (Double)value,
                         //    StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
                     }                    
+                }
+            }
+        }
+
+        private Int64? _targetPosition;
+        public Int64? TargetPosition
+        {
+            get => _currentPosition;
+            set
+            {
+                if (_targetPosition == value) return;
+                _targetPosition = value;
+                OnPropertyChanged();
+
+                if (value is not null)
+                {
+                    // Do not check position if Stepper not engaged.
+                    // Exception will be thrown if stepper.Position not set.   
+
+                    if (StepperEx.Stepper.Attached
+                        && StepperEx.Stepper.steppers[StepperIndex].Engaged)
+                    {
+                        try
+                        {
+                            // Set new position if different from current.  Why would we bother to change if same?
+                            if (StepperEx.Stepper.steppers[StepperIndex].TargetPosition != value)
+                            {
+                                StepperEx.SetTargetPosition(
+                                    (Int64)value,
+                                    StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
+                            }
+                        }
+                        catch (PhidgetException pex)
+                        {
+                            // Hopefully this is never thrown.
+                            Log.Error(pex, Common.LOG_CATEGORY);
+                            StepperEx.Stepper.steppers[StepperIndex].TargetPosition = (Int64)value;
+                        }
+                    }
+                    else
+                    {
+                        // It is Ok to set position before engaging stepper.
+                        //StepperEx.SetPosition(
+                        //    (Double)value,
+                        //    StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
+                    }
                 }
             }
         }
@@ -227,45 +300,50 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _positionMax = value;
                 OnPropertyChanged();
 
-                if (value is not null)
-                {
-                    try
-                    {
-                        if (StepperEx.Stepper.steppers[StepperIndex].PositionMax != value)
-                        {
-                            StepperEx.SetPositionMax(
-                                (Double)value,
-                                StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
-                        }
-                    }
-                    catch (PhidgetException pex)
-                    {
-                        Log.Error(pex, Common.LOG_CATEGORY);
-                        StepperEx.Stepper.steppers[StepperIndex].Position = (double)value;
-                    }
-                }
+                //    if (value is not null)
+                //    {
+                //        try
+                //        {
+                //            if (StepperEx.Stepper.steppers[StepperIndex].PositionMax != value)
+                //            {
+                //                StepperEx.SetPositionMax(
+                //                    (Double)value,
+                //                    StepperEx.Stepper.steppers[StepperIndex], StepperIndex);
+                //            }
+                //        }
+                //        catch (PhidgetException pex)
+                //        {
+                //            Log.Error(pex, Common.LOG_CATEGORY);
+                //            StepperEx.Stepper.steppers[StepperIndex].Position = (double)value;
+                //        }
+                //    }
             }
         }
 
-        private Double? _devicePositionMax;
+        // NOTE(crhodes)
+        // Since Position{Min,Max} are ReadOnly, don't see need for these
+        //private Double? _devicePositionMax;
 
-        /// <summary>
-        /// Initial PositionMax after ServoType change
-        /// </summary>
-        public Double? DevicePositionMax
-        {
-            get => _devicePositionMax;
-            set
-            {
-                if (_devicePositionMax == value) return;
-                _devicePositionMax = value;
-                OnPropertyChanged();
-            }
-        }
+        ///// <summary>
+        ///// Initial PositionMax after stepperType change
+        ///// </summary>
+        //public Double? DevicePositionMax
+        //{
+        //    get => _devicePositionMax;
+        //    set
+        //    {
+        //        if (_devicePositionMax == value) return;
+        //        _devicePositionMax = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion Position
 
         #region Movement Control
+
+        // NOTE(crhodes)
+        // Don't think Stepper has this
 
         private bool? _speedRamping;
 
@@ -387,7 +465,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion Movement Control
 
-        #region stepperstate
+        #region StepperState
 
         private bool? _engaged;
 
@@ -434,44 +512,27 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion Fields and Properties (None)
 
-        public enum MotionScale
-        {
-            Min = 1,
-            Percent01 = 1,
-            Percent02 = 2,
-            Percent03 = 3,
-            Percent04 = 4,
-            Percent05 = 5,
-            Percent10 = 10,
-            Percent15 = 15,
-            Percent20 = 20,
-            Percent25 = 25,
-            Percent35 = 35,
-            Percent50 = 50,
-            Percent75 = 75,
-            Max
-        }
-
         /// <summary>
-        /// Centers servo based on Device{Min,Max} if position not set
+        /// Centers stepper based on Device{Min,Max} if position not set
         /// and Initializes Velocity
         /// </summary>
         /// <param name="motionScale"></param>
         public void InitializeVelocity(MotionScale motionScale)
         {
-            StepperServo servo = null;
+            StepperStepper stepper = null;
 
             try
             {
-                servo = StepperEx.Stepper.steppers[StepperIndex];
+                stepper = StepperEx.Stepper.steppers[StepperIndex];
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"Begin servo:{StepperIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "???")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"Begin servo:{StepperIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
-                    //Log.Trace($"Begin servo:{StepperIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"Begin servo:{StepperIndex}  ", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "???")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin stepper:{StepperIndex}" +
+                        $" acceleration:{(stepper.Engaged ? stepper.Acceleration : "???")}"
+                        + $" velocityLimit:{stepper.VelocityLimit}"
+                        + $" currentPosition:{(stepper.Engaged ? stepper.CurrentPosition : "???")}"
+                        + $" targetPosition:{(stepper.Engaged ? stepper.TargetPosition : "???")}",
+                        Common.LOG_CATEGORY);
                 }
 
                 switch (motionScale)
@@ -496,7 +557,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         break;
                 }
 
-                //if (servo.Position = )
+                //if (stepper.Position = )
                 //{
 
                 //}
@@ -504,11 +565,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"End servo:{StepperIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "???")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"End servo:{StepperIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
-                    //Log.Trace($"End servo:{StepperIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"End servo:{StepperIndex}  ", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "???")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End stepper:{StepperIndex}" +
+                        $" acceleration:{(stepper.Engaged ? stepper.Acceleration : "???")}"
+                        + $" velocityLimit:{stepper.VelocityLimit}"
+                        + $" currentPosition:{(stepper.Engaged ? stepper.CurrentPosition : "???")}"
+                        + $" targetPosition:{(stepper.Engaged ? stepper.TargetPosition : "???")}",
+                        Common.LOG_CATEGORY);
                 }
 
             }
@@ -528,19 +590,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         /// <param name="motionScale"></param>
         public void InitializeAcceleration (MotionScale motionScale)
         {
-            StepperServo servo = null;
+            StepperStepper stepper = null;
 
             try
             {
-                servo = StepperEx.Stepper.steppers[StepperIndex];
+                stepper = StepperEx.Stepper.steppers[StepperIndex];
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"Begin servo:{StepperIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "???")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"Begin servo:{StepperIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
-                    //Log.Trace($"Begin servo:{StepperIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"Begin servo:{StepperIndex}  ", Common.LOG_CATEGORY);
-                    Log.Trace($"Begin servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "???")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"Begin stepper:{StepperIndex}" +
+                        $" acceleration:{(stepper.Engaged ? stepper.Acceleration : "???")}"
+                        + $" velocityLimit:{stepper.VelocityLimit}"
+                        + $" currentPosition:{(stepper.Engaged ? stepper.CurrentPosition : "???")}"
+                        + $" targetPosition:{(stepper.Engaged ? stepper.TargetPosition : "???")}",
+                        Common.LOG_CATEGORY);
                 }
 
                 switch (motionScale)
@@ -565,7 +628,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                         break;
                 }
 
-                //if (servo.Position = )
+                //if (stepper.Position = )
                 //{
 
                 //}
@@ -573,11 +636,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"End servo:{StepperIndex} speedRamping:{servo.SpeedRamping} acceleration:{(servo.Engaged ? servo.Acceleration : "???")} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"End servo:{StepperIndex} acceleration:{(servo.Engaged ? servo.Acceleration : "??")}", Common.LOG_CATEGORY);
-                    //Log.Trace($"End servo:{StepperIndex} velocityLimit:{servo.VelocityLimit}", Common.LOG_CATEGORY);
-                    //Log.Trace($"End servo:{StepperIndex}  ", Common.LOG_CATEGORY);
-                    Log.Trace($"End servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  position:{(servo.Engaged ? servo.Position : "???")}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End stepper:{StepperIndex}" +
+                        $" acceleration:{(stepper.Engaged ? stepper.Acceleration : "???")}"
+                        + $" velocityLimit:{stepper.VelocityLimit}"
+                        + $" currentPosition:{(stepper.Engaged ? stepper.CurrentPosition : "???")}"
+                        + $" targetPosition:{(stepper.Engaged ? stepper.TargetPosition : "???")}",
+                        Common.LOG_CATEGORY);
                 }
 
             }
@@ -592,39 +656,39 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Gets current values from Servo.  Use when ServoType has not changed
+        /// Gets current values from stepper.  Use when stepperType has not changed
         /// to get current values.  Does not set DevicePosition{Min.Max}
-        /// Servo must be Engaged.
+        /// stepper must be Engaged.
         /// </summary>
-        public void RefreshPropertiesFromServo()
+        public void RefreshPropertiesFromStepper()
         {
             // TODO(crhodes)
-            // Maybe we need a version for when Servo is Engaged and when it is not Engaged.
-            // Get the servo outside of the try so we look at it in Exception(s)
+            // Maybe we need a version for when stepper is Engaged and when it is not Engaged.
+            // Get the stepper outside of the try so we look at it in Exception(s)
 
-            var servo = StepperEx.Stepper.steppers[StepperIndex];
+            var stepper = StepperEx.Stepper.steppers[StepperIndex];
 
             try
             {
-                ServoType = servo.Type;
+                //stepperType = stepper.Type;
 
-                Engaged = servo.Engaged;
-                Stopped = servo.Stopped;
-                Current = servo.Current;
+                Engaged = stepper.Engaged;
+                Stopped = stepper.Stopped;
+                Current = stepper.Current;
 
-                SpeedRamping = servo.SpeedRamping;
+                //SpeedRamping = stepper.SpeedRamping;
 
-                AccelerationMin = servo.AccelerationMin;
+                AccelerationMin = stepper.AccelerationMin;
                 // NOTE(crhodes)
-                // This is interesting.  Servo is not Engaged but servo.Acceleration is set
+                // This is interesting.  stepper is not Engaged but stepper.Acceleration is set
 
                 // NOTE(crhodes)
-                // If RefreshPropertiesFromServo immediately after Opening but before Engaged
-                // servo.Acceleration is not set and will throw exception if accessed
+                // If RefreshPropertiesFromstepper immediately after Opening but before Engaged
+                // stepper.Acceleration is not set and will throw exception if accessed
 
                 try
                 {
-                    Acceleration = servo.Acceleration;
+                    Acceleration = stepper.Acceleration;
                 }
                 catch (PhidgetException pex)
                 {
@@ -641,18 +705,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //    //Log.Error(pex, Common.LOG_CATEGORY);
                 }
 
-                AccelerationMax = servo.AccelerationMax;
+                AccelerationMax = stepper.AccelerationMax;
 
-                VelocityMin = servo.VelocityMin;
-                Velocity = servo.Velocity;
+                VelocityMin = stepper.VelocityMin;
+                Velocity = stepper.Velocity;
 
                 // NOTE(crhodes)
-                // If RefreshPropertiesFromServo immediately after Opening but before Engaged
-                // servo.Acceleration is not set and will throw exception if accessedk
+                // If RefreshPropertiesFromstepper immediately after Opening but before Engaged
+                // stepper.Acceleration is not set and will throw exception if accessedk
 
                 try
                 {
-                    VelocityLimit = servo.VelocityLimit;
+                    VelocityLimit = stepper.VelocityLimit;
                 }
                 catch (PhidgetException pex)
                 {
@@ -669,42 +733,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     //    //Log.Error(pex, Common.LOG_CATEGORY);
                 }
 
-                VelocityMax = servo.VelocityMax;
+                VelocityMax = stepper.VelocityMax;
 
-                PositionMin = servo.PositionMin;
+                PositionMin = stepper.PositionMin;
 
-                // Position is not known if servo is not engaged
+                // Position is not known if stepper is not engaged
 
                 if (Engaged is true)
                 {
-                    Position = servo.Position;
+                    CurrentPosition = stepper.CurrentPosition;
+                    TargetPosition = stepper.TargetPosition;
                 }
                 else
                 {
-                    Position = null;
+                    CurrentPosition = null;
+                    TargetPosition = null;
                 }
 
-                PositionMax = servo.PositionMax;
+                PositionMax = stepper.PositionMax;
 
                 if (LogPhidgetEvents)
                 {
                     // NOTE(crhodes)
-                    // We use the property for Acceleration, VelocityLimit, and Position to avoid exceptions if servo not engaged
+                    // We use the property for Acceleration, VelocityLimit, and Position to avoid exceptions if stepper not engaged
 
-                    Log.Trace($"servo:{StepperIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}" +
-                        $" accelerationMin:{servo.AccelerationMin} acceleration:{Acceleration} accelerationMax:{servo.AccelerationMax}" +
-                        $" velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{VelocityLimit} velocityMax:{servo.VelocityMax}" +
-                        $" positionMin:{servo.PositionMin} position:{Position} positionMax:{servo.PositionMax}" +
-                        $" devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}" +
-                    //    $" accelerationMin:{servo.AccelerationMin} acceleration:{servo.Acceleration: " ??? ")} accelerationMax:{servo.AccelerationMax}" +
-                    //    $" velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{(servo.Engaged ? servo.VelocityLimit : "???")} velocityMax:{servo.VelocityMax}" +
-                    //    $" positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "???")} positionMax:{servo.PositionMax}" +
+                    Log.Trace($"stepper:{StepperIndex} engaged:{stepper.Engaged} stopped:{stepper.Stopped} current:{stepper.Current}" +
+                        $" accelerationMin:{stepper.AccelerationMin} acceleration:{Acceleration} accelerationMax:{stepper.AccelerationMax}" +
+                        $" velocityMin:{stepper.VelocityMin} velocity:{stepper.Velocity} velocityLimit:{VelocityLimit} velocityMax:{stepper.VelocityMax}" +
+                        $" positionMin:{stepper.PositionMin} currentPosition:{CurrentPosition} targetPosition:{TargetPosition} positionMax:{stepper.PositionMax}",
+                        Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} engaged:{stepper.Engaged} stopped:{stepper.Stopped} current:{stepper.Current} speedRamping:{stepper.SpeedRamping}" +
+                    //    $" accelerationMin:{stepper.AccelerationMin} acceleration:{stepper.Acceleration: " ??? ")} accelerationMax:{stepper.AccelerationMax}" +
+                    //    $" velocityMin:{stepper.VelocityMin} velocity:{stepper.Velocity} velocityLimit:{(stepper.Engaged ? stepper.VelocityLimit : "???")} velocityMax:{stepper.VelocityMax}" +
+                    //    $" positionMin:{stepper.PositionMin} position:{(stepper.Engaged ? stepper.Position : "???")} positionMax:{stepper.PositionMax}" +
                     //    $" devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} accelerationMin:{servo.AccelerationMin} acceleration:{(servo.Engaged ? servo.Acceleration : "???")} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{(servo.Engaged ? servo.VelocityLimit : "???")} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "???")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} accelerationMin:{stepper.AccelerationMin} acceleration:{(stepper.Engaged ? stepper.Acceleration : "???")} accelerationMax:{stepper.AccelerationMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} velocityMin:{stepper.VelocityMin} velocity:{stepper.Velocity} velocityLimit:{(stepper.Engaged ? stepper.VelocityLimit : "???")} velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} positionMin:{stepper.PositionMin} position:{(stepper.Engaged ? stepper.Position : "???")} positionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
@@ -719,7 +785,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         /// <summary>
         /// Initializes properties to null.  
-        /// Use before setting ServoType
+        /// Use before setting stepperType
         /// to update any UI bindings
         /// </summary>
         public void InitializePropertiesToNull()
@@ -733,8 +799,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             try
             {
-                //var servo = StepperEx.Stepper.steppers[StepperIndex];
-                //ServoType = Phidgets.stepperservo.ServoType.DE;
+                //var stepper = StepperEx.Stepper.steppers[StepperIndex];
+                //stepperType = Phidgets.stepperstepper.stepperType.DE;
 
                 Stopped = null;
                 Engaged = null;
@@ -757,11 +823,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 Velocity = null;
                 VelocityMax = null;
 
-                DevicePositionMin = null;
+                //DevicePositionMin = null;
                 PositionMin = null;
-                Position = null;
+                CurrentPosition = null;
+                TargetPosition = null;
                 PositionMax = null;
-                DevicePositionMax = null;
+                //DevicePositionMax = null;
             }
             catch (PhidgetException pex)
             {
@@ -779,42 +846,42 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Gets properties from Servo.  Use when ServoType changes (happens on open, too)
+        /// Gets properties from stepper.  Use when stepperType changes (happens on open, too)
         /// Sets DevicePosition{Min,Max}
         /// </summary>
-        private void GetPropertiesFromServo()
+        private void GetPropertiesFromstepper()
         {
             // TODO(crhodes)
-            // Maybe we need a version for when Servo is Engaged and when it is not Engaged.
-            // Get the servo outside of the try so we look at it in Exception(s)
+            // Maybe we need a version for when stepper is Engaged and when it is not Engaged.
+            // Get the stepper outside of the try so we look at it in Exception(s)
 
-            StepperServo servo = StepperEx.Stepper.steppers[StepperIndex];
+            StepperStepper stepper = StepperEx.Stepper.steppers[StepperIndex];
 
             try
             {              
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"servo:{StepperIndex} engaged:{servo.Engaged}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} accelerationMin:{servo.AccelerationMin} acceleration:{servo.Acceleration} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"stepper:{StepperIndex} engaged:{stepper.Engaged}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} engaged:{stepper.Engaged} stopped:{stepper.Stopped} current:{stepper.Current} speedRamping:{stepper.SpeedRamping}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} accelerationMin:{stepper.AccelerationMin} acceleration:{stepper.Acceleration} accelerationMax:{stepper.AccelerationMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} velocityMin:{stepper.VelocityMin} velocity:{stepper.Velocity} velocityLimit:{stepper.VelocityLimit} velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} positionMin:{stepper.PositionMin} position:{(stepper.Engaged ? stepper.Position : "??")} positionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
                 // TODO(crhodes)
                 // Clean up all these comments
 
-                // These may not be set depending on state of servo
+                // These may not be set depending on state of stepper
                 // Phidget Library throws exceptions which are caught and ignored.
                 // Setting to null keeps UI in sensible state
 
-                //Double? safeServoAcceleration = null;
-                //Double? safeServoPosition = null;
+                //Double? safestepperAcceleration = null;
+                //Double? safestepperPosition = null;
 
                 //try
                 //{
-                //    initialServoAcceleration = servo.Acceleration;
+                //    initialstepperAcceleration = stepper.Acceleration;
                 //}
                 //catch (PhidgetException pex)
                 //{
@@ -831,7 +898,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 //try
                 //{
-                //    initialServoPosition = servo.Position;
+                //    initialstepperPosition = stepper.Position;
                 //}
                 //catch (PhidgetException pex)
                 //{
@@ -846,33 +913,33 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 //    //Log.Error(pex, Common.LOG_CATEGORY);
                 //}
 
-                // Having said that, this code is only called when the ServoType changes
+                // Having said that, this code is only called when the stepperType changes
                 // Seems like we should set these to some sensible value and avoid exceptions
-                // Have to be careful to not step on things if servo is engaged.
+                // Have to be careful to not step on things if stepper is engaged.
 
-                Double? initialServoAcceleration = servo.AccelerationMin;
-                Double? initialServoPosition = (servo.PositionMax - servo.PositionMin) / 2; // Midpoint seems reasonable
+                Double? initialstepperAcceleration = stepper.AccelerationMin;
+                Int64? initialstepperPosition = (stepper.PositionMax - stepper.PositionMin) / 2; // Midpoint seems reasonable
 
-                Engaged = servo.Engaged;
-                Stopped = servo.Stopped;
-                Current = servo.Current;
+                Engaged = stepper.Engaged;
+                Stopped = stepper.Stopped;
+                Current = stepper.Current;
 
-                SpeedRamping = servo.SpeedRamping;
-                AccelerationMin = servo.AccelerationMin;
+                //SpeedRamping = stepper.SpeedRamping;
+                AccelerationMin = stepper.AccelerationMin;
 
                 if (Engaged is true)
                 {
                     // NOTE(crhodes)
-                    // servo.Acceleration is not set when first Opening Stepper
+                    // stepper.Acceleration is not set when first Opening Stepper
                     // and will throw exception if accessed
 
                     try
                     {
-                        Acceleration = servo.Acceleration;
+                        Acceleration = stepper.Acceleration;
                     }
                     catch (PhidgetException pex)
                     {
-                        Acceleration = initialServoAcceleration;
+                        Acceleration = initialstepperAcceleration;
 
                         //    var t = pex.Type;           // PHIDGET_ERR_UNKNOWLVAL
                         //    var d = pex.Description;    // Value is Unknown (State not yet received from device, or not yet set by user).
@@ -887,42 +954,42 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
                 else
                 {
-                    Acceleration = initialServoAcceleration;
+                    Acceleration = initialstepperAcceleration;
                 }
                 
-                AccelerationMax = servo.AccelerationMax;
+                AccelerationMax = stepper.AccelerationMax;
 
-                VelocityMin = servo.VelocityMin;
-                Velocity = servo.Velocity;
+                VelocityMin = stepper.VelocityMin;
+                Velocity = stepper.Velocity;
 
                 // NOTE(crhodes)
                 // 
-                // Servo Type has changed.  Let's set VelocityLimit to a small value
-                // Make it possible to move servo without using UI to set non-zero velocity
-                //VelocityLimit = servo.VelocityLimit == 0 ? 1 : servo.VelocityLimit;
-                //VelocityLimit = servo.VelocityLimit;
+                // stepper Type has changed.  Let's set VelocityLimit to a small value
+                // Make it possible to move stepper without using UI to set non-zero velocity
+                //VelocityLimit = stepper.VelocityLimit == 0 ? 1 : stepper.VelocityLimit;
+                //VelocityLimit = stepper.VelocityLimit;
                 // Maybe this should onlyh happen if not Engaged
 
-                VelocityLimit = servo.VelocityLimit;
+                VelocityLimit = stepper.VelocityLimit;
                 //VelocityLimit = VelocityMin + 1;
-                VelocityMax = servo.VelocityMax;
+                VelocityMax = stepper.VelocityMax;
 
-                // DevicePosition{Min,Max} should only be set when ServoType changes
+                // DevicePosition{Min,Max} should only be set when stepperType changes
 
-                DevicePositionMin = servo.PositionMin;
-                PositionMin = servo.PositionMin;
+                //DevicePositionMin = stepper.PositionMin;
+                PositionMin = stepper.PositionMin;
 
                 if (Engaged is true)
                 {
-                    Position = servo.Position;
+                    CurrentPosition = stepper.CurrentPosition;
                 }
                 else
                 {
-                    Position = initialServoPosition;
+                    CurrentPosition = initialstepperPosition;
                 }
 
-                PositionMax = servo.PositionMax;              
-                DevicePositionMax = servo.PositionMax;
+                PositionMax = stepper.PositionMax;              
+                //DevicePositionMax = stepper.PositionMax;
 
                 // NOTE(crhodes)
                 // This is useful but where to put?
@@ -941,22 +1008,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (LogPhidgetEvents)
                 {
-                    Log.Trace($"servo:{StepperIndex} stopped:{servo.Stopped} speedRamping:{servo.SpeedRamping}" +
-                        $" aMin:{servo.AccelerationMin} acceleration:{Acceleration} aMax:{servo.AccelerationMax}" +
-                        $" vMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} vMax:{servo.VelocityMax}" +
-                        $" posMin:{servo.PositionMin} position:{initialServoPosition} positionMax:{servo.PositionMax}" +
-                        $" devPosMin:{DevicePositionMin}  devPosMax:{DevicePositionMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} engaged:{servo.Engaged} stopped:{servo.Stopped} current:{servo.Current} speedRamping:{servo.SpeedRamping}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} accelerationMin:{servo.AccelerationMin} acceleration:{servo.Acceleration} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} velocityMin:{servo.VelocityMin} velocity:{servo.Velocity} velocityLimit:{servo.VelocityLimit} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} positionMin:{servo.PositionMin} position:{(servo.Engaged ? servo.Position : "??")} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-                    //Log.Trace($"servo:{StepperIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"stepper:{StepperIndex} stopped:{stepper.Stopped}" +
+                        $" aMin:{stepper.AccelerationMin} acceleration:{Acceleration} aMax:{stepper.AccelerationMax}" +
+                        $" vMin:{stepper.VelocityMin} velocity:{stepper.Velocity} velocityLimit:{stepper.VelocityLimit} vMax:{stepper.VelocityMax}" +
+                        $" posMin:{stepper.PositionMin} position:{initialstepperPosition} positionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} engaged:{stepper.Engaged} stopped:{stepper.Stopped} current:{stepper.Current} speedRamping:{stepper.SpeedRamping}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} accelerationMin:{stepper.AccelerationMin} acceleration:{stepper.Acceleration} accelerationMax:{stepper.AccelerationMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} velocityMin:{stepper.VelocityMin} velocity:{stepper.Velocity} velocityLimit:{stepper.VelocityLimit} velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} positionMin:{stepper.PositionMin} position:{(stepper.Engaged ? stepper.Position : "??")} positionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+                    //Log.Trace($"stepper:{StepperIndex} devicePositionMin:{DevicePositionMin}  devicePositionMax:{DevicePositionMax}", Common.LOG_CATEGORY);
                 }
 
             }
             catch (PhidgetException pex)
             {
-                Log.Error($"servo:{StepperIndex}-{pex}", Common.LOG_CATEGORY);
+                Log.Error($"stepper:{StepperIndex}-{pex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {

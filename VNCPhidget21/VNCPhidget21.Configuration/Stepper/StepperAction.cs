@@ -20,24 +20,54 @@ namespace VNCPhidget21.Configuration
         public Double? Acceleration { get; set; }
 
         /// <summary>
+        /// Acceleration (+/-) from current Acceleration (optional)
+        /// </summary>
+        public Double? RelativeAcceleration { get; set; }
+
+        /// <summary>
         /// Servo Velocity (optional)
         /// </summary>
         public Double? VelocityLimit { get; set; }
 
         /// <summary>
-        /// TargetPosition (optional)
+        /// VelocityLimit (+/-) from current VelocityLimit (optional)
         /// </summary>
-        public double? PositionMin { get; set; }
+        public Double? RelativeVelocityLimit { get; set; }
+
+        /// <summary>
+        /// Servo Velocity (optional)
+        /// </summary>
+        public Double? CurrentLimit { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? TargetPosition { get; set; }
+        //public double? PositionMin { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? PositionMax { get; set; }
+        public Int64? CurrentPosition { get; set; }
+
+        /// <summary>
+        /// Position (+/-)  from current Position (optional)
+        /// </summary>
+        public Int64? RelativeCurrentPosition { get; set; }
+
+        /// <summary>
+        /// TargetPosition (optional)
+        /// </summary>
+        public Int64? TargetPosition { get; set; }
+
+        /// <summary>
+        /// Position (+/-)  from current Position (optional)
+        /// </summary>
+        public Int64? RelativeTargetPosition { get; set; }
+
+        /// <summary>
+        /// TargetPosition (optional)
+        /// </summary>
+        //public double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

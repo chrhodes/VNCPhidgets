@@ -1657,7 +1657,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 DeviceAttached = null;
-                InitializAdvancedServoUI();
+                InitializeAdvancedServoUI();
             }
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
@@ -1689,13 +1689,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 DeviceAttached = null;
-                InitializAdvancedServoUI();
+                InitializeAdvancedServoUI();
             }
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void InitializAdvancedServoUI()
+        private void InitializeAdvancedServoUI()
         {
             for (int i = 0; i < 8; i++)
             {

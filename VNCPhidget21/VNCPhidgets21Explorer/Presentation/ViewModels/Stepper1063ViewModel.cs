@@ -320,16 +320,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private StepperProperties[] _stepperProperties = new StepperProperties[8]
+        // NOTE(crhodes)
+        // 1063 only supports one stepper
+
+        private StepperProperties[] _stepperProperties = new StepperProperties[1] // StepperProperties[8]
         {
-            new StepperProperties() { ServoIndex = 0 },
-            new StepperProperties() { ServoIndex = 1 },
-            new StepperProperties() { ServoIndex = 2 },
-            new StepperProperties() { ServoIndex = 3 },
-            new StepperProperties() { ServoIndex = 4 },
-            new StepperProperties() { ServoIndex = 5 },
-            new StepperProperties() { ServoIndex = 6 },
-            new StepperProperties() { ServoIndex = 7 },
+            new StepperProperties() { StepperIndex = 0 },
+            //new StepperProperties() { StepperIndex = 1 },
+            //new StepperProperties() { StepperIndex = 2 },
+            //new StepperProperties() { StepperIndex = 3 },
+            //new StepperProperties() { StepperIndex = 4 },
+            //new StepperProperties() { StepperIndex = 5 },
+            //new StepperProperties() { StepperIndex = 6 },
+            //new StepperProperties() { StepperIndex = 7 },
         };
 
         public StepperProperties[] StepperProperties
@@ -343,8 +346,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-
 
         #region Stepper Properties
 
@@ -1065,14 +1066,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                //StepperServoCollection servos = ActiveStepper.Stepper.servos;
+                StepperStepperCollection steppers = ActiveStepper.Stepper.steppers;
 
                 try
                 {
-                    //for (int i = 0; i < servos.Count; i++)
-                    //{
-                    //    StepperProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
-                    //}
+                    for (int i = 0; i < steppers.Count; i++)
+                    {
+                        StepperProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1566,23 +1567,22 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void UpdateStepperProperties()
         {
+            Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // May not need this anymore.  Consider moving into ActiveStepper_{Attach,Detach}
 
             if ((Boolean)DeviceAttached)
             {
-                //DeviceAttached = ActiveStepper.Stepper.Attached;
-
                 StepperStepperCollection steppers = ActiveStepper.Stepper.steppers;
-
                 StepperStepper stepper = null;
 
                 StepperDigitalInputCollection inputs = ActiveStepper.Stepper.inputs;
 
-                Stepper
-
                 for (int i = 0; i < steppers.Count; i++)
                 {
+                    StepperProperties[i].LogPhidgetEvents = LogPhidgetEvents;
+                    //StepperProperties[i].ServoType = servos[i].Type;
+
                     stepper = steppers[i];
 
                     switch (i)
@@ -1613,7 +1613,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                             CurrentPosition_S0 = stepper.CurrentPosition;
                             TargetPosition_S0 = stepper.TargetPosition;
                             PositionMin_S0 = stepper.PositionMin;
-
 
 
                             break;
@@ -1714,6 +1713,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 DeviceAttached = null;
+                InitializeStepperUI();
             }
 
             OpenStepperCommand.RaiseCanExecuteChanged();
@@ -1746,13 +1746,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             else
             {
                 DeviceAttached = null;
-                InitializStepperUI();
+                InitializeStepperUI();
             }
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void InitializStepperUI()
+        private void InitializeStepperUI()
         {
             //for (int i = 0; i < 8; i++)
             //{
@@ -1760,50 +1760,50 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //}
         }
 
-        private ServoProperties.MotionScale ConvertStringToInitializeMotion(string speed)
+        private StepperProperties.MotionScale ConvertStringToInitializeMotion(string speed)
         {
-            ServoProperties.MotionScale result = ServoProperties.MotionScale.Percent05;
+            StepperProperties.MotionScale result = ViewModels.StepperProperties.MotionScale.Percent05;
 
             switch (speed)
             {
                 case "Min":
-                    result = ServoProperties.MotionScale.Min;
+                    result = ViewModels.StepperProperties.MotionScale.Min;
                     break;
 
                 case "05%":
-                    result = ServoProperties.MotionScale.Percent05;
+                    result = ViewModels.StepperProperties.MotionScale.Percent05;
                     break;
 
                 case "10%":
-                    result = ServoProperties.MotionScale.Percent10;
+                    result = ViewModels.StepperProperties.MotionScale.Percent10;
                     break;
 
                 case "15%":
-                    result = ServoProperties.MotionScale.Percent15;
+                    result = ViewModels.StepperProperties.MotionScale.Percent15;
                     break;
 
                 case "20%":
-                    result = ServoProperties.MotionScale.Percent20;
+                    result = ViewModels.StepperProperties.MotionScale.Percent20;
                     break;
 
                 case "25%":
-                    result = ServoProperties.MotionScale.Percent25;
+                    result = ViewModels.StepperProperties.MotionScale.Percent25;
                     break;
 
                 case "35%":
-                    result = ServoProperties.MotionScale.Percent35;
+                    result = ViewModels.StepperProperties.MotionScale.Percent35;
                     break;
 
                 case "50%":
-                    result = ServoProperties.MotionScale.Percent50;
+                    result = ViewModels.StepperProperties.MotionScale.Percent50;
                     break;
 
                 case "75%":
-                    result = ServoProperties.MotionScale.Percent75;
+                    result = ViewModels.StepperProperties.MotionScale.Percent75;
                     break;
 
                 case "Max":
-                    result = ServoProperties.MotionScale.Max;
+                    result = ViewModels.StepperProperties.MotionScale.Max;
                     break;
 
                 default:

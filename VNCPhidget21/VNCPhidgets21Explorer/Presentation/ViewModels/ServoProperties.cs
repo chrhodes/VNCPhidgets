@@ -9,13 +9,35 @@ using VNC.Phidget;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    #region Fields and Properties
-
     // TODO(crhodes)
     // Not sure we need INPCBase.  See if any bindings reach for this class
 
     public class ServoProperties : INPCBase
     {
+        #region Enums and Structures
+
+        public enum MotionScale
+        {
+            Min = 1,
+            Percent01 = 1,
+            Percent02 = 2,
+            Percent03 = 3,
+            Percent04 = 4,
+            Percent05 = 5,
+            Percent10 = 10,
+            Percent15 = 15,
+            Percent20 = 20,
+            Percent25 = 25,
+            Percent35 = 35,
+            Percent50 = 50,
+            Percent75 = 75,
+            Max
+        }
+
+        #endregion
+
+        #region Fields and Properties
+
         public AdvancedServoEx AdvancedServoEx 
         { 
             get; 
@@ -434,23 +456,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion Fields and Properties (None)
 
-        public enum MotionScale
-        {
-            Min = 1,
-            Percent01 = 1,
-            Percent02 = 2,
-            Percent03 = 3,
-            Percent04 = 4,
-            Percent05 = 5,
-            Percent10 = 10,
-            Percent15 = 15,
-            Percent20 = 20,
-            Percent25 = 25,
-            Percent35 = 35,
-            Percent50 = 50,
-            Percent75 = 75,
-            Max
-        }
+
 
         /// <summary>
         /// Centers servo based on Device{Min,Max} if position not set

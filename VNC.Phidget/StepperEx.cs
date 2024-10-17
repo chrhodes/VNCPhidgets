@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,8 +12,6 @@ using VNC.Phidget.Events;
 using VNC.Phidget.Players;
 
 using VNCPhidget21.Configuration;
-
-using static VNC.Phidget.AdvancedstepperEx;
 
 namespace VNC.Phidget
 {
@@ -82,15 +81,15 @@ namespace VNC.Phidget
 
             public Double AccelerationMin;
             public Double AccelerationMax;
-            public Double DevicePositionMin;
-            //public Double PositionMin;
-            //public Double PositionMax;
-            public Double DevicePositionMax;
+            //public Int64 DevicePositionMin;
+            public Int64 PositionMin;
+            public Int64 PositionMax;
+            //public Int64 DevicePositionMax;
             public Double VelocityMin;
             public Double VelocityMax;
         }
 
-        #endregionctur
+        #endregion
 
         #region Fields and Properties
 
@@ -261,7 +260,7 @@ namespace VNC.Phidget
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (AdvancedstepperstepperAction action in stepperSequence.Actions)
+                            foreach (StepperAction action in stepperSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
@@ -401,66 +400,66 @@ namespace VNC.Phidget
             }
         }
 
+        ///// <summary>
+        ///// Bounds check and set position
+        ///// </summary>
+        ///// <param name="positionMin"></param>
+        ///// <param name="stepper"></param>
+        //public void SetPositionMin(Double positionMin, StepperStepper stepper, Int32 index)
+        //{
+        //    try
+        //    {
+        //        if (LogSequenceAction)
+        //        {
+        //            Log.Trace($"Begin index:{index} positionMin:{positionMin}" +
+        //                $" stepper.PositionMin:{stepper.PositionMin}" +
+        //                $" stepper.PositionMax:{stepper.PositionMax}" +
+        //                $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+        //                $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+        //        }
+
+        //        if (positionMin < 0)
+        //        {
+        //            positionMin = InitialStepperLimits[index].DevicePositionMin;
+        //        }
+        //        else if (positionMin < InitialStepperLimits[index].DevicePositionMin)
+        //        {
+        //            positionMin = InitialStepperLimits[index].DevicePositionMin;
+        //        }
+        //        else if (positionMin > stepper.PositionMax)
+        //        {
+        //            positionMin = stepper.PositionMax;
+        //        }
+
+        //        if (stepper.PositionMin != positionMin) stepper.PositionMin = positionMin;
+
+        //        if (LogSequenceAction)
+        //        {
+        //            Log.Trace($"End index:{index} positionMin:{positionMin} stepper.PositionMin:{stepper.PositionMin}", Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //    catch (PhidgetException pex)
+        //    {
+        //        Log.Error(pex, Common.LOG_CATEGORY);
+        //        Log.Error($"stepper:{index} {pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+        //        Log.Error($"index:{index} positionMin:{positionMin}" +
+        //            $" stepper.PositionMin:{stepper.PositionMin}" +
+        //            $" stepper.PositionMax:{stepper.PositionMax}" +
+        //            $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+        //            $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
+
         /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="positionMin"></param>
-        /// <param name="stepper"></param>
-        public void SetPositionMin(Double positionMin, StepperStepper stepper, Int32 index)
-        {
-            try
-            {
-                if (LogSequenceAction)
-                {
-                    Log.Trace($"Begin index:{index} positionMin:{positionMin}" +
-                        $" stepper.PositionMin:{stepper.PositionMin}" +
-                        $" stepper.PositionMax:{stepper.PositionMax}" +
-                        $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
-                        $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                if (positionMin < 0)
-                {
-                    positionMin = InitialStepperLimits[index].DevicePositionMin;
-                }
-                else if (positionMin < InitialStepperLimits[index].DevicePositionMin)
-                {
-                    positionMin = InitialStepperLimits[index].DevicePositionMin;
-                }
-                else if (positionMin > stepper.PositionMax)
-                {
-                    positionMin = stepper.PositionMax;
-                }
-
-                if (stepper.PositionMin != positionMin) stepper.PositionMin = positionMin;
-
-                if (LogSequenceAction)
-                {
-                    Log.Trace($"End index:{index} positionMin:{positionMin} stepper.PositionMin:{stepper.PositionMin}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"stepper:{index} {pex.Description} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Error($"index:{index} positionMin:{positionMin}" +
-                    $" stepper.PositionMin:{stepper.PositionMin}" +
-                    $" stepper.PositionMax:{stepper.PositionMax}" +
-                    $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
-                    $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
+        /// Bounds check and set CurrentPosition
         /// </summary>
         /// <param name="position"></param>
         /// <param name="stepper"></param>
-        public Double SetPosition(Double position, StepperStepper stepper, Int32 index)
+        public Int64 SetCurrentPosition(Int64 position, StepperStepper stepper, Int32 index)
         {
             try
             {
@@ -468,9 +467,7 @@ namespace VNC.Phidget
                 {
                     Log.Trace($"Begin stepper:{index} position:{position}" +
                         $" stepper.PositionMin:{stepper.PositionMin}" +
-                        $" stepper.PositionMax:{stepper.PositionMax}" +
-                        $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
-                        $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                        $" stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
                 }
 
                 if (position < stepper.PositionMin)
@@ -484,22 +481,23 @@ namespace VNC.Phidget
 
                 // TODO(crhodes)
                 // Maybe save last position set and not bother checking stepper.Position is same
-                if (stepper.Position != position) stepper.Position = position;
+                if (stepper.CurrentPosition != position) stepper.CurrentPosition = position;
 
                 if (LogSequenceAction)
                 {
-                    Log.Trace($"End stepper:{index} position:{position} stepper.Position:{stepper.Position}", Common.LOG_CATEGORY);
+                    Log.Trace($"End stepper:{index} position:{position}"
+                        + $" stepper.CurrentPosition:{stepper.CurrentPosition}"
+                        + $"stepper.TargetPosition:{stepper.TargetPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Error($"stepper:{index} stepper.position:{stepper.Position}" +
+                Log.Error($"stepper:{index} stepper.CurrentPosition:{stepper.CurrentPosition}" +
+                    $" stepper.TargetPosition:{stepper.TargetPosition}" +
                     $" stepper.PositionMin:{stepper.PositionMin}" +
-                    $" stepper.PositionMax:{stepper.PositionMax}" +
-                    $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
-                    $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                    $" stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -509,54 +507,109 @@ namespace VNC.Phidget
             return position;
         }
 
+
         /// <summary>
-        /// Bounds check and set position
+        /// Bounds check and set TargetPosition
         /// </summary>
-        /// <param name="positionMax"></param>
+        /// <param name="position"></param>
         /// <param name="stepper"></param>
-        public void SetPositionMax(Double positionMax, StepperStepper stepper, Int32 index)
+        public Int64 SetTargetPosition(Int64 position, StepperStepper stepper, Int32 index)
         {
             try
             {
                 if (LogSequenceAction)
                 {
-                    Log.Trace($"Begin stepper:{index} positionMax:{positionMax}" +
+                    Log.Trace($"Begin stepper:{index} position:{position}" +
                         $" stepper.PositionMin:{stepper.PositionMin}" +
-                        $" stepper.PositionMax:{stepper.PositionMax}" +
-                        $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
-                        $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                        $" stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
                 }
 
-                if (positionMax < 0)
+                if (position < stepper.PositionMin)
                 {
-                    positionMax = InitialStepperLimits[index].DevicePositionMax;
+                    position = stepper.PositionMin;
                 }
-                else if (positionMax < stepper.PositionMin)
+                else if (position > stepper.PositionMax)
                 {
-                    positionMax = stepper.PositionMin;
-                }
-                else if (positionMax > InitialStepperLimits[index].DevicePositionMax)
-                {
-                    positionMax = InitialStepperLimits[index].DevicePositionMax;
+                    position = stepper.PositionMax;
                 }
 
-                if (stepper.PositionMax != positionMax) stepper.PositionMax = positionMax;
+                // TODO(crhodes)
+                // Maybe save last TargetPosition set and not bother checking stepper.Position is same
+                if (stepper.TargetPosition != position) stepper.TargetPosition = position;
 
                 if (LogSequenceAction)
                 {
-                    Log.Trace($"End stepper:{index} positionMax:{positionMax} stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+                    Log.Trace($"End stepper:{index} position:{position}"
+                        + $" stepper.CurrentPosition:{stepper.CurrentPosition}"
+                        + $"stepper.TargetPosition:{stepper.TargetPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"stepper:{index} stepper.CurrentPosition:{stepper.CurrentPosition}" +
+                    $" stepper.TargetPosition:{stepper.TargetPosition}" +
+                    $" stepper.PositionMin:{stepper.PositionMin}" +
+                    $" stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+
+            return position;
         }
+
+        ///// <summary>
+        ///// Bounds check and set position
+        ///// </summary>
+        ///// <param name="positionMax"></param>
+        ///// <param name="stepper"></param>
+        //public void SetPositionMax(Double positionMax, StepperStepper stepper, Int32 index)
+        //{
+        //    try
+        //    {
+        //        if (LogSequenceAction)
+        //        {
+        //            Log.Trace($"Begin stepper:{index} positionMax:{positionMax}" +
+        //                $" stepper.PositionMin:{stepper.PositionMin}" +
+        //                $" stepper.PositionMax:{stepper.PositionMax}" +
+        //                $" DevicePositionMin:{InitialStepperLimits[index].DevicePositionMin}" +
+        //                $" DevicePositionMax:{InitialStepperLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+        //        }
+
+        //        if (positionMax < 0)
+        //        {
+        //            positionMax = InitialStepperLimits[index].DevicePositionMax;
+        //        }
+        //        else if (positionMax < stepper.PositionMin)
+        //        {
+        //            positionMax = stepper.PositionMin;
+        //        }
+        //        else if (positionMax > InitialStepperLimits[index].DevicePositionMax)
+        //        {
+        //            positionMax = InitialStepperLimits[index].DevicePositionMax;
+        //        }
+
+        //        if (stepper.PositionMax != positionMax) stepper.PositionMax = positionMax;
+
+        //        if (LogSequenceAction)
+        //        {
+        //            Log.Trace($"End stepper:{index} positionMax:{positionMax} stepper.PositionMax:{stepper.PositionMax}", Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //    catch (PhidgetException pex)
+        //    {
+        //        Log.Error(pex, Common.LOG_CATEGORY);
+        //        Log.Error($"stepper:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
+
         #endregion
 
         #region Protected Methods (None)
@@ -644,19 +697,19 @@ namespace VNC.Phidget
                     SetVelocityLimit((Double)velocityLimit, stepper, index);
                 }
 
-                if (action.PositionMin is not null)
-                {
-                    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionMin}<");
+                //if (action.PositionMin is not null)
+                //{
+                //    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionMin}<");
 
-                    SetPositionMin((Double)action.PositionMin, stepper, index);
-                }
+                //    SetPositionMin((Double)action.PositionMin, stepper, index);
+                //}
 
-                if (action.PositionMax is not null)
-                {
-                    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionMax}<");
+                //if (action.PositionMax is not null)
+                //{
+                //    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionMax}<");
 
-                    SetPositionMax((Double)action.PositionMax, stepper, index);
-                }
+                //    SetPositionMax((Double)action.PositionMax, stepper, index);
+                //}
 
                 // NOTE(crhodes)
                 // Engage the stepper before doing other actions as some,
@@ -668,7 +721,7 @@ namespace VNC.Phidget
 
                     stepper.Engaged = (Boolean)action.Engaged;
 
-                    if ((Boolean)action.Engaged) VerifystepperEngaged(stepper, index);
+                    if ((Boolean)action.Engaged) VerifyStepperEngaged(stepper, index);
                 }
 
                 //if (action.Acceleration is not null)
@@ -705,29 +758,29 @@ namespace VNC.Phidget
                 {
                     if (LogSequenceAction) actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
 
-                    Double targetPosition = (Double)action.TargetPosition;
+                    Int64 targetPosition = (Int64)action.TargetPosition;
 
                     if (targetPosition < 0)
                     {
                         if (action.TargetPosition == -1)        // -1 is magic number for DevicePostionMin :)
                         {
-                            targetPosition = InitialStepperLimits[index].DevicePositionMin;
+                            targetPosition = InitialStepperLimits[index].PositionMin;
                         }
                         else if (action.TargetPosition == -2)   // -2 is magic number for DevicePostionMax :)
                         {
-                            targetPosition = InitialStepperLimits[index].DevicePositionMax;
+                            targetPosition = InitialStepperLimits[index].PositionMax;
                         }
                     }
 
-                    VerifyNewPositionAchieved(stepper, index, SetPosition(targetPosition, stepper, index));
+                    VerifyNewPositionAchieved(stepper, index, SetTargetPosition(targetPosition, stepper, index));
                 }
 
-                if (action.RelativePosition is not null)
+                if (action.RelativeTargetPosition is not null)
                 {
-                    var newPosition = stepper.Position + (Double)action.RelativePosition;
-                    if (LogSequenceAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({newPosition})");
+                    var newPosition = stepper.TargetPosition + (Int64)action.RelativeTargetPosition;
+                    if (LogSequenceAction) actionMessage.Append($" relativePosition:>{action.RelativeTargetPosition}< ({newPosition})");
 
-                    VerifyNewPositionAchieved(stepper, index, SetPosition(newPosition, stepper, index));
+                    VerifyNewPositionAchieved(stepper, index, SetTargetPosition(newPosition, stepper, index));
                 }
 
                 if (action.Duration > 0)

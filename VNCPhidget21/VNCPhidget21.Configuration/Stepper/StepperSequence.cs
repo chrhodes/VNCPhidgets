@@ -5,6 +5,6 @@
         /// <summary>
         /// Array of Stepper actions in sequence
         /// </summary>
-        public StepperAction[] Actions { get; set; }
+        public StepperAction[]? Actions { get; set; }
     }
 }
