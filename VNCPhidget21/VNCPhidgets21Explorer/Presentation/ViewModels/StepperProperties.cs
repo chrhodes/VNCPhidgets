@@ -44,7 +44,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             set; 
         }
 
-        public int StepperIndex { get; set; }
+        public int StepperIndex {
+            get; 
+            set; 
+        }
 
         //private Phidgets.stepperstepper.stepperType? _stepperType;
 
@@ -87,50 +90,96 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public bool LogPhidgetEvents { get; set; }
 
+        #region StepperState
+
+        private bool? _engaged;
+
+        public bool? Engaged
+        {
+            get => _engaged;
+            set
+            {
+                if (_engaged == value) return;
+                _engaged = value;
+                OnPropertyChanged();
+
+                if (value is not null) StepperEx.Stepper.steppers[StepperIndex].Engaged = (Boolean)value;
+            }
+        }
+
+        private bool? _stopped;
+
+        public bool? Stopped
+        {
+            get => _stopped;
+            set
+            {
+                if (_stopped == value) return;
+                _stopped = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _current;
+
+        public Double? Current
+        {
+            get => _current;
+            set
+            {
+                if (_current == value) return;
+                _current = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion stepperstate Properties
+
+
         // TODO(crhodes)
         // Don't think a Stepper has these
-        #region Configuration
+        //#region Configuration
 
-        private double _minimumPulseWidth = 1000;
+        //private double _minimumPulseWidth = 1000;
 
-        public double MinimumPulseWidth
-        {
-            get => _minimumPulseWidth;
-            set
-            {
-                if (_minimumPulseWidth == value) return;
-                _minimumPulseWidth = value;
-                OnPropertyChanged();
-            }
-        }
+        //public double MinimumPulseWidth
+        //{
+        //    get => _minimumPulseWidth;
+        //    set
+        //    {
+        //        if (_minimumPulseWidth == value) return;
+        //        _minimumPulseWidth = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private double _maximumPulseWidth = 1001;
+        //private double _maximumPulseWidth = 1001;
 
-        public double MaximumPulseWidth
-        {
-            get => _maximumPulseWidth;
-            set
-            {
-                if (_maximumPulseWidth == value) return;
-                _maximumPulseWidth = value;
-                OnPropertyChanged();
-            }
-        }
+        //public double MaximumPulseWidth
+        //{
+        //    get => _maximumPulseWidth;
+        //    set
+        //    {
+        //        if (_maximumPulseWidth == value) return;
+        //        _maximumPulseWidth = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private double _degrees;
+        //private double _degrees;
 
-        public double Degrees
-        {
-            get => _degrees;
-            set
-            {
-                if (_degrees == value) return;
-                _degrees = value;
-                OnPropertyChanged();
-            }
-        }
+        //public double Degrees
+        //{
+        //    get => _degrees;
+        //    set
+        //    {
+        //        if (_degrees == value) return;
+        //        _degrees = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        #endregion Configuration Properties
+        //#endregion Configuration Properties
 
         #region Position
 
@@ -233,7 +282,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         private Int64? _targetPosition;
         public Int64? TargetPosition
         {
-            get => _currentPosition;
+            get => _targetPosition;
             set
             {
                 if (_targetPosition == value) return;
@@ -276,19 +325,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private int _positionRange = 10;
-
-        public int PositionRange
-        {
-            get => _positionRange;
-            set
-            {
-                if (_positionRange == value) return;
-                _positionRange = value;
-                OnPropertyChanged();
-            }
-        }
-
         private Double? _positionMax;
 
         public Double? PositionMax
@@ -320,6 +356,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private int _positionRange = 10;
+
+        public int PositionRange
+        {
+            get => _positionRange;
+            set
+            {
+                if (_positionRange == value) return;
+                _positionRange = value;
+                OnPropertyChanged();
+            }
+        }
+
         // NOTE(crhodes)
         // Since Position{Min,Max} are ReadOnly, don't see need for these
         //private Double? _devicePositionMax;
@@ -345,18 +394,18 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         // NOTE(crhodes)
         // Don't think Stepper has this
 
-        private bool? _speedRamping;
+        //private bool? _speedRamping;
 
-        public bool? SpeedRamping
-        {
-            get => _speedRamping;
-            set
-            {
-                if (_speedRamping == value) return;
-                _speedRamping = value;
-                OnPropertyChanged();
-            }
-        }
+        //public bool? SpeedRamping
+        //{
+        //    get => _speedRamping;
+        //    set
+        //    {
+        //        if (_speedRamping == value) return;
+        //        _speedRamping = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Double? _velocityMin;
 
@@ -464,51 +513,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion Movement Control
-
-        #region StepperState
-
-        private bool? _engaged;
-
-        public bool? Engaged
-        {
-            get => _engaged;
-            set
-            {
-                if (_engaged == value) return;
-                _engaged = value;
-                OnPropertyChanged();
-
-                if (value is not null) StepperEx.Stepper.steppers[StepperIndex].Engaged = (Boolean)value;
-            }
-        }
-
-        private bool? _stopped;
-
-        public bool? Stopped
-        {
-            get => _stopped;
-            set
-            {
-                if (_stopped == value) return;
-                _stopped = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _current;
-
-        public Double? Current
-        {
-            get => _current;
-            set
-            {
-                if (_current == value) return;
-                _current = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion stepperstate Properties
 
         #endregion Fields and Properties (None)
 
@@ -804,7 +808,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 Stopped = null;
                 Engaged = null;
-                SpeedRamping = null;
+                //SpeedRamping = null;
                 Current = null;
 
                 // NOTE(crhodes)

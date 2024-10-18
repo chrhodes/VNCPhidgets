@@ -294,121 +294,119 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Name="lgStepperControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
+            <dxlc:LayoutGroup Name="lgStepperControls" Orientation="Vertical" View="GroupBox" Header="Servo Controls" 
                                   IsCollapsible="True" IsCollapsed="False" >
+
+                <!-- TODO(crhodes)
+                 Need to expose HeaderTitle so can set to StepperState or ServoState
+                -->
+                <controls:ServoStateControl HorizontalAlignment="Left"
+                        Engaged="{Binding StepperProperties[0].Engaged, Mode=TwoWay}" 
+                        Stopped="{Binding StepperProperties[0].Stopped, Mode=OneWay}"
+                        Current="{Binding StepperProperties[0].Current, Mode=OneWay}"/>
+
+                <!--<dxlc:LayoutGroup 
+                            View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
+                        --><!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />--><!--
+                        <dxe:CheckEdit IsChecked="{Binding StepperProperties[0].Engaged}"
+                                       Background="{Binding StepperProperties[0].Engaged, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+
+                    --><!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
+                            -->
+                    <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
+                    <!--
+                            <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S0}"
+                                       Background="{Binding SpeedRamping_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>--><!--
+
+                    <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
+                        --><!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />--><!--
+                        <dxe:CheckEdit IsChecked="{Binding StepperProperties[0].Stopped}"
+                                       Background="{Binding StepperProperties[0].Stopped, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>-->
                 
                 <dxlc:LayoutGroup 
                 	View="Group" Orientation="Vertical" >
-                    <dxlc:LayoutItem Label="Servo0" />
+                    <dxlc:LayoutItem Label="Stepper0" />
 
-                    <dxlc:LayoutItem Label="Servo Type" LabelPosition="Top">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding StepperTypes}" DisplayMember="Name" />
-                    </dxlc:LayoutItem>
-
+                    <!-- NOTE(crhodes)
+                     Velocity
+                    -->
+                    
                     <dxlc:LayoutGroup 
-	                    View="Group" Orientation="Horizontal" > 
-                        
-                        <dxlc:LayoutItem Label="Current Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMax_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentLimit_S0, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Current_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Current Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentMin_S0, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-                        
-                    </dxlc:LayoutGroup>
-
-
-                    <dxlc:LayoutGroup 
-                         View="Group" Orientation="Horizontal" >
+                         View="Group" Orientation="Horizontal" HorizontalAlignment="Left">
                         
                         <dxlc:LayoutItem Label="Velocity Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMax_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].VelocityMax, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Velocity Limit" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityLimit_S0, Mode=TwoWay}" />
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].VelocityLimit, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Velocity" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Velocity_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].Velocity, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Velocity Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding VelocityMin_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].VelocityMin, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
                         
                     </dxlc:LayoutGroup>
 
-
+                    <!-- NOTE(crhodes)
+                     Acceleration
+                    -->
                     <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                            View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
 
                         <dxlc:LayoutItem Label="Acceleration Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding AccelerationMax_S0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].AccelerationMax, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Acceleration" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Acceleration_S0, Mode=TwoWay}" />
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].Acceleration, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
                     
                         <dxlc:LayoutItem Label="Acceleration Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding Acceleration_S0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].AccelerationMin, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
+                            View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
 
                         <dxlc:LayoutItem Label="Position Min" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMin_S0, Mode=OneWay}"  IsReadOnly="True"/>
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].PositionMin, Mode=OneWay}"  IsReadOnly="True"/>
                         </dxlc:LayoutItem>
                         
-                        <dxlc:LayoutItem Label="Current Position" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding CurrentPosition_S0, Mode=TwoWay}" />
+                        <dxlc:LayoutItem Label="CurrentPosition" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].CurrentPosition, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="TargetPosition" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding TargetPosition_S0, Mode=TwoWay}" />
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].TargetPosition, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Position Max" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding PositionMax_S0, Mode=OneWay}" IsReadOnly="True" />
+                            <dxe:TextEdit Text="{Binding StepperProperties[0].PositionMax, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup 
-                            View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
-                            <dxe:CheckEdit IsChecked="{Binding Engaged_S0}"
-                                       Background="{Binding Engaged_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-
-                        <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                            --><!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />--><!--
-                            <dxe:CheckEdit IsChecked="{Binding SpeedRamping_S0}"
-                                       Background="{Binding SpeedRamping_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>-->
-
-                        <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
-                            <dxe:CheckEdit IsChecked="{Binding Stopped_S0}"
-                                       Background="{Binding Stopped_S0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <!--<controls:StepperPositionControl 
+                        Min="{Binding StepperProperties[0].PositionMin, Mode=OneWay}" 
+                        CurrentPosition="{Binding StepperProperties[0].CurrentPosition, Mode=TwoWay}" 
+                        TargetPosition="{Binding StepperProperties[0].TargetPosition, Mode=TwoWay}" 
+                        Max="{Binding StepperProperties[0].PositionMax, Mode=OneWay}"
+                        StepperIndex="{Binding StepperProperties[0].StepperIndex}"
+                        PositionRange="{Binding StepperProperties[0].PositionRange}"/>-->
 
                 </dxlc:LayoutGroup>
                 

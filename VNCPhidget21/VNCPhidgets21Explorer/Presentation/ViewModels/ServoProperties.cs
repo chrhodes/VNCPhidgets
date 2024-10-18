@@ -87,6 +87,51 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public bool LogPhidgetEvents { get; set; }
 
+        #region ServoState
+
+        private bool? _engaged;
+
+        public bool? Engaged
+        {
+            get => _engaged;
+            set
+            {
+                if (_engaged == value) return;
+                _engaged = value;
+                OnPropertyChanged();
+
+                if (value is not null) AdvancedServoEx.AdvancedServo.servos[ServoIndex].Engaged = (Boolean)value;
+            }
+        }
+
+        private bool? _stopped;
+
+        public bool? Stopped
+        {
+            get => _stopped;
+            set
+            {
+                if (_stopped == value) return;
+                _stopped = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _current;
+
+        public Double? Current
+        {
+            get => _current;
+            set
+            {
+                if (_current == value) return;
+                _current = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion ServoState Properties
+
         #region Configuration
 
         private double _minimumPulseWidth = 1000;
@@ -409,54 +454,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion Movement Control
 
-        #region ServoState
-
-        private bool? _engaged;
-
-        public bool? Engaged
-        {
-            get => _engaged;
-            set
-            {
-                if (_engaged == value) return;
-                _engaged = value;
-                OnPropertyChanged();
-
-                if (value is not null) AdvancedServoEx.AdvancedServo.servos[ServoIndex].Engaged = (Boolean)value;
-            }
-        }
-
-        private bool? _stopped;
-
-        public bool? Stopped
-        {
-            get => _stopped;
-            set
-            {
-                if (_stopped == value) return;
-                _stopped = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _current;
-
-        public Double? Current
-        {
-            get => _current;
-            set
-            {
-                if (_current == value) return;
-                _current = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion ServoState Properties
-
         #endregion Fields and Properties (None)
-
-
 
         /// <summary>
         /// Centers servo based on Device{Min,Max} if position not set

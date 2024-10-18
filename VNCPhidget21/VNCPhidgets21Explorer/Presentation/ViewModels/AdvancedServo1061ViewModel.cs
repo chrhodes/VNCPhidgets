@@ -463,10 +463,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                //Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                //Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                
-                DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                DeviceAttached = device.Attached;
 
                 AdvancedServoProperties[0].AdvancedServoEx = ActiveAdvancedServo;
                 AdvancedServoProperties[1].AdvancedServoEx = ActiveAdvancedServo;
@@ -500,10 +500,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             try
             {
                 Phidgets.Phidget device = (Phidgets.Phidget)sender;
-
                 Log.Trace($"ActiveAdvancedServo_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
 
-                DeviceAttached = ActiveAdvancedServo.AdvancedServo.Attached;
+                DeviceAttached = device.Attached;
 
                 for (int i = 0; i < ServoCount; i++)
                 {
@@ -1643,9 +1642,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     for (int i = 0; i < ServoCount; i++)
                     {
-                        // NOTE(crhodes)
-                        // All the work is now done in Type.UpdateProperties()
                         AdvancedServoProperties[i].LogPhidgetEvents = LogPhidgetEvents;
+
+                        // NOTE(crhodes)
+                        // All the work is now done in the ServoType property setter
+                        // calling GetPropertiesFromServo()
+                        // because the changing the type changes the properties
+
                         AdvancedServoProperties[i].ServoType = servos[i].Type;
                     }
                 }

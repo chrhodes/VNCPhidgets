@@ -288,6 +288,9 @@
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
                                   IsCollapsible="True" IsCollapsed="False" Padding="-5" >
 
+                <!-- TODO(crhodes)
+                 Try setting the DataContext here so can get rid of AdvancedServoProperties[0] ...
+                -->
                 <dxlc:LayoutGroup Header="Servo S0" View="GroupBox" Orientation="Vertical" Padding="-5" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
@@ -299,13 +302,17 @@
                                             Converter={StaticResource SelectedItemToEnumConverter} }" />
                     </dxlc:LayoutItem>
 
+                    <!-- TODO(crhodes)
+                 Need to expose HeaderTitle so can set to StepperState or ServoState
+                -->
+
                     <controls:ServoStateControl 
                         Engaged="{Binding AdvancedServoProperties[0].Engaged, Mode=TwoWay}" 
                         SpeedRamping="{Binding AdvancedServoProperties[0].SpeedRamping, Mode=TwoWay}" 
                         Stopped="{Binding AdvancedServoProperties[0].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[0].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[0].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[0].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[0].Position, Mode=TwoWay}" 
@@ -385,7 +392,7 @@
                         Stopped="{Binding AdvancedServoProperties[1].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[1].Current, Mode=OneWay}"/>
                     
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[1].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[1].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[1].Position, Mode=TwoWay}" 
@@ -465,7 +472,7 @@
                         Stopped="{Binding AdvancedServoProperties[2].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[2].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[2].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[2].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[2].Position, Mode=TwoWay}" 
@@ -545,7 +552,7 @@
                         Stopped="{Binding AdvancedServoProperties[3].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[3].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[3].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[3].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[3].Position, Mode=TwoWay}" 
@@ -625,7 +632,7 @@
                         Stopped="{Binding AdvancedServoProperties[4].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[4].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[4].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[4].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[4].Position, Mode=TwoWay}" 
@@ -705,7 +712,7 @@
                         Stopped="{Binding AdvancedServoProperties[5].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[5].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[5].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[5].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[5].Position, Mode=TwoWay}" 
@@ -785,7 +792,7 @@
                         Stopped="{Binding AdvancedServoProperties[6].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[6].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[6].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[6].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[6].Position, Mode=TwoWay}" 
@@ -865,7 +872,7 @@
                         Stopped="{Binding AdvancedServoProperties[7].Stopped, Mode=OneWay}"
                         Current="{Binding AdvancedServoProperties[7].Current, Mode=OneWay}"/>
 
-                    <controls:PositionControl 
+                    <controls:ServoPositionControl 
                         DeviceMin="{Binding AdvancedServoProperties[7].DevicePositionMin, Mode=OneWay}" 
                         Min="{Binding AdvancedServoProperties[7].PositionMin, Mode=TwoWay}" 
                         Current="{Binding AdvancedServoProperties[7].Position, Mode=TwoWay}" 

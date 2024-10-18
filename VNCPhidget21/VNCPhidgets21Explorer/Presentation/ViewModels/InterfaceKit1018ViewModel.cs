@@ -290,10 +290,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-
-
-
-
         private bool _logInputChangeEvents = false;
         public bool LogInputChangeEvents
         {
@@ -349,177 +345,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #region InterfaceKit Phidget Properties
-
-        //private string _iKAddress;
-        //public string IkAddress
-        //{
-        //    get => _iKAddress;
-        //    set
-        //    {
-        //        if (_iKAddress == value)
-        //            return;
-        //        _iKAddress = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private bool? _iKAttached;
-        //public bool? IkAttached
-        //{
-        //    get => _iKAttached;
-        //    set
-        //    {
-        //        if (_iKAttached == value)
-        //            return;
-        //        _iKAttached = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-
-
-        //private bool? _ikAttachedToServer;
-        //public bool? IkAttachedToServer
-        //{
-        //    get => _ikAttachedToServer;
-        //    set
-        //    {
-        //        if (_ikAttachedToServer == value)
-        //            return;
-        //        _ikAttachedToServer = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikClass;
-        //public string IkClass
-        //{
-        //    get => _ikClass;
-        //    set
-        //    {
-        //        if (_ikClass == value)
-        //            return;
-        //        _ikClass = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikID;
-        //public string IkID
-        //{
-        //    get => _ikID;
-        //    set
-        //    {
-        //        if (_ikID == value)
-        //            return;
-        //        _ikID = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikLabel;
-        //public string IkLabel
-        //{
-        //    get => _ikLabel;
-        //    set
-        //    {
-        //        if (_ikLabel == value)
-        //            return;
-        //        _ikLabel = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikLibraryVersion;
-        //public string IkLibraryVersion
-        //{
-        //    get => _ikLibraryVersion;
-        //    set
-        //    {
-        //        if (_ikLibraryVersion == value)
-        //            return;
-        //        _ikLibraryVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikName;
-        //public string IkName
-        //{
-        //    get => _ikName;
-        //    set
-        //    {
-        //        if (_ikName == value)
-        //            return;
-        //        _ikName = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _ikPort;
-        //public int? IkPort
-        //{
-        //    get => _ikPort;
-        //    set
-        //    {
-        //        if (_ikPort == value)
-        //            return;
-        //        _ikPort = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _ikSerialNumber;
-        //public int? IkSerialNumber
-        //{
-        //    get => _ikSerialNumber;
-        //    set
-        //    {
-        //        if (_ikSerialNumber == value)
-        //            return;
-        //        _ikSerialNumber = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikServerID;
-        //public string IkServerID
-        //{
-        //    get => _ikServerID;
-        //    set
-        //    {
-        //        if (_ikServerID == value)
-        //            return;
-        //        _ikServerID = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikType;
-        //public string IkType
-        //{
-        //    get => _ikType;
-        //    set
-        //    {
-        //        if (_ikType == value)
-        //            return;
-        //        _ikType = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _ikVersion;
-        //public int? IkVersion
-        //{
-        //    get => _ikVersion;
-        //    set
-        //    {
-        //        if (_ikVersion == value)
-        //            return;
-        //        _ikVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         #region Sensor Input
 
@@ -1846,6 +1671,44 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
+        private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        {
+            try
+            {
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveInterfaceKit_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                DeviceAttached = device.Attached;
+
+                // TODO(crhodes)
+                // This is where properties should be grabbed
+                UpdateInterfaceKitProperties();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            try
+            {
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveInterfaceKit_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                DeviceAttached = device.Attached;
+
+                // TODO(crhodes)
+                // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
+                UpdateInterfaceKitProperties();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
         private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
             Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
@@ -2059,146 +1922,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         }
 
-        private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
-        {
-            try
-            {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                // TODO(crhodes)
-                // This is where properties should be grabbed
-                UpdateInterfaceKitProperties();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
 
-        private void UpdateInterfaceKitProperties()
-        {
-
-            if (ActiveInterfaceKit.InterfaceKit.Attached)
-            {
-                //IkAddress = ActiveInterfaceKit.InterfaceKit.Address;
-                //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
-                DeviceAttached = ActiveInterfaceKit.InterfaceKit.Attached;
-                //IkAttachedToServer = ActiveInterfaceKit.InterfaceKit.AttachedToServer;
-                //IkClass = ActiveInterfaceKit.InterfaceKit.Class.ToString();
-                //IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.InterfaceKit.ID);
-                //IkLabel = ActiveInterfaceKit.InterfaceKit.Label;
-                //IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
-                //IkName = ActiveInterfaceKit.InterfaceKit.Name;
-                //IkPort = ActiveInterfaceKit.InterfaceKit.Port;
-                //IkSerialNumber = ActiveInterfaceKit.InterfaceKit.SerialNumber; // This throws exception
-                ////IkServerID = ActiveInterfaceKit.ServerID;
-                //IkType = ActiveInterfaceKit.InterfaceKit.Type;
-                //IkVersion = ActiveInterfaceKit.InterfaceKit.Version;
-
-                var sensors = ActiveInterfaceKit.InterfaceKit.sensors;
-                InterfaceKitAnalogSensor sensor = null;
-
-                // NOTE(crhodes)
-                // The DataRateMin and DataRateMax do not change.
-                // Populate them here instead of SensorChange event
-
-                // TODO(crhodes)
-                // May want to grab initial values for all fields here.
-
-                for (int i = 0; i < sensors.Count; i++)
-                {
-                    sensor = sensors[i];
-
-                    switch (i)
-                    {
-                        case 0:
-                            AIDataRateMax0 = sensor.DataRateMax;
-                            AIDataRateMin0 = sensor.DataRateMin;
-                            break;
-                        case 1:
-                            AIDataRateMax1 = sensor.DataRateMax;
-                            AIDataRateMin1 = sensor.DataRateMin;
-                            break;
-                        case 2:
-                            AIDataRateMax2 = sensor.DataRateMax;
-                            AIDataRateMin2 = sensor.DataRateMin;
-                            break;
-                        case 3:
-                            AIDataRateMax3 = sensor.DataRateMax;
-                            AIDataRateMin3 = sensor.DataRateMin;
-                            break;
-                        case 4:
-                            AIDataRateMax4 = sensor.DataRateMax;
-                            AIDataRateMin4 = sensor.DataRateMin;
-                            break;
-                        case 5:
-                            AIDataRateMax5 = sensor.DataRateMax;
-                            AIDataRateMin5 = sensor.DataRateMin;
-                            break;
-                        case 6:
-                            AIDataRateMax6 = sensor.DataRateMax;
-                            AIDataRateMin6 = sensor.DataRateMin;
-                            break;
-                        case 7:
-                            AIDataRateMax7 = sensor.DataRateMax;
-                            AIDataRateMin7 = sensor.DataRateMin;
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                DeviceAttached = null;
-                // NOTE(crhodes)
-                // Commented out properties throw exceptions when Phidget not attached
-                // Just clear field
-
-                //IkAddress = ActiveInterfaceKit.Address;
-                //IkAddress = "";
-                //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
-                ////IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
-                //IkAttachedToServer = false;
-                //// This doesn't throw exception but let's clear anyway
-                ////IkClass = ActiveInterfaceKit.Class.ToString();
-                //IkClass = "";
-                ////IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
-                //IkID = "";
-                ////IkLabel = ActiveInterfaceKit.Label;
-                //IkLabel = "";
-                ////IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
-                //IkLibraryVersion = Phidget.LibraryVersion;
-                ////IkName = ActiveInterfaceKit.Name;
-                //IkName = "";
-                ////IkSerialNumber = ActiveInterfaceKit.SerialNumber;
-                //IkSerialNumber = null;
-                ////IkServerID = ActiveInterfaceKit.ServerID;
-                //IkServerID = "";
-                ////IkType = ActiveInterfaceKit.Type;
-                //IkType = "";
-                ////IkVersion = ActiveInterfaceKit.Version;
-                //IkVersion = null;
-            }
-
-            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-        }
-
-        private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            try
-            {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
-
-                // TODO(crhodes)
-                // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
-                UpdateInterfaceKitProperties();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
 
         #endregion
 
@@ -2463,6 +2187,114 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
         {
 
+        }
+
+        private void UpdateInterfaceKitProperties()
+        {
+
+            if (ActiveInterfaceKit.InterfaceKit.Attached)
+            {
+                //IkAddress = ActiveInterfaceKit.InterfaceKit.Address;
+                //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+                DeviceAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+                //IkAttachedToServer = ActiveInterfaceKit.InterfaceKit.AttachedToServer;
+                //IkClass = ActiveInterfaceKit.InterfaceKit.Class.ToString();
+                //IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.InterfaceKit.ID);
+                //IkLabel = ActiveInterfaceKit.InterfaceKit.Label;
+                //IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
+                //IkName = ActiveInterfaceKit.InterfaceKit.Name;
+                //IkPort = ActiveInterfaceKit.InterfaceKit.Port;
+                //IkSerialNumber = ActiveInterfaceKit.InterfaceKit.SerialNumber; // This throws exception
+                ////IkServerID = ActiveInterfaceKit.ServerID;
+                //IkType = ActiveInterfaceKit.InterfaceKit.Type;
+                //IkVersion = ActiveInterfaceKit.InterfaceKit.Version;
+
+                var sensors = ActiveInterfaceKit.InterfaceKit.sensors;
+                InterfaceKitAnalogSensor sensor = null;
+
+                // NOTE(crhodes)
+                // The DataRateMin and DataRateMax do not change.
+                // Populate them here instead of SensorChange event
+
+                // TODO(crhodes)
+                // May want to grab initial values for all fields here.
+
+                for (int i = 0; i < sensors.Count; i++)
+                {
+                    sensor = sensors[i];
+
+                    switch (i)
+                    {
+                        case 0:
+                            AIDataRateMax0 = sensor.DataRateMax;
+                            AIDataRateMin0 = sensor.DataRateMin;
+                            break;
+                        case 1:
+                            AIDataRateMax1 = sensor.DataRateMax;
+                            AIDataRateMin1 = sensor.DataRateMin;
+                            break;
+                        case 2:
+                            AIDataRateMax2 = sensor.DataRateMax;
+                            AIDataRateMin2 = sensor.DataRateMin;
+                            break;
+                        case 3:
+                            AIDataRateMax3 = sensor.DataRateMax;
+                            AIDataRateMin3 = sensor.DataRateMin;
+                            break;
+                        case 4:
+                            AIDataRateMax4 = sensor.DataRateMax;
+                            AIDataRateMin4 = sensor.DataRateMin;
+                            break;
+                        case 5:
+                            AIDataRateMax5 = sensor.DataRateMax;
+                            AIDataRateMin5 = sensor.DataRateMin;
+                            break;
+                        case 6:
+                            AIDataRateMax6 = sensor.DataRateMax;
+                            AIDataRateMin6 = sensor.DataRateMin;
+                            break;
+                        case 7:
+                            AIDataRateMax7 = sensor.DataRateMax;
+                            AIDataRateMin7 = sensor.DataRateMin;
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                DeviceAttached = null;
+                // NOTE(crhodes)
+                // Commented out properties throw exceptions when Phidget not attached
+                // Just clear field
+
+                //IkAddress = ActiveInterfaceKit.Address;
+                //IkAddress = "";
+                //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+                ////IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
+                //IkAttachedToServer = false;
+                //// This doesn't throw exception but let's clear anyway
+                ////IkClass = ActiveInterfaceKit.Class.ToString();
+                //IkClass = "";
+                ////IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
+                //IkID = "";
+                ////IkLabel = ActiveInterfaceKit.Label;
+                //IkLabel = "";
+                ////IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
+                //IkLibraryVersion = Phidget.LibraryVersion;
+                ////IkName = ActiveInterfaceKit.Name;
+                //IkName = "";
+                ////IkSerialNumber = ActiveInterfaceKit.SerialNumber;
+                //IkSerialNumber = null;
+                ////IkServerID = ActiveInterfaceKit.ServerID;
+                //IkServerID = "";
+                ////IkType = ActiveInterfaceKit.Type;
+                //IkType = "";
+                ////IkVersion = ActiveInterfaceKit.Version;
+                //IkVersion = null;
+            }
+
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
         }
 
         #endregion

@@ -18,20 +18,20 @@
   "ApplicationServices": true,
   "Domain": true,
   "DomainServices": true,
-  "Constructor": false,
+  "Constructor": true,
   "Core": true,
   "Event": true,
-  "EventHandler": false,
+  "EventHandler": true,
   "Module": true,
-  "ModuleInitialize": false,
+  "ModuleInitialize": true,
   "Persistence": true,
   "PersistenceLow": true,
   "Infrastructure": true,
   "Presentation": true,
   "View": true,
-  "ViewLow": false,
+  "ViewLow": true,
   "ViewModel": true,
-  "ViewModelLow": false,
+  "ViewModelLow": true,
 
-  "INPC": false
+  "INPC": true
 }

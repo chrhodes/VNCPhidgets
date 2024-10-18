@@ -12,11 +12,11 @@ using System.Linq;
 
 namespace VNCPhidgets21Explorer.Presentation.Controls
 {
-    public partial class PositionControl : ViewBase, IInstanceCountV
+    public partial class ServoPositionControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public PositionControl()
+        public ServoPositionControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -73,7 +73,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static object OnCoercePositionRange(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoercePositionRange((Int32)value);
             else
@@ -82,7 +82,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnPositionRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnPositionRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -99,7 +99,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceServoIndex(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoerceServoIndex((Int32?)value);
             else
@@ -108,7 +108,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnServoIndexChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnServoIndexChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
         }
@@ -125,7 +125,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceDeviceMax(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoerceDeviceMax((Double?)value);
             else
@@ -134,7 +134,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnDeviceMaxChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnDeviceMaxChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -151,7 +151,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceDeviceMin(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoerceDeviceMin((Double?)value);
             else
@@ -160,7 +160,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnDeviceMinChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnDeviceMinChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -232,13 +232,13 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             set => SetValue(MaxProperty, value);
         }
 
-        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(Double?), typeof(ServoPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMaxChanged), new CoerceValueCallback(OnCoerceMax)));
 
-        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Double?), typeof(ServoPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
 
-        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(ServoPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));
         #endregion
 
@@ -266,7 +266,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoerceCurrent((Double?)value);
             else
@@ -275,7 +275,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -292,7 +292,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceMin(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoerceMin((Double?)value);
             else
@@ -301,7 +301,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnMinChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnMinChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -318,7 +318,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         }
         private static object OnCoerceMax(DependencyObject o, object value)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 return positionControl.OnCoerceMax((Double?)value);
             else
@@ -327,7 +327,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         private static void OnMaxChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            PositionControl positionControl = o as PositionControl;
+            ServoPositionControl positionControl = o as ServoPositionControl;
             if (positionControl != null)
                 positionControl.OnMaxChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -372,15 +372,15 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             ((TrackBarEdit)sender).Value = (Double)centerPosition;
         }
 
-        public static readonly DependencyProperty DeviceMinProperty = DependencyProperty.Register("DeviceMin", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty DeviceMinProperty = DependencyProperty.Register("DeviceMin", typeof(Double?), typeof(ServoPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMinChanged), new CoerceValueCallback(OnCoerceDeviceMin)));
-        public static readonly DependencyProperty DeviceMaxProperty = DependencyProperty.Register("DeviceMax", typeof(Double?), typeof(PositionControl),
+        public static readonly DependencyProperty DeviceMaxProperty = DependencyProperty.Register("DeviceMax", typeof(Double?), typeof(ServoPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceMaxChanged), new CoerceValueCallback(OnCoerceDeviceMax)));
 
-        public static readonly DependencyProperty ServoIndexProperty = DependencyProperty.Register("ServoIndex", typeof(Int32?), typeof(PositionControl),
+        public static readonly DependencyProperty ServoIndexProperty = DependencyProperty.Register("ServoIndex", typeof(Int32?), typeof(ServoPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnServoIndexChanged), new CoerceValueCallback(OnCoerceServoIndex)));
 
-        public static readonly DependencyProperty PositionRangeProperty = DependencyProperty.Register("PositionRange", typeof(Int32), typeof(PositionControl), 
+        public static readonly DependencyProperty PositionRangeProperty = DependencyProperty.Register("PositionRange", typeof(Int32), typeof(ServoPositionControl), 
             new FrameworkPropertyMetadata(10, new PropertyChangedCallback(OnPositionRangeChanged), new CoerceValueCallback(OnCoercePositionRange)));
 
         private void SetPositionRange_Click(object sender, RoutedEventArgs e)
