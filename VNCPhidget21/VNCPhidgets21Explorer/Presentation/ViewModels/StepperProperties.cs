@@ -88,7 +88,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    }
         //}
 
-        public bool LogPhidgetEvents { get; set; }
+        public bool LogPhidgetEvents { 
+            get; 
+            set;
+        }
+        public bool LogSequenceAction { 
+            get; 
+            set; 
+        }
 
         #region StepperState
 
@@ -180,6 +187,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //}
 
         //#endregion Configuration Properties
+
+        private Double? _stepAngle;
+
+        public Double? StepAngle
+        {
+            get => _stepAngle;
+            set
+            {
+                if (_stepAngle == value) return;
+                _stepAngle = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region Position
 

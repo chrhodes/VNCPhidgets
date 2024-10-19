@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using DevExpress.XtraRichEdit.Layout.Engine;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -28,6 +30,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             // Can create directly
             // ViewModel = Stepper1063ViewModel();
+
+            InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
@@ -58,6 +62,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Put things here that initialize the View
 
             this.lgPhidgetStatus.IsCollapsed = true;
+
+            Phidget1.DataContext = ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -122,5 +128,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
+
     }
 }

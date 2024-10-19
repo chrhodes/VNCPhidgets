@@ -23,9 +23,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
             InstanceCountV++;
             InitializeComponent();
-            
-            lgMain.DataContext = this;
-            liPositionRange.DataContext = this;
 
             // Expose ViewModel
 
@@ -67,6 +64,9 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
+
+            lgMain.DataContext = this;
+            liPositionRange.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

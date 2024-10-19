@@ -29,6 +29,8 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // Can create directly
             // ViewModel = HostSelectorViewModel();
 
+            InitializeView();
+
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
         

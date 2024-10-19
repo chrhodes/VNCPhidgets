@@ -123,19 +123,30 @@
 
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
 
-                <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
-                    <dxe:ComboBoxEdit Width="150" 
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                    
+                    <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="150" 
                         ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
                         SelectedItem="{Binding SelectedAdvancedServo}"
                         SelectedIndex="0"/>
-                </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                    <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True" 
+                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                        <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True" 
                                   Background="White" 
                                   Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                    <Button 
+		                    Command="{Binding OpenAdvancedServoCommand }"
+		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
+		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
-           
+
                 <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
 
                     <dxlc:LayoutItem Label="Select Velocity"
@@ -226,17 +237,6 @@
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
-
-                <!--<dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                    <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
-                </dxlc:LayoutItem>-->
-
-                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                    <Button 
-		                    Command="{Binding OpenAdvancedServoCommand }"
-		                    Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
-		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
-                </dxlc:LayoutItem>
                 
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button 
@@ -286,12 +286,12 @@
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls" 
-                                  IsCollapsible="True" IsCollapsed="False" Padding="-5" >
+                                  IsCollapsible="True" IsCollapsed="False" Padding="-10" >
 
                 <!-- TODO(crhodes)
                  Try setting the DataContext here so can get rid of AdvancedServoProperties[0] ...
                 -->
-                <dxlc:LayoutGroup Header="Servo S0" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S0" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -375,7 +375,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S1" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S1" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -455,7 +455,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S2" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S2" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -535,7 +535,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S3" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S3" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -615,7 +615,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S4" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S4" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -695,7 +695,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S5" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S5" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -775,7 +775,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S6" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S6" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
@@ -855,7 +855,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Servo S7" View="GroupBox" Orientation="Vertical" Padding="-5" >
+                <dxlc:LayoutGroup Header="Servo S7" View="GroupBox" Orientation="Vertical" Padding="-10" >
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"

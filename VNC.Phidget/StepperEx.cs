@@ -100,7 +100,8 @@ namespace VNC.Phidget
         public bool LogSensorChangeEvents { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
+        public bool LogSequenceAction { get; 
+            set; }
         public bool LogActionVerification { get; set; }
 
         public StepperMinMax[] InitialStepperLimits { get; set; } = new StepperMinMax[8];
@@ -487,7 +488,7 @@ namespace VNC.Phidget
                 {
                     Log.Trace($"End stepper:{index} position:{position}"
                         + $" stepper.CurrentPosition:{stepper.CurrentPosition}"
-                        + $"stepper.TargetPosition:{stepper.TargetPosition}", Common.LOG_CATEGORY);
+                        + $" stepper.TargetPosition:{stepper.TargetPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
@@ -541,7 +542,7 @@ namespace VNC.Phidget
                 {
                     Log.Trace($"End stepper:{index} position:{position}"
                         + $" stepper.CurrentPosition:{stepper.CurrentPosition}"
-                        + $"stepper.TargetPosition:{stepper.TargetPosition}", Common.LOG_CATEGORY);
+                        + $" stepper.TargetPosition:{stepper.TargetPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)

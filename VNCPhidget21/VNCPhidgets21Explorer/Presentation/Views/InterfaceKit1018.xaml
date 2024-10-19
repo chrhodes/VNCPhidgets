@@ -127,18 +127,22 @@
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
                     
-                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
-                        <dxe:ComboBoxEdit Width="150" 
-                                          ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
-                                          SelectedItem="{Binding SelectedInterfaceKit}"
-                                          SelectedIndex="0"/>
-                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                        
+                        <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
+                            <dxe:ComboBoxEdit Width="150" 
+                                     ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
+                                     SelectedItem="{Binding SelectedInterfaceKit}"
+                                     SelectedIndex="0"/>
+                        </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
-                                      Background="White" 
-                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                            <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
+                                 Background="White" 
+                                 Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        
+                    </dxlc:LayoutGroup>     
                     
                     <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
                         <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
@@ -152,7 +156,7 @@
                                       Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                         <Button 
 		                    Command="{Binding OpenInterfaceKitCommand }"
 		                    Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"

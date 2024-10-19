@@ -18,8 +18,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
             InstanceCountV++;
             InitializeComponent();
-            
-            lgMain.DataContext = this;
 
             // Expose ViewModel
 
@@ -29,6 +27,8 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
             // Can create directly
             // ViewModel = VelocityControlViewModel();
+
+            InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -59,6 +59,8 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
+
+            lgMain.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

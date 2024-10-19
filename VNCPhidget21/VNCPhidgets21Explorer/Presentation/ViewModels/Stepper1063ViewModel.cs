@@ -62,6 +62,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
             InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
 
+            RotateCommand = new DelegateCommand(Rotate, RotateCanExecute);
+
+            // If using CommandParameter, figure out TYPE here and below
+            // and remove above declaration
+            //RotateCommand = new DelegateCommand<TYPE>(Rotate, RotateCanExecute);
+
+
+            ZeroCurentPositionCommand = new DelegateCommand(ZeroCurentPosition, ZeroCurentPositionCanExecute);
+
+            // If using CommandParameter, figure out TYPE here and below
+            // and remove above declaration
+            //ZeroCurentPositionCommand = new DelegateCommand<TYPE>(ZeroCurentPosition, ZeroCurentPositionCanExecute);
+
+
             // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
             // This could also come from PerformanceLibrary.
@@ -118,6 +132,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+
         private string _message;
 
         public string Message
@@ -131,6 +146,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private double _degrees;
+        public double Degrees
+        {
+            get => _degrees;
+            set
+            {
+                if (_degrees == value)
+                    return;
+                _degrees = value;
+                OnPropertyChanged();
+            }
+        }      
 
         #region Host
 
@@ -209,11 +237,38 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     // NOTE(crhodes)
                     // There is some logging in StepperProperties that is handled separate
-                    // from the logging in AdvancedServoEx and PhidgetEx
+                    // from the logging in StepperEx and PhidgetEx
 
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < ActiveStepper.Stepper.steppers.Count; i++)
                     {
                         StepperProperties[i].LogPhidgetEvents = value;
+                    }
+                }
+            }
+        }
+
+        private bool _logSequenceAction = false;
+        public bool LogSequenceAction
+        {
+            get => _logSequenceAction;
+            set
+            {
+                if (_logSequenceAction == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper is not null)
+                {
+                    ActiveStepper.LogSequenceAction = value;
+
+                    // NOTE(crhodes)
+                    // There is some logging in StepperProperties that is handled separate
+                    // from the logging in StepperEx and PhidgetEx
+
+                    for (int i = 0; i < ActiveStepper.Stepper.steppers.Count; i++)
+                    {
+                        StepperProperties[i].LogSequenceAction = value;
                     }
                 }
             }
@@ -1267,6 +1322,210 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region Rotate Command
+
+        // Start Cut Three - Put this in Fields and Properties
+
+        public DelegateCommand RotateCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> RotateCommand { get; set; }
+
+        // End Cut Three
+
+        // If displaying UserControl
+        // public static WindowHost _RotateHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE RotateCommandParameter;
+
+        public string RotateContent { get; set; } = "Rotate";
+        public string RotateToolTip { get; set; } = "Rotate ToolTip";
+
+        // Can get fancy and use Resources
+        //public string RotateContent { get; set; } = "ViewName_RotateContent";
+        //public string RotateToolTip { get; set; } = "ViewName_RotateContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RotateContent">Rotate</system:String>
+        //    <system:String x:Key="ViewName_RotateContentToolTip">Rotate ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE here
+        //public void Rotate(TYPE value)
+        public void Rotate()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = "Cool, you called Rotate";
+
+            PublishStatusMessage(Message);
+
+            var sa = StepperProperties[0].StepAngle;
+
+            Double circle = 360;
+            var circleSteps = circle / sa;
+
+            Int64 stepsToMove = (Int64)(Degrees / sa);
+
+            stepsToMove = stepsToMove * 16; // 1/16 steps
+
+            StepperProperties[0].TargetPosition += stepsToMove;
+
+            // If launching a UserControl
+
+            // if (_RotateHost is null) _RotateHost = new WindowHost();
+            // var userControl = new USERCONTROL();
+
+            // _loggingConfigurationHost.DisplayUserControlInHost(
+            //     "TITLE GOES HERE",
+            //     //Common.DEFAULT_WINDOW_WIDTH,
+            //     //Common.DEFAULT_WINDOW_HEIGHT,
+            //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+            //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+            //     ShowWindowMode.Modeless_Show,
+            //     userControl);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RotateEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RotateEvent>().Publish(
+            //      new RotateEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class RotateEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RotateEvent>().Subscribe(Rotate);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool RotateCanExecute(TYPE value)
+        public bool RotateCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
+        #region ZeroCurentPosition Command
+
+        // Start Cut Three - Put this in Fields and Properties
+
+        public DelegateCommand ZeroCurentPositionCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> ZeroCurentPositionCommand { get; set; }
+
+        // End Cut Three
+
+        // End Cut Two
+
+        // If displaying UserControl
+        // public static WindowHost _ZeroCurentPositionHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE ZeroCurentPositionCommandParameter;
+
+        public string ZeroCurentPositionContent { get; set; } = "ZeroCurentPosition";
+        public string ZeroCurentPositionToolTip { get; set; } = "ZeroCurentPosition ToolTip";
+
+        // Can get fancy and use Resources
+        //public string ZeroCurentPositionContent { get; set; } = "ViewName_ZeroCurentPositionContent";
+        //public string ZeroCurentPositionToolTip { get; set; } = "ViewName_ZeroCurentPositionContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_ZeroCurentPositionContent">ZeroCurentPosition</system:String>
+        //    <system:String x:Key="ViewName_ZeroCurentPositionContentToolTip">ZeroCurentPosition ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE here
+        //public void ZeroCurentPosition(TYPE value)
+        public void ZeroCurentPosition()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = "Cool, you called ZeroCurentPosition";
+
+            PublishStatusMessage(Message);
+
+            StepperProperties[0].CurrentPosition = 0;
+            StepperProperties[0].TargetPosition = 0;
+
+            // If launching a UserControl
+
+            // if (_ZeroCurentPositionHost is null) _ZeroCurentPositionHost = new WindowHost();
+            // var userControl = new USERCONTROL();
+
+            // _loggingConfigurationHost.DisplayUserControlInHost(
+            //     "TITLE GOES HERE",
+            //     //Common.DEFAULT_WINDOW_WIDTH,
+            //     //Common.DEFAULT_WINDOW_HEIGHT,
+            //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+            //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+            //     ShowWindowMode.Modeless_Show,
+            //     userControl);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<ZeroCurentPositionEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<ZeroCurentPositionEvent>().Publish(
+            //      new ZeroCurentPositionEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class ZeroCurentPositionEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<ZeroCurentPositionEvent>().Subscribe(ZeroCurentPosition);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool ZeroCurentPositionCanExecute(TYPE value)
+        public bool ZeroCurentPositionCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
         #endregion
 
         #region Public Methods
@@ -1302,25 +1561,36 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                     stepperProperties.LogPhidgetEvents = LogPhidgetEvents;
 
-                    stepperProperties.Stopped = stepper.Stopped;
-                    stepperProperties.Engaged = stepper.Engaged;
-                    stepperProperties.Current = stepper.Current;
+                    try
+                    {
+                        stepperProperties.Engaged = stepper.Engaged;
 
-                    stepperProperties.AccelerationMax = stepper.AccelerationMax;
-                    //stepperProperties.Acceleration = stepper.Acceleration; // Reading throws exception
-                    stepperProperties.Acceleration = stepper.AccelerationMin;
-                    stepperProperties.AccelerationMin = stepper.AccelerationMin;
+                        stepperProperties.Stopped = stepper.Stopped;
+                        stepperProperties.Engaged = stepper.Engaged;
+                        stepperProperties.Current = stepper.Current;
 
-                    stepperProperties.VelocityMin = stepper.VelocityMin;
-                    stepperProperties.Velocity = stepper.Velocity;
-                    //stepperProperties.VelocityLimit = stepper.VelocityLimit; // Reading throws exception
-                    stepperProperties.VelocityLimit = stepper.VelocityMin + 1;
-                    stepperProperties.VelocityMax = stepper.VelocityMax;
+                        stepperProperties.AccelerationMax = stepper.AccelerationMax;
+                        //stepperProperties.Acceleration = stepper.Acceleration; // Reading throws exception
+                        stepperProperties.Acceleration = stepper.AccelerationMin;
+                        stepperProperties.AccelerationMin = stepper.AccelerationMin;
 
-                    stepperProperties.PositionMin = stepper.PositionMin;
-                    stepperProperties.CurrentPosition = stepper.CurrentPosition;
-                    stepperProperties.TargetPosition = stepper.TargetPosition;
-                    stepperProperties.PositionMax = stepper.PositionMax;
+                        stepperProperties.VelocityMin = stepper.VelocityMin;
+                        stepperProperties.Velocity = stepper.Velocity;
+                        //stepperProperties.VelocityLimit = stepper.VelocityLimit; // Reading throws exception
+                        stepperProperties.VelocityLimit = stepper.VelocityMin + 360;    // Pretty slow
+                        stepperProperties.VelocityMax = stepper.VelocityMax;
+
+                        stepperProperties.PositionMin = stepper.PositionMin;
+                        stepperProperties.CurrentPosition = stepper.CurrentPosition;
+                        stepperProperties.TargetPosition = stepper.TargetPosition;
+                        stepperProperties.PositionMax = stepper.PositionMax;
+                    }
+                    catch (PhidgetException pex)
+                    {
+                        // NOTE(crhodes)
+                        // If the stepper is not engaged all properties throw excptions
+                        InitializeStepperUI();
+                    }
 
                     //StepperProperties[i].ServoType = servos[i].Type;
 

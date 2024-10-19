@@ -180,6 +180,7 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup Orientation="Horizontal">
+            
             <dxlc:LayoutItem HorizontalAlignment="Left" >
                 <Button Content="Min" CommandParameter="Min" Padding="2"
                         ToolTip="Tests full position range (recommend slowly)" 
@@ -209,11 +210,7 @@
                         ToolTip="Tests full position range (recommend slowly)" 
                         Click="TestFullPositionRange_Click"/>
             </dxlc:LayoutItem>
-            <!--<Button 
-                    Command="{Binding SetPositionRangeCommand }"
-                    CommandParameter="{Binding ServoIndex}"
-                    Content="{Binding SetPositionRangeContent, FallbackValue='SetPositionRange' }"
-                    ToolTip="{Binding SetPositionRangeToolTip, FallbackValue='SetPositionRange ToolTip' }" />-->
+
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>
