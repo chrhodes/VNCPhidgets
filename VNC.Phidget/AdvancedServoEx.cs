@@ -63,23 +63,13 @@ namespace VNC.Phidget
 
         public struct ServoMinMax
         {
-            //public enum LimitType
-            //{
-            //    //AccelerationMin,
-            //    //AccelerationMax,
-            //    DevicePositionMin,
-            //    PositionMin,
-            //    PositionMax,
-            //    DevicePositionMax
-            //    //VelocityMin,
-            //    //VelocityMax,
-            //}
-
             public Double AccelerationMin;
             public Double AccelerationMax;
+        // Since Position can be changed
+        // Save in DevicePosition{Min,Max}
+        //public Double PositionMin;    
+        //public Double PositionMax;
             public Double DevicePositionMin;
-            //public Double PositionMin;
-            //public Double PositionMax;
             public Double DevicePositionMax;
             public Double VelocityMin;
             public Double VelocityMax;

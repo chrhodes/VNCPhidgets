@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Phidgets;
+using Phidgets.Events;
 
 using Prism.Events;
 
@@ -67,24 +68,12 @@ namespace VNC.Phidget
 
         public struct StepperMinMax
         {
-            //public enum LimitType
-            //{
-            //    //AccelerationMin,
-            //    //AccelerationMax,
-            //    DevicePositionMin,
-            //    PositionMin,
-            //    PositionMax,
-            //    DevicePositionMax
-            //    //VelocityMin,
-            //    //VelocityMax,
-            //}
-
             public Double AccelerationMin;
             public Double AccelerationMax;
-            //public Int64 DevicePositionMin;
+
             public Int64 PositionMin;
             public Int64 PositionMax;
-            //public Int64 DevicePositionMax;
+
             public Double VelocityMin;
             public Double VelocityMax;
         }
@@ -95,24 +84,138 @@ namespace VNC.Phidget
 
         public Phidgets.Stepper Stepper = null;
 
-        public bool LogInputChangeEvents { get; set; }
-        public bool LogOutputChangeEvents { get; set; }
-        public bool LogSensorChangeEvents { get; set; }
+        private bool _logPositionChangeEvents;
+        public bool LogPositionChangeEvents
+        {
+            get => _logPositionChangeEvents;
+            set
+            {
+                if (_logPositionChangeEvents == value) return;
+
+                if (_logPositionChangeEvents = value)
+                {
+                    Stepper.PositionChange += Stepper_PositionChange;
+                }
+                else
+                {
+                    Stepper.PositionChange -= Stepper_PositionChange;
+                }
+            }
+        }
+
+        private bool _logVelocityChangeEvents;
+        public bool LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value) return;
+
+                if (_logVelocityChangeEvents = value)
+                {
+                    Stepper.VelocityChange += Stepper_VelocityChange;
+                }
+                else
+                {
+                    Stepper.VelocityChange -= Stepper_VelocityChange;
+                }
+            }
+        }
+
+        private bool _logCurrentChangeEvents;
+        public bool LogCurrentChangeEvents
+        {
+            get => _logCurrentChangeEvents;
+            set
+            {
+                if (_logCurrentChangeEvents == value) return;
+
+                if (_logCurrentChangeEvents = value)
+                {
+                    Stepper.CurrentChange += Stepper_CurrentChange;
+                }
+                else
+                {
+                    Stepper.CurrentChange -= Stepper_CurrentChange;
+                }
+            }
+        }
+
+        private bool _logInputChangeEvents;
+        public bool LogInputChangeEvents
+        {
+            get => _logInputChangeEvents;
+            set
+            {
+                if (_logInputChangeEvents == value) return;
+
+                if (_logInputChangeEvents = value)
+                {
+                    Stepper.InputChange += Stepper_InputChange;
+                }
+                else
+                {
+                    Stepper.InputChange -= Stepper_InputChange;
+                }
+            }
+        }
 
         public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; 
-            set; }
+        public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
 
         public StepperMinMax[] InitialStepperLimits { get; set; } = new StepperMinMax[8];
 
         #endregion
 
-        #region Commands (None)
-
-        #endregion
-
         #region Event Handlers
+
+        private void Stepper_CurrentChange(object sender, CurrentChangeEventArgs e)
+        {
+            try
+            {
+                Phidgets.Stepper Stepper = sender as Phidgets.Stepper;
+                Phidgets.StepperStepper stepper = Stepper.steppers[e.Index];
+                Log.EVENT_HANDLER($"CurrentChange {Stepper.Address},{Stepper.SerialNumber},servo:{e.Index}" +
+                    $" - current:{e.Current:00.000} - stopped:{stepper.Stopped}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void Stepper_PositionChange(object sender, StepperPositionChangeEventArgs e)
+        {            
+            try
+            {
+                Phidgets.Stepper Stepper = sender as Phidgets.Stepper;
+                Phidgets.StepperStepper stepper = Stepper.steppers[e.Index];
+                Log.EVENT_HANDLER($"PositionChange {Stepper.Address},{Stepper.SerialNumber},servo:{e.Index}" +
+                    $" - velocity:{stepper.Velocity,8:0.000} position:{e.Position,7:0.000} current:{stepper.Current:00.000}" +
+                    $" - stopped:{stepper.Stopped} ", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void Stepper_VelocityChange(object sender, VelocityChangeEventArgs e)
+        {
+            try
+            {
+                Phidgets.Stepper Stepper = sender as Phidgets.Stepper;
+                Phidgets.StepperStepper stepper = Stepper.steppers[e.Index];
+                Log.EVENT_HANDLER($"VelocityChange {Stepper.Address},{Stepper.SerialNumber},servo:{e.Index}" +
+                    $" - velocity:{e.Velocity,8:0.000} position:{stepper.CurrentPosition,7:0.000} current:{stepper.Current:00.000}" +
+                    $" - stopped:{stepper.Stopped}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
 
         //private void Stepper_SensorChange(object sender, SensorChangeEventArgs e)
         //{
@@ -150,25 +253,25 @@ namespace VNC.Phidget
         //    }
         //}
 
-        //private void Stepper_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        //{
-        //    if (LogInputChangeEvents)
-        //    {
-        //        try
-        //        {
-        //            InterfaceKit ifk = (InterfaceKit)sender;
-        //            var a = e;
-        //            var b = e.GetType();
-        //            Log.Trace($"Stepper_InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
+        private void Stepper_InputChange(object sender, InputChangeEventArgs e)
+        {
+            try
+            {
+                Phidgets.Stepper stepper = (Phidgets.Stepper)sender;
+                Log.Trace($"Stepper_InputChange {stepper.Address},{stepper.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
 
         #endregion
+
+        #region Commands (None)
+
+        #endregion
+
 
         #region Public Methods
 

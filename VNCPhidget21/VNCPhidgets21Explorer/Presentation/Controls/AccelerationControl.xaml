@@ -73,8 +73,9 @@
                       Orientation="Horizontal"  Padding="-10">
 
         <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left">
-            <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" IsReadOnly="True" HorizontalContentAlignment="Left"
-                          Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+            <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" IsReadOnly="True" 
+                          Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                          MinWidth="40" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
@@ -91,10 +92,10 @@
                 EditValueChanged="SpinEdit_EditValueChanged"/>
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" Width="65" >
+        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" >
             <dxe:TextEdit Text="{Binding Max, Mode=TwoWay}" IsReadOnly="True" 
-                          HorizontalAlignment="Right" HorizontalContentAlignment="Right"
-                          Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                          Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                          MinWidth="40" />
         </dxlc:LayoutItem>
 
     </dxlc:LayoutGroup>

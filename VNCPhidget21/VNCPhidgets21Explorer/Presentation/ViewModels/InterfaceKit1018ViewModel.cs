@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 using Phidgets;
 
@@ -1958,7 +1959,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
         //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
 
-        public void OpenInterfaceKit()
+        public async void OpenInterfaceKit()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenInterfaceKit) Enter", Common.LOG_CATEGORY);
@@ -1996,7 +1997,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
             ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            ActiveInterfaceKit.Open();
+            await Task.Run(() => ActiveInterfaceKit.Open());
 
             //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
 
@@ -2087,8 +2088,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveInterfaceKit = null;
             ClearDigitalInputsAndOutputs();
 
-            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 

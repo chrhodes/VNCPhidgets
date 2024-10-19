@@ -10,6 +10,12 @@ namespace VNCPhidget21.Configuration
         public int StepperIndex { get; set; }
 
         /// <summary>
+        /// Degrees of rotation for one full step
+        /// 16 micro steps (1/16)
+        /// </summary>
+        public int StepAngle { get; set; }
+
+        /// <summary>
         /// Engage Servo (optional)
         /// </summary>
         public bool? Engaged { get; set; }
@@ -42,17 +48,7 @@ namespace VNCPhidget21.Configuration
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        //public double? PositionMin { get; set; }
-
-        /// <summary>
-        /// TargetPosition (optional)
-        /// </summary>
         public Int64? CurrentPosition { get; set; }
-
-        /// <summary>
-        /// Position (+/-)  from current Position (optional)
-        /// </summary>
-        public Int64? RelativeCurrentPosition { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
@@ -61,8 +57,15 @@ namespace VNCPhidget21.Configuration
 
         /// <summary>
         /// Position (+/-)  from current Position (optional)
+        /// in 1/16 step Micro Steps
         /// </summary>
         public Int64? RelativeTargetPosition { get; set; }
+
+        /// <summary>
+        /// Position (+/-)  from current Position (optional)
+        /// in degrees
+        /// </summary>
+        public Int64? RelativeTargetDegrees { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)

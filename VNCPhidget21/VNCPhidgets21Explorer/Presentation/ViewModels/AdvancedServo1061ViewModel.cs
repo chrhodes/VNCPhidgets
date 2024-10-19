@@ -626,6 +626,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo.LogPhidgetEvents = LogPhidgetEvents;
 
             await Task.Run(() => ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout));
+
             //ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout);
 
             // Uncomment this if you are telling someone else to handle this
@@ -1199,6 +1200,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called CloseAdvancedServo";
 
+            // TODO(crhodes)
+            // Do we really want to do this?  What if someone else has open?
+
             DisEngageAllServos();
 
             // NOTE(crhodes)
@@ -1212,7 +1216,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             ActiveAdvancedServo.AdvancedServo.VelocityChange -= ActiveAdvancedServo_VelocityChange;
 
             await Task.Run(() => ActiveAdvancedServo.Close());
-            //ActiveAdvancedServo.Close();
 
             DeviceAttached = false;
             UpdateAdvancedServoProperties();

@@ -84,7 +84,8 @@
     
     <DockPanel Margin="5">
 
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+        <StackPanel x:Name="spDeveloperInfo"
+                    DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
             <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
@@ -112,7 +113,11 @@
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                 <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
                 <Label Content=" VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
+                <Label Content="{Binding ElementName=thisControl, Path=ViewModel.InstanceCountVM}" />
+                <Label Content="W:" Margin="10,0,0,0" />
+                <Label Content="{Binding WindowSize.Width, StringFormat={}{0:0}}" />
+                <Label Content="H:" Margin="10,0,0,0" />
+                <Label Content="{Binding WindowSize.Height, StringFormat={}{0:0}}" />
             </StackPanel>
 
         </StackPanel>

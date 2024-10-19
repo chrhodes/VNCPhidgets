@@ -62,7 +62,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
             InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
 
-            RotateCommand = new DelegateCommand(Rotate, RotateCanExecute);
+            RotateCommand = new DelegateCommand<string>(Rotate, RotateCanExecute);
 
             // If using CommandParameter, figure out TYPE here and below
             // and remove above declaration
@@ -206,7 +206,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Phidget
 
-
         private Phidgets.Phidget _phidgetDevice;
         public Phidgets.Phidget PhidgetDevice
         {
@@ -288,6 +287,64 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #region Stepper
+
+        private bool _logCurrentChangeEvents = false;
+        public bool LogCurrentChangeEvents
+        {
+            get => _logCurrentChangeEvents;
+            set
+            {
+                if (_logCurrentChangeEvents == value)
+                    return;
+                _logCurrentChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper is not null)
+                {
+                    ActiveStepper.LogCurrentChangeEvents = _logCurrentChangeEvents;
+                }
+            }
+        }
+
+
+        private bool _logPositionChangeEvents = false;
+        public bool LogPositionChangeEvents
+        {
+            get => _logPositionChangeEvents;
+            set
+            {
+                if (_logPositionChangeEvents == value)
+                    return;
+                _logPositionChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper is not null)
+                {
+                    ActiveStepper.LogPositionChangeEvents = _logPositionChangeEvents;
+                }
+            }
+        }
+
+        private bool _logVelocityChangeEvents = false;
+        public bool LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value)
+                    return;
+                _logVelocityChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveStepper is not null)
+                {
+                    ActiveStepper.LogVelocityChangeEvents = _logVelocityChangeEvents;
+                }
+            }
+        }
+        #region Stepper Events
 
         private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
         public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
@@ -401,6 +458,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #endregion
 
         #endregion
 
@@ -740,7 +801,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             //await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
 
-            ActiveStepper.Open(Common.PhidgetOpenTimeout);
+            await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1265,7 +1326,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //DI15 = DO15 = null;
         }
 
-        public void CloseStepper()
+        public async void CloseStepper()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
@@ -1273,13 +1334,16 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called CloseStepper";
 
-            ActiveStepper.Close();
+            await Task.Run(() => ActiveStepper.Close());
+
+            DeviceAttached = false;
             UpdateStepperProperties();
             ActiveStepper = null;
             ClearDigitalInputsAndOutputs();
 
-            //OpenStepperCommand.RaiseCanExecuteChanged();
-            //CloseStepperCommand.RaiseCanExecuteChanged();
+            OpenStepperCommand.RaiseCanExecuteChanged();
+            RefreshStepperCommand.RaiseCanExecuteChanged();
+            CloseStepperCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1326,7 +1390,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // Start Cut Three - Put this in Fields and Properties
 
-        public DelegateCommand RotateCommand { get; set; }
+        public DelegateCommand<string> RotateCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> RotateCommand { get; set; }
@@ -1352,7 +1416,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE here
         //public void Rotate(TYPE value)
-        public void Rotate()
+        public void Rotate(string direction)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
@@ -1372,7 +1436,20 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             stepsToMove = stepsToMove * 16; // 1/16 steps
 
-            StepperProperties[0].TargetPosition += stepsToMove;
+            switch (direction)
+            {
+                case "CW":
+                    StepperProperties[0].TargetPosition += stepsToMove;
+                    break;
+
+                case "CCW":
+                    StepperProperties[0].TargetPosition -= stepsToMove;
+                    break;
+
+                default:
+                    Log.Error($"Unexpected direction:>{direction}", Common.LOG_CATEGORY);
+                    break;
+            }
 
             // If launching a UserControl
 
@@ -1418,7 +1495,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE and fix above
         //public bool RotateCanExecute(TYPE value)
-        public bool RotateCanExecute()
+        public bool RotateCanExecute(string direction)
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.

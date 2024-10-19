@@ -84,11 +84,11 @@ namespace VNC.Phidget
 
                 if (_logInputChangeEvents = value)
                 {
-                    InterfaceKit.InputChange += InterfaceKitk_InputChange;
+                    InterfaceKit.InputChange += InterfaceKit_InputChange;
                 }
                 else
                 {
-                    InterfaceKit.InputChange -= InterfaceKitk_InputChange;
+                    InterfaceKit.InputChange -= InterfaceKit_InputChange;
                 }
             }
         }
@@ -103,11 +103,11 @@ namespace VNC.Phidget
 
                 if (_logOutputChangeEvents = value)
                 {
-                    InterfaceKit.OutputChange += InterfaceKitk_OutputChange;
+                    InterfaceKit.OutputChange += InterfaceKit_OutputChange;
                 }
                 else
                 {
-                    InterfaceKit.OutputChange -= InterfaceKitk_OutputChange;
+                    InterfaceKit.OutputChange -= InterfaceKit_OutputChange;
                 }
             }
         }
@@ -122,11 +122,11 @@ namespace VNC.Phidget
 
                 if (_logSensorChangeEvents = value)
                 {
-                    InterfaceKit.SensorChange += InterfaceKitk_SensorChange;
+                    InterfaceKit.SensorChange += InterfaceKit_SensorChange;
                 }
                 else
                 {
-                    InterfaceKit.SensorChange -= InterfaceKitk_SensorChange;
+                    InterfaceKit.SensorChange -= InterfaceKit_SensorChange;
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
-        private void InterfaceKitk_SensorChange(object sender, SensorChangeEventArgs e)
+        private void InterfaceKit_SensorChange(object sender, SensorChangeEventArgs e)
         {
             try
             {
@@ -151,7 +151,7 @@ namespace VNC.Phidget
             }
         }
 
-        private void InterfaceKitk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        private void InterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
         {
             try
             {
@@ -164,7 +164,7 @@ namespace VNC.Phidget
             }
         }
 
-        private void InterfaceKitk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        private void InterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
         {
             try
             {

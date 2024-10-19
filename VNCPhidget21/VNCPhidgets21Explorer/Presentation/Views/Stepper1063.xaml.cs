@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 
 using DevExpress.XtraRichEdit.Layout.Engine;
 
@@ -63,11 +64,13 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             this.lgPhidgetStatus.IsCollapsed = true;
 
+            spDeveloperInfo.DataContext = this;
+            spDeveloperInfo2.DataContext = this;
             Phidget1.DataContext = ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         #endregion
 
         #region Enums (None)
@@ -82,16 +85,42 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #region Fields and Properties (None)
 
+        private System.Windows.Size _windowSize;
+        public System.Windows.Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
         #region Event Handlers (None)
 
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+#if LOGGING
+            Int64 startTicks = 0;
+            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+#endif
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            WindowSize = newSize;
+
+#if LOGGING
+            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+#endif
+        }
 
         #endregion
 
         #region Commands (None)
-         
+
         #endregion
 
         #region Public Methods (None)
@@ -107,8 +136,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         #region Private Methods (None)
 
 
-        #endregion   
-        
+        #endregion
+
         #region IInstanceCount
 
         private static int _instanceCountV;
