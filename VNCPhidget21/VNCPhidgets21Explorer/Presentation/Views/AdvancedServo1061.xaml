@@ -86,43 +86,6 @@
     
     <DockPanel Margin="5">
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <!--<StackPanel x:Name="spDeveloperInfo2"
-                    DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
-                    Visibility="{Binding DeveloperUIMode,
-                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
-
-            <!-- This is useful for debugging V VM constructor issues --><!--
-
-            <StackPanel Orientation="Horizontal">
-
-                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0" >
-                    <Label Content="-V:" />
-                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
-                    <Label Content="-VP:" />
-                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
-                </StackPanel>
-
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
-                <Label Content=" -VM:" />
-                <Label Content="{Binding ElementName=thisControl, Path=ViewModel.InstanceCountVM}" />
-                <Label Content="W:" Margin="10,0,0,0" />
-                <Label Content="{Binding WindowSize.Width, StringFormat={}{0:0}}" />
-                <Label Content="H:" Margin="10,0,0,0" />
-                <Label Content="{Binding WindowSize.Height, StringFormat={}{0:0}}" />
-            </StackPanel>
-
-        </StackPanel>-->
 
         <controls:HostSelector DockPanel.Dock="Top" />
 
@@ -154,7 +117,8 @@
 		                    ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
+                              Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <dxlc:LayoutItem Label="Select Velocity"
              	        LabelPosition="Left">
@@ -164,7 +128,7 @@
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
                                 Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
-                        <dxe:ComboBoxEdit x:Name="cbeVelocityScale" IsEnabled="{Binding DeviceAttached}">                        
+                        <dxe:ComboBoxEdit x:Name="cbeVelocityScale">                        
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <dxe:ComboBoxStyleSettings />
                                 <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
@@ -200,7 +164,8 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
+                                  Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
                         <!--<dxe:ComboBoxEdit		                                 

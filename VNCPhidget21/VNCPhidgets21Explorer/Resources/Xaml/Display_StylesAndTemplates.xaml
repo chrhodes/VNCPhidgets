@@ -22,7 +22,7 @@
         <Setter Property="Background" Value="White" />
     </Style>
 
-    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <SolidColorBrush x:Key="CombinedMainBackground" Color="#00E0F0" />
     <SolidColorBrush x:Key="CombinedNavigationBackground" Color="#90FFFF" />

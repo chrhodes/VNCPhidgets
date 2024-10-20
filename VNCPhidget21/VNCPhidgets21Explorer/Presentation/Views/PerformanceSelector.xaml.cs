@@ -30,8 +30,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
-        }
-        
+        }        
         
         private void InitializeView()
         {

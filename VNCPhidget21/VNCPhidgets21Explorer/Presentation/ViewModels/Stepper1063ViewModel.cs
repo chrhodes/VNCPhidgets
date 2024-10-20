@@ -132,7 +132,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-
         private string _message;
 
         public string Message
@@ -709,6 +708,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             OpenStepperCommand.RaiseCanExecuteChanged();
             RefreshStepperCommand.RaiseCanExecuteChanged();
             CloseStepperCommand.RaiseCanExecuteChanged();
+
+            InitializeAccelerationCommand.RaiseCanExecuteChanged();
+            InitializeVelocityCommand.RaiseCanExecuteChanged();
         }
 
         private void ActiveStepper_Detach(object sender, Phidgets.Events.DetachEventArgs e)
@@ -1344,6 +1346,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             OpenStepperCommand.RaiseCanExecuteChanged();
             RefreshStepperCommand.RaiseCanExecuteChanged();
             CloseStepperCommand.RaiseCanExecuteChanged();
+
+            InitializeAccelerationCommand.RaiseCanExecuteChanged();
+            InitializeVelocityCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
