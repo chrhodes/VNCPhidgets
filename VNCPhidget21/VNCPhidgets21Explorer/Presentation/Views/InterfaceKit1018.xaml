@@ -40,9 +40,10 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
 
     Background="{StaticResource InterfaceKitBackground}"  
-    SizeChanged="thisControl_SizeChanged"
  
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!--xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"-->
@@ -87,13 +88,13 @@
 
     <DockPanel Margin="5">
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <StackPanel x:Name="spDeveloperInfo2"
+        <!--<StackPanel x:Name="spDeveloperInfo2"
                     DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
+            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-            <!-- This is useful for debugging V VM constructor issues -->
+            <!-- This is useful for debugging V VM constructor issues --><!--
 
             <StackPanel Orientation="Horizontal">
 
@@ -102,12 +103,12 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0" >
-                    <Label Content="V:" />
+                    <Label Content="-V:" />
                     <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
-                    <Label Content="VP:" />
+                    <Label Content="-VP:" />
                     <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
                 </StackPanel>
 
@@ -115,13 +116,7 @@
 
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                 <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
-                <Label Content=" VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
-                <Label Content=" VM:" />
+                <Label Content=" -VM:" />
                 <Label Content="{Binding ElementName=thisControl, Path=ViewModel.InstanceCountVM}" />
                 <Label Content="W:" Margin="10,0,0,0" />
                 <Label Content="{Binding WindowSize.Width, StringFormat={}{0:0}}" />
@@ -129,7 +124,7 @@
                 <Label Content="{Binding WindowSize.Height, StringFormat={}{0:0}}" />
             </StackPanel>
 
-        </StackPanel>
+        </StackPanel>-->
 
         <controls:HostSelector DockPanel.Dock="Top" />
         

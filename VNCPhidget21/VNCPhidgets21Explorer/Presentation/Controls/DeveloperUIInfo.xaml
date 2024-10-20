@@ -37,7 +37,7 @@
         <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
             <Label Content="{Binding ViewModelType}" />
             <Label Content=" VM:" />
-            <Label Content="{Binding ElementName=thisControl, Path=ViewModel.InstanceCountVM}" />
+            <Label Content="{Binding ViewModel.InstanceCountVM}" />
             <Label Content="W:" Margin="10,0,0,0" />
             <TextBlock Text="{Binding WindowSize.Width, StringFormat={}{0:0}}" VerticalAlignment="Center" />
             <Label Content="H:" Margin="10,0,0,0" />

@@ -30,6 +30,8 @@
     prism:ViewModelLocator.AutoWireViewModel="False"
 
     Background="{StaticResource StatusBarBackground}"
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!--xmlns:converters="clr-namespace:PAEF1.Presentation.Converters"-->
     <d:DesignerProperties.DesignStyle>
@@ -44,12 +46,12 @@
 
      <DockPanel>
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+        <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
+            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-            <!-- This is useful for debugging V VM constructor issues -->
+            <!-- This is useful for debugging V VM constructor issues --><!--
 
             <StackPanel Orientation="Horizontal">
 
@@ -75,7 +77,7 @@
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
 
-        </StackPanel>
+        </StackPanel>-->
 
         <!--<Button x:Name="btnDeveloperMode" DockPanel.Dock="Right"
             Command="{Binding DeveloperModeCommand }"

@@ -221,6 +221,33 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logSequenceAction = false;
+        public bool LogSequenceAction
+        {
+            get => _logSequenceAction;
+            set
+            {
+                if (_logSequenceAction == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveAdvancedServo is not null)
+                {
+                    ActiveAdvancedServo.LogSequenceAction = value;
+
+                    // NOTE(crhodes)
+                    // There is some logging in StepperProperties that is handled separate
+                    // from the logging in StepperEx and PhidgetEx
+
+                    for (int i = 0; i < ActiveAdvancedServo.AdvancedServo.servos.Count; i++)
+                    {
+                        AdvancedServoProperties[i].LogSequenceAction = value;
+                    }
+                }
+            }
+        }
+
         private bool? _deviceAttached;
         public bool? DeviceAttached
         {
@@ -257,7 +284,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
         }
-
 
         private bool _logPositionChangeEvents = false;
         public bool LogPositionChangeEvents
@@ -459,7 +485,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        private void ActiveAdvancedServo_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void ActiveAdvancedServo_Attach(object sender, AttachEventArgs e)
         {
             try
             {
@@ -495,7 +521,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             SetPositionRangeCommand.RaiseCanExecuteChanged();
         }
 
-        private void ActiveAdvancedServo_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void ActiveAdvancedServo_Detach(object sender, DetachEventArgs e)
         {
             try
             {

@@ -170,12 +170,11 @@
             </dxlc:LayoutItem>
 
             <!-- All Phidgets have general events, see PhidgetEx -->
-            
- 
 
         </dxlc:LayoutGroup>
 
         <!-- This should use the DataContext of the ViewModel -->
+        
         <dxlc:LayoutGroup x:Name="lgLogging" View="Group" Orientation="Horizontal" Padding="5,-5,5,-5">
             <dxlc:LayoutItem HorizontalAlignment="Left" >
                 <dxe:CheckEdit Content="Log Phidget Events" IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />

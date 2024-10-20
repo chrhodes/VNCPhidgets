@@ -11,11 +11,9 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged
+    public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged, IViewSize
     {
         #region Contructors, Initialization, and Load
-
-        public RibbonShellViewModel _viewModel;
 
         public RibbonShell(RibbonShellViewModel viewModel)
         {
@@ -27,8 +25,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InitializeView();
 
-            _viewModel = viewModel;     // AppVersionInfo needs this.
-            DataContext = _viewModel;
+            ViewModel = viewModel;     // AppVersionInfo needs this.
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
@@ -38,13 +35,15 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook event handlers, etc.
+
             ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = _viewModel.GetType().ToString().Split('.').Last();
 
             Common.CurrentRibbonShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
-
-            // NOTE(crhodes)
-            // Put things here that initialize the View
 
             // Establish any additional DataContext(s), e.g. to things held in this View
             
@@ -74,6 +73,49 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             }
         }
 
+        private RibbonShellViewModel _viewModel;
+
+        public RibbonShellViewModel ViewModel
+        {
+            get { return _viewModel; }
+
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
+            }
+        }
+
+        private string _viewModelType;
+
+        public string ViewModelType
+        {
+            get => _viewModelType;
+            set
+            {
+                if (_viewModelType == value)
+                {
+                    return;
+                }
+
+                _viewModelType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Size _windowSize;
+        public Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Visibility _developerUIMode = Visibility.Collapsed;
         public Visibility DeveloperUIMode
         {
@@ -96,6 +138,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             var newSize = e.NewSize;
             var previousSize = e.PreviousSize;
             _viewModel.WindowSize = newSize;
+            spDeveloperInfo.WindowSize = newSize;
         }
 
         #endregion

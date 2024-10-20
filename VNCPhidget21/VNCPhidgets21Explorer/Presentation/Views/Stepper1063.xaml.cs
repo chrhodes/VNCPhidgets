@@ -87,37 +87,37 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #region Fields and Properties
 
-        private System.Windows.Size _windowSize;
-        public System.Windows.Size WindowSize
-        {
-            get => _windowSize;
-            set
-            {
-                if (_windowSize == value)
-                    return;
-                _windowSize = value;
-                OnPropertyChanged();
-            }
-        }
+        //private System.Windows.Size _windowSize;
+        //public System.Windows.Size WindowSize
+        //{
+        //    get => _windowSize;
+        //    set
+        //    {
+        //        if (_windowSize == value)
+        //            return;
+        //        _windowSize = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
         #region Event Handlers
 
-        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-#if LOGGING
-            Int64 startTicks = 0;
-            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-#endif
-            var newSize = e.NewSize;
-            var previousSize = e.PreviousSize;
-            WindowSize = newSize;
+//        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+//        {
+//#if LOGGING
+//            Int64 startTicks = 0;
+//            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+//#endif
+//            var newSize = e.NewSize;
+//            var previousSize = e.PreviousSize;
+//            WindowSize = newSize;
 
-#if LOGGING
-            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-#endif
-        }
+//#if LOGGING
+//            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+//#endif
+//        }
 
         #endregion
 

@@ -34,6 +34,8 @@
     Background="{StaticResource HostSelectorBackground}"
    
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
@@ -663,6 +665,8 @@
         </dxlc:LayoutGroup>   
             
         </ScrollViewer>
+
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" VerticalAlignment="Bottom"/>
 
     </dxlc:LayoutControl>
 

@@ -290,6 +290,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Stepper
 
+        #region Stepper Events
+
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
         {
@@ -307,7 +309,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
         }
-
 
         private bool _logPositionChangeEvents = false;
         public bool LogPositionChangeEvents
@@ -344,7 +345,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
         }
-        #region Stepper Events
+
+        #endregion
 
         private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
         public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
@@ -458,8 +460,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        #endregion
 
         #endregion
 

@@ -20,7 +20,9 @@
 
     Background="{StaticResource AppVersionInfoBackground}"
     
-    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    d:DesignStyle="{StaticResource vncDesignStyleUC}"
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
 

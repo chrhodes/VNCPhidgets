@@ -33,6 +33,8 @@
     Background="{StaticResource MainBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
  >
     <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="UserControl"> -->
@@ -109,7 +111,7 @@
 
         <!-- This is useful for debugging V VM constructor issues -->
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+        <!--<StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisMain, Path=InstanceCountV}" />
@@ -118,7 +120,7 @@
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>
+        </StackPanel>-->
         
     </Grid>
     

@@ -33,6 +33,8 @@
 
     d:DesignWidth="600" d:DesignHeight="400" 
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!-- <d:DesignerProperties.DesignStyle> -->
     <!-- <Style TargetType="UserControl"> -->

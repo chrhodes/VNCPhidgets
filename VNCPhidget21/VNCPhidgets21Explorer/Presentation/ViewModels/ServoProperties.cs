@@ -84,8 +84,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
             }
         }
-
         public bool LogPhidgetEvents { get; set; }
+        public bool LogSequenceAction { get; set; }
 
         #region ServoState
 

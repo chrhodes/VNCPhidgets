@@ -84,18 +84,18 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #region Fields and Properties (none)
 
-        private System.Windows.Size _windowSize;
-        public System.Windows.Size WindowSize
-        {
-            get => _windowSize;
-            set
-            {
-                if (_windowSize == value)
-                    return;
-                _windowSize = value;
-                OnPropertyChanged();
-            }
-        }
+        //private System.Windows.Size _windowSize;
+        //public System.Windows.Size WindowSize
+        //{
+        //    get => _windowSize;
+        //    set
+        //    {
+        //        if (_windowSize == value)
+        //            return;
+        //        _windowSize = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -156,7 +156,5 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
-
-
     }
 }

@@ -61,6 +61,5 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

@@ -199,6 +199,24 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logSequenceAction = false;
+        public bool LogSequenceAction
+        {
+            get => _logSequenceAction;
+            set
+            {
+                if (_logSequenceAction == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSequenceAction = value;
+                }
+            }
+        }
+
         private bool? _deviceAttached;
         public bool? DeviceAttached
         {
@@ -215,6 +233,62 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         #endregion
 
         #region InterfaceKit
+
+        #region InterfaceKit Events
+
+        private bool _logInputChangeEvents = false;
+        public bool LogInputChangeEvents
+        {
+            get => _logInputChangeEvents;
+            set
+            {
+                if (_logInputChangeEvents == value)
+                    return;
+                _logInputChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSensorChangeEvents = _logInputChangeEvents;
+                }
+            }
+        }
+
+        private bool _logOutputChangeEvents = false;
+        public bool LogOutputChangeEvents
+        {
+            get => _logOutputChangeEvents;
+            set
+            {
+                if (_logOutputChangeEvents == value)
+                    return;
+                _logOutputChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogOutputChangeEvents = _logOutputChangeEvents;
+                }
+            }
+        }
+
+        private bool _logSensorChangeEvents = false;
+        public bool LogSensorChangeEvents
+        {
+            get => _logSensorChangeEvents;
+            set
+            {
+                if (_logSensorChangeEvents == value)
+                    return;
+                _logSensorChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSensorChangeEvents = _logSensorChangeEvents;
+                }
+            }
+        }
 
         #endregion
 
@@ -290,60 +364,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 }
 
                 OnPropertyChanged();
-            }
-        }
-
-        private bool _logInputChangeEvents = false;
-        public bool LogInputChangeEvents
-        {
-            get => _logInputChangeEvents;
-            set
-            {
-                if (_logInputChangeEvents == value)
-                    return;
-                _logInputChangeEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogSensorChangeEvents = _logInputChangeEvents;
-                }
-            }
-        }
-
-        private bool _logOutputChangeEvents = false;
-        public bool LogOutputChangeEvents
-        {
-            get => _logOutputChangeEvents;
-            set
-            {
-                if (_logOutputChangeEvents == value)
-                    return;
-                _logOutputChangeEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogOutputChangeEvents = _logOutputChangeEvents;
-                }
-            }
-        }
-
-        private bool _logSensorChangeEvents = false;
-        public bool LogSensorChangeEvents
-        {
-            get => _logSensorChangeEvents;
-            set
-            {
-                if (_logSensorChangeEvents == value)
-                    return;
-                _logSensorChangeEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogSensorChangeEvents = _logSensorChangeEvents;
-                }
             }
         }
 
@@ -1669,6 +1689,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         #endregion
 

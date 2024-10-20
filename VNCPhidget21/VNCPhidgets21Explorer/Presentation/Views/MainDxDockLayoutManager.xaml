@@ -32,7 +32,9 @@
     Background="{StaticResource MainBackground}"
 
     d:DesignWidth="1200" d:DesignHeight="400" 
-    d:DesignStyle="{StaticResource vncDesignStyleUC}"       
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!-- <d:DesignerProperties.DesignStyle> -->
     <!-- <Style TargetType="UserControl"> -->
@@ -74,12 +76,12 @@
 
     <DockPanel>
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+        <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
+            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-            <!-- This is useful for debugging V VM constructor issues -->
+            <!-- This is useful for debugging V VM constructor issues --><!--
 
             <StackPanel Orientation="Horizontal">
 
@@ -105,7 +107,7 @@
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
 
-        </StackPanel>
+        </StackPanel>-->
 
         <dxlc:LayoutControl Name="lc_Root"
             HorizontalAlignment="Stretch"

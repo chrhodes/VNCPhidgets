@@ -11,11 +11,9 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged
+    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged, IViewSize
     {
         #region Contructors, Initialization, and Load
-
-        public ShellViewModel _viewModel;
 
         public Shell()
         {
@@ -53,8 +51,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InitializeComponent();
 
-            _viewModel = viewModel;     // AppVersionInfo needs this.
-            DataContext = _viewModel;
+            ViewModel = viewModel;
 
             // For the rare case where the ViewModel needs to know about the View
             // ViewModel.View = this;
@@ -107,6 +104,19 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             }
         }
 
+        private ShellViewModel _viewModel;
+
+        public ShellViewModel ViewModel
+        {
+            get { return _viewModel; }
+
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
+            }
+        }
+
         private string _viewModelType;
 
         public string ViewModelType
@@ -120,6 +130,19 @@ namespace VNCPhidgets21Explorer.Presentation.Views
                 }
 
                 _viewModelType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Size _windowSize;
+        public Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
                 OnPropertyChanged();
             }
         }
@@ -146,6 +169,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             var newSize = e.NewSize;
             var previousSize = e.PreviousSize;
             _viewModel.WindowSize = newSize;
+            spDeveloperInfo.WindowSize = newSize;
         }
 
         #endregion

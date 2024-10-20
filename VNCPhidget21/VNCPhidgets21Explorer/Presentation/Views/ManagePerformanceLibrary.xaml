@@ -32,6 +32,8 @@
     Background="{StaticResource ManagePerformanceLibraryBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
 >  
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
@@ -125,7 +127,7 @@
      <DockPanel Margin="5"> 
          <!--This is useful for debugging V VM constructor issues-->
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <DockPanel DockPanel.Dock="Bottom" > 
+        <!--<DockPanel DockPanel.Dock="Bottom" > 
 
              <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5"> 
                  <Label Content="Message:" /> 
@@ -141,7 +143,7 @@
                  <Label Content="{Binding InstanceCountVM}" /> 
              </StackPanel> 
 
-         </DockPanel> 
+         </DockPanel>--> 
 
          <dxlc:LayoutControl Orientation="Vertical" >
 

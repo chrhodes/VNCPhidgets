@@ -33,6 +33,8 @@
     Background="{StaticResource MainBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
  >
     <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="UserControl"> -->
@@ -49,12 +51,12 @@
 
     <DockPanel Margin="5">
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+        <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-            <!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
+            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-            <!-- This is useful for debugging V VM constructor issues -->
+            <!-- This is useful for debugging V VM constructor issues --><!--
 
             <StackPanel Orientation="Horizontal">
 
@@ -63,12 +65,12 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0" >
-                    <Label Content="V:" />
+                    <Label Content="-V:" />
                     <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
-                    <Label Content="VP:" />
+                    <Label Content="-VP:" />
                     <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
                 </StackPanel>
 
@@ -76,11 +78,11 @@
 
             <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                 <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
-                <Label Content=" VM:" />
+                <Label Content=" -VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
 
-        </StackPanel>
+        </StackPanel>-->
         
         <TextBlock DockPanel.Dock="Top"
             Text="{Binding Message}"

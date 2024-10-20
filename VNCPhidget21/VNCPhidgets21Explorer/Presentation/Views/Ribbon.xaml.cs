@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 using DevExpress.Xpf.Bars;
-using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Grid;
-using DevExpress.Xpf.Ribbon;
-
 
 using VNC;
 using VNC.Core.Mvvm;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class Ribbon : VNC.Core.Mvvm.ViewBase, IRibbon, IInstanceCountV
+    public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
     {
 
         public Ribbon(ViewModels.IRibbonViewModel viewModel)
@@ -49,8 +45,26 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        #region Fields and Properties
+
+        
+        public bool IsAdvancedMode
+        {
+            get => _isAdvancedMode;
+            set
+            {
+                if (_isAdvancedMode == value)
+                    return;
+                _isAdvancedMode = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        #endregion
+
         #region IInstanceCount
 
+        private bool _isAdvancedMode;
         private static int _instanceCountV;
 
         public int InstanceCountV
@@ -562,7 +576,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             //    }
         }
 
-        private void ShowUserControl(UserControl control)
+        private void ShowUserControl(System.Windows.Controls.UserControl control)
         {
             ////UnhookTitleEvent(_currentControl);
             //splashScreenGrid.Children.Clear();

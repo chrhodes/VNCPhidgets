@@ -48,7 +48,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             lgStepperSequences.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
-            //spDeveloperInfo.DataContext = this;
+            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
