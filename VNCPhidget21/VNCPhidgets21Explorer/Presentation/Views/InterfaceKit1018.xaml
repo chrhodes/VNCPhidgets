@@ -39,7 +39,8 @@
 
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Background="{StaticResource InterfaceKitBackground}"    
+    Background="{StaticResource InterfaceKitBackground}"  
+    SizeChanged="thisControl_SizeChanged"
  
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >

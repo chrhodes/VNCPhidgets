@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -82,14 +83,39 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Fields and Properties
 
-        //public Phidgets.ServoServo.ServoType ServoTypeEnum;
+        private System.Windows.Size _windowSize;
+        public System.Windows.Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers
 
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+#if LOGGING
+            Int64 startTicks = 0;
+            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+#endif
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            WindowSize = newSize;
+
+#if LOGGING
+            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+#endif
+        }
 
         #endregion
 
@@ -131,5 +157,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
+
+
     }
 }

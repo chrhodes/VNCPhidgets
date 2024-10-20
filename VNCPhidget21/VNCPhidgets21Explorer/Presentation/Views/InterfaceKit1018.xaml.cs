@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -68,7 +69,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         #endregion
 
         #region Enums (none)
@@ -83,16 +84,42 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #region Fields and Properties (none)
 
+        private System.Windows.Size _windowSize;
+        public System.Windows.Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+#if LOGGING
+            Int64 startTicks = 0;
+            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+#endif
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            WindowSize = newSize;
+
+#if LOGGING
+            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+#endif
+        }
 
         #endregion
 
         #region Commands (none)
-         
+
         #endregion
 
         #region Public Methods (none)
@@ -108,8 +135,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         #region Private Methods (none)
 
 
-        #endregion   
-        
+        #endregion
+
         #region IInstanceCount
 
         private static int _instanceCountV;
@@ -129,5 +156,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
+
+
     }
 }

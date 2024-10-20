@@ -85,7 +85,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Fields and Properties
 
         private System.Windows.Size _windowSize;
         public System.Windows.Size WindowSize
@@ -102,7 +102,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers
 
         private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
