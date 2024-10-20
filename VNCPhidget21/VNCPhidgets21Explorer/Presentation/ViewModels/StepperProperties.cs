@@ -49,6 +49,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             set; 
         }
 
+        private Double? _stepAngle;
+
+        public Double? StepAngle
+        {
+            get => _stepAngle;
+            set
+            {
+                if (_stepAngle == value) return;
+                _stepAngle = value;
+                OnPropertyChanged();
+            }
+        }
+
         //private Phidgets.stepperstepper.stepperType? _stepperType;
 
         //public Phidgets.stepperstepper.stepperType? stepperType
@@ -182,18 +195,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         //#endregion Configuration Properties
 
-        private Double? _stepAngle;
 
-        public Double? StepAngle
-        {
-            get => _stepAngle;
-            set
-            {
-                if (_stepAngle == value) return;
-                _stepAngle = value;
-                OnPropertyChanged();
-            }
-        }
 
         #region Position
 

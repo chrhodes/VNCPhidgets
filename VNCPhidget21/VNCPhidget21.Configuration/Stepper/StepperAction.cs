@@ -5,15 +5,15 @@ namespace VNCPhidget21.Configuration
     public class StepperAction
     {
         /// <summary>
-        /// Index of stepper on board (likley 1)
+        /// Index of stepper on board (likely 1)
         /// </summary>
         public int StepperIndex { get; set; }
 
         /// <summary>
         /// Degrees of rotation for one full step
-        /// 16 micro steps (1/16)
+        /// which is 16 micro steps (1/16)
         /// </summary>
-        public int StepAngle { get; set; }
+        public Double? StepAngle { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)

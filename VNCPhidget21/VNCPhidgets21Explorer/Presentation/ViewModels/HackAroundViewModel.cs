@@ -73,6 +73,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
 
+            PlayStepperSequenceCommand = new DelegateCommand(PlayStepperSequence, PlayStepperSequenceCanExecute);
+
             // TODO(crhodes)
             // Fill out PlayStepperSequenceCommand
 
@@ -679,7 +681,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _selectedStepperSequence = value;
                 OnPropertyChanged();
 
-                PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -708,7 +710,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 _selectedStepperSequences = value;
                 OnPropertyChanged();
 
-                PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -1677,6 +1679,116 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             if (SelectedInterfaceKitSequences?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+
+        #region PlayStepperSequence Command
+
+        public DelegateCommand PlayStepperSequenceCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
+        //public TYPE PlaySequenceCommandParameter;
+        public string PlayStepperSequenceContent { get; set; } = "Play Sequence";
+        public string PlayStepperSequenceToolTip { get; set; } = "PlayStepperSequence ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlaySequenceContent { get; set; } = "ViewName_PlaySequenceContent";
+        //public string PlaySequenceToolTip { get; set; } = "ViewName_PlaySequenceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlaySequenceContent">PlaySequence</system:String>
+        //    <system:String x:Key="ViewName_PlaySequenceContentToolTip">PlaySequence ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlaySequence(TYPE value)
+        public async void PlayStepperSequence()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayStepperSequence) Enter", Common.LOG_CATEGORY);
+
+            Message = "Cool, you called PlayStepperSequence";
+
+            // TODO(crhodes)
+            // This has sideffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+            foreach (VNCPhidgetConfig.StepperSequence sequence in SelectedStepperSequences)
+            {
+                if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+
+                try
+                {
+                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
+                        new VNCPhidgetConfig.PerformanceSequence
+                        {
+                            SerialNumber = SelectedStepper.SerialNumber,
+                            Name = sequence.Name,
+                            SequenceType = "ST",
+                            SequenceLoops = sequence.SequenceLoops
+                        };
+
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
+                    {
+                        if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                        //nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+                        await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayStepperSequence) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool PlayPerformanceCanExecute(TYPE value)
+        public bool PlayStepperSequenceCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (SelectedStepperSequences?.Count > 0)
             {
                 return true;
             }

@@ -732,110 +732,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        #endregion
-
-        #region Commands
-
-        #region Command ConfigFileName DoubleClick
-
-        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
-
-        public void ConfigFileName_DoubleClick()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
-
-            Message = "ConfigFileName_DoubleClick";
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        #endregion
-
-        #region OpenStepper Command
-
-        public DelegateCommand OpenStepperCommand { get; set; }
-        public string OpenStepperContent { get; set; } = "Open";
-        public string OpenStepperToolTip { get; set; } = "OpenStepper ToolTip";
-
-        // Can get fancy and use Resources
-        //public string OpenStepperContent { get; set; } = "ViewName_OpenStepperContent";
-        //public string OpenStepperToolTip { get; set; } = "ViewName_OpenStepperContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
-        //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
-
-        public async void OpenStepper()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenStepper) Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called OpenStepper";
-
-            ActiveStepper = new StepperEx(
-                SelectedHost.IPAddress,
-                SelectedHost.Port,
-                SelectedStepper.SerialNumber,
-                EventAggregator);
-
-            ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
-            ActiveStepper.Stepper.Detach += ActiveStepper_Detach;
-
-            ActiveStepper.Stepper.CurrentChange += ActiveStepper_CurrentChange;
-            ActiveStepper.Stepper.InputChange += ActiveStepper_InputChange;
-            ActiveStepper.Stepper.PositionChange += ActiveStepper_PositionChange;
-            ActiveStepper.Stepper.VelocityChange += ActiveStepper_VelocityChange;
-
-            // NOTE(crhodes)
-            // Capture Digital Input and Output changes so we can update the UI
-            // The StepperEx attaches to these events also.
-            // Itlogs the changes if xxx is set to true.
-
-            //ActiveStepper.OutputChange += ActiveStepper_OutputChange;
-            //ActiveStepper.InputChange += ActiveStepper_InputChange;
-
-            //// NOTE(crhodes)
-            //// Let's do see if we can watch some analog data stream in.
-
-            //ActiveStepper.SensorChange += ActiveStepper_SensorChange;
-
-            //await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
-
-            await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<OpenStepperEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<OpenStepperEvent>().Publish(
-            //      new OpenStepperEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class OpenStepperEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<OpenStepperEvent>().Subscribe(OpenStepper);
-
-            // End Cut Four
-
-            //OpenStepperCommand.RaiseCanExecuteChanged();
-            //CloseStepperCommand.RaiseCanExecuteChanged();
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenStepper) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         private void ActiveStepper_VelocityChange(object sender, Phidgets.Events.VelocityChangeEventArgs e)
         {
             Phidgets.Stepper stepper = sender as Phidgets.Stepper;
@@ -1029,6 +925,110 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //        Log.Trace($"CurrentChange index:{index} value:{current}", Common.LOG_CATEGORY);
             //        break;
             //}
+        }
+
+        #endregion
+
+        #region Commands
+
+        #region Command ConfigFileName DoubleClick
+
+        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+
+        public void ConfigFileName_DoubleClick()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
+
+            Message = "ConfigFileName_DoubleClick";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region OpenStepper Command
+
+        public DelegateCommand OpenStepperCommand { get; set; }
+        public string OpenStepperContent { get; set; } = "Open";
+        public string OpenStepperToolTip { get; set; } = "OpenStepper ToolTip";
+
+        // Can get fancy and use Resources
+        //public string OpenStepperContent { get; set; } = "ViewName_OpenStepperContent";
+        //public string OpenStepperToolTip { get; set; } = "ViewName_OpenStepperContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
+        //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
+
+        public async void OpenStepper()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenStepper) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called OpenStepper";
+
+            ActiveStepper = new StepperEx(
+                SelectedHost.IPAddress,
+                SelectedHost.Port,
+                SelectedStepper.SerialNumber,
+                EventAggregator);
+
+            ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
+            ActiveStepper.Stepper.Detach += ActiveStepper_Detach;
+
+            ActiveStepper.Stepper.CurrentChange += ActiveStepper_CurrentChange;
+            ActiveStepper.Stepper.InputChange += ActiveStepper_InputChange;
+            ActiveStepper.Stepper.PositionChange += ActiveStepper_PositionChange;
+            ActiveStepper.Stepper.VelocityChange += ActiveStepper_VelocityChange;
+
+            // NOTE(crhodes)
+            // Capture Digital Input and Output changes so we can update the UI
+            // The StepperEx attaches to these events also.
+            // Itlogs the changes if xxx is set to true.
+
+            //ActiveStepper.OutputChange += ActiveStepper_OutputChange;
+            //ActiveStepper.InputChange += ActiveStepper_InputChange;
+
+            //// NOTE(crhodes)
+            //// Let's do see if we can watch some analog data stream in.
+
+            //ActiveStepper.SensorChange += ActiveStepper_SensorChange;
+
+            //await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
+
+            await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenStepperEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenStepperEvent>().Publish(
+            //      new OpenStepperEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class OpenStepperEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenStepperEvent>().Subscribe(OpenStepper);
+
+            // End Cut Four
+
+            //OpenStepperCommand.RaiseCanExecuteChanged();
+            //CloseStepperCommand.RaiseCanExecuteChanged();
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenStepper) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public bool OpenStepperCanExecute()

@@ -64,10 +64,12 @@ namespace VNC.Phidget
 
         #endregion
 
-        #region 
+        #region Structures
 
         public struct StepperMinMax
         {
+            public Double StepAngle;
+
             public Double AccelerationMin;
             public Double AccelerationMax;
 
@@ -272,7 +274,6 @@ namespace VNC.Phidget
 
         #endregion
 
-
         #region Public Methods
 
         /// <summary>
@@ -400,7 +401,6 @@ namespace VNC.Phidget
 
             if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
 
         /// <summary>
         /// Bounds check and set acceleration
@@ -611,7 +611,6 @@ namespace VNC.Phidget
             return position;
         }
 
-
         /// <summary>
         /// Bounds check and set TargetPosition
         /// </summary>
@@ -723,6 +722,30 @@ namespace VNC.Phidget
 
         #region Private Methods
 
+        private void SaveStepperLimits(StepperStepper stepper, Int32 index)
+        {
+            //if (LogPhidgetEvents)
+            //{
+            //    Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged}" +
+            //        $" accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}" +
+            //        $" positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}" +
+            //        $" velocityMin:{servo.VelocityMin} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+            //}
+
+            // NOTE(crhodes)
+            // We do not need to save Acceleration Min,Max and Velocity Min,Max,
+            // they cannot change, but, useful to have available
+            // when setting Acceleration/VelocityLimit to Min/Max in PerformAction
+
+            //InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
+            //InitialServoLimits[index].DevicePositionMin = servo.PositionMin;
+            ////InitialServoLimits[i].PositionMin = servo.PositionMin; 
+            ////InitialServoLimits[i].PositionMax = servo.PositionMax;
+            //InitialServoLimits[index].DevicePositionMax = servo.PositionMax;
+            //InitialServoLimits[index].VelocityMin = servo.VelocityMin + 1; // 0 won't move
+            //InitialServoLimits[index].VelocityMax = servo.VelocityMax;
+        }
+
         private async Task PerformAction(StepperAction action)
         {
             Int64 startTicks = 0;
@@ -741,20 +764,20 @@ namespace VNC.Phidget
 
             try
             {
-                //if (action.stepperType is not null)
-                //{
-                //    if (LogSequenceAction) actionMessage.Append($" stepperType:>{action.stepperType}<");
+                if (action.StepAngle is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" stepAngle:>{action.StepAngle}<");
 
-                //    stepper.Type = (Phidgets.stepperstepper.stepperType)action.stepperType;
+                    //stepper.Type = (Phidgets.stepperstepper.stepperType)action.stepperType;
 
-                //    // NOTE(crhodes)
-                //    // Maybe we should sleep for a little bit to allow this to happen
-                //    Thread.Sleep(1);
+                    // NOTE(crhodes)
+                    // Maybe we should sleep for a little bit to allow this to happen
+                    //Thread.Sleep(1);
 
-
-                //    // Save the refreshed values
-                //    SavestepperLimits(stepper, index);
-                //}
+                    InitialStepperLimits[index].StepAngle = (Double)action.StepAngle;
+                    // Save the refreshed values
+                    //SaveStepperLimits(stepper, index);
+                }
 
                 // NOTE(crhodes)
                 // These can be performed without the stepper being engaged.  This helps address
@@ -882,7 +905,28 @@ namespace VNC.Phidget
                 if (action.RelativeTargetPosition is not null)
                 {
                     var newPosition = stepper.TargetPosition + (Int64)action.RelativeTargetPosition;
-                    if (LogSequenceAction) actionMessage.Append($" relativePosition:>{action.RelativeTargetPosition}< ({newPosition})");
+                    if (LogSequenceAction) actionMessage.Append($" relativeTargetPosition:>{action.RelativeTargetPosition}< ({newPosition})");
+
+                    VerifyNewPositionAchieved(stepper, index, SetTargetPosition(newPosition, stepper, index));
+                }
+
+                if (action.RelativeTargetDegrees is not null)
+                {
+                    // TODO(crhodes)
+                    // Do math using StepAngle
+                    // Check if StepAngle null.  Can't do relative without
+                    // Maybe we can save off above and just retrieve
+
+                    Double stepAngle = InitialStepperLimits[index].StepAngle;
+                    //Double stepAngle = (Double)action.StepAngle;
+                    Int64 degrees = (Int64)action.RelativeTargetDegrees;
+
+                    Int64 stepsToMove = (Int64)(degrees / stepAngle);
+
+                    stepsToMove = stepsToMove * 16; // 1/16 steps
+
+                    var newPosition = stepper.TargetPosition + stepsToMove;
+                    if (LogSequenceAction) actionMessage.Append($" relativeTargetDegrees:>{action.RelativeTargetDegrees}< ({newPosition})");
 
                     VerifyNewPositionAchieved(stepper, index, SetTargetPosition(newPosition, stepper, index));
                 }

@@ -210,7 +210,7 @@
                     <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" LabelPosition="Left" >
                         <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
                             ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
-                            SelectedItem="{Binding SelectedAdvancedServoSequence}"
+                            SelectedItem="{Binding SelectedAdvancedServoSequences}"
                             EditValue="{ Binding 
                                 Path=SelectedAdvancedServoSequences,
                                 Mode=TwoWay,

@@ -582,7 +582,9 @@ namespace VNC.Phidget.Players
                 //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
                 //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                //stepperHost.LogSequenceAction = LogSequenceAction;
+                stepperHost.LogPerformanceSequence = LogPerformanceSequence;
+                stepperHost.LogSequenceAction = LogSequenceAction;
+                stepperHost.LogActionVerification = LogActionVerification;
 
             }
             else
@@ -601,7 +603,9 @@ namespace VNC.Phidget.Players
                 //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
                 //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                //stepperHost.LogSequenceAction = LogSequenceAction;
+                stepperHost.LogPerformanceSequence = LogPerformanceSequence;
+                stepperHost.LogSequenceAction = LogSequenceAction;
+                stepperHost.LogActionVerification = LogActionVerification;
 
                 // TODO(crhodes)
                 // Should we do open somewhere else?
