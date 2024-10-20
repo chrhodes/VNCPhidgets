@@ -45,8 +45,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             InstanceCountVP++;
             InitializeComponent();
 
-            ViewModel = viewModel;
-            
+            ViewModel = viewModel;   // ViewBase sets the DataContext to ViewModel
+
             InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
