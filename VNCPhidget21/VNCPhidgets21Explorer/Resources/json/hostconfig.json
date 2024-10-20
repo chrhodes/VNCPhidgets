@@ -15,7 +15,8 @@
       ],
       "Steppers": [
         //{ "Name": "Stepper 268213", "SerialNumber": 268213 },
-        //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
+        { "Name": "Stepper 270348", "SerialNumber": 270348 },
+        { "Name": "Stepper 270460", "SerialNumber": 270460 },
       ],
     },
     { "Name": "psbc11", "IPAddress": "192.168.150.11", "Port": 5001, "Enable": true,
@@ -31,6 +32,7 @@
       ],
       "Steppers": [
         //{ "Name": "Stepper 268213", "SerialNumber": 268213 },
+        //{ "Name": "Stepper 270348", "SerialNumber": 270348 },
         //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
       ],
     },
@@ -48,6 +50,7 @@
       ],
       "Steppers": [
         //{ "Name": "Stepper 268213", "SerialNumber": 268213 },
+        //{ "Name": "Stepper 270348", "SerialNumber": 270348 },
         //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
       ],
     },
@@ -65,7 +68,8 @@
       ],
       "Steppers": [
         { "Name": "Stepper 268213", "SerialNumber": 268213 },
-        { "Name": "Stepper 270460", "SerialNumber": 270460 },
+        //{ "Name": "Stepper 270348", "SerialNumber": 270348 },
+        //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
       ],
     },
     {
@@ -81,6 +85,8 @@
         //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
       "Steppers": [
+        //{ "Name": "Stepper 268213", "SerialNumber": 268213 },
+        //{ "Name": "Stepper 270348", "SerialNumber": 270348 },
         //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
       ],
     }
