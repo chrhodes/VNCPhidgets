@@ -39,11 +39,11 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            ViewModel = viewModel;
-            
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+
             InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
@@ -60,6 +60,12 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Put things here that initialize the View
 
             this.lgPhidgetStatus.IsCollapsed = true;
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
+            spDeveloperInfo2.DataContext = this;
+            Phidget1.DataContext = ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

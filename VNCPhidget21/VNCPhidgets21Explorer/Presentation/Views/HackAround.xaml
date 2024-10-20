@@ -48,7 +48,7 @@
     </UserControl.Resources>
 
     <DockPanel Margin="5">
-
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >

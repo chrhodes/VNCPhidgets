@@ -17,6 +17,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
@@ -106,7 +108,7 @@
         </StackPanel>
 
         <!-- This is useful for debugging V VM constructor issues -->
-
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />

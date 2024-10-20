@@ -660,9 +660,9 @@
 
             </dxlc:LayoutGroup>
             
-        </dxlc:LayoutGroup>            
+        </dxlc:LayoutGroup>   
+            
         </ScrollViewer>
-
 
     </dxlc:LayoutControl>
 

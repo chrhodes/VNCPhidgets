@@ -9,6 +9,8 @@
 
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
@@ -38,7 +40,7 @@
     <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
 
     <DockPanel>
-
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
             Visibility="{Binding DeveloperUIMode,
                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >

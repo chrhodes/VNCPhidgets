@@ -7,6 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"    
    
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     

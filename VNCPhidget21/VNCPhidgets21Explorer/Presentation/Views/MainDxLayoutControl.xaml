@@ -16,6 +16,8 @@
         
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
@@ -51,7 +53,7 @@
     </UserControl.Resources>
 
     <DockPanel>
-
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >

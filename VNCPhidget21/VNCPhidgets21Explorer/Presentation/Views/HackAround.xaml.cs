@@ -11,18 +11,18 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class HackAround : ViewBase, IInstanceCountV
     {
-        public HackAroundViewModel _viewModel;
+        //public HackAroundViewModel _viewModel;
 
         public HackAround(HackAroundViewModel viewModel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            _viewModel = viewModel;
-            DataContext = _viewModel;
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+            //DataContext = _viewModel;
 
             InitializeView();
 
@@ -38,6 +38,10 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             // NOTE(crhodes)
             // Put things here that initialize the View
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

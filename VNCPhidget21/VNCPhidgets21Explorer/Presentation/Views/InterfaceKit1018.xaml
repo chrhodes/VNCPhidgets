@@ -85,8 +85,8 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel Margin="5">
-
-        <StackPanel x:Name="spDeveloperInfo"
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <StackPanel x:Name="spDeveloperInfo2"
                     DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >

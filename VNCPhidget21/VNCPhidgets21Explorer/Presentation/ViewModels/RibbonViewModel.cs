@@ -27,6 +27,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            InstanceCountVM++;
+
             // TODO(crhodes)
             // Save constructor parameters here
 
@@ -39,8 +41,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
-
-            InstanceCountVM++;
 
             // TODO(crhodes)
             //

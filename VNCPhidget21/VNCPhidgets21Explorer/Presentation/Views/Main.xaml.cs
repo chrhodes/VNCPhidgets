@@ -11,17 +11,17 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class Main : ViewBase, IMain, IInstanceCountV
     {
-        public MainViewModel _viewModel;
+        //public MainViewModel _viewModel;
 
         public Main(MainViewModel viewModel)
         {
             Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            _viewModel = viewModel;
-            DataContext = _viewModel;
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+            //DataContext = _viewModel;
 
             InitializeView();
 
