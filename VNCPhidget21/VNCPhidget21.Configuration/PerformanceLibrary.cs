@@ -281,6 +281,8 @@ namespace VNCPhidget21.Configuration
                 @"Performances\PerformanceConfig_Skulls_2.json",
                 @"Performances\PerformanceConfig_Skulls_3.json",
 
+                @"Performances\PerformanceConfig_Steppers_1.json",
+
                 //@"Performances\PerformanceConfig_2.json",
                 //@"Performances\PerformanceConfig_3.json",
             };

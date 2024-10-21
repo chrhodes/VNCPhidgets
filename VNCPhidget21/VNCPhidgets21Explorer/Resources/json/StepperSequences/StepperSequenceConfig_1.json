@@ -6,12 +6,30 @@
     // Initialize Stepper
     //
     {
-      "Name": "Initialize Stepper", 
-      "Description": "Initialize Stepper",
+      "Name": "Initialize Stepper 0.9", 
+      "Description": "Initialize Stepper StepAngle 0.9 Acceleration 5000 VelocityLimit 1440",
       "UsageNotes": "Does not Engage Stepper",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "StepperIndex": 0, "Acceleration": 5000, "VelocityLimit": 720 },
+        { "StepperIndex": 0, "StepAngle": 0.9, "Acceleration": 15000, "VelocityLimit": 1440 },
+      ],
+    },
+    {
+      "Name": "Initialize Stepper 1.8", 
+      "Description": "Initialize Stepper StepAngle 1.8 Acceleration 5000 VelocityLimit 720",
+      "UsageNotes": "Does not Engage Stepper",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "StepperIndex": 0, "StepAngle": 1.8, "Acceleration": 15000, "VelocityLimit": 720 },
+      ],
+    },
+    {
+      "Name": "Initialize Stepper 3.75", 
+      "Description": "Initialize Stepper StepAngle 3.75 Acceleration 5000 VelocityLimit 720",
+      "UsageNotes": "Does not Engage Stepper",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "StepperIndex": 0, "StepAngle": 3.75, "Acceleration": 5000, "VelocityLimit": 720 },
       ],
     },
     //
@@ -35,10 +53,10 @@
       "UsageNotes": "Rotate +/- 90",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  90 },
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  -90 },
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  -90 },
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  90 },
+        { "StepperIndex": 0, "RelativeTargetDegrees":  90 },
+        { "StepperIndex": 0, "RelativeTargetDegrees":  -90 },
+        { "StepperIndex": 0, "RelativeTargetDegrees":  -90 },
+        { "StepperIndex": 0, "RelativeTargetDegrees":  90 },
       ],
     },
   ]

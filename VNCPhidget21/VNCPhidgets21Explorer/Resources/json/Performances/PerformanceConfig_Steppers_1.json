@@ -1,0 +1,39 @@
+{
+  "Name": "PerformanceConfig_Steppers",
+  "Description": "PerformanceConfig_Steppers DESCRIPTION",
+  "Performances": [
+  {
+    "Name": "Initialize Steppers",
+    "Description": "",
+    "Loops": 1,
+    "PlaySequencesInParallel": false,
+    "PerformanceSequences": [
+      { "SequenceType": "ST", "SerialNumber": 268213, "Name": "Initialize Stepper 0.9"},
+      { "SequenceType": "ST", "SerialNumber": 270346, "Name": "Initialize Stepper 1.8"},
+    ],
+    //"NextPerformance": { "Name": "Routine Move Together" }
+  },
+  {
+    "Name": "Engage Steppers",
+    "Description": "",
+    "Loops": 1,
+    "PlaySequencesInParallel": false,
+    "PerformanceSequences": [
+      { "SequenceType": "ST", "SerialNumber": 268213, "Name": "Engage Stepper"},
+      { "SequenceType": "ST", "SerialNumber": 270346, "Name": "Engage Stepper"},
+    ],
+    //"NextPerformance": { "Name": "Routine Move Together" }
+  },
+  {
+    "Name": "Routine Move Together",
+    "Description": "",
+    "Loops": 1,
+    "PlaySequencesInParallel": true,
+    "PerformanceSequences": [
+      { "SequenceType": "ST", "SerialNumber": 268213, "Name": "Rotate +/- 90"},
+      { "SequenceType": "ST", "SerialNumber": 270346, "Name": "Rotate +/- 90"},
+    ],
+    //"NextPerformance": { "Name": "Routine 1 - 99220 - Skull-456" }
+  },
+  ]
+}
