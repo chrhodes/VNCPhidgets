@@ -8,33 +8,35 @@ using Unity;
 
 using VNC;
 
-using VNCPhidgets22Explorer.Core;
-//using VNCPhidgets22Explorer.DomainServices;
-using VNCPhidgets22Explorer.Presentation.ViewModels;
-using VNCPhidgets22Explorer.Presentation.Views;
+using VNCPhidgets21Explorer.Core;
+//using VNCPhidgets21Explorer.DomainServices;
+using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidgets21Explorer.Presentation.Views;
 
-namespace VNCPhidgets22Explorer
+namespace VNCPhidgets21Explorer
 {
-    public class VNCPhidgets22ExplorerModule : IModule
+    public class VNCPhidgets21ExplorerModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public VNCPhidgets22ExplorerModule(IRegionManager regionManager)
+        public VNCPhidgets21ExplorerModule(IRegionManager regionManager)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             _regionManager = regionManager;
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ModuleInitialize) startTicks = Log.MODULE_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // This is where you pick the style of what gets loaded in the Shell.
@@ -44,12 +46,31 @@ namespace VNCPhidgets22Explorer
             containerRegistry.RegisterSingleton<IRibbonViewModel, RibbonViewModel>();
             containerRegistry.RegisterSingleton<IRibbon, Ribbon>();
 
-            // Pick one of these for the MainRegion
-            // Use Main to see the AutoWireViewModel in action.
+            // If you are using the Shell and the RibbonRegion
 
-            containerRegistry.Register<IMain, Main>();
-            //containerRegistry.Register<IMain, MainDxLayout>();
-            //containerRegistry.Register<IMain, MainDxDockLayoutManager>();            
+            //containerRegistry.RegisterSingleton<IRibbonViewModel, ShellRibbonViewModel>();
+            //containerRegistry.RegisterSingleton<IRibbon, ShellRibbon>();
+
+            // Pick one of these for the MainRegion
+  
+            //containerRegistry.Register<IMain, Main>();
+            //containerRegistry.Register<IMain, MainDxLayoutControl>();
+            containerRegistry.Register<IMain, MainDxDockLayoutManager>();
+
+            containerRegistry.RegisterSingleton<IStatusBarViewModel, StatusBarViewModel>();
+            containerRegistry.RegisterSingleton<StatusBar, StatusBar>();
+
+            containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
+            containerRegistry.Register<IInterfaceKitViewModel, InterfaceKit1018ViewModel>();
+
+            containerRegistry.Register<IAdvancedServo1061, AdvancedServo1061>();
+            containerRegistry.Register<IAdvancedServo1061ViewModel, AdvancedServo1061ViewModel>();
+
+            containerRegistry.Register<IStepper1063, Stepper1063>();
+            containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
+
+            containerRegistry.Register<HackAround>();
+            containerRegistry.Register<HackAroundViewModel>();
 
             // containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
             // containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
@@ -79,17 +100,37 @@ namespace VNCPhidgets22Explorer
             //containerRegistry.Register<IProgrammingLanguageLookupDataService, LookupDataService>();
             //containerRegistry.Register<IMeetingLookupDataService, LookupDataService>();
 
-            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ModuleInitialize) Log.MODULE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 03
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            Int64 startTicks = Log.MODULE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ModuleInitialize) startTicks = Log.MODULE_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             _regionManager.RegisterViewWithRegion(RegionNames.RibbonRegion, typeof(IRibbon));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
+            _regionManager.RegisterViewWithRegion(RegionNames.StatusBarRegion, typeof(StatusBar));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region1, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region2, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region3, typeof(InterfaceKit1018));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region1, typeof(AdvancedServo1061));
+            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region2, typeof(AdvancedServo1061));
+            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region3, typeof(AdvancedServo1061));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region1, typeof(Stepper1063));
+            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region2, typeof(Stepper1063));
+            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.VNCLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCLoggingConfig));
+            _regionManager.RegisterViewWithRegion(RegionNames.VNCCoreLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCCoreLoggingConfig));
+
 
             // //This loads CombinedMain into the Shell loaded in App.Xaml.cs
 
@@ -106,7 +147,7 @@ namespace VNCPhidgets22Explorer
             // _regionManager.RegisterViewWithRegion(RegionNames.ViewBRegion, typeof(ViewB));
             // _regionManager.RegisterViewWithRegion(RegionNames.ViewCRegion, typeof(ViewC));           
 
-            Log.MODULE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ModuleInitialize) Log.MODULE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
     }
 }

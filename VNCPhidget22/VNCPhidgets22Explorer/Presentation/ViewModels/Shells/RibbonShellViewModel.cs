@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Windows;
 
 using VNC;
+using VNC.Core;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgets22Explorer.Presentation.ViewModels
+namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
     public class RibbonShellViewModel : ViewModelBase, IInstanceCountVM
     {
@@ -12,23 +14,31 @@ namespace VNCPhidgets22Explorer.Presentation.ViewModels
 
         public RibbonShellViewModel()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            InstanceCountVM++;
+            // NOTE(crhodes)
+            // Put things here that initialize the ViewModel
+            // Initialize EventHandlers, Commands, etc.
 
-            // TODO(crhodes)
-            //
+            DeveloperUIMode = Common.DeveloperUIMode;
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            InformationApplication = Common.InformationApplication;
+            InformationVNCCore = Common.InformationVNCCore;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -45,7 +55,7 @@ namespace VNCPhidgets22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCPhidgets22Explorer - RibbonShell";
+        private string _title = "VNCPhidgets21Explorer - RibbonShell";
 
         public string Title
         {
@@ -58,6 +68,35 @@ namespace VNCPhidgets22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        private System.Windows.Size _windowSize;
+        public System.Windows.Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _developerUIMode = Visibility.Visible;
+        public Visibility DeveloperUIMode
+        {
+            get => _developerUIMode;
+            set
+            {
+                if (_developerUIMode == value)
+                    return;
+                _developerUIMode = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Information InformationApplication { get; set; }
+        public Information InformationVNCCore { get; set; }
 
         #endregion
 

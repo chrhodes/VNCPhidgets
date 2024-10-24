@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VNCPhidgets22Explorer.Properties
+namespace VNCPhidgets21Explorer.Properties
 {
 
 

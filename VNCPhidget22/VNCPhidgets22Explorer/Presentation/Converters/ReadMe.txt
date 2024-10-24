@@ -1,3 +1,3 @@
-﻿VNCPhidgets22Explorer\Presentation\Converters\
+﻿VNCPhidgets21Explorer\Presentation\Converters\
 
 Notes for using this template

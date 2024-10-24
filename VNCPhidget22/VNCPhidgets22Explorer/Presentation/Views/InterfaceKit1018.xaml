@@ -1,0 +1,643 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidgets21Explorer.Presentation.Views.InterfaceKit1018"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"    
+
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    
+    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
+    xmlns:phidget="clr-namespace:Phidgets;assembly=Phidget21.NET"
+       
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
+    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
+    
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
+    
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    
+    xmlns:prism="http://prismlibrary.com/"
+
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource InterfaceKitBackground}"  
+ 
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
+>
+    <!--xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"-->
+    
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
+        <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
+        <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+    </vncmvvm:ViewBase.Resources>
+    
+    <!--<UserControl.Resources>-->        
+        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToInterfaceKitWrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplateInterfaceKit"> -->
+            <!-- <StackPanel> -->
+                <!-- <Label Content="{Binding XPath=@Name}" /> -->
+            <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplateInterfaceKitX"> -->
+            <!-- <StackPanel> -->
+                <!-- <Label Content="{Binding Name}" /> -->
+            <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+     <!--</UserControl.Resources>--> 
+    
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:InterfaceKitViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+
+    <DockPanel Margin="5">
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+
+        <controls:HostSelector DockPanel.Dock="Top" />
+        
+        <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+
+            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" VerticalAlignment="Top">
+
+                <dxlc:LayoutGroup Orientation="Horizontal" >
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                        
+                        <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
+                            <dxe:ComboBoxEdit Width="150" 
+                                     ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
+                                     SelectedItem="{Binding SelectedInterfaceKit}"
+                                     SelectedIndex="0"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                            <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
+                                 Background="White" 
+                                 Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        
+                    </dxlc:LayoutGroup>     
+                    
+                    <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
+                                      Background="White"                                       
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True"
+                                      Background="White"                                       
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                        <Button 
+		                    Command="{Binding OpenInterfaceKitCommand }"
+		                    Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"
+		                    ToolTip="{Binding OpenInterfaceKitToolTip, FallbackValue='OpenIK ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                        <Button 
+                		    Command="{Binding CloseInterfaceKitCommand }"
+                		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
+                		    ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Name="lgPhidgetStatus" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
+                                  IsCollapsible="True" IsCollapsed="False"  >
+
+                    <controls:PhidgetDevice x:Name="Phidget1" Margin="-5" 
+                               AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  Margin="-5,0,-5,0"
+                                  Padding="5,0,0,0"
+                                  Background="{StaticResource PhidgetBackground}">
+
+                        <dxe:CheckEdit
+                            Content="Log InputChange Events"
+                            IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}"
+                            HorizontalAlignment="Left"/>
+                        <dxe:CheckEdit
+                            Content="Log OutputChange Events"
+                            IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" 
+                            HorizontalAlignment="Left"/>
+                        <dxe:CheckEdit
+                            Content="Log SensorChange Events"
+                            IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}"
+                            HorizontalAlignment="Left"/>
+                        
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" 
+                                  IsCollapsible="True" IsCollapsed="False" >
+                    <!--<dxlc:LayoutGroup.GroupBoxStyle>
+                        <Style TargetType="dxlc:GroupBox">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="TitleVisibility" Value="Collapsed" />
+                        </Style>
+                    </dxlc:LayoutGroup.GroupBoxStyle>-->
+
+                        <dxlc:LayoutItem Label="I0" LabelPosition="Top">
+                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
+                            <dxe:CheckEdit Name="ceDI_0" Tag="0" IsChecked="{Binding DI0}"
+                                       Background="{Binding DI0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I1" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_1" Tag="1" IsChecked="{Binding DI1}" 
+                                       Background="{Binding DI1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I2" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_2" Tag="2" IsChecked="{Binding DI2}" 
+                                       Background="{Binding DI2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I3" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_3" Tag="3" IsChecked="{Binding DI3}" 
+                                       Background="{Binding DI3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I4" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_4" Tag="4" IsChecked="{Binding DI4}" 
+                                       Background="{Binding DI4, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I5" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_5" Tag="5" IsChecked="{Binding DI5}" 
+                                       Background="{Binding DI5, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I6" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_6" Tag="6" IsChecked="{Binding DI6}" 
+                                       Background="{Binding DI6, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I7" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_7" Tag="7" IsChecked="{Binding DI7}" 
+                                       Background="{Binding DI7, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I8" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_8" Tag="8" IsChecked="{Binding DI8}" 
+                                       Background="{Binding DI8, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I9" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_9" Tag="9" IsChecked="{Binding DI9}" 
+                                       Background="{Binding DI9, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I10" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_10" Tag="7" IsChecked="{Binding DI10}" 
+                                       Background="{Binding DI10, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I11" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_11" Tag="7" IsChecked="{Binding DI11}" 
+                                       Background="{Binding DI11, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I12" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_12" Tag="12" IsChecked="{Binding DI12}" 
+                                       Background="{Binding DI12, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I13" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_13" Tag="13" IsChecked="{Binding DI13}" 
+                                       Background="{Binding DI13, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I14" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_14" Tag="14" IsChecked="{Binding DI14}" 
+                                       Background="{Binding DI14, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="I15" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI_15" Tag="15" IsChecked="{Binding DI15}" 
+                                       Background="{Binding DI15, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        
+                    </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
+                                IsCollapsible="True" IsCollapsed="False" >
+                        
+                    <dxlc:LayoutItem Label="O0" LabelPosition="Top">
+                        <!--<dxe:CheckEdit Name="ceDO_0" Tag="0" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
+                        <dxe:CheckEdit Name="ceDO_0" Tag="0" IsChecked="{Binding DO0}"
+                                       Background="{Binding DO0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O1" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_1" Tag="1" IsChecked="{Binding DO1}" 
+                                       Background="{Binding DO1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O2" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_2" Tag="2" IsChecked="{Binding DO2}" 
+                                       Background="{Binding DO2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O3" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_3" Tag="3" IsChecked="{Binding DO3}" 
+                                       Background="{Binding DO3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O4" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_4" Tag="4" IsChecked="{Binding DO4}" 
+                                       Background="{Binding DO4, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O5" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_5" Tag="5" IsChecked="{Binding DO5}" 
+                                       Background="{Binding DO5, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O6" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_6" Tag="6" IsChecked="{Binding DO6}" 
+                                       Background="{Binding DO6, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O7" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_7" Tag="7" IsChecked="{Binding DO7}" 
+                                       Background="{Binding DO7, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O8" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_8" Tag="8" IsChecked="{Binding DO8}" 
+                                       Background="{Binding DO8, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O9" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_9" Tag="9" IsChecked="{Binding DO9}" 
+                                       Background="{Binding DO9, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O10" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_10" Tag="7" IsChecked="{Binding DO10}" 
+                                       Background="{Binding DO10, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O11" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_11" Tag="7" IsChecked="{Binding DO11}" 
+                                       Background="{Binding DO11, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O12" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_12" Tag="12" IsChecked="{Binding DO12}" 
+                                       Background="{Binding DO12, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O13" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_13" Tag="13" IsChecked="{Binding DO13}" 
+                                       Background="{Binding DO13, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O14" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_14" Tag="14" IsChecked="{Binding DO14}" 
+                                       Background="{Binding DO14, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O15" LabelPosition="Top" >
+                        <dxe:CheckEdit Name="ceDO_15" Tag="15" IsChecked="{Binding DO15}" 
+                                       Background="{Binding DO15, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Name="lgAnalogInputs" Orientation="Horizontal" View="GroupBox" Header="Analog Inputs" 
+                                  IsCollapsible="True" IsCollapsed="False" >
+
+                    <!--<dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical"
+                                      DataContext="{Binding Source=sensors[0]}" >-->
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding AI0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem Label="A0-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A0R" Tag="0" Text="{Binding AIRaw0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem Label="A0-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate0, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax0, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin0, Mode=OneWay}" 
+                                          IsFloatValue="False" />                            
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity0, Mode=TwoWay}" 
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A1" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A1" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A1" Tag="0" Text="{Binding AI1, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A1-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A1R" Tag="0" Text="{Binding AIRaw1, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A1-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin1, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A1-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate1, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax1, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin1, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A1-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax1, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A1-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity1, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A2" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A2" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A2" Tag="0" Text="{Binding AI2, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A2-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A2R" Tag="0" Text="{Binding AIRaw2, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A2-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin2, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A2-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate2, Mode=TwoWay}" Increment="8"
+                                          MinValue="{Binding AIDataRateMax2, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin2, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A2-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax2, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A2-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity2, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A3" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A3" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A3" Tag="0" Text="{Binding AI3, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A3-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A3R" Tag="0" Text="{Binding AIRaw3, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A3-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin3, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A3-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate3, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax3, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin3, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A3-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax3, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A3-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity3, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A4" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A4" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A4" Tag="0" Text="{Binding AI4, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A4-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A4R" Tag="0" Text="{Binding AIRaw4, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A4-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin4, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A4-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate4, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax4, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin4, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A4-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax4, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A4-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity4, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A5" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A5" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A5" Tag="0" Text="{Binding AI5, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A5-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A5R" Tag="0" Text="{Binding AIRaw5, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A5-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin5, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A5-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate5, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax5, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin5, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A5-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax5, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A5-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity5, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A6" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A6" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A6" Tag="0" Text="{Binding AI6, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A6-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A6R" Tag="0" Text="{Binding AIRaw6, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A6-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin6, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A6-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate6, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax6, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin6, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A6-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax6, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A6-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity6, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Name="lgAnalogInputs_A7" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A7" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A7" Tag="0" Text="{Binding AI7, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A7-Raw" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A7R" Tag="0" Text="{Binding AIRaw7, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A7-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMin7, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A7-DataRate" LabelPosition="Top">
+
+                            <dxe:SpinEdit Value="{Binding AIDataRate7, Mode=TwoWay}" Increment="5"
+                                          MinValue="{Binding AIDataRateMax7, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMin7, Mode=OneWay}" 
+                                          IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A7-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataRateMax7, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A7-Sensitivity" LabelPosition="Top">
+                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
+                              Value="{Binding AISensitivity7, Mode=TwoWay}"
+                              IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+
+    </DockPanel>
+    
+</vncmvvm:ViewBase>

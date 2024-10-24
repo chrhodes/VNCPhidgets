@@ -1,0 +1,103 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidgets21Explorer.Presentation.Controls.AccelerationControl"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"    
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+    
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"      
+    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    	
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"    
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    
+    xmlns:prism="http://prismlibrary.com/"   
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource AccelerationControlBackground}"
+    
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    Height="65"
+>
+    <!-- TODO:(crhodes)
+        Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
+    <!-- <SolidColorBrush x:Key="AccelerationControlBackground" Color="#A0A0A0" /> -->
+    
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <converters:SpinEditConverter x:Key="SpinEditConverter" />
+        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplatePositionControl"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplatePositionControlX"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+    </vncmvvm:ViewBase.Resources>
+
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:AccelerationControlViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+
+    <dxlc:LayoutGroup x:Name="lgMain" Header="Acceleration" View="GroupBox" 
+                      Orientation="Horizontal"  Padding="-10">
+
+        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left">
+            <dxe:TextEdit Text="{Binding Min, Mode=TwoWay}" IsReadOnly="True" 
+                          Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                          MinWidth="40" />
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
+
+            <dxe:SpinEdit
+                EditValue="{Binding Current, Mode=TwoWay, 
+                    TargetNullValue=0,
+                    Converter ={StaticResource SpinEditConverter}}"
+                Increment="500"
+                MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
+                MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
+                Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                IsFloatValue="False" 
+                EditValueChanged="SpinEdit_EditValueChanged"/>
+        </dxlc:LayoutItem>
+
+        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" >
+            <dxe:TextEdit Text="{Binding Max, Mode=TwoWay}" IsReadOnly="True" 
+                          Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                          MinWidth="40" />
+        </dxlc:LayoutItem>
+
+    </dxlc:LayoutGroup>
+
+</vncmvvm:ViewBase>

@@ -7,7 +7,7 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
-    xmlns:local="clr-namespace:VNCPhidgets22Explorer"
+    xmlns:local="clr-namespace:VNCPhidgets21Explorer"
 
     xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -22,7 +22,7 @@
         <Setter Property="Background" Value="White" />
     </Style>
 
-    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <SolidColorBrush x:Key="CombinedMainBackground" Color="#00E0F0" />
     <SolidColorBrush x:Key="CombinedNavigationBackground" Color="#90FFFF" />
@@ -40,16 +40,39 @@
     <SolidColorBrush x:Key="ShellBackground" Color="#C0C0C0" />
     <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />    
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#8080F0" />    
 
-    <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#A0A0A0" />
+    <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#F0F0F0" />
 
-    <SolidColorBrush x:Key="RedText" Color="#c70000" />
+    <SolidColorBrush x:Key="RedText" Color="Red" />
+    <SolidColorBrush x:Key="BlueText" Color="Blue" />
+
+    <SolidColorBrush x:Key="FileInfoText" Color="Green" />
+    <SolidColorBrush x:Key="AssemblyInfoText" Color="Blue" />
+
+    <SolidColorBrush x:Key="InterfaceKitBackground" Color="#B0B0B0" />
+    <SolidColorBrush x:Key="AdvancedServo1061Background" Color="#B0B0B0" />
+    <SolidColorBrush x:Key="Stepper1063Background" Color="#B0B0B0" />
+    <SolidColorBrush x:Key="PhidgetBackground" Color="#A0A0FF" />
+
+    <SolidColorBrush x:Key="HostSelectorBackground" Color="#C0FFC0" />
+    <SolidColorBrush x:Key="AccelerationControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="PositionControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="ServoStateControlBackground" Color="#D0D0D0" />    
+    <SolidColorBrush x:Key="VelocityControlBackground" Color="#C0C0C0" />
+
+    <SolidColorBrush x:Key="ManagePerformanceLibraryBackground" Color="#A0A0A0" /> 
 
     <SolidColorBrush x:Key="ViewABackground" Color="#FFC0C0" />
     <SolidColorBrush x:Key="ViewBBackground" Color="#C0FFC0" />
     <SolidColorBrush x:Key="ViewCBackground" Color="#C0C0FF" />
     
     <SolidColorBrush x:Key="ViewABCBackground" Color="#C0C0C0" />
+
+    <Style x:Key="uiLoggingFilterCheckEdit" TargetType="dxe:CheckEdit">
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="20" />
+    </Style>
     
     <Style x:Key="CloseTabButtonStyle" TargetType="Button">
         <Setter Property="FontSize" Value="12" />

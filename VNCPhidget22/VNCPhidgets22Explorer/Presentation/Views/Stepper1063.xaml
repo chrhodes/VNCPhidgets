@@ -1,0 +1,418 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidgets21Explorer.Presentation.Views.Stepper1063"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+    
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    
+    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"   
+    
+    xmlns:phidget="clr-namespace:Phidgets;assembly=Phidget21.NET"
+       
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
+    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
+    
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
+    
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    
+    xmlns:prism="http://prismlibrary.com/"   
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource Stepper1063Background}"
+
+    d:DesignWidth="650" 
+
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    MinWidth="650"
+    
+    SizeChanged="thisControl_SizeChanged"
+>     
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
+        <XmlDataProvider x:Key="StepperList" Source="/Resources/StepperList.xml" XPath="Steppers/Stepper" />
+        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
+        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
+        <vncconverters:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" />
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToStepper1061WrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplateStepper1061"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplateStepper1061X"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+        <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+        <converters:SelectedItemToDoubleConverter x:Key="SelectedItemToDoubleConverter" />
+    </vncmvvm:ViewBase.Resources>
+
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:Stepper1063ViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+     
+    <DockPanel Margin="5">
+
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+
+        <controls:HostSelector DockPanel.Dock="Top" />
+
+        <dxlc:LayoutControl Orientation="Horizontal" DockPanel.Dock="Top" Padding="0">
+
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                <dxlc:LayoutItem Label="Steppers" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:ComboBoxEdit Width="150" 
+                        ItemsSource="{Binding Steppers}" DisplayMember="Name" 
+                        SelectedItem="{Binding SelectedStepper}"
+                        SelectedIndex="0"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                    <dxe:TextEdit EditValue="{Binding SelectedStepper.SerialNumber}" IsReadOnly="True" 
+                                  Background="White" 
+                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <Button 
+		                    Command="{Binding OpenStepperCommand }"
+		                    Content="{Binding OpenStepperContent, FallbackValue='Open' }"
+		                    ToolTip="{Binding OpenStepperToolTip, FallbackValue='Open ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
+                              Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <dxlc:LayoutItem Label="Select Velocity"
+             	        LabelPosition="Left">
+                    <!--<dxe:ComboBoxEdit		                                 
+                            EditValue="{Binding
+                    	        Path=SelectedFileFormats,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
+                    <dxe:ComboBoxEdit x:Name="cbeVelocityScale" 
+                                      IsEnabled="{Binding DeviceAttached, FallbackValue=false}">
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxStyleSettings />
+                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:TokenComboBoxStyleSettings/>-->
+                        </dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:ComboBoxEditItem Content="Min" />
+                        <dxe:ComboBoxEditItem Content="01%" />
+                        <dxe:ComboBoxEditItem Content="02%" />
+                        <dxe:ComboBoxEditItem Content="03%" />
+                        <dxe:ComboBoxEditItem Content="04%" />
+                        <dxe:ComboBoxEditItem Content="05%" />
+                        <dxe:ComboBoxEditItem Content="10%" />
+                        <dxe:ComboBoxEditItem Content="15%" />
+                        <dxe:ComboBoxEditItem Content="20%" />
+                        <dxe:ComboBoxEditItem Content="25%" />
+                        <dxe:ComboBoxEditItem Content="35%" />
+                        <dxe:ComboBoxEditItem Content="50%" />
+                        <dxe:ComboBoxEditItem Content="75%" />
+                        <dxe:ComboBoxEditItem Content="Max" />
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
+                    <Button 
+		                    Command="{Binding InitializeVelocityCommand }"
+                            CommandParameter="{Binding ElementName=cbeVelocityScale, Path=EditValue}"
+		                    Content="{Binding InitializeVelocityContent, FallbackValue='Initialize Velocity' }"
+		                    ToolTip="{Binding InitializeVelocityToolTip, FallbackValue='Initialize Velocity' }" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
+                              Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
+                    <!--<dxe:ComboBoxEdit		                                 
+                        EditValue="{Binding
+       	                    Path=SelectedFileFormats,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
+                    <dxe:ComboBoxEdit x:Name="cbeAccelerationScale">
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxStyleSettings />
+                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:TokenComboBoxStyleSettings/>-->
+                        </dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:ComboBoxEditItem Content="Min" />
+                        <dxe:ComboBoxEditItem Content="01%" />
+                        <dxe:ComboBoxEditItem Content="02%" />
+                        <dxe:ComboBoxEditItem Content="03%" />
+                        <dxe:ComboBoxEditItem Content="04%" />
+                        <dxe:ComboBoxEditItem Content="05%" />
+                        <dxe:ComboBoxEditItem Content="10%" />
+                        <dxe:ComboBoxEditItem Content="15%" />
+                        <dxe:ComboBoxEditItem Content="20%" />
+                        <dxe:ComboBoxEditItem Content="25%" />
+                        <dxe:ComboBoxEditItem Content="35%" />
+                        <dxe:ComboBoxEditItem Content="50%" />
+                        <dxe:ComboBoxEditItem Content="75%" />
+                        <dxe:ComboBoxEditItem Content="Max" />
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
+                    <Button 
+                            Command="{Binding InitializeAccelerationCommand }"
+                            CommandParameter="{Binding ElementName=cbeSelectAccelerationScale, Path=EditValue}"
+                            Content="{Binding InitializeAccelerationContent, FallbackValue='Initialize Acceleration' }"
+                            ToolTip="{Binding InitializeAccelerationToolTip, FallbackValue='Initialize Acceleration' }" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                <Button 
+                		Command="{Binding RefreshStepperCommand }"
+                		Content="{Binding RefreshStepperContent, FallbackValue='Refresh' }"
+                		ToolTip="{Binding RefreshStepperToolTip, FallbackValue='Refresh ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                <Button 
+                		    Command="{Binding CloseStepperCommand }"
+                		    Content="{Binding CloseStepperContent, FallbackValue='Close' }"
+                		    ToolTip="{Binding CloseStepperToolTip, FallbackValue='Close ToolTip' }" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutControl>
+
+        <dxlc:LayoutGroup Name="lgPhidgetStatus" DockPanel.Dock="Top" View="GroupBox" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" 
+                              IsCollapsible="True" IsCollapsed="False"  >
+
+            <controls:PhidgetDevice x:Name="Phidget1" Margin="-5" 
+                               AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  Margin="-5,0,-5,0"
+                                  Padding="5,0,0,0"
+                                  Background="{StaticResource PhidgetBackground}">
+
+                <dxe:CheckEdit
+                            Content="Log CurrentChange Events"
+                            IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                <dxe:CheckEdit
+                            Content="Log PositionChange Events"
+                            IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
+                <dxe:CheckEdit
+                            Content="Log VelocityChange Events"
+                            IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+        
+        <dxlc:LayoutGroup Name="lgStepperControls" View="GroupBox" Header="Stepper Controls" Orientation="Vertical" 
+                          HorizontalAlignment="Left" Padding="-10"
+                          IsCollapsible="True" IsCollapsed="False" >
+
+            <!-- TODO(crhodes)
+                 Need to expose HeaderTitle so can set to StepperState or ServoState
+                -->
+            <controls:ServoStateControl 
+                        Engaged="{Binding StepperProperties[0].Engaged, Mode=TwoWay}" 
+                        Stopped="{Binding StepperProperties[0].Stopped, Mode=OneWay}"
+                        Current="{Binding StepperProperties[0].Current, Mode=OneWay}"/>
+            
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                                      VerticalAlignment="Top" HorizontalAlignment="Left"
+                                      IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+
+                    <controls:VelocityControl 
+                            Min="{Binding StepperProperties[0].VelocityMin, Mode=OneWay}" 
+                            Current="{Binding StepperProperties[0].Velocity, Mode=TwoWay}" 
+                            Limit="{Binding StepperProperties[0].VelocityLimit, Mode=TwoWay}" 
+                            Max="{Binding StepperProperties[0].VelocityMax, Mode=OneWay}"/>
+
+                    <controls:AccelerationControl 
+                            Min="{Binding StepperProperties[0].AccelerationMin, Mode=OneWay}" 
+                            Current="{Binding StepperProperties[0].Acceleration, Mode=TwoWay}" 
+                            Max="{Binding StepperProperties[0].AccelerationMax, Mode=OneWay}"/>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup x:Name="lgPosition" View="GroupBox" Orientation="Horizontal" Header="Position"
+                                  Padding="-10">
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                        <dxlc:LayoutGroup 
+                            View="Group" Orientation="Horizontal" Background="AliceBlue" >
+
+                            <dxlc:LayoutItem Label="Min" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
+                                <dxe:TextEdit Text="{Binding StepperProperties[0].PositionMin, Mode=OneWay}"  IsReadOnly="True"/>
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                                <dxlc:LayoutItem Label="Current" LabelPosition="Top">
+                                    <dxe:TextEdit Name="teCurrentPosition" Text="{Binding StepperProperties[0].CurrentPosition, Mode=TwoWay}" />
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem Label="Target" LabelPosition="Top">
+                                    <dxe:TextEdit Name="teTargetPosition" Text="{Binding StepperProperties[0].TargetPosition, Mode=TwoWay}" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutItem Label="Max" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
+                                <dxe:TextEdit Text="{Binding StepperProperties[0].PositionMax, Mode=OneWay}" IsReadOnly="True" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+                        
+                        <!-- Second form uses CommandParameter -->
+                        <dxlc:LayoutItem>
+                            <Button 
+		                    Command="{Binding ZeroCurentPositionCommand }"
+		                    Content="{Binding ZeroCurentPositionContent, FallbackValue='ZeroCurentPosition' }"
+		                    ToolTip="{Binding ZeroCurentPositionToolTip, FallbackValue='ZeroCurentPosition ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                        <dxlc:LayoutItem Label="Step Angle"
+             	        LabelPosition="Left">
+                            <!--<dxe:ComboBoxEdit		                                 
+                            EditValue="{Binding
+                    	        Path=SelectedFileFormats,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
+                            <dxe:ComboBoxEdit x:Name="cbeStepAngle" IsEnabled="{Binding DeviceAttached}"
+                                  EditValueType="{x:Type sys:Double}"
+                                  EditValue="{Binding StepperProperties[0].StepAngle}" >
+                                <!--SelectedItem="{Binding StepperProperties[0].StepAngle }" >-->
+                                <!--SelectedItem="{Binding StepperProperties[0].StepAngle, Converter={StaticResource SelectedItemToDoubleConverter} }" >-->
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:ComboBoxStyleSettings />
+                                    <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                                    <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                                    <!--<dxe:RadioComboBoxStyleSettings/>-->
+                                    <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                                    <!--<dxe:TokenComboBoxStyleSettings/>-->
+                                </dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:ComboBoxEditItem Content="0.9" />
+                                <dxe:ComboBoxEditItem Content="1.8" />
+                                <dxe:ComboBoxEditItem Content="3.75" />
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+
+                        
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                            <!-- <dxlc:LayoutItem> -->
+                            <!-- <Button -->
+                            <!-- Command="{Binding ZeroCurentPositionCommand}" -->
+                            <!-- CommandParameter="{Binding ZeroCurentPositionCommandParameter}" -->
+                            <!-- Content="{Binding ZeroCurentPositionContent, FallbackValue='ZeroCurentPosition' }" -->
+                            <!-- ToolTip="{Binding ZeroCurentPositionToolTip, FallbackValue='ZeroCurentPosition ToolTip' }" /> -->
+                            <!-- <Button.Background> -->
+                            <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
+                            <!-- </Button.Background> -->
+                            <!-- </dxlc:LayoutItem> -->
+                            <dxlc:LayoutItem Label="Degrees" LabelPosition="Top" HorizontalAlignment="Left" >
+                                <dxe:TextEdit Text="{Binding Degrees, Mode=TwoWay}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                                <dxlc:LayoutItem>
+                                    <Button 
+              		                Command="{Binding RotateCommand }"
+                                    CommandParameter="CW"
+              		                Content="ClockWise"
+              		                ToolTip="Rotate ClockWise # Degrees" />
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem>
+                                    <Button 
+              		                Command="{Binding RotateCommand }"
+                                    CommandParameter="CCW"
+              		                Content="CounterClockWise"
+              		                ToolTip="Rotate ClockWise # Degrees" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <!-- Second form uses CommandParameter -->
+
+
+                            <!-- <dxlc:LayoutItem> -->
+                            <!-- <Button -->
+                            <!-- Command="{Binding RotateCommand}" -->
+                            <!-- CommandParameter="{Binding RotateCommandParameter}" -->
+                            <!-- Content="{Binding RotateContent, FallbackValue='Rotate' }" -->
+                            <!-- ToolTip="{Binding RotateToolTip, FallbackValue='Rotate ToolTip' }" /> -->
+                            <!-- <Button.Background> -->
+                            <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
+                            <!-- </Button.Background> -->
+                            <!-- </dxlc:LayoutItem> -->
+                        </dxlc:LayoutGroup>
+  
+
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                
+            </dxlc:LayoutGroup>
+            
+
+
+        </dxlc:LayoutGroup>
+
+    </DockPanel>     
+
+</vncmvvm:ViewBase>

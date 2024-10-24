@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Phidget22.Accelerometer" Collapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.BLDCMotor" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="Phidget22.Phidget" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="8.25" />
+        <Point X="7.25" Y="5.842" />
+        <Point X="6.083" Y="5.842" Type="JumpStart" />
+        <Point X="5.917" Y="5.842" Type="JumpEnd" />
+        <Point X="5.706" Y="5.842" Type="JumpStart" />
+        <Point X="5.54" Y="5.842" Type="JumpEnd" />
+        <Point X="3.956" Y="5.842" Type="JumpStart" />
+        <Point X="3.79" Y="5.842" Type="JumpEnd" />
+        <Point X="2.123" Y="5.842" />
+        <Point X="2.123" Y="2.096" />
+        <Point X="2" Y="2.096" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.CapacitiveTouch" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <InheritanceLine Type="Phidget22.Phidget" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="8.25" />
+        <Point X="7.25" Y="5.801" />
+        <Point X="6.083" Y="5.801" Type="JumpStart" />
+        <Point X="5.917" Y="5.801" Type="JumpEnd" />
+        <Point X="5.706" Y="5.801" Type="JumpStart" />
+        <Point X="5.54" Y="5.801" Type="JumpEnd" />
+        <Point X="3.956" Y="5.801" Type="JumpStart" />
+        <Point X="3.79" Y="5.801" Type="JumpEnd" />
+        <Point X="2.123" Y="5.801" />
+        <Point X="2.123" Y="2.846" />
+        <Point X="2" Y="2.846" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.CurrentInput" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Phidget22.Phidget" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="8.25" />
+        <Point X="7.25" Y="5.794" />
+        <Point X="6.083" Y="5.794" Type="JumpStart" />
+        <Point X="5.917" Y="5.794" Type="JumpEnd" />
+        <Point X="5.706" Y="5.794" Type="JumpStart" />
+        <Point X="5.54" Y="5.794" Type="JumpEnd" />
+        <Point X="3.956" Y="5.794" Type="JumpStart" />
+        <Point X="3.79" Y="5.794" Type="JumpEnd" />
+        <Point X="2.206" Y="5.794" Type="JumpStart" />
+        <Point X="2.04" Y="5.794" Type="JumpEnd" />
+        <Point X="1.25" Y="5.794" />
+        <Point X="1.25" Y="3.941" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.DataAdapter" Collapsed="true">
+    <Position X="2.25" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.DCMotor" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Dictionary" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.DigitalInput" Collapsed="true">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Phidget22.Phidget" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="8.25" />
+        <Point X="7.25" Y="5.787" />
+        <Point X="6.083" Y="5.787" Type="JumpStart" />
+        <Point X="5.917" Y="5.787" Type="JumpEnd" />
+        <Point X="5.706" Y="5.787" Type="JumpStart" />
+        <Point X="5.54" Y="5.787" Type="JumpEnd" />
+        <Point X="3.873" Y="5.787" />
+        <Point X="3.873" Y="3.596" />
+        <Point X="3.75" Y="3.596" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.DigitalOutput" Collapsed="true">
+    <Position X="2.25" Y="4" Width="1.5" />
+    <InheritanceLine Type="Phidget22.Phidget" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="8.25" />
+        <Point X="7.25" Y="5.822" />
+        <Point X="6.083" Y="5.822" Type="JumpStart" />
+        <Point X="5.917" Y="5.822" Type="JumpEnd" />
+        <Point X="5.706" Y="5.822" Type="JumpStart" />
+        <Point X="5.54" Y="5.822" Type="JumpEnd" />
+        <Point X="3.873" Y="5.822" />
+        <Point X="3.873" Y="4.346" />
+        <Point X="3.75" Y="4.346" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.DistanceSensor" Collapsed="true">
+    <Position X="2.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Encoder" Collapsed="true">
+    <Position X="4" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.FirmwareUpgrade" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.FrequencyCounter" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Generic" Collapsed="true">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPS" Collapsed="true">
+    <Position X="4" Y="4" Width="1.5" />
+    <InheritanceLine Type="Phidget22.Phidget" ManuallyRouted="true">
+      <Path>
+        <Point X="7.25" Y="8.25" />
+        <Point X="7.25" Y="7.697" />
+        <Point X="5.623" Y="7.697" />
+        <Point X="5.623" Y="4.346" />
+        <Point X="5.5" Y="4.346" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Gyroscope" Collapsed="true">
+    <Position X="4" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Hub" Collapsed="true">
+    <Position X="6.25" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.HumiditySensor" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.IR" Collapsed="true">
+    <Position X="6.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.LCD" Collapsed="true">
+    <Position X="6.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.LightSensor" Collapsed="true">
+    <Position X="6.25" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Log" Collapsed="true">
+    <Position X="1.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Magnetometer" Collapsed="true">
+    <Position X="8" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Manager" Collapsed="true">
+    <Position X="3" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.MotorPositionController" Collapsed="true">
+    <Position X="8" Y="1.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.MotorVelocityController" Collapsed="true">
+    <Position X="8" Y="2.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Net" Collapsed="true">
+    <Position X="4.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Pconf" Collapsed="true">
+    <Position X="8.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Phidget" Collapsed="true">
+    <Position X="6.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PhidgetException" Collapsed="true">
+    <Position X="10.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PHSensor" Collapsed="true">
+    <Position X="8" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PowerGuard" Collapsed="true">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PressureSensor" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.RCServo" Collapsed="true">
+    <Position X="10" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.ResistanceInput" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.RFID" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.SoundSensor" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Spatial" Collapsed="true">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Stepper" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.TemperatureSensor" Collapsed="true">
+    <Position X="11.75" Y="1" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.VoltageOutput" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.VoltageInput" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.VoltageRatioInput" Collapsed="true">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

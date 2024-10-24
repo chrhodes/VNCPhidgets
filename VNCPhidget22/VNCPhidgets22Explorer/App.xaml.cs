@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 
@@ -8,15 +10,12 @@ using Prism.Regions;
 using Prism.Unity;
 
 using VNC;
-using VNC.Logging;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 
-using VNCPhidgets22Explorer.Presentation.Views;
-using DevExpress.CodeParser;
-using System.Reflection;
+using VNCPhidgets21Explorer.Presentation.Views;
 
-namespace VNCPhidgets22Explorer
+namespace VNCPhidgets21Explorer
 {
     public partial class App : PrismApplication
     {
@@ -24,48 +23,47 @@ namespace VNCPhidgets22Explorer
 
         public App()
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
+
             // HACK(crhodes)
             // If don't delay a bit here, the SignalR logging infrastructure does not initialize quickly enough
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Int64 startTicks = Log.APPLICATION_START("Initialize SignalR", Common.LOG_CATEGORY);
-
             Thread.Sleep(150);
 
-            Log.APPLICATION_START("App()", Common.LOG_CATEGORY, startTicks);
-
-            // TODO(crhodes)
-            // Can also get the version of VNC.Core if we don't pass in ourselves
-
-            Common.SetVersionInfoVNCCore();
-
-            var runtimeVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
-            var appVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
-
-            Common.SetVersionInfoApplication(runtimeVersion, appVersion);
-
-            Log.APPLICATION_START(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Enter"), Common.LOG_CATEGORY, startTicks);
+#if DEBUG
+            Common.InitializeLogging(debugConfig: true);
+            VNC.Phidget.Common.InitializeLogging(debugConfig: true);
+#else
+            Common.InitializeLogging();
+            VNC.Phidget.Common.InitializeLogging();
+#endif
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         // 01
 
         protected override void ConfigureViewModelLocator()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureViewModelLocator();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 02
 
         protected override IContainerExtension CreateContainerExtension()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return base.CreateContainerExtension();
         }
@@ -74,9 +72,10 @@ namespace VNCPhidgets22Explorer
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return base.CreateModuleCatalog();
         }
@@ -85,18 +84,22 @@ namespace VNCPhidgets22Explorer
 
         protected override void RegisterRequiredTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
 
             base.RegisterRequiredTypes(containerRegistry);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 05
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
 
             //containerRegistry.RegisterSingleton<ICustomerDataService, CustomerDataServiceMock>();
             //containerRegistry.RegisterSingleton<IMaterialDataService, MaterialDataServiceMock>();
@@ -110,14 +113,20 @@ namespace VNCPhidgets22Explorer
 
             //containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
 
-            // Common Dialogs used my most applications.
+            // Common Dialogs used by most applications.
 
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
             containerRegistry.RegisterDialog<OkCancelDialog, OkCancelDialogViewModel>("OkCancelDialog");
 
             // Add the new UI elements
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            // NOTE(crhodes)
+            // Most of what would typically appear here is in PAEF1Module
+            //
+            // Maybe the Ribbon, Main, StatusBar should be moved back here
+            // and the App Specific stuff left in PAEF1Module
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //NOTE(crhodes)
@@ -139,87 +148,104 @@ namespace VNCPhidgets22Explorer
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //NOTE(crhodes)
             // Order matters here.  Application depends on types in Cat
-            //moduleCatalog.AddModule(typeof(CatModule));
-            moduleCatalog.AddModule(typeof(VNCPhidgets22ExplorerModule));
+#if VNCTYPES
+            moduleCatalog.AddModule(typeof(CatModule));
+#endif
+            moduleCatalog.AddModule(typeof(VNCPhidgets21ExplorerModule));
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 08
 
         protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureRegionAdapterMappings(regionAdapterMappings);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 09
 
         protected override void ConfigureDefaultRegionBehaviors(IRegionBehaviorFactory regionBehaviors)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.ConfigureDefaultRegionBehaviors(regionBehaviors);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 10
 
         protected override void RegisterFrameworkExceptionTypes()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.RegisterFrameworkExceptionTypes();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 11
 
         protected override Window CreateShell()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            // TODO(crhodes)
+            // Figure out how early we can save Container
+            // Put it in Common so everyone from everywhere can access
+
+            Common.Container = Container;
 
             // TODO(crhodes)
             // Pick the shell to start with.
 
-            return Container.Resolve<Shell>();
-            // return Container.Resolve<RibbonShell>();
+            Shell shell = Container.Resolve<Shell>();
+            //Shell shell = Container.Resolve<RibbonShell>();
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return shell;
 
             // NOTE(crhodes)
-            // The type of view to load into the shell is handled in VNCPhidgets22ExplorerModule.cs
+            // The type of view to load into the shell is handled in VNCPhidgets21ExplorerModule.cs
         }
 
         // 12
 
         protected override void InitializeShell(Window shell)
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.InitializeShell(shell);
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // 13
 
         protected override void InitializeModules()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             base.InitializeModules();
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -243,12 +269,15 @@ namespace VNCPhidgets22Explorer
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ApplicationStart) Log.APPLICATION_START("Enter", Common.LOG_CATEGORY, startTicks);
 
             try
             {
+                GetAndSetInformation();
                 VerifyApplicationPrerequisites();
-
+                InitializeApplication();
             }
             catch (Exception ex)
             {
@@ -256,7 +285,33 @@ namespace VNCPhidgets22Explorer
                 MessageBox.Show(ex.InnerException.ToString());
             }
 
-            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationStart) Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void GetAndSetInformation()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            // Get Information about VNC.Core
+
+            Common.SetVersionInfoVNCCore();
+
+            var appFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+
+            // Get Information about ourselves
+
+            Common.SetVersionInfoApplication(Assembly.GetExecutingAssembly(), appFileVersionInfo);
+
+            // Get Information about Phidget assembly
+
+            var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget.Common));
+            var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
+
+            Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void VerifyApplicationPrerequisites()
@@ -265,41 +320,69 @@ namespace VNCPhidgets22Explorer
             // Add any necessary checks for config files, etc
             // That are required by application
 
-            var versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location);
 
-            Common.RuntimeVersion = versionInfo.FileVersion;
+        }
 
-            //var v = versionInfo.Comments;
-            //var v1 = versionInfo.CompanyName;
-            //var v2 = versionInfo.FileDescription;
-            //var v3 = versionInfo.FileName;
-            //var v4 = versionInfo.FileVersion;
-            //var v5 = versionInfo.ProductVersion;
-            //var v6 = versionInfo.ProductName;
+        private void InitializeApplication()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            //TODO(crhodes)
+            // Perform any required Initialization.
+
+            // TODO(crhodes)
+            // Would be nice to have this loaded from config file
+            // Maybe add option to change so can select another folder at runtime.
+
+            Directory.SetCurrentDirectory("./Resources/json");
+
+#if DEBUG
+            Common.DeveloperMode = true;
+            Common.DeveloperUIMode = Visibility.Visible;
+            //Common.DeveloperUIMode = Visibility.Hidden;
+            //Common.DeveloperUIMode = Visibility.Collapsed;
+#else
+            Common.DeveloperMode = false;
+            Common.DeveloperUIMode = Visibility.Collapsed;  // No space reserved
+#endif
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Activated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
 
-            Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Deactivated(object sender, EventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
 
 
-            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            long startTicks = Log.APPLICATION_END("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ApplicationEnd) Log.APPLICATION_END("Enter", Common.LOG_CATEGORY, startTicks);
 
+            // TODO(crhodes)
+            // Need to fire an event that will be handled by ViewModels
+            // Indicating any open devices need to be closed
+            // Start by looking at CloseAdvancedServo
+            // This is to handle the case where things end with Open devices
+            // Maybe look for null in Active{AdvancedServo,InterfaceKit,Stepper}
 
-            Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationEnd) Log.APPLICATION_END("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)

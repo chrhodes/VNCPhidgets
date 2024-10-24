@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-13</VersionSuffix>
-        <FileVersion>2024.10.20A</FileVersion>
+        <FileVersion>2024.10.23A</FileVersion>
         <Description>Phidget21 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -70,7 +70,7 @@
     </ItemGroup>-->
     
     <ItemGroup>
-      <ProjectReference Include="..\..\VNC.Phidget\VNC.Phidget.csproj" />
+      <ProjectReference Include="..\VNC.Phidget21.csproj" />
       <ProjectReference Include="..\VNCPhidget21.Configuration\VNCPhidget21.Configuration.csproj" />
       <ProjectReference Include="..\VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj" />
     </ItemGroup>

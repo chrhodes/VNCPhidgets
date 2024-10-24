@@ -1,72 +1,208 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-        <TargetFrameworks>net6.0-windows</TargetFrameworks>
-    <OutputType>WinExe</OutputType>
-    <UseWPF>true</UseWPF>
-    <!--<GenerateAssemblyInfo>false</GenerateAssemblyInfo>-->
-    <Nullable>enable</Nullable>
-    <FileVersion>2023.09.16B</FileVersion>
-    <ApplicationIcon>Resources\Icons\ApplicationIcon-Right-Red.ico</ApplicationIcon>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+    <PropertyGroup>
+        <!--<TargetFrameworks>net8.0-windows;net48</TargetFrameworks>-->
+        <TargetFrameworks>net8.0-windows</TargetFrameworks>      
+        <OutputType>WinExe</OutputType>
+        <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionSuffix>development-13</VersionSuffix>
+        <FileVersion>2024.10.23A</FileVersion>
+        <Description>Phidget21 Explorer</Description>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>disable</ImplicitUsings>
+    </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
+    <!-- This is for NuGet Packages -->
+    <!-- <PropertyGroup> -->
+    <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
+    <!-- <PackageVersion>1.0.0</PackageVersion> -->
+    <!-- <PackageLicenseFile>LICENSE</PackageLicenseFile> -->
+    <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
+    <!-- <PackageProjectUrl>https://github.com/chrhodes/xxx</PackageProjectUrl> -->
+    <!-- <RepositoryUrl>https://github.com/chrhodes/xxx</RepositoryUrl> -->
+    <!-- <RepositoryType>Git</RepositoryType> -->
+    <!-- <PackageTags></PackageTags> -->
+    <!-- <PackageIcon>VNC.png</PackageIcon> -->
+    <!-- <Authors>Christopher Rhodes</Authors> -->
+    <!-- <Company>VNC</Company> -->
+    <!-- <Copyright>Copyright © VNC 2024</Copyright> -->
+    <!-- <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> -->
+    <!-- </PropertyGroup> -->
 
-  <ItemGroup>
-    <Content Include="Resources\Icons\ApplicationIcon-Right-Red.ico" />
-  </ItemGroup>
-  
+    <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
+        <Nullable>enable</Nullable>
+        <ApplicationIcon>Resources\Icons\ApplicationIcon-Right-Red.ico</ApplicationIcon>
+    </PropertyGroup>
+
     <ItemGroup>
-        <PackageReference Include="DevExpress.Wpf.Core" Version="23.1.5" />
-        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="23.1.5" />
-        <PackageReference Include="DevExpress.Wpf.Docking" Version="23.1.5" />
-        <PackageReference Include="DevExpress.Wpf.Grid" Version="23.1.5" />
+      <None Remove="Resources\Images\VNCDeveloperMotivation.png" />
+    </ItemGroup>
+
+    <!--<PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
+        <ApplicationIcon>Resources\Icons\ApplicationIcon-Left-Blue.ico</ApplicationIcon>
+    </PropertyGroup>-->
+
+    <ItemGroup>
+        <PackageReference Include="DevExpress.Wpf.Core" Version="24.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="24.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Docking" Version="24.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Grid" Version="24.1.3" />
         <!--<PackageReference Include="DevExpress.Wpf.Layout" Version="21.2.7" />
         <PackageReference Include="DevExpress.Wpf.Navigation" Version="21.2.7" />-->
-        <PackageReference Include="DevExpress.Wpf.NavBar" Version="23.1.5" />
-        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="23.1.5" />
-        <PackageReference Include="EntityFramework" Version="6.4.4" />
+        <PackageReference Include="DevExpress.Wpf.NavBar" Version="24.1.3" />
+        <PackageReference Include="DevExpress.Wpf.Ribbon" Version="24.1.3" />
+        <!--<PackageReference Include="EntityFramework" Version="6.4.4" />-->
+        <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+        <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
-    </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Phidget22.NET" Version="1.17.20230824" />
-    </ItemGroup>
-    <ItemGroup>
-        
-        <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
-        <PackageReference Include="VNC.Core" Version="2.1.1" />
-    </ItemGroup>
-
-    <!--<ItemGroup>
-        <ProjectReference Include="..\VNCPhidgetsExplorer.Core\VNCPhidgetsExplorer.Core.csproj" />  
-        <ProjectReference Include="..\VNCPhidgetsExplorer.Domain\VNCPhidgetsExplorer.Domain.csproj" />
-    </ItemGroup>-->
-
-    <ItemGroup>
-        <!--<ProjectReference Include="..\..\vnc\VNC.Core\VNC.Core.csproj" />-->
     </ItemGroup>
     
-  <!--<ItemGroup>
-    <ProjectReference Include="..\..\vnc\VNC.Logging\VNC.Logging\VNC.Logging.csproj" />
-  </ItemGroup>-->
-  
-  <ItemGroup>
-    <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
-    <Reference Include="System.Web" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <None Update="ApplicationIcon-Right-Red.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows'">
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.10" />
+        <PackageReference Include="VNC.Logging.TraceListeners.SignalRCoreListeners" Version="1.0.0" />
+    </ItemGroup>
 
+    <!--<ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+        <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.3" />
+        <PackageReference Include="VNC.Logging.TraceListeners.SignalRListener" Version=".0.0" />
+    </ItemGroup>-->
+    
+    <ItemGroup>
+      <ProjectReference Include="..\VNC.Phidget22\VNC.Phidget22.csproj" />
+      <ProjectReference Include="..\VNCPhidget22.Configuration\VNCPhidget22.Configuration.csproj" />
+      <ProjectReference Include="..\VNCPhidgets22Explorer.Core\VNCPhidgets22Explorer.Core.csproj" />
+    </ItemGroup>
+ 
+  <!--<ItemGroup>
+    <Reference Include="Phidget21.NET">
+      <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+    </Reference>
+  </ItemGroup>-->
+
+    <ItemGroup>
+        <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
+        <Reference Include="System.Web" />
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|AnyCPU'">
+        <!-- Uncoment next line to switch to ProjectReference(s) -->
+         <DefineConstants>$(DefineConstants);VNCPROJECTREF</DefineConstants> 
+    </PropertyGroup>
+
+    <Choose>
+        <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'">
+            <ItemGroup>
+                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" />
+                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.WPF.Presentation\VNC.WPF.Presentation.csproj" />                
+            </ItemGroup>
+        </When>
+        <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">
+            <ItemGroup>
+                <PackageReference Include="VNC.Core" Version="3.0.0" />
+                <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.0.0" />
+            </ItemGroup>
+        </When>
+    </Choose>
+
+    <ItemGroup>
+        <Resource Include="Resources\Images\FilterEditor.png" />
+        <Resource Include="Resources\Images\ToolBox.png" />
+        <Resource Include="Resources\Images\VNCDeveloperMotivation.png" />
+        <Resource Include="Resources\Images\WatchWindow.bmp" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\hostconfig.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_46049.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_InitializationAndFinalization.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_2.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_3.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Steppers_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_2.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Skulls_3.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vnccoreloggingconfig-Debug.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vnccoreloggingconfig.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vncloggingconfig-Debug.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="vncloggingconfig.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\json\localhost\" />
+    </ItemGroup>
+    
 </Project>
