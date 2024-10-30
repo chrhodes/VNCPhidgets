@@ -5,7 +5,7 @@
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
       <VersionSuffix>development-12</VersionSuffix>
-      <FileVersion>2024.10.20A</FileVersion>
+      <FileVersion>2024.10.30A</FileVersion>
       <Description>Layer on top of Phidgets21</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>      
@@ -29,12 +29,12 @@
     <!-- </PropertyGroup> -->    
 
     <ItemGroup>
-        <ProjectReference Include="..\VNCPhidget21\VNCPhidget21.Configuration\VNCPhidget21.Configuration.csproj" />
+        <ProjectReference Include="..\VNCPhidget21.Configuration\VNCPhidget21.Configuration.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <Reference Include="Phidget21.NET">
-            <HintPath>..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
+            <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
         </Reference>
     </ItemGroup>
 
@@ -54,7 +54,7 @@
     <Choose>
         <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
-                <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
             </ItemGroup>
         </When>
         <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">

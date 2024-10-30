@@ -1229,7 +1229,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do we really want to do this?  What if someone else has open?
 
-            //DisEngageAllServos();
+            DisEngageAllServos();
 
             // NOTE(crhodes)
             // May need to give device chance to respond

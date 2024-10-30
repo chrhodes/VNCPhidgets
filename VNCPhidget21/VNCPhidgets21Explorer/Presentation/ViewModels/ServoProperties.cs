@@ -905,12 +905,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // Make it possible to move servo without using UI to set non-zero velocity
                 //VelocityLimit = servo.VelocityLimit == 0 ? 1 : servo.VelocityLimit;
                 //VelocityLimit = servo.VelocityLimit;
-                // Maybe this should only happen if not Engaged
+                // Maybe this should onlyh happen if not Engaged
 
-                // NOTE(crhodes)
-                // Next line keeps throwing exception on SPC23 
-                //VelocityLimit = servo.VelocityLimit;
-                VelocityLimit = VelocityMin + 1;
+                VelocityLimit = servo.VelocityLimit;
+                //VelocityLimit = VelocityMin + 1;
                 VelocityMax = servo.VelocityMax;
 
                 // DevicePosition{Min,Max} should only be set when ServoType changes

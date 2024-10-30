@@ -466,7 +466,7 @@ namespace VNC.Phidget
                     Log.Trace($"Begin index:{index}" +
                         $" velocityLimit:{velocityLimit}" +
                         $" stepper.velocityMin:{stepper.VelocityMin}" +
-                        $" stepper.velocityLimit:{(stepper.Engaged ? stepper.VelocityLimit : "??")}" +
+                        $" stepper.velocityLimit:{stepper.VelocityLimit}" +
                         $" stepper.velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
                 }
 

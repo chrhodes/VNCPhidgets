@@ -1830,13 +1830,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Need a cleaner way of handing logging.  Maybe a LoggingConfiguration class that gets passed around.
 
             ActivePerformancePlayer.LogPerformance = LogPerformance;
-
-            ActivePerformancePlayer.LogPerformanceSequence = LogPerformanceSequence;
-
-            ActivePerformancePlayer.LogSequenceAction = LogSequenceAction;
-            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
-
             ActivePerformancePlayer.LogPhidgetEvents = LogPhidgetEvents;
+            ActivePerformancePlayer.LogPerformanceSequence = LogPerformanceSequence;
+            ActivePerformancePlayer.LogSequenceAction = LogPerformanceSequence;
+            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
 
             return ActivePerformancePlayer;
         }
