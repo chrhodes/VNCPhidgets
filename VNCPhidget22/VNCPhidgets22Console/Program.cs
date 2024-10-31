@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 using Phidget22;
 
 namespace VNCPhidgets22Console
@@ -12,28 +14,35 @@ namespace VNCPhidgets22Console
             Console.WriteLine("Hello, World!");
 
             Phidget22.Phidget phidget = new Phidget();
-            DigitalOutput do0 = new DigitalOutput();
-            DigitalOutput do1 = new DigitalOutput();
+            DigitalOutput DO0 = new DigitalOutput();
+            DigitalOutput DO2 = new DigitalOutput();
 
             phidget.Attach += Phidget_Attach;
             phidget.Detach += Phidget_Detach;
             phidget.PropertyChange += Phidget_PropertyChange;
             phidget.Error += Phidget_Error;
 
-
-            do0.Attach += Do0_Attach;
+            DO0.Attach += Do0_Attach;
 
             //phidget.DeviceSerialNumber = 624728;
 
             //phidget.Open();
 
-            do0.DeviceSerialNumber = 124744;
-            do0.Channel = 0;
-            do0.IsHubPortDevice = false;
+            DO0.DeviceSerialNumber = 124744;
+            DO0.Channel = 0;
+            DO0.IsHubPortDevice = false;
 
             //do0.HubPort = 0;
-            do0.IsLocal = false;
-            do0.IsRemote = true;
+            DO0.IsLocal = false;
+            DO0.IsRemote = true;
+
+            DO2.DeviceSerialNumber = 124744;
+            DO2.Channel = 2;
+            DO2.IsHubPortDevice = false;
+
+            //do0.HubPort = 0;
+            DO2.IsLocal = false;
+            DO2.IsRemote = true;
 
             //Net.EnableServerDiscovery(ServerType.DeviceRemote);
 
@@ -43,10 +52,36 @@ namespace VNCPhidgets22Console
             Net.AddServer("PSBC41", "192.168.150.41", 5661, "", 0);
             //Net.AddServer("PSBC41", "192.168.150.41", 5001, "", 0);
 
-            do0.Open(10000);
-            
+            DO0.Open();
+            DO2.Open();
+            Thread.Sleep(200);
 
-            do0.State = true;
+            var isAttached0 = DO0.Attached;
+            var isAttached1 = DO2.Attached;
+
+            var doChannelCount = DO0.GetDeviceChannelCount(ChannelClass.DigitalOutput);
+            var diChannelCount = DO0.GetDeviceChannelCount(ChannelClass.DigitalInput);
+            var viChannelCount = DO0.GetDeviceChannelCount(ChannelClass.VoltageInput);
+            var voChannelCount = DO0.GetDeviceChannelCount(ChannelClass.VoltageOutput);
+            var vriChannelCount = DO0.GetDeviceChannelCount(ChannelClass.VoltageRatioInput);
+
+            var parentPhidget = DO0.Parent;
+
+            var parentdoChannelCount = parentPhidget.GetDeviceChannelCount(ChannelClass.DigitalOutput);
+            var parentdiChannelCount = parentPhidget.GetDeviceChannelCount(ChannelClass.DigitalInput);
+            var parentviChannelCount = parentPhidget.GetDeviceChannelCount(ChannelClass.VoltageInput);
+            var parentvoChannelCount = parentPhidget.GetDeviceChannelCount(ChannelClass.VoltageOutput);
+            var parentvriChannelCount = parentPhidget.GetDeviceChannelCount(ChannelClass.VoltageRatioInput);
+
+            for (int i = 0; i < 10; i++)
+            {
+                DO0.State = true;
+                DO2.State = false;
+                Thread.Sleep(500);
+                DO0.State = false;
+                DO2.State = true;
+                Thread.Sleep(500);
+            }
         }
 
         private static void Net_ServerRemoved(Phidget22.Events.NetServerRemovedEventArgs e)
