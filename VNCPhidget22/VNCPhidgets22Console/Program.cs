@@ -7,7 +7,9 @@ namespace VNCPhidgets22Console
 {
     internal class Program
     {
- 
+
+        // TODO(crhodes)
+        // Add logging.
 
         static void Main(string[] args)
         {
@@ -44,17 +46,30 @@ namespace VNCPhidgets22Console
             DO2.IsLocal = false;
             DO2.IsRemote = true;
 
-
-
             Net.ServerAdded += Net_ServerAdded;
             Net.ServerRemoved += Net_ServerRemoved;
 
             // NOTE(crhodes)
             // This finds a private 172... network ID ???
+            // Try on Laptop
 
             //Net.EnableServerDiscovery(ServerType.DeviceRemote);
+
+            // NOTE(crhodes)
+            // This doesn't seem to find anything.
+            // Try on Laptop
+
+            //Net.EnableServerDiscovery(ServerType.SBC);
+
+            // NOTE(crhodes)
+            // These seem to reliably work.  Have not tried adding if not connected.
+            // No ServerAdded ServerRemoved events fired.
+
+            //Net.AddServer("PSBC21", "192.168.150.21", 5661, "", 0);
+            //Net.AddServer("PSBC22", "192.168.150.22", 5661, "", 0);
+            //Net.AddServer("PSBC23", "192.168.150.23", 5661, "", 0);
+
             //Net.AddServer("PSBC41", "192.168.150.41", 5661, "", 0);
-            Net.AddServer("PSBC23", "192.168.150.23", 5661, "", 0);
 
             DO0.Open();
             DO2.Open();
