@@ -9,7 +9,7 @@ using Prism.Events;
 
 using VNC.Core.Mvvm;
 
-using VNCPhidget22.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget.Players
 {

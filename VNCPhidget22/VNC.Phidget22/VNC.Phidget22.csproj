@@ -11,10 +11,6 @@
       <ImplicitUsings>disable</ImplicitUsings>      
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
-  </ItemGroup>
-
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
     <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
@@ -33,14 +29,14 @@
     <!-- </PropertyGroup> -->    
 
     <ItemGroup>
-      <ProjectReference Include="..\VNCPhidget22.Configuration\VNCPhidget22.Configuration.csproj" />
+        <ProjectReference Include="..\VNCPhidget21\VNCPhidget21.Configuration\VNCPhidget21.Configuration.csproj" />
     </ItemGroup>
 
-    <!--<ItemGroup>
+    <ItemGroup>
         <Reference Include="Phidget21.NET">
             <HintPath>..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
         </Reference>
-    </ItemGroup>-->
+    </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,7 +54,7 @@
     <Choose>
         <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
-                <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
+                <ProjectReference Include="..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
             </ItemGroup>
         </When>
         <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">

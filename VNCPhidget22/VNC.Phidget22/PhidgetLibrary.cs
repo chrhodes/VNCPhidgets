@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using VNCPhidgetConfig = VNCPhidget22.Configuration;
+using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {

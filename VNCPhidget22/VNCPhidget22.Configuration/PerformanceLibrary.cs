@@ -6,7 +6,7 @@ using System.Text.Json;
 
 using VNC;
 
-namespace VNCPhidget22.Configuration
+namespace VNCPhidget21.Configuration
 {
     /// <summary>
     /// Maintains Library of Hosts, Performances,
@@ -280,8 +280,6 @@ namespace VNCPhidget22.Configuration
                 @"Performances\PerformanceConfig_Skulls_1.json",
                 @"Performances\PerformanceConfig_Skulls_2.json",
                 @"Performances\PerformanceConfig_Skulls_3.json",
-
-                @"Performances\PerformanceConfig_Steppers_1.json",
 
                 //@"Performances\PerformanceConfig_2.json",
                 //@"Performances\PerformanceConfig_3.json",

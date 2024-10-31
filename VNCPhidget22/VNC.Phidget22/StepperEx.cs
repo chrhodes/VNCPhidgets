@@ -12,7 +12,7 @@ using Prism.Events;
 using VNC.Phidget.Events;
 using VNC.Phidget.Players;
 
-using VNCPhidget22.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {
@@ -466,7 +466,7 @@ namespace VNC.Phidget
                     Log.Trace($"Begin index:{index}" +
                         $" velocityLimit:{velocityLimit}" +
                         $" stepper.velocityMin:{stepper.VelocityMin}" +
-                        $" stepper.velocityLimit:{(stepper.Engaged ? stepper.VelocityLimit : "??")}" +
+                        $" stepper.velocityLimit:{stepper.VelocityLimit}" +
                         $" stepper.velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
                 }
 

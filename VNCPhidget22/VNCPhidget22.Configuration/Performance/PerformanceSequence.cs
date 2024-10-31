@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VNCPhidget22.Configuration
+namespace VNCPhidget21.Configuration
 {
     public class PerformanceSequence
     {

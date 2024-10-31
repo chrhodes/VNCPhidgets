@@ -4,15 +4,15 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-//using Phidgets;
-//using Phidgets.Events;
+using Phidgets;
+using Phidgets.Events;
 
 using Prism.Events;
 
 using VNC.Phidget.Events;
 using VNC.Phidget.Players;
 
-using VNCPhidget22.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget
 {

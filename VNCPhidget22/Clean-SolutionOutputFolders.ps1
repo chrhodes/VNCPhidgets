@@ -1,9 +1,9 @@
 
 $folders = @(
     "VNC.Phidget22"
-    , "VNCPhidget22.Configuration"
-    , "VNCPhidgets22Explorer"
-    , "VNCPhidgets22Explorer.Core"
+    , "VNC.Phidget22.Configuration"
+    , "VNC.Phidget22Explorer"
+    , "VNC.Phidget22Explorer.Core"
     )
 
 foreach ($folder in $folders)

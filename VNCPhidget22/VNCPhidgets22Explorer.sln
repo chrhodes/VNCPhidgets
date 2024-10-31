@@ -5,11 +5,11 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets22Explorer", "VNCPhidgets22Explorer\VNCPhidgets22Explorer.csproj", "{9BBF40E8-B710-40E6-AD15-A52CB0E4D826}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets22Explorer.Core", "VNCPhidgets22Explorer.Core\VNCPhidgets22Explorer.Core.csproj", "{9E675398-06FA-4ABD-A7A4-B377F4F1C1A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets22Explorer.Core", "VNCPhidgets22Explorer.Core\VNCPhidgets21Explorer.Core.csproj", "{9E675398-06FA-4ABD-A7A4-B377F4F1C1A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget22", "VNC.Phidget22\VNC.Phidget22.csproj", "{7E565559-41E9-4D7E-A07C-F7BB31C2545F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget22.Configuration", "VNCPhidget22.Configuration\VNCPhidget22.Configuration.csproj", "{95A3C694-B058-43DD-9253-2D04253749F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget22.Configuration", "VNCPhidget22.Configuration\VNCPhidget21.Configuration.csproj", "{95A3C694-B058-43DD-9253-2D04253749F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{95B4E4DE-BD94-4BDD-A735-5A7B5D008057}"
 	ProjectSection(SolutionItems) = preProject

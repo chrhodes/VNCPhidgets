@@ -1,6 +1,6 @@
 ﻿using Phidgets;
 
-namespace VNCPhidget22.Configuration
+namespace VNCPhidget21.Configuration
 {
     public class Host
     {

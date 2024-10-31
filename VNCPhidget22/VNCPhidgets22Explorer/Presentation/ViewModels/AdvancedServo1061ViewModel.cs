@@ -17,7 +17,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget;
 
-using VNCPhidgetConfig = VNCPhidget22.Configuration;
+using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
@@ -72,7 +72,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // For now just hard code this.  Can have UI let us choose later.
             // This could also come from PerformanceLibrary.
             // See HackAroundViewModel.InitializeViewModel()
-            // Or maybe a method on something else in VNCPhidget22.Configuration
+            // Or maybe a method on something else in VNCPhidget21.Configuration
 
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
@@ -1229,7 +1229,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do we really want to do this?  What if someone else has open?
 
-            //DisEngageAllServos();
+            DisEngageAllServos();
 
             // NOTE(crhodes)
             // May need to give device chance to respond

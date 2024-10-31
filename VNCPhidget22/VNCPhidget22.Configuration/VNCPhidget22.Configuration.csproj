@@ -11,10 +11,6 @@
       <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
-  </ItemGroup>
-
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
     <!-- <GeneratePackageOnBuild>true</GeneratePackageOnBuild> -->
@@ -32,11 +28,11 @@
     <!-- <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> -->
     <!-- </PropertyGroup> -->    
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <Reference Include="Phidget21.NET">
       <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
     </Reference>
-  </ItemGroup>-->
+  </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <PlatformTarget>AnyCPU</PlatformTarget>

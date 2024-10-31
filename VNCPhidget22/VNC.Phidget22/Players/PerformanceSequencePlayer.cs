@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Prism.Events;
 
-using VNCPhidget22.Configuration;
+using VNCPhidget21.Configuration;
 
 namespace VNC.Phidget.Players
 {
