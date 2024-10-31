@@ -44,13 +44,17 @@ namespace VNCPhidgets22Console
             DO2.IsLocal = false;
             DO2.IsRemote = true;
 
-            //Net.EnableServerDiscovery(ServerType.DeviceRemote);
+
 
             Net.ServerAdded += Net_ServerAdded;
             Net.ServerRemoved += Net_ServerRemoved;
 
-            Net.AddServer("PSBC41", "192.168.150.41", 5661, "", 0);
-            //Net.AddServer("PSBC41", "192.168.150.41", 5001, "", 0);
+            // NOTE(crhodes)
+            // This finds a private 172... network ID ???
+
+            //Net.EnableServerDiscovery(ServerType.DeviceRemote);
+            //Net.AddServer("PSBC41", "192.168.150.41", 5661, "", 0);
+            Net.AddServer("PSBC23", "192.168.150.23", 5661, "", 0);
 
             DO0.Open();
             DO2.Open();
