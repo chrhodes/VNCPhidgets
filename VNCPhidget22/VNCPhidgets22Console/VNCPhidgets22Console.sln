@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNCPhidgets22Console", "VNCPhidgets22Console.csproj", "{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32D8C2E2-58DA-47BC-94B2-C750702DC5FD}
+	EndGlobalSection
+EndGlobal
