@@ -1,6 +1,6 @@
 ﻿namespace VNCPhidget22.Configuration
 {
-    public class AdvancedServoSequence : PhidgetSequenceBase
+    public class AdvancedServoSequence : Phidget22equenceBase
     {
         /// <summary>
         /// Array of AdvancedServoServo actions in sequence

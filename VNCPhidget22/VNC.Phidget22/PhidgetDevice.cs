@@ -1,4 +1,6 @@
-﻿namespace VNC.Phidget
+﻿using Phidget22;
+
+namespace VNC.Phidget22
 {
 
     public class PhidgetDevice
@@ -7,21 +9,26 @@
         //{
         //}
 
-        public PhidgetDevice(string ipAddress, int port, Phidgets.Phidget.PhidgetClass phidgetClass, int serialNumber)
+        public PhidgetDevice(string ipAddress, int port, DeviceClass deviceClass, ChannelClass channelClass, int serialNumber)
         {
             IPAddress = ipAddress;
             Port = port;
-            PhidgetClass = phidgetClass;
+            ChannelClass = channelClass;
+            DeviceClass = deviceClass;
             SerialNumber = serialNumber;
         }
 
+        // TODO(crhodes)
+        // How is this used?
         public SerialHost SerialHostKey { get; set; }
 
         public string IPAddress { get; set; } = "127.0.0.1";
 
-        public int Port { get; set; } = 5001;
+        public int Port { get; set; } = 5661;
 
-        public Phidgets.Phidget.PhidgetClass PhidgetClass { get; set; } = Phidgets.Phidget.PhidgetClass.NOTHING;
+        public ChannelClass ChannelClass { get; set; } = ChannelClass.None;
+
+        public DeviceClass DeviceClass { get; set; } = DeviceClass.None;
 
         public int SerialNumber { get; set; } = 0;
 

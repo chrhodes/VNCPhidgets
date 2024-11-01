@@ -1,3 +1,3 @@
-﻿VNCPhidgets21Explorer\Presentation\ViewModels\Interfaces\
+﻿VNCPhidget22Explorer\Presentation\ViewModels\Interfaces\
 
 Notes for using this template

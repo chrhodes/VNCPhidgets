@@ -64,7 +64,7 @@
       ],
       "InterfaceKits": [
         { "Name": "psbc22 InterfaceKit", "SerialNumber": 251831, "Open": true, "Embedded": true },
-        //{ "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
+        { "Name": "InterfaceKit 1", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
       "Steppers": [
         { "Name": "Stepper 268213", "SerialNumber": 268213 },

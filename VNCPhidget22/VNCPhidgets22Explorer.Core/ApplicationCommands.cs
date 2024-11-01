@@ -1,6 +1,6 @@
 using Prism.Commands;
 
-namespace VNCPhidgets21Explorer.Core
+namespace VNCPhidgets22Explorer.Core
 {
     public class ApplicationCommands
     {

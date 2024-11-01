@@ -11,7 +11,7 @@ using VNC.Core.Presentation;
 using VNC.WPF.Presentation.Dx.Views;
 using VNC.WPF.Presentation.Views;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class StatusBarViewModel : EventViewModelBase, IStatusBarViewModel, IInstanceCountVM
     {

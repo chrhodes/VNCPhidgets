@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Phidgets;
+using Phidget22;
 
 using Prism.Commands;
 using Prism.Events;
@@ -14,11 +14,11 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget;
+using VNC.Phidget22;
 
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget2221Explorer.Presentation.ViewModels
 {
     public class Stepper1063ViewModel : EventViewModelBase, IStepper1063ViewModel, IInstanceCountVM
     {
@@ -205,8 +205,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Phidget
 
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
+        private Phidget22.Phidget _phidgetDevice;
+        public Phidget22.Phidget PhidgetDevice
         {
             get => _phidgetDevice;
             set
@@ -412,7 +412,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     // TODO(crhodes)
                     // PhidgetDevice = null ???
-                    // Will need to declare Phidgets.Phidget?
+                    // Will need to declare Phidget22.Phidget?
                     PhidgetDevice = null;
                 }
 
@@ -471,9 +471,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         //}
 
-        //private void ActiveStepper_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
+        //private void ActiveStepper_SensorChange(object sender, Phidget22.Events.SensorChangeEventArgs e)
         //{
-        //    Phidgets.Stepper ifk = (Phidgets.Stepper)sender;
+        //    Phidget22.Stepper ifk = (Phidget22.Stepper)sender;
 
         //    StepperAnalogSensor sensor = ifk.sensors[0];
 
@@ -567,9 +567,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    }
         //}
 
-        //private void ActiveStepper_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        //private void ActiveStepper_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
         //{
-        //    Phidgets.Stepper ifk = (Phidgets.Stepper)sender;
+        //    Phidget22.Stepper ifk = (Phidget22.Stepper)sender;
 
         //    switch (e.Index)
         //    {
@@ -625,9 +625,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //}
 
 
-        //private void ActiveStepper_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        //private void ActiveStepper_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
         //{
-        //    Phidgets.Stepper ifk = (Phidgets.Stepper)sender;
+        //    Phidget22.Stepper ifk = (Phidget22.Stepper)sender;
         //    var outputs = ifk.outputs;
         //    StepperDigitalOutputCollection doc = outputs;
 
@@ -685,11 +685,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         //}
 
-        private void ActiveStepper_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void ActiveStepper_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Phidget22.Phidget device = (Phidget22.Phidget)sender;
                 Log.Trace($"ActiveStepper_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
 
                 DeviceAttached = device.Attached;
@@ -713,11 +713,11 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             InitializeVelocityCommand.RaiseCanExecuteChanged();
         }
 
-        private void ActiveStepper_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void ActiveStepper_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Phidget22.Phidget device = (Phidget22.Phidget)sender;
                 Log.Trace($"ActiveStepper_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
 
                 DeviceAttached = device.Attached;
@@ -732,9 +732,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void ActiveStepper_VelocityChange(object sender, Phidgets.Events.VelocityChangeEventArgs e)
+        private void ActiveStepper_VelocityChange(object sender, Phidget22.Events.VelocityChangeEventArgs e)
         {
-            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            Phidget22.Stepper stepper = sender as Phidget22.Stepper;
             var index = e.Index;
             var velocity = e.Velocity;
 
@@ -781,9 +781,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //}
         }
 
-        private void ActiveStepper_PositionChange(object sender, Phidgets.Events.StepperPositionChangeEventArgs e)
+        private void ActiveStepper_PositionChange(object sender, Phidget22.Events.StepperPositionChangeEventArgs e)
         {
-            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            Phidget22.Stepper stepper = sender as Phidget22.Stepper;
             var index = e.Index;
             var position = e.Position;
 
@@ -831,9 +831,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             //}
         }
 
-        private void ActiveStepper_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        private void ActiveStepper_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
         {
-            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            Phidget22.Stepper stepper = sender as Phidget22.Stepper;
             var index = e.Index;
             var value = e.Value;
 
@@ -879,9 +879,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void ActiveStepper_CurrentChange(object sender, Phidgets.Events.CurrentChangeEventArgs e)
+        private void ActiveStepper_CurrentChange(object sender, Phidget22.Events.CurrentChangeEventArgs e)
         {
-            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            Phidget22.Stepper stepper = sender as Phidget22.Stepper;
             var index = e.Index;
             var current = e.Current;
 
@@ -1819,7 +1819,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             if ((Boolean)DeviceAttached)
             {
                 //StepperServoCollection servos = ActiveStepper.Stepper.servos;
-                //Phidgets.StepperServo servo = null;
+                //Phidget22.StepperServo servo = null;
 
                 //ServoCount = servos.Count;
 

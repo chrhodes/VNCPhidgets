@@ -96,10 +96,32 @@ namespace VNCPhidget22.Configuration
                     (jsonString, GetJsonSerializerOptions());
 
                 Hosts = hostConfig.Hosts.ToList();
+
+                LoadNetworkHosts(Hosts);
             }
             catch (Exception ex)
             {
                 Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        void LoadNetworkHosts(List<Host> hosts)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            foreach (Host host in hosts)
+            {
+                try
+                {
+                    Phidget22.Net.AddServer(host.Name, host.IPAddress, host.Port, "", 0);
+                }
+                catch (Exception ex)
+                {
+                    //Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }                
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
@@ -142,7 +164,6 @@ namespace VNCPhidget22.Configuration
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
 
         public void LoadAdvancedServoSequences()
         {
@@ -280,8 +301,6 @@ namespace VNCPhidget22.Configuration
                 @"Performances\PerformanceConfig_Skulls_1.json",
                 @"Performances\PerformanceConfig_Skulls_2.json",
                 @"Performances\PerformanceConfig_Skulls_3.json",
-
-                @"Performances\PerformanceConfig_Steppers_1.json",
 
                 //@"Performances\PerformanceConfig_2.json",
                 //@"Performances\PerformanceConfig_3.json",

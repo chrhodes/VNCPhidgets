@@ -4,8 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Phidgets;
-using Phidgets.Events;
+using Phidget22;
+using Phidget22.Events;
 
 using Prism.Events;
 
@@ -44,7 +44,7 @@ namespace VNC.Phidget
 
         private void InitializePhidget()
         {
-            Stepper = new Phidgets.Stepper();
+            Stepper = new Phidget22.Stepper();
 
             this.Stepper.Attach += Phidget_Attach;
             this.Stepper.Detach += Phidget_Detach;
@@ -84,7 +84,7 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        public Phidgets.Stepper Stepper = null;
+        public Phidget22.Stepper Stepper = null;
 
         private bool _logPositionChangeEvents;
         public bool LogPositionChangeEvents
@@ -176,8 +176,8 @@ namespace VNC.Phidget
         {
             try
             {
-                Phidgets.Stepper Stepper = sender as Phidgets.Stepper;
-                Phidgets.StepperStepper stepper = Stepper.steppers[e.Index];
+                Phidget22.Stepper Stepper = sender as Phidget22.Stepper;
+                Phidget22.StepperStepper stepper = Stepper.steppers[e.Index];
                 Log.EVENT_HANDLER($"CurrentChange {Stepper.Address},{Stepper.SerialNumber},servo:{e.Index}" +
                     $" - current:{e.Current:00.000} - stopped:{stepper.Stopped}", Common.LOG_CATEGORY);
             }
@@ -191,8 +191,8 @@ namespace VNC.Phidget
         {            
             try
             {
-                Phidgets.Stepper Stepper = sender as Phidgets.Stepper;
-                Phidgets.StepperStepper stepper = Stepper.steppers[e.Index];
+                Phidget22.Stepper Stepper = sender as Phidget22.Stepper;
+                Phidget22.StepperStepper stepper = Stepper.steppers[e.Index];
                 Log.EVENT_HANDLER($"PositionChange {Stepper.Address},{Stepper.SerialNumber},servo:{e.Index}" +
                     $" - velocity:{stepper.Velocity,8:0.000} position:{e.Position,7:0.000} current:{stepper.Current:00.000}" +
                     $" - stopped:{stepper.Stopped} ", Common.LOG_CATEGORY);
@@ -207,8 +207,8 @@ namespace VNC.Phidget
         {
             try
             {
-                Phidgets.Stepper Stepper = sender as Phidgets.Stepper;
-                Phidgets.StepperStepper stepper = Stepper.steppers[e.Index];
+                Phidget22.Stepper Stepper = sender as Phidget22.Stepper;
+                Phidget22.StepperStepper stepper = Stepper.steppers[e.Index];
                 Log.EVENT_HANDLER($"VelocityChange {Stepper.Address},{Stepper.SerialNumber},servo:{e.Index}" +
                     $" - velocity:{e.Velocity,8:0.000} position:{stepper.CurrentPosition,7:0.000} current:{stepper.Current:00.000}" +
                     $" - stopped:{stepper.Stopped}", Common.LOG_CATEGORY);
@@ -237,7 +237,7 @@ namespace VNC.Phidget
         //    }
         //}
 
-        //private void Stepper_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        //private void Stepper_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
         //{
         //    if (LogOutputChangeEvents)
         //    {
@@ -259,7 +259,7 @@ namespace VNC.Phidget
         {
             try
             {
-                Phidgets.Stepper stepper = (Phidgets.Stepper)sender;
+                Phidget22.Stepper stepper = (Phidget22.Stepper)sender;
                 Log.Trace($"Stepper_InputChange {stepper.Address},{stepper.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
@@ -466,7 +466,7 @@ namespace VNC.Phidget
                     Log.Trace($"Begin index:{index}" +
                         $" velocityLimit:{velocityLimit}" +
                         $" stepper.velocityMin:{stepper.VelocityMin}" +
-                        $" stepper.velocityLimit:{(stepper.Engaged ? stepper.VelocityLimit : "??")}" +
+                        $" stepper.velocityLimit:{stepper.VelocityLimit}" +
                         $" stepper.velocityMax:{stepper.VelocityMax}", Common.LOG_CATEGORY);
                 }
 
@@ -768,7 +768,7 @@ namespace VNC.Phidget
                 {
                     if (LogSequenceAction) actionMessage.Append($" stepAngle:>{action.StepAngle}<");
 
-                    //stepper.Type = (Phidgets.stepperstepper.stepperType)action.stepperType;
+                    //stepper.Type = (Phidget22.stepperstepper.stepperType)action.stepperType;
 
                     // NOTE(crhodes)
                     // Maybe we should sleep for a little bit to allow this to happen
@@ -968,7 +968,7 @@ namespace VNC.Phidget
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void VerifyStepperEngaged(Phidgets.StepperStepper stepper, Int32 index)
+        private void VerifyStepperEngaged(Phidget22.StepperStepper stepper, Int32 index)
         {
             Int64 startTicks = 0;
             var msSleep = 0;
@@ -1008,7 +1008,7 @@ namespace VNC.Phidget
         /// <param name="stepper"></param>
         /// <param name="index"></param>
         /// <param name="targetPosition"></param>
-        private void VerifyNewPositionAchieved(Phidgets.StepperStepper stepper, Int32 index, double targetPosition)
+        private void VerifyNewPositionAchieved(Phidget22.StepperStepper stepper, Int32 index, double targetPosition)
         {
             Int64 startTicks = 0;
             var msSleep = 0;

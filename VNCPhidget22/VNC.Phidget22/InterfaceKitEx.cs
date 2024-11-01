@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Phidgets;
-using Phidgets.Events;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 using Prism.Events;
 
-using VNC.Phidget.Events;
-using VNC.Phidget.Players;
+using VNC.Phidget22.Events;
+using VNC.Phidget22.Players;
 
 using VNCPhidget22.Configuration;
+using System.Net;
 
-namespace VNC.Phidget
+namespace VNC.Phidget22
 {
     public class InterfaceKitEx : PhidgetEx // InterfaceKit
     {
@@ -26,13 +27,12 @@ namespace VNC.Phidget
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
-        /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, bool embedded, IEventAggregator eventAggregator) 
+        public InterfaceKitEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator) 
             : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAddress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();
@@ -49,13 +49,20 @@ namespace VNC.Phidget
 
         private void InitializePhidget()
         {
-            InterfaceKit = new Phidgets.InterfaceKit();
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter ipAddress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
-            InterfaceKit.Attach += Phidget_Attach;
-            InterfaceKit.Detach += Phidget_Detach;
-            InterfaceKit.Error += Phidget_Error;
-            InterfaceKit.ServerConnect += Phidget_ServerConnect;
-            InterfaceKit.ServerDisconnect += Phidget_ServerDisconnect;
+            //// TODO(crhodes)
+            //// 
+            //InterfaceKit = new Phidget22.InterfaceKit();
+
+            //InterfaceKit.Attach += Phidget_Attach;
+            //InterfaceKit.Detach += Phidget_Detach;
+            //InterfaceKit.Error += Phidget_Error;
+            //InterfaceKit.ServerConnect += Phidget_ServerConnect;
+            //InterfaceKit.ServerDisconnect += Phidget_ServerDisconnect;
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -72,7 +79,9 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        public Phidgets.InterfaceKit InterfaceKit = null;
+        // TODO(crhodes)
+        // 
+        //public Phidget22.InterfaceKit InterfaceKit = null;
 
         private bool _logInputChangeEvents;
         public bool LogInputChangeEvents 
@@ -82,14 +91,16 @@ namespace VNC.Phidget
             {
                 if (_logInputChangeEvents == value) return;
 
-                if (_logInputChangeEvents = value)
-                {
-                    InterfaceKit.InputChange += InterfaceKit_InputChange;
-                }
-                else
-                {
-                    InterfaceKit.InputChange -= InterfaceKit_InputChange;
-                }
+                //// TODO(crhodes)
+                //// 
+                //if (_logInputChangeEvents = value)
+                //{
+                //    InterfaceKit.InputChange += InterfaceKit_InputChange;
+                //}
+                //else
+                //{
+                //    InterfaceKit.InputChange -= InterfaceKit_InputChange;
+                //}
             }
         }
 
@@ -101,14 +112,16 @@ namespace VNC.Phidget
             {
                 if (_logOutputChangeEvents == value) return;
 
-                if (_logOutputChangeEvents = value)
-                {
-                    InterfaceKit.OutputChange += InterfaceKit_OutputChange;
-                }
-                else
-                {
-                    InterfaceKit.OutputChange -= InterfaceKit_OutputChange;
-                }
+                //// TODO(crhodes)
+                //// 
+                //if (_logOutputChangeEvents = value)
+                //{
+                //    InterfaceKit.OutputChange += InterfaceKit_OutputChange;
+                //}
+                //else
+                //{
+                //    InterfaceKit.OutputChange -= InterfaceKit_OutputChange;
+                //}
             }
         }
 
@@ -118,16 +131,18 @@ namespace VNC.Phidget
             get => _logSensorChangeEvents;
             set
             {
-                if (_logSensorChangeEvents == value) return;               
+                if (_logSensorChangeEvents == value) return;
 
-                if (_logSensorChangeEvents = value)
-                {
-                    InterfaceKit.SensorChange += InterfaceKit_SensorChange;
-                }
-                else
-                {
-                    InterfaceKit.SensorChange -= InterfaceKit_SensorChange;
-                }
+                // TODO(crhodes)
+                // 
+                //if (_logSensorChangeEvents = value)
+                //{
+                //    InterfaceKit.SensorChange += InterfaceKit_SensorChange;
+                //}
+                //else
+                //{
+                //    InterfaceKit.SensorChange -= InterfaceKit_SensorChange;
+                //}
             }
         }
 
@@ -138,44 +153,46 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
-        private void InterfaceKit_SensorChange(object sender, SensorChangeEventArgs e)
-        {
-            try
-            {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                Log.EVENT_HANDLER($"SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        // TODO(crhodes)
+        // 
+        //private void InterfaceKit_SensorChange(object sender, PhidgetsEvents.SensorChangeEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
+        //        Log.EVENT_HANDLER($"SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
-        private void InterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        {
-            try
-            {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                Log.EVENT_HANDLER($"OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        //private void InterfaceKit_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
+        //        Log.EVENT_HANDLER($"OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
-        private void InterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        {
-            try
-            {
-                Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-                Log.EVENT_HANDLER($"InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        //private void InterfaceKit_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
+        //        Log.EVENT_HANDLER($"InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
         #endregion
 
@@ -193,23 +210,25 @@ namespace VNC.Phidget
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
-            try
-            {
-                InterfaceKit.open(SerialNumber, Host.IPAddress, Host.Port);
+            // TODO(crhodes)
+            // 
+            //try
+            //{
+            //    InterfaceKit.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                if (timeOut is not null)
-                { 
-                    InterfaceKit.waitForAttachment((Int32)timeOut); 
-                }
-                else 
-                { 
-                    InterfaceKit.waitForAttachment(); 
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+            //    if (timeOut is not null)
+            //    { 
+            //        InterfaceKit.waitForAttachment((Int32)timeOut); 
+            //    }
+            //    else 
+            //    { 
+            //        InterfaceKit.waitForAttachment(); 
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error(ex, Common.LOG_CATEGORY);
+            //}
 
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -227,7 +246,9 @@ namespace VNC.Phidget
                 if (LogOutputChangeEvents) LogOutputChangeEvents = false;
                 if (LogSensorChangeEvents) LogSensorChangeEvents = false;
 
-                this.InterfaceKit.close();
+                // TODO(crhodes)
+                // 
+                //this.InterfaceKit.close();
             }
             catch (Exception ex)
             {
@@ -280,7 +301,9 @@ namespace VNC.Phidget
 
                             Parallel.ForEach(interfaceKitSequence.Actions, async action =>
                             {
-                                await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                                // TODO(crhodes)
+                                // 
+                                //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
                             });
                         }
                         else
@@ -289,7 +312,9 @@ namespace VNC.Phidget
 
                             foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
                             {
-                                await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                                // TODO(crhodes)
+                                // 
+                                //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
                             }
                         }
 
@@ -334,46 +359,48 @@ namespace VNC.Phidget
 
         #region Private Methods
 
-        private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
-        {
-            Int64 startTicks = 0;
+        // TODO(crhodes)
+        // 
+        //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
+        //{
+        //    Int64 startTicks = 0;
 
-            StringBuilder actionMessage = new StringBuilder();
+        //    StringBuilder actionMessage = new StringBuilder();
 
-            if (LogSequenceAction)
-            {
-                startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
-                actionMessage.Append($"index:{index}");
-            }
+        //    if (LogSequenceAction)
+        //    {
+        //        startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
+        //        actionMessage.Append($"index:{index}");
+        //    }
 
-            try
-            {
-                if (action.DigitalOut is not null)
-                { 
-                    if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+        //    try
+        //    {
+        //        if (action.DigitalOut is not null)
+        //        { 
+        //            if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
 
-                    ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
-                }
+        //            ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
+        //        }
 
-                if (action.Duration > 0)
-                {
-                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+        //        if (action.Duration > 0)
+        //        {
+        //            if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
 
-                    Thread.Sleep((Int32)action.Duration);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-            finally
-            {
-                if (LogSequenceAction)
-                {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-                }
-            }
-        }
+        //            Thread.Sleep((Int32)action.Duration);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //    finally
+        //    {
+        //        if (LogSequenceAction)
+        //        {
+        //            Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+        //        }
+        //    }
+        //}
 
         #endregion
     }

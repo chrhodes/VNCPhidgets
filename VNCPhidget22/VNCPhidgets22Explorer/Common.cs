@@ -3,9 +3,9 @@ using System.Reflection;
 
 using Prism.Ioc;
 
-using VNCPhidgets21Explorer.Presentation.Views;
+using VNCPhidget22Explorer.Presentation.Views;
 
-namespace VNCPhidgets21Explorer
+namespace VNCPhidget22Explorer
 {
     public class Common : VNC.Core.Common
     {
@@ -14,8 +14,8 @@ namespace VNCPhidgets21Explorer
         //private static string _productVersion;
         //private static string _runtimeVersion;
 
-        public const string APPLICATION_NAME = "VNCPhidgets21Explorer";
-        public new const string LOG_CATEGORY = "VNCPhidgets21Explorer";
+        public const string APPLICATION_NAME = "VNCPhidget22Explorer";
+        public new const string LOG_CATEGORY = "VNCPhidget22Explorer";
 
         // NOTE(crhodes)
         // Add new VNC.Core.Information InformationXXX
@@ -25,7 +25,7 @@ namespace VNCPhidgets21Explorer
 
         public static VNC.Core.Information? InformationVNCPhidget;
 
-        public const string cCONFIG_FILE = @"C:\temp\VNCPhidgets21Explorer_Config.xml";
+        public const string cCONFIG_FILE = @"C:\temp\VNCPhidget22Explorer_Config.xml";
 
         public static IContainerProvider Container;
 

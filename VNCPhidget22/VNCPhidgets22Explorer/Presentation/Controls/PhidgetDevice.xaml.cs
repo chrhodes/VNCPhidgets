@@ -5,9 +5,9 @@ using System.Windows;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidgets21Explorer.Presentation.Views;
+using VNCPhidget22Explorer.Presentation.Views;
 
-namespace VNCPhidgets21Explorer.Presentation.Controls
+namespace VNCPhidget22Explorer.Presentation.Controls
 {
     public partial class PhidgetDevice : ViewBase, IPhidget, IInstanceCountV
     {
@@ -111,12 +111,12 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         #region Fields and Properties
 
-        //public static readonly DependencyProperty PhidgetProperty = DependencyProperty.Register("Phidget", typeof(Phidgets.Phidget), typeof(Phidget), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnPhidgetChanged), new CoerceValueCallback(OnCoercePhidget)));
+        //public static readonly DependencyProperty PhidgetProperty = DependencyProperty.Register("Phidget", typeof(Phidget22.Phidget), typeof(Phidget), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnPhidgetChanged), new CoerceValueCallback(OnCoercePhidget)));
 
-        public Phidgets.Phidget AttachedPhidgetDevice
+        public Phidget22.Phidget AttachedPhidgetDevice
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Phidgets.Phidget)GetValue(AttachedPhidgetDeviceProperty);
+            get => (Phidget22.Phidget)GetValue(AttachedPhidgetDeviceProperty);
             set => SetValue(AttachedPhidgetDeviceProperty, value);
         }
 
@@ -205,7 +205,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         #region Dependency Properties
 
 
-        public static readonly DependencyProperty AttachedPhidgetDeviceProperty = DependencyProperty.Register("AttachedPhidgetDevice", typeof(Phidgets.Phidget), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnAttachedPhidgetDeviceChanged), new CoerceValueCallback(OnCoerceAttachedPhidgetDevice)));
+        public static readonly DependencyProperty AttachedPhidgetDeviceProperty = DependencyProperty.Register("AttachedPhidgetDevice", typeof(Phidget22.Phidget), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnAttachedPhidgetDeviceChanged), new CoerceValueCallback(OnCoerceAttachedPhidgetDevice)));
 
         public static readonly DependencyProperty DeviceAddressProperty = DependencyProperty.Register("DeviceAddress", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceAddressChanged), new CoerceValueCallback(OnCoerceDeviceAddress)));
         public static readonly DependencyProperty DeviceAttachedProperty = DependencyProperty.Register("DeviceAttached", typeof(Boolean?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceAttachedChanged), new CoerceValueCallback(OnCoerceDeviceAttached)));
@@ -220,12 +220,12 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         public static readonly DependencyProperty DeviceTypeProperty = DependencyProperty.Register("DeviceType", typeof(string), typeof(PhidgetDevice), new FrameworkPropertyMetadata("", new PropertyChangedCallback(OnDeviceTypeChanged), new CoerceValueCallback(OnCoerceDeviceType)));
         public static readonly DependencyProperty DeviceVersionProperty = DependencyProperty.Register("DeviceVersion", typeof(Int32?), typeof(PhidgetDevice), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDeviceVersionChanged), new CoerceValueCallback(OnCoerceDeviceVersion)));
 
-        protected virtual void OnAttachedPhidgetDeviceChanged(Phidgets.Phidget oldValue, Phidgets.Phidget newValue)
+        protected virtual void OnAttachedPhidgetDeviceChanged(Phidget22.Phidget oldValue, Phidget22.Phidget newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
-        protected virtual Phidgets.Phidget OnCoerceAttachedPhidgetDevice(Phidgets.Phidget value)
+        protected virtual Phidget22.Phidget OnCoerceAttachedPhidgetDevice(Phidget22.Phidget value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -306,17 +306,17 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             if (newValue is true)
             {
-                DeviceAddress = AttachedPhidgetDevice.Address;
-                DeviceAttachedToServer = AttachedPhidgetDevice.AttachedToServer;
-                DeviceClass = AttachedPhidgetDevice.Class.ToString();
-                DeviceID = Enum.GetName(typeof(Phidgets.Phidget.PhidgetID), AttachedPhidgetDevice.ID);
-                DeviceLabel = AttachedPhidgetDevice.Label;
-                DeviceLibraryVersion = Phidgets.Phidget.LibraryVersion; // This is a static field
-                DeviceName = AttachedPhidgetDevice.Name;
-                DevicePort = AttachedPhidgetDevice.Port;
-                DeviceSerialNumber = AttachedPhidgetDevice.SerialNumber;
-                DeviceType = AttachedPhidgetDevice.Type;
-                DeviceVersion = AttachedPhidgetDevice.Version;
+                //DeviceAddress = AttachedPhidgetDevice.Address;
+                //DeviceAttachedToServer = AttachedPhidgetDevice.AttachedToServer;
+                //DeviceClass = AttachedPhidgetDevice.Class.ToString();
+                //DeviceID = Enum.GetName(typeof(Phidget22.Phidget.PhidgetID), AttachedPhidgetDevice.ID);
+                //DeviceLabel = AttachedPhidgetDevice.Label;
+                //DeviceLibraryVersion = Phidget22.Phidget.LibraryVersion; // This is a static field
+                //DeviceName = AttachedPhidgetDevice.Name;
+                //DevicePort = AttachedPhidgetDevice.Port;
+                //DeviceSerialNumber = AttachedPhidgetDevice.SerialNumber;
+                //DeviceType = AttachedPhidgetDevice.Type;
+                //DeviceVersion = AttachedPhidgetDevice.Version;
             }
             else
             {
@@ -385,14 +385,14 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             PhidgetDevice phidget = o as PhidgetDevice;
             if (phidget != null)
-                phidget.OnAttachedPhidgetDeviceChanged((Phidgets.Phidget)e.OldValue, (Phidgets.Phidget)e.NewValue);
+                phidget.OnAttachedPhidgetDeviceChanged((Phidget22.Phidget)e.OldValue, (Phidget22.Phidget)e.NewValue);
         }
 
         private static object OnCoerceAttachedPhidgetDevice(DependencyObject o, object value)
         {
             PhidgetDevice phidget = o as PhidgetDevice;
             if (phidget != null)
-                return phidget.OnCoerceAttachedPhidgetDevice((Phidgets.Phidget)value);
+                return phidget.OnCoerceAttachedPhidgetDevice((Phidget22.Phidget)value);
             else
                 return value;
         }

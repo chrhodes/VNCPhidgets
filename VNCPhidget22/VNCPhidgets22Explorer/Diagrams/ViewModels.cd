@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="VNCPhidgets21Explorer.Presentation.ViewModels.AdvancedServo1061ViewModel">
+  <Class Name="VNCPhidget22Explorer.Presentation.ViewModels.AdvancedServo1061ViewModel">
     <Position X="5" Y="0.75" Width="3" />
     <TypeIdentifier>
       <HashCode>HSUgMASaAOOkBJcQnCJARMqBIRMvCMDYNQgRsCDiAKk=</HashCode>
@@ -8,7 +8,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Presentation.ViewModels.HackAroundViewModel">
+  <Class Name="VNCPhidget22Explorer.Presentation.ViewModels.HackAroundViewModel">
     <Position X="0.75" Y="0.5" Width="3.75" />
     <TypeIdentifier>
       <HashCode>CjskGhZxlKD+ZoSajHYI5XAQHAwaKFN8GBkQoAAU4Hw=</HashCode>
@@ -16,7 +16,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Presentation.ViewModels.InterfaceKit1018ViewModel">
+  <Class Name="VNCPhidget22Explorer.Presentation.ViewModels.InterfaceKit1018ViewModel">
     <Position X="8.25" Y="0.75" Width="3" />
     <TypeIdentifier>
       <HashCode>TwUAWJDjH4igZJTz7yaEcP0IhCJOmZ9sWpGKJCqR/yE=</HashCode>
@@ -24,7 +24,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VNCPhidgets21Explorer.Presentation.ViewModels.Stepper1063ViewModel">
+  <Class Name="VNCPhidget22Explorer.Presentation.ViewModels.Stepper1063ViewModel">
     <Position X="11.5" Y="0.75" Width="3" />
     <TypeIdentifier>
       <HashCode>FCUJeABkAoCXBLIBhCoCAsAGegqOEIJJMWBAoyIAiGQ=</HashCode>

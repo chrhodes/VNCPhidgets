@@ -1,3 +1,3 @@
-﻿VNCPhidgets21Explorer\Core\Events\
+﻿VNCPhidget22Explorer\Core\Events\
 
 Notes for using this template

@@ -5,7 +5,7 @@ using System.Windows;
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgets21Explorer.Presentation.Controls
+namespace VNCPhidget22Explorer.Presentation.Controls
 {
     public partial class VelocityControl : ViewBase, IInstanceCountV
     {

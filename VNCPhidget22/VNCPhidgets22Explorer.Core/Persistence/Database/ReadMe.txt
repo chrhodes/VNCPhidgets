@@ -1,5 +1,5 @@
-﻿VNCPhidgets21Explorer\Persistence\
-VNCPhidgets21Explorer\Persistence\Database\
-VNCPhidgets21Explorer\Persistence\Database\Migrations\
+﻿VNCPhidget22Explorer\Persistence\
+VNCPhidget22Explorer\Persistence\Database\
+VNCPhidget22Explorer\Persistence\Database\Migrations\
 
 Notes for using this template

@@ -13,9 +13,11 @@ using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 
-using VNCPhidgets21Explorer.Presentation.Views;
+using VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer
+using VNCPhidget22Explorer.Presentation.Views;
+
+namespace VNCPhidget22Explorer
 {
     public partial class App : PrismApplication
     {
@@ -36,7 +38,7 @@ namespace VNCPhidgets21Explorer
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Enter"), Common.LOG_CATEGORY, startTicks);
 #if DEBUG
             Common.InitializeLogging(debugConfig: true);
-            VNC.Phidget.Common.InitializeLogging(debugConfig: true);
+            VNC.Phidget22.Common.InitializeLogging(debugConfig: true);
 #else
             Common.InitializeLogging();
             VNC.Phidget.Common.InitializeLogging();
@@ -156,7 +158,7 @@ namespace VNCPhidgets21Explorer
 #if VNCTYPES
             moduleCatalog.AddModule(typeof(CatModule));
 #endif
-            moduleCatalog.AddModule(typeof(VNCPhidgets21ExplorerModule));
+            moduleCatalog.AddModule(typeof(VNCPhidget22ExplorerModule));
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -221,7 +223,7 @@ namespace VNCPhidgets21Explorer
             return shell;
 
             // NOTE(crhodes)
-            // The type of view to load into the shell is handled in VNCPhidgets21ExplorerModule.cs
+            // The type of view to load into the shell is handled in VNCPhidget22ExplorerModule.cs
         }
 
         // 12
@@ -306,7 +308,7 @@ namespace VNCPhidgets21Explorer
 
             // Get Information about Phidget assembly
 
-            var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget.Common));
+            var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget22.Common));
             var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
 
             Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
@@ -346,6 +348,11 @@ namespace VNCPhidgets21Explorer
             Common.DeveloperMode = false;
             Common.DeveloperUIMode = Visibility.Collapsed;  // No space reserved
 #endif
+
+            // HACK(crhodes)
+            // This should probably be done in App.xaml.cs
+
+            PerformanceLibrary perfLib = new PerformanceLibrary();
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

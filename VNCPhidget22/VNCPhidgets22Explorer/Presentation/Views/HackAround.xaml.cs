@@ -5,9 +5,9 @@ using System.Windows;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class HackAround : ViewBase, IInstanceCountV
     {

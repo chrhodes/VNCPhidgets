@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace VNCPhidgets21Explorer.Presentation.Converters
+namespace VNCPhidget22Explorer.Presentation.Converters
 {
     class ForegroundColorConverter : IValueConverter
     {

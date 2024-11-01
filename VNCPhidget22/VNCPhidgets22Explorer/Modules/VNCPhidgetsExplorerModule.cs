@@ -8,20 +8,20 @@ using Unity;
 
 using VNC;
 
-using VNCPhidgets21Explorer.Core;
-//using VNCPhidgets21Explorer.DomainServices;
-using VNCPhidgets21Explorer.Presentation.ViewModels;
-using VNCPhidgets21Explorer.Presentation.Views;
+using VNCPhidgets22Explorer.Core;
+//using VNCPhidget22Explorer.DomainServices;
+using VNCPhidget22Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.Views;
 
-namespace VNCPhidgets21Explorer
+namespace VNCPhidget22Explorer
 {
-    public class VNCPhidgets21ExplorerModule : IModule
+    public class VNCPhidget22ExplorerModule : IModule
     {
         private readonly IRegionManager _regionManager;
 
         // 01
 
-        public VNCPhidgets21ExplorerModule(IRegionManager regionManager)
+        public VNCPhidget22ExplorerModule(IRegionManager regionManager)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -63,14 +63,18 @@ namespace VNCPhidgets21Explorer
             containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
             containerRegistry.Register<IInterfaceKitViewModel, InterfaceKit1018ViewModel>();
 
-            containerRegistry.Register<IAdvancedServo1061, AdvancedServo1061>();
-            containerRegistry.Register<IAdvancedServo1061ViewModel, AdvancedServo1061ViewModel>();
+            // TODO(crhodes)
+            // 
+            //containerRegistry.Register<IAdvancedServo1061, AdvancedServo1061>();
+            //containerRegistry.Register<IAdvancedServo1061ViewModel, AdvancedServo1061ViewModel>();
 
-            containerRegistry.Register<IStepper1063, Stepper1063>();
-            containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
+            //containerRegistry.Register<IStepper1063, Stepper1063>();
+            //containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
 
-            containerRegistry.Register<HackAround>();
-            containerRegistry.Register<HackAroundViewModel>();
+            // TODO(crhodes)
+            // 
+            //containerRegistry.Register<HackAround>();
+            //containerRegistry.Register<HackAroundViewModel>();
 
             // containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
             // containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
@@ -118,15 +122,17 @@ namespace VNCPhidgets21Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region2, typeof(InterfaceKit1018));
             _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region3, typeof(InterfaceKit1018));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region1, typeof(AdvancedServo1061));
-            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region2, typeof(AdvancedServo1061));
-            _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region3, typeof(AdvancedServo1061));
+            // TODO(crhodes)
+            // 
+            //_regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region1, typeof(AdvancedServo1061));
+            //_regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region2, typeof(AdvancedServo1061));
+            //_regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region3, typeof(AdvancedServo1061));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region1, typeof(Stepper1063));
-            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region2, typeof(Stepper1063));
-            _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
+            //_regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region1, typeof(Stepper1063));
+            //_regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region2, typeof(Stepper1063));
+            //_regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
+            //_regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
 
             _regionManager.RegisterViewWithRegion(RegionNames.VNCLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCLoggingConfig));
             _regionManager.RegisterViewWithRegion(RegionNames.VNCCoreLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCCoreLoggingConfig));

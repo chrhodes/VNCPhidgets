@@ -1,6 +1,6 @@
 ﻿using VNC.Core.Mvvm;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public interface IInterfaceKitViewModel : IViewModel
     {

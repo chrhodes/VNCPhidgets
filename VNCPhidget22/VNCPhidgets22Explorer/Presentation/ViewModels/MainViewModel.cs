@@ -3,18 +3,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Phidgets;
+//using Phidget22;
 
 using Prism.Commands;
 
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class MainViewModel : ViewModelBase, IMainViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public MainViewModel()
@@ -66,7 +65,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         public ICommand Button2Command { get; private set; }
         public ICommand Button3Command { get; private set; }
 
-        private string _title = "VNCPhidgets21Explorer - Main";
+        private string _title = "VNCPhidget22Explorer - Main";
 
         public string Title
         {
@@ -256,7 +255,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 switch (pe.Type)
                 {
-                    case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
+                    case Phidget22.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
                         //System.Diagnostics.Debug.WriteLine(
                         //    string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
                         //        ifk.SerialNumber));
@@ -312,7 +311,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
+        private void Ifk_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
         {
             try
             {
@@ -326,7 +325,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_ServerConnect(object sender, Phidgets.Events.ServerConnectEventArgs e)
+        private void Ifk_ServerConnect(object sender, Phidget22.Events.ServerConnectEventArgs e)
         {
             try
             {
@@ -341,7 +340,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
+        private void Ifk_SensorChange(object sender, Phidget22.Events.SensorChangeEventArgs e)
         {
             if (DisplaySensorChangeEvents)
             {
@@ -359,7 +358,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
+        private void Ifk_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
         {
             if (DisplayOutputChangeEvents)
             {
@@ -377,7 +376,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
+        private void Ifk_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
         {
             if (DisplayInputChangeEvents)
             {
@@ -395,7 +394,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        private void Ifk_Error(object sender, Phidget22.Events.ErrorEventArgs e)
         {
             try
             {
@@ -410,7 +409,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void Ifk_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         {
             try
             {
@@ -425,7 +424,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void Ifk_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void Ifk_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         {
             try
             {
@@ -440,14 +439,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void PhidgetManager_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void PhidgetManager_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         {
             var a = e;
             var b = e.GetType();
             Log.Trace("PhidgetManager_Detach", Common.LOG_CATEGORY);
         }
 
-        private void PhidgetManager_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void PhidgetManager_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         {
             var a = e;
             var b = e.GetType();

@@ -1,6 +1,6 @@
 using System;
 
-namespace VNC.Phidget
+namespace VNC.Phidget22
 {
     public class Host
     {

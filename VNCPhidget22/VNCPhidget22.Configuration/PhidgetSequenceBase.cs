@@ -2,7 +2,7 @@
 
 namespace VNCPhidget22.Configuration
 {
-    public class PhidgetSequenceBase
+    public class Phidget22equenceBase
     {
         ///// <summary>
         ///// Host on which to run sequence (optional)

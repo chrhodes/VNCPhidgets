@@ -7,9 +7,9 @@ using DevExpress.XtraRichEdit.Layout.Engine;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidget2221Explorer.Presentation.ViewModels;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+namespace VNCPhidget2221Explorer.Presentation.Views
 {
     public partial class Stepper1063 : ViewBase, IStepper1063, IInstanceCountV
     {
@@ -62,7 +62,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            this.lgPhidgetStatus.IsCollapsed = true;
+            this.lgPhidget22tatus.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 

@@ -1,3 +1,3 @@
-﻿VNCPhidgets21Explorer\Presentation\Views\
+﻿VNCPhidget22Explorer\Presentation\Views\
 
 Notes for using this template

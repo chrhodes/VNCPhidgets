@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading;
 
-using Phidgets;
+using Phidget22;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget;
+using VNC.Phidget22;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget2221Explorer.Presentation.ViewModels
 {
     // TODO(crhodes)
     // Not sure we need INPCBase.  See if any bindings reach for this class
@@ -62,9 +62,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //private Phidgets.stepperstepper.stepperType? _stepperType;
+        //private Phidget22.stepperstepper.stepperType? _stepperType;
 
-        //public Phidgets.stepperstepper.stepperType? stepperType
+        //public Phidget22.stepperstepper.stepperType? stepperType
         //{
         //    get => _stepperType;
         //    set
@@ -85,7 +85,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //        {
         //            if (StepperEx.Stepper is not null)
         //            {
-        //                StepperEx.Stepper.steppers[StepperIndex].Type = (Phidgets.stepperstepper.stepperType)value;
+        //                StepperEx.Stepper.steppers[StepperIndex].Type = (Phidget22.stepperstepper.stepperType)value;
 
         //                // Need to update all the properties since the type changed.
         //                // NB. Even setting to the same Type causes a refresh of the properties
@@ -820,7 +820,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             try
             {
                 //var stepper = StepperEx.Stepper.steppers[StepperIndex];
-                //stepperType = Phidgets.stepperstepper.stepperType.DE;
+                //stepperType = Phidget22.stepperstepper.stepperType.DE;
 
                 Stopped = null;
                 Engaged = null;

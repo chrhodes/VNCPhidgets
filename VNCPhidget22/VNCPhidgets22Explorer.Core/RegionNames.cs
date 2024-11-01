@@ -1,4 +1,4 @@
-namespace VNCPhidgets21Explorer.Core
+namespace VNCPhidgets22Explorer.Core
 {
     public static class RegionNames
     {

@@ -5,9 +5,9 @@ using System.Windows;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class InterfaceKit1018 : ViewBase, IInterfaceKit, IInstanceCountV
     {
@@ -60,7 +60,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            this.lgPhidgetStatus.IsCollapsed = true;
+            this.lgPhidget22tatus.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 

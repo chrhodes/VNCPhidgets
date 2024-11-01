@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-13</VersionSuffix>
-        <FileVersion>2024.10.23A</FileVersion>
+        <FileVersion>2024.10.30A</FileVersion>
         <Description>Phidget21 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -37,7 +37,30 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Presentation\ViewModels\AdvancedServo1061ViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\HackAroundViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\MainViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\ServoProperties.cs" />
+      <Compile Remove="Presentation\ViewModels\ServoType.cs" />
+      <Compile Remove="Presentation\ViewModels\Stepper1063ViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\StepperProperties.cs" />
+      <Compile Remove="Presentation\Views\AdvancedServo1061.xaml.cs" />
+      <Compile Remove="Presentation\Views\HackAround.xaml.cs" />
+      <Compile Remove="Presentation\Views\Main.xaml.cs" />
+      <Compile Remove="Presentation\Views\MainDxLayoutControl.xaml.cs" />
+      <Compile Remove="Presentation\Views\Stepper1063.xaml.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Remove="Resources\Images\VNCDeveloperMotivation.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Remove="Presentation\Views\AdvancedServo1061.xaml" />
+      <Page Remove="Presentation\Views\HackAround.xaml" />
+      <Page Remove="Presentation\Views\Main.xaml" />
+      <Page Remove="Presentation\Views\MainDxLayoutControl.xaml" />
+      <Page Remove="Presentation\Views\Stepper1063.xaml" />
     </ItemGroup>
 
     <!--<PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
@@ -55,7 +78,6 @@
         <PackageReference Include="DevExpress.Wpf.Ribbon" Version="24.1.3" />
         <!--<PackageReference Include="EntityFramework" Version="6.4.4" />-->
         <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
-        <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
         <PackageReference Include="Prism.Unity" Version="8.1.97" />
 
     </ItemGroup>
@@ -75,7 +97,11 @@
       <ProjectReference Include="..\VNCPhidget22.Configuration\VNCPhidget22.Configuration.csproj" />
       <ProjectReference Include="..\VNCPhidgets22Explorer.Core\VNCPhidgets22Explorer.Core.csproj" />
     </ItemGroup>
- 
+
+    <ItemGroup>
+        <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
+    </ItemGroup>
+    
   <!--<ItemGroup>
     <Reference Include="Phidget21.NET">
       <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
@@ -173,9 +199,6 @@
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Skulls_1.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\Performances\PerformanceConfig_Steppers_1.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Skulls_2.json">

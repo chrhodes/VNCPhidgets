@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using Phidgets;
+//using Phidget22;
 
 using Prism.Commands;
 using Prism.Events;
@@ -13,11 +13,13 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget;
+using VNC.Phidget22;
+
+using VNCPhidget22.Configuration;
 
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class InterfaceKit1018ViewModel 
         : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
@@ -81,6 +83,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 (jsonString, GetJsonSerializerOptions());
 
             Hosts = hostConfig.Hosts.ToList();
+            
             Sensors2 = hostConfig.Sensors.ToList();
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -170,8 +173,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Phidget
 
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
+        private Phidget22.Phidget _phidgetDevice;
+        public Phidget22.Phidget PhidgetDevice
         {
             get => _phidgetDevice;
             set
@@ -339,7 +342,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // May want to make this just a Phidgets.InterfaceKit to avoid all the ActiveInterfaceKit.InterfaceKit stuff
+        // May want to make this just a Phidget22.InterfaceKit to avoid all the ActiveInterfaceKit.InterfaceKit stuff
 
         private InterfaceKitEx _activeInterfaceKit;
         public InterfaceKitEx ActiveInterfaceKit
@@ -353,13 +356,15 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
                 if (_activeInterfaceKit is not null)
                 {
-                    PhidgetDevice = _activeInterfaceKit.InterfaceKit;
+                    // TODO(crhodes)
+                    // 
+                    //PhidgetDevice = _activeInterfaceKit.InterfaceKit;
                 }
                 else
                 {
                     // TODO(crhodes)
                     // PhidgetDevice = null ???
-                    // Will need to declare Phidgets.Phidget?
+                    // Will need to declare Phidget22.Phidget?
                     PhidgetDevice = null;
                 }
 
@@ -453,11 +458,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -546,11 +553,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -639,11 +648,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -732,11 +743,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -825,11 +838,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -918,11 +933,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1011,11 +1028,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1104,11 +1123,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity)
-                {
-                    ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity = (Int32)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity)
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity = (Int32)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1347,11 +1368,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[0])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[0] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[0])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[0] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1367,11 +1390,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO1 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[1])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[1] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[1])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[1] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1387,11 +1412,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO2 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[2])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[2] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[2])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[2] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1407,11 +1434,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO3 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[3])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[3] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[3])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[3] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1427,11 +1456,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO4 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[4])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[4] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[4])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[4] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1447,11 +1478,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO5 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[5])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[5] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[5])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[5] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1467,11 +1500,14 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO6 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[6])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[6] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[6])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[6] = (Boolean)value;
+                //}
+
                 OnPropertyChanged();
             }
         }
@@ -1486,11 +1522,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO7 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[7])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[7] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[7])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[7] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1506,11 +1544,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO0 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[8])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[8] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[8])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[8] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1526,11 +1566,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO9 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[9])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[9] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[9])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[9] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1546,11 +1588,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO10 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[10])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[10] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[10])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[10] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1566,11 +1610,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO11 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[11])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[11] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[11])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[11] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1586,11 +1632,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO12 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[12])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[12] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[12])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[12] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1606,11 +1654,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO13 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[13])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[13] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[13])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[13] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1626,11 +1676,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO14 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[14])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[14] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[14])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[14] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1646,11 +1698,13 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                     return;
                 _dO15 = value;
 
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.InterfaceKit.outputs[15])
-                {
-                    ActiveInterfaceKit.InterfaceKit.outputs[15] = (Boolean)value;
-                }
+                // TODO(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[15])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[15] = (Boolean)value;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1696,12 +1750,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void ActiveInterfaceKit_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+                Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                Log.Trace($"ActiveInterfaceKit_Attach {device.DeviceName},{device.ServerHostname},{device.ServerPeerName} S#:{device.DeviceSerialNumber}", Common.LOG_CATEGORY);
 
                 DeviceAttached = device.Attached;
 
@@ -1715,12 +1769,12 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void ActiveInterfaceKit_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+                Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                Log.Trace($"ActiveInterfaceKit_Detach {device.DeviceName},{device.ServerHostname},{device.ServerPeerName} S#:{device.DeviceSerialNumber}", Common.LOG_CATEGORY);
 
                 DeviceAttached = device.Attached;
 
@@ -1734,220 +1788,220 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
-        {
-            Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
+        // TODO(crhodes)
+        // 
+        //private void ActiveInterfaceKit_SensorChange(object sender, Phidget22.Events.SensorChangeEventArgs e)
+        //{
+        //    Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
 
-            InterfaceKitAnalogSensor sensor = ifk.sensors[0];
+        //    InterfaceKitAnalogSensor sensor = ifk.sensors[0];
 
-            //SIRaw0 = sensor.RawValue;
-            //SIDataRate0 = sensor.DataRate;
-            //SIDataRateMax0 = sensor.DataRateMax;
-            //SIDataRateMin0 = sensor.DataRateMin;
-            //SISensitivity0= sensor.Sensitivity;
+        //    //SIRaw0 = sensor.RawValue;
+        //    //SIDataRate0 = sensor.DataRate;
+        //    //SIDataRateMax0 = sensor.DataRateMax;
+        //    //SIDataRateMin0 = sensor.DataRateMin;
+        //    //SISensitivity0= sensor.Sensitivity;
 
-            //var sValue = sensor0.Value;
-            //var eValue = e.Value;
+        //    //var sValue = sensor0.Value;
+        //    //var eValue = e.Value;
 
-            // NOTE(crhodes)
-            // DataRateMin and DataRateMax do not change.
-            // Populate in Attach event
+        //    // NOTE(crhodes)
+        //    // DataRateMin and DataRateMax do not change.
+        //    // Populate in Attach event
 
-            switch (e.Index)
-            {
-                case 0:
-                    sensor = ifk.sensors[0];
-                    AI0 = sensor.Value;
-                    AIRaw0 = sensor.RawValue;
-                    AIDataRate0 = sensor.DataRate;
-                    //AIDataRateMax0 = sensor.DataRateMax;
-                    //AIDataRateMin0 = sensor.DataRateMin;
-                    AISensitivity0 = sensor.Sensitivity;
-                    break;
-                case 1:
-                    sensor = ifk.sensors[1];
-                    AI1 = sensor.Value;
-                    AIRaw1 = sensor.RawValue;
-                    AIDataRate1 = sensor.DataRate;
-                    //AIDataRateMax1 = sensor.DataRateMax;
-                    //AIDataRateMin1 = sensor.DataRateMin;
-                    AISensitivity1 = sensor.Sensitivity;
-                    break;
-                case 2:
-                    sensor = ifk.sensors[2];
-                    AI2 = sensor.Value;
-                    AIRaw2 = sensor.RawValue;
-                    AIDataRate2 = sensor.DataRate;
-                    //AIDataRateMax2 = sensor.DataRateMax;
-                    //AIDataRateMin2 = sensor.DataRateMin;
-                    AISensitivity2 = sensor.Sensitivity;
-                    break;
-                case 3:
-                    sensor = ifk.sensors[3];
-                    AI3 = sensor.Value;
-                    AIRaw3 = sensor.RawValue;
-                    AIDataRate3 = sensor.DataRate;
-                    //AIDataRateMax3 = sensor.DataRateMax;
-                    //AIDataRateMin3 = sensor.DataRateMin;
-                    AISensitivity3 = sensor.Sensitivity;
-                    break;
-                case 4:
-                    sensor = ifk.sensors[4];
-                    AI4 = sensor.Value;
-                    AIRaw4 = sensor.RawValue;
-                    AIDataRate4 = sensor.DataRate;
-                    //AIDataRateMax4 = sensor.DataRateMax;
-                    //AIDataRateMin4 = sensor.DataRateMin;
-                    AISensitivity4 = sensor.Sensitivity;
-                    break;
-                case 5:
-                    sensor = ifk.sensors[5];
-                    AI5 = sensor.Value;
-                    AIRaw5 = sensor.RawValue;
-                    AIDataRate5 = sensor.DataRate;
-                    //AIDataRateMax5 = sensor.DataRateMax;
-                    //AIDataRateMin5 = sensor.DataRateMin;
-                    AISensitivity5 = sensor.Sensitivity;
-                    break;
-                case 6:
-                    sensor = ifk.sensors[6];
-                    AI6 = sensor.Value;
-                    AIRaw6 = sensor.RawValue;
-                    AIDataRate6 = sensor.DataRate;
-                    //AIDataRateMax6 = sensor.DataRateMax;
-                    //AIDataRateMin6 = sensor.DataRateMin;
-                    AISensitivity6 = sensor.Sensitivity;
-                    break;
-                case 7:
-                    sensor = ifk.sensors[7];
-                    AI7 = sensor.Value;
-                    AIRaw7 = sensor.RawValue;
-                    AIDataRate7 = sensor.DataRate;
-                    //AIDataRateMax7 = sensor.DataRateMax;
-                    //AIDataRateMin7 = sensor.DataRateMin;
-                    AISensitivity7 = sensor.Sensitivity;
-                    break;
-            }
-        }
+        //    switch (e.Index)
+        //    {
+        //        case 0:
+        //            sensor = ifk.sensors[0];
+        //            AI0 = sensor.Value;
+        //            AIRaw0 = sensor.RawValue;
+        //            AIDataRate0 = sensor.DataRate;
+        //            //AIDataRateMax0 = sensor.DataRateMax;
+        //            //AIDataRateMin0 = sensor.DataRateMin;
+        //            AISensitivity0 = sensor.Sensitivity;
+        //            break;
+        //        case 1:
+        //            sensor = ifk.sensors[1];
+        //            AI1 = sensor.Value;
+        //            AIRaw1 = sensor.RawValue;
+        //            AIDataRate1 = sensor.DataRate;
+        //            //AIDataRateMax1 = sensor.DataRateMax;
+        //            //AIDataRateMin1 = sensor.DataRateMin;
+        //            AISensitivity1 = sensor.Sensitivity;
+        //            break;
+        //        case 2:
+        //            sensor = ifk.sensors[2];
+        //            AI2 = sensor.Value;
+        //            AIRaw2 = sensor.RawValue;
+        //            AIDataRate2 = sensor.DataRate;
+        //            //AIDataRateMax2 = sensor.DataRateMax;
+        //            //AIDataRateMin2 = sensor.DataRateMin;
+        //            AISensitivity2 = sensor.Sensitivity;
+        //            break;
+        //        case 3:
+        //            sensor = ifk.sensors[3];
+        //            AI3 = sensor.Value;
+        //            AIRaw3 = sensor.RawValue;
+        //            AIDataRate3 = sensor.DataRate;
+        //            //AIDataRateMax3 = sensor.DataRateMax;
+        //            //AIDataRateMin3 = sensor.DataRateMin;
+        //            AISensitivity3 = sensor.Sensitivity;
+        //            break;
+        //        case 4:
+        //            sensor = ifk.sensors[4];
+        //            AI4 = sensor.Value;
+        //            AIRaw4 = sensor.RawValue;
+        //            AIDataRate4 = sensor.DataRate;
+        //            //AIDataRateMax4 = sensor.DataRateMax;
+        //            //AIDataRateMin4 = sensor.DataRateMin;
+        //            AISensitivity4 = sensor.Sensitivity;
+        //            break;
+        //        case 5:
+        //            sensor = ifk.sensors[5];
+        //            AI5 = sensor.Value;
+        //            AIRaw5 = sensor.RawValue;
+        //            AIDataRate5 = sensor.DataRate;
+        //            //AIDataRateMax5 = sensor.DataRateMax;
+        //            //AIDataRateMin5 = sensor.DataRateMin;
+        //            AISensitivity5 = sensor.Sensitivity;
+        //            break;
+        //        case 6:
+        //            sensor = ifk.sensors[6];
+        //            AI6 = sensor.Value;
+        //            AIRaw6 = sensor.RawValue;
+        //            AIDataRate6 = sensor.DataRate;
+        //            //AIDataRateMax6 = sensor.DataRateMax;
+        //            //AIDataRateMin6 = sensor.DataRateMin;
+        //            AISensitivity6 = sensor.Sensitivity;
+        //            break;
+        //        case 7:
+        //            sensor = ifk.sensors[7];
+        //            AI7 = sensor.Value;
+        //            AIRaw7 = sensor.RawValue;
+        //            AIDataRate7 = sensor.DataRate;
+        //            //AIDataRateMax7 = sensor.DataRateMax;
+        //            //AIDataRateMin7 = sensor.DataRateMin;
+        //            AISensitivity7 = sensor.Sensitivity;
+        //            break;
+        //    }
+        //}
 
-        private void ActiveInterfaceKit_InputChange(object sender, Phidgets.Events.InputChangeEventArgs e)
-        {
-            Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
+        //private void ActiveInterfaceKit_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
+        //{
+        //    Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
 
-            switch (e.Index)
-            {
-                case 0:
-                    DI0 = e.Value;
-                    break;
-                case 1:
-                    DI1 = e.Value;
-                    break;
-                case 2:
-                    DI2 = e.Value;
-                    break;
-                case 3:
-                    DI3 = e.Value;
-                    break;
-                case 4:
-                    DI4 = e.Value;
-                    break;
-                case 5:
-                    DI5 = e.Value;
-                    break;
-                case 6:
-                    DI6 = e.Value;
-                    break;
-                case 7:
-                    DI7 = e.Value;
-                    break;
-                case 8:
-                    DI8 = e.Value;
-                    break;
-                case 9:
-                    DI9 = e.Value;
-                    break;
-                case 10:
-                    DI10 = e.Value;
-                    break;
-                case 11:
-                    DI11 = e.Value;
-                    break;
-                case 12:
-                    DI12 = e.Value;
-                    break;
-                case 13:
-                    DI13 = e.Value;
-                    break;
-                case 14:
-                    DI14 = e.Value;
-                    break;
-                case 15:
-                    DI15 = e.Value;
-                    break;
-            }
-        }
+        //    switch (e.Index)
+        //    {
+        //        case 0:
+        //            DI0 = e.Value;
+        //            break;
+        //        case 1:
+        //            DI1 = e.Value;
+        //            break;
+        //        case 2:
+        //            DI2 = e.Value;
+        //            break;
+        //        case 3:
+        //            DI3 = e.Value;
+        //            break;
+        //        case 4:
+        //            DI4 = e.Value;
+        //            break;
+        //        case 5:
+        //            DI5 = e.Value;
+        //            break;
+        //        case 6:
+        //            DI6 = e.Value;
+        //            break;
+        //        case 7:
+        //            DI7 = e.Value;
+        //            break;
+        //        case 8:
+        //            DI8 = e.Value;
+        //            break;
+        //        case 9:
+        //            DI9 = e.Value;
+        //            break;
+        //        case 10:
+        //            DI10 = e.Value;
+        //            break;
+        //        case 11:
+        //            DI11 = e.Value;
+        //            break;
+        //        case 12:
+        //            DI12 = e.Value;
+        //            break;
+        //        case 13:
+        //            DI13 = e.Value;
+        //            break;
+        //        case 14:
+        //            DI14 = e.Value;
+        //            break;
+        //        case 15:
+        //            DI15 = e.Value;
+        //            break;
+        //    }
+        //}
 
-        private void ActiveInterfaceKit_OutputChange(object sender, Phidgets.Events.OutputChangeEventArgs e)
-        {
-            Phidgets.InterfaceKit ifk = (Phidgets.InterfaceKit)sender;
-            var outputs = ifk.outputs;
-            InterfaceKitDigitalOutputCollection doc = outputs;
+        //private void ActiveInterfaceKit_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
+        //{
+        //    Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
+        //    var outputs = ifk.outputs;
+        //    InterfaceKitDigitalOutputCollection doc = outputs;
 
-            switch (e.Index)
-            {
-                case 0:
-                    DO0 = e.Value;
-                    break;
-                case 1:
-                    DO1 = e.Value;
-                    break;
-                case 2:
-                    DO2 = e.Value;
-                    break;
-                case 3:
-                    DO3 = e.Value;
-                    break;
-                case 4:
-                    DO4 = e.Value;
-                    break;
-                case 5:
-                    DO5 = e.Value;
-                    break;
-                case 6:
-                    DO6 = e.Value;
-                    break;
-                case 7:
-                    DO7 = e.Value;
-                    break;
-                case 8:
-                    DO8 = e.Value;
-                    break;
-                case 9:
-                    DO9 = e.Value;
-                    break;
-                case 10:
-                    DO10 = e.Value;
-                    break;
-                case 11:
-                    DO11 = e.Value;
-                    break;
-                case 12:
-                    DO12 = e.Value;
-                    break;
-                case 13:
-                    DO13 = e.Value;
-                    break;
-                case 14:
-                    DO14 = e.Value;
-                    break;
-                case 15:
-                    DO15 = e.Value;
-                    break;
-            }
+        //    switch (e.Index)
+        //    {
+        //        case 0:
+        //            DO0 = e.Value;
+        //            break;
+        //        case 1:
+        //            DO1 = e.Value;
+        //            break;
+        //        case 2:
+        //            DO2 = e.Value;
+        //            break;
+        //        case 3:
+        //            DO3 = e.Value;
+        //            break;
+        //        case 4:
+        //            DO4 = e.Value;
+        //            break;
+        //        case 5:
+        //            DO5 = e.Value;
+        //            break;
+        //        case 6:
+        //            DO6 = e.Value;
+        //            break;
+        //        case 7:
+        //            DO7 = e.Value;
+        //            break;
+        //        case 8:
+        //            DO8 = e.Value;
+        //            break;
+        //        case 9:
+        //            DO9 = e.Value;
+        //            break;
+        //        case 10:
+        //            DO10 = e.Value;
+        //            break;
+        //        case 11:
+        //            DO11 = e.Value;
+        //            break;
+        //        case 12:
+        //            DO12 = e.Value;
+        //            break;
+        //        case 13:
+        //            DO13 = e.Value;
+        //            break;
+        //        case 14:
+        //            DO14 = e.Value;
+        //            break;
+        //        case 15:
+        //            DO15 = e.Value;
+        //            break;
+        //    }
 
-        }
-
-
+        //}
 
         #endregion
 
@@ -1990,30 +2044,34 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called OpenInterfaceKit";
-
             
             ActiveInterfaceKit = new InterfaceKitEx(
                 SelectedHost.IPAddress,
                 SelectedHost.Port,
                 SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Embedded, 
                 EventAggregator);
 
-            ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
+            // TODO(crhodes)
+            // 
+            //ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
+            //ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
 
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
             // The InterfaceKitEx attaches to these events also.
             // It logs the changes if Log{Input,Output,Sensor}ChangeEvents are set to true.
 
-            ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
-            ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
+            // TODO(crhodes)
+            // 
+            //ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
+            //ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
 
             // NOTE(crhodes)
             // Let's do see if we can watch some analog data stream in.
 
-            ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
+            // TODO(crhodes)
+            // 
+            //ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
 
             ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
 
@@ -2104,8 +2162,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called CloseInterfaceKit";
 
-            ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
+            // TODO(crhodes)
+            // 
+            //ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
+            //ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
 
             ActiveInterfaceKit.Close();
             UpdateInterfaceKitProperties();
@@ -2210,114 +2270,117 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             DI15 = DO15 = null;
         }
 
-        private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
-        {
+        // TODO(crhodes)
+        // 
+        //private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
+        //{
 
-        }
+        //}
 
         private void UpdateInterfaceKitProperties()
         {
+            // TODO(crhodes)
+            // 
+            //if (ActiveInterfaceKit.InterfaceKit.Attached)
+            //{
+            //    //IkAddress = ActiveInterfaceKit.InterfaceKit.Address;
+            //    //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+            //    DeviceAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+            //    //IkAttachedToServer = ActiveInterfaceKit.InterfaceKit.AttachedToServer;
+            //    //IkClass = ActiveInterfaceKit.InterfaceKit.Class.ToString();
+            //    //IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.InterfaceKit.ID);
+            //    //IkLabel = ActiveInterfaceKit.InterfaceKit.Label;
+            //    //IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
+            //    //IkName = ActiveInterfaceKit.InterfaceKit.Name;
+            //    //IkPort = ActiveInterfaceKit.InterfaceKit.Port;
+            //    //IkSerialNumber = ActiveInterfaceKit.InterfaceKit.SerialNumber; // This throws exception
+            //    ////IkServerID = ActiveInterfaceKit.ServerID;
+            //    //IkType = ActiveInterfaceKit.InterfaceKit.Type;
+            //    //IkVersion = ActiveInterfaceKit.InterfaceKit.Version;
 
-            if (ActiveInterfaceKit.InterfaceKit.Attached)
-            {
-                //IkAddress = ActiveInterfaceKit.InterfaceKit.Address;
-                //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
-                DeviceAttached = ActiveInterfaceKit.InterfaceKit.Attached;
-                //IkAttachedToServer = ActiveInterfaceKit.InterfaceKit.AttachedToServer;
-                //IkClass = ActiveInterfaceKit.InterfaceKit.Class.ToString();
-                //IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.InterfaceKit.ID);
-                //IkLabel = ActiveInterfaceKit.InterfaceKit.Label;
-                //IkLibraryVersion = Phidget.LibraryVersion;  // This is a static field
-                //IkName = ActiveInterfaceKit.InterfaceKit.Name;
-                //IkPort = ActiveInterfaceKit.InterfaceKit.Port;
-                //IkSerialNumber = ActiveInterfaceKit.InterfaceKit.SerialNumber; // This throws exception
-                ////IkServerID = ActiveInterfaceKit.ServerID;
-                //IkType = ActiveInterfaceKit.InterfaceKit.Type;
-                //IkVersion = ActiveInterfaceKit.InterfaceKit.Version;
+            //    var sensors = ActiveInterfaceKit.InterfaceKit.sensors;
+            //    InterfaceKitAnalogSensor sensor = null;
 
-                var sensors = ActiveInterfaceKit.InterfaceKit.sensors;
-                InterfaceKitAnalogSensor sensor = null;
+            //    // NOTE(crhodes)
+            //    // The DataRateMin and DataRateMax do not change.
+            //    // Populate them here instead of SensorChange event
 
-                // NOTE(crhodes)
-                // The DataRateMin and DataRateMax do not change.
-                // Populate them here instead of SensorChange event
+            //    // TODO(crhodes)
+            //    // May want to grab initial values for all fields here.
 
-                // TODO(crhodes)
-                // May want to grab initial values for all fields here.
+            //    for (int i = 0; i < sensors.Count; i++)
+            //    {
+            //        sensor = sensors[i];
 
-                for (int i = 0; i < sensors.Count; i++)
-                {
-                    sensor = sensors[i];
+            //        switch (i)
+            //        {
+            //            case 0:
+            //                AIDataRateMax0 = sensor.DataRateMax;
+            //                AIDataRateMin0 = sensor.DataRateMin;
+            //                break;
+            //            case 1:
+            //                AIDataRateMax1 = sensor.DataRateMax;
+            //                AIDataRateMin1 = sensor.DataRateMin;
+            //                break;
+            //            case 2:
+            //                AIDataRateMax2 = sensor.DataRateMax;
+            //                AIDataRateMin2 = sensor.DataRateMin;
+            //                break;
+            //            case 3:
+            //                AIDataRateMax3 = sensor.DataRateMax;
+            //                AIDataRateMin3 = sensor.DataRateMin;
+            //                break;
+            //            case 4:
+            //                AIDataRateMax4 = sensor.DataRateMax;
+            //                AIDataRateMin4 = sensor.DataRateMin;
+            //                break;
+            //            case 5:
+            //                AIDataRateMax5 = sensor.DataRateMax;
+            //                AIDataRateMin5 = sensor.DataRateMin;
+            //                break;
+            //            case 6:
+            //                AIDataRateMax6 = sensor.DataRateMax;
+            //                AIDataRateMin6 = sensor.DataRateMin;
+            //                break;
+            //            case 7:
+            //                AIDataRateMax7 = sensor.DataRateMax;
+            //                AIDataRateMin7 = sensor.DataRateMin;
+            //                break;
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    DeviceAttached = null;
+            //    // NOTE(crhodes)
+            //    // Commented out properties throw exceptions when Phidget not attached
+            //    // Just clear field
 
-                    switch (i)
-                    {
-                        case 0:
-                            AIDataRateMax0 = sensor.DataRateMax;
-                            AIDataRateMin0 = sensor.DataRateMin;
-                            break;
-                        case 1:
-                            AIDataRateMax1 = sensor.DataRateMax;
-                            AIDataRateMin1 = sensor.DataRateMin;
-                            break;
-                        case 2:
-                            AIDataRateMax2 = sensor.DataRateMax;
-                            AIDataRateMin2 = sensor.DataRateMin;
-                            break;
-                        case 3:
-                            AIDataRateMax3 = sensor.DataRateMax;
-                            AIDataRateMin3 = sensor.DataRateMin;
-                            break;
-                        case 4:
-                            AIDataRateMax4 = sensor.DataRateMax;
-                            AIDataRateMin4 = sensor.DataRateMin;
-                            break;
-                        case 5:
-                            AIDataRateMax5 = sensor.DataRateMax;
-                            AIDataRateMin5 = sensor.DataRateMin;
-                            break;
-                        case 6:
-                            AIDataRateMax6 = sensor.DataRateMax;
-                            AIDataRateMin6 = sensor.DataRateMin;
-                            break;
-                        case 7:
-                            AIDataRateMax7 = sensor.DataRateMax;
-                            AIDataRateMin7 = sensor.DataRateMin;
-                            break;
-                    }
-                }
-            }
-            else
-            {
-                DeviceAttached = null;
-                // NOTE(crhodes)
-                // Commented out properties throw exceptions when Phidget not attached
-                // Just clear field
-
-                //IkAddress = ActiveInterfaceKit.Address;
-                //IkAddress = "";
-                //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
-                ////IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
-                //IkAttachedToServer = false;
-                //// This doesn't throw exception but let's clear anyway
-                ////IkClass = ActiveInterfaceKit.Class.ToString();
-                //IkClass = "";
-                ////IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
-                //IkID = "";
-                ////IkLabel = ActiveInterfaceKit.Label;
-                //IkLabel = "";
-                ////IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
-                //IkLibraryVersion = Phidget.LibraryVersion;
-                ////IkName = ActiveInterfaceKit.Name;
-                //IkName = "";
-                ////IkSerialNumber = ActiveInterfaceKit.SerialNumber;
-                //IkSerialNumber = null;
-                ////IkServerID = ActiveInterfaceKit.ServerID;
-                //IkServerID = "";
-                ////IkType = ActiveInterfaceKit.Type;
-                //IkType = "";
-                ////IkVersion = ActiveInterfaceKit.Version;
-                //IkVersion = null;
-            }
+            //    //IkAddress = ActiveInterfaceKit.Address;
+            //    //IkAddress = "";
+            //    //IkAttached = ActiveInterfaceKit.InterfaceKit.Attached;
+            //    ////IkAttachedToServer = ActiveInterfaceKit.AttachedToServer;
+            //    //IkAttachedToServer = false;
+            //    //// This doesn't throw exception but let's clear anyway
+            //    ////IkClass = ActiveInterfaceKit.Class.ToString();
+            //    //IkClass = "";
+            //    ////IkID = Enum.GetName(typeof(Phidget.PhidgetID), ActiveInterfaceKit.ID);
+            //    //IkID = "";
+            //    ////IkLabel = ActiveInterfaceKit.Label;
+            //    //IkLabel = "";
+            //    ////IkLibraryVersion = ActiveInterfaceKit.LibraryVersion;
+            //    //IkLibraryVersion = Phidget.LibraryVersion;
+            //    ////IkName = ActiveInterfaceKit.Name;
+            //    //IkName = "";
+            //    ////IkSerialNumber = ActiveInterfaceKit.SerialNumber;
+            //    //IkSerialNumber = null;
+            //    ////IkServerID = ActiveInterfaceKit.ServerID;
+            //    //IkServerID = "";
+            //    ////IkType = ActiveInterfaceKit.Type;
+            //    //IkType = "";
+            //    ////IkVersion = ActiveInterfaceKit.Version;
+            //    //IkVersion = null;
+            //}
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
             CloseInterfaceKitCommand.RaiseCanExecuteChanged();

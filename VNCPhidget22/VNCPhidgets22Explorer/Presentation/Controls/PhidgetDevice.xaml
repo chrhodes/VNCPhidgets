@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidgets21Explorer.Presentation.Controls.PhidgetDevice"
+    x:Class="VNCPhidget22Explorer.Presentation.Controls.PhidgetDevice"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:prism="http://prismlibrary.com/"
@@ -9,7 +9,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     
-    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"   
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"   
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
@@ -169,7 +169,7 @@
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
 
-            <!-- All Phidgets have general events, see PhidgetEx -->
+            <!-- All Phidget22 have general events, see PhidgetEx -->
 
         </dxlc:LayoutGroup>
 

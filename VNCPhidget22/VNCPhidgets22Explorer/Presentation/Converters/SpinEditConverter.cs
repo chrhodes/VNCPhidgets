@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace VNCPhidgets21Explorer.Presentation.Converters
+namespace VNCPhidget22Explorer.Presentation.Converters
 {
     public class SpinEditConverter : MarkupExtension, IValueConverter
     {

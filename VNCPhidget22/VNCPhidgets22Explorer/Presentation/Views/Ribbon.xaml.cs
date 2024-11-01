@@ -8,7 +8,7 @@ using DevExpress.Xpf.Grid;
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
     {

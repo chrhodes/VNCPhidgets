@@ -1,3 +1,3 @@
-﻿VNCPhidgets21Explorer\Presentation\ModelWrappers\
+﻿VNCPhidget22Explorer\Presentation\ModelWrappers\
 
 Notes for using this template

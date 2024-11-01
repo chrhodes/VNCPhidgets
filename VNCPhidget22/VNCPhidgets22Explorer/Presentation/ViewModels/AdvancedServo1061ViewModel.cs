@@ -6,8 +6,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Phidgets;
-using Phidgets.Events;
+using Phidget22;
+using Phidget22.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -15,11 +15,11 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget;
+using VNC.Phidget22;
 
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget2221Explorer.Presentation.ViewModels
 {
 
     public partial class AdvancedServo1061ViewModel 
@@ -181,8 +181,8 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Phidget
 
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
+        private Phidget22.Phidget _phidgetDevice;
+        public Phidget22.Phidget PhidgetDevice
         {
             get => _phidgetDevice;
             set
@@ -353,7 +353,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        //public Phidgets.ServoServo.ServoType ServoTypeEnum;
+        //public Phidget22.ServoServo.ServoType ServoTypeEnum;
 
         private IEnumerable<VNCPhidgetConfig.AdvancedServo> _AdvancedServoTypes;
         public IEnumerable<VNCPhidgetConfig.AdvancedServo> AdvancedServoTypes
@@ -489,7 +489,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Phidget22.Phidget device = (Phidget22.Phidget)sender;
                 Log.Trace($"ActiveAdvancedServo_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
 
                 DeviceAttached = device.Attached;
@@ -525,7 +525,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             try
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Phidget22.Phidget device = (Phidget22.Phidget)sender;
                 Log.Trace($"ActiveAdvancedServo_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
 
                 DeviceAttached = device.Attached;
@@ -550,7 +550,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         {
             var senderType = sender.GetType();
 
-            Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
+            Phidget22.AdvancedServo servo = sender as Phidget22.AdvancedServo;
             var index = e.Index;
             var velocity = e.Velocity;
 
@@ -564,7 +564,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ActiveAdvancedServo_PositionChange(object sender, PositionChangeEventArgs e)
         {
-            Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
+            Phidget22.AdvancedServo servo = sender as Phidget22.AdvancedServo;
             var index = e.Index;
             var position = e.Position;
 
@@ -579,7 +579,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         private void ActiveAdvancedServo_CurrentChange(object sender, CurrentChangeEventArgs e)
         {
-            Phidgets.AdvancedServo servo = sender as Phidgets.AdvancedServo;
+            Phidget22.AdvancedServo servo = sender as Phidget22.AdvancedServo;
             var index = e.Index;
             var current = e.Current;
 
@@ -1130,7 +1130,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    Message = $"Cool, you called SetAdvancedServoDefaults from servo {servoID}";
 
         //    AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-        //    Phidgets.AdvancedServoServo servo = null;
+        //    Phidget22.AdvancedServoServo servo = null;
 
         //    Int32 servoIndex = Int32.Parse(servoID);
         //    servo = servos[servoIndex];
@@ -1229,7 +1229,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do we really want to do this?  What if someone else has open?
 
-            //DisEngageAllServos();
+            DisEngageAllServos();
 
             // NOTE(crhodes)
             // May need to give device chance to respond
@@ -1423,7 +1423,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
 
             AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-            Phidgets.AdvancedServoServo servo = null;
+            Phidget22.AdvancedServoServo servo = null;
 
             Int32 servoIndex = Int32.Parse(servoID);
             servo = servos[servoIndex];
@@ -1702,7 +1702,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             if ((Boolean)DeviceAttached)
             {
                 AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-                Phidgets.AdvancedServoServo servo = null;
+                Phidget22.AdvancedServoServo servo = null;
 
                 ServoCount = servos.Count;
 

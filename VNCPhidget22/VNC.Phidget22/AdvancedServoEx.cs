@@ -4,8 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-//using Phidgets;
-//using Phidgets.Events;
+//using Phidget2222;
+//using Phidget2222.Events;
 
 using Prism.Events;
 
@@ -43,7 +43,7 @@ namespace VNC.Phidget
 
         private void InitializePhidget()
         {
-            AdvancedServo = new Phidgets.AdvancedServo();
+            AdvancedServo = new Phidget22.AdvancedServo();
 
             AdvancedServo.Attach += Phidget_Attach;
             AdvancedServo.Detach += Phidget_Detach;
@@ -79,7 +79,7 @@ namespace VNC.Phidget
 
         #region Fields and Properties
 
-        public Phidgets.AdvancedServo AdvancedServo = null;
+        public Phidget22.AdvancedServo AdvancedServo = null;
 
         private bool _logPositionChangeEvents;
         public bool LogPositionChangeEvents
@@ -160,8 +160,8 @@ namespace VNC.Phidget
         {
             try
             {
-                Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
-                Phidgets.AdvancedServoServo servo = advancedServo.servos[e.Index];
+                Phidget22.AdvancedServo advancedServo = sender as Phidget22.AdvancedServo;
+                Phidget22.AdvancedServoServo servo = advancedServo.servos[e.Index];
                 Log.EVENT_HANDLER($"CurrentChange {advancedServo.Address},{advancedServo.SerialNumber},servo:{e.Index}" +
                     $" - current:{e.Current:00.000} - stopped:{servo.Stopped}", Common.LOG_CATEGORY);
             }
@@ -175,8 +175,8 @@ namespace VNC.Phidget
         {
             try
             {
-                Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
-                Phidgets.AdvancedServoServo servo = advancedServo.servos[e.Index];
+                Phidget22.AdvancedServo advancedServo = sender as Phidget22.AdvancedServo;
+                Phidget22.AdvancedServoServo servo = advancedServo.servos[e.Index];
                 Log.EVENT_HANDLER($"PositionChange {advancedServo.Address},{advancedServo.SerialNumber},servo:{e.Index}" +
                     $" - velocity:{servo.Velocity,8:0.000} position:{e.Position,7:0.000} current:{servo.Current:00.000}" +
                     $" - stopped:{servo.Stopped} ", Common.LOG_CATEGORY);
@@ -191,8 +191,8 @@ namespace VNC.Phidget
         {
             try
             {
-                Phidgets.AdvancedServo advancedServo = sender as Phidgets.AdvancedServo;
-                Phidgets.AdvancedServoServo servo = advancedServo.servos[e.Index];
+                Phidget22.AdvancedServo advancedServo = sender as Phidget22.AdvancedServo;
+                Phidget22.AdvancedServoServo servo = advancedServo.servos[e.Index];
                 Log.EVENT_HANDLER($"VelocityChange {advancedServo.Address},{advancedServo.SerialNumber},servo:{e.Index}" +
                     $" - velocity:{e.Velocity,8:0.000} position:{servo.Position,7:0.000} current:{servo.Current:00.000}" +
                     $" - stopped:{servo.Stopped}", Common.LOG_CATEGORY);
@@ -736,7 +736,7 @@ namespace VNC.Phidget
                 {
                     if (LogSequenceAction) actionMessage.Append($" servoType:>{action.ServoType}<");
 
-                    servo.Type = (Phidgets.ServoServo.ServoType)action.ServoType;
+                    servo.Type = (Phidget22.ServoServo.ServoType)action.ServoType;
 
                     // NOTE(crhodes)
                     // Maybe we should sleep for a little bit to allow this to happen
@@ -915,7 +915,7 @@ namespace VNC.Phidget
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void VerifyServoEngaged(Phidgets.AdvancedServoServo servo, Int32 index)
+        private void VerifyServoEngaged(Phidget22.AdvancedServoServo servo, Int32 index)
         {
             Int64 startTicks = 0;
             var msSleep = 0;

@@ -1,6 +1,6 @@
 ﻿namespace VNCPhidget22.Configuration
 {
-    public class StepperSequence : PhidgetSequenceBase
+    public class StepperSequence : Phidget22equenceBase
     {
         /// <summary>
         /// Array of Stepper actions in sequence

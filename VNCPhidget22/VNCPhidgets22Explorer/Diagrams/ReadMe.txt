@@ -1,3 +1,3 @@
-﻿VNCPhidgets21Explorer\Diagrams\
+﻿VNCPhidget22Explorer\Diagrams\
 
 Notes for using this template

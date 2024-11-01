@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Threading;
-using Phidgets.Events;
 
-using Prism.Events;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
-using VNC.Phidget.Players;
-
-namespace VNC.Phidget
+namespace VNC.Phidget22
 {
     public class PhidgetEx : Phidgets.Phidget
     {
         #region Constructors, Initialization, and Load
 
         /// <summary>
-        /// Initializes a new instance of the InterfaceKit class.
+        /// Initializes a new instance of the PhidgetEx class.
         /// </summary>
         /// <param name="ipAddress">IP Address of Host</param>
         /// <param name="port">Port number of Host</param>
@@ -23,6 +19,8 @@ namespace VNC.Phidget
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
+            // TODO(crhodes)
+            // 
             Host = new Host { IPAddress = ipAddress, Port = port };
             SerialNumber = serialNumber;
 
@@ -52,87 +50,89 @@ namespace VNC.Phidget
 
         #region Event Handlers
 
-        public void Phidget_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
-        {
-            if (LogPhidgetEvents)
-            {
-                try
-                {
-                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+        // TODO(crhodes)
+        // Figure 
+        //public void Phidget_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
+        //{
+        //    if (LogPhidgetEvents)
+        //    {
+        //        try
+        //        {
+        //            Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
 
-                    Log.EVENT_HANDLER($"Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //            Log.EVENT_HANDLER($"Phidget_ServerDisconnect {device.Address}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        public void Phidget_ServerConnect(object sender, ServerConnectEventArgs e)
-        {
-            if (LogPhidgetEvents)
-            {
-                try
-                {
-                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+        //public void Phidget_ServerConnect(object sender, ServerConnectEventArgs e)
+        //{
+        //    if (LogPhidgetEvents)
+        //    {
+        //        try
+        //        {
+        //            Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
 
-                    Log.EVENT_HANDLER($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //            Log.EVENT_HANDLER($"Phidget_ServerConnect {device.Address},{device.Port}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        internal virtual void Phidget_Attach(object sender, Phidgets.Events.AttachEventArgs e)
-        {
-            if (LogPhidgetEvents)
-            {
-                try
-                {
-                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+        //internal virtual void Phidget_Attach(object sender, Phidget22.Events.AttachEventArgs e)
+        //{
+        //    if (LogPhidgetEvents)
+        //    {
+        //        try
+        //        {
+        //            Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
 
-                    Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber} ID:{device.ID}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //            Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber} ID:{device.ID}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        public void Phidget_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            if (LogPhidgetEvents)
-            {
-                try
-                {
-                    Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+        //public void Phidget_Detach(object sender, Phidget22.Events.DetachEventArgs e)
+        //{
+        //    if (LogPhidgetEvents)
+        //    {
+        //        try
+        //        {
+        //            Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
 
-                    Log.EVENT_HANDLER($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-        }
+        //            Log.EVENT_HANDLER($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+        //}
 
-        public void Phidget_Error(object sender, Phidgets.Events.ErrorEventArgs e)
-        {
-            try
-            {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+        //public void Phidget_Error(object sender, Phidget22.Events.ErrorEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Phidget22.Phidget device = (Phidget22.Phidget)sender;
 
-                Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        //        Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
         #endregion
 

@@ -3,13 +3,13 @@
     public class HostConfig
     {
         // NOTE(crhodes)
-        // This class now needs to reflect where Phidgets are actually connected
+        // This class now needs to reflect where Phidget22 are actually connected
 
         public Host[] Hosts { get; set; } = new[]
         {
             new Host
             {
-                Name = "localhost", IPAddress = "127.0.0.1", Port = 5001, Enable = true,
+                Name = "localhost", IPAddress = "127.0.0.1", Port = 5661, Enable = true,
                 InterfaceKits = new[]
                 {
                     new InterfaceKit { Name = "InterfaceKit 1", SerialNumber = 124744, Embedded = false, Open = true }
@@ -22,7 +22,7 @@
             },
             new Host
             {
-                Name = "psbc11", IPAddress = "192.168.150.11", Port = 5001, Enable = true,
+                Name = "psbc11", IPAddress = "192.168.150.11", Port = 5661, Enable = true,
                 InterfaceKits = new[]
                 {
                     new InterfaceKit { Name = "psbc11 InterfaceKit", SerialNumber = 46049, Embedded = true, Open = true }
@@ -35,7 +35,7 @@
             },
             new Host
             {
-                Name = "psbc21", IPAddress = "192.168.150.21", Port = 5001, Enable = true,
+                Name = "psbc21", IPAddress = "192.168.150.21", Port = 5661, Enable = true,
                 InterfaceKits = new[]
                 {
                     new InterfaceKit { Name = "psbc21 InterfaceKit", SerialNumber = 48301, Embedded = true, Open = true }
@@ -48,7 +48,7 @@
             },
             new Host
             {
-                Name = "psbc22", IPAddress = "192.168.150.22", Port = 5001, Enable = true,
+                Name = "psbc22", IPAddress = "192.168.150.22", Port = 5661, Enable = true,
                 InterfaceKits = new[]
                 {
                     new InterfaceKit { Name = "psbc22 InterfaceKit", SerialNumber = 251831, Embedded = true, Open = true },
@@ -61,7 +61,7 @@
             },
             new Host
             {
-                Name = "psbc23", IPAddress = "192.168.150.23", Port = 5001, Enable = true,
+                Name = "psbc23", IPAddress = "192.168.150.23", Port = 5661, Enable = true,
                 InterfaceKits = new[]
                 {
                     new InterfaceKit { Name = "psbc23 InterfaceKit", SerialNumber = 48284, Embedded = true, Open = true }

@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 using VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer.Presentation.Converters
+namespace VNCPhidget22Explorer.Presentation.Converters
 {
 
     /// <summary>

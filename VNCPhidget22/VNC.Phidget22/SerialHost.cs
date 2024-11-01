@@ -1,4 +1,4 @@
-﻿namespace VNC.Phidget
+﻿namespace VNC.Phidget22
 {
     public struct SerialHost
     {

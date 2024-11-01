@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
 using System.Linq;
 
-namespace VNCPhidgets21Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary, IInstanceCountV
     {

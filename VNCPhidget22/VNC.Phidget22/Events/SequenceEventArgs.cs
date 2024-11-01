@@ -1,6 +1,6 @@
 using VNCPhidget22.Configuration;
 
-namespace VNC.Phidget.Events
+namespace VNC.Phidget22.Events
 {
     public class SequenceEventArgs
     {

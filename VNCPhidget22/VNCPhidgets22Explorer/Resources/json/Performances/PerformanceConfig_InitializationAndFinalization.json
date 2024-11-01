@@ -26,7 +26,7 @@
       ]
     },
     { 
-      "Name": "Disengage All Servos and Close Phidgets",
+      "Name": "Disengage All Servos and Close Phidget22",
       "Description": "End the Show",
       "PerformanceSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Sleep Skulls" },

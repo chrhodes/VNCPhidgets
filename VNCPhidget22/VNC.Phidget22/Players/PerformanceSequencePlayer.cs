@@ -7,7 +7,7 @@ using Prism.Events;
 
 using VNCPhidget22.Configuration;
 
-namespace VNC.Phidget.Players
+namespace VNC.Phidget22.Players
 {
     // TODO(crhodes)
     // Figure out how to make this singleton
@@ -48,9 +48,11 @@ namespace VNC.Phidget.Players
 
         public static PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
-        public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
-        public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
-        public StepperEx ActiveStepperHost { get; set; }
+        // TODO(crhodes)
+        // 
+        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+        //public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
+        //public StepperEx ActiveStepperHost { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
@@ -160,98 +162,101 @@ namespace VNC.Phidget.Players
             Int64 startTicks = 0;
             PerformanceSequence nextPerformanceSequence = null;
 
-            try
-            {
-                AdvancedServoEx phidgetHost = null;
+            // TODO(crhodes)
+            // 
 
-                if (PerformanceLibrary.AvailableAdvancedServoSequences.ContainsKey(performanceSequence.Name ?? ""))
-                {
-                    var advancedServoSequence = PerformanceLibrary.AvailableAdvancedServoSequences[performanceSequence.Name];
+            //try
+            //{
+            //    AdvancedServoEx phidgetHost = null;
 
-                    if (LogPerformanceSequence)
-                    {
-                        startTicks = Log.Trace($"Executing AS Performance Sequence" +
-                            //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
-                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
-                            $" name:>{advancedServoSequence?.Name}<" +
-                            $" sequenceLoops:>{advancedServoSequence?.SequenceLoops}<" +
-                            $" beforeActionLoopSequences:>{advancedServoSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            $" startActionLoopSequences:>{advancedServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            $" actionLoops:>{advancedServoSequence?.ActionLoops}<" +
-                            $" executeActionsInParallel:>{advancedServoSequence?.ExecuteActionsInParallel}<" +
-                            $" actionDuration:>{advancedServoSequence?.ActionsDuration}<" +
-                            $" endActionLoopSequences:>{advancedServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{advancedServoSequence?.AfterActionLoopSequences?.Count()}<" +
-                            $" sequenceDuration:>{advancedServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{advancedServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
+            //    if (PerformanceLibrary.AvailableAdvancedServoSequences.ContainsKey(performanceSequence.Name ?? ""))
+            //    {
+            //        var advancedServoSequence = PerformanceLibrary.AvailableAdvancedServoSequences[performanceSequence.Name];
 
-                    //if (advancedServoSequence.SerialNumber is not null)
-                    //{
-                    //    phidgetHost = GetAdvancedServoHost((int)advancedServoSequence.SerialNumber);
-                    //}
-                    //else if (ActiveAdvancedServoHost is not null)
-                    //{
-                    //    phidgetHost = ActiveAdvancedServoHost;
-                    //}
-                    //else
-                    //{
-                    //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
-                    //    nextPerformanceSequence = null;
-                    //}
+            //        if (LogPerformanceSequence)
+            //        {
+            //            startTicks = Log.Trace($"Executing AS Performance Sequence" +
+            //                //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
+            //                $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+            //                $" name:>{advancedServoSequence?.Name}<" +
+            //                $" sequenceLoops:>{advancedServoSequence?.SequenceLoops}<" +
+            //                $" beforeActionLoopSequences:>{advancedServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+            //                $" startActionLoopSequences:>{advancedServoSequence?.StartActionLoopSequences?.Count()}<" +
+            //                $" actionLoops:>{advancedServoSequence?.ActionLoops}<" +
+            //                $" executeActionsInParallel:>{advancedServoSequence?.ExecuteActionsInParallel}<" +
+            //                $" actionDuration:>{advancedServoSequence?.ActionsDuration}<" +
+            //                $" endActionLoopSequences:>{advancedServoSequence?.EndActionLoopSequences?.Count()}<" +
+            //                $" afterActionLoopSequences:>{advancedServoSequence?.AfterActionLoopSequences?.Count()}<" +
+            //                $" sequenceDuration:>{advancedServoSequence?.SequenceDuration}<" +
+            //                $" nextSequence:>{advancedServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+            //        }
 
-                    phidgetHost = GetAdvancedServoHost((int)performanceSequence.SerialNumber);
+            //        //if (advancedServoSequence.SerialNumber is not null)
+            //        //{
+            //        //    phidgetHost = GetAdvancedServoHost((int)advancedServoSequence.SerialNumber);
+            //        //}
+            //        //else if (ActiveAdvancedServoHost is not null)
+            //        //{
+            //        //    phidgetHost = ActiveAdvancedServoHost;
+            //        //}
+            //        //else
+            //        //{
+            //        //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //        //    nextPerformanceSequence = null;
+            //        //}
 
-                    if (phidgetHost == null) 
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
-                        nextPerformanceSequence = null;
-                    }
+            //        phidgetHost = GetAdvancedServoHost((int)performanceSequence.SerialNumber);
 
-                    if (phidgetHost is not null)
-                    {
-                        if (advancedServoSequence.BeforeActionLoopSequences is not null)
-                        {
-                            foreach (PerformanceSequence sequence in advancedServoSequence.BeforeActionLoopSequences)
-                            {
-                                await ExecutePerformanceSequence(sequence);
-                            }
-                        }
+            //        if (phidgetHost == null) 
+            //        {
+            //            Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //            nextPerformanceSequence = null;
+            //        }
 
-                        await phidgetHost.RunActionLoops(advancedServoSequence);
+            //        if (phidgetHost is not null)
+            //        {
+            //            if (advancedServoSequence.BeforeActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in advancedServoSequence.BeforeActionLoopSequences)
+            //                {
+            //                    await ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
 
-                        if (advancedServoSequence.AfterActionLoopSequences is not null)
-                        {
-                            foreach (PerformanceSequence sequence in advancedServoSequence.AfterActionLoopSequences)
-                            {
-                                await ExecutePerformanceSequence(sequence);
-                            }
-                        }
+            //            await phidgetHost.RunActionLoops(advancedServoSequence);
 
-                        if (advancedServoSequence.SequenceDuration is not null)
-                        {
-                            if (LogPerformanceSequence)
-                            {
-                                Log.Trace($"Zzzzz Sequence:>{advancedServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)advancedServoSequence.SequenceDuration);
-                        }
+            //            if (advancedServoSequence.AfterActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in advancedServoSequence.AfterActionLoopSequences)
+            //                {
+            //                    await ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
 
-                        nextPerformanceSequence = advancedServoSequence.NextSequence;
-                    }
-                }
-                else
-                {
-                    Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
-                    nextPerformanceSequence = null;
-                }
+            //            if (advancedServoSequence.SequenceDuration is not null)
+            //            {
+            //                if (LogPerformanceSequence)
+            //                {
+            //                    Log.Trace($"Zzzzz Sequence:>{advancedServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+            //                }
+            //                Thread.Sleep((Int32)advancedServoSequence.SequenceDuration);
+            //            }
 
-                if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+            //            nextPerformanceSequence = advancedServoSequence.NextSequence;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
+            //        nextPerformanceSequence = null;
+            //    }
+
+            //    if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error(ex, Common.LOG_CATEGORY);
+            //}
 
             return nextPerformanceSequence;
         }
@@ -261,97 +266,100 @@ namespace VNC.Phidget.Players
             Int64 startTicks = 0;
             PerformanceSequence nextPerformanceSequence = null;
 
-            try
-            {
-                InterfaceKitEx phidgetHost = null;
+            // TODO(crhodes)
+            // 
 
-                if (PerformanceLibrary.AvailableInterfaceKitSequences.ContainsKey(performanceSequence.Name))
-                {
-                    var interfaceKitSequence = PerformanceLibrary.AvailableInterfaceKitSequences[performanceSequence.Name];
+            //try
+            //{
+            //    InterfaceKitEx phidgetHost = null;
 
-                    if (LogPerformanceSequence)
-                    {
-                        startTicks = Log.Trace($"Executing IK Performance Sequence" +
-                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
-                            $" name:>{interfaceKitSequence?.Name}<" +
-                            $" sequenceLoops:>{interfaceKitSequence?.SequenceLoops}<" +
-                            $" beforeActionLoopSequences:>{interfaceKitSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            $" startActionLoopSequences:>{interfaceKitSequence?.StartActionLoopSequences?.Count()}<" +
-                            $" actionLoops:>{interfaceKitSequence?.ActionLoops}<" +
-                            $" executeActionsInParallel:>{interfaceKitSequence?.ExecuteActionsInParallel}<" +
-                            $" actionDuration:>{interfaceKitSequence?.ActionsDuration}<" +
-                            $" endActionLoopSequences:>{interfaceKitSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{interfaceKitSequence?.AfterActionLoopSequences?.Count()}<" +
-                            $" sequenceDuration:>{interfaceKitSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{interfaceKitSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
+            //    if (PerformanceLibrary.AvailableInterfaceKitSequences.ContainsKey(performanceSequence.Name))
+            //    {
+            //        var interfaceKitSequence = PerformanceLibrary.AvailableInterfaceKitSequences[performanceSequence.Name];
 
-                    //if (interfaceKitSequence.SerialNumber is not null)
-                    //{
-                    //    phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
-                    //}
-                    //else if (ActiveInterfaceKitHost is not null)
-                    //{
-                    //    phidgetHost = ActiveInterfaceKitHost;
-                    //}
-                    //else
-                    //{
-                    //    Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber}", Common.LOG_CATEGORY);
-                    //    nextPerformanceSequence = null;
-                    //}
+            //        if (LogPerformanceSequence)
+            //        {
+            //            startTicks = Log.Trace($"Executing IK Performance Sequence" +
+            //                $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+            //                $" name:>{interfaceKitSequence?.Name}<" +
+            //                $" sequenceLoops:>{interfaceKitSequence?.SequenceLoops}<" +
+            //                $" beforeActionLoopSequences:>{interfaceKitSequence?.BeforeActionLoopSequences?.Count()}<" +
+            //                $" startActionLoopSequences:>{interfaceKitSequence?.StartActionLoopSequences?.Count()}<" +
+            //                $" actionLoops:>{interfaceKitSequence?.ActionLoops}<" +
+            //                $" executeActionsInParallel:>{interfaceKitSequence?.ExecuteActionsInParallel}<" +
+            //                $" actionDuration:>{interfaceKitSequence?.ActionsDuration}<" +
+            //                $" endActionLoopSequences:>{interfaceKitSequence?.EndActionLoopSequences?.Count()}<" +
+            //                $" afterActionLoopSequences:>{interfaceKitSequence?.AfterActionLoopSequences?.Count()}<" +
+            //                $" sequenceDuration:>{interfaceKitSequence?.SequenceDuration}<" +
+            //                $" nextSequence:>{interfaceKitSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+            //        }
 
-                    phidgetHost = GetInterfaceKitHost((int)performanceSequence.SerialNumber);
+            //        //if (interfaceKitSequence.SerialNumber is not null)
+            //        //{
+            //        //    phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
+            //        //}
+            //        //else if (ActiveInterfaceKitHost is not null)
+            //        //{
+            //        //    phidgetHost = ActiveInterfaceKitHost;
+            //        //}
+            //        //else
+            //        //{
+            //        //    Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //        //    nextPerformanceSequence = null;
+            //        //}
 
-                    if (phidgetHost == null)
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
-                        nextPerformanceSequence = null;
-                    }
+            //        phidgetHost = GetInterfaceKitHost((int)performanceSequence.SerialNumber);
 
-                    if (phidgetHost is not null)
-                    {
-                        if (interfaceKitSequence.BeforeActionLoopSequences is not null)
-                        {
-                            foreach (PerformanceSequence sequence in interfaceKitSequence.BeforeActionLoopSequences)
-                            {
-                                ExecutePerformanceSequence(sequence);
-                            }
-                        }
+            //        if (phidgetHost == null)
+            //        {
+            //            Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //            nextPerformanceSequence = null;
+            //        }
 
-                        await phidgetHost.RunActionLoops(interfaceKitSequence);
+            //        if (phidgetHost is not null)
+            //        {
+            //            if (interfaceKitSequence.BeforeActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in interfaceKitSequence.BeforeActionLoopSequences)
+            //                {
+            //                    ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
 
-                        if (interfaceKitSequence.AfterActionLoopSequences is not null)
-                        {
-                            foreach (PerformanceSequence sequence in interfaceKitSequence.AfterActionLoopSequences)
-                            {
-                                ExecutePerformanceSequence(sequence);
-                            }
-                        }
+            //            await phidgetHost.RunActionLoops(interfaceKitSequence);
 
-                        if (interfaceKitSequence.SequenceDuration is not null)
-                        {
-                            if (LogPerformanceSequence)
-                            {
-                                Log.Trace($"Zzzzz Sequence:>{interfaceKitSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)interfaceKitSequence.SequenceDuration);
-                        }
+            //            if (interfaceKitSequence.AfterActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in interfaceKitSequence.AfterActionLoopSequences)
+            //                {
+            //                    ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
 
-                        nextPerformanceSequence = interfaceKitSequence.NextSequence;
-                    }
-                }
-                else
-                {
-                    Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
-                    nextPerformanceSequence = null;
-                }
+            //            if (interfaceKitSequence.SequenceDuration is not null)
+            //            {
+            //                if (LogPerformanceSequence)
+            //                {
+            //                    Log.Trace($"Zzzzz Sequence:>{interfaceKitSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+            //                }
+            //                Thread.Sleep((Int32)interfaceKitSequence.SequenceDuration);
+            //            }
 
-                if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+            //            nextPerformanceSequence = interfaceKitSequence.NextSequence;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
+            //        nextPerformanceSequence = null;
+            //    }
+
+            //    if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error(ex, Common.LOG_CATEGORY);
+            //}
 
             return nextPerformanceSequence;
         }
@@ -361,267 +369,272 @@ namespace VNC.Phidget.Players
             Int64 startTicks = 0;
             PerformanceSequence nextPerformanceSequence = null;
 
-            try
-            {
-                StepperEx phidgetHost = null;
+            // TODO(crhodes)
+            // 
+            //try
+            //{
+            //    StepperEx phidgetHost = null;
 
-                if (PerformanceLibrary.AvailableStepperSequences.ContainsKey(performanceSequence.Name ?? ""))
-                {
-                    var stepperSequence = PerformanceLibrary.AvailableStepperSequences[performanceSequence.Name];
+            //    if (PerformanceLibrary.AvailableStepperSequences.ContainsKey(performanceSequence.Name ?? ""))
+            //    {
+            //        var stepperSequence = PerformanceLibrary.AvailableStepperSequences[performanceSequence.Name];
 
-                    if (LogPerformanceSequence)
-                    {
-                        startTicks = Log.Trace($"Executing IK Performance Sequence" +
-                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
-                            $" name:>{stepperSequence?.Name}<" +
-                            $" sequenceLoops:>{stepperSequence?.SequenceLoops}<" +
-                            $" beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            $" startActionLoopSequences:>{stepperSequence?.StartActionLoopSequences?.Count()}<" +
-                            $" actionLoops:>{stepperSequence?.ActionLoops}<" +
-                            $" executeActionsInParallel:>{stepperSequence?.ExecuteActionsInParallel}<" +
-                            $" actionDuration:>{stepperSequence?.ActionsDuration}<" +
-                            $" endActionLoopSequences:>{stepperSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
-                            $" sequenceDuration:>{stepperSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
+            //        if (LogPerformanceSequence)
+            //        {
+            //            startTicks = Log.Trace($"Executing IK Performance Sequence" +
+            //                $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+            //                $" name:>{stepperSequence?.Name}<" +
+            //                $" sequenceLoops:>{stepperSequence?.SequenceLoops}<" +
+            //                $" beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
+            //                $" startActionLoopSequences:>{stepperSequence?.StartActionLoopSequences?.Count()}<" +
+            //                $" actionLoops:>{stepperSequence?.ActionLoops}<" +
+            //                $" executeActionsInParallel:>{stepperSequence?.ExecuteActionsInParallel}<" +
+            //                $" actionDuration:>{stepperSequence?.ActionsDuration}<" +
+            //                $" endActionLoopSequences:>{stepperSequence?.EndActionLoopSequences?.Count()}<" +
+            //                $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
+            //                $" sequenceDuration:>{stepperSequence?.SequenceDuration}<" +
+            //                $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+            //        }
 
-                    //if (stepperSequence.SerialNumber is not null)
-                    //{
-                    //    phidgetHost = GetStepperHost((int)stepperSequence.SerialNumber);
-                    //}
-                    //else if (ActiveInterfaceKitHost is not null)
-                    //{
-                    //    phidgetHost = ActiveStepperHost;
-                    //}
-                    //else
-                    //{
-                    //    Log.Error($"Cannot locate host to execute SerialNumber:{stepperSequence.SerialNumber}", Common.LOG_CATEGORY);
-                    //    nextPerformanceSequence = null;
-                    //}
+            //        //if (stepperSequence.SerialNumber is not null)
+            //        //{
+            //        //    phidgetHost = GetStepperHost((int)stepperSequence.SerialNumber);
+            //        //}
+            //        //else if (ActiveInterfaceKitHost is not null)
+            //        //{
+            //        //    phidgetHost = ActiveStepperHost;
+            //        //}
+            //        //else
+            //        //{
+            //        //    Log.Error($"Cannot locate host to execute SerialNumber:{stepperSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //        //    nextPerformanceSequence = null;
+            //        //}
 
-                    phidgetHost = GetStepperHost((int)performanceSequence.SerialNumber);
+            //        phidgetHost = GetStepperHost((int)performanceSequence.SerialNumber);
 
-                    if (phidgetHost == null)
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
-                        nextPerformanceSequence = null;
-                    }
+            //        if (phidgetHost == null)
+            //        {
+            //            Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //            nextPerformanceSequence = null;
+            //        }
 
-                    if (phidgetHost is not null)
-                    {
-                        if (stepperSequence.BeforeActionLoopSequences is not null)
-                        {
-                            foreach (PerformanceSequence sequence in stepperSequence.BeforeActionLoopSequences)
-                            {
-                                ExecutePerformanceSequence(sequence);
-                            }
-                        }
+            //        if (phidgetHost is not null)
+            //        {
+            //            if (stepperSequence.BeforeActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in stepperSequence.BeforeActionLoopSequences)
+            //                {
+            //                    ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
 
-                        await phidgetHost.RunActionLoops(stepperSequence);
+            //            await phidgetHost.RunActionLoops(stepperSequence);
 
-                        if (stepperSequence.AfterActionLoopSequences is not null)
-                        {
-                            foreach (PerformanceSequence sequence in stepperSequence.AfterActionLoopSequences)
-                            {
-                                ExecutePerformanceSequence(sequence);
-                            }
-                        }
+            //            if (stepperSequence.AfterActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in stepperSequence.AfterActionLoopSequences)
+            //                {
+            //                    ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
 
-                        if (stepperSequence.SequenceDuration is not null)
-                        {
-                            if (LogPerformanceSequence)
-                            {
-                                Log.Trace($"Zzzzz Sequence:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)stepperSequence.SequenceDuration);
-                        }
+            //            if (stepperSequence.SequenceDuration is not null)
+            //            {
+            //                if (LogPerformanceSequence)
+            //                {
+            //                    Log.Trace($"Zzzzz Sequence:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+            //                }
+            //                Thread.Sleep((Int32)stepperSequence.SequenceDuration);
+            //            }
 
-                        nextPerformanceSequence = stepperSequence.NextSequence;
-                    }
-                }
-                else
-                {
-                    Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
-                    nextPerformanceSequence = null;
-                }
+            //            nextPerformanceSequence = stepperSequence.NextSequence;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
+            //        nextPerformanceSequence = null;
+            //    }
 
-                if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
+            //    if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error(ex, Common.LOG_CATEGORY);
+            //}
 
             return nextPerformanceSequence;
         }
 
-        private AdvancedServoEx GetAdvancedServoHost(int serialNumber)
-        {
-            PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidgets[serialNumber];
+        // TODO(crhodes)
+        // 
 
-            AdvancedServoEx advancedServoHost = null;
+        //private AdvancedServoEx GetAdvancedServoHost(int serialNumber)
+        //{
+        //    PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidget22[serialNumber];
 
-            if (phidgetDevice?.PhidgetEx is not null)
-            {
-                advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+        //    AdvancedServoEx advancedServoHost = null;
 
-                advancedServoHost.LogPhidgetEvents = LogPhidgetEvents;
+        //    if (phidgetDevice?.PhidgetEx is not null)
+        //    {
+        //        advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-                advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-                advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-                advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+        //        advancedServoHost.LogPhidgetEvents = LogPhidgetEvents;
 
-                advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                advancedServoHost.LogSequenceAction = LogSequenceAction;
-                advancedServoHost.LogActionVerification = LogActionVerification;
-            }
-            else
-            {
-                phidgetDevice.PhidgetEx = new AdvancedServoEx(
-                    phidgetDevice.IPAddress,
-                    phidgetDevice.Port,
-                    serialNumber,
-                    EventAggregator);
+        //        advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //        advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+        //        advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-                advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
+        //        advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        advancedServoHost.LogSequenceAction = LogSequenceAction;
+        //        advancedServoHost.LogActionVerification = LogActionVerification;
+        //    }
+        //    else
+        //    {
+        //        phidgetDevice.PhidgetEx = new AdvancedServoEx(
+        //            phidgetDevice.IPAddress,
+        //            phidgetDevice.Port,
+        //            serialNumber,
+        //            EventAggregator);
 
-                advancedServoHost.LogPhidgetEvents = LogPhidgetEvents;
+        //        advancedServoHost = (AdvancedServoEx)phidgetDevice.PhidgetEx;
 
-                advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-                advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-                advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+        //        advancedServoHost.LogPhidgetEvents = LogPhidgetEvents;
 
-                advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                advancedServoHost.LogSequenceAction = LogSequenceAction;
-                advancedServoHost.LogActionVerification = LogActionVerification;
+        //        advancedServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //        advancedServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+        //        advancedServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-                // TODO(crhodes)
-                // Should we do open somewhere else?
-                // If this times out we need to clear phidgetDevice
+        //        advancedServoHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        advancedServoHost.LogSequenceAction = LogSequenceAction;
+        //        advancedServoHost.LogActionVerification = LogActionVerification;
 
-                advancedServoHost.Open(Common.PhidgetOpenTimeout);
-            }
+        //        // TODO(crhodes)
+        //        // Should we do open somewhere else?
+        //        // If this times out we need to clear phidgetDevice
 
-            // NOTE(crhodes)
-            // Save this so we can use it in other commands
-            // that don't specify a SerialNumber
+        //        advancedServoHost.Open(Common.PhidgetOpenTimeout);
+        //    }
 
-            ActiveAdvancedServoHost = advancedServoHost;
+        //    // NOTE(crhodes)
+        //    // Save this so we can use it in other commands
+        //    // that don't specify a SerialNumber
 
-            return advancedServoHost;
-        }
+        //    ActiveAdvancedServoHost = advancedServoHost;
 
-        private InterfaceKitEx GetInterfaceKitHost(int serialNumber)
-        {
-            InterfaceKitEx interfaceKitHost = null;
+        //    return advancedServoHost;
+        //}
 
-            PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidgets[serialNumber];
+        //private InterfaceKitEx GetInterfaceKitHost(int serialNumber)
+        //{
+        //    InterfaceKitEx interfaceKitHost = null;
 
-            if (phidgetDevice?.PhidgetEx is not null)
-            {
-                interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
+        //    PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidget22[serialNumber];
 
-                interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
+        //    if (phidgetDevice?.PhidgetEx is not null)
+        //    {
+        //        interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
-                interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-                interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-                interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+        //        interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
 
-                interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
-                interfaceKitHost.LogSequenceAction = LogSequenceAction;
-            }
-            else
-            {
-                phidgetDevice.PhidgetEx = new InterfaceKitEx(
-                    phidgetDevice.IPAddress,
-                    phidgetDevice.Port,
-                    serialNumber,
-                    true,
-                    EventAggregator);
+        //        interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+        //        interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+        //        interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
+        //        interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        interfaceKitHost.LogSequenceAction = LogSequenceAction;
+        //    }
+        //    else
+        //    {
+        //        phidgetDevice.PhidgetEx = new InterfaceKitEx(
+        //            phidgetDevice.IPAddress,
+        //            phidgetDevice.Port,
+        //            serialNumber,
+        //            true,
+        //            EventAggregator);
 
-                interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
+        //        interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
-                interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-                interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-                interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+        //        interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
 
-                interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
-                interfaceKitHost.LogSequenceAction = LogSequenceAction;
+        //        interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+        //        interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+        //        interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                // TODO(crhodes)
-                // Should we do open somewhere else?
-                // If this times out we need to clear phidgetDevice
+        //        interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        interfaceKitHost.LogSequenceAction = LogSequenceAction;
 
-                interfaceKitHost.Open(Common.PhidgetOpenTimeout);
-            }
+        //        // TODO(crhodes)
+        //        // Should we do open somewhere else?
+        //        // If this times out we need to clear phidgetDevice
 
-            // NOTE(crhodes)
-            // Save this so we can use it in other commands
-            // that don't specify a SerialNumber
+        //        interfaceKitHost.Open(Common.PhidgetOpenTimeout);
+        //    }
 
-            ActiveInterfaceKitHost = interfaceKitHost;
+        //    // NOTE(crhodes)
+        //    // Save this so we can use it in other commands
+        //    // that don't specify a SerialNumber
 
-            return interfaceKitHost;
-        }
-        private StepperEx GetStepperHost(int serialNumber)
-        {
-            StepperEx stepperHost = null;
+        //    ActiveInterfaceKitHost = interfaceKitHost;
 
-            PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidgets[serialNumber];
+        //    return interfaceKitHost;
+        //}
+        //private StepperEx GetStepperHost(int serialNumber)
+        //{
+        //    StepperEx stepperHost = null;
 
-            if (phidgetDevice?.PhidgetEx is not null)
-            {
-                stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
+        //    PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidget22[serialNumber];
 
-                stepperHost.LogPhidgetEvents = LogPhidgetEvents;
+        //    if (phidgetDevice?.PhidgetEx is not null)
+        //    {
+        //        stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
 
-                //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
-                //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
-                //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
+        //        stepperHost.LogPhidgetEvents = LogPhidgetEvents;
 
-                stepperHost.LogPerformanceSequence = LogPerformanceSequence;
-                stepperHost.LogSequenceAction = LogSequenceAction;
-                stepperHost.LogActionVerification = LogActionVerification;
+        //        //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
+        //        //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
+        //        //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            }
-            else
-            {
-                phidgetDevice.PhidgetEx = new StepperEx(
-                    phidgetDevice.IPAddress,
-                    phidgetDevice.Port,
-                    serialNumber,
-                    EventAggregator);
+        //        stepperHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        stepperHost.LogSequenceAction = LogSequenceAction;
+        //        stepperHost.LogActionVerification = LogActionVerification;
 
-                stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
+        //    }
+        //    else
+        //    {
+        //        phidgetDevice.PhidgetEx = new StepperEx(
+        //            phidgetDevice.IPAddress,
+        //            phidgetDevice.Port,
+        //            serialNumber,
+        //            EventAggregator);
 
-                stepperHost.LogPhidgetEvents = LogPhidgetEvents;
+        //        stepperHost = (StepperEx)phidgetDevice.PhidgetEx;
 
-                //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
-                //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
-                //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
+        //        stepperHost.LogPhidgetEvents = LogPhidgetEvents;
 
-                stepperHost.LogPerformanceSequence = LogPerformanceSequence;
-                stepperHost.LogSequenceAction = LogSequenceAction;
-                stepperHost.LogActionVerification = LogActionVerification;
+        //        //stepperHost.LogInputChangeEvents = LogInputChangeEvents;
+        //        //stepperHost.LogOutputChangeEvents = LogOutputChangeEvents;
+        //        //stepperHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-                // TODO(crhodes)
-                // Should we do open somewhere else?
-                // If this times out we need to clear phidgetDevice
+        //        stepperHost.LogPerformanceSequence = LogPerformanceSequence;
+        //        stepperHost.LogSequenceAction = LogSequenceAction;
+        //        stepperHost.LogActionVerification = LogActionVerification;
 
-                stepperHost.Open(Common.PhidgetOpenTimeout);
-            }
+        //        // TODO(crhodes)
+        //        // Should we do open somewhere else?
+        //        // If this times out we need to clear phidgetDevice
 
-            // NOTE(crhodes)
-            // Save this so we can use it in other commands
-            // that don't specify a SerialNumber
+        //        stepperHost.Open(Common.PhidgetOpenTimeout);
+        //    }
 
-            ActiveStepperHost = stepperHost;
+        //    // NOTE(crhodes)
+        //    // Save this so we can use it in other commands
+        //    // that don't specify a SerialNumber
 
-            return stepperHost;
-        }
+        //    ActiveStepperHost = stepperHost;
+
+        //    return stepperHost;
+        //}
 
         #endregion
 

@@ -7,7 +7,7 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
 
-    xmlns:local="clr-namespace:VNCPhidgets21Explorer"
+    xmlns:local="clr-namespace:VNCPhidget22Explorer"
 
     xmlns:d="http://schemas.microsoft.com/expression/interactivedesigner/2006"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

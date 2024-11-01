@@ -1,6 +1,6 @@
 ﻿using VNC.Core.DomainServices;
 
-namespace VNC.Phidget.Lookups
+namespace VNC.Phidget22.Lookups
 {
     public class LookupHost : ILookupItem<int>
     {

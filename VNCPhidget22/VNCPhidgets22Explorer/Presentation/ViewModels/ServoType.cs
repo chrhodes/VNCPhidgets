@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget2221Explorer.Presentation.ViewModels
 {
     public enum ServoType
     {

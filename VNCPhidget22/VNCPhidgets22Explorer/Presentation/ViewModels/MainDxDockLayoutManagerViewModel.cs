@@ -8,7 +8,7 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class MainDxDockLayoutManagerViewModel : EventViewModelBase, IInstanceCountVM
     {

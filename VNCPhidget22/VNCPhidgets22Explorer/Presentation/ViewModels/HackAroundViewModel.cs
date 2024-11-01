@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Phidgets;
+using Phidget22;
 
 using Prism.Commands;
 using Prism.Events;
@@ -13,15 +13,15 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget;
-using VNC.Phidget.Events;
-using VNC.Phidget.Players;
+using VNC.Phidget22;
+using VNC.Phidget22.Events;
+using VNC.Phidget22.Players;
 
 using VNCPhidget22.Configuration;
 
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class HackAroundViewModel 
         : EventViewModelBase, IMainViewModel, IInstanceCountVM
@@ -761,7 +761,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             Message = "Button2 Clicked - Opening PhidgetManager";
 
-            Phidgets.Manager phidgetManager = new Phidgets.Manager();
+            Phidget22.Manager phidgetManager = new Phidget22.Manager();
 
             phidgetManager.Attach += PhidgetManager_Attach;
             phidgetManager.Detach += PhidgetManager_Detach;
@@ -1206,7 +1206,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    // Think through whether this make sense.
         //    // Also, unless we have multiple call here it only does one AdvancedServo
         //    // We need a generic routine like "Engage and Center Servos
-        //    // that calls each of the appropriate phidgets.
+        //    // that calls each of the appropriate Phidget22.
 
         //    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
@@ -1300,7 +1300,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
         //    // Think through whether this make sense.
         //    // Also, unless we have multiple call here it only does one AdvancedServo
         //    // We need a generic routine like "Engage and Center Servos
-        //    // that calls each of the appropriate phidgets.
+        //    // that calls each of the appropriate Phidget22.
 
         //    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
@@ -1830,13 +1830,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             // Need a cleaner way of handing logging.  Maybe a LoggingConfiguration class that gets passed around.
 
             ActivePerformancePlayer.LogPerformance = LogPerformance;
-
-            ActivePerformancePlayer.LogPerformanceSequence = LogPerformanceSequence;
-
-            ActivePerformancePlayer.LogSequenceAction = LogSequenceAction;
-            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
-
             ActivePerformancePlayer.LogPhidgetEvents = LogPhidgetEvents;
+            ActivePerformancePlayer.LogPerformanceSequence = LogPerformanceSequence;
+            ActivePerformancePlayer.LogSequenceAction = LogPerformanceSequence;
+            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
 
             return ActivePerformancePlayer;
         }
@@ -1909,7 +1906,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             {
                 switch (pe.Type)
                 {
-                    case Phidgets.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
+                    case Phidget22.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
                         //System.Diagnostics.Debug.WriteLine(
                         //    string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
                         //        ifk.SerialNumber));
@@ -1962,27 +1959,27 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private void PhidgetManager_Error(object sender, Phidgets.Events.ErrorEventArgs e)
+        private void PhidgetManager_Error(object sender, Phidget22.Events.ErrorEventArgs e)
         {
             Log.Trace($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
         }
 
-        private void PhidgetManager_ServerDisconnect(object sender, Phidgets.Events.ServerDisconnectEventArgs e)
+        private void PhidgetManager_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
         {
             Log.Trace($"ServerDisconnect {e.Device}", Common.LOG_CATEGORY);
         }
 
-        private void PhidgetManager_ServerConnect(object sender, Phidgets.Events.ServerConnectEventArgs e)
+        private void PhidgetManager_ServerConnect(object sender, Phidget22.Events.ServerConnectEventArgs e)
         {
             Log.Trace($"ServerConnect {e.Device}", Common.LOG_CATEGORY);
         }
 
-        private void PhidgetManager_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        private void PhidgetManager_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         {
             Log.Trace($"Detach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         }
 
-        private void PhidgetManager_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        private void PhidgetManager_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         {
             Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         }

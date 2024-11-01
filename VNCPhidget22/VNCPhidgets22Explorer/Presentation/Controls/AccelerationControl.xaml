@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidgets21Explorer.Presentation.Controls.AccelerationControl"
+    x:Class="VNCPhidget22Explorer.Presentation.Controls.AccelerationControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -16,12 +16,12 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
-    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
-    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"      
-    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
-    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"      
+    xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
     	
-    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    xmlns:core="clr-namespace:VNCPhidgets22Explorer.Core;assembly=VNCPhidgets22Explorer.Core"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"

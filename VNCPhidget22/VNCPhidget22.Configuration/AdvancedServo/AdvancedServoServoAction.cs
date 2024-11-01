@@ -9,7 +9,9 @@ namespace VNCPhidget22.Configuration
         /// </summary>
         public int ServoIndex { get; set; }
 
-        public Phidgets.ServoServo.ServoType? ServoType { get; set; }
+        // TODO(crhodes)
+        // How to do this going forward.  May need our own enum
+        //public Phidget22.ServoServo.ServoType? ServoType { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)

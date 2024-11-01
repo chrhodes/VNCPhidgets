@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Phidget22;
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
 
-namespace VNC.Phidget
+namespace VNC.Phidget22
 {
     public class PhidgetLibrary
     {
@@ -27,17 +28,17 @@ namespace VNC.Phidget
 
         #region Fields and Properties (None)
 
-        //public static Dictionary<Int32, PhidgetDevice> AvailablePhidgets = new Dictionary<Int32, PhidgetDevice>();
-        public static Dictionary<Int32, PhidgetDevice> _availablePhidgets;
-        public static Dictionary<Int32, PhidgetDevice> AvailablePhidgets 
+        //public static Dictionary<Int32, PhidgetDevice> AvailablePhidget22 = new Dictionary<Int32, PhidgetDevice>();
+        public static Dictionary<Int32, PhidgetDevice> _availablePhidget22;
+        public static Dictionary<Int32, PhidgetDevice> AvailablePhidget22 
         {
             get
             {
-                if (_availablePhidgets is null)
+                if (_availablePhidget22 is null)
                 {
                     BuildPhidgetDeviceDictionary();
                 }
-                return _availablePhidgets;
+                return _availablePhidget22;
             }
             set 
             { 
@@ -72,7 +73,7 @@ namespace VNC.Phidget
         {
             Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            _availablePhidgets = new Dictionary<int, PhidgetDevice>();
+            _availablePhidget22 = new Dictionary<int, PhidgetDevice>();
 
             foreach (VNCPhidgetConfig.Host host in VNCPhidgetConfig.PerformanceLibrary.Hosts)
             {
@@ -80,11 +81,12 @@ namespace VNC.Phidget
                 {
                     foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)
                     {
-                        _availablePhidgets.Add(
+                        _availablePhidget22.Add(
                             advancedServo.SerialNumber,
                             new PhidgetDevice(
                                 host.IPAddress, host.Port,
-                                Phidgets.Phidget.PhidgetClass.ADVANCEDSERVO, 
+                                DeviceClass.AdvancedServo, 
+                                ChannelClass.RCServo,
                                 advancedServo.SerialNumber));
                     }
                 }
@@ -93,11 +95,12 @@ namespace VNC.Phidget
                 {
                     foreach (VNCPhidgetConfig.InterfaceKit interfaceKit in host.InterfaceKits)
                     {
-                        _availablePhidgets.Add(
+                        _availablePhidget22.Add(
                             interfaceKit.SerialNumber,
                             new PhidgetDevice(
                                 host.IPAddress, host.Port,
-                                Phidgets.Phidget.PhidgetClass.INTERFACEKIT, 
+                                DeviceClass.InterfaceKit, 
+                                ChannelClass.None,
                                 interfaceKit.SerialNumber));
                     }
                 }
@@ -106,11 +109,12 @@ namespace VNC.Phidget
                 {
                     foreach (VNCPhidgetConfig.Stepper stepper in host.Steppers)
                     {
-                        _availablePhidgets.Add(
+                        _availablePhidget22.Add(
                             stepper.SerialNumber,
                             new PhidgetDevice(
                                 host.IPAddress, host.Port,
-                                Phidgets.Phidget.PhidgetClass.STEPPER, 
+                                DeviceClass.Stepper,
+                                ChannelClass.None,
                                 stepper.SerialNumber));
                     }
                 }
@@ -120,7 +124,5 @@ namespace VNC.Phidget
         }
 
         #endregion
-
-
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading;
 
-using Phidgets;
+using Phidget22;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget;
+using VNC.Phidget22;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget2221Explorer.Presentation.ViewModels
 {
     // TODO(crhodes)
     // Not sure we need INPCBase.  See if any bindings reach for this class
@@ -46,9 +46,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public int ServoIndex { get; set; }
 
-        private Phidgets.ServoServo.ServoType? _servoType;
+        private Phidget22.ServoServo.ServoType? _servoType;
 
-        public Phidgets.ServoServo.ServoType? ServoType
+        public Phidget22.ServoServo.ServoType? ServoType
         {
             get => _servoType;
             set
@@ -69,7 +69,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 {
                     if (AdvancedServoEx.AdvancedServo is not null)
                     {
-                        AdvancedServoEx.AdvancedServo.servos[ServoIndex].Type = (Phidgets.ServoServo.ServoType)value;
+                        AdvancedServoEx.AdvancedServo.servos[ServoIndex].Type = (Phidget22.ServoServo.ServoType)value;
 
                         // Need to update all the properties since the type changed.
                         // NB. Even setting to the same Type causes a refresh of the properties
@@ -738,7 +738,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             try
             {
                 //var servo = AdvancedServoEx.AdvancedServo.servos[ServoIndex];
-                //ServoType = Phidgets.ServoServo.ServoType.DE;
+                //ServoType = Phidget22.ServoServo.ServoType.DE;
 
                 Stopped = null;
                 Engaged = null;
@@ -905,12 +905,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 // Make it possible to move servo without using UI to set non-zero velocity
                 //VelocityLimit = servo.VelocityLimit == 0 ? 1 : servo.VelocityLimit;
                 //VelocityLimit = servo.VelocityLimit;
-                // Maybe this should only happen if not Engaged
+                // Maybe this should onlyh happen if not Engaged
 
-                // NOTE(crhodes)
-                // Next line keeps throwing exception on SPC23 
-                //VelocityLimit = servo.VelocityLimit;
-                VelocityLimit = VelocityMin + 1;
+                VelocityLimit = servo.VelocityLimit;
+                //VelocityLimit = VelocityMin + 1;
                 VelocityMax = servo.VelocityMax;
 
                 // DevicePosition{Min,Max} should only be set when ServoType changes

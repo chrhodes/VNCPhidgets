@@ -13,7 +13,7 @@ using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
 
-namespace VNCPhidgets21Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class ManagePerformanceLibraryViewModel : EventViewModelBase, IManagePerformanceLibraryViewModel, IInstanceCountVM
     {

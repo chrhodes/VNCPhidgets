@@ -4,9 +4,9 @@ using System.Linq;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidgets21Explorer.Presentation.Views;
+using VNCPhidget22Explorer.Presentation.Views;
 
-namespace VNCPhidgets21Explorer.Presentation.Controls
+namespace VNCPhidget22Explorer.Presentation.Controls
 {
     public partial class HostSelector : ViewBase, IHostSelector, IInstanceCountV
     {

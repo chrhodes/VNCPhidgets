@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
 
-using VNCPhidgets21Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
 using System.Linq;
 
-namespace VNCPhidgets21Explorer.Presentation.Controls
+namespace VNCPhidget22Explorer.Presentation.Controls
 {
     public partial class AccelerationControl : ViewBase, IInstanceCountV
     {

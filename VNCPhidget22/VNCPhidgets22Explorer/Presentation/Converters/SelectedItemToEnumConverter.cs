@@ -6,7 +6,7 @@ using System.Windows.Markup;
 //using Microsoft.AspNetCore.SignalR.Protocol;
 
 
-namespace VNCPhidgets21Explorer.Presentation.Converters
+namespace VNCPhidget22Explorer.Presentation.Converters
 {
     public class SelectedItemToEnumConverter : MarkupExtension, IValueConverter
     {

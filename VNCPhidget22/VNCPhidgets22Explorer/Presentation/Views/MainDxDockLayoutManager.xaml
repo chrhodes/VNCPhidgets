@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidgets21Explorer.Presentation.Views.MainDxDockLayoutManager"
+    x:Class="VNCPhidget22Explorer.Presentation.Views.MainDxDockLayoutManager"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -16,12 +16,12 @@
         
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
        
-    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
-    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
-    xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
-    xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
+    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
+    xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
 
-    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    xmlns:core="clr-namespace:VNCPhidgets22Explorer.Core;assembly=VNCPhidgets22Explorer.Core"
 
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core" 
@@ -149,7 +149,7 @@
 
                         <dxdo:LayoutGroup Orientation="Horizontal" ItemHeight="Auto" >
 
-                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
+                            <!--<dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                             </dxdo:LayoutPanel>
 
@@ -175,9 +175,9 @@
 
                             <dxdo:LayoutPanel Caption="Stepper1063-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region3}"/>
-                            </dxdo:LayoutPanel>
+                            </dxdo:LayoutPanel>-->
 
-                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
                             </dxdo:LayoutPanel>
 

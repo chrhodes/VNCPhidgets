@@ -6,7 +6,7 @@ using System.Windows.Markup;
 
 using VNCPhidget22.Configuration;
 
-namespace VNCPhidgets21Explorer.Presentation.Converters
+namespace VNCPhidget22Explorer.Presentation.Converters
 {
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control

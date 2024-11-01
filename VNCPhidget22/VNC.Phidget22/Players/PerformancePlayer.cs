@@ -11,7 +11,7 @@ using VNC.Core.Mvvm;
 
 using VNCPhidget22.Configuration;
 
-namespace VNC.Phidget.Players
+namespace VNC.Phidget22.Players
 {
     public class PerformancePlayer : INPCBase
     {
