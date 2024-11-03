@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-//using Phidget22;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -18,6 +19,8 @@ using VNC.Phidget22;
 using VNCPhidget22.Configuration;
 
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
+using VNCPhidget22Explorer.Presentation.Controls;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -173,19 +176,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Phidget
 
-        private Phidget22.Phidget _phidgetDevice;
-        public Phidget22.Phidget PhidgetDevice
+        private Phidgets.Phidget _phidget22Device;
+        public Phidgets.Phidget Phidget22Device
         {
-            get => _phidgetDevice;
+            get => _phidget22Device;
             set
             {
-                if (_phidgetDevice == value)
+                if (_phidget22Device == value)
                     return;
-                _phidgetDevice = value;
+                _phidget22Device = value;
                 OnPropertyChanged();
             }
         }
-
 
         private bool _logPhidgetEvents = false;
         public bool LogPhidgetEvents
@@ -354,19 +356,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _activeInterfaceKit = value;
 
-                if (_activeInterfaceKit is not null)
-                {
-                    // TODO(crhodes)
-                    // 
-                    //PhidgetDevice = _activeInterfaceKit.InterfaceKit;
-                }
-                else
-                {
-                    // TODO(crhodes)
-                    // PhidgetDevice = null ???
-                    // Will need to declare Phidget22.Phidget?
-                    PhidgetDevice = null;
-                }
+                //if (_activeInterfaceKit is not null)
+                //{
+                //    // FIX(crhodes)
+                //    // 
+                //    //PhidgetDevice = _activeInterfaceKit.InterfaceKit;
+                //    // Not sure we need to do this.  See code in Open.
+                //    Phidget22Device = _activeInterfaceKit.PhysicalPhidget;
+                //}
+                //else
+                //{
+                //    // TODO(crhodes)
+                //    // PhidgetDevice = null ???
+                //    // Will need to declare Phidget22.Phidget?
+                //    Phidget22Device = null;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1368,13 +1372,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // ActiveInterfaceKit_OutputChange may have called us
                 // No need to update if same state.
 
-                // TODO(crhodes)
+                // FIX(crhodes)
                 // 
                 //if (ActiveInterfaceKit is not null
                 //    && value != ActiveInterfaceKit.InterfaceKit.outputs[0])
                 //{
                 //    ActiveInterfaceKit.InterfaceKit.outputs[0] = (Boolean)value;
                 //}
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[0].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[0].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1390,13 +1400,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO1 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[1])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[1] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[1].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[1].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1412,13 +1420,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO2 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[2])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[2] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[2].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[2].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1433,14 +1439,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_dO3 == value)
                     return;
                 _dO3 = value;
-
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[3])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[3] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[3].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[3].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1456,13 +1459,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO4 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[4])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[4] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[4].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[4].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1478,13 +1479,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO5 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[5])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[5] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[5].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[5].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1499,14 +1498,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_dO6 == value)
                     return;
                 _dO6 = value;
-
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[6])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[6] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[6].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[6].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1522,13 +1518,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO7 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[7])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[7] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[7].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[7].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1542,15 +1536,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 if (_dO8 == value)
                     return;
-                _dO0 = value;
+                _dO8 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[8])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[8] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[8].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[8].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1566,13 +1558,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO9 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[9])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[9] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[9].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[9].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1588,13 +1578,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO10 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[10])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[10] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[10].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[10].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1610,13 +1598,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO11 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[11])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[11] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[11].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[11].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1632,13 +1618,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO12 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[12])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[12] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[12].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[12].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1654,13 +1638,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO13 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[13])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[13] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[13].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[13].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1676,13 +1658,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO14 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[14])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[14] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[14].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[14].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -1698,13 +1678,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _dO15 = value;
 
-                // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[15])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[15] = (Boolean)value;
-                //}
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[15].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[15].State = (Boolean)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -2051,10 +2029,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 SelectedInterfaceKit.SerialNumber,
                 EventAggregator);
 
-            // TODO(crhodes)
+            // FIX(crhodes)
             // 
             //ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
             //ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
+
 
             // NOTE(crhodes)
             // Capture Digital Input and Output changes so we can update the UI
@@ -2079,7 +2058,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
             ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
 
+            ActiveInterfaceKit.PhidgetDeviceAttached += ActiveInterfaceKit_PhidgetDeviceAttached;
+
+            var pdBefore = Phidget22Device;
+
             await Task.Run(() => ActiveInterfaceKit.Open());
+
+            Phidget22Device = ActiveInterfaceKit.PhysicalPhidget;
+
+            // NOTE(crhodes)
+            // This won't work as Phidget22Device won't be set until Phidget_Attach event fires
+
+            //DeviceAttached = Phidget22Device.Attached;
+
+            // NOTE(crhodes)
+            // I don't think these are gonna fire given how we populate PhysicalPhidget
+
+            //ActiveInterfaceKit.PhysicalPhidget.Attach += ActiveInterfaceKit_Attach;
+            //ActiveInterfaceKit.PhysicalPhidget.Detach += ActiveInterfaceKit_Detach;
+
 
             //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
 
@@ -2117,6 +2114,26 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ActiveInterfaceKit_PhidgetDeviceAttached(object? sender, EventArgs e)
+        {
+            Phidget22Device = ActiveInterfaceKit.PhysicalPhidget;
+
+            DeviceAttached = Phidget22Device.Attached;
+
+            // NOTE(crhodes)
+            // This won't work as Phidget22Device won't be set until Phidget_Attach event fires
+
+            //DeviceAttached = Phidget22Device.Attached;
+
+            // NOTE(crhodes)
+            // I don't think these are gonna fire given how we populate PhysicalPhidget
+
+            //ActiveInterfaceKit.PhysicalPhidget.Attach += ActiveInterfaceKit_Attach;
+            //ActiveInterfaceKit.PhysicalPhidget.Detach += ActiveInterfaceKit_Detach;
+
+            UpdateInterfaceKitProperties();
         }
 
         public bool OpenInterfaceKitCanExecute()
@@ -2279,7 +2296,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void UpdateInterfaceKitProperties()
         {
-            // TODO(crhodes)
+            var pd = ActiveInterfaceKit.PhysicalPhidget;
+
+            // FIX(crhodes)
             // 
             //if (ActiveInterfaceKit.InterfaceKit.Attached)
             //{

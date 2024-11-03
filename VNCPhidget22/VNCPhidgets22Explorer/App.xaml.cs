@@ -350,7 +350,8 @@ namespace VNCPhidget22Explorer
 #endif
 
             // HACK(crhodes)
-            // This should probably be done in App.xaml.cs
+            // This is a way to get Phidget22.Net.AddServer called.
+            // Revisit.
 
             PerformanceLibrary perfLib = new PerformanceLibrary();
 

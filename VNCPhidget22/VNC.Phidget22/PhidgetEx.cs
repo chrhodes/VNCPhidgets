@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
-    public class PhidgetEx : Phidgets.Phidget
+    // NOTE(crhodes)
+    // Not sure we need to inherit from Phidgets.Phidget as the AdvancedServo, InterfaceKit, and Stepper no longer exist
+    public class PhidgetEx // : Phidgets.Phidget
     {
         #region Constructors, Initialization, and Load
 
@@ -17,7 +22,7 @@ namespace VNC.Phidget22
         public PhidgetEx(string ipAddress, int port, int serialNumber)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter {ipAddress},{port} {serialNumber}", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // 
@@ -44,14 +49,41 @@ namespace VNC.Phidget22
         public Host Host { get; set; }
         public int SerialNumber { get; set; }
 
-        public bool LogPhidgetEvents { get; set; }
+        public Phidgets.Phidget PhysicalPhidget 
+        { 
+            get; 
+            set; 
+        }
+
+        public bool LogPhidgetEvents { get; 
+            set; }
+
+        //public delegate void PhidgetDeviceAttachedType();
+        //public event PhidgetDeviceAttachedType PhidgetDeviceAttached;
+
+        //protected virtual void OnPhidgetDeviceAttached()
+        //{
+        //    PhidgetDeviceAttached?.Invoke();
+        //}
+
+        //public event EventHandler PhidgetDeviceAttached;
+
+        //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
+        //{
+        //    PhidgetDeviceAttached?.Invoke(this, e);
+        //}
+
+        protected virtual void PhidgetDeviceIsAttached()
+        {
+            Int32 a = 2;
+        }
 
         #endregion
 
         #region Event Handlers
 
-        // TODO(crhodes)
-        // Figure 
+        // FIX(crhodes)
+        // 
         //public void Phidget_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
         //{
         //    if (LogPhidgetEvents)
@@ -86,53 +118,149 @@ namespace VNC.Phidget22
         //    }
         //}
 
-        //internal virtual void Phidget_Attach(object sender, Phidget22.Events.AttachEventArgs e)
-        //{
-        //    if (LogPhidgetEvents)
-        //    {
-        //        try
-        //        {
-        //            Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
+        internal virtual void Phidget_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    // FIX(crhodes)
+                    // 
+                    //Phidgets.Phidget device = (Phidgets.Phidget)e.Device;
+                    Log.EVENT_HANDLER($"Phidget_Attach:", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber} ID:{device.ID}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
 
-        //            Log.EVENT_HANDLER($"Phidget_Attach {device.Address},{device.Port} S#:{device.SerialNumber} ID:{device.ID}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
+            if (PhysicalPhidget is null)
+            {
+                var s = sender;
+                
+                PhysicalPhidget = ((Phidgets.Phidget)sender).Parent;
 
-        //public void Phidget_Detach(object sender, Phidget22.Events.DetachEventArgs e)
-        //{
-        //    if (LogPhidgetEvents)
-        //    {
-        //        try
-        //        {
-        //            Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
+                PhidgetDeviceIsAttached();
+                //OnPhidgetDeviceAttached(new EventArgs());
+            }
+        }
 
-        //            Log.EVENT_HANDLER($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error(ex, Common.LOG_CATEGORY);
-        //        }
-        //    }
-        //}
+        public void Phidget_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    // FIX(crhodes)
+                    // 
+                    //Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
 
-        //public void Phidget_Error(object sender, Phidget22.Events.ErrorEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                    Log.EVENT_HANDLER($"Phidget_Detach:", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
 
-        //        Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
+        internal void Phidget_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            //if (LogPhidgetEvents)
+            //{
+                try
+                {
+                    // FIX(crhodes)
+                    // 
+                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                    Log.EVENT_HANDLER($"Phidget_Error:", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            //}
+        }
+
+        internal void Phidget_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    // TODO(crhodes)
+                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
+                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                    Log.EVENT_HANDLER($"Phidget_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        internal void Phidget_DigitalInputStateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    // TODO(crhodes)
+                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
+                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                    Log.EVENT_HANDLER($"Phidget_DigitalInputStateChange: {e.State}", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        internal void Phidget_VoltageInputSensorChange(object sender, PhidgetsEvents.VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    // TODO(crhodes)
+                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
+                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                    Log.EVENT_HANDLER($"Phidget_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        internal void Phidget_VoltageRatioInputSensorChange(object sender, PhidgetsEvents.VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    // TODO(crhodes)
+                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
+                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
+                    Log.EVENT_HANDLER($"Phidget_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
 
         #endregion
 

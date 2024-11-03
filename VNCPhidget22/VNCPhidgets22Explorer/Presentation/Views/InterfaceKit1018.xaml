@@ -145,8 +145,8 @@
                 <dxlc:LayoutGroup Name="lgPhidget22tatus" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
                                   IsCollapsible="True" IsCollapsed="False"  >
 
-                    <controls:PhidgetDevice x:Name="Phidget1" Margin="-5" 
-                               AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                    <controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
+                               AttachedPhidgetDevice="{Binding Phidget22Device, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
