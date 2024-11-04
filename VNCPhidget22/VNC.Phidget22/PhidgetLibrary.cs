@@ -5,25 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Phidget22;
+
+using VNCPhidget22.Configuration;
+
 using VNCPhidgetConfig = VNCPhidget22.Configuration;
 
 namespace VNC.Phidget22
 {
-    public class PhidgetLibrary
+    public partial class PhidgetLibrary
     {
 
-        #region Constructors, Initialization, and Load
-
-        #endregion
-
-        #region Enums (None)
-
-
-        #endregion
-
-        #region Structures (None)
-
-
+#region Structures (None)
         #endregion
 
         #region Fields and Properties (None)

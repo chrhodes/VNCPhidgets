@@ -26,10 +26,15 @@ namespace VNC.Phidget22
 
         public int Port { get; set; } = 5661;
 
+        // TODO(crhodes)
+        // Don't think we need this
+
         public ChannelClass ChannelClass { get; set; } = ChannelClass.None;
 
         public DeviceClass DeviceClass { get; set; } = DeviceClass.None;
 
+        public DeviceChannels DeviceChannels { get; set; } = new DeviceChannels();
+        
         public int SerialNumber { get; set; } = 0;
 
         public PhidgetEx PhidgetEx {  get; set; }

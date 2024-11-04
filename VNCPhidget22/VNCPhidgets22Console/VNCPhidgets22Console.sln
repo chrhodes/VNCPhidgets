@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNCPhidgets22Console", "VNCPhidgets22Console.csproj", "{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets22Console", "VNCPhidgets22Console.csproj", "{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget22", "..\VNC.Phidget22\VNC.Phidget22.csproj", "{44218D00-C3BE-4952-B154-00ABED6C1AE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget22.Configuration", "..\VNCPhidget22.Configuration\VNCPhidget22.Configuration.csproj", "{9C13613B-817A-4717-858F-455831B751E4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Core", "..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj", "{88C5F764-F947-4C17-8959-A423ADDE50A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFCC8900-435B-4B9D-8B32-255EA54ADDFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44218D00-C3BE-4952-B154-00ABED6C1AE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44218D00-C3BE-4952-B154-00ABED6C1AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44218D00-C3BE-4952-B154-00ABED6C1AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44218D00-C3BE-4952-B154-00ABED6C1AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C13613B-817A-4717-858F-455831B751E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C13613B-817A-4717-858F-455831B751E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C13613B-817A-4717-858F-455831B751E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C13613B-817A-4717-858F-455831B751E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C5F764-F947-4C17-8959-A423ADDE50A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C5F764-F947-4C17-8959-A423ADDE50A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C5F764-F947-4C17-8959-A423ADDE50A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C5F764-F947-4C17-8959-A423ADDE50A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
