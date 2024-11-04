@@ -110,16 +110,6 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Enums (None)
-
-
-        #endregion
-
-        #region Structures (None)
-
-
-        #endregion
-
         #region Fields and Properties
 
         //public static Dictionary<Int32, PhidgetDevice> AvailablePhidget22 = new Dictionary<Int32, PhidgetDevice>();
