@@ -1,17 +1,19 @@
 ﻿using System;
 
-namespace VNCPhidget22.Configuration
+namespace VNC.Phidget22.Configuration
 {
-    public class AdvancedServoServoAction
+    public class StepperAction
     {
         /// <summary>
-        /// Index of servo on board 
+        /// Index of stepper on board (likely 1)
         /// </summary>
-        public int ServoIndex { get; set; }
+        public int StepperIndex { get; set; }
 
-        // TODO(crhodes)
-        // How to do this going forward.  May need our own enum
-        //public Phidget22.ServoServo.ServoType? ServoType { get; set; }
+        /// <summary>
+        /// Degrees of rotation for one full step
+        /// which is 16 micro steps (1/16)
+        /// </summary>
+        public Double? StepAngle { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)
@@ -39,24 +41,36 @@ namespace VNCPhidget22.Configuration
         public Double? RelativeVelocityLimit { get; set; }
 
         /// <summary>
-        /// TargetPosition (optional)
+        /// Servo Velocity (optional)
         /// </summary>
-        public double? PositionMin { get; set; }
+        public Double? CurrentLimit { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? TargetPosition { get; set; }
+        public Int64? CurrentPosition { get; set; }
+
+        /// <summary>
+        /// TargetPosition (optional)
+        /// </summary>
+        public Int64? TargetPosition { get; set; }
 
         /// <summary>
         /// Position (+/-)  from current Position (optional)
+        /// in 1/16 step Micro Steps
         /// </summary>
-        public double? RelativePosition { get; set; }
+        public Int64? RelativeTargetPosition { get; set; }
+
+        /// <summary>
+        /// Position (+/-)  from current Position (optional)
+        /// in degrees
+        /// </summary>
+        public Int64? RelativeTargetDegrees { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? PositionMax { get; set; }
+        //public double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

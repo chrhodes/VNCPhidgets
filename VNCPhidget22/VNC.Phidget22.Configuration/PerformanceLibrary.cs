@@ -6,7 +6,7 @@ using System.Text.Json;
 
 using VNC;
 
-namespace VNCPhidget22.Configuration
+namespace VNC.Phidget22.Configuration
 {
     /// <summary>
     /// Maintains Library of Hosts, Performances,
@@ -97,7 +97,7 @@ namespace VNCPhidget22.Configuration
 
                 Hosts = hostConfig.Hosts.ToList();
 
-                LoadNetworkHosts(Hosts);
+                //LoadNetworkHosts(Hosts);
             }
             catch (Exception ex)
             {
@@ -106,26 +106,27 @@ namespace VNCPhidget22.Configuration
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        void LoadNetworkHosts(List<Host> hosts)
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            foreach (Host host in hosts)
-            {
-                try
-                {
-                    Phidget22.Net.AddServer(host.Name, host.IPAddress, host.Port, "", 0);
-                }
-                catch (Exception ex)
-                {
-                    //Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }                
-            }
+        //void LoadNetworkHosts(List<Host> hosts)
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    foreach (Host host in hosts)
+        //    {
+        //        try
+        //        {
+        //            Phidgets.Net.AddServer(host.Name, host.IPAddress, host.Port, "", 0);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            //Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+        //            Log.Error($"{ex}", Common.LOG_CATEGORY);
+        //        }                
+        //    }
+
+        //    if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         public void LoadPerformances()
         {

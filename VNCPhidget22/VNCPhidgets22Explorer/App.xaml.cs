@@ -12,8 +12,8 @@ using Prism.Unity;
 using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
-
-using VNCPhidget22.Configuration;
+using VNC.Phidget22;
+using VNC.Phidget22.Configuration;
 
 using VNCPhidget22Explorer.Presentation.Views;
 
@@ -353,7 +353,15 @@ namespace VNCPhidget22Explorer
             // This is a way to get Phidget22.Net.AddServer called.
             // Revisit.
 
-            PerformanceLibrary perfLib = new PerformanceLibrary();
+
+            // NOTE(crhodes)
+            // This will read hostconfig to know what servers we have
+
+            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
+
+            // This will use a Phidget Manager to determine what Phidgets are attached.
+
+            PhidgetLibrary phidgetLibraryh = new PhidgetLibrary();
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

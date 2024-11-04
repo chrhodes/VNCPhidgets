@@ -13,7 +13,7 @@ using Prism.Events;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
 
-using VNCPhidget22.Configuration;
+using VNC.Phidget22.Configuration;
 using System.Net;
 using Phidget22;
 using System.Diagnostics.Metrics;

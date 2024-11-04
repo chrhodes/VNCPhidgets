@@ -16,9 +16,9 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
 
-using VNCPhidget22.Configuration;
+using VNC.Phidget22.Configuration;
 
-using VNCPhidgetConfig = VNCPhidget22.Configuration;
+using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNCPhidget22Explorer.Presentation.Controls;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
@@ -64,7 +64,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // For now just hard code this.  Can have UI let us choose later.
             // This could also come from PerformanceLibrary.
             // See HackAroundViewModel.InitializeViewModel()
-            // Or maybe a method on something else in VNCPhidget22.Configuration
+            // Or maybe a method on something else in VNC.Phidget22.Configuration
 
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();

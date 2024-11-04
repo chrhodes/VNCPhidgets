@@ -55,8 +55,7 @@ namespace VNC.Phidget22
             set; 
         }
 
-        public bool LogPhidgetEvents { get; 
-            set; }
+        public bool LogPhidgetEvents { get; set; }
 
         //public delegate void PhidgetDeviceAttachedType();
         //public event PhidgetDeviceAttachedType PhidgetDeviceAttached;

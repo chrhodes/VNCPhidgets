@@ -1,6 +1,6 @@
 ﻿//using Phidget22;
 
-namespace VNCPhidget22.Configuration
+namespace VNC.Phidget22.Configuration
 {
     public class Host
     {

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-using VNCPhidget22.Configuration;
+using VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.Converters
 {
