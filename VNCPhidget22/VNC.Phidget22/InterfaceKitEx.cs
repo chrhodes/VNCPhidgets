@@ -18,6 +18,7 @@ using System.Net;
 using Phidget22;
 using System.Diagnostics.Metrics;
 using Phidget22.Events;
+using System.Runtime.CompilerServices;
 
 namespace VNC.Phidget22
 {
@@ -25,7 +26,33 @@ namespace VNC.Phidget22
     {
         #region Constructors, Initialization, and Load
 
+        readonly DeviceChannels _deviceChannels;
+
+        // TODO(crhodes)
+        // Why is this public?
+
         public readonly IEventAggregator EventAggregator;
+
+        /// <summary>
+        /// Initializes a new instance of the InterfaceKit class.
+        /// </summary>
+        /// <param name="enabled"></param>
+        public InterfaceKitEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
+            : base(serialNumber)
+        {
+
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+
+            EventAggregator = eventAggregator;
+            _deviceChannels = deviceChannels;
+
+            InitializePhidget();
+
+            EventAggregator.GetEvent<InterfaceKitSequenceEvent>().Subscribe(TriggerSequence);
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
@@ -75,17 +102,17 @@ namespace VNC.Phidget22
             // HACK(crhodes)
             // For now just create one of each
 
-            var digitialInputCount = 1;
-            var digitialOutputCount = 1;
-            var voltageInputCount = 1;
-            var voltageRatioInputCount = 1;
-            var voltageOutputCount = 1;
+            var digitalInputCount = _deviceChannels.DigitalInputCount;
+            var digitalOutputCount = _deviceChannels.DigitalOutputCount;
+            var voltageInputCount = _deviceChannels.VoltageInputCount;
+            var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
+            var voltageOutputCount = _deviceChannels.VoltageOutputCount;
 
-            DigitalInputs = new DigitalInput[digitialInputCount];
-            DigitalOutputs = new DigitalOutput[digitialInputCount];
-            VoltageInputs = new VoltageInput[digitialInputCount];
-            VoltageRatioInputs = new VoltageRatioInput[digitialInputCount];
-            VoltageOutputs = new VoltageOutput[digitialInputCount];
+            DigitalInputs = new DigitalInput[digitalInputCount];
+            DigitalOutputs = new DigitalOutput[digitalOutputCount];
+            VoltageInputs = new VoltageInput[voltageInputCount];
+            VoltageRatioInputs = new VoltageRatioInput[voltageRatioInputCount];
+            VoltageOutputs = new VoltageOutput[voltageOutputCount];
 
             // NOTE(crhodes)
             // Create channels and attach event handlers
@@ -93,7 +120,7 @@ namespace VNC.Phidget22
 
             // DigitalInputs
 
-            for (int i = 0; i < digitialInputCount; i++)
+            for (int i = 0; i < digitalInputCount; i++)
             {
                 DigitalInputs[i] = new DigitalInput();
                 var channel = DigitalInputs[i];
@@ -112,7 +139,7 @@ namespace VNC.Phidget22
 
             // DigitalOutputs
 
-            for (int i = 0; i < digitialOutputCount; i++)
+            for (int i = 0; i < digitalOutputCount; i++)
             {
                 DigitalOutputs[i] = new DigitalOutput();
                 var channel = DigitalOutputs[i];
@@ -168,7 +195,7 @@ namespace VNC.Phidget22
 
             // VoltageOutputs
 
-            for (int i = 0; i < voltageInputCount; i++)
+            for (int i = 0; i < voltageOutputCount; i++)
             {
                 VoltageOutputs[i] = new VoltageOutput();
                 var channel = VoltageOutputs[i];
@@ -343,21 +370,47 @@ namespace VNC.Phidget22
         public new void Open(Int32? timeOut = null)
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-            
+
             // FIX(crhodes)
             // There is no InterfaceKit in Phidget22.
             // This is where we probably open all the stuff on the Phidget or we can just open what we use
 
+            var digitalInputCount = _deviceChannels.DigitalInputCount;
+            var digitalOutputCount = _deviceChannels.DigitalOutputCount;
+            var voltageInputCount = _deviceChannels.VoltageInputCount;
+            var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
+            var voltageOutputCount = _deviceChannels.VoltageOutputCount;
+
             try
             {
-                // HACK(crhodes)
-                // For now just open digitalOutput0;
+                // TODO(crhodes)
+                // Decide if want to open everything or pass in config to only open what we need
 
-                Phidgets.DigitalOutput dout = DigitalOutputs[0];
+                for (int i = 0; i < digitalInputCount; i++)
+                {
+                    DigitalInputs[i].Open();
+                }
 
-                Phidgets.Phidget ik = dout.Parent;
+                for (int i = 0; i < digitalOutputCount; i++)
+                {
+                    DigitalOutputs[i].Open();
+                }
 
-                ik.Open();
+                for (int i = 0; i < voltageInputCount; i++)
+                {
+                    VoltageInputs[i].Open();
+                }
+
+                for (int i = 0; i < voltageRatioInputCount; i++)
+                {
+                    VoltageRatioInputs[i].Open();
+                }
+
+                for (int i = 0; i < voltageOutputCount; i++)
+                {
+                    VoltageOutputs[i].Open();
+
+                }
 
                 //DigitalOutputs[0].Open();
 
@@ -393,20 +446,16 @@ namespace VNC.Phidget22
 
         override protected void PhidgetDeviceIsAttached()
         {
-            // NOTE(crhodes)
-            // This is probably a good place to find out what kind of InterfaceKit we have
-            // And fully populate things and then tell the world
-
-            var digitalInputCount = PhysicalPhidget.GetDeviceChannelCount(ChannelClass.DigitalInput);
             OnPhidgetDeviceAttached(new EventArgs());
         }
+
+        // NOTE(crhodes)
+        // This tells the UI that we have an attached Phidget
 
         protected virtual void OnPhidgetDeviceAttached(EventArgs e)
         {
             PhidgetDeviceAttached?.Invoke(this, e);
         }
-
-
 
         public void Close()
         {

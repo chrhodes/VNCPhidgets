@@ -18,10 +18,10 @@ namespace VNC.Phidget22
     // TODO(crhodes)
     // Make this a Singleton
 
-    public class PhidgetLibrary
+    public class PhidgetDeviceLibrary
     {
         #region Constructors, Initialization, and Load
-        public PhidgetLibrary()
+        public PhidgetDeviceLibrary()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
@@ -134,7 +134,7 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers
 
         private void Manager_Attach(object sender, PhidgetEvents.ManagerAttachEventArgs e)
         {
@@ -145,7 +145,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Manager_Detach: {channel}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Manager_Attach: {channel}", Common.LOG_CATEGORY);
 
                     switch (channel.DeviceClass)
                     {

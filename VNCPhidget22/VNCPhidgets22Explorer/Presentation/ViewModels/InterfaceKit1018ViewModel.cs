@@ -42,6 +42,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Save constructor parameters here
 
             InitializeViewModel();
+
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -49,8 +50,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
-
-
 
             // TODO(crhodes)
             //
@@ -2023,10 +2022,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called OpenInterfaceKit";
             
+            //ActiveInterfaceKit = new InterfaceKitEx(
+            //    SelectedHost.IPAddress,
+            //    SelectedHost.Port,
+            //    SelectedInterfaceKit.SerialNumber,
+            //    EventAggregator);
+
             ActiveInterfaceKit = new InterfaceKitEx(
-                SelectedHost.IPAddress,
-                SelectedHost.Port,
                 SelectedInterfaceKit.SerialNumber,
+                Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels,
                 EventAggregator);
 
             // FIX(crhodes)
@@ -2083,7 +2087,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
             //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
             //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
-
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2152,7 +2155,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 return false;
             }
-
         }
 
         #endregion
@@ -2234,25 +2236,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region SayHello Command
-
-        private void SayHello()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
-
-            Message = $"Hello from {this.GetType()}";
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-
-        #endregion
-
         #endregion
 
         #region Public Methods (none)
@@ -2296,7 +2279,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void UpdateInterfaceKitProperties()
         {
-            var pd = ActiveInterfaceKit.PhysicalPhidget;
+            var interfaceKitEx = ActiveInterfaceKit;
+            var phidget = interfaceKitEx.PhysicalPhidget;
+
+            DO1 = interfaceKitEx.DigitalOutputs[1].State;
+
+            //Phidgets.DigitalInput[] DigitalInputs = 
+            //for (int i = 0; i < interfaceKitEx.DigitalInputs.Count(); i++)
+            //{
+            //    DigitalInputs[i].Open();
+            //}
+
+            //for (int i = 0; i < digitalOutputCount; i++)
+            //{
+            //    DigitalOutputs[i].Open();
+            //}
+
+            //for (int i = 0; i < voltageInputCount; i++)
+            //{
+            //    VoltageInputs[i].Open();
+            //}
+
+            //for (int i = 0; i < voltageRatioInputCount; i++)
+            //{
+            //    VoltageRatioInputs[i].Open();
+            //}
+
+            //for (int i = 0; i < voltageOutputCount; i++)
+            //{
+            //    VoltageOutputs[i].Open();
+
+            //}
 
             // FIX(crhodes)
             // 

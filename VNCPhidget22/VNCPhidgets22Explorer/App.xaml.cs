@@ -361,7 +361,7 @@ namespace VNCPhidget22Explorer
 
             // This will use a Phidget Manager to determine what Phidgets are attached.
 
-            PhidgetLibrary phidgetLibraryh = new PhidgetLibrary();
+            Common.PhidgetDeviceLibrary = new PhidgetDeviceLibrary();
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

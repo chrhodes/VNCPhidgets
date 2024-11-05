@@ -3,6 +3,8 @@ using System.Reflection;
 
 using Prism.Ioc;
 
+using VNC.Phidget22;
+
 using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer
@@ -34,6 +36,8 @@ namespace VNCPhidget22Explorer
 
         //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
         public static int? PhidgetOpenTimeout { get; set; } = null; // ms
+
+        public static PhidgetDeviceLibrary PhidgetDeviceLibrary;
 
         // These values are added to the dimensions of a hosting window if the
         // hosted User_Control specifies values for MinWidth/MinHeight.

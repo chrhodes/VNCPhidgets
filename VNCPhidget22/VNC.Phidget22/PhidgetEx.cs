@@ -8,12 +8,30 @@ using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
-    // NOTE(crhodes)
+    // FIX(crhodes)
     // Not sure we need to inherit from Phidgets.Phidget as the AdvancedServo, InterfaceKit, and Stepper no longer exist
     public class PhidgetEx // : Phidgets.Phidget
     {
         #region Constructors, Initialization, and Load
 
+        /// <summary>
+        /// Initializes a new instance of the PhidgetEx class.
+        /// </summary>
+        public PhidgetEx(int serialNumber)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // 
+            //Host = new Host { IPAddress = ipAddress, Port = port };
+            SerialNumber = serialNumber;
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // FIX(crhodes)
+        // Not sure we need ipAddress and port anymore
         /// <summary>
         /// Initializes a new instance of the PhidgetEx class.
         /// </summary>
@@ -74,7 +92,7 @@ namespace VNC.Phidget22
 
         protected virtual void PhidgetDeviceIsAttached()
         {
-            Int32 a = 2;
+            //Int32 a = 2;
         }
 
         #endregion
@@ -135,6 +153,9 @@ namespace VNC.Phidget22
                 }
             }
 
+            // TODO(crhodes)
+            // How will we use this?  Maybe configuration
+
             if (PhysicalPhidget is null)
             {
                 var s = sender;
@@ -148,22 +169,22 @@ namespace VNC.Phidget22
 
         public void Phidget_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
-            if (LogPhidgetEvents)
-            {
+            //if (LogPhidgetEvents)
+            //{
                 try
                 {
                     // FIX(crhodes)
                     // 
                     //Phidget22.Phidget device = (Phidget22.Phidget)e.Device;
 
-                    Log.EVENT_HANDLER($"Phidget_Detach:", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_Detach: sender:{sender}", Common.LOG_CATEGORY);
                     //Log.EVENT_HANDLER($"Phidget_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         internal void Phidget_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
@@ -175,7 +196,7 @@ namespace VNC.Phidget22
                     // FIX(crhodes)
                     // 
                     //Phidget22.Phidget device = (Phidget22.Phidget)sender;
-                    Log.EVENT_HANDLER($"Phidget_Error:", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
                     //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
@@ -187,27 +208,27 @@ namespace VNC.Phidget22
 
         internal void Phidget_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
-            if (LogPhidgetEvents)
-            {
+            //if (LogPhidgetEvents)
+            //{
                 try
                 {
                     // TODO(crhodes)
                     // Figure out what to show here.  Phidget21.Phidget did not have this event.
                     //Phidget22.Phidget device = (Phidget22.Phidget)sender;
-                    Log.EVENT_HANDLER($"Phidget_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                     //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         internal void Phidget_DigitalInputStateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
         {
-            if (LogPhidgetEvents)
-            {
+            //if (LogPhidgetEvents)
+            //{
                 try
                 {
                     // TODO(crhodes)
@@ -220,45 +241,44 @@ namespace VNC.Phidget22
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         internal void Phidget_VoltageInputSensorChange(object sender, PhidgetsEvents.VoltageInputSensorChangeEventArgs e)
         {
-            if (LogPhidgetEvents)
-            {
+            //if (LogPhidgetEvents)
+            //{
                 try
                 {
                     // TODO(crhodes)
                     // Figure out what to show here.  Phidget21.Phidget did not have this event.
                     //Phidget22.Phidget device = (Phidget22.Phidget)sender;
-                    Log.EVENT_HANDLER($"Phidget_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_VoltageInputSensorChange: sender:{sender} {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                     //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
         }
 
         internal void Phidget_VoltageRatioInputSensorChange(object sender, PhidgetsEvents.VoltageRatioInputSensorChangeEventArgs e)
         {
-            if (LogPhidgetEvents)
-            {
+            //if (LogPhidgetEvents)
+            //{
                 try
                 {
                     // TODO(crhodes)
                     // Figure out what to show here.  Phidget21.Phidget did not have this event.
                     //Phidget22.Phidget device = (Phidget22.Phidget)sender;
-                    Log.EVENT_HANDLER($"Phidget_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Phidget_VoltageRatioInputSensorChange: sender:{sender} {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                     //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            }
+            //}
         }
 
         #endregion

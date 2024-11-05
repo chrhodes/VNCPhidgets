@@ -257,8 +257,8 @@
                         
                     <dxlc:LayoutItem Label="O0" LabelPosition="Top">
                         <!--<dxe:CheckEdit Name="ceDO_0" Tag="0" Checked="ceDO_Checked" Unchecked="ceDO_UnChecked" />-->
-                        <dxe:CheckEdit Name="ceDO_0" Tag="0" IsChecked="{Binding DO0}"
-                                       Background="{Binding DO0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO_0" Tag="0" IsChecked="{Binding ActiveInterfaceKit.DigitalOutputs[0].State}"
+                                       Background="{Binding ActiveInterfaceKit.DigitalOutputs[0].State, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O1" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDO_1" Tag="1" IsChecked="{Binding DO1}" 
