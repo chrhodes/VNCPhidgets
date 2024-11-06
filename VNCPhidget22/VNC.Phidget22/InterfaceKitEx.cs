@@ -82,26 +82,6 @@ namespace VNC.Phidget22
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
-            //InterfaceKit = new Phidget22.InterfaceKit();
-
-            //Attach += Phidget_Attach;
-            //Detach += Phidget_Detach;
-            //PropertyChange += Phidget_PropertyChange;
-            //Error += Phidget_Error;
-
-            //InterfaceKit.ServerConnect += Phidget_ServerConnect;
-            //InterfaceKit.ServerDisconnect += Phidget_ServerDisconnect;
-
-            // FIX(crhodes)
-            // There is no InterfaceKit in Phidget22.  This is where we probably open channel 0
-            // and figure out what kind of InterfaceKit we have.  Can be embedded, 8/8/8 16/16 etc
-            // Then we can declare number of inputs, outputs, and sensors.
-
-            // Alternatively just declare enough for the biggest InterfaceKit
-
-            // HACK(crhodes)
-            // For now just create one of each
-
             var digitalInputCount = _deviceChannels.DigitalInputCount;
             var digitalOutputCount = _deviceChannels.DigitalOutputCount;
             var voltageInputCount = _deviceChannels.VoltageInputCount;
@@ -130,11 +110,11 @@ namespace VNC.Phidget22
                 channel.IsHubPortDevice = false;
                 channel.IsRemote = true;
                 
-                channel.Attach += Phidget_Attach;
-                channel.Detach += Phidget_Detach;
-                channel.Error += Phidget_Error;
-                channel.PropertyChange += Phidget_PropertyChange;
-                channel.StateChange += Phidget_DigitalInputStateChange;
+                //channel.Attach += Phidget_Attach;
+                //channel.Detach += Phidget_Detach;
+                //channel.Error += Phidget_Error;
+                //channel.PropertyChange += Channel_PropertyChange;
+                //channel.StateChange += Channel_DigitalInputStateChange;
             }
 
             // DigitalOutputs
@@ -149,10 +129,10 @@ namespace VNC.Phidget22
                 channel.IsHubPortDevice = false;
                 channel.IsRemote = true;
 
-                channel.Attach += Phidget_Attach;
-                channel.Detach += Phidget_Detach;
-                channel.Error += Phidget_Error;
-                channel.PropertyChange += Phidget_PropertyChange;
+                //channel.Attach += Phidget_Attach;
+                //channel.Detach += Phidget_Detach;
+                //channel.Error += Phidget_Error;
+                //channel.PropertyChange += Channel_PropertyChange;
             }
 
             // VoltageInputs
@@ -167,11 +147,12 @@ namespace VNC.Phidget22
                 channel.IsHubPortDevice = false;
                 channel.IsRemote = true;
 
-                channel.Attach += Phidget_Attach;
-                channel.Detach += Phidget_Detach;
-                channel.Error += Phidget_Error;
-                channel.PropertyChange += Phidget_PropertyChange;
-                channel.SensorChange += Phidget_VoltageInputSensorChange;
+                //channel.Attach += Phidget_Attach;
+                //channel.Detach += Phidget_Detach;
+                //channel.Error += Phidget_Error;
+                //channel.PropertyChange += Channel_PropertyChange;
+                //channel.SensorChange += Channel_VoltageInputSensorChange;
+                //channel.VoltageChange += Channel_VoltageChange;
             }
 
             // VoltageRatioInputs
@@ -186,11 +167,12 @@ namespace VNC.Phidget22
                 channel.IsHubPortDevice = false;
                 channel.IsRemote = true;
 
-                channel.Attach += Phidget_Attach;
-                channel.Detach += Phidget_Detach;
-                channel.Error += Phidget_Error;
-                channel.PropertyChange += Phidget_PropertyChange;
-                channel.SensorChange += Phidget_VoltageRatioInputSensorChange;
+                //channel.Attach += Phidget_Attach;
+                //channel.Detach += Phidget_Detach;
+                //channel.Error += Phidget_Error;
+                //channel.PropertyChange += Channel_PropertyChange;
+                //channel.SensorChange += Phidget_VoltageRatioInputSensorChange;
+                //channel.VoltageRatioChange += Channel_VoltageRatioChange;
             }
 
             // VoltageOutputs
@@ -205,18 +187,13 @@ namespace VNC.Phidget22
                 channel.IsHubPortDevice = false;
                 channel.IsRemote = true;
 
-                channel.Attach += Phidget_Attach;
-                channel.Detach += Phidget_Detach;
-                channel.Error += Phidget_Error;
-                channel.PropertyChange += Phidget_PropertyChange;
+                //channel.Attach += Phidget_Attach;
+                //channel.Detach += Phidget_Detach;
+                //channel.Error += Phidget_Error;
+                //channel.PropertyChange += Channel_PropertyChange;
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void InterfaceKitEx_SensorChange(object sender, PhidgetsEvents.VoltageRatioInputSensorChangeEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -251,6 +228,7 @@ namespace VNC.Phidget22
             set
             {
                 if (_logInputChangeEvents == value) return;
+                _logInputChangeEvents = value;
 
                 //// FIX(crhodes)
                 //// 
@@ -272,6 +250,7 @@ namespace VNC.Phidget22
             set
             {
                 if (_logOutputChangeEvents == value) return;
+                _logOutputChangeEvents = value;
 
                 //// FIX(crhodes)
                 //// 
@@ -293,7 +272,7 @@ namespace VNC.Phidget22
             set
             {
                 if (_logSensorChangeEvents == value) return;
-
+                _logSensorChangeEvents = value;
                 // FIX(crhodes)
                 // 
                 //if (_logSensorChangeEvents = value)
@@ -312,48 +291,8 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Event Handlers
+        #region Event Handlers (none)
 
-        // TODO(crhodes)
-        // 
-        //private void InterfaceKit_SensorChange(object sender, PhidgetsEvents.SensorChangeEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
-        //        Log.EVENT_HANDLER($"SensorChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
-
-        //private void InterfaceKit_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
-        //        Log.EVENT_HANDLER($"OutputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
-
-        //private void InterfaceKit_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
-        //{
-        //    try
-        //    {
-        //        Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
-        //        Log.EVENT_HANDLER($"InputChange {ifk.Address},{ifk.SerialNumber} - Index:{e.Index} Value:{e.Value}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
 
         #endregion
 
@@ -396,20 +335,22 @@ namespace VNC.Phidget22
                     DigitalOutputs[i].Open();
                 }
 
+                // TODO(crhodes)
+                // Figure out which type of voltageInput to use
+
                 for (int i = 0; i < voltageInputCount; i++)
                 {
                     VoltageInputs[i].Open();
                 }
 
-                for (int i = 0; i < voltageRatioInputCount; i++)
-                {
-                    VoltageRatioInputs[i].Open();
-                }
+                //for (int i = 0; i < voltageRatioInputCount; i++)
+                //{
+                //    VoltageRatioInputs[i].Open();
+                //}
 
                 for (int i = 0; i < voltageOutputCount; i++)
                 {
                     VoltageOutputs[i].Open();
-
                 }
 
                 //DigitalOutputs[0].Open();
@@ -470,9 +411,42 @@ namespace VNC.Phidget22
                 if (LogOutputChangeEvents) LogOutputChangeEvents = false;
                 if (LogSensorChangeEvents) LogSensorChangeEvents = false;
 
-                // FIX(crhodes)
-                // 
-                //this.InterfaceKit.close();
+                var digitalInputCount = _deviceChannels.DigitalInputCount;
+                var digitalOutputCount = _deviceChannels.DigitalOutputCount;
+                var voltageInputCount = _deviceChannels.VoltageInputCount;
+                var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
+                var voltageOutputCount = _deviceChannels.VoltageOutputCount;
+
+                // TODO(crhodes)
+                // Decide if want to close everything or pass in config to only open what we need
+
+                for (int i = 0; i < digitalInputCount; i++)
+                {
+                    DigitalInputs[i].Close();
+                }
+
+                for (int i = 0; i < digitalOutputCount; i++)
+                {
+                    DigitalOutputs[i].Close();
+                }
+
+                // TODO(crhodes)
+                // Figure out which type of voltageInput to use
+
+                for (int i = 0; i < voltageInputCount; i++)
+                {
+                    VoltageInputs[i].Close();
+                }
+
+                //for (int i = 0; i < voltageRatioInputCount; i++)
+                //{
+                //    VoltageRatioInputs[i].Open();
+                //}
+
+                for (int i = 0; i < voltageOutputCount; i++)
+                {
+                    VoltageOutputs[i].Close();
+                }
             }
             catch (Exception ex)
             {

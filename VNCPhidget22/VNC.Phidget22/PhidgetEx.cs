@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
+using Phidget22.Events;
+
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 using Phidgets = Phidget22;
@@ -169,8 +171,8 @@ namespace VNC.Phidget22
 
         public void Phidget_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
-            //if (LogPhidgetEvents)
-            //{
+            if (LogPhidgetEvents)
+            {
                 try
                 {
                     // FIX(crhodes)
@@ -184,13 +186,13 @@ namespace VNC.Phidget22
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            //}
+            }
         }
 
         internal void Phidget_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
         {
-            //if (LogPhidgetEvents)
-            //{
+            if (LogPhidgetEvents)
+            {
                 try
                 {
                     // FIX(crhodes)
@@ -203,13 +205,13 @@ namespace VNC.Phidget22
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            //}
+            }
         }
 
-        internal void Phidget_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        internal void Channel_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
-            //if (LogPhidgetEvents)
-            //{
+            if (LogPhidgetEvents)
+            {
                 try
                 {
                     // TODO(crhodes)
@@ -222,63 +224,83 @@ namespace VNC.Phidget22
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            //}
-        }
+            }
+        }    
 
-        internal void Phidget_DigitalInputStateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        internal void Channel_DigitalInputStateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
         {
-            //if (LogPhidgetEvents)
-            //{
+            if (LogPhidgetEvents)
+            {
                 try
                 {
-                    // TODO(crhodes)
-                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
-                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
                     Log.EVENT_HANDLER($"Phidget_DigitalInputStateChange: {e.State}", Common.LOG_CATEGORY);
-                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            //}
-        }
+            }
+        }    
 
-        internal void Phidget_VoltageInputSensorChange(object sender, PhidgetsEvents.VoltageInputSensorChangeEventArgs e)
+        internal void Channel_VoltageInputSensorChange(object sender, PhidgetsEvents.VoltageInputSensorChangeEventArgs e)
         {
-            //if (LogPhidgetEvents)
-            //{
+            if (LogPhidgetEvents)
+            {
                 try
                 {
-                    // TODO(crhodes)
-                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
-                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
                     Log.EVENT_HANDLER($"Phidget_VoltageInputSensorChange: sender:{sender} {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        internal void Channel_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Channel_VoltageChange: sender:{sender} {e.Voltage}", Common.LOG_CATEGORY);
                     //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+        }
+
+        internal void Channel_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Channel_VoltageRatioChange: sender:{sender} {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         internal void Phidget_VoltageRatioInputSensorChange(object sender, PhidgetsEvents.VoltageRatioInputSensorChangeEventArgs e)
         {
-            //if (LogPhidgetEvents)
-            //{
+            if (LogPhidgetEvents)
+            {
                 try
                 {
-                    // TODO(crhodes)
-                    // Figure out what to show here.  Phidget21.Phidget did not have this event.
-                    //Phidget22.Phidget device = (Phidget22.Phidget)sender;
                     Log.EVENT_HANDLER($"Phidget_VoltageRatioInputSensorChange: sender:{sender} {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
-                    //Log.EVENT_HANDLER($"Phidget_Error {device.Address},{device.Attached} - type:{e.Type} code:{e.Code} description:{e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
-            //}
+            }
         }
 
         #endregion
@@ -339,7 +361,6 @@ namespace VNC.Phidget22
         #endregion
 
         #region Private Methods (None)
-
 
 
         #endregion

@@ -21,6 +21,8 @@ using VNC.Phidget22.Configuration;
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNCPhidget22Explorer.Presentation.Controls;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using DevExpress.XtraRichEdit.Commands;
+using Phidget22.Events;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -54,6 +56,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             //
 
+
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
 
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
@@ -71,6 +74,403 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "InterfaceKitViewModel says hello";
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        void ConfigurePhidget()
+        {
+            // NOTE(crhodes)
+            // This ViewModel needs to support all types of InterfaceKits
+            // Configure all channels that might exist and wire up event handlers
+            // The SelectedInterfaceKit property change event can enable and disable as needed.
+            // TODO(crhodes)
+            // Figure out what do in UI (if anything) if all channels not present on a device
+            // Hide controls maybe
+
+            DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
+
+            ConfigureDigitalInputs(deviceChannels.DigitalInputCount);
+            ConfigureDigitalOutputs(deviceChannels.DigitalOutputCount);
+            ConfigureSensorInputs(deviceChannels.VoltageInputCount);
+        }
+
+        // TODO(crhodes)
+        // Maybe this is where we use ChannelCounts and some type of Configuration Request
+        // to only do this for some
+
+        private void ConfigureDigitalInputs(Int16 channelCount)
+        {
+            Int16 configuredChannels = 0;
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[0].Attach += DI0_Attach;
+                ActiveInterfaceKit.DigitalInputs[0].Detach += DI0_Detach;
+                ActiveInterfaceKit.DigitalInputs[0].PropertyChange += DI0_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[0].StateChange += DI0_StateChange;
+                ActiveInterfaceKit.DigitalInputs[0].Error += DI0_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[1].Attach += DI1_Attach;
+                ActiveInterfaceKit.DigitalInputs[1].Detach += DI1_Detach;
+                ActiveInterfaceKit.DigitalInputs[1].PropertyChange += DI1_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[1].StateChange += DI1_StateChange;
+                ActiveInterfaceKit.DigitalInputs[1].Error += DI1_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[2].Attach += DI2_Attach;
+                ActiveInterfaceKit.DigitalInputs[2].Detach += DI2_Detach;
+                ActiveInterfaceKit.DigitalInputs[2].PropertyChange += DI2_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[2].StateChange += DI2_StateChange;
+                ActiveInterfaceKit.DigitalInputs[2].Error += DI2_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[3].Attach += DI3_Attach;
+                ActiveInterfaceKit.DigitalInputs[3].Detach += DI3_Detach;
+                ActiveInterfaceKit.DigitalInputs[3].PropertyChange += DI3_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[3].StateChange += DI3_StateChange;
+                ActiveInterfaceKit.DigitalInputs[3].Error += DI3_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[4].Attach += DI4_Attach;
+                ActiveInterfaceKit.DigitalInputs[4].Detach += DI4_Detach;
+                ActiveInterfaceKit.DigitalInputs[4].PropertyChange += DI4_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[4].StateChange += DI4_StateChange;
+                ActiveInterfaceKit.DigitalInputs[4].Error += DI4_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[5].Attach += DI5_Attach;
+                ActiveInterfaceKit.DigitalInputs[5].Detach += DI5_Detach;
+                ActiveInterfaceKit.DigitalInputs[5].PropertyChange += DI5_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[5].StateChange += DI5_StateChange;
+                ActiveInterfaceKit.DigitalInputs[5].Error += DI5_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[6].Attach += DI6_Attach;
+                ActiveInterfaceKit.DigitalInputs[6].Detach += DI6_Detach;
+                ActiveInterfaceKit.DigitalInputs[6].PropertyChange += DI6_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[6].StateChange += DI6_StateChange;
+                ActiveInterfaceKit.DigitalInputs[6].Error += DI6_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[7].Attach += DI7_Attach;
+                ActiveInterfaceKit.DigitalInputs[7].Detach += DI7_Detach;
+                ActiveInterfaceKit.DigitalInputs[7].PropertyChange += DI7_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[7].StateChange += DI7_StateChange;
+                ActiveInterfaceKit.DigitalInputs[7].Error += DI7_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[8].Attach += DI8_Attach;
+                ActiveInterfaceKit.DigitalInputs[8].Detach += DI8_Detach;
+                ActiveInterfaceKit.DigitalInputs[8].PropertyChange += DI8_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[8].StateChange += DI8_StateChange;
+                ActiveInterfaceKit.DigitalInputs[8].Error += DI8_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[9].Attach += DI9_Attach;
+                ActiveInterfaceKit.DigitalInputs[9].Detach += DI9_Detach;
+                ActiveInterfaceKit.DigitalInputs[9].PropertyChange += DI9_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[9].StateChange += DI9_StateChange;
+                ActiveInterfaceKit.DigitalInputs[9].Error += DI9_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[10].Attach += DI10_Attach;
+                ActiveInterfaceKit.DigitalInputs[10].Detach += DI10_Detach;
+                ActiveInterfaceKit.DigitalInputs[10].PropertyChange += DI10_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[10].StateChange += DI10_StateChange;
+                ActiveInterfaceKit.DigitalInputs[10].Error += DI10_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[11].Attach += DI11_Attach;
+                ActiveInterfaceKit.DigitalInputs[11].Detach += DI11_Detach;
+                ActiveInterfaceKit.DigitalInputs[11].PropertyChange += DI11_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[11].StateChange += DI11_StateChange;
+                ActiveInterfaceKit.DigitalInputs[11].Error += DI11_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[12].Attach += DI12_Attach;
+                ActiveInterfaceKit.DigitalInputs[12].Detach += DI12_Detach;
+                ActiveInterfaceKit.DigitalInputs[12].PropertyChange += DI12_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[12].StateChange += DI12_StateChange;
+                ActiveInterfaceKit.DigitalInputs[12].Error += DI12_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[13].Attach += DI13_Attach;
+                ActiveInterfaceKit.DigitalInputs[13].Detach += DI13_Detach;
+                ActiveInterfaceKit.DigitalInputs[13].PropertyChange += DI13_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[13].StateChange += DI13_StateChange;
+                ActiveInterfaceKit.DigitalInputs[13].Error += DI13_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[14].Attach += DI14_Attach;
+                ActiveInterfaceKit.DigitalInputs[14].Detach += DI14_Detach;
+                ActiveInterfaceKit.DigitalInputs[14].PropertyChange += DI14_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[14].StateChange += DI14_StateChange;
+                ActiveInterfaceKit.DigitalInputs[14].Error += DI14_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalInputs[15].Attach += DI15_Attach;
+                ActiveInterfaceKit.DigitalInputs[15].Detach += DI15_Detach;
+                ActiveInterfaceKit.DigitalInputs[15].PropertyChange += DI15_PropertyChange;
+                ActiveInterfaceKit.DigitalInputs[15].StateChange += DI15_StateChange;
+                ActiveInterfaceKit.DigitalInputs[15].Error += DI15_Error;
+            }
+        }
+
+        private void ConfigureDigitalOutputs(Int16 channelCount)
+        {
+            Int16 configuredChannels = 0;
+
+            if (channelCount > configuredChannels++)
+            { 
+                ActiveInterfaceKit.DigitalOutputs[0].Attach += DO0_Attach;
+                ActiveInterfaceKit.DigitalOutputs[0].Detach += DO0_Detach;
+                ActiveInterfaceKit.DigitalOutputs[0].PropertyChange += DO0_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[0].Error += DO0_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[1].Attach += DO1_Attach;
+                ActiveInterfaceKit.DigitalOutputs[1].Detach += DO1_Detach;
+                ActiveInterfaceKit.DigitalOutputs[1].PropertyChange += DO1_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[1].Error += DO1_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[2].Attach += DO2_Attach;
+                ActiveInterfaceKit.DigitalOutputs[2].Detach += DO2_Detach;
+                ActiveInterfaceKit.DigitalOutputs[2].PropertyChange += DO2_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[2].Error += DO2_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[3].Attach += DO3_Attach;
+                ActiveInterfaceKit.DigitalOutputs[3].Detach += DO3_Detach;
+                ActiveInterfaceKit.DigitalOutputs[3].PropertyChange += DO3_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[3].Error += DO3_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[4].Attach += DO4_Attach;
+                ActiveInterfaceKit.DigitalOutputs[4].Detach += DO4_Detach;
+                ActiveInterfaceKit.DigitalOutputs[4].PropertyChange += DO4_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[4].Error += DO4_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[5].Attach += DO5_Attach;
+                ActiveInterfaceKit.DigitalOutputs[5].Detach += DO5_Detach;
+                ActiveInterfaceKit.DigitalOutputs[5].PropertyChange += DO5_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[5].Error += DO5_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[6].Attach += DO6_Attach;
+                ActiveInterfaceKit.DigitalOutputs[6].Detach += DO6_Detach;
+                ActiveInterfaceKit.DigitalOutputs[6].PropertyChange += DO6_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[6].Error += DO6_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[7].Attach += DO7_Attach;
+                ActiveInterfaceKit.DigitalOutputs[7].Detach += DO7_Detach;
+                ActiveInterfaceKit.DigitalOutputs[7].PropertyChange += DO7_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[7].Error += DO7_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[8].Attach += DO8_Attach;
+                ActiveInterfaceKit.DigitalOutputs[8].Detach += DO8_Detach;
+                ActiveInterfaceKit.DigitalOutputs[8].PropertyChange += DO8_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[8].Error += DO8_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[9].Attach += DO9_Attach;
+                ActiveInterfaceKit.DigitalOutputs[9].Detach += DO9_Detach;
+                ActiveInterfaceKit.DigitalOutputs[9].PropertyChange += DO9_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[9].Error += DO9_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[10].Attach += DO10_Attach;
+                ActiveInterfaceKit.DigitalOutputs[10].Detach += DO10_Detach;
+                ActiveInterfaceKit.DigitalOutputs[10].PropertyChange += DO10_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[10].Error += DO10_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[11].Attach += DO11_Attach;
+                ActiveInterfaceKit.DigitalOutputs[11].Detach += DO11_Detach;
+                ActiveInterfaceKit.DigitalOutputs[11].PropertyChange += DO11_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[11].Error += DO11_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[12].Attach += DO12_Attach;
+                ActiveInterfaceKit.DigitalOutputs[12].Detach += DO12_Detach;
+                ActiveInterfaceKit.DigitalOutputs[12].PropertyChange += DO12_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[12].Error += DO12_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[13].Attach += DO13_Attach;
+                ActiveInterfaceKit.DigitalOutputs[13].Detach += DO13_Detach;
+                ActiveInterfaceKit.DigitalOutputs[13].PropertyChange += DO13_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[13].Error += DO13_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[14].Attach += DO14_Attach;
+                ActiveInterfaceKit.DigitalOutputs[14].Detach += DO14_Detach;
+                ActiveInterfaceKit.DigitalOutputs[14].PropertyChange += DO14_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[14].Error += DO14_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.DigitalOutputs[15].Attach += DO15_Attach;
+                ActiveInterfaceKit.DigitalOutputs[15].Detach += DO15_Detach;
+                ActiveInterfaceKit.DigitalOutputs[15].PropertyChange += DO15_PropertyChange;
+                ActiveInterfaceKit.DigitalOutputs[15].Error += DO15_Error;
+            }
+        }
+
+
+        // TODO(crhodes)
+        // Figure out how do choose VoltageInputs vs VolatageRatioInputs
+
+        private void ConfigureSensorInputs(Int16 channelCount)
+        {
+            Int16 configuredChannels = 0;
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[0].Attach += AI0_Attach;
+                ActiveInterfaceKit.VoltageInputs[0].Detach += AI0_Detach;
+                ActiveInterfaceKit.VoltageInputs[0].PropertyChange += AI0_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[0].SensorChange += AI0_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[0].VoltageChange += AI0_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[0].Error += AI0_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[1].Attach += AI1_Attach;
+                ActiveInterfaceKit.VoltageInputs[1].Detach += AI1_Detach;
+                ActiveInterfaceKit.VoltageInputs[1].PropertyChange += AI1_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[1].SensorChange += AI1_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[1].VoltageChange += AI1_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[1].Error += AI1_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[2].Attach += AI2_Attach;
+                ActiveInterfaceKit.VoltageInputs[2].Detach += AI2_Detach;
+                ActiveInterfaceKit.VoltageInputs[2].PropertyChange += AI2_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[2].SensorChange += AI2_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[2].VoltageChange += AI2_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[2].Error += AI2_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[3].Attach += AI3_Attach;
+                ActiveInterfaceKit.VoltageInputs[3].Detach += AI3_Detach;
+                ActiveInterfaceKit.VoltageInputs[3].PropertyChange += AI3_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[3].SensorChange += AI3_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[3].VoltageChange += AI3_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[3].Error += AI3_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[4].Attach += AI4_Attach;
+                ActiveInterfaceKit.VoltageInputs[4].Detach += AI4_Detach;
+                ActiveInterfaceKit.VoltageInputs[4].PropertyChange += AI4_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[4].SensorChange += AI4_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[4].VoltageChange += AI4_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[4].Error += AI4_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[5].Attach += AI5_Attach;
+                ActiveInterfaceKit.VoltageInputs[5].Detach += AI5_Detach;
+                ActiveInterfaceKit.VoltageInputs[5].PropertyChange += AI5_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[5].SensorChange += AI5_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[5].VoltageChange += AI5_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[5].Error += AI5_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[6].Attach += AI6_Attach;
+                ActiveInterfaceKit.VoltageInputs[6].Detach += AI6_Detach;
+                ActiveInterfaceKit.VoltageInputs[6].PropertyChange += AI6_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[6].SensorChange += AI6_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[6].VoltageChange += AI6_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[6].Error += AI6_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageInputs[7].Attach += AI7_Attach;
+                ActiveInterfaceKit.VoltageInputs[7].Detach += AI7_Detach;
+                ActiveInterfaceKit.VoltageInputs[7].PropertyChange += AI7_PropertyChange;
+                ActiveInterfaceKit.VoltageInputs[7].SensorChange += AI7_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[7].VoltageChange += AI7_VoltageChange;
+                ActiveInterfaceKit.VoltageInputs[7].Error += AI7_Error;
+            }
+        }
+
+        private void InterfaceKit1018ViewModel_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void LoadUIConfig()
@@ -171,6 +571,36 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        private IEnumerable<VNCPhidgetConfig.Sensor> _Sensors2;
+        public IEnumerable<VNCPhidgetConfig.Sensor> Sensors2
+        {
+            get
+            {
+                if (null == _Sensors2)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_Sensors =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
+                    //    select new Sensor(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _Sensors2;
+            }
+
+            set
+            {
+                _Sensors2 = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Phidget
@@ -220,6 +650,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
         }
+
+        // TODO(crhodes)
+        // Since channels are now the focus, do we need this?
 
         private bool? _deviceAttached;
         public bool? DeviceAttached
@@ -377,14 +810,2751 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region InterfaceKit Phidget Properties
 
+        #region Digital Inputs
+
+        #region DI0
+
+        private bool? _dI0;
+        public bool? DI0
+        {
+            get => _dI0;
+            set
+            {
+                if (_dI0 == value)
+                    return;
+                _dI0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI0_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI0_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI0 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI0_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI0_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI0_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI0_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI0_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI0 = e.State;
+        }
+
+        private void DI0_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI0_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI1
+
+        private bool? _dI1;
+        public bool? DI1
+        {
+            get => _dI1;
+            set
+            {
+                if (_dI1 == value)
+                    return;
+                _dI1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI1_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI1_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI1 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI1_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI1_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI1_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI1_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI1_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI1 = e.State;
+        }
+
+        private void DI1_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI1_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI2
+
+        private bool? _dI2;
+        public bool? DI2
+        {
+            get => _dI2;
+            set
+            {
+                if (_dI2 == value)
+                    return;
+                _dI2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI2_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI2_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI2 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI2_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI2_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI2_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI2_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI2_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI2 = e.State;
+        }
+
+        private void DI2_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI2_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI3
+
+        private bool? _dI3;
+        public bool? DI3
+        {
+            get => _dI3;
+            set
+            {
+                if (_dI3 == value)
+                    return;
+                _dI3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI3_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI3_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI3 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI3_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI3_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI3_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI3_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI3_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI3 = e.State;
+        }
+
+        private void DI3_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI3_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI4
+
+        private bool? _dI4;
+        public bool? DI4
+        {
+            get => _dI4;
+            set
+            {
+                if (_dI4 == value)
+                    return;
+                _dI4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI4_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI4_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI4 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI4_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI4_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI4_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI4_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI4_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI4 = e.State;
+        }
+
+        private void DI4_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI4_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI5
+
+        private bool? _dI5;
+        public bool? DI5
+        {
+            get => _dI5;
+            set
+            {
+                if (_dI5 == value)
+                    return;
+                _dI5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI5_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI5_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI5 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI5_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI5_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI5_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI5_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI5_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI5 = e.State;
+        }
+
+        private void DI5_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI5_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI6
+
+        private bool? _dI6;
+        public bool? DI6
+        {
+            get => _dI6;
+            set
+            {
+                if (_dI6 == value)
+                    return;
+                _dI6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI6_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI6_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI6 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI6_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI6_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI6_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI6_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI6_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI6 = e.State;
+        }
+
+        private void DI6_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI6_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI7
+
+        private bool? _dI7;
+        public bool? DI7
+        {
+            get => _dI7;
+            set
+            {
+                if (_dI7 == value)
+                    return;
+                _dI7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI7_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI7_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI7 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI7_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI7_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI7_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI7_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI7_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI7 = e.State;
+        }
+
+        private void DI7_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI7_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI8
+
+        private bool? _dI8;
+        public bool? DI8
+        {
+            get => _dI8;
+            set
+            {
+                if (_dI8 == value)
+                    return;
+                _dI0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI8_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI8_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI8 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI8_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI8_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI8_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI8_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI8_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI8 = e.State;
+        }
+
+        private void DI8_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI8_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI9
+
+        private bool? _dI9;
+        public bool? DI9
+        {
+            get => _dI9;
+            set
+            {
+                if (_dI9 == value)
+                    return;
+                _dI9 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI9_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI9_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI9 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI9_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI9_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI9_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI9_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI9_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI9 = e.State;
+        }
+
+        private void DI9_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI9_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI10
+
+        private bool? _dI10;
+        public bool? DI10
+        {
+            get => _dI10;
+            set
+            {
+                if (_dI10 == value)
+                    return;
+                _dI10 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI10_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI10_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI10 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI10_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI10_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI10_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI10_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI10_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI10 = e.State;
+        }
+
+        private void DI10_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI10_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI11
+
+        private bool? _dI11;
+        public bool? DI11
+        {
+            get => _dI11;
+            set
+            {
+                if (_dI11 == value)
+                    return;
+                _dI11 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI11_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI11_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI11 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI11_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI11_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI11_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI11_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI11_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI11 = e.State;
+        }
+
+        private void DI11_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI11_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI12
+
+        private bool? _dI12;
+        public bool? DI12
+        {
+            get => _dI12;
+            set
+            {
+                if (_dI12 == value)
+                    return;
+                _dI12 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI12_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI12_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI12 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI12_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI12_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI12_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI12_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI12_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI12 = e.State;
+        }
+
+        private void DI12_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI12_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI13
+
+        private bool? _dI13;
+        public bool? DI13
+        {
+            get => _dI13;
+            set
+            {
+                if (_dI13 == value)
+                    return;
+                _dI13 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI13_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI13_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI13 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI13_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI13_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI13_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI13_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI13_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI13 = e.State;
+        }
+
+        private void DI13_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI13_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI14
+
+        private bool? _dI14;
+        public bool? DI14
+        {
+            get => _dI14;
+            set
+            {
+                if (_dI14 == value)
+                    return;
+                _dI14 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI14_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI14_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI14 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI14_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI14_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI14_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI14_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI14_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI14 = e.State;
+        }
+
+        private void DI14_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI14_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DI15
+
+        private bool? _dI15;
+        public bool? DI15
+        {
+            get => _dI15;
+            set
+            {
+                if (_dI15 == value)
+                    return;
+                _dI15 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void DI15_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI15_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DI15 = ((Phidgets.DigitalInput)sender).State;
+        }
+
+        private void DI15_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI15_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI15_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI15_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DI15_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            DI15 = e.State;
+        }
+
+        private void DI15_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DI15_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Digital Outputs
+
+        #region DO0
+
+        private bool? _dO0;
+        public bool? DO0
+        {
+            get => _dO0;
+            set
+            {
+                if (_dO0 == value)
+                    return;
+                _dO0 = value;
+
+                // ActiveInterfaceKit_OutputChange may have called us
+                // No need to update if same state.
+
+                // FIX(crhodes)
+                // 
+                //if (ActiveInterfaceKit is not null
+                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[0])
+                //{
+                //    ActiveInterfaceKit.InterfaceKit.outputs[0] = (Boolean)value;
+                //}
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[0].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[0].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO0_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO0_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO0 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO0_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO0_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO0_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO0_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO0_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO0_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO1
+
+        private bool? _dO1;
+        public bool? DO1
+        {
+            get => _dO1;
+            set
+            {
+                if (_dO1 == value)
+                    return;
+                _dO1 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[1].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[1].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO1_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO1_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO1 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO1_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO1_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO1_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO1_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO1_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO1_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO2
+
+        private bool? _dO2;
+        public bool? DO2
+        {
+            get => _dO2;
+            set
+            {
+                if (_dO2 == value)
+                    return;
+                _dO2 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[2].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[2].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO2_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO2_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO2 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO2_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO2_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO2_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO2_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO2_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO2_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO3
+
+        private bool? _dO3;
+        public bool? DO3
+        {
+            get => _dO3;
+            set
+            {
+                if (_dO3 == value)
+                    return;
+                _dO3 = value;
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[3].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[3].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO3_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO3_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO3 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO3_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO3_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO3_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO3_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO3_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO3_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO4
+
+        private bool? _dO4;
+        public bool? DO4
+        {
+            get => _dO4;
+            set
+            {
+                if (_dO4 == value)
+                    return;
+                _dO4 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[4].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[4].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO4_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO4_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO4 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO4_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO4_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO4_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO4_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO4_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO4_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO5
+
+        private bool? _dO5;
+        public bool? DO5
+        {
+            get => _dO5;
+            set
+            {
+                if (_dO5 == value)
+                    return;
+                _dO5 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[5].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[5].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO5_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO5_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO5 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO5_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO5_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO5_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO5_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO5_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO5_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO6
+
+        private bool? _dO6;
+        public bool? DO6
+        {
+            get => _dO6;
+            set
+            {
+                if (_dO6 == value)
+                    return;
+                _dO6 = value;
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[6].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[6].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO6_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO6_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO6 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO6_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO6_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO6_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO6_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO6_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO6_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO7
+
+        private bool? _dO7;
+        public bool? DO7
+        {
+            get => _dO7;
+            set
+            {
+                if (_dO7 == value)
+                    return;
+                _dO7 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[7].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[7].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO7_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO7_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO7 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO7_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO7_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO7_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO7_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO7_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO7_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO8
+
+        private bool? _dO8;
+        public bool? DO8
+        {
+            get => _dO8;
+            set
+            {
+                if (_dO8 == value)
+                    return;
+                _dO8 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[8].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[8].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO8_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO8_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO8 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO8_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO8_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO8_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO8_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO8_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO8_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO9
+
+        private bool? _dO9;
+        public bool? DO9
+        {
+            get => _dO9;
+            set
+            {
+                if (_dO9 == value)
+                    return;
+                _dO9 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[9].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[9].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO9_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO9_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO9 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO9_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO9_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO9_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO9_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO9_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO9_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO10
+
+        private bool? _dO10;
+        public bool? DO10
+        {
+            get => _dO10;
+            set
+            {
+                if (_dO10 == value)
+                    return;
+                _dO10 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[10].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[10].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO10_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO10_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO10 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO10_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO10_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO10_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO10_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO10_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO10_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO11
+
+        private bool? _dO11;
+        public bool? DO11
+        {
+            get => _dO11;
+            set
+            {
+                if (_dO11 == value)
+                    return;
+                _dO11 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[11].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[11].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO11_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO11_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO11 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO11_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO11_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO11_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO11_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO11_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO11_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO12
+
+        private bool? _dO12;
+        public bool? DO12
+        {
+            get => _dO12;
+            set
+            {
+                if (_dO12 == value)
+                    return;
+                _dO12 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[12].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[12].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO12_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO12_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO12 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO12_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO12_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO12_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO12_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO12_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO12_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO13
+
+        private bool? _dO13;
+        public bool? DO13
+        {
+            get => _dO13;
+            set
+            {
+                if (_dO13 == value)
+                    return;
+                _dO13 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[13].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[13].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO13_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO13_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO13 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO13_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO13_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO13_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO13_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO13_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO13_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO14
+
+        private bool? _dO14;
+        public bool? DO14
+        {
+            get => _dO14;
+            set
+            {
+                if (_dO14 == value)
+                    return;
+                _dO14 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[14].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[14].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO14_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO14_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO14 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO14_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO14_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO14_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO14_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO14_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO14_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #region DO15
+
+        private bool? _dO15;
+        public bool? DO15
+        {
+            get => _dO15;
+            set
+            {
+                if (_dO15 == value)
+                    return;
+                _dO15 = value;
+
+                if (ActiveInterfaceKit is not null
+                    && value != ActiveInterfaceKit.DigitalOutputs[15].State)
+                {
+                    ActiveInterfaceKit.DigitalOutputs[15].State = (Boolean)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void DO15_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO15_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            DO15 = ((Phidgets.DigitalOutput)sender).State;
+        }
+
+        private void DO15_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO15_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO15_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO15_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DO15_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DO15_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
         #region Sensor Input
 
         #region Analog Sensors
 
         #region Sensor A0
 
-        private Int32? _aI0;
-        public Int32? AI0
+        private Double? _aI0;
+        public Double? AI0
         {
             get => _aI0;
             set
@@ -393,6 +3563,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI0 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI0_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI0_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI0_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI0_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI0 = e.Voltage;
+        }
+
+        private void AI0_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI0_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -453,7 +3715,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             get => _aISensitivity0;
             set
-            {             
+            {
                 if (_aISensitivity0 == value)
                     return;
                 _aISensitivity0 = value;
@@ -477,8 +3739,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A1
 
-        private Int32? _aI1;
-        public Int32? AI1
+        private Double? _aI1;
+        public Double? AI1
         {
             get => _aI1;
             set
@@ -487,6 +3749,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI1 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI1_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI1_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI1_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI1_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI1 = e.Voltage;
+        }
+
+        private void AI1_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI1_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -572,8 +3926,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A2
 
-        private Int32? _aI2;
-        public Int32? AI2
+        private Double? _aI2;
+        public Double? AI2
         {
             get => _aI2;
             set
@@ -582,6 +3936,99 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI2 = value;
                 OnPropertyChanged();
+            }
+        }
+
+
+        void AI2_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI2_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI2_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI2_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI2 = e.Voltage;
+        }
+
+        private void AI2_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI2_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -667,8 +4114,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A3
 
-        private Int32? _aI3;
-        public Int32? AI3
+        private Double? _aI3;
+        public Double? AI3
         {
             get => _aI3;
             set
@@ -677,6 +4124,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI3 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI3_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI3_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI3_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI3_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI3 = e.Voltage;
+        }
+
+        private void AI3_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI3_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -762,8 +4301,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A4
 
-        private Int32? _aI4;
-        public Int32? AI4
+        private Double? _aI4;
+        public Double? AI4
         {
             get => _aI4;
             set
@@ -772,6 +4311,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI4 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI4_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI4_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI4_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI4_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI4 = e.Voltage;
+        }
+
+        private void AI4_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI4_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -857,8 +4488,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A5
 
-        private Int32? _aI5;
-        public Int32? AI5
+        private Double? _aI5;
+        public Double? AI5
         {
             get => _aI5;
             set
@@ -867,6 +4498,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI5 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI5_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI5_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI5_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI5_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI5 = e.Voltage;
+        }
+
+        private void AI5_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI5_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -952,8 +4675,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A6
 
-        private Int32? _aI6;
-        public Int32? AI6
+        private Double? _aI6;
+        public Double? AI6
         {
             get => _aI6;
             set
@@ -962,6 +4685,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI6 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI6_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI6_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI6_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI6_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI6 = e.Voltage;
+        }
+
+        private void AI6_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI6_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -1047,8 +4862,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A7
 
-        private Int32? _aI7;
-        public Int32? AI7
+        private Double? _aI7;
+        public Double? AI7
         {
             get => _aI7;
             set
@@ -1057,6 +4872,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aI7 = value;
                 OnPropertyChanged();
+            }
+        }
+
+        void AI7_Attach(object sender, AttachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_Attach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI7_PropertyChange(object sender, PropertyChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_PropertyChange: {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI7_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI7_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_VoltageChange: {e.Voltage}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AI7 = e.Voltage;
+        }
+
+        private void AI7_Detach(object sender, DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_Detach:", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        void AI7_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
             }
         }
 
@@ -1144,582 +5051,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Digital Inputs
-
-        private bool? _dI0;
-        public bool? DI0
-        {
-            get => _dI0;
-            set
-            {
-                if (_dI0 == value)
-                    return;
-                _dI0 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI1;
-        public bool? DI1
-        {
-            get => _dI1;
-            set
-            {
-                if (_dI1 == value)
-                    return;
-                _dI1 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI2;
-        public bool? DI2
-        {
-            get => _dI2;
-            set
-            {
-                if (_dI2 == value)
-                    return;
-                _dI2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI3;
-        public bool? DI3
-        {
-            get => _dI3;
-            set
-            {
-                if (_dI3 == value)
-                    return;
-                _dI3 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI4;
-        public bool? DI4
-        {
-            get => _dI4;
-            set
-            {
-                if (_dI4 == value)
-                    return;
-                _dI4 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI5;
-        public bool? DI5
-        {
-            get => _dI5;
-            set
-            {
-                if (_dI5 == value)
-                    return;
-                _dI5 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI6;
-        public bool? DI6
-        {
-            get => _dI6;
-            set
-            {
-                if (_dI6 == value)
-                    return;
-                _dI6 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI7;
-        public bool? DI7
-        {
-            get => _dI7;
-            set
-            {
-                if (_dI7 == value)
-                    return;
-                _dI7 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI8;
-        public bool? DI8
-        {
-            get => _dI8;
-            set
-            {
-                if (_dI8 == value)
-                    return;
-                _dI0 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI9;
-        public bool? DI9
-        {
-            get => _dI9;
-            set
-            {
-                if (_dI9 == value)
-                    return;
-                _dI9 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI10;
-        public bool? DI10
-        {
-            get => _dI10;
-            set
-            {
-                if (_dI10 == value)
-                    return;
-                _dI10 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI11;
-        public bool? DI11
-        {
-            get => _dI11;
-            set
-            {
-                if (_dI11 == value)
-                    return;
-                _dI11 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI12;
-        public bool? DI12
-        {
-            get => _dI12;
-            set
-            {
-                if (_dI12 == value)
-                    return;
-                _dI12 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI13;
-        public bool? DI13
-        {
-            get => _dI13;
-            set
-            {
-                if (_dI13 == value)
-                    return;
-                _dI13 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI14;
-        public bool? DI14
-        {
-            get => _dI14;
-            set
-            {
-                if (_dI14 == value)
-                    return;
-                _dI14 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dI15;
-        public bool? DI15
-        {
-            get => _dI15;
-            set
-            {
-                if (_dI15 == value)
-                    return;
-                _dI15 = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
-
-        #region Digital Outputs
-
-        private bool? _dO0;
-        public bool? DO0
-        {
-            get => _dO0;
-            set
-            {
-                if (_dO0 == value)
-                    return;
-                _dO0 = value;
-
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
-
-                // FIX(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.outputs[0])
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.outputs[0] = (Boolean)value;
-                //}
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[0].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[0].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO1;
-        public bool? DO1
-        {
-            get => _dO1;
-            set
-            {
-                if (_dO1 == value)
-                    return;
-                _dO1 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[1].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[1].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO2;
-        public bool? DO2
-        {
-            get => _dO2;
-            set
-            {
-                if (_dO2 == value)
-                    return;
-                _dO2 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[2].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[2].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO3;
-        public bool? DO3
-        {
-            get => _dO3;
-            set
-            {
-                if (_dO3 == value)
-                    return;
-                _dO3 = value;
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[3].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[3].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO4;
-        public bool? DO4
-        {
-            get => _dO4;
-            set
-            {
-                if (_dO4 == value)
-                    return;
-                _dO4 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[4].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[4].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO5;
-        public bool? DO5
-        {
-            get => _dO5;
-            set
-            {
-                if (_dO5 == value)
-                    return;
-                _dO5 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[5].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[5].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO6;
-        public bool? DO6
-        {
-            get => _dO6;
-            set
-            {
-                if (_dO6 == value)
-                    return;
-                _dO6 = value;
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[6].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[6].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO7;
-        public bool? DO7
-        {
-            get => _dO7;
-            set
-            {
-                if (_dO7 == value)
-                    return;
-                _dO7 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[7].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[7].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO8;
-        public bool? DO8
-        {
-            get => _dO8;
-            set
-            {
-                if (_dO8 == value)
-                    return;
-                _dO8 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[8].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[8].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO9;
-        public bool? DO9
-        {
-            get => _dO9;
-            set
-            {
-                if (_dO9 == value)
-                    return;
-                _dO9 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[9].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[9].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO10;
-        public bool? DO10
-        {
-            get => _dO10;
-            set
-            {
-                if (_dO10 == value)
-                    return;
-                _dO10 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[10].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[10].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO11;
-        public bool? DO11
-        {
-            get => _dO11;
-            set
-            {
-                if (_dO11 == value)
-                    return;
-                _dO11 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[11].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[11].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO12;
-        public bool? DO12
-        {
-            get => _dO12;
-            set
-            {
-                if (_dO12 == value)
-                    return;
-                _dO12 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[12].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[12].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO13;
-        public bool? DO13
-        {
-            get => _dO13;
-            set
-            {
-                if (_dO13 == value)
-                    return;
-                _dO13 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[13].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[13].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO14;
-        public bool? DO14
-        {
-            get => _dO14;
-            set
-            {
-                if (_dO14 == value)
-                    return;
-                _dO14 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[14].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[14].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private bool? _dO15;
-        public bool? DO15
-        {
-            get => _dO15;
-            set
-            {
-                if (_dO15 == value)
-                    return;
-                _dO15 = value;
-
-                if (ActiveInterfaceKit is not null
-                    && value != ActiveInterfaceKit.DigitalOutputs[15].State)
-                {
-                    ActiveInterfaceKit.DigitalOutputs[15].State = (Boolean)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #endregion
-
-        private IEnumerable<VNCPhidgetConfig.Sensor> _Sensors2;
-        public IEnumerable<VNCPhidgetConfig.Sensor> Sensors2
-        {
-            get
-            {
-                if (null == _Sensors2)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Sensors =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
-                    //    select new Sensor(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Sensors2;
-            }
-
-            set
-            {
-                _Sensors2 = value;
-                OnPropertyChanged();
-            }
-        }
 
         #endregion
 
@@ -2056,13 +5388,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // 
             //ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
 
+            ConfigurePhidget();
+
             ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
 
-            ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
-            ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
-            ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+            //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            ActiveInterfaceKit.PhidgetDeviceAttached += ActiveInterfaceKit_PhidgetDeviceAttached;
+            //ActiveInterfaceKit.PhidgetDeviceAttached += ActiveInterfaceKit_PhidgetDeviceAttached;
 
             var pdBefore = Phidget22Device;
 
@@ -2136,6 +5470,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ActiveInterfaceKit.PhysicalPhidget.Attach += ActiveInterfaceKit_Attach;
             //ActiveInterfaceKit.PhysicalPhidget.Detach += ActiveInterfaceKit_Detach;
 
+            // FIX(crhodes)
+            // This is a problem.  We have to wait until all DI, DO, VI, VO devices that were openned
+            // attach.  Looks like we are going to have to go to separate event handlers for each channel. Ugh
             UpdateInterfaceKitProperties();
         }
 
@@ -2146,9 +5483,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //return true;
             if (SelectedInterfaceKit is not null)
             {
-                if (DeviceAttached is not null)
-                    return !(Boolean)DeviceAttached;
-                else
+                //if (DeviceAttached is not null)
+                //    return !(Boolean)DeviceAttached;
+                //else
                     return true;
             }
             else
@@ -2177,6 +5514,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseInterfaceKit) Enter", Common.LOG_CATEGORY);
+
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseInterfaceKit";
@@ -2227,11 +5565,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
-            else
-                return false;
+            return true;
+            //if (DeviceAttached is not null)
+            //    return (Boolean)DeviceAttached;
+            //else
+            //    return false;
         }
 
         #endregion
@@ -2282,7 +5620,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             var interfaceKitEx = ActiveInterfaceKit;
             var phidget = interfaceKitEx.PhysicalPhidget;
 
-            DO1 = interfaceKitEx.DigitalOutputs[1].State;
+            //DO1 = interfaceKitEx.DigitalOutputs[1].State;
 
             //Phidgets.DigitalInput[] DigitalInputs = 
             //for (int i = 0; i < interfaceKitEx.DigitalInputs.Count(); i++)
