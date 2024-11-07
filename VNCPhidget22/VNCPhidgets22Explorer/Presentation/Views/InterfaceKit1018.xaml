@@ -36,6 +36,8 @@
     xmlns:core="clr-namespace:VNCPhidgets22Explorer.Core;assembly=VNCPhidgets22Explorer.Core"
     
     xmlns:prism="http://prismlibrary.com/"
+    
+    xmlns:phidgets="clr-namespace:Phidget22;assembly=Phidget22.NET"
 
     prism:ViewModelLocator.AutoWireViewModel="False"
 
@@ -62,6 +64,7 @@
         <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
         <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
         <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+        <vncconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
     </vncmvvm:ViewBase.Resources>
     
     <!--<UserControl.Resources>-->        
@@ -325,17 +328,32 @@
                 <dxlc:LayoutGroup Name="lgAnalogInputs" Orientation="Horizontal" View="GroupBox" Header="Analog Inputs" 
                                   IsCollapsible="True" IsCollapsed="False" >
 
-                    <!--<dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical"
-                                      DataContext="{Binding Source=sensors[0]}" >-->
                     <dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical" >
 
-                        <dxlc:LayoutItem x:Name="liSensorTypeA0" Label="Sensor Type" LabelPosition="Top">
-                            <dxe:ComboBoxEdit ItemsSource="{Binding AISensorType0}" />
-                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                            <dxlc:LayoutItem x:Name="liSensorTypeA0" Label="Sensor Type" LabelPosition="Top" 
+                                         Visibility="{Binding IsChecked,ElementName=ceRatioMode, 
+                                                        Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                                <dxe:ComboBoxEdit 
+                                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageSensorType}}}"
+                                    SelectedItem="{Binding AISensorType0}"/>
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem x:Name="liRationSensorTypeA0" Label="RatioSensor Type" LabelPosition="Top">
-                            <dxe:ComboBoxEdit ItemsSource="{Binding AIRatioSensorType0}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem x:Name="liRatioSensorTypeA0" Label="Sensor Type" LabelPosition="Top"
+                                         Visibility="{Binding IsChecked, ElementName=ceRatioMode, 
+                                                        Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <dxe:ComboBoxEdit 
+                                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
+                                    SelectedItem="{Binding AIRatioSensorType0}"/>
+                            </dxlc:LayoutItem>
+                            
+                            <dxe:CheckEdit x:Name="ceRatioMode" Content="Ratio Mode"
+                                           IsChecked="{Binding AIRatioMode0}" 
+                                           VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                            <!--<RadioButton x:Name="rbVoltage"  GroupName="SensorMode" Click="SensorMode_Click" IsChecked="True">Voltage</RadioButton>
+                            <RadioButton x:Name="rbRatioVoltage" GroupName="SensorMode" Click="SensorMode_Click">RatioVoltage</RadioButton>-->
+                            
+                        </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Label="A0 Voltage" LabelPosition="Top">
                             <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding AIVoltage0, Mode=OneWay}" IsReadOnly="True" />

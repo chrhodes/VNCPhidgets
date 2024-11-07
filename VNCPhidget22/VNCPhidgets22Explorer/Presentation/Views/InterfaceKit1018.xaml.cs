@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+//using System.Windows.Controls;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -156,5 +157,12 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
+        //private void SensorMode_Click(object sender, RoutedEventArgs e)
+        //{
+        //    System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+        //    var stuff = e.Source as string;
+
+        //}
     }
 }

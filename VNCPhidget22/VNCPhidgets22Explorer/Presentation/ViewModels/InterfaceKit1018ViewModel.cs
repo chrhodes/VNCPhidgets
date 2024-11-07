@@ -551,10 +551,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private void InterfaceKit1018ViewModel_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void InterfaceKit1018ViewModel_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         private void LoadUIConfig()
         {
@@ -569,7 +569,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Hosts = hostConfig.Hosts.ToList();
             
-            Sensors2 = hostConfig.Sensors.ToList();
+            //Sensors2 = hostConfig.Sensors.ToList();
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -654,35 +654,35 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<VNCPhidgetConfig.Sensor> _Sensors2;
-        public IEnumerable<VNCPhidgetConfig.Sensor> Sensors2
-        {
-            get
-            {
-                if (null == _Sensors2)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
+        //private IEnumerable<VNCPhidgetConfig.Sensor> _Sensors2;
+        //public IEnumerable<VNCPhidgetConfig.Sensor> Sensors2
+        //{
+        //    get
+        //    {
+        //        if (null == _Sensors2)
+        //        {
+        //            // TODO(crhodes)
+        //            // Load this like the sensors.xml for now
 
-                    //_Sensors =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
-                    //    select new Sensor(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
+        //            //_Sensors =
+        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
+        //            //    select new Sensor(
+        //            //        item.Attribute("Name").Value,
+        //            //        item.Attribute("IPAddress").Value,
+        //            //        item.Attribute("Port").Value,
+        //            //        bool.Parse(item.Attribute("Enable").Value)
+        //            //        );
+        //        }
 
-                return _Sensors2;
-            }
+        //        return _Sensors2;
+        //    }
 
-            set
-            {
-                _Sensors2 = value;
-                OnPropertyChanged();
-            }
-        }
+        //    set
+        //    {
+        //        _Sensors2 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -3646,6 +3646,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _aISensorType0 = value;
                 OnPropertyChanged();
+
+                ActiveInterfaceKit.VoltageInputs[0].SensorType = value;
             }
         }
 
@@ -3658,6 +3660,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_aIRatioSensorType0 == value)
                     return;
                 _aIRatioSensorType0 = value;
+                OnPropertyChanged();
+
+                ActiveInterfaceKit.VoltageRatioInputs[0].SensorType = value;
+            }
+        }
+
+        private Double? _aIRatioMode0;
+        public Double? AIRatioMode0
+        {
+            get => _aIRatioMode0;
+            set
+            {
+                if (_aIRatioMode0 == value)
+                    return;
+                _aIRatioMode0 = value;
                 OnPropertyChanged();
             }
         }
@@ -3829,11 +3846,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"AI0_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"AI0_Error: sender:{sender} code:{e.Code} - {e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            if (e.Code == Phidgets.ErrorEventCode.OutOfRange)
+            {
+                switch (sender.GetType().Name)
+                {
+                    case nameof(Phidgets.VoltageInput):
+                        var sensor = (Phidgets.VoltageInput)sender;
+                        AIVoltage0 = sensor.Voltage;
+
+                        break;
+
+                    case nameof(Phidgets.VoltageRatioInput):
+                        var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                        AIVoltage0 = ratioSensor.VoltageRatio;
+                        break;
                 }
             }
         }
@@ -6076,258 +6110,45 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        private void ActiveInterfaceKit_Attach(object sender, Phidget22.Events.AttachEventArgs e)
-        {
-            try
-            {
-                Phidget22.Phidget device = (Phidget22.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Attach {device.DeviceName},{device.ServerHostname},{device.ServerPeerName} S#:{device.DeviceSerialNumber}", Common.LOG_CATEGORY);
-
-                DeviceAttached = device.Attached;
-
-                // TODO(crhodes)
-                // This is where properties should be grabbed
-                UpdateInterfaceKitProperties();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        private void ActiveInterfaceKit_Detach(object sender, Phidget22.Events.DetachEventArgs e)
-        {
-            try
-            {
-                Phidget22.Phidget device = (Phidget22.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Detach {device.DeviceName},{device.ServerHostname},{device.ServerPeerName} S#:{device.DeviceSerialNumber}", Common.LOG_CATEGORY);
-
-                DeviceAttached = device.Attached;
-
-                // TODO(crhodes)
-                // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
-                UpdateInterfaceKitProperties();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        // TODO(crhodes)
-        // 
-        //private void ActiveInterfaceKit_SensorChange(object sender, Phidget22.Events.SensorChangeEventArgs e)
+        //private void ActiveInterfaceKit_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         //{
-        //    Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
-
-        //    InterfaceKitAnalogSensor sensor = ifk.sensors[0];
-
-        //    //SIRaw0 = sensor.RawValue;
-        //    //SIDataRate0 = sensor.DataRate;
-        //    //SIDataRateMax0 = sensor.DataRateMax;
-        //    //SIDataRateMin0 = sensor.DataRateMin;
-        //    //SIDataInterval0= sensor.Sensitivity;
-
-        //    //var sValue = sensor0.Value;
-        //    //var eValue = e.Value;
-
-        //    // NOTE(crhodes)
-        //    // DataRateMin and DataRateMax do not change.
-        //    // Populate in Attach event
-
-        //    switch (e.Index)
+        //    try
         //    {
-        //        case 0:
-        //            sensor = ifk.sensors[0];
-        //            AI0 = sensor.Value;
-        //            AIRaw0 = sensor.RawValue;
-        //            AIDataRate0 = sensor.DataRate;
-        //            //AIDataRateMax0 = sensor.DataRateMax;
-        //            //AIDataRateMin0 = sensor.DataRateMin;
-        //            AIDataInterval0 = sensor.Sensitivity;
-        //            break;
-        //        case 1:
-        //            sensor = ifk.sensors[1];
-        //            AI1 = sensor.Value;
-        //            AIRaw1 = sensor.RawValue;
-        //            AIDataRate1 = sensor.DataRate;
-        //            //AIDataRateMax1 = sensor.DataRateMax;
-        //            //AIDataRateMin1 = sensor.DataRateMin;
-        //            AIDataInterval1 = sensor.Sensitivity;
-        //            break;
-        //        case 2:
-        //            sensor = ifk.sensors[2];
-        //            AI2 = sensor.Value;
-        //            AIRaw2 = sensor.RawValue;
-        //            AIDataRate2 = sensor.DataRate;
-        //            //AIDataRateMax2 = sensor.DataRateMax;
-        //            //AIDataRateMin2 = sensor.DataRateMin;
-        //            AIDataInterval2 = sensor.Sensitivity;
-        //            break;
-        //        case 3:
-        //            sensor = ifk.sensors[3];
-        //            AI3 = sensor.Value;
-        //            AIRaw3 = sensor.RawValue;
-        //            AIDataRate3 = sensor.DataRate;
-        //            //AIDataRateMax3 = sensor.DataRateMax;
-        //            //AIDataRateMin3 = sensor.DataRateMin;
-        //            AIDataInterval3 = sensor.Sensitivity;
-        //            break;
-        //        case 4:
-        //            sensor = ifk.sensors[4];
-        //            AI4 = sensor.Value;
-        //            AIRaw4 = sensor.RawValue;
-        //            AIDataRate4 = sensor.DataRate;
-        //            //AIDataRateMax4 = sensor.DataRateMax;
-        //            //AIDataRateMin4 = sensor.DataRateMin;
-        //            AIDataInterval4 = sensor.Sensitivity;
-        //            break;
-        //        case 5:
-        //            sensor = ifk.sensors[5];
-        //            AI5 = sensor.Value;
-        //            AIRaw5 = sensor.RawValue;
-        //            AIDataRate5 = sensor.DataRate;
-        //            //AIDataRateMax5 = sensor.DataRateMax;
-        //            //AIDataRateMin5 = sensor.DataRateMin;
-        //            AIDataInterval5 = sensor.Sensitivity;
-        //            break;
-        //        case 6:
-        //            sensor = ifk.sensors[6];
-        //            AI6 = sensor.Value;
-        //            AIRaw6 = sensor.RawValue;
-        //            AIDataRate6 = sensor.DataRate;
-        //            //AIDataRateMax6 = sensor.DataRateMax;
-        //            //AIDataRateMin6 = sensor.DataRateMin;
-        //            AIDataInterval6 = sensor.Sensitivity;
-        //            break;
-        //        case 7:
-        //            sensor = ifk.sensors[7];
-        //            AI7 = sensor.Value;
-        //            AIRaw7 = sensor.RawValue;
-        //            AIDataRate7 = sensor.DataRate;
-        //            //AIDataRateMax7 = sensor.DataRateMax;
-        //            //AIDataRateMin7 = sensor.DataRateMin;
-        //            AIDataInterval7 = sensor.Sensitivity;
-        //            break;
+        //        Phidget22.Phidget device = (Phidget22.Phidget)sender;
+        //        Log.Trace($"ActiveInterfaceKit_Attach {device.DeviceName},{device.ServerHostname},{device.ServerPeerName} S#:{device.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+        //        DeviceAttached = device.Attached;
+
+        //        // TODO(crhodes)
+        //        // This is where properties should be grabbed
+        //        UpdateInterfaceKitProperties();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
         //    }
         //}
 
-        //private void ActiveInterfaceKit_InputChange(object sender, Phidget22.Events.InputChangeEventArgs e)
+        //private void ActiveInterfaceKit_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         //{
-        //    Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
-
-        //    switch (e.Index)
+        //    try
         //    {
-        //        case 0:
-        //            DI0 = e.Value;
-        //            break;
-        //        case 1:
-        //            DI1 = e.Value;
-        //            break;
-        //        case 2:
-        //            DI2 = e.Value;
-        //            break;
-        //        case 3:
-        //            DI3 = e.Value;
-        //            break;
-        //        case 4:
-        //            DI4 = e.Value;
-        //            break;
-        //        case 5:
-        //            DI5 = e.Value;
-        //            break;
-        //        case 6:
-        //            DI6 = e.Value;
-        //            break;
-        //        case 7:
-        //            DI7 = e.Value;
-        //            break;
-        //        case 8:
-        //            DI8 = e.Value;
-        //            break;
-        //        case 9:
-        //            DI9 = e.Value;
-        //            break;
-        //        case 10:
-        //            DI10 = e.Value;
-        //            break;
-        //        case 11:
-        //            DI11 = e.Value;
-        //            break;
-        //        case 12:
-        //            DI12 = e.Value;
-        //            break;
-        //        case 13:
-        //            DI13 = e.Value;
-        //            break;
-        //        case 14:
-        //            DI14 = e.Value;
-        //            break;
-        //        case 15:
-        //            DI15 = e.Value;
-        //            break;
+        //        Phidget22.Phidget device = (Phidget22.Phidget)sender;
+        //        Log.Trace($"ActiveInterfaceKit_Detach {device.DeviceName},{device.ServerHostname},{device.ServerPeerName} S#:{device.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+        //        DeviceAttached = device.Attached;
+
+        //        // TODO(crhodes)
+        //        // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
+        //        UpdateInterfaceKitProperties();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
         //    }
         //}
 
-        //private void ActiveInterfaceKit_OutputChange(object sender, Phidget22.Events.OutputChangeEventArgs e)
-        //{
-        //    Phidget22.InterfaceKit ifk = (Phidget22.InterfaceKit)sender;
-        //    var outputs = ifk.outputs;
-        //    InterfaceKitDigitalOutputCollection doc = outputs;
 
-        //    switch (e.Index)
-        //    {
-        //        case 0:
-        //            DO0 = e.Value;
-        //            break;
-        //        case 1:
-        //            DO1 = e.Value;
-        //            break;
-        //        case 2:
-        //            DO2 = e.Value;
-        //            break;
-        //        case 3:
-        //            DO3 = e.Value;
-        //            break;
-        //        case 4:
-        //            DO4 = e.Value;
-        //            break;
-        //        case 5:
-        //            DO5 = e.Value;
-        //            break;
-        //        case 6:
-        //            DO6 = e.Value;
-        //            break;
-        //        case 7:
-        //            DO7 = e.Value;
-        //            break;
-        //        case 8:
-        //            DO8 = e.Value;
-        //            break;
-        //        case 9:
-        //            DO9 = e.Value;
-        //            break;
-        //        case 10:
-        //            DO10 = e.Value;
-        //            break;
-        //        case 11:
-        //            DO11 = e.Value;
-        //            break;
-        //        case 12:
-        //            DO12 = e.Value;
-        //            break;
-        //        case 13:
-        //            DO13 = e.Value;
-        //            break;
-        //        case 14:
-        //            DO14 = e.Value;
-        //            break;
-        //        case 15:
-        //            DO15 = e.Value;
-        //            break;
-        //    }
-
-        //}
 
         #endregion
 
@@ -6470,28 +6291,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void ActiveInterfaceKit_PhidgetDeviceAttached(object? sender, EventArgs e)
-        {
-            Phidget22Device = ActiveInterfaceKit.PhysicalPhidget;
+        //private void ActiveInterfaceKit_PhidgetDeviceAttached(object? sender, EventArgs e)
+        //{
+        //    Phidget22Device = ActiveInterfaceKit.PhysicalPhidget;
 
-            DeviceAttached = Phidget22Device.Attached;
+        //    DeviceAttached = Phidget22Device.Attached;
 
-            // NOTE(crhodes)
-            // This won't work as Phidget22Device won't be set until Phidget_Attach event fires
+        //    // NOTE(crhodes)
+        //    // This won't work as Phidget22Device won't be set until Phidget_Attach event fires
 
-            //DeviceAttached = Phidget22Device.Attached;
+        //    //DeviceAttached = Phidget22Device.Attached;
 
-            // NOTE(crhodes)
-            // I don't think these are gonna fire given how we populate PhysicalPhidget
+        //    // NOTE(crhodes)
+        //    // I don't think these are gonna fire given how we populate PhysicalPhidget
 
-            //ActiveInterfaceKit.PhysicalPhidget.Attach += ActiveInterfaceKit_Attach;
-            //ActiveInterfaceKit.PhysicalPhidget.Detach += ActiveInterfaceKit_Detach;
+        //    //ActiveInterfaceKit.PhysicalPhidget.Attach += ActiveInterfaceKit_Attach;
+        //    //ActiveInterfaceKit.PhysicalPhidget.Detach += ActiveInterfaceKit_Detach;
 
-            // FIX(crhodes)
-            // This is a problem.  We have to wait until all DI, DO, VI, VO devices that were openned
-            // attach.  Looks like we are going to have to go to separate event handlers for each channel. Ugh
-            UpdateInterfaceKitProperties();
-        }
+        //    // FIX(crhodes)
+        //    // This is a problem.  We have to wait until all DI, DO, VI, VO devices that were openned
+        //    // attach.  Looks like we are going to have to go to separate event handlers for each channel. Ugh
+        //    UpdateInterfaceKitProperties();
+        //}
 
         public bool OpenInterfaceKitCanExecute()
         {

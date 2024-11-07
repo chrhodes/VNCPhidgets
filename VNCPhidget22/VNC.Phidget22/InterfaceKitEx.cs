@@ -343,10 +343,10 @@ namespace VNC.Phidget22
                     VoltageInputs[i].Open();
                 }
 
-                //for (int i = 0; i < voltageRatioInputCount; i++)
-                //{
-                //    VoltageRatioInputs[i].Open();
-                //}
+                for (int i = 0; i < voltageRatioInputCount; i++)
+                {
+                    VoltageRatioInputs[i].Open();
+                }
 
                 for (int i = 0; i < voltageOutputCount; i++)
                 {
