@@ -23,6 +23,7 @@ using VNCPhidget22Explorer.Presentation.Controls;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 using DevExpress.XtraRichEdit.Commands;
 using Phidget22.Events;
+using DevExpress.Pdf.Native.BouncyCastle.Asn1.X509.Qualified;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -90,7 +91,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             ConfigureDigitalInputs(deviceChannels.DigitalInputCount);
             ConfigureDigitalOutputs(deviceChannels.DigitalOutputCount);
-            ConfigureSensorInputs(deviceChannels.VoltageInputCount);
+            ConfigureVoltageInputs(deviceChannels.VoltageInputCount);
+            ConfigureVoltageRatioInputs(deviceChannels.VoltageRatioInputCount);
         }
 
         // TODO(crhodes)
@@ -379,11 +381,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-
-        // TODO(crhodes)
-        // Figure out how do choose VoltageInputs vs VolatageRatioInputs
-
-        private void ConfigureSensorInputs(Int16 channelCount)
+        private void ConfigureVoltageInputs(Int16 channelCount)
         {
             Int16 configuredChannels = 0;
 
@@ -392,7 +390,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[0].Attach += AI0_Attach;
                 ActiveInterfaceKit.VoltageInputs[0].Detach += AI0_Detach;
                 ActiveInterfaceKit.VoltageInputs[0].PropertyChange += AI0_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[0].SensorChange += AI0_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[0].SensorChange += AI0_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[0].VoltageChange += AI0_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[0].Error += AI0_Error;
             }
@@ -402,7 +400,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[1].Attach += AI1_Attach;
                 ActiveInterfaceKit.VoltageInputs[1].Detach += AI1_Detach;
                 ActiveInterfaceKit.VoltageInputs[1].PropertyChange += AI1_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[1].SensorChange += AI1_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[1].SensorChange += AI1_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[1].VoltageChange += AI1_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[1].Error += AI1_Error;
             }
@@ -412,7 +410,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[2].Attach += AI2_Attach;
                 ActiveInterfaceKit.VoltageInputs[2].Detach += AI2_Detach;
                 ActiveInterfaceKit.VoltageInputs[2].PropertyChange += AI2_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[2].SensorChange += AI2_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[2].SensorChange += AI2_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[2].VoltageChange += AI2_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[2].Error += AI2_Error;
             }
@@ -422,7 +420,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[3].Attach += AI3_Attach;
                 ActiveInterfaceKit.VoltageInputs[3].Detach += AI3_Detach;
                 ActiveInterfaceKit.VoltageInputs[3].PropertyChange += AI3_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[3].SensorChange += AI3_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[3].SensorChange += AI3_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[3].VoltageChange += AI3_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[3].Error += AI3_Error;
             }
@@ -432,7 +430,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[4].Attach += AI4_Attach;
                 ActiveInterfaceKit.VoltageInputs[4].Detach += AI4_Detach;
                 ActiveInterfaceKit.VoltageInputs[4].PropertyChange += AI4_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[4].SensorChange += AI4_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[4].SensorChange += AI4_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[4].VoltageChange += AI4_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[4].Error += AI4_Error;
             }
@@ -442,7 +440,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[5].Attach += AI5_Attach;
                 ActiveInterfaceKit.VoltageInputs[5].Detach += AI5_Detach;
                 ActiveInterfaceKit.VoltageInputs[5].PropertyChange += AI5_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[5].SensorChange += AI5_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[5].SensorChange += AI5_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[5].VoltageChange += AI5_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[5].Error += AI5_Error;
             }
@@ -452,7 +450,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[6].Attach += AI6_Attach;
                 ActiveInterfaceKit.VoltageInputs[6].Detach += AI6_Detach;
                 ActiveInterfaceKit.VoltageInputs[6].PropertyChange += AI6_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[6].SensorChange += AI6_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[6].SensorChange += AI6_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[6].VoltageChange += AI6_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[6].Error += AI6_Error;
             }
@@ -462,13 +460,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 ActiveInterfaceKit.VoltageInputs[7].Attach += AI7_Attach;
                 ActiveInterfaceKit.VoltageInputs[7].Detach += AI7_Detach;
                 ActiveInterfaceKit.VoltageInputs[7].PropertyChange += AI7_PropertyChange;
-                ActiveInterfaceKit.VoltageInputs[7].SensorChange += AI7_SensorChange;
+                ActiveInterfaceKit.VoltageInputs[7].SensorChange += AI7_VoltageInputSensorChange;
                 ActiveInterfaceKit.VoltageInputs[7].VoltageChange += AI7_VoltageChange;
                 ActiveInterfaceKit.VoltageInputs[7].Error += AI7_Error;
             }
         }
 
-        private void InterfaceKit1018ViewModel_VoltageChange(object sender, VoltageInputVoltageChangeEventArgs e)
+        private void ConfigureVoltageRatioInputs(Int16 channelCount)
+        {
+            Int16 configuredChannels = 0;
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[0].Attach += AI0_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[0].Detach += AI0_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[0].PropertyChange += AI0_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[0].SensorChange += AI0_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[0].VoltageRatioChange += AI0_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[0].Error += AI0_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[1].Attach += AI1_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[1].Detach += AI1_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[1].PropertyChange += AI1_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[1].SensorChange += AI1_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[1].VoltageRatioChange += AI1_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[1].Error += AI1_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[2].Attach += AI2_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[2].Detach += AI2_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[2].PropertyChange += AI2_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[2].SensorChange += AI2_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[2].VoltageRatioChange += AI2_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[2].Error += AI2_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[3].Attach += AI3_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[3].Detach += AI3_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[3].PropertyChange += AI3_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[3].SensorChange += AI3_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[3].VoltageRatioChange += AI3_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[3].Error += AI3_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[4].Attach += AI4_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[4].Detach += AI4_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[4].PropertyChange += AI4_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[4].SensorChange += AI4_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[4].VoltageRatioChange += AI4_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[4].Error += AI4_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[5].Attach += AI5_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[5].Detach += AI5_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[5].PropertyChange += AI5_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[5].SensorChange += AI5_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[5].VoltageRatioChange += AI5_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[5].Error += AI5_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[6].Attach += AI6_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[6].Detach += AI6_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[6].PropertyChange += AI6_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[6].SensorChange += AI6_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[6].VoltageRatioChange += AI6_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[6].Error += AI6_Error;
+            }
+
+            if (channelCount > configuredChannels++)
+            {
+                ActiveInterfaceKit.VoltageRatioInputs[7].Attach += AI7_Attach;
+                ActiveInterfaceKit.VoltageRatioInputs[7].Detach += AI7_Detach;
+                ActiveInterfaceKit.VoltageRatioInputs[7].PropertyChange += AI7_PropertyChange;
+                ActiveInterfaceKit.VoltageRatioInputs[7].SensorChange += AI7_VoltageRatioInputSensorChange;
+                ActiveInterfaceKit.VoltageRatioInputs[7].VoltageRatioChange += AI7_VoltageRatioChange;
+                ActiveInterfaceKit.VoltageRatioInputs[7].Error += AI7_Error;
+            }
+        }
+
+        private void InterfaceKit1018ViewModel_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -3553,15 +3636,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A0
 
-        private Double? _aI0;
-        public Double? AI0
+        private Phidgets.VoltageSensorType _aISensorType0;
+        public Phidgets.VoltageSensorType AISensorType0
         {
-            get => _aI0;
+            get => _aISensorType0;
             set
             {
-                if (_aI0 == value)
+                if (_aISensorType0 == value)
                     return;
-                _aI0 = value;
+                _aISensorType0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType0;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType0
+        {
+            get => _aIRatioSensorType0;
+            set
+            {
+                if (_aIRatioSensorType0 == value)
+                    return;
+                _aIRatioSensorType0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage0;
+        public Double? AIVoltage0
+        {
+            get => _aIVoltage0;
+            set
+            {
+                if (_aIVoltage0 == value)
+                    return;
+                _aIVoltage0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit0;
+        public Phidgets.Unit AIUnit0
+        {
+            get => _aIUnit0;
+            set
+            {
+                if (_aIUnit0 == value)
+                    return;
+                _aIUnit0 = value;
                 OnPropertyChanged();
             }
         }
@@ -3578,6 +3700,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit0 = Phidgets.Unit.Volt;
+                    AIDataRateMin0 = sensor.MinDataRate;
+                    AIDataRate0 = sensor.DataRate;
+                    AIDataRateMax0 = sensor.MaxDataRate;
+                    AIDataIntervalMin0 = sensor.MinDataInterval;
+                    AIDataInterval0 = sensor.DataInterval;
+                    AIDataIntervalMax0 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit0 = Phidgets.Unit.Volt;
+                    AIDataRateMin0 = ratioSensor.MinDataRate;
+                    AIDataRate0 = ratioSensor.DataRate;
+                    AIDataRateMax0 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin0 = ratioSensor.MinDataInterval;
+                    AIDataInterval0 = ratioSensor.DataInterval;
+                    AIDataIntervalMax0 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -3596,13 +3744,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI0_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI0_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"AI0_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"AI0_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI0_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -3625,7 +3788,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI0 = e.Voltage;
+            AIVoltage0 = e.Voltage;
+        }
+
+        void AI0_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_VoltageRatioChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+    
+            AIVoltage0 = e.VoltageRatio;
         }
 
         private void AI0_Detach(object sender, DetachEventArgs e)
@@ -3671,8 +3851,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate0;
-        public Int32 AIDataRate0
+        private Double _aIDataRate0;
+        public Double AIDataRate0
         {
             get => _aIDataRate0;
             set
@@ -3684,8 +3864,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax0;
-        public Int32 AIDataRateMax0
+        private Double _aIDataRateMax0;
+        public Double AIDataRateMax0
         {
             get => _aIDataRateMax0;
             set
@@ -3697,8 +3877,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin0;
-        public Int32 AIDataRateMin0
+        private Double _aIDataRateMin0;
+        public Double AIDataRateMin0
         {
             get => _aIDataRateMin0;
             set
@@ -3710,27 +3890,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity0;
-        public Int32 AISensitivity0
+        private Double _aIDataIntervalMin0;
+        public Double AIDataIntervalMin0
         {
-            get => _aISensitivity0;
+            get => _aIDataIntervalMin0;
             set
             {
-                if (_aISensitivity0 == value)
+                if (_aIDataIntervalMin0 == value)
                     return;
-                _aISensitivity0 = value;
+                _aIDataIntervalMin0 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval0;
+        public Int32 AIDataInterval0
+        {
+            get => _aIDataInterval0;
+            set
+            {
+                if (_aIDataInterval0 == value)
+                    return;
+                _aIDataInterval0 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[0].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[0].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[0].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax0;
+        public Double AIDataIntervalMax0
+        {
+            get => _aIDataIntervalMax0;
+            set
+            {
+                if (_aIDataIntervalMax0 == value)
+                    return;
+                _aIDataIntervalMax0 = value;
                 OnPropertyChanged();
             }
         }
@@ -3739,15 +3939,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A1
 
-        private Double? _aI1;
-        public Double? AI1
+        private Phidgets.VoltageSensorType _aISensorType1;
+        public Phidgets.VoltageSensorType AISensorType1
         {
-            get => _aI1;
+            get => _aISensorType1;
             set
             {
-                if (_aI1 == value)
+                if (_aISensorType1 == value)
                     return;
-                _aI1 = value;
+                _aISensorType1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType1;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType1
+        {
+            get => _aIRatioSensorType1;
+            set
+            {
+                if (_aIRatioSensorType1 == value)
+                    return;
+                _aIRatioSensorType1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage1;
+        public Double? AIVoltage1
+        {
+            get => _aIVoltage1;
+            set
+            {
+                if (_aIVoltage1 == value)
+                    return;
+                _aIVoltage1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit1;
+        public Phidgets.Unit AIUnit1
+        {
+            get => _aIUnit1;
+            set
+            {
+                if (_aIUnit1 == value)
+                    return;
+                _aIUnit1 = value;
                 OnPropertyChanged();
             }
         }
@@ -3764,6 +4003,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit1 = Phidgets.Unit.Volt;
+                    AIDataRateMin1 = sensor.MinDataRate;
+                    AIDataRate1 = sensor.DataRate;
+                    AIDataRateMax1 = sensor.MaxDataRate;
+                    AIDataIntervalMin1 = sensor.MinDataInterval;
+                    AIDataInterval1 = sensor.DataInterval;
+                    AIDataIntervalMax1 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit1 = Phidgets.Unit.Volt;
+                    AIDataRateMin1 = ratioSensor.MinDataRate;
+                    AIDataRate1 = ratioSensor.DataRate;
+                    AIDataRateMax1 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin1 = ratioSensor.MinDataInterval;
+                    AIDataInterval1 = ratioSensor.DataInterval;
+                    AIDataIntervalMax1 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -3782,13 +4047,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI1_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI1_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"AI1_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"AI1_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI1_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -3811,7 +4091,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI1 = e.Voltage;
+            AIVoltage1 = e.Voltage;
+        }
+
+        void AI1_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI1_VoltageRatioChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage1 = e.VoltageRatio;
         }
 
         private void AI1_Detach(object sender, DetachEventArgs e)
@@ -3857,8 +4154,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate1;
-        public Int32 AIDataRate1
+        private Double _aIDataRate1;
+        public Double AIDataRate1
         {
             get => _aIDataRate1;
             set
@@ -3871,8 +4168,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax1;
-        public Int32 AIDataRateMax1
+        private Double _aIDataRateMax1;
+        public Double AIDataRateMax1
         {
             get => _aIDataRateMax1;
             set
@@ -3884,8 +4181,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin1;
-        public Int32 AIDataRateMin1
+        private Double _aIDataRateMin1;
+        public Double AIDataRateMin1
         {
             get => _aIDataRateMin1;
             set
@@ -3897,27 +4194,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity1;
-        public Int32 AISensitivity1
+        private Double _aIDataIntervalMin1;
+        public Double AIDataIntervalMin1
         {
-            get => _aISensitivity1;
+            get => _aIDataIntervalMin1;
             set
             {
-                if (_aISensitivity1 == value)
+                if (_aIDataIntervalMin1 == value)
                     return;
-                _aISensitivity1 = value;
+                _aIDataIntervalMin1 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval1;
+        public Int32 AIDataInterval1
+        {
+            get => _aIDataInterval1;
+            set
+            {
+                if (_aIDataInterval1 == value)
+                    return;
+                _aIDataInterval1 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[1].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[1].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[1].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax1;
+        public Double AIDataIntervalMax1
+        {
+            get => _aIDataIntervalMax1;
+            set
+            {
+                if (_aIDataIntervalMax1 == value)
+                    return;
+                _aIDataIntervalMax1 = value;
                 OnPropertyChanged();
             }
         }
@@ -3926,19 +4243,57 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A2
 
-        private Double? _aI2;
-        public Double? AI2
+        private Phidgets.VoltageSensorType _aISensorType2;
+        public Phidgets.VoltageSensorType AISensorType2
         {
-            get => _aI2;
+            get => _aISensorType2;
             set
             {
-                if (_aI2 == value)
+                if (_aISensorType2 == value)
                     return;
-                _aI2 = value;
+                _aISensorType2 = value;
                 OnPropertyChanged();
             }
         }
 
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType2;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType2
+        {
+            get => _aIRatioSensorType2;
+            set
+            {
+                if (_aIRatioSensorType2 == value)
+                    return;
+                _aIRatioSensorType2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage2;
+        public Double? AIVoltage2
+        {
+            get => _aIVoltage2;
+            set
+            {
+                if (_aIVoltage2 == value)
+                    return;
+                _aIVoltage2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit2;
+        public Phidgets.Unit AIUnit2
+        {
+            get => _aIUnit2;
+            set
+            {
+                if (_aIUnit2 == value)
+                    return;
+                _aIUnit2 = value;
+                OnPropertyChanged();
+            }
+        }
 
         void AI2_Attach(object sender, AttachEventArgs e)
         {
@@ -3952,6 +4307,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit2 = Phidgets.Unit.Volt;
+                    AIDataRateMin2 = sensor.MinDataRate;
+                    AIDataRate2 = sensor.DataRate;
+                    AIDataRateMax2 = sensor.MaxDataRate;
+                    AIDataIntervalMin2 = sensor.MinDataInterval;
+                    AIDataInterval2 = sensor.DataInterval;
+                    AIDataIntervalMax2 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit2 = Phidgets.Unit.Volt;
+                    AIDataRateMin2 = ratioSensor.MinDataRate;
+                    AIDataRate2 = ratioSensor.DataRate;
+                    AIDataRateMax2 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin2 = ratioSensor.MinDataInterval;
+                    AIDataInterval2 = ratioSensor.DataInterval;
+                    AIDataIntervalMax2 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -3970,13 +4351,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI2_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI2_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"AI2_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"AI2_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI2_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -3999,7 +4395,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI2 = e.Voltage;
+            AIVoltage2 = e.Voltage;
+        }
+
+        void AI2_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI2_VoltageRatioChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage2 = e.VoltageRatio;
         }
 
         private void AI2_Detach(object sender, DetachEventArgs e)
@@ -4045,8 +4458,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate2;
-        public Int32 AIDataRate2
+        private Double _aIDataRate2;
+        public Double AIDataRate2
         {
             get => _aIDataRate2;
             set
@@ -4059,8 +4472,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax2;
-        public Int32 AIDataRateMax2
+        private Double _aIDataRateMax2;
+        public Double AIDataRateMax2
         {
             get => _aIDataRateMax2;
             set
@@ -4072,8 +4485,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin2;
-        public Int32 AIDataRateMin2
+        private Double _aIDataRateMin2;
+        public Double AIDataRateMin2
         {
             get => _aIDataRateMin2;
             set
@@ -4085,27 +4498,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity2;
-        public Int32 AISensitivity2
+        private Double _aIDataIntervalMin2;
+        public Double AIDataIntervalMin2
         {
-            get => _aISensitivity2;
+            get => _aIDataIntervalMin2;
             set
             {
-                if (_aISensitivity2 == value)
+                if (_aIDataIntervalMin2 == value)
                     return;
-                _aISensitivity2 = value;
+                _aIDataIntervalMin2 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval2;
+        public Int32 AIDataInterval2
+        {
+            get => _aIDataInterval2;
+            set
+            {
+                if (_aIDataInterval2 == value)
+                    return;
+                _aIDataInterval2 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[2].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[2].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[2].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax2;
+        public Double AIDataIntervalMax2
+        {
+            get => _aIDataIntervalMax2;
+            set
+            {
+                if (_aIDataIntervalMax2 == value)
+                    return;
+                _aIDataIntervalMax2 = value;
                 OnPropertyChanged();
             }
         }
@@ -4114,15 +4547,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A3
 
-        private Double? _aI3;
-        public Double? AI3
+        private Phidgets.VoltageSensorType _aISensorType3;
+        public Phidgets.VoltageSensorType AISensorType3
         {
-            get => _aI3;
+            get => _aISensorType3;
             set
             {
-                if (_aI3 == value)
+                if (_aISensorType3 == value)
                     return;
-                _aI3 = value;
+                _aISensorType3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType3;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType3
+        {
+            get => _aIRatioSensorType3;
+            set
+            {
+                if (_aIRatioSensorType3 == value)
+                    return;
+                _aIRatioSensorType3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage3;
+        public Double? AIVoltage3
+        {
+            get => _aIVoltage3;
+            set
+            {
+                if (_aIVoltage3 == value)
+                    return;
+                _aIVoltage3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit3;
+        public Phidgets.Unit AIUnit3
+        {
+            get => _aIUnit3;
+            set
+            {
+                if (_aIUnit3 == value)
+                    return;
+                _aIUnit3 = value;
                 OnPropertyChanged();
             }
         }
@@ -4139,6 +4611,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit3 = Phidgets.Unit.Volt;
+                    AIDataRateMin3 = sensor.MinDataRate;
+                    AIDataRate3 = sensor.DataRate;
+                    AIDataRateMax3 = sensor.MaxDataRate;
+                    AIDataIntervalMin3 = sensor.MinDataInterval;
+                    AIDataInterval3 = sensor.DataInterval;
+                    AIDataIntervalMax3 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit3 = Phidgets.Unit.Volt;
+                    AIDataRateMin3 = ratioSensor.MinDataRate;
+                    AIDataRate3 = ratioSensor.DataRate;
+                    AIDataRateMax3 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin3 = ratioSensor.MinDataInterval;
+                    AIDataInterval3 = ratioSensor.DataInterval;
+                    AIDataIntervalMax3 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -4157,13 +4655,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI3_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI3_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"AI3_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"AI3_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI3_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -4186,7 +4699,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI3 = e.Voltage;
+            AIVoltage3 = e.Voltage;
+        }
+
+        void AI3_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI3_VoltageRatioChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage3 = e.VoltageRatio;
         }
 
         private void AI3_Detach(object sender, DetachEventArgs e)
@@ -4232,8 +4762,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate3;
-        public Int32 AIDataRate3
+        private Double _aIDataRate3;
+        public Double AIDataRate3
         {
             get => _aIDataRate3;
             set
@@ -4246,8 +4776,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax3;
-        public Int32 AIDataRateMax3
+        private Double _aIDataRateMax3;
+        public Double AIDataRateMax3
         {
             get => _aIDataRateMax3;
             set
@@ -4259,8 +4789,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin3;
-        public Int32 AIDataRateMin3
+        private Double _aIDataRateMin3;
+        public Double AIDataRateMin3
         {
             get => _aIDataRateMin3;
             set
@@ -4272,27 +4802,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity3;
-        public Int32 AISensitivity3
+        private Double _aIDataIntervalMin3;
+        public Double AIDataIntervalMin3
         {
-            get => _aISensitivity3;
+            get => _aIDataIntervalMin3;
             set
             {
-                if (_aISensitivity3 == value)
+                if (_aIDataIntervalMin3 == value)
                     return;
-                _aISensitivity3 = value;
+                _aIDataIntervalMin3 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval3;
+        public Int32 AIDataInterval3
+        {
+            get => _aIDataInterval3;
+            set
+            {
+                if (_aIDataInterval3 == value)
+                    return;
+                _aIDataInterval3 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[3].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[3].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[3].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax3;
+        public Double AIDataIntervalMax3
+        {
+            get => _aIDataIntervalMax3;
+            set
+            {
+                if (_aIDataIntervalMax3 == value)
+                    return;
+                _aIDataIntervalMax3 = value;
                 OnPropertyChanged();
             }
         }
@@ -4301,15 +4851,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A4
 
-        private Double? _aI4;
-        public Double? AI4
+        private Phidgets.VoltageSensorType _aISensorType4;
+        public Phidgets.VoltageSensorType AISensorType4
         {
-            get => _aI4;
+            get => _aISensorType4;
             set
             {
-                if (_aI4 == value)
+                if (_aISensorType4 == value)
                     return;
-                _aI4 = value;
+                _aISensorType4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType4;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType4
+        {
+            get => _aIRatioSensorType4;
+            set
+            {
+                if (_aIRatioSensorType4 == value)
+                    return;
+                _aIRatioSensorType4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage4;
+        public Double? AIVoltage4
+        {
+            get => _aIVoltage4;
+            set
+            {
+                if (_aIVoltage4 == value)
+                    return;
+                _aIVoltage4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit4;
+        public Phidgets.Unit AIUnit4
+        {
+            get => _aIUnit4;
+            set
+            {
+                if (_aIUnit4 == value)
+                    return;
+                _aIUnit4 = value;
                 OnPropertyChanged();
             }
         }
@@ -4326,6 +4915,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit4 = Phidgets.Unit.Volt;
+                    AIDataRateMin4 = sensor.MinDataRate;
+                    AIDataRate4 = sensor.DataRate;
+                    AIDataRateMax4 = sensor.MaxDataRate;
+                    AIDataIntervalMin4 = sensor.MinDataInterval;
+                    AIDataInterval4 = sensor.DataInterval;
+                    AIDataIntervalMax4 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit4 = Phidgets.Unit.Volt;
+                    AIDataRateMin4 = ratioSensor.MinDataRate;
+                    AIDataRate4 = ratioSensor.DataRate;
+                    AIDataRateMax4 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin4 = ratioSensor.MinDataInterval;
+                    AIDataInterval4 = ratioSensor.DataInterval;
+                    AIDataIntervalMax4 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -4344,13 +4959,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI4_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI4_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"AI4_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"AI4_VoltageInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI4_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -4373,7 +5003,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI4 = e.Voltage;
+            AIVoltage4 = e.Voltage;
+        }
+
+        void AI4_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI4_VoltageRatioChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage4 = e.VoltageRatio;
         }
 
         private void AI4_Detach(object sender, DetachEventArgs e)
@@ -4419,8 +5066,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate4;
-        public Int32 AIDataRate4
+        private Double _aIDataRate4;
+        public Double AIDataRate4
         {
             get => _aIDataRate4;
             set
@@ -4433,8 +5080,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax4;
-        public Int32 AIDataRateMax4
+        private Double _aIDataRateMax4;
+        public Double AIDataRateMax4
         {
             get => _aIDataRateMax4;
             set
@@ -4446,8 +5093,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin4;
-        public Int32 AIDataRateMin4
+        private Double _aIDataRateMin4;
+        public Double AIDataRateMin4
         {
             get => _aIDataRateMin4;
             set
@@ -4459,27 +5106,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity4;
-        public Int32 AISensitivity4
+        private Double _aIDataIntervalMin4;
+        public Double AIDataIntervalMin4
         {
-            get => _aISensitivity4;
+            get => _aIDataIntervalMin4;
             set
             {
-                if (_aISensitivity4 == value)
+                if (_aIDataIntervalMin4 == value)
                     return;
-                _aISensitivity4 = value;
+                _aIDataIntervalMin4 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval4;
+        public Int32 AIDataInterval4
+        {
+            get => _aIDataInterval4;
+            set
+            {
+                if (_aIDataInterval4 == value)
+                    return;
+                _aIDataInterval4 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[4].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[4].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[4].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax4;
+        public Double AIDataIntervalMax4
+        {
+            get => _aIDataIntervalMax4;
+            set
+            {
+                if (_aIDataIntervalMax4 == value)
+                    return;
+                _aIDataIntervalMax4 = value;
                 OnPropertyChanged();
             }
         }
@@ -4488,15 +5155,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A5
 
-        private Double? _aI5;
-        public Double? AI5
+        private Phidgets.VoltageSensorType _aISensorType5;
+        public Phidgets.VoltageSensorType AISensorType5
         {
-            get => _aI5;
+            get => _aISensorType5;
             set
             {
-                if (_aI5 == value)
+                if (_aISensorType5 == value)
                     return;
-                _aI5 = value;
+                _aISensorType5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType5;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType5
+        {
+            get => _aIRatioSensorType5;
+            set
+            {
+                if (_aIRatioSensorType5 == value)
+                    return;
+                _aIRatioSensorType5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage5;
+        public Double? AIVoltage5
+        {
+            get => _aIVoltage5;
+            set
+            {
+                if (_aIVoltage5 == value)
+                    return;
+                _aIVoltage5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit5;
+        public Phidgets.Unit AIUnit5
+        {
+            get => _aIUnit5;
+            set
+            {
+                if (_aIUnit5 == value)
+                    return;
+                _aIUnit5 = value;
                 OnPropertyChanged();
             }
         }
@@ -4513,6 +5219,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit5 = Phidgets.Unit.Volt;
+                    AIDataRateMin5 = sensor.MinDataRate;
+                    AIDataRate5 = sensor.DataRate;
+                    AIDataRateMax5 = sensor.MaxDataRate;
+                    AIDataIntervalMin5 = sensor.MinDataInterval;
+                    AIDataInterval5 = sensor.DataInterval;
+                    AIDataIntervalMax5 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit5 = Phidgets.Unit.Volt;
+                    AIDataRateMin5 = ratioSensor.MinDataRate;
+                    AIDataRate5 = ratioSensor.DataRate;
+                    AIDataRateMax5 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin5 = ratioSensor.MinDataInterval;
+                    AIDataInterval5 = ratioSensor.DataInterval;
+                    AIDataIntervalMax5 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -4531,13 +5263,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI5_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI5_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
                     Log.EVENT_HANDLER($"AI5_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI5_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -4560,7 +5307,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI5 = e.Voltage;
+            AIVoltage5 = e.Voltage;
+        }
+
+        void AI5_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI5_VoltageRatioChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage5 = e.VoltageRatio;
         }
 
         private void AI5_Detach(object sender, DetachEventArgs e)
@@ -4606,8 +5370,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate5;
-        public Int32 AIDataRate5
+        private Double _aIDataRate5;
+        public Double AIDataRate5
         {
             get => _aIDataRate5;
             set
@@ -4620,8 +5384,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax5;
-        public Int32 AIDataRateMax5
+        private Double _aIDataRateMax5;
+        public Double AIDataRateMax5
         {
             get => _aIDataRateMax5;
             set
@@ -4633,8 +5397,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin5;
-        public Int32 AIDataRateMin5
+        private Double _aIDataRateMin5;
+        public Double AIDataRateMin5
         {
             get => _aIDataRateMin5;
             set
@@ -4646,27 +5410,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity5;
-        public Int32 AISensitivity5
+        private Double _aIDataIntervalMin5;
+        public Double AIDataIntervalMin5
         {
-            get => _aISensitivity5;
+            get => _aIDataIntervalMin5;
             set
             {
-                if (_aISensitivity5 == value)
+                if (_aIDataIntervalMin5 == value)
                     return;
-                _aISensitivity5 = value;
+                _aIDataIntervalMin5 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval5;
+        public Int32 AIDataInterval5
+        {
+            get => _aIDataInterval5;
+            set
+            {
+                if (_aIDataInterval5 == value)
+                    return;
+                _aIDataInterval5 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[5].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[5].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[5].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax5;
+        public Double AIDataIntervalMax5
+        {
+            get => _aIDataIntervalMax5;
+            set
+            {
+                if (_aIDataIntervalMax5 == value)
+                    return;
+                _aIDataIntervalMax5 = value;
                 OnPropertyChanged();
             }
         }
@@ -4675,15 +5459,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A6
 
-        private Double? _aI6;
-        public Double? AI6
+        private Phidgets.VoltageSensorType _aISensorType6;
+        public Phidgets.VoltageSensorType AISensorType6
         {
-            get => _aI6;
+            get => _aISensorType6;
             set
             {
-                if (_aI6 == value)
+                if (_aISensorType6 == value)
                     return;
-                _aI6 = value;
+                _aISensorType6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType6;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType6
+        {
+            get => _aIRatioSensorType6;
+            set
+            {
+                if (_aIRatioSensorType6 == value)
+                    return;
+                _aIRatioSensorType6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage6;
+        public Double? AIVoltage6
+        {
+            get => _aIVoltage6;
+            set
+            {
+                if (_aIVoltage6 == value)
+                    return;
+                _aIVoltage6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit6;
+        public Phidgets.Unit AIUnit6
+        {
+            get => _aIUnit6;
+            set
+            {
+                if (_aIUnit6 == value)
+                    return;
+                _aIUnit6 = value;
                 OnPropertyChanged();
             }
         }
@@ -4700,6 +5523,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit6 = Phidgets.Unit.Volt;
+                    AIDataRateMin6 = sensor.MinDataRate;
+                    AIDataRate6 = sensor.DataRate;
+                    AIDataRateMax6 = sensor.MaxDataRate;
+                    AIDataIntervalMin6 = sensor.MinDataInterval;
+                    AIDataInterval6 = sensor.DataInterval;
+                    AIDataIntervalMax6 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit6 = Phidgets.Unit.Volt;
+                    AIDataRateMin6 = ratioSensor.MinDataRate;
+                    AIDataRate6 = ratioSensor.DataRate;
+                    AIDataRateMax6 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin6 = ratioSensor.MinDataInterval;
+                    AIDataInterval6 = ratioSensor.DataInterval;
+                    AIDataIntervalMax6 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -4718,13 +5567,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI6_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI6_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
                     Log.EVENT_HANDLER($"AI6_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI6_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -4747,7 +5611,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI6 = e.Voltage;
+            AIVoltage6 = e.Voltage;
+        }
+
+        void AI6_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI6_VoltageChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage6 = e.VoltageRatio;
         }
 
         private void AI6_Detach(object sender, DetachEventArgs e)
@@ -4793,8 +5674,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate6;
-        public Int32 AIDataRate6
+        private Double _aIDataRate6;
+        public Double AIDataRate6
         {
             get => _aIDataRate6;
             set
@@ -4807,8 +5688,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax6;
-        public Int32 AIDataRateMax6
+        private Double _aIDataRateMax6;
+        public Double AIDataRateMax6
         {
             get => _aIDataRateMax6;
             set
@@ -4820,8 +5701,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin6;
-        public Int32 AIDataRateMin6
+        private Double _aIDataRateMin6;
+        public Double AIDataRateMin6
         {
             get => _aIDataRateMin6;
             set
@@ -4833,27 +5714,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity6;
-        public Int32 AISensitivity6
+        private Double _aIDataIntervalMin6;
+        public Double AIDataIntervalMin6
         {
-            get => _aISensitivity6;
+            get => _aIDataIntervalMin6;
             set
             {
-                if (_aISensitivity6 == value)
+                if (_aIDataIntervalMin6 == value)
                     return;
-                _aISensitivity6 = value;
+                _aIDataIntervalMin6 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval6;
+        public Int32 AIDataInterval6
+        {
+            get => _aIDataInterval6;
+            set
+            {
+                if (_aIDataInterval6 == value)
+                    return;
+                _aIDataInterval6 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[6].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[6].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[6].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax6;
+        public Double AIDataIntervalMax6
+        {
+            get => _aIDataIntervalMax6;
+            set
+            {
+                if (_aIDataIntervalMax6 == value)
+                    return;
+                _aIDataIntervalMax6 = value;
                 OnPropertyChanged();
             }
         }
@@ -4862,15 +5763,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Sensor A7
 
-        private Double? _aI7;
-        public Double? AI7
+        private Phidgets.VoltageSensorType _aISensorType7;
+        public Phidgets.VoltageSensorType AISensorType7
         {
-            get => _aI7;
+            get => _aISensorType7;
             set
             {
-                if (_aI7 == value)
+                if (_aISensorType7 == value)
                     return;
-                _aI7 = value;
+                _aISensorType7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageRatioSensorType _aIRatioSensorType7;
+        public Phidgets.VoltageRatioSensorType AIRatioSensorType7
+        {
+            get => _aIRatioSensorType7;
+            set
+            {
+                if (_aIRatioSensorType7 == value)
+                    return;
+                _aIRatioSensorType7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _aIVoltage7;
+        public Double? AIVoltage7
+        {
+            get => _aIVoltage7;
+            set
+            {
+                if (_aIVoltage7 == value)
+                    return;
+                _aIVoltage7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.Unit _aIUnit7;
+        public Phidgets.Unit AIUnit7
+        {
+            get => _aIUnit7;
+            set
+            {
+                if (_aIUnit7 == value)
+                    return;
+                _aIUnit7 = value;
                 OnPropertyChanged();
             }
         }
@@ -4887,6 +5827,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (sender.GetType().Name)
+            {
+                case nameof(Phidgets.VoltageInput):
+                    var sensor = (Phidgets.VoltageInput)sender;
+                    AIUnit7 = Phidgets.Unit.Volt;
+                    AIDataRateMin7 = sensor.MinDataRate;
+                    AIDataRate7 = sensor.DataRate;
+                    AIDataRateMax7 = sensor.MaxDataRate;
+                    AIDataIntervalMin7 = sensor.MinDataInterval;
+                    AIDataInterval7 = sensor.DataInterval;
+                    AIDataIntervalMax7 = sensor.MaxDataInterval;
+
+                    break;
+
+                case nameof(Phidgets.VoltageRatioInput):
+                    var ratioSensor = (Phidgets.VoltageRatioInput)sender;
+                    AIUnit7 = Phidgets.Unit.Volt;
+                    AIDataRateMin7 = ratioSensor.MinDataRate;
+                    AIDataRate7 = ratioSensor.DataRate;
+                    AIDataRateMax7 = ratioSensor.MaxDataRate;
+                    AIDataIntervalMin7 = ratioSensor.MinDataInterval;
+                    AIDataInterval7 = ratioSensor.DataInterval;
+                    AIDataIntervalMax7 = ratioSensor.MaxDataInterval;
+                    break;
             }
         }
 
@@ -4905,13 +5871,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void AI7_SensorChange(object sender, VoltageInputSensorChangeEventArgs e)
+        void AI7_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
                     Log.EVENT_HANDLER($"AI7_SensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void AI7_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI7_VoltageRatioInputSensorChange: {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -4934,9 +5915,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             }
 
-            AI7 = e.Voltage;
+            AIVoltage7 = e.Voltage;
         }
 
+        void AI7_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"AI0_VoltageChange: {e.VoltageRatio}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            AIVoltage7 = e.VoltageRatio;
+        }
         private void AI7_Detach(object sender, DetachEventArgs e)
         {
             if (LogPhidgetEvents)
@@ -4980,8 +5977,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRate7;
-        public Int32 AIDataRate7
+        private Double _aIDataRate7;
+        public Double AIDataRate7
         {
             get => _aIDataRate7;
             set
@@ -4994,8 +5991,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMax7;
-        public Int32 AIDataRateMax7
+        private Double _aIDataRateMax7;
+        public Double AIDataRateMax7
         {
             get => _aIDataRateMax7;
             set
@@ -5007,8 +6004,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aIDataRateMin7;
-        public Int32 AIDataRateMin7
+        private Double _aIDataRateMin7;
+        public Double AIDataRateMin7
         {
             get => _aIDataRateMin7;
             set
@@ -5020,27 +6017,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _aISensitivity7;
-        public Int32 AISensitivity7
+        private Double _aIDataIntervalMin7;
+        public Double AIDataIntervalMin7
         {
-            get => _aISensitivity7;
+            get => _aIDataIntervalMin7;
             set
             {
-                if (_aISensitivity7 == value)
+                if (_aIDataIntervalMin7 == value)
                     return;
-                _aISensitivity7 = value;
+                _aIDataIntervalMin7 = value;
+                OnPropertyChanged();
+            }
+        }
 
-                // ActiveInterfaceKit_OutputChange may have called us
-                // No need to update if same state.
+        private Int32 _aIDataInterval7;
+        public Int32 AIDataInterval7
+        {
+            get => _aIDataInterval7;
+            set
+            {
+                if (_aIDataInterval7 == value)
+                    return;
+                _aIDataInterval7 = value;
 
                 // TODO(crhodes)
-                // 
-                //if (ActiveInterfaceKit is not null
-                //    && value != ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity)
-                //{
-                //    ActiveInterfaceKit.InterfaceKit.sensors[7].Sensitivity = (Int32)value;
-                //}
+                // Maybe switch statement based on which type of input being used
+                ActiveInterfaceKit.VoltageInputs[7].DataInterval = value;
+                //ActiveInterfaceKit.VoltageRatioInputs[7].DataInterval = value;
 
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _aIDataIntervalMax7;
+        public Double AIDataIntervalMax7
+        {
+            get => _aIDataIntervalMax7;
+            set
+            {
+                if (_aIDataIntervalMax7 == value)
+                    return;
+                _aIDataIntervalMax7 = value;
                 OnPropertyChanged();
             }
         }
@@ -5109,7 +6126,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    //SIDataRate0 = sensor.DataRate;
         //    //SIDataRateMax0 = sensor.DataRateMax;
         //    //SIDataRateMin0 = sensor.DataRateMin;
-        //    //SISensitivity0= sensor.Sensitivity;
+        //    //SIDataInterval0= sensor.Sensitivity;
 
         //    //var sValue = sensor0.Value;
         //    //var eValue = e.Value;
@@ -5127,7 +6144,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate0 = sensor.DataRate;
         //            //AIDataRateMax0 = sensor.DataRateMax;
         //            //AIDataRateMin0 = sensor.DataRateMin;
-        //            AISensitivity0 = sensor.Sensitivity;
+        //            AIDataInterval0 = sensor.Sensitivity;
         //            break;
         //        case 1:
         //            sensor = ifk.sensors[1];
@@ -5136,7 +6153,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate1 = sensor.DataRate;
         //            //AIDataRateMax1 = sensor.DataRateMax;
         //            //AIDataRateMin1 = sensor.DataRateMin;
-        //            AISensitivity1 = sensor.Sensitivity;
+        //            AIDataInterval1 = sensor.Sensitivity;
         //            break;
         //        case 2:
         //            sensor = ifk.sensors[2];
@@ -5145,7 +6162,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate2 = sensor.DataRate;
         //            //AIDataRateMax2 = sensor.DataRateMax;
         //            //AIDataRateMin2 = sensor.DataRateMin;
-        //            AISensitivity2 = sensor.Sensitivity;
+        //            AIDataInterval2 = sensor.Sensitivity;
         //            break;
         //        case 3:
         //            sensor = ifk.sensors[3];
@@ -5154,7 +6171,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate3 = sensor.DataRate;
         //            //AIDataRateMax3 = sensor.DataRateMax;
         //            //AIDataRateMin3 = sensor.DataRateMin;
-        //            AISensitivity3 = sensor.Sensitivity;
+        //            AIDataInterval3 = sensor.Sensitivity;
         //            break;
         //        case 4:
         //            sensor = ifk.sensors[4];
@@ -5163,7 +6180,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate4 = sensor.DataRate;
         //            //AIDataRateMax4 = sensor.DataRateMax;
         //            //AIDataRateMin4 = sensor.DataRateMin;
-        //            AISensitivity4 = sensor.Sensitivity;
+        //            AIDataInterval4 = sensor.Sensitivity;
         //            break;
         //        case 5:
         //            sensor = ifk.sensors[5];
@@ -5172,7 +6189,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate5 = sensor.DataRate;
         //            //AIDataRateMax5 = sensor.DataRateMax;
         //            //AIDataRateMin5 = sensor.DataRateMin;
-        //            AISensitivity5 = sensor.Sensitivity;
+        //            AIDataInterval5 = sensor.Sensitivity;
         //            break;
         //        case 6:
         //            sensor = ifk.sensors[6];
@@ -5181,7 +6198,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate6 = sensor.DataRate;
         //            //AIDataRateMax6 = sensor.DataRateMax;
         //            //AIDataRateMin6 = sensor.DataRateMin;
-        //            AISensitivity6 = sensor.Sensitivity;
+        //            AIDataInterval6 = sensor.Sensitivity;
         //            break;
         //        case 7:
         //            sensor = ifk.sensors[7];
@@ -5190,7 +6207,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //            AIDataRate7 = sensor.DataRate;
         //            //AIDataRateMax7 = sensor.DataRateMax;
         //            //AIDataRateMin7 = sensor.DataRateMin;
-        //            AISensitivity7 = sensor.Sensitivity;
+        //            AIDataInterval7 = sensor.Sensitivity;
         //            break;
         //    }
         //}

@@ -96,9 +96,6 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 phidget.OnDeviceLibraryVersionChanged((string)e.OldValue, (string)e.NewValue);
         }
 
-
-
-
         #region Enums (None)
 
 

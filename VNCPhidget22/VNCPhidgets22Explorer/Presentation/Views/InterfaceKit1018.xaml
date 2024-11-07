@@ -329,14 +329,22 @@
                                       DataContext="{Binding Source=sensors[0]}" >-->
                     <dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical" >
 
-                        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top">
-                            <dxe:ComboBoxEdit ItemsSource="{Binding Sensors2}" DisplayMember="Name" />
+                        <dxlc:LayoutItem x:Name="liSensorTypeA0" Label="Sensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding AISensorType0}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="A0" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding AI0, Mode=OneWay}" IsReadOnly="True" />
+                        <dxlc:LayoutItem x:Name="liRationSensorTypeA0" Label="RatioSensor Type" LabelPosition="Top">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding AIRatioSensorType0}" />
                         </dxlc:LayoutItem>
-                        
+
+                        <dxlc:LayoutItem Label="A0 Voltage" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAI_A0" Tag="0" Text="{Binding AIVoltage0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0 Unit" LabelPosition="Top">
+                            <dxe:TextEdit Name="teAIUnit0" Text="{Binding AIUnit0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
                         <dxlc:LayoutItem Label="A0-Raw" LabelPosition="Top">
                             <dxe:TextEdit Name="teAI_A0R" Tag="0" Text="{Binding AIRaw0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
@@ -348,8 +356,8 @@
                         <dxlc:LayoutItem Label="A0-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate0, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax0, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin0, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin0, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax0, Mode=OneWay}" 
                                           IsFloatValue="False" />                            
                         </dxlc:LayoutItem>
 
@@ -357,10 +365,20 @@
                             <dxe:TextEdit Text="{Binding AIDataRateMax0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="A0-Sensitivity" LabelPosition="Top">
-                            <dxe:SpinEdit MinValue="0" MaxValue="1000" Increment="1"
-                              Value="{Binding AISensitivity0, Mode=TwoWay}" 
+                        <dxlc:LayoutItem Label="A0-Min" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataIntervaMin0, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem Label="A0-DataInterval" LabelPosition="Top">
+                            <dxe:SpinEdit Increment="1"
+                              Value="{Binding AIDataInterval0, Mode=TwoWay}" 
+                              MinValue="{Binding AIDataIntervaMin0, Mode=OneWay}" 
+                              MaxValue="{Binding AIDataIntervaMax0, Mode=OneWay}" 
                               IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="A0-Max" LabelPosition="Top">
+                            <dxe:TextEdit Text="{Binding AIDataIntervaMax0, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
@@ -386,8 +404,8 @@
                         <dxlc:LayoutItem Label="A1-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate1, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax1, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin1, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin1, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax1, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -424,8 +442,8 @@
                         <dxlc:LayoutItem Label="A2-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate2, Mode=TwoWay}" Increment="8"
-                                          MinValue="{Binding AIDataRateMax2, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin2, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin2, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax2, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -462,8 +480,8 @@
                         <dxlc:LayoutItem Label="A3-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate3, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax3, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin3, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin3, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax3, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -500,8 +518,8 @@
                         <dxlc:LayoutItem Label="A4-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate4, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax4, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin4, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin4, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax4, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -538,8 +556,8 @@
                         <dxlc:LayoutItem Label="A5-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate5, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax5, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin5, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin5, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax5, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -576,8 +594,8 @@
                         <dxlc:LayoutItem Label="A6-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate6, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax6, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin6, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin6, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax6, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
@@ -614,8 +632,8 @@
                         <dxlc:LayoutItem Label="A7-DataRate" LabelPosition="Top">
 
                             <dxe:SpinEdit Value="{Binding AIDataRate7, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding AIDataRateMax7, Mode=OneWay}" 
-                                          MaxValue="{Binding AIDataRateMin7, Mode=OneWay}" 
+                                          MinValue="{Binding AIDataRateMin7, Mode=OneWay}" 
+                                          MaxValue="{Binding AIDataRateMax7, Mode=OneWay}" 
                                           IsFloatValue="False" />
                         </dxlc:LayoutItem>
 
