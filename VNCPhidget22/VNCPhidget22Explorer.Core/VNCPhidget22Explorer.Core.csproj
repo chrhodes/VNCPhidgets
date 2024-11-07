@@ -1,21 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-      <TargetFrameworks>net8.0-windows</TargetFrameworks>
-      <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-      <VersionPrefix>1.0.0</VersionPrefix>
-      <VersionSuffix>development-12</VersionSuffix>
-      <FileVersion>2024.11.04A</FileVersion>
-      <Description>Layer on top of Phidget22</Description>
-      <Nullable>enable</Nullable>
-      <ImplicitUsings>disable</ImplicitUsings>      
-  </PropertyGroup>
-
-  <ItemGroup>
-    <!--<Compile Remove="AdvancedServoEx.cs" />-->
-    <!--<Compile Remove="InterfaceKitEx.cs" />-->
-    <Compile Remove="StepperEx.cs" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-windows</TargetFrameworks>
+        <UseWPF>true</UseWPF>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <VersionSuffix>indevelopment-1</VersionSuffix>
+        <FileVersion>2024.11.07A</FileVersion>
+        <Company>VNC</Company>
+        <Description>Phidget22 Explorer Core</Description>
+    </PropertyGroup>
 
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
@@ -35,18 +29,8 @@
     <!-- </PropertyGroup> -->
 
     <ItemGroup>
-        <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
+        <PackageReference Include="Prism.Core" Version="8.1.97" />
     </ItemGroup>
-    
-    <ItemGroup>
-        <ProjectReference Include="..\VNC.Phidget22.Configuration\VNC.Phidget22.Configuration.csproj" />
-    </ItemGroup>
-
-    <!--<ItemGroup>
-        <Reference Include="Phidget21.NET">
-            <HintPath>..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
-        </Reference>
-    </ItemGroup>-->
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -73,5 +57,5 @@
             </ItemGroup>
         </When>
     </Choose>
-    
+  
 </Project>

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets22Explorer", "VNCPhidgets22Explorer\VNCPhidgets22Explorer.csproj", "{9BBF40E8-B710-40E6-AD15-A52CB0E4D826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget22Explorer", "VNCPhidget22Explorer\VNCPhidget22Explorer.csproj", "{9BBF40E8-B710-40E6-AD15-A52CB0E4D826}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets22Explorer.Core", "VNCPhidgets22Explorer.Core\VNCPhidgets22Explorer.Core.csproj", "{9E675398-06FA-4ABD-A7A4-B377F4F1C1A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget22Explorer.Core", "VNCPhidget22Explorer.Core\VNCPhidget22Explorer.Core.csproj", "{9E675398-06FA-4ABD-A7A4-B377F4F1C1A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget22", "VNC.Phidget22\VNC.Phidget22.csproj", "{7E565559-41E9-4D7E-A07C-F7BB31C2545F}"
 EndProject

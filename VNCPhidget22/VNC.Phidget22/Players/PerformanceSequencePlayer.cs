@@ -34,12 +34,12 @@ namespace VNC.Phidget22.Players
 
         #endregion
 
-        #region Enums (None)
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures (None)
+        #region Structures (none)
 
 
         #endregion
@@ -76,12 +76,12 @@ namespace VNC.Phidget22.Players
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers (none)
 
 
         #endregion
 
-        #region Commands (None)
+        #region Commands (none)
 
         #endregion
 
@@ -638,13 +638,13 @@ namespace VNC.Phidget22.Players
 
         #endregion
 
-        #region Protected Methods (None)
+        #region Protected Methods (none)
 
 
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods (none)
 
 
 

@@ -54,12 +54,12 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Enums (None)
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures (None)
+        #region Structures (none)
 
 
         #endregion
@@ -305,12 +305,12 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Commands (None)
+        #region Commands (none)
 
 
         #endregion
 
-        #region Public Methods (None)
+        #region Public Methods (none)
 
         // NOTE(crhodes)
         // This did not work.  Had to go back to opening type'd Phidget.  See AdvancedServoEx, InterfaceKitEx, StepperEx
@@ -355,12 +355,12 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Protected Methods (None)
+        #region Protected Methods (none)
 
 
         #endregion
 
-        #region Private Methods (None)
+        #region Private Methods (none)
 
 
         #endregion

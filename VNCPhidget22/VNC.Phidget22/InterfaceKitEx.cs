@@ -15,7 +15,7 @@ using VNC.Phidget22.Players;
 
 using VNC.Phidget22.Configuration;
 using System.Net;
-using Phidget22;
+
 using System.Diagnostics.Metrics;
 using Phidget22.Events;
 using System.Runtime.CompilerServices;
@@ -40,7 +40,6 @@ namespace VNC.Phidget22
         public InterfaceKitEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
             : base(serialNumber)
         {
-
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
@@ -53,6 +52,9 @@ namespace VNC.Phidget22
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        // TODO(crhodes)
+        // Don't think we need this anymore
 
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
@@ -88,11 +90,11 @@ namespace VNC.Phidget22
             var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
             var voltageOutputCount = _deviceChannels.VoltageOutputCount;
 
-            DigitalInputs = new DigitalInput[digitalInputCount];
-            DigitalOutputs = new DigitalOutput[digitalOutputCount];
-            VoltageInputs = new VoltageInput[voltageInputCount];
-            VoltageRatioInputs = new VoltageRatioInput[voltageRatioInputCount];
-            VoltageOutputs = new VoltageOutput[voltageOutputCount];
+            DigitalInputs = new Phidgets.DigitalInput[digitalInputCount];
+            DigitalOutputs = new Phidgets.DigitalOutput[digitalOutputCount];
+            VoltageInputs = new Phidgets.VoltageInput[voltageInputCount];
+            VoltageRatioInputs = new Phidgets.VoltageRatioInput[voltageRatioInputCount];
+            VoltageOutputs = new Phidgets.VoltageOutput[voltageOutputCount];
 
             // NOTE(crhodes)
             // Create channels and attach event handlers
@@ -102,7 +104,7 @@ namespace VNC.Phidget22
 
             for (int i = 0; i < digitalInputCount; i++)
             {
-                DigitalInputs[i] = new DigitalInput();
+                DigitalInputs[i] = new Phidgets.DigitalInput();
                 var channel = DigitalInputs[i];
 
                 channel.DeviceSerialNumber = SerialNumber;
@@ -121,7 +123,7 @@ namespace VNC.Phidget22
 
             for (int i = 0; i < digitalOutputCount; i++)
             {
-                DigitalOutputs[i] = new DigitalOutput();
+                DigitalOutputs[i] = new Phidgets.DigitalOutput();
                 var channel = DigitalOutputs[i];
 
                 channel.DeviceSerialNumber = SerialNumber;
@@ -139,7 +141,7 @@ namespace VNC.Phidget22
 
             for (int i = 0; i < voltageInputCount; i++)
             {
-                VoltageInputs[i] = new VoltageInput();
+                VoltageInputs[i] = new Phidgets.VoltageInput();
                 var channel = VoltageInputs[i];
 
                 channel.DeviceSerialNumber = SerialNumber;
@@ -159,7 +161,7 @@ namespace VNC.Phidget22
 
             for (int i = 0; i < voltageRatioInputCount; i++)
             {
-                VoltageRatioInputs[i] = new VoltageRatioInput();
+                VoltageRatioInputs[i] = new Phidgets.VoltageRatioInput();
                 var channel = VoltageRatioInputs[i];
 
                 channel.DeviceSerialNumber = SerialNumber;
@@ -179,7 +181,7 @@ namespace VNC.Phidget22
 
             for (int i = 0; i < voltageOutputCount; i++)
             {
-                VoltageOutputs[i] = new VoltageOutput();
+                VoltageOutputs[i] = new Phidgets.VoltageOutput();
                 var channel = VoltageOutputs[i];
 
                 channel.DeviceSerialNumber = SerialNumber;
@@ -198,28 +200,31 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Enums (None)
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures (None)
+        #region Structures (none)
 
 
         #endregion
 
         #region Fields and Properties
 
-        public DigitalInput[] DigitalInputs;
-        public DigitalOutput[] DigitalOutputs;
+        public Phidgets.DigitalInput[] DigitalInputs;
+        public Phidgets.DigitalOutput[] DigitalOutputs;
 
-        public VoltageInput[] VoltageInputs;
-        public VoltageRatioInput[] VoltageRatioInputs;
-        public VoltageOutput[] VoltageOutputs;
+        public Phidgets.VoltageInput[] VoltageInputs;
+        public Phidgets.VoltageRatioInput[] VoltageRatioInputs;
+        public Phidgets.VoltageOutput[] VoltageOutputs;
 
         // FIX(crhodes)
         // There is no InterfaceKit in Phidget22.
         //public Phidget22.InterfaceKit InterfaceKit = null;
+
+        // TODO(crhodes)
+        // These can probably be simple get; set;
 
         private bool _logInputChangeEvents;
         public bool LogInputChangeEvents 
@@ -296,7 +301,8 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Commands (None)
+        #region Comands (none)
+
 
         #endregion
 
@@ -310,18 +316,19 @@ namespace VNC.Phidget22
         {
             Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
-            // FIX(crhodes)
-            // There is no InterfaceKit in Phidget22.
-            // This is where we probably open all the stuff on the Phidget or we can just open what we use
-
-            var digitalInputCount = _deviceChannels.DigitalInputCount;
-            var digitalOutputCount = _deviceChannels.DigitalOutputCount;
-            var voltageInputCount = _deviceChannels.VoltageInputCount;
-            var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
-            var voltageOutputCount = _deviceChannels.VoltageOutputCount;
-
             try
             {
+                // FIX(crhodes)
+                // There is no InterfaceKit in Phidget22.
+                // This is where we probably open all the stuff on the Phidget
+                // or we can just open what we use
+
+                var digitalInputCount = _deviceChannels.DigitalInputCount;
+                var digitalOutputCount = _deviceChannels.DigitalOutputCount;
+                var voltageInputCount = _deviceChannels.VoltageInputCount;
+                var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
+                var voltageOutputCount = _deviceChannels.VoltageOutputCount;
+
                 // TODO(crhodes)
                 // Decide if want to open everything or pass in config to only open what we need
 
@@ -368,12 +375,16 @@ namespace VNC.Phidget22
                 //    InterfaceKit.waitForAttachment();
                 //}
             }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            //var pd = PhysicalPhidget;
             Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -404,18 +415,23 @@ namespace VNC.Phidget22
 
             try
             {
-                // NOTE(crhodes)
-                // We may be logging events.  Remove them before closing.
-
-                if (LogInputChangeEvents) LogInputChangeEvents = false;
-                if (LogOutputChangeEvents) LogOutputChangeEvents = false;
-                if (LogSensorChangeEvents) LogSensorChangeEvents = false;
+                // FIX(crhodes)
+                // There is no InterfaceKit in Phidget22.
+                // This is where we probably close all the stuff on the Phidget
+                // or we can just close what we use
 
                 var digitalInputCount = _deviceChannels.DigitalInputCount;
                 var digitalOutputCount = _deviceChannels.DigitalOutputCount;
                 var voltageInputCount = _deviceChannels.VoltageInputCount;
                 var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
                 var voltageOutputCount = _deviceChannels.VoltageOutputCount;
+
+                // NOTE(crhodes)
+                // We may be logging events.  Remove them before closing.
+
+                if (LogInputChangeEvents) LogInputChangeEvents = false;
+                if (LogOutputChangeEvents) LogOutputChangeEvents = false;
+                if (LogSensorChangeEvents) LogSensorChangeEvents = false;
 
                 // TODO(crhodes)
                 // Decide if want to close everything or pass in config to only open what we need
@@ -430,23 +446,25 @@ namespace VNC.Phidget22
                     DigitalOutputs[i].Close();
                 }
 
-                // TODO(crhodes)
-                // Figure out which type of voltageInput to use
-
                 for (int i = 0; i < voltageInputCount; i++)
                 {
                     VoltageInputs[i].Close();
                 }
 
-                //for (int i = 0; i < voltageRatioInputCount; i++)
-                //{
-                //    VoltageRatioInputs[i].Open();
-                //}
+                for (int i = 0; i < voltageRatioInputCount; i++)
+                {
+                    VoltageRatioInputs[i].Open();
+                }
 
                 for (int i = 0; i < voltageOutputCount; i++)
                 {
                     VoltageOutputs[i].Close();
                 }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -499,8 +517,8 @@ namespace VNC.Phidget22
 
                             Parallel.ForEach(interfaceKitSequence.Actions, async action =>
                             {
-                                // FIX(crhodes)
-                                // 
+                                // TODO(crhodes)
+                                // Decide if want to close everything or pass in config to only open what we need
                                 //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
                             });
                         }
@@ -549,7 +567,7 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Protected Methods (None)
+        #region Protected Methods (none)
 
 
 
@@ -557,7 +575,7 @@ namespace VNC.Phidget22
 
         #region Private Methods
 
-        // TODO(crhodes)
+        // FIX(crhodes)
         // 
         //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
         //{

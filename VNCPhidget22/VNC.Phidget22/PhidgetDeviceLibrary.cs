@@ -8,7 +8,7 @@ using Phidgets = Phidget22;
 using PhidgetEvents = Phidget22.Events;
 
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using Phidget22;
+
 using System.Net;
 using System.Threading.Channels;
 using System.Threading;
@@ -149,17 +149,17 @@ namespace VNC.Phidget22
 
                     switch (channel.DeviceClass)
                     {
-                        case DeviceClass.Dictionary:
+                        case Phidgets.DeviceClass.Dictionary:
                             Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
                             Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             break;
 
-                        case DeviceClass.Hub:
+                        case Phidgets.DeviceClass.Hub:
                             Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
                             Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             break;
 
-                        case DeviceClass.VINT:
+                        case Phidgets.DeviceClass.VINT:
                             Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
                             Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             break;
@@ -182,8 +182,6 @@ namespace VNC.Phidget22
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
-
-
         }
 
         private void AddPhidgetDevice(Phidgets.Phidget channel)
@@ -192,7 +190,7 @@ namespace VNC.Phidget22
             {
                 PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
 
-                phidgetDevice.ChannelCount = channel.Parent.GetDeviceChannelCount(ChannelClass.None);
+                phidgetDevice.ChannelCount = channel.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
 
                 IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
 
@@ -204,145 +202,147 @@ namespace VNC.Phidget22
             }
         }
 
-        void IncrementDeviceChannelCount(PhidgetDevice phidgetDevice, ChannelClass channelClass)
+        void IncrementDeviceChannelCount(PhidgetDevice phidgetDevice, Phidgets.ChannelClass channelClass)
         {
             var deviceChannels = phidgetDevice.DeviceChannels;
 
             switch (channelClass)
             {
-                case ChannelClass.Accelerometer:
+                case Phidgets.ChannelClass.Accelerometer:
                     deviceChannels.AccelerometerCount++;
                     break;
 
-                case ChannelClass.BLDCMotor:
+                case Phidgets.ChannelClass.BLDCMotor:
                     deviceChannels.BLDCMotorCount++;
                     break;
 
-                case ChannelClass.CapacitiveTouch:
+                case Phidgets.ChannelClass.CapacitiveTouch:
                     deviceChannels.CapacitiveTouchCount++;
                     break;
 
-                case ChannelClass.CurrentInput:
+                case Phidgets.ChannelClass.CurrentInput:
                     deviceChannels.CurrentInputCount++;
                     break;
 
-                case ChannelClass.DCMotor:
+                case Phidgets.ChannelClass.DCMotor:
                     deviceChannels.DCMotorCount++;
                     break;
-                case ChannelClass.Dictionary:
+                case Phidgets.ChannelClass.Dictionary:
                     deviceChannels.DictionaryCount++;
                     break;
 
-                case ChannelClass.DigitalInput:
+                case Phidgets.ChannelClass.DigitalInput:
                     deviceChannels.DigitalInputCount++;
                     break;
 
-                case ChannelClass.DigitalOutput:
+                case Phidgets.ChannelClass.DigitalOutput:
                     deviceChannels.DigitalOutputCount++;
                     break;
 
-                case ChannelClass.DistanceSensor:
+                case Phidgets.ChannelClass.DistanceSensor:
                     deviceChannels.DistanceSensorCount++;
                     break;
-                case ChannelClass.Encoder:
+
+                case Phidgets.ChannelClass.Encoder:
                     deviceChannels.EncoderCount++;
                     break;
 
-                case ChannelClass.FirmwareUpgrade:
+                case Phidgets.ChannelClass.FirmwareUpgrade:
                     deviceChannels.FirmwareUpgradeCount++;
                     break;
 
-                case ChannelClass.FrequencyCounter:
+                case Phidgets.ChannelClass.FrequencyCounter:
                     deviceChannels.FrequencyCounterCount++;
                     break;
 
-                case ChannelClass.Generic:
+                case Phidgets.ChannelClass.Generic:
                     deviceChannels.GenericCount++;
                     break;
-                case ChannelClass.GPS:
+
+                case Phidgets.ChannelClass.GPS:
                     deviceChannels.GPSCount++;
                     break;
 
-                case ChannelClass.Gyroscope:
+                case Phidgets.ChannelClass.Gyroscope:
                     deviceChannels.GyroscopeCount++;
                     break;
 
-                case ChannelClass.Hub:
+                case Phidgets.ChannelClass.Hub:
                     deviceChannels.HubCount++;
                     break;
 
-                case ChannelClass.HumiditySensor:
+                case Phidgets.ChannelClass.HumiditySensor:
                     deviceChannels.HumiditySensorCount++;
                     break;
 
-                case ChannelClass.IR:
+                case Phidgets.ChannelClass.IR:
                     deviceChannels.IRCount++;
                     break;
 
-                case ChannelClass.LCD:
+                case Phidgets.ChannelClass.LCD:
                     deviceChannels.LCDCount++;
                     break;
 
-                case ChannelClass.LightSensor:
+                case Phidgets.ChannelClass.LightSensor:
                     deviceChannels.LightSensorCount++;
                     break;
 
-                case ChannelClass.Magnetometer:
+                case Phidgets.ChannelClass.Magnetometer:
                     deviceChannels.MagnetometerCount++;
                     break;
-                case ChannelClass.None:
+                case Phidgets.ChannelClass.None:
                     deviceChannels.None++;
                     break;
 
-                case ChannelClass.PHSensor:
+                case Phidgets.ChannelClass.PHSensor:
                     deviceChannels.PHSensorCount++;
                     break;
 
-                case ChannelClass.PowerGuard:
+                case Phidgets.ChannelClass.PowerGuard:
                     deviceChannels.PowerGuardCount++;
                     break;
 
-                case ChannelClass.PressureSensor:
+                case Phidgets.ChannelClass.PressureSensor:
                     deviceChannels.PressureSensorCount++;
                     break;
 
-                case ChannelClass.RCServo:
+                case Phidgets.ChannelClass.RCServo:
                     deviceChannels.RCServoCount++;
                     break;
 
-                case ChannelClass.ResistanceInput:
+                case Phidgets.ChannelClass.ResistanceInput:
                     deviceChannels.ResistanceInputCount++;
                     break;
 
-                case ChannelClass.RFID:
+                case Phidgets.ChannelClass.RFID:
                     deviceChannels.RFIDCount++;
                     break;
 
-                case ChannelClass.SoundSensor:
+                case Phidgets.ChannelClass.SoundSensor:
                     deviceChannels.SoundSensorCount++;
                     break;
 
-                case ChannelClass.Spatial:
+                case Phidgets.ChannelClass.Spatial:
                     deviceChannels.SpatialCount++;
                     break;
 
-                case ChannelClass.Stepper:
+                case Phidgets.ChannelClass.Stepper:
                     deviceChannels.StepperCount++;
                     break;
 
-                case ChannelClass.TemperatureSensor:
+                case Phidgets.ChannelClass.TemperatureSensor:
                     deviceChannels.TemperatureSensorCount++;
                     break;
 
-                case ChannelClass.VoltageInput:
+                case Phidgets.ChannelClass.VoltageInput:
                     deviceChannels.VoltageInputCount++;
                     break;
 
-                case ChannelClass.VoltageOutput:
+                case Phidgets.ChannelClass.VoltageOutput:
                     deviceChannels.VoltageOutputCount++;
                     break;
 
-                case ChannelClass.VoltageRatioInput:
+                case Phidgets.ChannelClass.VoltageRatioInput:
                     deviceChannels.VoltageRatioInputCount++;
                     break;
 
@@ -371,21 +371,23 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Commands (None)
-
-        #endregion
-
-        #region Public Methods (None)
+        #region Commands (none)
 
 
         #endregion
 
-        #region Protected Methods (None)
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Private Methods
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods (none)
+
 
         #endregion
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 
-using Phidget22;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
@@ -11,7 +12,7 @@ namespace VNC.Phidget22
         //{
         //}
 
-        public PhidgetDevice(string ipAddress, int port, DeviceClass deviceClass, int serialNumber)
+        public PhidgetDevice(string ipAddress, int port, Phidgets.DeviceClass deviceClass, int serialNumber)
         {
             IPAddress = ipAddress;
             Port = port;
@@ -19,7 +20,7 @@ namespace VNC.Phidget22
             SerialNumber = serialNumber;
         }
 
-        public PhidgetDevice(string serverPeerName, DeviceClass deviceClass, int serialNumber)
+        public PhidgetDevice(string serverPeerName, Phidgets.DeviceClass deviceClass, int serialNumber)
         {
             ServerPeerName = serverPeerName;
             // TODO(crhodes)
@@ -40,7 +41,7 @@ namespace VNC.Phidget22
 
         public int Port { get; set; } = 5661;
 
-        public DeviceClass DeviceClass { get; set; } = DeviceClass.None;
+        public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
 
         public Int32 ChannelCount { get; set; }
 
