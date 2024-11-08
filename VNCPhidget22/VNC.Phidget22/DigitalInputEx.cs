@@ -17,59 +17,38 @@ using VNC.Phidget22.Configuration;
 using System.Net;
 
 using System.Diagnostics.Metrics;
-using Phidget22.Events;
+
 using System.Runtime.CompilerServices;
+using System.ComponentModel;
+using System.IO;
+using System.Threading.Channels;
+using System.Data;
 
 namespace VNC.Phidget22
 {
-    public class DigitalInputEx : PhidgetEx // InterfaceKit
+    public class DigitalInputEx : Phidgets.DigitalInput, INotifyPropertyChanged
     {
         #region Constructors, Initialization, and Load
 
-        readonly DeviceChannels _deviceChannels;
-
-        // TODO(crhodes)
-        // Why is this public?
-
-        public readonly IEventAggregator EventAggregator;
+        private readonly DigitalInputConfiguration _digitalInputConfiguration;
+        private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="enabled"></param>
-        public DigitalInputEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
-            : base(serialNumber)
+        public DigitalInputEx(int serialNumber, DigitalInputConfiguration digitalInputConfiguration, IEventAggregator eventAggregator)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
-            EventAggregator = eventAggregator;
-            _deviceChannels = deviceChannels;
+            _serialNumber = serialNumber;
+            _digitalInputConfiguration = digitalInputConfiguration;
+            _eventAggregator = eventAggregator;
 
             InitializePhidget();
 
-            EventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
-
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        // TODO(crhodes)
-        // Don't think we need this anymore
-
-        /// <summary>
-        /// Initializes a new instance of the InterfaceKit class.
-        /// </summary>
-        /// <param name="enabled"></param>
-        public DigitalInputEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator) 
-            : base(ipAddress, port, serialNumber)
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAddress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
-
-            EventAggregator = eventAggregator;
-            InitializePhidget();
-
-            EventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
+            _eventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -84,116 +63,17 @@ namespace VNC.Phidget22
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
-            var digitalInputCount = _deviceChannels.DigitalInputCount;
-            var digitalOutputCount = _deviceChannels.DigitalOutputCount;
-            var voltageInputCount = _deviceChannels.VoltageInputCount;
-            var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
-            var voltageOutputCount = _deviceChannels.VoltageOutputCount;
+            DeviceSerialNumber = SerialNumber;
+            Channel = _digitalInputConfiguration.Channel;
+            IsRemote = true;
 
-            DigitalInputs = new Phidgets.DigitalInput[digitalInputCount];
-            DigitalOutputs = new Phidgets.DigitalOutput[digitalOutputCount];
-            VoltageInputs = new Phidgets.VoltageInput[voltageInputCount];
-            VoltageRatioInputs = new Phidgets.VoltageRatioInput[voltageRatioInputCount];
-            VoltageOutputs = new Phidgets.VoltageOutput[voltageOutputCount];
+            this.Attach += DigitalInputEx_Attach;
+            this.Detach += DigitalInputEx_Detach;
+            this.Error += DigitalInputEx_Error;
+            this.PropertyChange += DigitalInputEx_PropertyChange;
 
-            // NOTE(crhodes)
-            // Create channels and attach event handlers
-            // Different events are fired from each type of channel
+            this.StateChange += DigitalInputEx_StateChange;
 
-            // DigitalInputs
-
-            for (int i = 0; i < digitalInputCount; i++)
-            {
-                DigitalInputs[i] = new Phidgets.DigitalInput();
-                var channel = DigitalInputs[i];
-
-                channel.DeviceSerialNumber = SerialNumber;
-                channel.Channel = i;
-                channel.IsHubPortDevice = false;
-                channel.IsRemote = true;
-                
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
-                //channel.StateChange += Channel_DigitalInputStateChange;
-            }
-
-            // DigitalOutputs
-
-            for (int i = 0; i < digitalOutputCount; i++)
-            {
-                DigitalOutputs[i] = new Phidgets.DigitalOutput();
-                var channel = DigitalOutputs[i];
-
-                channel.DeviceSerialNumber = SerialNumber;
-                channel.Channel = i;
-                channel.IsHubPortDevice = false;
-                channel.IsRemote = true;
-
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
-            }
-
-            // VoltageInputs
-
-            for (int i = 0; i < voltageInputCount; i++)
-            {
-                VoltageInputs[i] = new Phidgets.VoltageInput();
-                var channel = VoltageInputs[i];
-
-                channel.DeviceSerialNumber = SerialNumber;
-                channel.Channel = i;
-                channel.IsHubPortDevice = false;
-                channel.IsRemote = true;
-
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
-                //channel.SensorChange += Channel_VoltageInputSensorChange;
-                //channel.VoltageChange += Channel_VoltageChange;
-            }
-
-            // VoltageRatioInputs
-
-            for (int i = 0; i < voltageRatioInputCount; i++)
-            {
-                VoltageRatioInputs[i] = new Phidgets.VoltageRatioInput();
-                var channel = VoltageRatioInputs[i];
-
-                channel.DeviceSerialNumber = SerialNumber;
-                channel.Channel = i;
-                channel.IsHubPortDevice = false;
-                channel.IsRemote = true;
-
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
-                //channel.SensorChange += Phidget_VoltageRatioInputSensorChange;
-                //channel.VoltageRatioChange += Channel_VoltageRatioChange;
-            }
-
-            // VoltageOutputs
-
-            for (int i = 0; i < voltageOutputCount; i++)
-            {
-                VoltageOutputs[i] = new Phidgets.VoltageOutput();
-                var channel = VoltageOutputs[i];
-
-                channel.DeviceSerialNumber = SerialNumber;
-                channel.Channel = i;
-                channel.IsHubPortDevice = false;
-                channel.IsRemote = true;
-
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
-            }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -212,267 +92,250 @@ namespace VNC.Phidget22
 
         #region Fields and Properties
 
-        public Phidgets.DigitalInput[] DigitalInputs;
-        public Phidgets.DigitalOutput[] DigitalOutputs;
+        public bool LogPhidgetEvents { get; set; } = true;
+        public bool LogErrorEvents { get; set; } = true;
+        public bool LogPropertyChangeEvents { get; set; } = true;
 
-        public Phidgets.VoltageInput[] VoltageInputs;
-        public Phidgets.VoltageRatioInput[] VoltageRatioInputs;
-        public Phidgets.VoltageOutput[] VoltageOutputs;
-
-        // FIX(crhodes)
-        // There is no InterfaceKit in Phidget22.
-        //public Phidget22.InterfaceKit InterfaceKit = null;
-
-        // TODO(crhodes)
-        // These can probably be simple get; set;
-
-        private bool _logInputChangeEvents;
-        public bool LogInputChangeEvents 
-        { 
-            get => _logInputChangeEvents; 
-            set
-            {
-                if (_logInputChangeEvents == value) return;
-                _logInputChangeEvents = value;
-
-                //// FIX(crhodes)
-                //// 
-                //if (_logInputChangeEvents = value)
-                //{
-                //    InterfaceKit.InputChange += InterfaceKit_InputChange;
-                //}
-                //else
-                //{
-                //    InterfaceKit.InputChange -= InterfaceKit_InputChange;
-                //}
-            }
-        }
-
-        private bool _logOutputChangeEvents;
-        public bool LogOutputChangeEvents 
-        { 
-            get => _logOutputChangeEvents;
-            set
-            {
-                if (_logOutputChangeEvents == value) return;
-                _logOutputChangeEvents = value;
-
-                //// FIX(crhodes)
-                //// 
-                //if (_logOutputChangeEvents = value)
-                //{
-                //    InterfaceKit.OutputChange += InterfaceKit_OutputChange;
-                //}
-                //else
-                //{
-                //    InterfaceKit.OutputChange -= InterfaceKit_OutputChange;
-                //}
-            }
-        }
-
-        private bool _logSensorChangeEvents;
-        public bool LogSensorChangeEvents 
-        {
-            get => _logSensorChangeEvents;
-            set
-            {
-                if (_logSensorChangeEvents == value) return;
-                _logSensorChangeEvents = value;
-                // FIX(crhodes)
-                // 
-                //if (_logSensorChangeEvents = value)
-                //{
-                //    InterfaceKit.SensorChange += InterfaceKit_SensorChange;
-                //}
-                //else
-                //{
-                //    InterfaceKit.SensorChange -= InterfaceKit_SensorChange;
-                //}
-            }
-        }
+        public bool LogStateChangeEvents { get; set; } = true;
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
+
+        private int _serialNumber;
+        public int SerialNumber
+        {
+            get => _serialNumber;
+            set
+            {
+                if (_serialNumber == value)
+                    return;
+                _serialNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // Create wrapper properties for all Properties (of interest) in Phidgets.DigitalOutput
+
+        private bool _isAttached;
+        public bool IsAttached
+        {
+            get => _isAttached;
+            set
+            {
+                if (_isAttached == value)
+                    return;
+                _isAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.InputMode _inputMode;
+        public Phidgets.InputMode InputMode
+        {
+            get => _inputMode;
+            set
+            {
+                if (_inputMode == value)
+                    return;
+                _inputMode = value;
+
+                if (base.Attached)
+                {
+                    base.InputMode = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.PowerSupply _powerSupply;
+        public Phidgets.PowerSupply PowerSupply
+        {
+            get => _powerSupply;
+            set
+            {
+                if (_powerSupply == value)
+                    return;
+                _powerSupply = value;
+
+                if (base.Attached)
+                {
+                    base.PowerSupply = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private bool? _state = null;
+        public new bool? State
+        {
+            get => _state;
+            set
+            {
+                if (_state == value)
+                    return;
+                _state = value;
+
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
         #region Event Handlers (none)
 
 
+        private void DigitalInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        {
+            Phidgets.DigitalInput dInput = sender as Phidgets.DigitalInput;
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DigitalInputEx_Attach: sender:{sender} attached:{dInput.Attached}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Set properties to values from Phidget
+
+            // NOTE(crhodes)
+            // Shockingly, this is not set until after Attach Event
+
+            //IsAttached = dOutput.Attached;
+
+            // Just set it so UI behaves well
+            IsAttached = true;
+
+            InputMode = dInput.InputMode;
+            PowerSupply = dInput.PowerSupply;
+
+            State = dInput.State;
+
+            // Not all DigitalOutput support all properties
+            // Maybe just ignore or protect behind an if or switch
+            // based on DeviceClass or DeviceID
+
+            //try
+            //{
+            //    Frequency = dOutput.Frequency;
+            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
+            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
+            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
+            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
+            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
+            //    MaxFrequency = dOutput.MaxFrequency;
+            //    MinFailsafeTime = dOutput.MinFailsafeTime;
+            //    MinFrequecy = dOutput.MinFrequency;
+            //}
+            //catch (Phidgets.PhidgetException ex)
+            //{
+            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+            //    {
+            //        throw ex;
+            //    }
+            //}
+        }
+
+        private void DigitalInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        {
+            if (LogPropertyChangeEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DigitalInputEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
+
+        private void DigitalInputEx_StateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        {
+            if (LogStateChangeEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DigitalInputEx_StateChange: sender:{sender} {e.State}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            State = e.State;
+        }
+
+        private void DigitalInputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        {
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DigitalInputEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            IsAttached = false;
+        }
+
+        private void DigitalInputEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        {
+            if (LogErrorEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"DigitalInputEx_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+        }
         #endregion
 
-        #region Comands (none)
+        #region Commands (none)
 
 
         #endregion
 
         #region Public Methods
 
-        /// <summary>
-        /// Open Phidget and waitForAttachment
-        /// </summary>
-        /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
-        public new void Open(Int32? timeOut = null)
-        {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-            try
-            {
-                // FIX(crhodes)
-                // There is no InterfaceKit in Phidget22.
-                // This is where we probably open all the stuff on the Phidget
-                // or we can just open what we use
-
-                var digitalInputCount = _deviceChannels.DigitalInputCount;
-                var digitalOutputCount = _deviceChannels.DigitalOutputCount;
-                var voltageInputCount = _deviceChannels.VoltageInputCount;
-                var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
-                var voltageOutputCount = _deviceChannels.VoltageOutputCount;
-
-                // TODO(crhodes)
-                // Decide if want to open everything or pass in config to only open what we need
-
-                for (int i = 0; i < digitalInputCount; i++)
-                {
-                    DigitalInputs[i].Open();
-                }
-
-                for (int i = 0; i < digitalOutputCount; i++)
-                {
-                    DigitalOutputs[i].Open();
-                }
-
-                // TODO(crhodes)
-                // Figure out which type of voltageInput to use
-
-                for (int i = 0; i < voltageInputCount; i++)
-                {
-                    VoltageInputs[i].Open();
-                }
-
-                for (int i = 0; i < voltageRatioInputCount; i++)
-                {
-                    VoltageRatioInputs[i].Open();
-                }
-
-                for (int i = 0; i < voltageOutputCount; i++)
-                {
-                    VoltageOutputs[i].Open();
-                }
-
-                //DigitalOutputs[0].Open();
-
-                //DigitalOutputs[0].Open(500);
-
-                //InterfaceKit.open(SerialNumber, Host.IPAddress, Host.Port);
-
-                //if (timeOut is not null)
-                //{
-                //    InterfaceKit.waitForAttachment((Int32)timeOut);
-                //}
-                //else
-                //{
-                //    InterfaceKit.waitForAttachment();
-                //}
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
+       
         //override protected void OnPhidgetDeviceAttached()
         //{
         //    OnPhidgetDeviceAttached();
         //    PhidgetDeviceAttached?.Invoke();
         //}
 
-        public event EventHandler PhidgetDeviceAttached;
+        //public event EventHandler PhidgetDeviceAttached;
 
-        override protected void PhidgetDeviceIsAttached()
-        {
-            OnPhidgetDeviceAttached(new EventArgs());
-        }
+        //override protected void PhidgetDeviceIsAttached()
+        //{
+        //    OnPhidgetDeviceAttached(new EventArgs());
+        //}
 
-        // NOTE(crhodes)
-        // This tells the UI that we have an attached Phidget
+        //// NOTE(crhodes)
+        //// This tells the UI that we have an attached Phidget
 
-        protected virtual void OnPhidgetDeviceAttached(EventArgs e)
-        {
-            PhidgetDeviceAttached?.Invoke(this, e);
-        }
-
-        public void Close()
-        {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-            try
-            {
-                // FIX(crhodes)
-                // There is no InterfaceKit in Phidget22.
-                // This is where we probably close all the stuff on the Phidget
-                // or we can just close what we use
-
-                var digitalInputCount = _deviceChannels.DigitalInputCount;
-                var digitalOutputCount = _deviceChannels.DigitalOutputCount;
-                var voltageInputCount = _deviceChannels.VoltageInputCount;
-                var voltageRatioInputCount = _deviceChannels.VoltageRatioInputCount;
-                var voltageOutputCount = _deviceChannels.VoltageOutputCount;
-
-                // NOTE(crhodes)
-                // We may be logging events.  Remove them before closing.
-
-                if (LogInputChangeEvents) LogInputChangeEvents = false;
-                if (LogOutputChangeEvents) LogOutputChangeEvents = false;
-                if (LogSensorChangeEvents) LogSensorChangeEvents = false;
-
-                // TODO(crhodes)
-                // Decide if want to close everything or pass in config to only open what we need
-
-                for (int i = 0; i < digitalInputCount; i++)
-                {
-                    DigitalInputs[i].Close();
-                }
-
-                for (int i = 0; i < digitalOutputCount; i++)
-                {
-                    DigitalOutputs[i].Close();
-                }
-
-                for (int i = 0; i < voltageInputCount; i++)
-                {
-                    VoltageInputs[i].Close();
-                }
-
-                for (int i = 0; i < voltageRatioInputCount; i++)
-                {
-                    VoltageRatioInputs[i].Open();
-                }
-
-                for (int i = 0; i < voltageOutputCount; i++)
-                {
-                    VoltageOutputs[i].Close();
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-
-            Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
+        //{
+        //    PhidgetDeviceAttached?.Invoke(this, e);
+        //}
 
         public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
         {
@@ -545,7 +408,7 @@ namespace VNC.Phidget22
 
                         if (interfaceKitSequence.EndActionLoopSequences is not null)
                         {
-                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
@@ -617,6 +480,33 @@ namespace VNC.Phidget22
         //        }
         //    }
         //}
+
+        #endregion
+
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        // This is the traditional approach - requires string name to be passed in
+
+        //private void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            Int64 startTicks = 0;
+#if LOGGING
+            if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
+#endif
+            // This is the new CompilerServices attribute!
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+#if LOGGING
+            if (Common.VNCCoreLogging.INPC) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+#endif
+        }
 
         #endregion
     }

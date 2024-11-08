@@ -23,26 +23,26 @@ using System.ComponentModel;
 
 namespace VNC.Phidget22
 {
-    public class DigitalOutputEx : Phidgets.DigitalOutput, INotifyPropertyChanged
+    public class VoltageOutputEx : Phidgets.VoltageOutput, INotifyPropertyChanged
     {
         #region Constructors, Initialization, and Load
 
-        private readonly DigitalOutputConfiguration _digitalOutputConfiguration;
+        private readonly VoltageOutputConfiguration _voltageOutputConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
         /// Initializes a new DigitalOutput and conf
         /// </summary>
         /// <param name="serialNumber"></param>
-        /// <param name="digitalOutputConfiguration"></param>
+        /// <param name="voltageOutputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public DigitalOutputEx(int serialNumber, DigitalOutputConfiguration digitalOutputConfiguration, IEventAggregator eventAggregator)
+        public VoltageOutputEx(int serialNumber, DigitalOutputConfiguration voltageOutputConfiguration, IEventAggregator eventAggregator)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _digitalOutputConfiguration = digitalOutputConfiguration;
+            _voltageOutputConfiguration = voltageOutputConfiguration;
             _eventAggregator = eventAggregator;
 
             InitializePhidget();
@@ -67,13 +67,13 @@ namespace VNC.Phidget22
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
-            Channel = _digitalOutputConfiguration.Channel;
+            Channel = _voltageOutputConfiguration.Channel;
             IsRemote = true;
 
-            this.Attach += DigitalOutputEx_Attach;
-            this.Detach += DigitalOutputEx_Detach;
-            this.Error += DigitalOutputEx_Error;
-            this.PropertyChange += DigitalOutputEx_PropertyChange;
+            this.Attach += VoltageOutputEx_Attach;
+            this.Detach += VoltageOutputEx_Detach;
+            this.Error += VoltageOutputEx_Error;
+            this.PropertyChange += VoltageOutputEx_PropertyChange;
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -94,6 +94,7 @@ namespace VNC.Phidget22
 
         public bool LogPhidgetEvents { get; set; } = true;
         public bool LogErrorEvents { get; set; } = true;
+
         public bool LogPropertyChangeEvents { get; set; } = true;
 
 
@@ -206,7 +207,7 @@ namespace VNC.Phidget22
         }
 
         private double _maxDutyCycle;
-        public new double MaxDutyCycle
+        public double MaxDutyCycle
         {
             get => _maxDutyCycle;
             set
@@ -219,7 +220,7 @@ namespace VNC.Phidget22
         }
 
         private int _maxFailsafeTime;
-        public new int MaxFailsafeTime
+        public int MaxFailsafeTime
         {
             get => _maxFailsafeTime;
             set
@@ -232,7 +233,7 @@ namespace VNC.Phidget22
         }
 
         private double _maxFrequency;
-        public new double MaxFrequency
+        public double MaxFrequency
         {
             get => _maxFrequency;
             set
@@ -245,7 +246,7 @@ namespace VNC.Phidget22
         }
 
         private double _maxLEDCurrentLimit;
-        public new double MaxLEDCurrentLimit
+        public double MaxLEDCurrentLimit
         {
             get => _maxLEDCurrentLimit;
             set
@@ -258,7 +259,7 @@ namespace VNC.Phidget22
         }
 
         private double _minDutyCycle;
-        public new double MinDutyCycle
+        public double MinDutyCycle
         {
             get => _minDutyCycle;
             set
@@ -271,7 +272,7 @@ namespace VNC.Phidget22
         }
 
         private int _minFailsafeTime;
-        public new int MinFailsafeTime
+        public int MinFailsafeTime
         {
             get => _minFailsafeTime;
             set
@@ -283,21 +284,22 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _minFrequency;
-        public new double MinFrequency
+        private double _minFrequecy;
+        public double MinFrequecy
         {
-            get => _minFrequency;
+            get => _minFrequecy;
             set
             {
-                if (_minFrequency == value)
+                if (_minFrequecy == value)
                     return;
-                _minFrequency = value;
+                _minFrequecy = value;
                 OnPropertyChanged();
             }
         }
 
         private double _minLEDCurrentLimit;
-        public new double MinLEDCurrentLimit
+
+        public double MinLEDCurrentLimit
         {
             get => _minLEDCurrentLimit;
             set
@@ -331,7 +333,7 @@ namespace VNC.Phidget22
 
         #region Event Handlers
 
-        private void DigitalOutputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        private void VoltageOutputEx_Attach(object sender, AttachEventArgs e)
         {
             Phidgets.DigitalOutput dOutput = sender as Phidgets.DigitalOutput;
 
@@ -339,7 +341,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"DigitalOutputEx_Attach: sender:{sender} attached:{dOutput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageOutputEx_Attach: sender:{sender} attached:{dOutput.Attached}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -388,7 +390,7 @@ namespace VNC.Phidget22
             //}
         }
 
-        private void DigitalOutputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        private void VoltageOutputEx_PropertyChange(object sender, PropertyChangeEventArgs e)
         {
             if (LogPropertyChangeEvents)
             {
@@ -403,13 +405,13 @@ namespace VNC.Phidget22
             }
         }
 
-        private void DigitalOutputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        private void VoltageOutputEx_Detach(object sender, DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"DigitalOutputEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageOutputEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -420,7 +422,7 @@ namespace VNC.Phidget22
             IsAttached = false;
         }
 
-        private void DigitalOutputEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        private void VoltageOutputEx_Error(object sender, ErrorEventArgs e)
         {
             if (LogErrorEvents)
             {
