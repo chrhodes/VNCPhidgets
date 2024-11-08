@@ -148,9 +148,9 @@
                 <dxlc:LayoutGroup Name="lgPhidget22tatus" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
                                   IsCollapsible="True" IsCollapsed="False"  >
 
-                    <controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
+                    <!--<controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
                                AttachedPhidgetDevice="{Binding Phidget22Device, Mode=TwoWay}"
-                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />-->
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"
@@ -258,9 +258,9 @@
                 <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
                                 IsCollapsible="True" IsCollapsed="False" >
                         
-                    <dxlc:LayoutItem Label="O0" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_0" Tag="0" IsChecked="{Binding DO0}"
-                                       Background="{Binding DO0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                    <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDO_0" Tag="0"  IsEnabled="{Binding DigitalOutputs[0].IsAttached}" IsChecked="{Binding DigitalOutputs[0].State}"
+                                       Background="{Binding DigitalOutputs[0].State, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O1" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDO_1" Tag="1" IsChecked="{Binding DO1}" 

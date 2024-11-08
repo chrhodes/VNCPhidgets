@@ -38,8 +38,10 @@
 
     <ItemGroup>
       <!--<Compile Remove="Presentation\ViewModels\AdvancedServo1061ViewModel.cs" />-->
+      <Compile Remove="Presentation\ViewModels\AdvancedServo1061ViewModel.cs" />
       <Compile Remove="Presentation\ViewModels\HackAroundViewModel.cs" />
       <Compile Remove="Presentation\ViewModels\MainViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\ServoProperties.cs" />
       <!--<Compile Remove="Presentation\ViewModels\ServoProperties.cs" />
       <Compile Remove="Presentation\ViewModels\ServoType.cs" />-->
       <Compile Remove="Presentation\ViewModels\Stepper1063ViewModel.cs" />
@@ -57,6 +59,7 @@
 
     <ItemGroup>
       <!--<Page Remove="Presentation\Views\AdvancedServo1061.xaml" />-->
+      <Page Remove="Presentation\Views\AdvancedServo1061.xaml" />
       <Page Remove="Presentation\Views\HackAround.xaml" />
       <Page Remove="Presentation\Views\Main.xaml" />
       <Page Remove="Presentation\Views\MainDxLayoutControl.xaml" />

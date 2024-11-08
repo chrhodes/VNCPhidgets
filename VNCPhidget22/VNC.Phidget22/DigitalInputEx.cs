@@ -22,7 +22,7 @@ using System.Runtime.CompilerServices;
 
 namespace VNC.Phidget22
 {
-    public class InterfaceKitEx : PhidgetEx // InterfaceKit
+    public class DigitalInputEx : PhidgetEx // InterfaceKit
     {
         #region Constructors, Initialization, and Load
 
@@ -37,7 +37,7 @@ namespace VNC.Phidget22
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
+        public DigitalInputEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
             : base(serialNumber)
         {
             Int64 startTicks = 0;
@@ -60,7 +60,7 @@ namespace VNC.Phidget22
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator) 
+        public DigitalInputEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator) 
             : base(ipAddress, port, serialNumber)
         {
             Int64 startTicks = 0;

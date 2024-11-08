@@ -66,7 +66,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
-            Phidget1.DataContext = ViewModel;
+
+            // TODO(crhodes)
+            // Figure out how to get this info from either Manager or Open channel
+
+            //Phidget1.DataContext = ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
