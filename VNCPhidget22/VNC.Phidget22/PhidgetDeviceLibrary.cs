@@ -46,7 +46,6 @@ namespace VNC.Phidget22
 
             // So, for now, depend on Host file listing the Computers (typically SBC) hosting Phidgets
 
-
             foreach (VNCPhidgetConfig.Host host in VNCPhidgetConfig.PerformanceLibrary.Hosts)
             {
                 Phidgets.Net.AddServer(host.Name, host.IPAddress, host.Port, "", 0);
@@ -145,7 +144,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Manager_Attach: {channel}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Manager_Attach: {channel} {channel.DeviceClass} {channel.DeviceID}", Common.LOG_CATEGORY);
 
                     switch (channel.DeviceClass)
                     {
@@ -173,7 +172,6 @@ namespace VNC.Phidget22
                         default:
 
                             AddPhidgetDevice(channel);
-                            Console.WriteLine($">{channel.DeviceClass}<");
                             break;
                     }
                 }

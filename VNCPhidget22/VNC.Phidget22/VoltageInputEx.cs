@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Events;
@@ -83,12 +85,12 @@ namespace VNC.Phidget22
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; set; } = true;
-        public bool LogErrorEvents { get; set; } = true;
-        public bool LogPropertyChangeEvents { get; set; } = true;
+        public bool LogPhidgetEvents { get; set; }
+        public bool LogErrorEvents { get; set; }
+        public bool LogPropertyChangeEvents { get; set; }
 
-        public bool LogSensorChangeEvents { get; set; } = true;
-        public bool LogVoltageChangeEvents { get; set; } = true;
+        public bool LogSensorChangeEvents { get; set; }
+        public bool LogVoltageChangeEvents { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
@@ -102,6 +104,7 @@ namespace VNC.Phidget22
                 if (_serialNumber == value)
                     return;
                 _serialNumber = value;
+                base.DeviceSerialNumber = value;
                 OnPropertyChanged();
             }
         }
@@ -242,7 +245,7 @@ namespace VNC.Phidget22
             {
                 if (_maxDataInterval == value)
                     return;
-                _maxDataRate = value;
+                _maxDataInterval = value;
                 OnPropertyChanged();
             }
         }
@@ -407,7 +410,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageInputEx_Attach: sender:{sender} attached:{voltageInput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -495,6 +498,8 @@ namespace VNC.Phidget22
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            SensorValue = e.SensorValue;
         }
 
         private void VoltageInputEx_VoltageChange(object sender, PhidgetsEvents.VoltageInputVoltageChangeEventArgs e)
@@ -510,6 +515,8 @@ namespace VNC.Phidget22
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            Voltage = e.Voltage;
         }
         
         private void VoltageInputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)

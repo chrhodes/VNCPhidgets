@@ -80,9 +80,9 @@ namespace VNC.Phidget22
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; set; } = true;
-        public bool LogErrorEvents { get; set; } = true;
-        public bool LogPropertyChangeEvents { get; set; } = true;
+        public bool LogPhidgetEvents { get; set; }
+        public bool LogErrorEvents { get; set; }
+        public bool LogPropertyChangeEvents { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
@@ -96,6 +96,7 @@ namespace VNC.Phidget22
                 if (_serialNumber == value)
                     return;
                 _serialNumber = value;
+                base.DeviceSerialNumber = value;
                 OnPropertyChanged();
             }
         }
@@ -209,7 +210,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageOutputEx_Attach: sender:{sender} attached:{voltageOutput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageOutputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
