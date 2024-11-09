@@ -535,21 +535,6 @@ namespace VNC.Phidget22
 
         #region Public Methods
 
-        //public event EventHandler PhidgetDeviceAttached;
-
-        //override protected void PhidgetDeviceIsAttached()
-        //{
-        //    OnPhidgetDeviceAttached(new EventArgs());
-        //}
-
-        //// NOTE(crhodes)
-        //// This tells the UI that we have an attached Phidget
-
-        //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
-        //{
-        //    PhidgetDeviceAttached?.Invoke(this, e);
-        //}
-
         //public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
         //{
         //    try

@@ -381,7 +381,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Phidget_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"DigitalOutputEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {

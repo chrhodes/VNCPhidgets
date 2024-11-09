@@ -257,7 +257,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Phidget_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageOutputEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -289,7 +289,7 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Phidget_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageOutputEx_Error: sender:{sender} {e.Code} - {e.Description}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -306,21 +306,6 @@ namespace VNC.Phidget22
         #endregion
 
         #region Public Methods
-
-        //public event EventHandler PhidgetDeviceAttached;
-
-        //override protected void PhidgetDeviceIsAttached()
-        //{
-        //    OnPhidgetDeviceAttached(new EventArgs());
-        //}
-
-        //// NOTE(crhodes)
-        //// This tells the UI that we have an attached Phidget
-
-        //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
-        //{
-        //    PhidgetDeviceAttached?.Invoke(this, e);
-        //}
 
         //public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
         //{
