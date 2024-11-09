@@ -176,7 +176,7 @@ namespace VNC.Phidget22
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
         private void DigitalInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {

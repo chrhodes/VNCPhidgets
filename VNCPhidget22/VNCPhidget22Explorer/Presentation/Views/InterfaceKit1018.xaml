@@ -187,140 +187,267 @@
                         </Style>
                     </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                        <dxlc:LayoutItem Label="I0" LabelPosition="Top">
-                            <!--<dxe:CheckEdit Name="ceDI_0" Tag="0" Checked="ceDI_Checked" Unchecked="ceDI_UnChecked" />-->
-                            <dxe:CheckEdit Name="ceDI_0" Tag="0" IsChecked="{Binding DI0}"
-                                       Background="{Binding DI0, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I1" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_1" Tag="1" IsChecked="{Binding DI1}" 
-                                       Background="{Binding DI1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I2" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_2" Tag="2" IsChecked="{Binding DI2}" 
-                                       Background="{Binding DI2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I3" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_3" Tag="3" IsChecked="{Binding DI3}" 
-                                       Background="{Binding DI3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I4" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_4" Tag="4" IsChecked="{Binding DI4}" 
-                                       Background="{Binding DI4, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I5" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_5" Tag="5" IsChecked="{Binding DI5}" 
-                                       Background="{Binding DI5, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I6" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_6" Tag="6" IsChecked="{Binding DI6}" 
-                                       Background="{Binding DI6, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I7" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_7" Tag="7" IsChecked="{Binding DI7}" 
-                                       Background="{Binding DI7, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I8" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_8" Tag="8" IsChecked="{Binding DI8}" 
-                                       Background="{Binding DI8, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I9" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_9" Tag="9" IsChecked="{Binding DI9}" 
-                                       Background="{Binding DI9, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I10" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_10" Tag="7" IsChecked="{Binding DI10}" 
-                                       Background="{Binding DI10, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I11" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_11" Tag="7" IsChecked="{Binding DI11}" 
-                                       Background="{Binding DI11, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I12" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_12" Tag="12" IsChecked="{Binding DI12}" 
-                                       Background="{Binding DI12, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I13" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_13" Tag="13" IsChecked="{Binding DI13}" 
-                                       Background="{Binding DI13, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I14" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_14" Tag="14" IsChecked="{Binding DI14}" 
-                                       Background="{Binding DI14, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="I15" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI_15" Tag="15" IsChecked="{Binding DI15}" 
-                                       Background="{Binding DI15, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        
-                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="DI0" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI0" Tag="0"  
+                   IsEnabled="{Binding DigitalInputs[0].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[0].State}"
+                   Background="{Binding DigitalInputs[0].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O1" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI1" Tag="1"  
+                   IsEnabled="{Binding DigitalInputs[1].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[1].State}"
+                   Background="{Binding DigitalInputs[1].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O2" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI2" Tag="2"  
+                   IsEnabled="{Binding DigitalInputs[2].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[2].State}"
+                   Background="{Binding DigitalInputs[2].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O3" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI3" Tag="3"  
+                   IsEnabled="{Binding DigitalInputs[3].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[3].State}"
+                   Background="{Binding DigitalInputs[3].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O4" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI4" Tag="4"  
+                   IsEnabled="{Binding DigitalInputs[4].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[4].State}"
+                   Background="{Binding DigitalInputs[4].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O5" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI5" Tag="5"  
+                   IsEnabled="{Binding DigitalInputs[5].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[5].State}"
+                   Background="{Binding DigitalInputs[5].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O6" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI6" Tag="6"  
+                   IsEnabled="{Binding DigitalInputs[6].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[6].State}"
+                   Background="{Binding DigitalInputs[6].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O7" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI7" Tag="7"  
+                   IsEnabled="{Binding DigitalInputs[7].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[7].State}"
+                   Background="{Binding DigitalInputs[7].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O8" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI8" Tag="8"  
+                   IsEnabled="{Binding DigitalInputs[8].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[8].State}"
+                   Background="{Binding DigitalInputs[8].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O9" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI9" Tag="9"  
+                   IsEnabled="{Binding DigitalInputs[9].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[9].State}"
+                   Background="{Binding DigitalInputs[9].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O10" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI10" Tag="10"  
+                   IsEnabled="{Binding DigitalInputs[10].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[10].State}"
+                   Background="{Binding DigitalInputs[10].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O11" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI11" Tag="11"  
+                   IsEnabled="{Binding DigitalInputs[11].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[11].State}"
+                   Background="{Binding DigitalInputs[11].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O12" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI12" Tag="12"  
+                   IsEnabled="{Binding DigitalInputs[12].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[12].State}"
+                   Background="{Binding DigitalInputs[12].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O13" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI13" Tag="13"  
+                   IsEnabled="{Binding DigitalInputs13].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[13].State}"
+                   Background="{Binding DigitalInputs[13].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O14" LabelPosition="Top">
+                        <dxe:CheckEdit Name="ceDI14" Tag="14"  
+                   IsEnabled="{Binding DigitalInputs[14].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[14].State}"
+                   Background="{Binding DigitalInputs[14].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="O15" LabelPosition="Top" >
+                        <dxe:CheckEdit Name="ceDI15" Tag="15"  
+                   IsEnabled="{Binding DigitalInputs[15].IsAttached}" 
+                   IsChecked="{Binding DigitalInputs[15].State}"
+                   Background="{Binding DigitalInputs[15].State, 
+                                Mode=OneWay, 
+                                Converter={StaticResource RedGreenConverter}}"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
                                 IsCollapsible="True" IsCollapsed="False" >
                         
                     <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_0" Tag="0"  IsEnabled="{Binding DigitalOutputs[0].IsAttached}" IsChecked="{Binding DigitalOutputs[0].State}"
-                                       Background="{Binding DigitalOutputs[0].State, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO0" Tag="0"  
+                                       IsEnabled="{Binding DigitalOutputs[0].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[0].State}"
+                                       Background="{Binding DigitalOutputs[0].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O1" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_1" Tag="1" IsChecked="{Binding DO1}" 
-                                       Background="{Binding DO1, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO1" Tag="1"  
+                                       IsEnabled="{Binding DigitalOutputs[1].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[1].State}"
+                                       Background="{Binding DigitalOutputs[1].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O2" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_2" Tag="2" IsChecked="{Binding DO2}" 
-                                       Background="{Binding DO2, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO2" Tag="2"  
+                                       IsEnabled="{Binding DigitalOutputs[2].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[2].State}"
+                                       Background="{Binding DigitalOutputs[2].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O3" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_3" Tag="3" IsChecked="{Binding DO3}" 
-                                       Background="{Binding DO3, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO3" Tag="3"  
+                                       IsEnabled="{Binding DigitalOutputs[3].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[3].State}"
+                                       Background="{Binding DigitalOutputs[3].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O4" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_4" Tag="4" IsChecked="{Binding DO4}" 
-                                       Background="{Binding DO4, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO4" Tag="4"  
+                                       IsEnabled="{Binding DigitalOutputs[4].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[4].State}"
+                                       Background="{Binding DigitalOutputs[4].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O5" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_5" Tag="5" IsChecked="{Binding DO5}" 
-                                       Background="{Binding DO5, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO5" Tag="5"  
+                                       IsEnabled="{Binding DigitalOutputs[5].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[5].State}"
+                                       Background="{Binding DigitalOutputs[5].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O6" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_6" Tag="6" IsChecked="{Binding DO6}" 
-                                       Background="{Binding DO6, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO6" Tag="6"  
+                                       IsEnabled="{Binding DigitalOutputs[6].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[6].State}"
+                                       Background="{Binding DigitalOutputs[6].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O7" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_7" Tag="7" IsChecked="{Binding DO7}" 
-                                       Background="{Binding DO7, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO7" Tag="7"  
+                                       IsEnabled="{Binding DigitalOutputs[7].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[7].State}"
+                                       Background="{Binding DigitalOutputs[7].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O8" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_8" Tag="8" IsChecked="{Binding DO8}" 
-                                       Background="{Binding DO8, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO8" Tag="8"  
+                                       IsEnabled="{Binding DigitalOutputs[8].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[8].State}"
+                                       Background="{Binding DigitalOutputs[8].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O9" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_9" Tag="9" IsChecked="{Binding DO9}" 
-                                       Background="{Binding DO9, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO9" Tag="9"  
+                                       IsEnabled="{Binding DigitalOutputs[9].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[9].State}"
+                                       Background="{Binding DigitalOutputs[9].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O10" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_10" Tag="7" IsChecked="{Binding DO10}" 
-                                       Background="{Binding DO10, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO10" Tag="10"  
+                                       IsEnabled="{Binding DigitalOutputs[10].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[10].State}"
+                                       Background="{Binding DigitalOutputs[10].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O11" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_11" Tag="7" IsChecked="{Binding DO11}" 
-                                       Background="{Binding DO11, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO11" Tag="11"  
+                                       IsEnabled="{Binding DigitalOutputs[11].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[11].State}"
+                                       Background="{Binding DigitalOutputs[11].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O12" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_12" Tag="12" IsChecked="{Binding DO12}" 
-                                       Background="{Binding DO12, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO12" Tag="12"  
+                                       IsEnabled="{Binding DigitalOutputs[12].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[12].State}"
+                                       Background="{Binding DigitalOutputs[12].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O13" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_13" Tag="13" IsChecked="{Binding DO13}" 
-                                       Background="{Binding DO13, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO13" Tag="13"  
+                                       IsEnabled="{Binding DigitalOutputs13].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[13].State}"
+                                       Background="{Binding DigitalOutputs[13].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O14" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO_14" Tag="14" IsChecked="{Binding DO14}" 
-                                       Background="{Binding DO14, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO14" Tag="14"  
+                                       IsEnabled="{Binding DigitalOutputs[14].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[14].State}"
+                                       Background="{Binding DigitalOutputs[14].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O15" LabelPosition="Top" >
-                        <dxe:CheckEdit Name="ceDO_15" Tag="15" IsChecked="{Binding DO15}" 
-                                       Background="{Binding DO15, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:CheckEdit Name="ceDO15" Tag="15"  
+                                       IsEnabled="{Binding DigitalOutputs[15].IsAttached}" 
+                                       IsChecked="{Binding DigitalOutputs[15].State}"
+                                       Background="{Binding DigitalOutputs[15].State, 
+                                                    Mode=OneWay, 
+                                                    Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
                     
                 </dxlc:LayoutGroup>
