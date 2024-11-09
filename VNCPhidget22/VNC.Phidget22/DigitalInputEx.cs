@@ -202,12 +202,26 @@ namespace VNC.Phidget22
             //IsAttached = digitalInput.Attached;
 
             // Just set it so UI behaves well
-            IsAttached = true;
-
-            InputMode = digitalInput.InputMode;
-            PowerSupply = digitalInput.PowerSupply;
+            IsAttached = true;        
 
             State = digitalInput.State;
+
+            // Not all DigitalInput support all properties
+            // Maybe just ignore or protect behind an if or switch
+            // based on DeviceClass or DeviceID
+
+            //try
+            //{
+            //    InputMode = digitalInput.InputMode;
+            //    PowerSupply = digitalInput.PowerSupply;
+            //}
+            //catch (Phidgets.PhidgetException ex)
+            //{
+            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+            //    {
+            //        throw ex;
+            //    }
+            //}
         }
 
         private void DigitalInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)

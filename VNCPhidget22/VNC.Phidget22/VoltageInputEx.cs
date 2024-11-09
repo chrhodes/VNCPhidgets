@@ -428,7 +428,11 @@ namespace VNC.Phidget22
             SensorType = voltageInput.SensorType;
             SensorValue = voltageInput.SensorValue;
             SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
-            SensorUnit = voltageInput.SensorUnit;
+
+            // TODO(crhodes)
+            // 
+            // This needs to be set before being read
+            //SensorUnit = voltageInput.SensorUnit;
 
             MinDataInterval = voltageInput.MinDataInterval;
             DataInterval = voltageInput.DataInterval;
@@ -446,7 +450,21 @@ namespace VNC.Phidget22
             VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
             MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
 
-            PowerSupply = voltageInput.PowerSupply;
+            // Not all VoltageInput support all properties
+            // Maybe just ignore or protect behind an if or switch
+            // based on DeviceClass or DeviceID
+
+            //try
+            //{
+            //  PowerSupply = voltageInput.PowerSupply;
+            //}
+            //catch (Phidgets.PhidgetException ex)
+            //{
+            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+            //    {
+            //        throw ex;
+            //    }
+            //}
         }
 
         private void VoltageInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)

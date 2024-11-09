@@ -195,6 +195,10 @@
                                 Mode=OneWay, 
                                 Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                        <dxe:TextEdit Text="{Binding DigitalInputs[0].InputMode, Mode=OneWay}" IsReadOnly="True" />
+                    </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutItem Label="O1" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDI1" Tag="1"  
                    IsEnabled="{Binding DigitalInputs[1].IsAttached}" 
@@ -293,7 +297,7 @@
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O13" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDI13" Tag="13"  
-                   IsEnabled="{Binding DigitalInputs13].IsAttached}" 
+                   IsEnabled="{Binding DigitalInputs[13].IsAttached}" 
                    IsChecked="{Binding DigitalInputs[13].State}"
                    Background="{Binding DigitalInputs[13].State, 
                                 Mode=OneWay, 
@@ -321,14 +325,26 @@
                 <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
                                 IsCollapsible="True" IsCollapsed="False" >
                         
-                    <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO0" Tag="0"  
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                        <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDO0" Tag="0"  
                                        IsEnabled="{Binding DigitalOutputs[0].IsAttached}" 
                                        IsChecked="{Binding DigitalOutputs[0].State}"
                                        Background="{Binding DigitalOutputs[0].State, 
                                                     Mode=OneWay, 
                                                     Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dxe:TextEdit Text="{Binding DigitalOutputs[0].MinDutyCycle}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dxe:TextEdit Text="{Binding DigitalOutputs[0].DutyCycle}" />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dxe:TextEdit Text="{Binding DigitalOutputs[0].MaxDutyCycle}" />
+                        </dxlc:LayoutItem>
+                     </dxlc:LayoutGroup>
+
                     <dxlc:LayoutItem Label="O1" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDO1" Tag="1"  
                                        IsEnabled="{Binding DigitalOutputs[1].IsAttached}" 
@@ -427,7 +443,7 @@
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O13" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDO13" Tag="13"  
-                                       IsEnabled="{Binding DigitalOutputs13].IsAttached}" 
+                                       IsEnabled="{Binding DigitalOutputs[13].IsAttached}" 
                                        IsChecked="{Binding DigitalOutputs[13].State}"
                                        Background="{Binding DigitalOutputs[13].State, 
                                                     Mode=OneWay, 

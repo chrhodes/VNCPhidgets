@@ -63,7 +63,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
-            ConfigureDigitalOutputs(8);
+            //ConfigureDigitalInputs(8);
+            //ConfigureDigitalOutputs(8);
+
+            //ConfigureVoltageInputs(8);
+            //ConfigureVoltageRatioInputs(8);
+            //ConfigureVoltageOutputs(8);
 
             Message = "InterfaceKitViewModel says hello";
 
@@ -274,9 +279,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region InterfaceKit
 
-        public DigitalInputEx[] DigitalInputs { get; set; }
+        DigitalInputEx[] _digitalInputs = new DigitalInputEx[16];
+        public DigitalInputEx[] DigitalInputs
+        {
+            get
+            {
+                return _digitalInputs;
+            }
+            set
+            {
+                _digitalInputs = value;
+                OnPropertyChanged();
+            }
+        }
 
-        DigitalOutputEx[] _digitalOutputs = new DigitalOutputEx[8];
+        DigitalOutputEx[] _digitalOutputs = new DigitalOutputEx[16];
         public DigitalOutputEx[] DigitalOutputs 
         {
             get
@@ -290,10 +307,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        //public VoltageInputEx[] VoltageInputs;
-        //public VoltageRatioInputEx[] VoltageRatioInputs;
+        VoltageInputEx[] _voltageInputs = new VoltageInputEx[8];
+        public VoltageInputEx[] VoltageInputs
+        {
+            get
+            {
+                return _voltageInputs;
+            }
+            set
+            {
+                _voltageInputs = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //public VoltageOutputEx[] VoltageOutputs;
+        VoltageRatioInputEx[] _voltageRatioInputs = new VoltageRatioInputEx[8];
+        public VoltageRatioInputEx[] VoltageRatioInputs
+        {
+            get
+            {
+                return _voltageRatioInputs;
+            }
+            set
+            {
+                _voltageRatioInputs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        VoltageOutputEx[] _voltageOutputs = new VoltageOutputEx[8];
+        public VoltageOutputEx[] VoltageOutputs
+        {
+            get
+            {
+                return _voltageOutputs;
+            }
+            set
+            {
+                _voltageOutputs = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region InterfaceKit Events
 
@@ -484,7 +538,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called OpenInterfaceKit";
-            
+
             //ActiveInterfaceKit = new InterfaceKitEx(
             //    SelectedHost.IPAddress,
             //    SelectedHost.Port,
@@ -519,23 +573,84 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // 
             //ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
 
-            ConfigurePhidgets();
+            //ConfigurePhidgets();
 
-            for (int i = 0; i < DigitalOutputs.Count(); i++)
+            DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
+
+            for (int i = 0; i < deviceChannels.DigitalInputCount; i++)
             {
                 // NOTE(crhodes)
                 // If do not specify a timeout, Open() returns
                 // before initial state is available
 
+                ConfigureDigitalInputs(deviceChannels.DigitalInputCount, SelectedInterfaceKit.SerialNumber);
+                DigitalInputs[i].Open();
+                //await Task.Run(() => DigitalOutputs[i].Open(500));
+            }
+
+            for (int i = 0; i < deviceChannels.DigitalOutputCount; i++)
+            {
+                // NOTE(crhodes)
+                // If do not specify a timeout, Open() returns
+                // before initial state is available
+
+                ConfigureDigitalOutputs(deviceChannels.DigitalOutputCount, SelectedInterfaceKit.SerialNumber);
                 DigitalOutputs[i].Open();
                 //await Task.Run(() => DigitalOutputs[i].Open(500));
-                var dOut = DigitalOutputs[i];
-
-                // NOTE(crhodes)
-                // Have to set attached here as it is not set
-                // until after Attach Event completes
-                //DigitalOutputs[i].IsAttached = DigitalOutputs[i].Attached;
             }
+
+            for (int i = 0; i < deviceChannels.VoltageInputCount; i++)
+            {
+                // NOTE(crhodes)
+                // If do not specify a timeout, Open() returns
+                // before initial state is available
+
+                ConfigureVoltageInputs(deviceChannels.VoltageInputCount, SelectedInterfaceKit.SerialNumber);
+                VoltageInputs[i].Open();
+                //await Task.Run(() => VoltageOutputs[i].Open(500));
+            }
+
+            for (int i = 0; i < deviceChannels.VoltageRatioInputCount; i++)
+            {
+                // NOTE(crhodes)
+                // If do not specify a timeout, Open() returns
+                // before initial state is available
+
+                ConfigureVoltageRatioInputs(deviceChannels.VoltageRatioInputCount, SelectedInterfaceKit.SerialNumber);
+                VoltageRatioInputs[i].Open();
+                //await Task.Run(() => VoltageOutputs[i].Open(500));
+            }
+
+            for (int i = 0; i < deviceChannels.VoltageOutputCount; i++)
+            {
+                // NOTE(crhodes)
+                // If do not specify a timeout, Open() returns
+                // before initial state is available
+
+                ConfigureVoltageOutputs(deviceChannels.VoltageOutputCount, SelectedInterfaceKit.SerialNumber);
+                VoltageOutputs[i].Open();
+                //await Task.Run(() => VoltageOutputs[i].Open(500));
+            }
+
+            //for (int i = 0; i < VoltageInputs.Count(); i++)
+            //{
+            //    // NOTE(crhodes)
+            //    // If do not specify a timeout, Open() returns
+            //    // before initial state is available
+
+            //    DigitalInputs[i].Open();
+            //    //await Task.Run(() => DigitalOutputs[i].Open(500));
+            //}
+
+            //for (int i = 0; i < DigitalInputs.Count(); i++)
+            //{
+            //    // NOTE(crhodes)
+            //    // If do not specify a timeout, Open() returns
+            //    // before initial state is available
+
+            //    DigitalInputs[i].Open();
+            //    //await Task.Run(() => DigitalOutputs[i].Open(500));
+            //}
 
             //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
 
@@ -613,196 +728,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
 
             DigitalInputs = new DigitalInputEx[deviceChannels.DigitalInputCount];
-            //DigitalOutputs = new DigitalOutputEx[deviceChannels.DigitalOutputCount];
-            //VoltageInputs = new Phidgets.VoltageInput[deviceChannels.VoltageInputCount];
-            //VoltageRatioInputs = new Phidgets.VoltageRatioInput[deviceChannels.VoltageRatioInputCount];
-            //VoltageOutputs = new Phidgets.VoltageOutput[deviceChannels.VoltageOutputCount];
-
-            // NOTE(crhodes)
-            // Cannot do this get as we don't have a selected Phidget/SerialNumber
-
-            ConfigureDigitalInputs(deviceChannels.DigitalInputCount);
-            //ConfigureDigitalOutputs(deviceChannels.DigitalOutputCount);
-            ConfigureVoltageInputs(deviceChannels.VoltageInputCount);
-            ConfigureVoltageRatioInputs(deviceChannels.VoltageRatioInputCount);
+            DigitalOutputs = new DigitalOutputEx[deviceChannels.DigitalOutputCount];
+            VoltageInputs = new VoltageInputEx[deviceChannels.VoltageInputCount];
+            VoltageRatioInputs = new VoltageRatioInputEx[deviceChannels.VoltageRatioInputCount];
+            VoltageOutputs = new VoltageOutputEx[deviceChannels.VoltageOutputCount];
         }
-
-
 
         // TODO(crhodes)
         // Maybe this is where we use ChannelCounts and some type of Configuration Request
         // to only do this for some
 
-        private void ConfigureDigitalInputs(Int16 channelCount)
+        private void ConfigureDigitalInputs(Int16 channelCount, Int32 serialNumber)
         {
-            Int16 configuredChannels = 0;
-
-            for (int i = 0; i < channelCount; i++)
+            for (Int16 i = 0; i < channelCount; i++)
             {
-                //DigitalInputs[i] = new DigitalInputEx(SelectedInterfaceKit.SerialNumber, , ;
-                //var channel = DigitalInputs[i];
+                //DigitalInputs[i] = new DigitalOutputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new DigitalOutputConfiguration() { Channel = i },
+                //    EventAggregator);
 
-                //channel.DeviceSerialNumber = SerialNumber;
-                //channel.Channel = i;
-                //channel.IsHubPortDevice = false;
-                //channel.IsRemote = true;
-
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
-                //channel.StateChange += Channel_DigitalInputStateChange;
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                DigitalInputs[i] = new DigitalInputEx(
+                    serialNumber,
+                    new DigitalInputConfiguration() { Channel = i },
+                    EventAggregator);
             }
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[0].Attach += DI0_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[0].Detach += DI0_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[0].PropertyChange += DI0_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[0].StateChange += DI0_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[0].Error += DI0_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[1].Attach += DI1_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[1].Detach += DI1_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[1].PropertyChange += DI1_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[1].StateChange += DI1_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[1].Error += DI1_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[2].Attach += DI2_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[2].Detach += DI2_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[2].PropertyChange += DI2_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[2].StateChange += DI2_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[2].Error += DI2_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[3].Attach += DI3_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[3].Detach += DI3_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[3].PropertyChange += DI3_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[3].StateChange += DI3_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[3].Error += DI3_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[4].Attach += DI4_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[4].Detach += DI4_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[4].PropertyChange += DI4_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[4].StateChange += DI4_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[4].Error += DI4_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[5].Attach += DI5_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[5].Detach += DI5_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[5].PropertyChange += DI5_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[5].StateChange += DI5_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[5].Error += DI5_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[6].Attach += DI6_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[6].Detach += DI6_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[6].PropertyChange += DI6_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[6].StateChange += DI6_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[6].Error += DI6_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[7].Attach += DI7_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[7].Detach += DI7_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[7].PropertyChange += DI7_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[7].StateChange += DI7_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[7].Error += DI7_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[8].Attach += DI8_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[8].Detach += DI8_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[8].PropertyChange += DI8_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[8].StateChange += DI8_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[8].Error += DI8_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[9].Attach += DI9_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[9].Detach += DI9_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[9].PropertyChange += DI9_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[9].StateChange += DI9_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[9].Error += DI9_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[10].Attach += DI10_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[10].Detach += DI10_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[10].PropertyChange += DI10_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[10].StateChange += DI10_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[10].Error += DI10_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[11].Attach += DI11_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[11].Detach += DI11_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[11].PropertyChange += DI11_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[11].StateChange += DI11_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[11].Error += DI11_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[12].Attach += DI12_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[12].Detach += DI12_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[12].PropertyChange += DI12_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[12].StateChange += DI12_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[12].Error += DI12_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[13].Attach += DI13_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[13].Detach += DI13_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[13].PropertyChange += DI13_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[13].StateChange += DI13_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[13].Error += DI13_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[14].Attach += DI14_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[14].Detach += DI14_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[14].PropertyChange += DI14_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[14].StateChange += DI14_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[14].Error += DI14_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalInputs[15].Attach += DI15_Attach;
-            //    ActiveInterfaceKit.DigitalInputs[15].Detach += DI15_Detach;
-            //    ActiveInterfaceKit.DigitalInputs[15].PropertyChange += DI15_PropertyChange;
-            //    ActiveInterfaceKit.DigitalInputs[15].StateChange += DI15_StateChange;
-            //    ActiveInterfaceKit.DigitalInputs[15].Error += DI15_Error;
-            //}
         }
 
-        private void ConfigureDigitalOutputs(Int16 channelCount)
+        private void ConfigureDigitalOutputs(Int16 channelCount, Int32 serialNumber)
         {
-            Int16 configuredChannels = 0;
-
             for (Int16 i = 0; i < channelCount; i++)
             {
                 //DigitalOutputs[i] = new DigitalOutputEx(
@@ -810,321 +766,71 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    new DigitalOutputConfiguration() { Channel = i },
                 //    EventAggregator);
 
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
                 DigitalOutputs[i] = new DigitalOutputEx(
-                    48284,
+                    serialNumber,
                     new DigitalOutputConfiguration() { Channel = i },
                     EventAggregator);
-
-                //var channel = DigitalOutputs[i];
-
-                //channel.DeviceSerialNumber = SerialNumber;
-                //channel.Channel = i;
-                //channel.IsHubPortDevice = false;
-                //channel.IsRemote = true;
-
-                //channel.Attach += Phidget_Attach;
-                //channel.Detach += Phidget_Detach;
-                //channel.Error += Phidget_Error;
-                //channel.PropertyChange += Channel_PropertyChange;
             }
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[0].Attach += DO0_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[0].Detach += DO0_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[0].PropertyChange += DO0_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[0].Error += DO0_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[1].Attach += DO1_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[1].Detach += DO1_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[1].PropertyChange += DO1_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[1].Error += DO1_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[2].Attach += DO2_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[2].Detach += DO2_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[2].PropertyChange += DO2_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[2].Error += DO2_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[3].Attach += DO3_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[3].Detach += DO3_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[3].PropertyChange += DO3_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[3].Error += DO3_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[4].Attach += DO4_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[4].Detach += DO4_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[4].PropertyChange += DO4_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[4].Error += DO4_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[5].Attach += DO5_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[5].Detach += DO5_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[5].PropertyChange += DO5_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[5].Error += DO5_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[6].Attach += DO6_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[6].Detach += DO6_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[6].PropertyChange += DO6_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[6].Error += DO6_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[7].Attach += DO7_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[7].Detach += DO7_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[7].PropertyChange += DO7_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[7].Error += DO7_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[8].Attach += DO8_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[8].Detach += DO8_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[8].PropertyChange += DO8_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[8].Error += DO8_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[9].Attach += DO9_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[9].Detach += DO9_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[9].PropertyChange += DO9_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[9].Error += DO9_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[10].Attach += DO10_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[10].Detach += DO10_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[10].PropertyChange += DO10_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[10].Error += DO10_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[11].Attach += DO11_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[11].Detach += DO11_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[11].PropertyChange += DO11_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[11].Error += DO11_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[12].Attach += DO12_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[12].Detach += DO12_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[12].PropertyChange += DO12_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[12].Error += DO12_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[13].Attach += DO13_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[13].Detach += DO13_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[13].PropertyChange += DO13_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[13].Error += DO13_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[14].Attach += DO14_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[14].Detach += DO14_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[14].PropertyChange += DO14_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[14].Error += DO14_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.DigitalOutputs[15].Attach += DO15_Attach;
-            //    ActiveInterfaceKit.DigitalOutputs[15].Detach += DO15_Detach;
-            //    ActiveInterfaceKit.DigitalOutputs[15].PropertyChange += DO15_PropertyChange;
-            //    ActiveInterfaceKit.DigitalOutputs[15].Error += DO15_Error;
-            //}
         }
 
-        private void ConfigureVoltageInputs(Int16 channelCount)
+        private void ConfigureVoltageInputs(Int16 channelCount, Int32 serialNumber)
         {
-            Int16 configuredChannels = 0;
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //VoltageInputs[i] = new VoltageInputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new VoltageInputConfiguration() { Channel = i },
+                //    EventAggregator);
 
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[0].Attach += AI0_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[0].Detach += AI0_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[0].PropertyChange += AI0_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[0].SensorChange += AI0_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[0].VoltageChange += AI0_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[0].Error += AI0_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[1].Attach += AI1_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[1].Detach += AI1_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[1].PropertyChange += AI1_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[1].SensorChange += AI1_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[1].VoltageChange += AI1_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[1].Error += AI1_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[2].Attach += AI2_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[2].Detach += AI2_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[2].PropertyChange += AI2_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[2].SensorChange += AI2_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[2].VoltageChange += AI2_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[2].Error += AI2_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[3].Attach += AI3_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[3].Detach += AI3_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[3].PropertyChange += AI3_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[3].SensorChange += AI3_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[3].VoltageChange += AI3_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[3].Error += AI3_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[4].Attach += AI4_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[4].Detach += AI4_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[4].PropertyChange += AI4_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[4].SensorChange += AI4_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[4].VoltageChange += AI4_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[4].Error += AI4_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[5].Attach += AI5_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[5].Detach += AI5_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[5].PropertyChange += AI5_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[5].SensorChange += AI5_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[5].VoltageChange += AI5_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[5].Error += AI5_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[6].Attach += AI6_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[6].Detach += AI6_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[6].PropertyChange += AI6_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[6].SensorChange += AI6_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[6].VoltageChange += AI6_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[6].Error += AI6_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageInputs[7].Attach += AI7_Attach;
-            //    ActiveInterfaceKit.VoltageInputs[7].Detach += AI7_Detach;
-            //    ActiveInterfaceKit.VoltageInputs[7].PropertyChange += AI7_PropertyChange;
-            //    ActiveInterfaceKit.VoltageInputs[7].SensorChange += AI7_VoltageInputSensorChange;
-            //    ActiveInterfaceKit.VoltageInputs[7].VoltageChange += AI7_VoltageChange;
-            //    ActiveInterfaceKit.VoltageInputs[7].Error += AI7_Error;
-            //}
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                VoltageInputs[i] = new VoltageInputEx(
+                    serialNumber,
+                    new VoltageInputConfiguration() { Channel = i },
+                    EventAggregator);
+            }
         }
 
-        private void ConfigureVoltageRatioInputs(Int16 channelCount)
+        private void ConfigureVoltageRatioInputs(Int16 channelCount, Int32 serialNumber)
         {
-            Int16 configuredChannels = 0;
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //VoltageRatioInputs[i] = new VoltageRatioInputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new VoltageRatioInputConfiguration() { Channel = i },
+                //    EventAggregator);
 
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[0].Attach += AI0_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[0].Detach += AI0_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[0].PropertyChange += AI0_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[0].SensorChange += AI0_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[0].VoltageRatioChange += AI0_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[0].Error += AI0_Error;
-            //}
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                VoltageRatioInputs[i] = new VoltageRatioInputEx(
+                    serialNumber,
+                    new VoltageRatioInputConfiguration() { Channel = i },
+                    EventAggregator);
+            }
+        }
 
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[1].Attach += AI1_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[1].Detach += AI1_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[1].PropertyChange += AI1_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[1].SensorChange += AI1_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[1].VoltageRatioChange += AI1_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[1].Error += AI1_Error;
-            //}
+        private void ConfigureVoltageOutputs(Int16 channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //VoltageOutputs[i] = new VoltageOutputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new VoltageOutputConfiguration() { Channel = i },
+                //    EventAggregator);
 
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[2].Attach += AI2_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[2].Detach += AI2_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[2].PropertyChange += AI2_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[2].SensorChange += AI2_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[2].VoltageRatioChange += AI2_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[2].Error += AI2_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[3].Attach += AI3_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[3].Detach += AI3_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[3].PropertyChange += AI3_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[3].SensorChange += AI3_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[3].VoltageRatioChange += AI3_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[3].Error += AI3_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[4].Attach += AI4_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[4].Detach += AI4_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[4].PropertyChange += AI4_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[4].SensorChange += AI4_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[4].VoltageRatioChange += AI4_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[4].Error += AI4_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[5].Attach += AI5_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[5].Detach += AI5_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[5].PropertyChange += AI5_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[5].SensorChange += AI5_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[5].VoltageRatioChange += AI5_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[5].Error += AI5_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[6].Attach += AI6_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[6].Detach += AI6_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[6].PropertyChange += AI6_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[6].SensorChange += AI6_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[6].VoltageRatioChange += AI6_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[6].Error += AI6_Error;
-            //}
-
-            //if (channelCount > configuredChannels++)
-            //{
-            //    ActiveInterfaceKit.VoltageRatioInputs[7].Attach += AI7_Attach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[7].Detach += AI7_Detach;
-            //    ActiveInterfaceKit.VoltageRatioInputs[7].PropertyChange += AI7_PropertyChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[7].SensorChange += AI7_VoltageRatioInputSensorChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[7].VoltageRatioChange += AI7_VoltageRatioChange;
-            //    ActiveInterfaceKit.VoltageRatioInputs[7].Error += AI7_Error;
-            //}
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                VoltageOutputs[i] = new VoltageOutputEx(
+                    serialNumber,
+                    new VoltageOutputConfiguration() { Channel = i },
+                    EventAggregator);
+            }
         }
 
 
@@ -1201,10 +907,29 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //ActiveInterfaceKit.Close();
 
+            for (int i = 0; i < DigitalInputs.Count(); i++)
+            {
+                DigitalInputs[i].Close();
+            }
+
             for (int i = 0; i < DigitalOutputs.Count(); i++)
             {
-                var dOut = DigitalOutputs[i];
                 DigitalOutputs[i].Close();
+            }
+
+            for (int i = 0; i < VoltageInputs.Count(); i++)
+            {
+                VoltageInputs[i].Close();
+            }
+
+            for (int i = 0; i < VoltageRatioInputs.Count(); i++)
+            {
+                VoltageRatioInputs[i].Close();
+            }
+
+            for (int i = 0; i < VoltageOutputs.Count(); i++)
+            {
+                VoltageOutputs[i].Close();
             }
 
             UpdateInterfaceKitProperties();

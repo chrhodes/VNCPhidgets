@@ -392,7 +392,10 @@ namespace VNC.Phidget22
             SensorType = voltageRatioInput.SensorType;
             SensorValue = voltageRatioInput.SensorValue;
             SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
-            SensorUnit = voltageRatioInput.SensorUnit;
+
+            // TODO(crhodes)
+            // Need to set before being read
+            //SensorUnit = voltageRatioInput.SensorUnit;
 
             MinDataInterval = voltageRatioInput.MinDataInterval;
             DataInterval = voltageRatioInput.DataInterval;
@@ -416,15 +419,7 @@ namespace VNC.Phidget22
 
             //try
             //{
-            //    Frequency = dOutput.Frequency;
-            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
-            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
-            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
-            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
-            //    MaxFrequency = dOutput.MaxFrequency;
-            //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MinFrequecy = dOutput.MinFrequency;
+
             //}
             //catch (Phidgets.PhidgetException ex)
             //{
