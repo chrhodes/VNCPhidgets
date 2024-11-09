@@ -1,25 +1,15 @@
 ﻿using System;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using Phidget22;
 
 using Prism.Events;
 
 using VNC.Phidget22.Events;
-using VNC.Phidget22.Players;
 
-using VNC.Phidget22.Configuration;
-using System.Net;
-
-using System.Diagnostics.Metrics;
-
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
@@ -31,7 +21,7 @@ namespace VNC.Phidget22
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Initializes a new DigitalOutput and conf
+        /// Initializes a new VoltageRatioInput and adds Event handlers
         /// </summary>
         /// <param name="serialNumber"></param>
         /// <param name="voltageRatioInputConfiguration"></param>
@@ -58,7 +48,7 @@ namespace VNC.Phidget22
         }
 
         /// <summary>
-        /// Configures DigitalOutput using DigitalOutputConfiguration
+        /// Configures VoltageRatioInput using VoltageRatioInputConfiguration
         /// and establishes event handlers
         /// </summary>
         private void InitializePhidget()
@@ -76,7 +66,7 @@ namespace VNC.Phidget22
             this.PropertyChange += VoltageRatioInputEx_PropertyChange;
 
             this.SensorChange += VoltageRatioInputEx_SensorChange;
-            this.VoltageRatioChange += VoltageRatioInputEx_SensorChange;
+            this.VoltageRatioChange += VoltageRatioInputEx_VoltageRatioChange;
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -102,7 +92,6 @@ namespace VNC.Phidget22
         public bool LogSensorChangeEvents { get; set; } = true;
         public bool LogVoltageRatioChangeEvents { get; set; } = true;
 
-
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
 
@@ -118,9 +107,6 @@ namespace VNC.Phidget22
                 OnPropertyChanged();
             }
         }
-
-        // TODO(crhodes)
-        // Create wrapper properties for all Properties (of interest) in Phidgets.DigitalOutput
 
         private bool _isAttached;
         public bool IsAttached
@@ -373,20 +359,19 @@ namespace VNC.Phidget22
             }
         }
 
-
         #endregion
 
         #region Event Handlers
 
         private void VoltageRatioInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.DigitalOutput dOutput = sender as Phidgets.DigitalOutput;
+            Phidgets.VoltageRatioInput voltageRatioInput = sender as Phidgets.VoltageRatioInput;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageRatioInputEx_Attach: sender:{sender} attached:{dOutput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageRatioInputEx_Attach: sender:{sender} attached:{voltageRatioInput.Attached}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -399,14 +384,33 @@ namespace VNC.Phidget22
             // NOTE(crhodes)
             // Shockingly, this is not set until after Attach Event
 
-            //IsAttached = dOutput.Attached;
+            //IsAttached = VoltageRatioInput.Attached;
 
             // Just set it so UI behaves well
             IsAttached = true;
 
+            SensorType = voltageRatioInput.SensorType;
+            SensorValue = voltageRatioInput.SensorValue;
+            SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
+            SensorUnit = voltageRatioInput.SensorUnit;
 
+            MinDataInterval = voltageRatioInput.MinDataInterval;
+            DataInterval = voltageRatioInput.DataInterval;
+            MaxDataInterval = voltageRatioInput.MaxDataInterval;
 
-            // Not all DigitalOutput support all properties
+            MinDataRate = voltageRatioInput.MinDataRate;
+            DataRate = voltageRatioInput.DataRate;
+            MaxDataRate = voltageRatioInput.MaxDataRate;
+
+            MinVoltageRatio = voltageRatioInput.MinVoltageRatio;
+            VoltageRatio = voltageRatioInput.VoltageRatio;
+            MaxVoltageRatio = voltageRatioInput.MaxVoltageRatio;
+
+            MinVoltageRatioChangeTrigger = voltageRatioInput.MinVoltageRatioChangeTrigger;
+            VoltageRatioChangeTrigger = voltageRatioInput.VoltageRatioChangeTrigger;
+            MaxVoltageRatioChangeTrigger = voltageRatioInput.MaxVoltageRatioChangeTrigger;
+
+            // Not all VoltageRatioInput support all properties
             // Maybe just ignore or protect behind an if or switch
             // based on DeviceClass or DeviceID
 
@@ -461,7 +465,7 @@ namespace VNC.Phidget22
             }
         }
 
-        private void VoltageRatioInputEx_VoltageChange(object sender, PhidgetsEvents.VoltageRatioInputVoltageRatioChangeEventArgs e)
+        private void VoltageRatioInputEx_VoltageRatioChange(object sender, PhidgetsEvents.VoltageRatioInputVoltageRatioChangeEventArgs e)
         {
             if (LogVoltageRatioChangeEvents)
             {
@@ -704,6 +708,5 @@ namespace VNC.Phidget22
         }
 
         #endregion
-
     }
 }

@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 using Prism.Events;
 
 using VNC.Phidget22.Events;
-using VNC.Phidget22.Players;
 
-using VNC.Phidget22.Configuration;
-using System.Net;
-
-using System.Diagnostics.Metrics;
-
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
@@ -31,7 +19,7 @@ namespace VNC.Phidget22
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Initializes a new DigitalOutput and conf
+        /// Initializes a new DigitalOutput and adds Event handlers
         /// </summary>
         /// <param name="serialNumber"></param>
         /// <param name="digitalOutputConfiguration"></param>
@@ -96,7 +84,6 @@ namespace VNC.Phidget22
         public bool LogErrorEvents { get; set; } = true;
         public bool LogPropertyChangeEvents { get; set; } = true;
 
-
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
 
@@ -113,9 +100,6 @@ namespace VNC.Phidget22
             }
         }
 
-        // TODO(crhodes)
-        // Create wrapper properties for all Properties (of interest) in Phidgets.DigitalOutput
-
         private bool _isAttached;
         public bool IsAttached
         {
@@ -129,21 +113,15 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _dutyCycle;
-        public new double DutyCycle
+        private double _minFrequency;
+        public new double MinFrequency
         {
-            get => _dutyCycle;
+            get => _minFrequency;
             set
             {
-                if (_dutyCycle == value)
+                if (_minFrequency == value)
                     return;
-                _dutyCycle = value;
-
-                if (base.Attached)
-                {
-                    base.DutyCycle = value;
-                }
-
+                _minFrequency = value;
                 OnPropertyChanged();
             }
         }
@@ -167,21 +145,15 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _ledCurrentLimit;
-        public new double LEDCurrentLimit
+        private double _maxFrequency;
+        public new double MaxFrequency
         {
-            get => _ledCurrentLimit;
+            get => _maxFrequency;
             set
             {
-                if (_ledCurrentLimit == value)
+                if (_maxFrequency == value)
                     return;
-                _ledCurrentLimit = value;
-
-                if (base.Attached)
-                {
-                    base.LEDCurrentLimit = value;
-                }
-
+                _maxFrequency = value;
                 OnPropertyChanged();
             }
         }
@@ -205,58 +177,6 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _maxDutyCycle;
-        public new double MaxDutyCycle
-        {
-            get => _maxDutyCycle;
-            set
-            {
-                if (_maxDutyCycle == value)
-                    return;
-                _maxDutyCycle = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _maxFailsafeTime;
-        public new int MaxFailsafeTime
-        {
-            get => _maxFailsafeTime;
-            set
-            {
-                if (_maxFailsafeTime == value)
-                    return;
-                _maxFailsafeTime = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _maxFrequency;
-        public new double MaxFrequency
-        {
-            get => _maxFrequency;
-            set
-            {
-                if (_maxFrequency == value)
-                    return;
-                _maxFrequency = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _maxLEDCurrentLimit;
-        public new double MaxLEDCurrentLimit
-        {
-            get => _maxLEDCurrentLimit;
-            set
-            {
-                if (_maxLEDCurrentLimit == value)
-                    return;
-                _maxLEDCurrentLimit = value;
-                OnPropertyChanged();
-            }
-        }
-
         private double _minDutyCycle;
         public new double MinDutyCycle
         {
@@ -266,6 +186,38 @@ namespace VNC.Phidget22
                 if (_minDutyCycle == value)
                     return;
                 _minDutyCycle = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _dutyCycle;
+        public new double DutyCycle
+        {
+            get => _dutyCycle;
+            set
+            {
+                if (_dutyCycle == value)
+                    return;
+                _dutyCycle = value;
+
+                if (base.Attached)
+                {
+                    base.DutyCycle = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private double _maxDutyCycle;
+        public new double MaxDutyCycle
+        {
+            get => _maxDutyCycle;
+            set
+            {
+                if (_maxDutyCycle == value)
+                    return;
+                _maxDutyCycle = value;
                 OnPropertyChanged();
             }
         }
@@ -283,15 +235,15 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _minFrequency;
-        public new double MinFrequency
+        private int _maxFailsafeTime;
+        public new int MaxFailsafeTime
         {
-            get => _minFrequency;
+            get => _maxFailsafeTime;
             set
             {
-                if (_minFrequency == value)
+                if (_maxFailsafeTime == value)
                     return;
-                _minFrequency = value;
+                _maxFailsafeTime = value;
                 OnPropertyChanged();
             }
         }
@@ -305,6 +257,38 @@ namespace VNC.Phidget22
                 if (_minLEDCurrentLimit == value)
                     return;
                 _minLEDCurrentLimit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _ledCurrentLimit;
+        public new double LEDCurrentLimit
+        {
+            get => _ledCurrentLimit;
+            set
+            {
+                if (_ledCurrentLimit == value)
+                    return;
+                _ledCurrentLimit = value;
+
+                if (base.Attached)
+                {
+                    base.LEDCurrentLimit = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private double _maxLEDCurrentLimit;
+        public new double MaxLEDCurrentLimit
+        {
+            get => _maxLEDCurrentLimit;
+            set
+            {
+                if (_maxLEDCurrentLimit == value)
+                    return;
+                _maxLEDCurrentLimit = value;
                 OnPropertyChanged();
             }
         }
@@ -333,13 +317,13 @@ namespace VNC.Phidget22
 
         private void DigitalOutputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.DigitalOutput dOutput = sender as Phidgets.DigitalOutput;
+            Phidgets.DigitalOutput digitalOutput = sender as Phidgets.DigitalOutput;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"DigitalOutputEx_Attach: sender:{sender} attached:{dOutput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"DigitalOutputEx_Attach: sender:{sender} attached:{digitalOutput.Attached}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -357,11 +341,11 @@ namespace VNC.Phidget22
             // Just set it so UI behaves well
             IsAttached = true;
 
-            MinDutyCycle = dOutput.MinDutyCycle;
-            DutyCycle = dOutput.DutyCycle;
-            MaxDutyCycle = dOutput.MaxDutyCycle;
-            
-            State = dOutput.State;
+            MinDutyCycle = digitalOutput.MinDutyCycle;
+            DutyCycle = digitalOutput.DutyCycle;
+            MaxDutyCycle = digitalOutput.MaxDutyCycle;
+           
+            State = digitalOutput.State;
 
             // Not all DigitalOutput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -369,15 +353,18 @@ namespace VNC.Phidget22
 
             //try
             //{
+            //    MinFrequency = dOutput.MinFrequency;
             //    Frequency = dOutput.Frequency;
-            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
-            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
-            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
-            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
             //    MaxFrequency = dOutput.MaxFrequency;
+
+            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
+
+            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
+            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
+            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
+
             //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MinFrequecy = dOutput.MinFrequency;
+            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
             //}
             //catch (Phidgets.PhidgetException ex)
             //{
@@ -631,6 +618,5 @@ namespace VNC.Phidget22
         }
 
         #endregion
-
     }
 }

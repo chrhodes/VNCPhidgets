@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 using Prism.Events;
 
 using VNC.Phidget22.Events;
-using VNC.Phidget22.Players;
 
-using VNC.Phidget22.Configuration;
-using System.Net;
-
-using System.Diagnostics.Metrics;
-
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
@@ -31,10 +19,10 @@ namespace VNC.Phidget22
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Initializes a new DigitalOutput and conf
+        /// Initializes a new VoltageInput and adds Event handlers
         /// </summary>
         /// <param name="serialNumber"></param>
-        /// <param name="digitalOutputConfiguration"></param>
+        /// <param name="voltageInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
         public VoltageInputEx(int serialNumber, VoltageInputConfiguration voltageInputConfiguration, IEventAggregator eventAggregator)
         {
@@ -58,7 +46,7 @@ namespace VNC.Phidget22
         }
 
         /// <summary>
-        /// Configures DigitalOutput using DigitalOutputConfiguration
+        /// Configures VoltageInput using VoltageInputConfiguration
         /// and establishes event handlers
         /// </summary>
         private void InitializePhidget()
@@ -74,6 +62,9 @@ namespace VNC.Phidget22
             this.Detach += VoltageInputEx_Detach;
             this.Error += VoltageInputEx_Error;
             this.PropertyChange += VoltageInputEx_PropertyChange;
+
+            this.SensorChange += VoltageInputEx_SensorChange;
+            this.VoltageChange += VoltageInputEx_VoltageChange;
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -114,9 +105,6 @@ namespace VNC.Phidget22
                 OnPropertyChanged();
             }
         }
-
-        // TODO(crhodes)
-        // Create wrapper properties for all Properties (of interest) in Phidgets.DigitalOutput
 
         private bool _isAttached;
         public bool IsAttached
@@ -413,13 +401,13 @@ namespace VNC.Phidget22
 
         private void VoltageInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.VoltageInput vInput = sender as Phidgets.VoltageInput;
+            Phidgets.VoltageInput voltageInput = sender as Phidgets.VoltageInput;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageInputEx_Attach: sender:{sender} attached:{vInput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageInputEx_Attach: sender:{sender} attached:{voltageInput.Attached}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -437,41 +425,28 @@ namespace VNC.Phidget22
             // Just set it so UI behaves well
             IsAttached = true;
 
-            MinDataInterval = vInput.MinDataInterval;
-            DataInterval = vInput.DataInterval;
-            MaxDataInterval = vInput.MaxDataInterval;
+            SensorType = voltageInput.SensorType;
+            SensorValue = voltageInput.SensorValue;
+            SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
+            SensorUnit = voltageInput.SensorUnit;
 
-            MinDataRate = vInput.MinDataRate;
-            DataRate = vInput.DataRate;
-            MaxDataRate = vInput.MaxDataRate;
+            MinDataInterval = voltageInput.MinDataInterval;
+            DataInterval = voltageInput.DataInterval;
+            MaxDataInterval = voltageInput.MaxDataInterval;
 
-            MinVoltage = vInput.MinVoltage;
-            Voltage = vInput.Voltage;
-            MaxVoltage = vInput.MaxVoltage;
+            MinDataRate = voltageInput.MinDataRate;
+            DataRate = voltageInput.DataRate;
+            MaxDataRate = voltageInput.MaxDataRate;
 
-            // Not all DigitalOutput support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
+            MinVoltage = voltageInput.MinVoltage;
+            Voltage = voltageInput.Voltage;
+            MaxVoltage = voltageInput.MaxVoltage;
 
-            //try
-            //{
-            //    DataInterval = dOutput.DataInterval;
-            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
-            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
-            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
-            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
-            //    MaxDataInterval = dOutput.MaxDataInterval;
-            //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MinDataInterval = dOutput.MinDataInterval;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
+            MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
+            VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
+            MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
+
+            PowerSupply = voltageInput.PowerSupply;
         }
 
         private void VoltageInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -518,6 +493,7 @@ namespace VNC.Phidget22
                 }
             }
         }
+        
         private void VoltageInputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
             if (LogPhidgetEvents)
@@ -746,6 +722,5 @@ namespace VNC.Phidget22
         }
 
         #endregion
-
     }
 }

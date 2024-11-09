@@ -1,28 +1,18 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
-
 using Prism.Events;
 
+using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
 
-using VNC.Phidget22.Configuration;
-using System.Net;
-
-using System.Diagnostics.Metrics;
-
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
-using System.IO;
-using System.Threading.Channels;
-using System.Data;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
@@ -34,9 +24,11 @@ namespace VNC.Phidget22
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Initializes a new instance of the InterfaceKit class.
+        /// Initializes a new DigitalInput and adds Event handlers
         /// </summary>
-        /// <param name="enabled"></param>
+        /// <param name="serialNumber"></param>
+        /// <param name="digitalInputConfiguration"></param>
+        /// <param name="eventAggregator"></param>
         public DigitalInputEx(int serialNumber, DigitalInputConfiguration digitalInputConfiguration, IEventAggregator eventAggregator)
         {
             Int64 startTicks = 0;
@@ -58,6 +50,10 @@ namespace VNC.Phidget22
             Log.EVENT_HANDLER("Called", Common.LOG_CATEGORY);
         }
 
+        /// <summary>
+        /// Configures DigitalInput using DigitalInputConfiguration
+        /// and establishes event handlers
+        /// </summary>
         private void InitializePhidget()
         {
             Int64 startTicks = 0;
@@ -73,7 +69,6 @@ namespace VNC.Phidget22
             this.PropertyChange += DigitalInputEx_PropertyChange;
 
             this.StateChange += DigitalInputEx_StateChange;
-
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -114,9 +109,6 @@ namespace VNC.Phidget22
             }
         }
 
-        // TODO(crhodes)
-        // Create wrapper properties for all Properties (of interest) in Phidgets.DigitalOutput
-
         private bool _isAttached;
         public bool IsAttached
         {
@@ -131,7 +123,7 @@ namespace VNC.Phidget22
         }
 
         private Phidgets.InputMode _inputMode;
-        public Phidgets.InputMode InputMode
+        public new Phidgets.InputMode InputMode
         {
             get => _inputMode;
             set
@@ -150,7 +142,7 @@ namespace VNC.Phidget22
         }
 
         private Phidgets.PowerSupply _powerSupply;
-        public Phidgets.PowerSupply PowerSupply
+        public new Phidgets.PowerSupply PowerSupply
         {
             get => _powerSupply;
             set
@@ -186,16 +178,15 @@ namespace VNC.Phidget22
 
         #region Event Handlers (none)
 
-
         private void DigitalInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.DigitalInput dInput = sender as Phidgets.DigitalInput;
+            Phidgets.DigitalInput digitalInput = sender as Phidgets.DigitalInput;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"DigitalInputEx_Attach: sender:{sender} attached:{dInput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"DigitalInputEx_Attach: sender:{sender} attached:{digitalInput.Attached}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -208,39 +199,15 @@ namespace VNC.Phidget22
             // NOTE(crhodes)
             // Shockingly, this is not set until after Attach Event
 
-            //IsAttached = dOutput.Attached;
+            //IsAttached = digitalInput.Attached;
 
             // Just set it so UI behaves well
             IsAttached = true;
 
-            InputMode = dInput.InputMode;
-            PowerSupply = dInput.PowerSupply;
+            InputMode = digitalInput.InputMode;
+            PowerSupply = digitalInput.PowerSupply;
 
-            State = dInput.State;
-
-            // Not all DigitalOutput support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    Frequency = dOutput.Frequency;
-            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
-            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
-            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
-            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
-            //    MaxFrequency = dOutput.MaxFrequency;
-            //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MinFrequecy = dOutput.MinFrequency;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
+            State = digitalInput.State;
         }
 
         private void DigitalInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -306,6 +273,7 @@ namespace VNC.Phidget22
                 }
             }
         }
+
         #endregion
 
         #region Commands (none)

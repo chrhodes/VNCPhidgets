@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 using Prism.Events;
 
 using VNC.Phidget22.Events;
-using VNC.Phidget22.Players;
 
-using VNC.Phidget22.Configuration;
-using System.Net;
-
-using System.Diagnostics.Metrics;
-
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22
 {
@@ -31,12 +19,12 @@ namespace VNC.Phidget22
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
-        /// Initializes a new DigitalOutput and conf
+        /// Initializes a new VoltageOutput and adds Event handlers
         /// </summary>
         /// <param name="serialNumber"></param>
         /// <param name="voltageOutputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public VoltageOutputEx(int serialNumber, DigitalOutputConfiguration voltageOutputConfiguration, IEventAggregator eventAggregator)
+        public VoltageOutputEx(int serialNumber, VoltageOutputConfiguration voltageOutputConfiguration, IEventAggregator eventAggregator)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
@@ -58,7 +46,7 @@ namespace VNC.Phidget22
         }
 
         /// <summary>
-        /// Configures DigitalOutput using DigitalOutputConfiguration
+        /// Configures VoltageOutput using VoltageOutputConfiguration
         /// and establishes event handlers
         /// </summary>
         private void InitializePhidget()
@@ -94,9 +82,7 @@ namespace VNC.Phidget22
 
         public bool LogPhidgetEvents { get; set; } = true;
         public bool LogErrorEvents { get; set; } = true;
-
         public bool LogPropertyChangeEvents { get; set; } = true;
-
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
@@ -114,9 +100,6 @@ namespace VNC.Phidget22
             }
         }
 
-        // TODO(crhodes)
-        // Create wrapper properties for all Properties (of interest) in Phidgets.DigitalOutput
-
         private bool _isAttached;
         public bool IsAttached
         {
@@ -130,149 +113,8 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _dutyCycle;
-        public new double DutyCycle
-        {
-            get => _dutyCycle;
-            set
-            {
-                if (_dutyCycle == value)
-                    return;
-                _dutyCycle = value;
-
-                if (base.Attached)
-                {
-                    base.DutyCycle = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private double? _frequency;
-        public new double? Frequency
-        {
-            get => _frequency;
-            set
-            {
-                if (_frequency == value)
-                    return;
-                _frequency = value;
-
-                if (base.Attached)
-                {
-                    base.Frequency = (double)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private double _ledCurrentLimit;
-        public new double LEDCurrentLimit
-        {
-            get => _ledCurrentLimit;
-            set
-            {
-                if (_ledCurrentLimit == value)
-                    return;
-                _ledCurrentLimit = value;
-
-                if (base.Attached)
-                {
-                    base.LEDCurrentLimit = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Phidgets.LEDForwardVoltage _ledForwardVoltage;
-        public new Phidgets.LEDForwardVoltage LEDForwardVoltage
-        {
-            get => _ledForwardVoltage;
-            set
-            {
-                if (_ledForwardVoltage == value)
-                    return;
-                _ledForwardVoltage = value;
-
-                if (base.Attached)
-                {
-                    base.LEDForwardVoltage = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private double _maxDutyCycle;
-        public double MaxDutyCycle
-        {
-            get => _maxDutyCycle;
-            set
-            {
-                if (_maxDutyCycle == value)
-                    return;
-                _maxDutyCycle = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _maxFailsafeTime;
-        public int MaxFailsafeTime
-        {
-            get => _maxFailsafeTime;
-            set
-            {
-                if (_maxFailsafeTime == value)
-                    return;
-                _maxFailsafeTime = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _maxFrequency;
-        public double MaxFrequency
-        {
-            get => _maxFrequency;
-            set
-            {
-                if (_maxFrequency == value)
-                    return;
-                _maxFrequency = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _maxLEDCurrentLimit;
-        public double MaxLEDCurrentLimit
-        {
-            get => _maxLEDCurrentLimit;
-            set
-            {
-                if (_maxLEDCurrentLimit == value)
-                    return;
-                _maxLEDCurrentLimit = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private double _minDutyCycle;
-        public double MinDutyCycle
-        {
-            get => _minDutyCycle;
-            set
-            {
-                if (_minDutyCycle == value)
-                    return;
-                _minDutyCycle = value;
-                OnPropertyChanged();
-            }
-        }
-
         private int _minFailsafeTime;
-        public int MinFailsafeTime
+        public new int MinFailsafeTime
         {
             get => _minFailsafeTime;
             set
@@ -284,64 +126,90 @@ namespace VNC.Phidget22
             }
         }
 
-        private double _minFrequecy;
-        public double MinFrequecy
+        private int _maxFailsafeTime;
+        public new int MaxFailsafeTime
         {
-            get => _minFrequecy;
+            get => _maxFailsafeTime;
             set
             {
-                if (_minFrequecy == value)
+                if (_maxFailsafeTime == value)
                     return;
-                _minFrequecy = value;
+                _maxFailsafeTime = value;
                 OnPropertyChanged();
             }
         }
 
-        private double _minLEDCurrentLimit;
-
-        public double MinLEDCurrentLimit
+        private Double _minVoltage;
+        public new Double MinVoltage
         {
-            get => _minLEDCurrentLimit;
+            get => _minVoltage;
             set
             {
-                if (_minLEDCurrentLimit == value)
+                if (_minVoltage == value)
                     return;
-                _minLEDCurrentLimit = value;
+                _minVoltage = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool? _state = null;
-        public new bool? State
+        private Double? _Voltage;
+        public new Double? Voltage
         {
-            get => _state;
+            get => _Voltage;
             set
             {
-                if (_state == value)
+                if (_Voltage == value)
                     return;
-                _state = value;
+                _Voltage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxVoltage;
+        public new Double MaxVoltage
+        {
+            get => _maxVoltage;
+            set
+            {
+                if (_maxVoltage == value)
+                    return;
+                _maxVoltage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Phidgets.VoltageOutputRange _voltageOutputRange;
+        public new Phidgets.VoltageOutputRange VoltageOutputRange
+        {
+            get => _voltageOutputRange;
+            set
+            {
+                if (_voltageOutputRange == value)
+                    return;
+                _voltageOutputRange = value;
+
                 if (base.Attached)
                 {
-                    base.State = (Boolean)value;
+                    base.VoltageOutputRange = value;
                 }
 
                 OnPropertyChanged();
             }
-        }        
+        }
 
         #endregion
 
         #region Event Handlers
 
-        private void VoltageOutputEx_Attach(object sender, AttachEventArgs e)
+        private void VoltageOutputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.DigitalOutput dOutput = sender as Phidgets.DigitalOutput;
+            Phidgets.VoltageOutput voltageOutput = sender as Phidgets.VoltageOutput;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageOutputEx_Attach: sender:{sender} attached:{dOutput.Attached}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageOutputEx_Attach: sender:{sender} attached:{voltageOutput.Attached}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -354,32 +222,25 @@ namespace VNC.Phidget22
             // NOTE(crhodes)
             // Shockingly, this is not set until after Attach Event
 
-            //IsAttached = dOutput.Attached;
+            //IsAttached = voltageOutput.Attached;
 
             // Just set it so UI behaves well
             IsAttached = true;
 
-            MinDutyCycle = dOutput.MinDutyCycle;
-            DutyCycle = dOutput.DutyCycle;
-            MaxDutyCycle = dOutput.MaxDutyCycle;
+            MinVoltage = voltageOutput.MinVoltage;
+            Voltage = voltageOutput.Voltage;
+            MaxVoltage = voltageOutput.MaxVoltage;       
             
-            State = dOutput.State;
+            VoltageOutputRange = voltageOutput.VoltageOutputRange;
 
-            // Not all DigitalOutput support all properties
+            // Not all VoltageOutput support all properties
             // Maybe just ignore or protect behind an if or switch
             // based on DeviceClass or DeviceID
 
             //try
             //{
-            //    Frequency = dOutput.Frequency;
-            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
-            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
-            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
-            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
-            //    MaxFrequency = dOutput.MaxFrequency;
             //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MinFrequecy = dOutput.MinFrequency;
+            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
             //}
             //catch (Phidgets.PhidgetException ex)
             //{
@@ -390,7 +251,7 @@ namespace VNC.Phidget22
             //}
         }
 
-        private void VoltageOutputEx_PropertyChange(object sender, PropertyChangeEventArgs e)
+        private void VoltageOutputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
             if (LogPropertyChangeEvents)
             {
@@ -405,7 +266,7 @@ namespace VNC.Phidget22
             }
         }
 
-        private void VoltageOutputEx_Detach(object sender, DetachEventArgs e)
+        private void VoltageOutputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -422,7 +283,7 @@ namespace VNC.Phidget22
             IsAttached = false;
         }
 
-        private void VoltageOutputEx_Error(object sender, ErrorEventArgs e)
+        private void VoltageOutputEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
         {
             if (LogErrorEvents)
             {
@@ -633,6 +494,5 @@ namespace VNC.Phidget22
         }
 
         #endregion
-
     }
 }
