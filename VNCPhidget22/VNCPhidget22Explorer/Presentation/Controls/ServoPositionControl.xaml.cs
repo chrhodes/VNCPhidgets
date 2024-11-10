@@ -59,7 +59,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // NOTE(crhodes)
             // Put things here that initialize the View
-            // Hook eventhandlers, etc.
+            // Hook even thandlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
 

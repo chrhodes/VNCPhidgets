@@ -145,7 +145,7 @@
                     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Name="lgPhidget22tatus" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
+                <dxlc:LayoutGroup Name="lgPhidget22Status" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
                                   IsCollapsible="True" IsCollapsed="False"  >
 
                     <!--<controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
@@ -175,8 +175,9 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" 
-                                  IsCollapsible="True" IsCollapsed="False" >
+                <dxlc:LayoutGroup x:Name="lgDigitalInputs" Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" 
+                                  IsCollapsible="True" IsCollapsed="False"
+                                  Visibility="{Binding DigitalInputsVisibility}">
                     <!--<dxlc:LayoutGroup.GroupBoxStyle>
                         <Style TargetType="dxlc:GroupBox">
                             <Setter Property="Background" Value="Transparent" />
@@ -187,34 +188,34 @@
                         </Style>
                     </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Left" >                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Left"
+                                      Margin="-8,-8,5,-8">
 
                         <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Logging" Orientation="Vertical" 
-                                      VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                            IsCollapsible="True" IsCollapsed="False"                                          
-                                      Margin="-5,0,-5,0"
-                                      Padding="5,0,0,0"
-                                      Background="{StaticResource PhidgetBackground}">
+                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            IsCollapsible="True" IsCollapsed="False"                                   
+                            Padding="-10"
+                            Background="{StaticResource PhidgetBackground}">
                             <dxe:CheckEdit
-                                    Content="Log Phidget Events"
+                                    Content="Phidget"
                                     IsChecked="{Binding DigitalOutputs[0].LogPhidgetEvents, Mode=TwoWay}"
                                     HorizontalAlignment="Left"/>
                             <dxe:CheckEdit
-                                    Content="Log Error Events"
+                                    Content="Error"
                                     IsChecked="{Binding DigitalOutputs[0].LogErrorEvents, Mode=TwoWay}"
                                     HorizontalAlignment="Left"/>
                             <dxe:CheckEdit
-                                    Content="Log PropertyChange Events"
+                                    Content="PropertyChange"
                                     IsChecked="{Binding DigitalOutputs[0].LogPropertyChangeEvents, Mode=TwoWay}"
                                     HorizontalAlignment="Left"/>
                             <dxe:CheckEdit
-                                    Content="Log SensorChange Events"
+                                    Content="SensorChange"
                                     IsChecked="{Binding VoltageInputs[0].LogStateChangeEvents, Mode=TwoWay}" 
                                     HorizontalAlignment="Left"/>
 
                         </dxlc:LayoutGroup>
-                    
+
                         <dxlc:LayoutItem Label="DI0" LabelPosition="Top">
                             <dxe:CheckEdit Name="ceDI0" Tag="0"  
                                IsEnabled="{Binding DigitalInputs[0].IsAttached}" 
@@ -224,25 +225,63 @@
                                             Converter={StaticResource RedGreenConverter}}"/>
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="InputMode">
+                        <!-- NOTE(crhodes)
+                         Need a ValueConverter for this enum
+                        -->
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="InputMode" LabelPosition="Top">
                             <dxe:TextEdit Text="{Binding DigitalInputs[0].InputMode, Mode=OneWay}" IsReadOnly="True" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
+
+                    <controls:DigitalInputControl DigitalInput="{Binding DigitalInputs[0], Mode=TwoWay}" />
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Left"
+                                      Margin="-8,-8,5,-8">
+
+                        <dxlc:LayoutGroup 
+                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            IsCollapsible="True" IsCollapsed="False"                                     
+                            Padding="-10"
+                            Background="{StaticResource PhidgetBackground}">
+                            <dxe:CheckEdit
+                                    Content="Phidget"
+                                    IsChecked="{Binding DigitalOutputs[1].LogPhidgetEvents, Mode=TwoWay}"
+                                    HorizontalAlignment="Left"/>
+                            <dxe:CheckEdit
+                                    Content="Error"
+                                    IsChecked="{Binding DigitalOutputs[1].LogErrorEvents, Mode=TwoWay}"
+                                    HorizontalAlignment="Left"/>
+                            <dxe:CheckEdit
+                                    Content="PropertyChange"
+                                    IsChecked="{Binding DigitalOutputs[1].LogPropertyChangeEvents, Mode=TwoWay}"
+                                    HorizontalAlignment="Left"/>
+                            <dxe:CheckEdit
+                                    Content="SensorChange"
+                                    IsChecked="{Binding VoltageInputs[1].LogStateChangeEvents, Mode=TwoWay}" 
+                                    HorizontalAlignment="Left"/>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutItem Label="DI1" LabelPosition="Top">
+                            <dxe:CheckEdit Name="ceDI1" Tag="1"  
+                               IsEnabled="{Binding DigitalInputs[1].IsAttached}" 
+                               IsChecked="{Binding DigitalInputs[1].State}"
+                               Background="{Binding DigitalInputs[1].State, 
+                                            Mode=OneWay, 
+                                            Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+
+                        <!-- NOTE(crhodes)
+                         Need a ValueConverter for this enum
+                        -->
+                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="InputMode">
+                            <dxe:TextEdit Text="{Binding DigitalInputs[1].InputMode, Mode=OneWay}" IsReadOnly="True" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
                     
-                    <!-- NOTE(crhodes)
-                     Need a ValueConverter for this enum
-                    -->
-  
-                    
-                    <dxlc:LayoutItem Label="O1" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDI1" Tag="1"  
-                           IsEnabled="{Binding DigitalInputs[1].IsAttached}" 
-                           IsChecked="{Binding DigitalInputs[1].State}"
-                           Background="{Binding DigitalInputs[1].State, 
-                                        Mode=OneWay, 
-                                        Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="O2" LabelPosition="Top">
                         <dxe:CheckEdit Name="ceDI2" Tag="2"  
                            IsEnabled="{Binding DigitalInputs[2].IsAttached}" 
@@ -358,38 +397,30 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
-                                IsCollapsible="True" IsCollapsed="False" >
-                        
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                <dxlc:LayoutGroup x:Name="lgDigitalOutputs" Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
+                    IsCollapsible="True" IsCollapsed="False" 
+                    Visibility="{Binding DigitalOutputsVisibility}">
+
+                    <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Left"
+                                      Margin="-8,-8,5,-8">
                         <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Logging" Orientation="Vertical" 
-                                      VerticalAlignment="Top" HorizontalAlignment="Left"
-                                          IsCollapsible="True" IsCollapsed="False"
-                                      Margin="-5,0,-5,0"
-                                      Padding="5,0,0,0"
-                                      Background="{StaticResource PhidgetBackground}">
+                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            IsCollapsible="True" IsCollapsed="False"                                     
+                            Padding="-10"
+                            Background="{StaticResource PhidgetBackground}">
                             <dxe:CheckEdit
-                                    Content="Log Phidget Events"
+                                    Content="Phidget"
                                     IsChecked="{Binding DigitalOutputs[0].LogPhidgetEvents, Mode=TwoWay}"
                                     HorizontalAlignment="Left"/>
                             <dxe:CheckEdit
-                                    Content="Log Error Events"
+                                    Content="Error"
                                     IsChecked="{Binding DigitalOutputs[0].LogErrorEvents, Mode=TwoWay}"
                                     HorizontalAlignment="Left"/>
                             <dxe:CheckEdit
-                                    Content="Log PropertyChange Events"
+                                    Content="PropertyChange"
                                     IsChecked="{Binding DigitalOutputs[0].LogPropertyChangeEvents, Mode=TwoWay}"
                                     HorizontalAlignment="Left"/>
-                            <!--<dxe:CheckEdit
-                                    Content="Log SensorChange Events"
-                                    IsChecked="{Binding VoltageInputs[0].LogSensorChangeEvents, Mode=TwoWay}" 
-                                    HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                    Content="Log VoltageChange Events"
-                                    IsChecked="{Binding VoltageInputs[0].LogVoltageChangeEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>-->
-
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
@@ -403,155 +434,194 @@
                         
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
                             
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="Min">
+                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="Min" LabelPosition="Top">
                                 <dxe:TextEdit Text="{Binding DigitalOutputs[0].MinDutyCycle}" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="DutyCycle">
+                            <dxlc:LayoutItem HorizontalAlignment="Center" Label="DutyCycle" LabelPosition="Top">
                                 <dxe:TextEdit Text="{Binding DigitalOutputs[0].DutyCycle}" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Right" Label="Max">
+                            <dxlc:LayoutItem HorizontalAlignment="Right" Label="Max" LabelPosition="Top">
                                 <dxe:TextEdit Text="{Binding DigitalOutputs[0].MaxDutyCycle}" />
                             </dxlc:LayoutItem>
                             
                         </dxlc:LayoutGroup>
                         
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
 
-                    <dxlc:LayoutItem Label="O1" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO1" Tag="1"  
-                                       IsEnabled="{Binding DigitalOutputs[1].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[1].State}"
-                                       Background="{Binding DigitalOutputs[1].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O2" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO2" Tag="2"  
-                                       IsEnabled="{Binding DigitalOutputs[2].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[2].State}"
-                                       Background="{Binding DigitalOutputs[2].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O3" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO3" Tag="3"  
-                                       IsEnabled="{Binding DigitalOutputs[3].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[3].State}"
-                                       Background="{Binding DigitalOutputs[3].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O4" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO4" Tag="4"  
-                                       IsEnabled="{Binding DigitalOutputs[4].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[4].State}"
-                                       Background="{Binding DigitalOutputs[4].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O5" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO5" Tag="5"  
-                                       IsEnabled="{Binding DigitalOutputs[5].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[5].State}"
-                                       Background="{Binding DigitalOutputs[5].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O6" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO6" Tag="6"  
-                                       IsEnabled="{Binding DigitalOutputs[6].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[6].State}"
-                                       Background="{Binding DigitalOutputs[6].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O7" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO7" Tag="7"  
-                                       IsEnabled="{Binding DigitalOutputs[7].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[7].State}"
-                                       Background="{Binding DigitalOutputs[7].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O8" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO8" Tag="8"  
-                                       IsEnabled="{Binding DigitalOutputs[8].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[8].State}"
-                                       Background="{Binding DigitalOutputs[8].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O9" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO9" Tag="9"  
-                                       IsEnabled="{Binding DigitalOutputs[9].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[9].State}"
-                                       Background="{Binding DigitalOutputs[9].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O10" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO10" Tag="10"  
-                                       IsEnabled="{Binding DigitalOutputs[10].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[10].State}"
-                                       Background="{Binding DigitalOutputs[10].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O11" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO11" Tag="11"  
-                                       IsEnabled="{Binding DigitalOutputs[11].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[11].State}"
-                                       Background="{Binding DigitalOutputs[11].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O12" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO12" Tag="12"  
-                                       IsEnabled="{Binding DigitalOutputs[12].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[12].State}"
-                                       Background="{Binding DigitalOutputs[12].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O13" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO13" Tag="13"  
-                                       IsEnabled="{Binding DigitalOutputs[13].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[13].State}"
-                                       Background="{Binding DigitalOutputs[13].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O14" LabelPosition="Top">
-                        <dxe:CheckEdit Name="ceDO14" Tag="14"  
-                                       IsEnabled="{Binding DigitalOutputs[14].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[14].State}"
-                                       Background="{Binding DigitalOutputs[14].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="O15" LabelPosition="Top" >
-                        <dxe:CheckEdit Name="ceDO15" Tag="15"  
-                                       IsEnabled="{Binding DigitalOutputs[15].IsAttached}" 
-                                       IsChecked="{Binding DigitalOutputs[15].State}"
-                                       Background="{Binding DigitalOutputs[15].State, 
-                                                    Mode=OneWay, 
-                                                    Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
-                    
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[0].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[0].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[0].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[0].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[0].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[0].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[0].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[0].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[1].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[1].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[1].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[1].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[1].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[1].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[1].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[1].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[2].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[2].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[2].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[2].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[2].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[2].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[2].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[2].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[3].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[3].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[3].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[3].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[3].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[3].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[3].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[3].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[4].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[4].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[4].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[4].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[4].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[4].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[4].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[4].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[5].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[5].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[5].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[5].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[5].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[5].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[5].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[5].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[6].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[6].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[6].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[6].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[6].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[6].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[6].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[6].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[7].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[7].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[7].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[7].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[7].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[7].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[7].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[7].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[8].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[8].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[8].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[8].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[8].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[8].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[8].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[8].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[9].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[9].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[9].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[9].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[9].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[9].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[9].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[9].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[10].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[10].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[10].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[10].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[10].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[10].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[10].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[10].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[11].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[11].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[11].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[11].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[11].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[11].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[11].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[11].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[12].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[12].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[12].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[12].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[12].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[12].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[12].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[12].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[13].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[13].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[13].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[13].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[13].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[13].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[13].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[13].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[14].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[14].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[14].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[14].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[14].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[14].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[14].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[14].MaxDutyCycle,Mode=TwoWay}" />
+
+                    <controls:DigitalOutputControl 
+                        IsAttached="{Binding DigitalOutputs[15].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalOutputs[15].State, Mode=TwoWay}"
+                        LogPhidgetEvents="{Binding DigitalOutputs[15].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalOutputs[15].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalOutputs[15].LogPropertyChangeEvents,Mode=TwoWay}"
+                        MinDutyCycle="{Binding DigitalOutputs[15].MinDutyCycle,Mode=TwoWay}"
+                        DutyCycle="{Binding DigitalOutputs[15].DutyCycle,Mode=TwoWay}"
+                        MaxDutyCycle="{Binding DigitalOutputs[15].MaxDutyCycle,Mode=TwoWay}" />
+
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Name="lgAnalogInputs" Orientation="Horizontal" View="GroupBox" Header="Analog Inputs" 
-                                  IsCollapsible="True" IsCollapsed="False" >
+                <dxlc:LayoutGroup x:Name="lgAnalogInputs" Orientation="Horizontal" View="GroupBox" Header="Analog Inputs" 
+                    IsCollapsible="True" IsCollapsed="False" 
+                    Visibility="{Binding AnalogInputsVisibility}" >
 
                     <dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical" HorizontalAlignment="Left">
 
                         <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Logging" Orientation="Vertical" 
-                                          IsCollapsible="True" IsCollapsed="False"
-                                  VerticalAlignment="Top" HorizontalAlignment="Left"
-                                  Margin="-5,0,-5,0"
-                                  Padding="5,0,0,0"
-                                  Background="{StaticResource PhidgetBackground}">
+                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                            IsCollapsible="True" IsCollapsed="False"                                     
+                            Padding="-10"
+                            Background="{StaticResource PhidgetBackground}">
                             <dxe:CheckEdit
                                 Content="Log Phidget Events"
                                 IsChecked="{Binding VoltageInputs[0].LogPhidgetEvents, Mode=TwoWay}"

@@ -1,0 +1,460 @@
+﻿using System;
+using System.Linq;
+using System.Windows;
+
+using Phidgets=Phidget22;
+
+using VNC;
+using VNC.Core.Mvvm;
+using VNC.Phidget22;
+
+namespace VNCPhidget22Explorer.Presentation.Controls
+{
+    public partial class DigitalInputControl: ViewBase, IInstanceCountV
+    {
+        #region Constructors, Initialization, and Load
+        
+        public DigitalInputControl()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountV++;
+            InitializeComponent();
+
+            // Expose ViewModel
+
+            // If View First with ViewModel in Xaml
+
+            // ViewModel = (IDigitalInputControlViewModel)DataContext;
+
+            // Can create directly
+            // ViewModel = DigitalInputControlViewModel();
+
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // public DigitalInputControl(IDigitalInputControlViewModel viewModel)
+        // {
+        // Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+
+        // InstanceCountV++;
+        // InitializeComponent();
+
+        // ViewModel = viewModel;
+
+        // InitializeView();
+
+        // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        // }
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook event handlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            lgMain.DataContext = this;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region Enums (none)
+
+
+        #endregion
+
+        #region Structures (none)
+
+
+        #endregion
+
+        #region Fields and Properties
+
+        #region DigitalInput
+
+        public static readonly DependencyProperty DigitalInputProperty = DependencyProperty.Register("DigitalInput", typeof(DigitalInputEx), typeof(DigitalInputControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDigitalInputChanged), new CoerceValueCallback(OnCoerceDigitalInput)));
+
+        public DigitalInputEx DigitalInput
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (DigitalInputEx)GetValue(DigitalInputProperty);
+            set => SetValue(DigitalInputProperty, value);
+        }
+
+        private static object OnCoerceDigitalInput(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceDigitalInput((DigitalInputEx)value);
+            else
+                return value;
+        }
+
+        private static void OnDigitalInputChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnDigitalInputChanged((DigitalInputEx)e.OldValue, (DigitalInputEx)e.NewValue);
+        }
+
+        protected virtual DigitalInputEx OnCoerceDigitalInput(DigitalInputEx value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDigitalInputChanged(DigitalInputEx oldValue, DigitalInputEx newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region LogPhidgetsEvents
+
+        public static readonly DependencyProperty LogPhidgetEventsProperty = DependencyProperty.Register("LogPhidgetEvents", typeof(Boolean), typeof(DigitalInputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogPhidgetEventsChanged), new CoerceValueCallback(OnCoerceLogPhidgetEvents)));
+
+        public Boolean LogPhidgetEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogPhidgetEventsProperty);
+            set => SetValue(LogPhidgetEventsProperty, value);
+        }
+
+        private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceLogPhidgetEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogPhidgetEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogPhidgetEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region LogErrorEvents
+
+        public static readonly DependencyProperty LogErrorEventsProperty = DependencyProperty.Register("LogErrorEvents", typeof(Boolean), typeof(DigitalInputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogErrorEventsChanged), new CoerceValueCallback(OnCoerceLogErrorEvents)));
+
+        public Boolean LogErrorEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogErrorEventsProperty);
+            set => SetValue(LogErrorEventsProperty, value);
+        }
+
+        private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceLogErrorEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogErrorEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogErrorEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region LogPropertyChangeEvents
+
+        public static readonly DependencyProperty LogPropertyChangeEventsProperty = DependencyProperty.Register("LogPropertyChangeEvents", typeof(Boolean), typeof(DigitalInputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogPropertyChangeEventsChanged), new CoerceValueCallback(OnCoerceLogPropertyChangeEvents)));
+
+        public Boolean LogPropertyChangeEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogPropertyChangeEventsProperty);
+            set => SetValue(LogPropertyChangeEventsProperty, value);
+        }
+
+        private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogPropertyChangeEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogPropertyChangeEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        #endregion
+
+        #region LogStateChangeEvents
+
+        public static readonly DependencyProperty LogStateChangeEventsProperty = DependencyProperty.Register("LogStateChangeEvents", typeof(Boolean), typeof(DigitalInputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogStateChangeEventsChanged), new CoerceValueCallback(OnCoerceLogStateChangeEvents)));
+
+        public Boolean LogStateChangeEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogStateChangeEventsProperty);
+            set => SetValue(LogStateChangeEventsProperty, value);
+        }
+
+        private static object OnCoerceLogStateChangeEvents(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceLogStateChangeEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogStateChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnLogStateChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogStateChangeEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogStateChangeEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region IsAttached
+
+        public static readonly DependencyProperty IsAttachedProperty = DependencyProperty.Register("IsAttached", typeof(Boolean), typeof(DigitalInputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnIsAttachedChanged), new CoerceValueCallback(OnCoerceIsAttached)));
+
+        public Boolean IsAttached
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(IsAttachedProperty);
+            set => SetValue(IsAttachedProperty, value);
+        }
+
+        private static object OnCoerceIsAttached(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceIsAttached((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnIsAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnIsAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceIsAttached(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnIsAttachedChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        #endregion
+
+        #region State
+
+        public static readonly DependencyProperty StateProperty = DependencyProperty.Register("State", typeof(Boolean), typeof(DigitalInputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnStateChanged), new CoerceValueCallback(OnCoerceState)));
+
+        public Boolean State
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(StateProperty);
+            set => SetValue(StateProperty, value);
+        }
+
+        private static object OnCoerceState(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceState((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnStateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnStateChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceState(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnStateChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region InputMode
+
+        public static readonly DependencyProperty InputModeProperty = DependencyProperty.Register(
+            "InputMode", 
+            typeof(Phidgets.InputMode), 
+            typeof(DigitalInputControl), 
+            new FrameworkPropertyMetadata(
+                Phidgets.InputMode.NPN, 
+                new PropertyChangedCallback(OnInputModeChanged), 
+                new CoerceValueCallback(OnCoerceInputMode)
+                )
+            );
+
+        public Phidgets.InputMode InputMode
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Phidgets.InputMode)GetValue(InputModeProperty);
+            set => SetValue(InputModeProperty, value);
+        }
+
+        private static object OnCoerceInputMode(DependencyObject o, object value)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                return digitalInputControl.OnCoerceInputMode((Phidgets.InputMode)value);
+            else
+                return value;
+        }
+
+        private static void OnInputModeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            if (digitalInputControl != null)
+                digitalInputControl.OnInputModeChanged((Phidgets.InputMode)e.OldValue, (Phidgets.InputMode)e.NewValue);
+        }
+
+        protected virtual Phidgets.InputMode OnCoerceInputMode(Phidgets.InputMode value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnInputModeChanged(Phidgets.InputMode oldValue, Phidgets.InputMode newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Event Handlers (none)
+
+
+        #endregion
+
+        #region Commands (none)
+
+        #endregion
+
+        #region Public Methods (none)
+
+
+        #endregion
+
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods (none)
+
+
+        #endregion
+
+        #region IInstanceCount
+
+        private static int _instanceCountV;
+
+        public int InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        private static int _instanceCountVP;
+
+        public int InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
+
+
+        #endregion
+
+    }
+}

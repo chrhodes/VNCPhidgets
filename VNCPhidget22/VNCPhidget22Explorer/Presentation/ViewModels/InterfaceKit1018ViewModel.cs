@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 using Prism.Commands;
 using Prism.Events;
@@ -296,7 +297,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         DigitalOutputEx[] _digitalOutputs = new DigitalOutputEx[16];
-        public DigitalOutputEx[] DigitalOutputs 
+        public DigitalOutputEx[] DigitalOutputs
         {
             get
             {
@@ -439,6 +440,58 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        private Visibility _digitalInputsVisibility = Visibility.Collapsed;
+        public Visibility DigitalInputsVisibility
+        {
+            get => _digitalInputsVisibility;
+            set
+            {
+                if (_digitalInputsVisibility == value)
+                    return;
+                _digitalInputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _digitalOutputsVisibility = Visibility.Collapsed;
+        public Visibility DigitalOutputsVisibility
+        {
+            get => _digitalOutputsVisibility;
+            set
+            {
+                if (_digitalOutputsVisibility == value)
+                    return;
+                _digitalOutputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _analogInputsVisibility = Visibility.Collapsed;
+        public Visibility AnalogInputsVisibility
+        {
+            get => _analogInputsVisibility;
+            set
+            {
+                if (_analogInputsVisibility == value)
+                    return;
+                _analogInputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Visibility _analogOutputsVisibility = Visibility.Collapsed;
+        public Visibility AnalogOutputsVisibility
+        {
+            get => _analogOutputsVisibility;
+            set
+            {
+                if (_analogOutputsVisibility == value)
+                    return;
+                _analogOutputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private VNCPhidgetConfig.InterfaceKit _selectedInterfaceKit;
         public VNCPhidgetConfig.InterfaceKit SelectedInterfaceKit
         {
@@ -450,6 +503,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedInterfaceKit = value;
 
                 OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+
+                // Set to null when host changes
+                if (value is not null)
+                {
+                    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[value.SerialNumber].DeviceChannels;
+
+                    DigitalInputsVisibility = deviceChannels.DigitalInputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                    DigitalOutputsVisibility = deviceChannels.DigitalOutputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                    AnalogInputsVisibility = deviceChannels.VoltageInputCount > 0 || deviceChannels.VoltageRatioInputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                    AnalogOutputsVisibility = deviceChannels.VoltageOutputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
+                else
+                {
+                    DigitalInputsVisibility = Visibility.Collapsed;
+                    DigitalOutputsVisibility = Visibility.Collapsed;
+                    AnalogInputsVisibility = Visibility.Collapsed;
+                    AnalogOutputsVisibility = Visibility.Collapsed;
+                }
 
                 OnPropertyChanged();
             }
