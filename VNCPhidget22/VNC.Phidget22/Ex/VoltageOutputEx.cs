@@ -3,13 +3,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using Prism.Events;
-
+using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
-
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 
-namespace VNC.Phidget22
+namespace VNC.Phidget22.Ex
 {
     public class VoltageOutputEx : Phidgets.VoltageOutput, INotifyPropertyChanged
     {
@@ -26,8 +25,8 @@ namespace VNC.Phidget22
         /// <param name="eventAggregator"></param>
         public VoltageOutputEx(int serialNumber, VoltageOutputConfiguration voltageOutputConfiguration, IEventAggregator eventAggregator)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
             _voltageOutputConfiguration = voltageOutputConfiguration;
@@ -37,7 +36,7 @@ namespace VNC.Phidget22
 
             _eventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TriggerSequence(SequenceEventArgs args)
@@ -51,19 +50,19 @@ namespace VNC.Phidget22
         /// </summary>
         private void InitializePhidget()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
             Channel = _voltageOutputConfiguration.Channel;
             IsRemote = true;
 
-            this.Attach += VoltageOutputEx_Attach;
-            this.Detach += VoltageOutputEx_Detach;
-            this.Error += VoltageOutputEx_Error;
-            this.PropertyChange += VoltageOutputEx_PropertyChange;
+            Attach += VoltageOutputEx_Attach;
+            Detach += VoltageOutputEx_Detach;
+            Error += VoltageOutputEx_Error;
+            PropertyChange += VoltageOutputEx_PropertyChange;
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -96,7 +95,7 @@ namespace VNC.Phidget22
                 if (_serialNumber == value)
                     return;
                 _serialNumber = value;
-                base.DeviceSerialNumber = value;
+                DeviceSerialNumber = value;
                 OnPropertyChanged();
             }
         }
@@ -189,7 +188,7 @@ namespace VNC.Phidget22
                     return;
                 _voltageOutputRange = value;
 
-                if (base.Attached)
+                if (Attached)
                 {
                     base.VoltageOutputRange = value;
                 }
@@ -230,8 +229,8 @@ namespace VNC.Phidget22
 
             MinVoltage = voltageOutput.MinVoltage;
             Voltage = voltageOutput.Voltage;
-            MaxVoltage = voltageOutput.MaxVoltage;       
-            
+            MaxVoltage = voltageOutput.MaxVoltage;
+
             VoltageOutputRange = voltageOutput.VoltageOutputRange;
 
             // Not all VoltageOutput support all properties
@@ -453,7 +452,7 @@ namespace VNC.Phidget22
         //}
 
         #endregion
-        
+
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -467,7 +466,7 @@ namespace VNC.Phidget22
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif

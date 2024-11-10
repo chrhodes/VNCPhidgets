@@ -8,15 +8,14 @@ using Phidget22;
 using Phidget22.Events;
 
 using Prism.Events;
-
-using VNC.Phidget.Events;
-using VNC.Phidget.Players;
+using VNC.Phidget22.Events;
+using VNC.Phidget22.Players;
 
 using VNC.Phidget22.Configuration;
 
-namespace VNC.Phidget
+namespace VNC.Phidget22.Ex
 {
-    public class StepperEx : PhidgetEx
+    public class StepperExOld : PhidgetEx
     {
         #region Constructors, Initialization, and Load
 
@@ -27,11 +26,11 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="embedded"></param>
         /// <param name="enabled"></param>
-        public StepperEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
+        public StepperExOld(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
 
             EventAggregator = eventAggregator;
@@ -39,18 +38,18 @@ namespace VNC.Phidget
 
             EventAggregator.GetEvent<StepperSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializePhidget()
         {
             Stepper = new Phidget22.Stepper();
 
-            this.Stepper.Attach += Phidget_Attach;
-            this.Stepper.Detach += Phidget_Detach;
-            this.Stepper.Error += Phidget_Error;
-            this.Stepper.ServerConnect += Phidget_ServerConnect;
-            this.Stepper.ServerDisconnect += Phidget_ServerDisconnect;
+            Stepper.Attach += Phidget_Attach;
+            Stepper.Detach += Phidget_Detach;
+            Stepper.Error += Phidget_Error;
+            Stepper.ServerConnect += Phidget_ServerConnect;
+            Stepper.ServerDisconnect += Phidget_ServerDisconnect;
 
             //this.InputChange += Stepper_InputChange;
             //this.OutputChange += Stepper_OutputChange;
@@ -73,8 +72,8 @@ namespace VNC.Phidget
             public Double AccelerationMin;
             public Double AccelerationMax;
 
-            public Int64 PositionMin;
-            public Int64 PositionMax;
+            public long PositionMin;
+            public long PositionMax;
 
             public Double VelocityMin;
             public Double VelocityMax;
@@ -188,7 +187,7 @@ namespace VNC.Phidget
         }
 
         private void Stepper_PositionChange(object sender, StepperPositionChangeEventArgs e)
-        {            
+        {
             try
             {
                 Phidget22.Stepper Stepper = sender as Phidget22.Stepper;
@@ -280,15 +279,15 @@ namespace VNC.Phidget
         /// Open Phidget and waitForAttachment
         /// </summary>
         /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
-        public new void Open(Int32? timeOut = null)
+        public new void Open(int? timeOut = null)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
                 Stepper.open(SerialNumber, Host.IPAddress, Host.Port);
 
-                if (timeOut is not null) { Stepper.waitForAttachment((Int32)timeOut); }
+                if (timeOut is not null) { Stepper.waitForAttachment((int)timeOut); }
                 else { Stepper.waitForAttachment(); }
             }
             catch (Exception ex)
@@ -301,11 +300,11 @@ namespace VNC.Phidget
 
         public void Close()
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
-                this.Stepper.close();
+                Stepper.close();
             }
             catch (Exception ex)
             {
@@ -317,7 +316,7 @@ namespace VNC.Phidget
 
         public async Task RunActionLoops(StepperSequence stepperSequence)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
 
             try
             {
@@ -377,7 +376,7 @@ namespace VNC.Phidget
                             {
                                 Log.Trace($"Zzzzz Action:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((Int32)stepperSequence.ActionsDuration);
+                            Thread.Sleep((int)stepperSequence.ActionsDuration);
                         }
 
                         if (stepperSequence.EndActionLoopSequences is not null)
@@ -407,7 +406,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="acceleration"></param>
         /// <param name="stepper"></param>
-        public void SetAcceleration(Double acceleration, StepperStepper stepper, Int32 index)
+        public void SetAcceleration(Double acceleration, StepperStepper stepper, int index)
         {
             try
             {
@@ -457,7 +456,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="velocityLimit"></param>
         /// <param name="stepper"></param>
-        public void SetVelocityLimit(Double velocityLimit, StepperStepper stepper, Int32 index)
+        public void SetVelocityLimit(Double velocityLimit, StepperStepper stepper, int index)
         {
             try
             {
@@ -563,7 +562,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="position"></param>
         /// <param name="stepper"></param>
-        public Int64 SetCurrentPosition(Int64 position, StepperStepper stepper, Int32 index)
+        public long SetCurrentPosition(long position, StepperStepper stepper, int index)
         {
             try
             {
@@ -616,7 +615,7 @@ namespace VNC.Phidget
         /// </summary>
         /// <param name="position"></param>
         /// <param name="stepper"></param>
-        public Int64 SetTargetPosition(Int64 position, StepperStepper stepper, Int32 index)
+        public long SetTargetPosition(long position, StepperStepper stepper, int index)
         {
             try
             {
@@ -722,7 +721,7 @@ namespace VNC.Phidget
 
         #region Private Methods
 
-        private void SaveStepperLimits(StepperStepper stepper, Int32 index)
+        private void SaveStepperLimits(StepperStepper stepper, int index)
         {
             //if (LogPhidgetEvents)
             //{
@@ -748,9 +747,9 @@ namespace VNC.Phidget
 
         private async Task PerformAction(StepperAction action)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
 
-            Int32 index = action.StepperIndex;
+            int index = action.StepperIndex;
 
             StringBuilder actionMessage = new StringBuilder();
 
@@ -846,9 +845,9 @@ namespace VNC.Phidget
                 {
                     if (LogSequenceAction) actionMessage.Append($" engaged:>{action.Engaged}<");
 
-                    stepper.Engaged = (Boolean)action.Engaged;
+                    stepper.Engaged = (bool)action.Engaged;
 
-                    if ((Boolean)action.Engaged) VerifyStepperEngaged(stepper, index);
+                    if ((bool)action.Engaged) VerifyStepperEngaged(stepper, index);
                 }
 
                 //if (action.Acceleration is not null)
@@ -885,7 +884,7 @@ namespace VNC.Phidget
                 {
                     if (LogSequenceAction) actionMessage.Append($" targetPosition:>{action.TargetPosition}<");
 
-                    Int64 targetPosition = (Int64)action.TargetPosition;
+                    long targetPosition = (long)action.TargetPosition;
 
                     if (targetPosition < 0)
                     {
@@ -904,7 +903,7 @@ namespace VNC.Phidget
 
                 if (action.RelativeTargetPosition is not null)
                 {
-                    var newPosition = stepper.TargetPosition + (Int64)action.RelativeTargetPosition;
+                    var newPosition = stepper.TargetPosition + (long)action.RelativeTargetPosition;
                     if (LogSequenceAction) actionMessage.Append($" relativeTargetPosition:>{action.RelativeTargetPosition}< ({newPosition})");
 
                     VerifyNewPositionAchieved(stepper, index, SetTargetPosition(newPosition, stepper, index));
@@ -919,9 +918,9 @@ namespace VNC.Phidget
 
                     Double stepAngle = InitialStepperLimits[index].StepAngle;
                     //Double stepAngle = (Double)action.StepAngle;
-                    Int64 degrees = (Int64)action.RelativeTargetDegrees;
+                    long degrees = (long)action.RelativeTargetDegrees;
 
-                    Int64 stepsToMove = (Int64)(degrees / stepAngle);
+                    long stepsToMove = (long)(degrees / stepAngle);
 
                     stepsToMove = stepsToMove * 16; // 1/16 steps
 
@@ -935,7 +934,7 @@ namespace VNC.Phidget
                 {
                     if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
 
-                    Thread.Sleep((Int32)action.Duration);
+                    Thread.Sleep((int)action.Duration);
                 }
             }
             catch (PhidgetException pex)
@@ -959,7 +958,7 @@ namespace VNC.Phidget
 
         private async void TriggerSequence(SequenceEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             var stepperSequence = args.stepperSequence;
 
@@ -968,9 +967,9 @@ namespace VNC.Phidget
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void VerifyStepperEngaged(Phidget22.StepperStepper stepper, Int32 index)
+        private void VerifyStepperEngaged(Phidget22.StepperStepper stepper, int index)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
             var msSleep = 0;
 
             try
@@ -1008,9 +1007,9 @@ namespace VNC.Phidget
         /// <param name="stepper"></param>
         /// <param name="index"></param>
         /// <param name="targetPosition"></param>
-        private void VerifyNewPositionAchieved(Phidget22.StepperStepper stepper, Int32 index, double targetPosition)
+        private void VerifyNewPositionAchieved(Phidget22.StepperStepper stepper, int index, Double targetPosition)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
             var msSleep = 0;
 
             try

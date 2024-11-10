@@ -1,5 +1,5 @@
 ﻿using System;
-
+using VNC.Phidget22.Ex;
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 

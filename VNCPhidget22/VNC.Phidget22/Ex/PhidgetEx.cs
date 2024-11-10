@@ -2,13 +2,12 @@
 using System.Runtime.CompilerServices;
 
 using Phidget22.Events;
-
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 
-namespace VNC.Phidget22
+namespace VNC.Phidget22.Ex
 {
     // FIX(crhodes)
     // Not sure we need to inherit from Phidgets.Phidget as the AdvancedServo, InterfaceKit, and Stepper no longer exist
@@ -21,15 +20,15 @@ namespace VNC.Phidget22
         /// </summary>
         public PhidgetEx(int serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // 
             //Host = new Host { IPAddress = ipAddress, Port = port };
             SerialNumber = serialNumber;
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // FIX(crhodes)
@@ -41,15 +40,15 @@ namespace VNC.Phidget22
         /// <param name="port">Port number of Host</param>
         public PhidgetEx(string ipAddress, int port, int serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter {ipAddress},{port} {serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter {ipAddress},{port} {serialNumber}", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
             // 
             Host = new Host { IPAddress = ipAddress, Port = port };
             SerialNumber = serialNumber;
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -69,10 +68,10 @@ namespace VNC.Phidget22
         public Host Host { get; set; }
         public int SerialNumber { get; set; }
 
-        public Phidgets.Phidget PhysicalPhidget 
-        { 
-            get; 
-            set; 
+        public Phidgets.Phidget PhysicalPhidget
+        {
+            get;
+            set;
         }
 
         public bool LogPhidgetEvents { get; set; }
@@ -137,7 +136,7 @@ namespace VNC.Phidget22
         //    }
         //}
 
-        internal virtual void Phidget_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        internal virtual void Phidget_Attach(object sender, AttachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -161,7 +160,7 @@ namespace VNC.Phidget22
             if (PhysicalPhidget is null)
             {
                 var s = sender;
-                
+
                 PhysicalPhidget = ((Phidgets.Phidget)sender).Parent;
 
                 PhidgetDeviceIsAttached();
@@ -169,7 +168,7 @@ namespace VNC.Phidget22
             }
         }
 
-        public void Phidget_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        public void Phidget_Detach(object sender, DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -189,7 +188,7 @@ namespace VNC.Phidget22
             }
         }
 
-        internal void Phidget_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        internal void Phidget_Error(object sender, ErrorEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -208,7 +207,7 @@ namespace VNC.Phidget22
             }
         }
 
-        internal void Channel_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        internal void Channel_PropertyChange(object sender, PropertyChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -225,9 +224,9 @@ namespace VNC.Phidget22
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
-        }    
+        }
 
-        internal void Channel_DigitalInputStateChange(object sender, PhidgetsEvents.DigitalInputStateChangeEventArgs e)
+        internal void Channel_DigitalInputStateChange(object sender, DigitalInputStateChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -240,9 +239,9 @@ namespace VNC.Phidget22
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
-        }    
+        }
 
-        internal void Channel_VoltageInputSensorChange(object sender, PhidgetsEvents.VoltageInputSensorChangeEventArgs e)
+        internal void Channel_VoltageInputSensorChange(object sender, VoltageInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {
@@ -288,7 +287,7 @@ namespace VNC.Phidget22
             }
         }
 
-        internal void Phidget_VoltageRatioInputSensorChange(object sender, PhidgetsEvents.VoltageRatioInputSensorChangeEventArgs e)
+        internal void Phidget_VoltageRatioInputSensorChange(object sender, VoltageRatioInputSensorChangeEventArgs e)
         {
             if (LogPhidgetEvents)
             {

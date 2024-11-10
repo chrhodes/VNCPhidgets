@@ -13,7 +13,8 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
-
+using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Ex;
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;

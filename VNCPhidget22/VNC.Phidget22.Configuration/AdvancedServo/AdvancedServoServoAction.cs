@@ -41,22 +41,22 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? PositionMin { get; set; }
+        public Double? PositionMin { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? TargetPosition { get; set; }
+        public Double? TargetPosition { get; set; }
 
         /// <summary>
         /// Position (+/-)  from current Position (optional)
         /// </summary>
-        public double? RelativePosition { get; set; }
+        public Double? RelativePosition { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? PositionMax { get; set; }
+        public Double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

@@ -11,10 +11,11 @@
       <ImplicitUsings>disable</ImplicitUsings>      
   </PropertyGroup>
 
-  <ItemGroup>
-    <!--<Compile Remove="InterfaceKitEx.cs" />-->
+  <ItemGroup><!--<Compile Remove="InterfaceKitEx.cs" />-->
     <!--<Compile Remove="AdvancedServoEx.cs" />-->
-    <Compile Remove="StepperEx.cs" />
+    <!--<Compile Remove="StepperEx.cs" />-->
+  
+    <Compile Remove="Ex\StepperEx-Old.cs" />
   </ItemGroup>
 
     <!-- This is for NuGet Packages -->

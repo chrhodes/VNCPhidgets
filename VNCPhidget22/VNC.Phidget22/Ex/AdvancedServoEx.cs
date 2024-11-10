@@ -15,7 +15,7 @@ using VNC.Phidget22.Players;
 using VNC.Phidget22.Configuration;
 using System.Runtime.CompilerServices;
 
-namespace VNC.Phidget22
+namespace VNC.Phidget22.Ex
 {
     public class AdvancedServoEx : PhidgetEx
     {
@@ -31,8 +31,8 @@ namespace VNC.Phidget22
         public AdvancedServoEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
             : base(serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             _deviceChannels = deviceChannels;
@@ -41,7 +41,7 @@ namespace VNC.Phidget22
 
             EventAggregator.GetEvent<AdvancedServoSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // TODO(crhodes)
@@ -55,21 +55,21 @@ namespace VNC.Phidget22
         public AdvancedServoEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks =  Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAdress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();
 
             EventAggregator.GetEvent<AdvancedServoSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializePhidget()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             //AdvancedServo = new Phidget22.AdvancedServo();
 
@@ -127,7 +127,7 @@ namespace VNC.Phidget22
                 //channel.StateChange += Channel_DigitalInputStateChange;
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -143,10 +143,10 @@ namespace VNC.Phidget22
         {
             public Double AccelerationMin;
             public Double AccelerationMax;
-        // Since Position can be changed
-        // Save in DevicePosition{Min,Max}
-        //public Double PositionMin;    
-        //public Double PositionMax;
+            // Since Position can be changed
+            // Save in DevicePosition{Min,Max}
+            //public Double PositionMin;    
+            //public Double PositionMax;
             public Double DevicePositionMin;
             public Double DevicePositionMax;
             public Double VelocityMin;
@@ -175,7 +175,7 @@ namespace VNC.Phidget22
             set
             {
                 if (_logPositionChangeEvents == value) return;
-                _logPositionChangeEvents = value;           
+                _logPositionChangeEvents = value;
 
                 //if (_logPositionChangeEvents = value)
                 //{
@@ -305,9 +305,9 @@ namespace VNC.Phidget22
         /// Open Phidget and waitForAttachment
         /// </summary>
         /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
-        public new void Open(Int32? timeOut = null)
+        public new void Open(int? timeOut = null)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -381,7 +381,7 @@ namespace VNC.Phidget22
 
         public void Close()
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -430,7 +430,7 @@ namespace VNC.Phidget22
 
         public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
 
             try
             {
@@ -494,7 +494,7 @@ namespace VNC.Phidget22
                             {
                                 Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((Int32)advancedServoSequence.ActionsDuration);
+                            Thread.Sleep((int)advancedServoSequence.ActionsDuration);
                         }
 
                         if (advancedServoSequence.EndActionLoopSequences is not null)
@@ -509,7 +509,7 @@ namespace VNC.Phidget22
                             }
                         }
                     }
-                }     
+                }
             }
             catch (Exception ex)
             {
@@ -1063,7 +1063,7 @@ namespace VNC.Phidget22
 
         private async void TriggerSequence(SequenceEventArgs args)
         {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             var advancedServoSequence = args.AdvancedServoSequence;
 
@@ -1106,7 +1106,7 @@ namespace VNC.Phidget22
         //    }
         //}
 
-        //private void VerifyNewPositionAchieved(AdvancedServoServo servo, Int32 index, double targetPosition)
+        //private void VerifyNewPositionAchieved(AdvancedServoServo servo, Int32 index, Double targetPosition)
         //{
         //    Int64 startTicks = 0;
         //    var msSleep = 0;

@@ -70,7 +70,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        //public double? PositionMax { get; set; }
+        //public Double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

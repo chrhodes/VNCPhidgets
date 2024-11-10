@@ -20,7 +20,7 @@ using System.Diagnostics.Metrics;
 using Phidget22.Events;
 using System.Runtime.CompilerServices;
 
-namespace VNC.Phidget22
+namespace VNC.Phidget22.Ex
 {
     public class InterfaceKitEx : PhidgetEx // InterfaceKit
     {
@@ -40,8 +40,8 @@ namespace VNC.Phidget22
         public InterfaceKitEx(int serialNumber, DeviceChannels deviceChannels, IEventAggregator eventAggregator)
             : base(serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             _deviceChannels = deviceChannels;
@@ -50,7 +50,7 @@ namespace VNC.Phidget22
 
             EventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // TODO(crhodes)
@@ -60,18 +60,18 @@ namespace VNC.Phidget22
         /// Initializes a new instance of the InterfaceKit class.
         /// </summary>
         /// <param name="enabled"></param>
-        public InterfaceKitEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator) 
+        public InterfaceKitEx(string ipAddress, int port, int serialNumber, IEventAggregator eventAggregator)
             : base(ipAddress, port, serialNumber)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAddress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter ipAddress:{ipAddress} port:{port} serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             InitializePhidget();
 
             EventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TriggerSequence(SequenceEventArgs args)
@@ -81,8 +81,8 @@ namespace VNC.Phidget22
 
         private void InitializePhidget()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             var digitalInputCount = _deviceChannels.DigitalInputCount;
             var digitalOutputCount = _deviceChannels.DigitalOutputCount;
@@ -111,7 +111,7 @@ namespace VNC.Phidget22
                 channel.Channel = i;
                 channel.IsHubPortDevice = false;
                 channel.IsRemote = true;
-                
+
                 //channel.Attach += Phidget_Attach;
                 //channel.Detach += Phidget_Detach;
                 //channel.Error += Phidget_Error;
@@ -195,7 +195,7 @@ namespace VNC.Phidget22
                 //channel.PropertyChange += Channel_PropertyChange;
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -227,9 +227,9 @@ namespace VNC.Phidget22
         // These can probably be simple get; set;
 
         private bool _logInputChangeEvents;
-        public bool LogInputChangeEvents 
-        { 
-            get => _logInputChangeEvents; 
+        public bool LogInputChangeEvents
+        {
+            get => _logInputChangeEvents;
             set
             {
                 if (_logInputChangeEvents == value) return;
@@ -249,8 +249,8 @@ namespace VNC.Phidget22
         }
 
         private bool _logOutputChangeEvents;
-        public bool LogOutputChangeEvents 
-        { 
+        public bool LogOutputChangeEvents
+        {
             get => _logOutputChangeEvents;
             set
             {
@@ -271,7 +271,7 @@ namespace VNC.Phidget22
         }
 
         private bool _logSensorChangeEvents;
-        public bool LogSensorChangeEvents 
+        public bool LogSensorChangeEvents
         {
             get => _logSensorChangeEvents;
             set
@@ -312,9 +312,9 @@ namespace VNC.Phidget22
         /// Open Phidget and waitForAttachment
         /// </summary>
         /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
-        public new void Open(Int32? timeOut = null)
+        public new void Open(int? timeOut = null)
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -411,7 +411,7 @@ namespace VNC.Phidget22
 
         public void Close()
         {
-            Int64 startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -478,7 +478,7 @@ namespace VNC.Phidget22
         {
             try
             {
-                Int64 startTicks = 0;
+                long startTicks = 0;
 
                 if (LogSequenceAction)
                 {
@@ -540,7 +540,7 @@ namespace VNC.Phidget22
                             {
                                 Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((Int32)interfaceKitSequence.ActionsDuration);
+                            Thread.Sleep((int)interfaceKitSequence.ActionsDuration);
                         }
 
                         if (interfaceKitSequence.EndActionLoopSequences is not null)

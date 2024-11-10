@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Events;
-
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
@@ -14,7 +13,7 @@ using VNC.Phidget22.Players;
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 
-namespace VNC.Phidget22
+namespace VNC.Phidget22.Ex
 {
     public class DigitalInputEx : Phidgets.DigitalInput, INotifyPropertyChanged
     {
@@ -31,8 +30,8 @@ namespace VNC.Phidget22
         /// <param name="eventAggregator"></param>
         public DigitalInputEx(int serialNumber, DigitalInputConfiguration digitalInputConfiguration, IEventAggregator eventAggregator)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
             _digitalInputConfiguration = digitalInputConfiguration;
@@ -42,7 +41,7 @@ namespace VNC.Phidget22
 
             _eventAggregator.GetEvent<DigitalOutputSequenceEvent>().Subscribe(TriggerSequence);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void TriggerSequence(SequenceEventArgs args)
@@ -56,21 +55,21 @@ namespace VNC.Phidget22
         /// </summary>
         private void InitializePhidget()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
             Channel = _digitalInputConfiguration.Channel;
             IsRemote = true;
 
-            this.Attach += DigitalInputEx_Attach;
-            this.Detach += DigitalInputEx_Detach;
-            this.Error += DigitalInputEx_Error;
-            this.PropertyChange += DigitalInputEx_PropertyChange;
+            Attach += DigitalInputEx_Attach;
+            Detach += DigitalInputEx_Detach;
+            Error += DigitalInputEx_Error;
+            PropertyChange += DigitalInputEx_PropertyChange;
 
-            this.StateChange += DigitalInputEx_StateChange;
+            StateChange += DigitalInputEx_StateChange;
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -105,7 +104,7 @@ namespace VNC.Phidget22
                 if (_serialNumber == value)
                     return;
                 _serialNumber = value;
-                base.DeviceSerialNumber = value;
+                DeviceSerialNumber = value;
                 OnPropertyChanged();
             }
         }
@@ -133,7 +132,7 @@ namespace VNC.Phidget22
                     return;
                 _inputMode = value;
 
-                if (base.Attached)
+                if (Attached)
                 {
                     base.InputMode = value;
                 }
@@ -152,7 +151,7 @@ namespace VNC.Phidget22
                     return;
                 _powerSupply = value;
 
-                if (base.Attached)
+                if (Attached)
                 {
                     base.PowerSupply = value;
                 }
@@ -203,7 +202,7 @@ namespace VNC.Phidget22
             //IsAttached = digitalInput.Attached;
 
             // Just set it so UI behaves well
-            IsAttached = true;        
+            IsAttached = true;
 
             State = digitalInput.State;
 
@@ -302,7 +301,7 @@ namespace VNC.Phidget22
         {
             try
             {
-                Int64 startTicks = 0;
+                long startTicks = 0;
 
                 if (LogSequenceAction)
                 {
@@ -364,7 +363,7 @@ namespace VNC.Phidget22
                             {
                                 Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((Int32)interfaceKitSequence.ActionsDuration);
+                            Thread.Sleep((int)interfaceKitSequence.ActionsDuration);
                         }
 
                         if (interfaceKitSequence.EndActionLoopSequences is not null)
@@ -457,7 +456,7 @@ namespace VNC.Phidget22
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
