@@ -141,13 +141,13 @@ namespace VNC.Phidget22
             }
         }
 
-        private Phidgets.UnitInfo _sensorUnit;
-        public new Phidgets.UnitInfo SensorUnit
+        private Phidgets.Unit _sensorUnit;
+        public new Phidgets.Unit SensorUnit
         {
             get => _sensorUnit;
             set
             {
-                if (_sensorUnit.Unit == value.Unit)
+                if (_sensorUnit == value)
                     return;
                 _sensorUnit = value;
                 OnPropertyChanged();

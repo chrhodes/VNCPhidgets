@@ -50,6 +50,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
 
+
         private void InitializeView()
         {
             Int64 startTicks = 0;
@@ -82,47 +83,49 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties
 
-        #region DigitalOutput
+        #region ControlTitle
 
-        public static readonly DependencyProperty DigitalOutputProperty = DependencyProperty.Register(
-            "DigitalOutput", 
-            typeof(DigitalOutputEx), 
+        public static readonly DependencyProperty ControlTitleProperty = DependencyProperty.Register(
+            "ControlTitle", 
+            typeof(string), 
             typeof(DigitalOutputControl), 
             new FrameworkPropertyMetadata(
                 null, 
-                new PropertyChangedCallback(OnDigitalOutputChanged), 
-                new CoerceValueCallback(OnCoerceDigitalOutput)));
+                new PropertyChangedCallback(OnControlTitleChanged), 
+                new CoerceValueCallback(OnCoerceControlTitle)
+                )
+            );
 
-        public DigitalOutputEx DigitalOutput
+        public string ControlTitle
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (DigitalOutputEx)GetValue(DigitalOutputProperty);
-            set => SetValue(DigitalOutputProperty, value);
+            get => (string)GetValue(ControlTitleProperty);
+            set => SetValue(ControlTitleProperty, value);
         }
 
-        private static object OnCoerceDigitalOutput(DependencyObject o, object value)
+        private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
-            if (DigitalOutputControl != null)
-                return DigitalOutputControl.OnCoerceDigitalOutput((DigitalOutputEx)value);
+            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            if (digitalOutputControl != null)
+                return digitalOutputControl.OnCoerceControlTitle((string)value);
             else
                 return value;
         }
 
-        private static void OnDigitalOutputChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
-            if (DigitalOutputControl != null)
-                DigitalOutputControl.OnDigitalOutputChanged((DigitalOutputEx)e.OldValue, (DigitalOutputEx)e.NewValue);
+            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            if (digitalOutputControl != null)
+                digitalOutputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
 
-        protected virtual DigitalOutputEx OnCoerceDigitalOutput(DigitalOutputEx value)
+        protected virtual string OnCoerceControlTitle(string value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnDigitalOutputChanged(DigitalOutputEx oldValue, DigitalOutputEx newValue)
+        protected virtual void OnControlTitleChanged(string oldValue, string newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -132,6 +135,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region LogPhidgetsEvents
 
         public static readonly DependencyProperty LogPhidgetEventsProperty = DependencyProperty.Register("LogPhidgetEvents", typeof(Boolean), typeof(DigitalOutputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogPhidgetEventsChanged), new CoerceValueCallback(OnCoerceLogPhidgetEvents)));
+
 
         public Boolean LogPhidgetEvents
         {
@@ -290,12 +294,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region State
 
         public static readonly DependencyProperty StateProperty = DependencyProperty.Register(
-            "State", 
-            typeof(Boolean), 
-            typeof(DigitalOutputControl), 
+            "State",
+            typeof(Boolean),
+            typeof(DigitalOutputControl),
             new FrameworkPropertyMetadata(
-                false, 
-                new PropertyChangedCallback(OnStateChanged), 
+                false,
+                new PropertyChangedCallback(OnStateChanged),
                 new CoerceValueCallback(OnCoerceState)));
 
         public Boolean State
@@ -337,12 +341,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region MinDutyCycle
 
         public static readonly DependencyProperty MinDutyCycleProperty = DependencyProperty.Register(
-            "MinDutyCycle", 
-            typeof(Double), 
-            typeof(DigitalOutputControl), 
+            "MinDutyCycle",
+            typeof(Double),
+            typeof(DigitalOutputControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMinDutyCycleChanged), 
+                0.0,
+                new PropertyChangedCallback(OnMinDutyCycleChanged),
                 new CoerceValueCallback(OnCoerceMinDutyCycle)
                 )
             );
@@ -386,12 +390,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region DutyCycle
 
         public static readonly DependencyProperty DutyCycleProperty = DependencyProperty.Register(
-            "DutyCycle", 
-            typeof(Double), 
-            typeof(DigitalOutputControl), 
+            "DutyCycle",
+            typeof(Double),
+            typeof(DigitalOutputControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnDutyCycleChanged), 
+                0.0,
+                new PropertyChangedCallback(OnDutyCycleChanged),
                 new CoerceValueCallback(OnCoerceDutyCycle)
                 )
             );
@@ -435,12 +439,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region MaxDutyCycle
 
         public static readonly DependencyProperty MaxDutyCycleProperty = DependencyProperty.Register(
-            "MaxDutyCycle", 
-            typeof(Double), 
-            typeof(DigitalOutputControl), 
+            "MaxDutyCycle",
+            typeof(Double),
+            typeof(DigitalOutputControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMaxDutyCycleChanged), 
+                0.0,
+                new PropertyChangedCallback(OnMaxDutyCycleChanged),
                 new CoerceValueCallback(OnCoerceMaxDutyCycle)
                 )
             );
@@ -530,6 +534,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
 
 
-
+        
     }
 }

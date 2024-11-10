@@ -69,36 +69,36 @@
     <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
 
         <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
-                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                            IsCollapsible="True" IsCollapsed="False"                                   
-                            Padding="-10"
-                            Background="{StaticResource PhidgetBackground}">
+            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True" IsCollapsed="False"                                   
+            Padding="-10"
+            Background="{StaticResource PhidgetBackground}">
             <dxe:CheckEdit
-                                    Content="Phidget"
-                                    IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
+                Content="Phidget"
+                IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                                    Content="Error"
-                                    IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
+                Content="Error"
+                IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                                    Content="PropertyChange"
-                                    IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
+                Content="PropertyChange"
+                IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                                    Content="SensorChange"
-                                    IsChecked="{Binding LogStateChangeEvents, Mode=TwoWay}" 
-                                    HorizontalAlignment="Left"/>
+                Content="SensorChange"
+                IsChecked="{Binding LogStateChangeEvents, Mode=TwoWay}" 
+                HorizontalAlignment="Left"/>
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="DI0" LabelPosition="Top">
+        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Top">
             <dxe:CheckEdit Name="ceDI0" Tag="0"  
-                               IsEnabled="{Binding IsAttached}" 
-                               IsChecked="{Binding State}"
-                               Background="{Binding State, Mode=OneWay, 
-                                            Converter={StaticResource RedGreenConverter}}"/>
+                IsEnabled="{Binding IsAttached}" 
+                IsChecked="{Binding State}"
+                Background="{Binding State, Mode=OneWay, 
+                            Converter={StaticResource RedGreenConverter}}"/>
         </dxlc:LayoutItem>
 
         <!-- NOTE(crhodes)

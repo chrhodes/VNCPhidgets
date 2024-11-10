@@ -61,10 +61,10 @@
     <SolidColorBrush x:Key="ServoStateControlBackground" Color="#D0D0D0" />    
     <SolidColorBrush x:Key="VelocityControlBackground" Color="#C0C0C0" />
 
-    <SolidColorBrush x:Key="DigitalInputControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="DigitalInputControlBackground" Color="#B0D0B0" />
     <SolidColorBrush x:Key="DigitalOutputControlBackground" Color="#C0C0C0" />
-    <SolidColorBrush x:Key="AnalogInputControlBackground" Color="#C0C0C0" />
-    <SolidColorBrush x:Key="AnalogOutputControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="VoltageInputControlBackground" Color="#C0A0C0" />
+    <SolidColorBrush x:Key="VoltageOutputControlBackground" Color="#C080C0" />
 
     <SolidColorBrush x:Key="ManagePerformanceLibraryBackground" Color="#A0A0A0" /> 
 

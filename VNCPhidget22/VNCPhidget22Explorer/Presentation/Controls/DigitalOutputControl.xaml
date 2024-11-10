@@ -89,7 +89,7 @@
                 HorizontalAlignment="Left"/>
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
+        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Top">
             <dxe:CheckEdit 
                 Name="ceDO0" Tag="0"  
                 IsEnabled="{Binding IsAttached}" 

@@ -82,40 +82,49 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties
 
-        #region DigitalInput
+        #region ControlTitle
 
-        public static readonly DependencyProperty DigitalInputProperty = DependencyProperty.Register("DigitalInput", typeof(DigitalInputEx), typeof(DigitalInputControl), new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnDigitalInputChanged), new CoerceValueCallback(OnCoerceDigitalInput)));
+        public static readonly DependencyProperty ControlTitleProperty = DependencyProperty.Register(
+            "ControlTitle",
+            typeof(string),
+            typeof(DigitalInputControl),
+            new FrameworkPropertyMetadata(
+                null,
+                new PropertyChangedCallback(OnControlTitleChanged),
+                new CoerceValueCallback(OnCoerceControlTitle)
+                )
+            );
 
-        public DigitalInputEx DigitalInput
+        public string ControlTitle
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (DigitalInputEx)GetValue(DigitalInputProperty);
-            set => SetValue(DigitalInputProperty, value);
+            get => (string)GetValue(ControlTitleProperty);
+            set => SetValue(ControlTitleProperty, value);
         }
 
-        private static object OnCoerceDigitalInput(DependencyObject o, object value)
+        private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
             DigitalInputControl digitalInputControl = o as DigitalInputControl;
             if (digitalInputControl != null)
-                return digitalInputControl.OnCoerceDigitalInput((DigitalInputEx)value);
+                return digitalInputControl.OnCoerceControlTitle((string)value);
             else
                 return value;
         }
 
-        private static void OnDigitalInputChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             DigitalInputControl digitalInputControl = o as DigitalInputControl;
             if (digitalInputControl != null)
-                digitalInputControl.OnDigitalInputChanged((DigitalInputEx)e.OldValue, (DigitalInputEx)e.NewValue);
+                digitalInputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
 
-        protected virtual DigitalInputEx OnCoerceDigitalInput(DigitalInputEx value)
+        protected virtual string OnCoerceControlTitle(string value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnDigitalInputChanged(DigitalInputEx oldValue, DigitalInputEx newValue)
+        protected virtual void OnControlTitleChanged(string oldValue, string newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -453,8 +462,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             set => _instanceCountVP = value;
         }
 
-
         #endregion
-
     }
 }
