@@ -17,7 +17,7 @@ namespace VNC.Phidget22
     {
         #region Constructors, Initialization, and Load
 
-        private readonly VoltageInputConfiguration _voltageInputConfiguration;
+        private readonly RCServoConfiguration _voltageInputConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace VNC.Phidget22
         /// <param name="serialNumber"></param>
         /// <param name="voltageInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public VoltageInputEx(int serialNumber, VoltageInputConfiguration voltageInputConfiguration, IEventAggregator eventAggregator)
+        public VoltageInputEx(int serialNumber, RCServoConfiguration voltageInputConfiguration, IEventAggregator eventAggregator)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);

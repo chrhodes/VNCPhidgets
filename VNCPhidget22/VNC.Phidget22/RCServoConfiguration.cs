@@ -3,7 +3,7 @@ using System.Threading.Channels;
 
 namespace VNC.Phidget22
 {
-    public class VoltageInputConfiguration
+    public class RCServoConfiguration
     {
         public Int16 Channel { get; set; }
         //public bool IsRemote { get; set; } = true;

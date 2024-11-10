@@ -832,7 +832,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             for (int i = 0; i < 8; i++)
             {
-                VoltageInputs[i] = new VoltageInputEx(0, new VoltageInputConfiguration() { Channel = (Int16)i }, EventAggregator);
+                VoltageInputs[i] = new VoltageInputEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
             }
             for (int i = 0; i < 8; i++)
             {
