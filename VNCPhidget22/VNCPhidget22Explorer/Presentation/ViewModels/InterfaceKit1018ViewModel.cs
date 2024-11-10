@@ -65,13 +65,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
-            //ConfigureDigitalInputs(8);
-            //ConfigureDigitalOutputs(8);
-
-            //ConfigureVoltageInputs(8);
-            //ConfigureVoltageRatioInputs(8);
-            //ConfigureVoltageOutputs(8);
-
             CreateChannels();
 
             Message = "InterfaceKitViewModel says hello";
@@ -112,6 +105,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             };
 
             return jsonOptions;
+        }
+        private void CreateChannels()
+        {
+            // NOTE(crhodes)
+            // This ViewModel needs to support all types of InterfaceKits
+            // Configure all channels that might exist and wire up event handlers
+            // The SelectedInterfaceKit property change event can enable and disable as needed.
+            // TODO(crhodes)
+            // Figure out what do in UI (if anything) if all channels not present on a device
+            // Hide controls maybe
+
+
+            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
+
+            //DigitalInputs = new DigitalInputEx[deviceChannels.DigitalInputCount];
+            //DigitalOutputs = new DigitalOutputEx[deviceChannels.DigitalOutputCount];
+            //VoltageInputs = new VoltageInputEx[deviceChannels.VoltageInputCount];
+            //VoltageRatioInputs = new VoltageRatioInputEx[deviceChannels.VoltageRatioInputCount];
+            //VoltageOutputs = new VoltageOutputEx[deviceChannels.VoltageOutputCount];
+
+            // NOTE(crhodes)
+            // Need to create early so bindings work.
+
+            // TODO(crhodes)
+            // 
+            // Handle the most an InterfaceKit might have
+            // Maybe initialize some defaults, and channel
+
+            for (int i = 0; i < 16; i++)
+            {
+                DigitalInputs[i] = new DigitalInputEx(0, new DigitalInputConfiguration() { Channel = (Int16)i }, EventAggregator);
+            }
+            for (int i = 0; i < 16; i++)
+            {
+                DigitalOutputs[i] = new DigitalOutputEx(0, new DigitalOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                VoltageInputs[i] = new VoltageInputEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                VoltageRatioInputs[i] = new VoltageRatioInputEx(0, new VoltageRatioInputConfiguration() { Channel = (Int16)i }, EventAggregator);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                VoltageOutputs[i] = new VoltageOutputEx(0, new VoltageOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
+            }
         }
 
         #endregion
@@ -794,55 +835,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void CreateChannels()
-        {
-            // NOTE(crhodes)
-            // This ViewModel needs to support all types of InterfaceKits
-            // Configure all channels that might exist and wire up event handlers
-            // The SelectedInterfaceKit property change event can enable and disable as needed.
-            // TODO(crhodes)
-            // Figure out what do in UI (if anything) if all channels not present on a device
-            // Hide controls maybe
-
-
-            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
-
-            //DigitalInputs = new DigitalInputEx[deviceChannels.DigitalInputCount];
-            //DigitalOutputs = new DigitalOutputEx[deviceChannels.DigitalOutputCount];
-            //VoltageInputs = new VoltageInputEx[deviceChannels.VoltageInputCount];
-            //VoltageRatioInputs = new VoltageRatioInputEx[deviceChannels.VoltageRatioInputCount];
-            //VoltageOutputs = new VoltageOutputEx[deviceChannels.VoltageOutputCount];
-
-            // NOTE(crhodes)
-            // Need to create early so bindings work.
-
-            // TODO(crhodes)
-            // 
-            // Handle the most an InterfaceKit might have
-            // Maybe initialize some defaults, and channel
-
-            for (int i = 0; i < 16; i++)
-            {
-                DigitalInputs[i] = new DigitalInputEx(0, new DigitalInputConfiguration() { Channel= (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 16; i++)
-            {
-                DigitalOutputs[i] = new DigitalOutputEx(0, new DigitalOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                VoltageInputs[i] = new VoltageInputEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                VoltageRatioInputs[i] = new VoltageRatioInputEx(0, new VoltageRatioInputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                VoltageOutputs[i] = new VoltageOutputEx(0, new VoltageOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
         }
 
         // TODO(crhodes)

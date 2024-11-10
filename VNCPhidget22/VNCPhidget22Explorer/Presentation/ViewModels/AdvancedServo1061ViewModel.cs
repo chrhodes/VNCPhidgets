@@ -18,6 +18,8 @@ using VNC.Core.Mvvm;
 using VNC.Phidget22;
 
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Ex;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -76,120 +78,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
+            CreateChannels();
+
             Message = "AdvancedServo1061ViewModel says hello";
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void ConfigurePhidget()
+        // TODO(crhodes)
+        // Maybe this is where we use ChannelCounts and some type of Configuration Request
+        // to only do this for some.  This is called in Open to set the SerialNumber
+
+
+        void ConfigureRCServos(short channelCount, Int32 serialNumber)
         {
-            // NOTE(crhodes)
-            // This ViewModel needs to support all types of InterfaceKits
-            // Configure all channels that might exist and wire up event handlers
-            // The SelectedInterfaceKit property change event can enable and disable as needed.
-            // TODO(crhodes)
-            // Figure out what do in UI (if anything) if all channels not present on a device
-            // Hide controls maybe
-
-            DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedAdvancedServo.SerialNumber].DeviceChannels;
-
-            ConfigureRCServos(deviceChannels.RCServoCount);
-            ConfigureCurrentInputs(deviceChannels.CurrentInputCount);
-        }
-
-
-
-        void ConfigureRCServos(short channelCount)
-        {
-            Int16 configuredChannels = 0;
-
-            if (channelCount > configuredChannels++)
+            for (Int16 i = 0; i < channelCount; i++)
             {
-                ActiveAdvancedServo.RCServos[0].Attach += RCServo0_Attach;
-                ActiveAdvancedServo.RCServos[0].Detach += RCServo0_Detach;
-                ActiveAdvancedServo.RCServos[0].PropertyChange += RCServo0_PropertyChange;
-                ActiveAdvancedServo.RCServos[0].Error += RCServo0_Error;
-
-                ActiveAdvancedServo.RCServos[0].PositionChange += RCServo0_PositionChange;
-                ActiveAdvancedServo.RCServos[0].TargetPositionReached += RCServo0_TargetPositionReached;
-                ActiveAdvancedServo.RCServos[0].VelocityChange += RCServo0_VelocityChange;
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
-            }
-
-            if (channelCount > configuredChannels++)
-            {
-
+                RCServos[i].SerialNumber = serialNumber;
             }
         }
 
-        void ConfigureCurrentInputs(short channelCount)
+        void ConfigureCurrentInputs(short channelCount, Int32 serialNumber)
         {
-            //throw new System.NotImplementedException;
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //RCServos[i].SerialNumber = serialNumber;
+            }
         }
 
         private void LoadUIConfig()
@@ -217,6 +131,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             };
 
             return jsonOptions;
+        }
+
+        private void CreateChannels()
+        {
+            // NOTE(crhodes)
+            // This ViewModel needs to support all types of InterfaceKits
+            // Configure all channels that might exist and wire up event handlers
+            // The SelectedInterfaceKit property change event can enable and disable as needed.
+            // TODO(crhodes)
+            // Figure out what do in UI (if anything) if all channels not present on a device
+            // Hide controls maybe
+
+            // NOTE(crhodes)
+            // Need to create early so bindings work.
+
+            // TODO(crhodes)
+            // 
+            // Handle the most an AdvancedServo might have
+            // Maybe initialize some defaults, and channel
+
+            for (int i = 0; i < 16; i++)
+            {
+                RCServos[i] = new RCServoEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
+            }
         }
 
         #endregion
@@ -374,6 +312,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region AdvancedServo
+
+        RCServoEx[] _rcServos = new RCServoEx[16];
+        public RCServoEx[] RCServos
+        {
+            get
+            {
+                return _rcServos;
+            }
+            set
+            {
+                _rcServos = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region AdvancedServo Events
 
@@ -773,24 +725,40 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
             Message = "Cool, you called OpenAdvancedServo";
 
-            ActiveAdvancedServo = new AdvancedServoEx(
-                SelectedHost.IPAddress,
-                SelectedHost.Port,
-                SelectedAdvancedServo.SerialNumber,
-                EventAggregator);
+            //ActiveAdvancedServo = new AdvancedServoEx(
+            //    SelectedHost.IPAddress,
+            //    SelectedHost.Port,
+            //    SelectedAdvancedServo.SerialNumber,
+            //    EventAggregator);
 
-            ActiveAdvancedServo.AdvancedServo.Attach += ActiveAdvancedServo_Attach;
-            ActiveAdvancedServo.AdvancedServo.Detach += ActiveAdvancedServo_Detach;
+            //ActiveAdvancedServo.AdvancedServo.Attach += ActiveAdvancedServo_Attach;
+            //ActiveAdvancedServo.AdvancedServo.Detach += ActiveAdvancedServo_Detach;
 
-            ActiveAdvancedServo.AdvancedServo.CurrentChange += ActiveAdvancedServo_CurrentChange;
-            ActiveAdvancedServo.AdvancedServo.PositionChange += ActiveAdvancedServo_PositionChange;
-            ActiveAdvancedServo.AdvancedServo.VelocityChange += ActiveAdvancedServo_VelocityChange;
+            //ActiveAdvancedServo.AdvancedServo.CurrentChange += ActiveAdvancedServo_CurrentChange;
+            //ActiveAdvancedServo.AdvancedServo.PositionChange += ActiveAdvancedServo_PositionChange;
+            //ActiveAdvancedServo.AdvancedServo.VelocityChange += ActiveAdvancedServo_VelocityChange;
 
-            ActiveAdvancedServo.LogPhidgetEvents = LogPhidgetEvents;
+            //ActiveAdvancedServo.LogPhidgetEvents = LogPhidgetEvents;
 
-            await Task.Run(() => ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout));
+            //await Task.Run(() => ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout));
 
             //ActiveAdvancedServo.Open(Common.PhidgetOpenTimeout);
+
+            DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedAdvancedServo.SerialNumber].DeviceChannels;
+
+            Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+
+            ConfigureRCServos(deviceChannels.RCServoCount, serialNumber);
+
+            for (int i = 0; i < deviceChannels.DigitalInputCount; i++)
+            {
+                // NOTE(crhodes)
+                // If do not specify a timeout, Open() returns
+                // before initial state is available
+
+                DigitalInputs[i].Open();
+                //await Task.Run(() => DigitalOutputs[i].Open(500));
+            }
 
             // Uncomment this if you are telling someone else to handle this
 
