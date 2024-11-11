@@ -602,19 +602,12 @@ namespace VNC.Phidget22.Ex
             DataRate = rcServo.DataRate;
             MaxDataRate = rcServo.MaxDataRate;
 
-            MinFailsafeTime = rcServo.MinFailsafeTime;
-            MaxFailsafeTime = rcServo.MaxFailsafeTime;
-
             MinPosition = rcServo.MinPosition;
             Position = rcServo.Position;
             MaxPosition = rcServo.MaxPosition;
 
             MinPulseWidth = rcServo.MinPulseWidth;
             MaxPulseWidth = rcServo.MaxPulseWidth;
-
-            MinTorque = rcServo.MinTorque;
-            Torque = rcServo.Torque;
-            MaxTorque = rcServo.MaxTorque;
 
             Velocity = rcServo.Velocity;
 
@@ -629,7 +622,11 @@ namespace VNC.Phidget22.Ex
 
             //try
             //{
-            //  
+            //MinFailsafeTime = rcServo.MinFailsafeTime;
+            //MaxFailsafeTime = rcServo.MaxFailsafeTime;
+            //MinTorque = rcServo.MinTorque;
+            //Torque = rcServo.Torque;
+            //MaxTorque = rcServo.MaxTorque;
             //}
             //catch (Phidgets.PhidgetException ex)
             //{

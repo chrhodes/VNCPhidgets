@@ -238,7 +238,7 @@
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                   Margin="-5,0,-5,0"
                                   Padding="5,0,0,0"
-                                  Background="{StaticResource PhidgetBackground}">
+                                  Background="{StaticResource LoggingBackground}">
 
                     <dxe:CheckEdit
                         Content="Log CurrentChange Events"
@@ -264,6 +264,39 @@
                  Try setting the DataContext here so can get rid of AdvancedServoProperties[0] ...
                 -->
                 <dxlc:LayoutGroup Header="Servo S0" View="GroupBox" Orientation="Vertical" Padding="-10" >
+
+                    <dxlc:LayoutGroup 
+                        View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+                        VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                        IsCollapsible="True" IsCollapsed="False"                                     
+                        Padding="-10"
+                        Background="{StaticResource LoggingBackground}">
+                                    <dxe:CheckEdit
+                                        Content="Log Phidget Events"
+                                        IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
+                                        HorizontalAlignment="Left"/>
+                                    <dxe:CheckEdit
+                                        Content="Log Error Events"
+                                        IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
+                                        HorizontalAlignment="Left"/>
+                                    <dxe:CheckEdit
+                                        Content="Log PropertyChange Events"
+                                        IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
+                                        HorizontalAlignment="Left"/>
+                                    <dxe:CheckEdit
+                                        Content="Log PositionChange Events"
+                                        IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" 
+                                        HorizontalAlignment="Left"/>
+                                    <dxe:CheckEdit
+                                        Content="Log VelocityChange Events"
+                                        IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
+                                        HorizontalAlignment="Left"/>
+                                    <dxe:CheckEdit
+                                        Content="Log TargetPositionReached Events"
+                                        IsChecked="{Binding LogTargetPositionReached, Mode=TwoWay}"
+                                        HorizontalAlignment="Left"/>
+
+                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Type" LabelPosition="Top">
                         <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"

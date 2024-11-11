@@ -79,7 +79,7 @@
             VerticalAlignment="Top" HorizontalAlignment="Stretch"
             IsCollapsible="True" IsCollapsed="False"                                     
             Padding="-10"
-            Background="{StaticResource PhidgetBackground}">
+            Background="{StaticResource LoggingBackground}">
             <dxe:CheckEdit
                 Content="Log Phidget Events"
                 IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"

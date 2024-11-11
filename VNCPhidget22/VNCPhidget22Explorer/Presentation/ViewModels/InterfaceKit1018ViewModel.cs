@@ -72,12 +72,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
-        //private void InterfaceKit1018ViewModel_VoltageRatioChange(object sender, VoltageRatioInputVoltageRatioChangeEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         private void LoadUIConfig()
         {
             Int64 startTicks = 0;
@@ -106,8 +100,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             return jsonOptions;
         }
+
         private void CreateChannels()
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
             // NOTE(crhodes)
             // This ViewModel needs to support all types of InterfaceKits
             // Configure all channels that might exist and wire up event handlers
@@ -115,15 +113,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Figure out what do in UI (if anything) if all channels not present on a device
             // Hide controls maybe
-
-
-            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
-
-            //DigitalInputs = new DigitalInputEx[deviceChannels.DigitalInputCount];
-            //DigitalOutputs = new DigitalOutputEx[deviceChannels.DigitalOutputCount];
-            //VoltageInputs = new VoltageInputEx[deviceChannels.VoltageInputCount];
-            //VoltageRatioInputs = new VoltageRatioInputEx[deviceChannels.VoltageRatioInputCount];
-            //VoltageOutputs = new VoltageOutputEx[deviceChannels.VoltageOutputCount];
 
             // NOTE(crhodes)
             // Need to create early so bindings work.
@@ -153,6 +142,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 VoltageOutputs[i] = new VoltageOutputEx(0, new VoltageOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
             }
+
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -699,10 +690,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             for (int i = 0; i < deviceChannels.DigitalInputCount; i++)
             {
                 // NOTE(crhodes)
-                // If do not specify a timeout, Open() returns
-                // before initial state is available
+                // If do not specify a timeout, Open() may return
+                // before initial state is available in Attach event
 
-                DigitalInputs[i].Open();
+                await Task.Run(() => DigitalInputs[i].Open());
                 //await Task.Run(() => DigitalOutputs[i].Open(500));
             }
 
@@ -841,105 +832,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // Maybe this is where we use ChannelCounts and some type of Configuration Request
         // to only do this for some.  This is called in Open to set the SerialNumber
 
-        private void ConfigureDigitalInputs(Int16 channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                //DigitalInputs[i] = new DigitalOutputEx(
-                //    SelectedInterfaceKit.SerialNumber,
-                //    new DigitalOutputConfiguration() { Channel = i },
-                //    EventAggregator);
 
-                // FIX(crhodes)
-                // Need to figure out a way to set the SerialNumber before we open
-                // How now just hard code, ugh.
-                //DigitalInputs[i] = new DigitalInputEx(
-                //    serialNumber,
-                //    new DigitalInputConfiguration() { Channel = i },
-                //    EventAggregator);
-                DigitalInputs[i].SerialNumber = serialNumber;
-            }
-        }
-
-        private void ConfigureDigitalOutputs(Int16 channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                //DigitalOutputs[i] = new DigitalOutputEx(
-                //    SelectedInterfaceKit.SerialNumber,
-                //    new DigitalOutputConfiguration() { Channel = i },
-                //    EventAggregator);
-
-                // FIX(crhodes)
-                // Need to figure out a way to set the SerialNumber before we open
-                // How now just hard code, ugh.
-                //DigitalOutputs[i] = new DigitalOutputEx(
-                //    serialNumber,
-                //    new DigitalOutputConfiguration() { Channel = i },
-                //    EventAggregator);
-                DigitalOutputs[i].SerialNumber = serialNumber;
-            }
-        }
-
-        private void ConfigureVoltageInputs(Int16 channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                //VoltageInputs[i] = new VoltageInputEx(
-                //    SelectedInterfaceKit.SerialNumber,
-                //    new VoltageInputConfiguration() { Channel = i },
-                //    EventAggregator);
-
-                // FIX(crhodes)
-                // Need to figure out a way to set the SerialNumber before we open
-                // How now just hard code, ugh.
-                //VoltageInputs[i] = new VoltageInputEx(
-                //    serialNumber,
-                //    new VoltageInputConfiguration() { Channel = i },
-                //    EventAggregator);
-                VoltageInputs[i].SerialNumber = serialNumber;
-            }
-        }
-
-        private void ConfigureVoltageRatioInputs(Int16 channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                //VoltageRatioInputs[i] = new VoltageRatioInputEx(
-                //    SelectedInterfaceKit.SerialNumber,
-                //    new VoltageRatioInputConfiguration() { Channel = i },
-                //    EventAggregator);
-
-                // FIX(crhodes)
-                // Need to figure out a way to set the SerialNumber before we open
-                // How now just hard code, ugh.
-                //VoltageRatioInputs[i] = new VoltageRatioInputEx(
-                //    serialNumber,
-                //    new VoltageRatioInputConfiguration() { Channel = i },
-                //    EventAggregator);
-                VoltageRatioInputs[i].SerialNumber = serialNumber;
-            }
-        }
-
-        private void ConfigureVoltageOutputs(Int16 channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                //VoltageOutputs[i] = new VoltageOutputEx(
-                //    SelectedInterfaceKit.SerialNumber,
-                //    new VoltageOutputConfiguration() { Channel = i },
-                //    EventAggregator);
-
-                // FIX(crhodes)
-                // Need to figure out a way to set the SerialNumber before we open
-                // How now just hard code, ugh.
-                //VoltageOutputs[i] = new VoltageOutputEx(
-                //    serialNumber,
-                //    new VoltageOutputConfiguration() { Channel = i },
-                //    EventAggregator);
-                VoltageOutputs[i].SerialNumber = serialNumber;
-            }
-        }
 
 
         //private void ActiveInterfaceKit_PhidgetDeviceAttached(object? sender, EventArgs e)
@@ -1102,6 +995,106 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Private Methods
+
+        private void ConfigureDigitalInputs(Int16 channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //DigitalInputs[i] = new DigitalOutputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new DigitalOutputConfiguration() { Channel = i },
+                //    EventAggregator);
+
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                //DigitalInputs[i] = new DigitalInputEx(
+                //    serialNumber,
+                //    new DigitalInputConfiguration() { Channel = i },
+                //    EventAggregator);
+                DigitalInputs[i].SerialNumber = serialNumber;
+            }
+        }
+
+        private void ConfigureDigitalOutputs(Int16 channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //DigitalOutputs[i] = new DigitalOutputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new DigitalOutputConfiguration() { Channel = i },
+                //    EventAggregator);
+
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                //DigitalOutputs[i] = new DigitalOutputEx(
+                //    serialNumber,
+                //    new DigitalOutputConfiguration() { Channel = i },
+                //    EventAggregator);
+                DigitalOutputs[i].SerialNumber = serialNumber;
+            }
+        }
+
+        private void ConfigureVoltageInputs(Int16 channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //VoltageInputs[i] = new VoltageInputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new VoltageInputConfiguration() { Channel = i },
+                //    EventAggregator);
+
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                //VoltageInputs[i] = new VoltageInputEx(
+                //    serialNumber,
+                //    new VoltageInputConfiguration() { Channel = i },
+                //    EventAggregator);
+                VoltageInputs[i].SerialNumber = serialNumber;
+            }
+        }
+
+        private void ConfigureVoltageRatioInputs(Int16 channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //VoltageRatioInputs[i] = new VoltageRatioInputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new VoltageRatioInputConfiguration() { Channel = i },
+                //    EventAggregator);
+
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                //VoltageRatioInputs[i] = new VoltageRatioInputEx(
+                //    serialNumber,
+                //    new VoltageRatioInputConfiguration() { Channel = i },
+                //    EventAggregator);
+                VoltageRatioInputs[i].SerialNumber = serialNumber;
+            }
+        }
+
+        private void ConfigureVoltageOutputs(Int16 channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //VoltageOutputs[i] = new VoltageOutputEx(
+                //    SelectedInterfaceKit.SerialNumber,
+                //    new VoltageOutputConfiguration() { Channel = i },
+                //    EventAggregator);
+
+                // FIX(crhodes)
+                // Need to figure out a way to set the SerialNumber before we open
+                // How now just hard code, ugh.
+                //VoltageOutputs[i] = new VoltageOutputEx(
+                //    serialNumber,
+                //    new VoltageOutputConfiguration() { Channel = i },
+                //    EventAggregator);
+                VoltageOutputs[i].SerialNumber = serialNumber;
+            }
+        }
 
         private void ClearDigitalInputsAndOutputs()
         {

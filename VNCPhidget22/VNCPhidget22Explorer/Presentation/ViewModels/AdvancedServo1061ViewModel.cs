@@ -90,39 +90,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // Maybe this is where we use ChannelCounts and some type of Configuration Request
         // to only do this for some.  This is called in Open to set the SerialNumber
 
-
-        void ConfigureRCServos(short channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                RCServos[i].SerialNumber = serialNumber;
-            }
-        }
-
-        void ConfigureCurrentInputs(short channelCount, Int32 serialNumber)
-        {
-            for (Int16 i = 0; i < channelCount; i++)
-            {
-                //RCServos[i].SerialNumber = serialNumber;
-            }
-        }
-
-        private void LoadUIConfig()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
-
-            string jsonString = File.ReadAllText(HostConfigFileName);
-
-            VNCPhidgetConfig.HostConfig? hostConfig = 
-                JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
-                (jsonString, GetJsonSerializerOptions());
-
-            Hosts = hostConfig.Hosts.ToList();
-
-            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         JsonSerializerOptions GetJsonSerializerOptions()
         {
             var jsonOptions = new JsonSerializerOptions
@@ -136,10 +103,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void CreateChannels()
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
             // NOTE(crhodes)
-            // This ViewModel needs to support all types of InterfaceKits
+            // This ViewModel needs to support all types of ServoControllers
             // Configure all channels that might exist and wire up event handlers
-            // The SelectedInterfaceKit property change event can enable and disable as needed.
+            // The SelectedAdvancedServo property change event can enable and disable as needed.
             // TODO(crhodes)
             // Figure out what do in UI (if anything) if all channels not present on a device
             // Hide controls maybe
@@ -156,6 +125,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 RCServos[i] = new RCServoEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
             }
+
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -751,13 +722,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             ConfigureRCServos(deviceChannels.RCServoCount, serialNumber);
 
-            for (int i = 0; i < deviceChannels.DigitalInputCount; i++)
+            for (int i = 0; i < deviceChannels.RCServoCount; i++)
             {
                 // NOTE(crhodes)
-                // If do not specify a timeout, Open() returns
-                // before initial state is available
+                // If do not specify a timeout, Open() may return
+                // before initial state is available in Attch event
 
-                RCServos[i].Open();
+                await Task.Run(() => RCServos[i].Open());
                 //await Task.Run(() => DigitalOutputs[i].Open(500));
             }
 
@@ -1780,6 +1751,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Private Methods
 
+        private void ConfigureRCServos(short channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                RCServos[i].SerialNumber = serialNumber;
+            }
+        }
+
+        private void ConfigureCurrentInputs(short channelCount, Int32 serialNumber)
+        {
+            for (Int16 i = 0; i < channelCount; i++)
+            {
+                //RCServos[i].SerialNumber = serialNumber;
+            }
+        }
+
+        private void LoadUIConfig()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+
+            string jsonString = File.ReadAllText(HostConfigFileName);
+
+            VNCPhidgetConfig.HostConfig? hostConfig =
+                JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
+                (jsonString, GetJsonSerializerOptions());
+
+            Hosts = hostConfig.Hosts.ToList();
+
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
         private void UpdateAdvancedServoProperties()
         {
             Int64 startTicks = Log.Trace($"Enter deviceAttached:{DeviceAttached}", Common.LOG_CATEGORY);

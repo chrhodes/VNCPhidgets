@@ -154,7 +154,7 @@
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                   Margin="-5,0,-5,0"
                                   Padding="5,0,0,0"
-                                  Background="{StaticResource PhidgetBackground}">
+                                  Background="{StaticResource LoggingBackground}">
 
                         <dxe:CheckEdit
                             Content="Log InputChange Events"
@@ -194,7 +194,7 @@
                             VerticalAlignment="Top" HorizontalAlignment="Stretch"
                             IsCollapsible="True" IsCollapsed="False"                                   
                             Padding="-10"
-                            Background="{StaticResource PhidgetBackground}">
+                            Background="{StaticResource LoggingBackground}">
                             <dxe:CheckEdit
                                     Content="Phidget"
                                     IsChecked="{Binding DigitalInputs[0].LogPhidgetEvents, Mode=TwoWay}"
@@ -405,7 +405,7 @@
                             VerticalAlignment="Top" HorizontalAlignment="Stretch"
                             IsCollapsible="True" IsCollapsed="False"                                     
                             Padding="-10"
-                            Background="{StaticResource PhidgetBackground}">
+                            Background="{StaticResource LoggingBackground}">
                             <dxe:CheckEdit
                                     Content="Phidget"
                                     IsChecked="{Binding DigitalOutputs[0].LogPhidgetEvents, Mode=TwoWay}"
@@ -634,7 +634,7 @@
                             VerticalAlignment="Top" HorizontalAlignment="Stretch"
                             IsCollapsible="True" IsCollapsed="False"                                     
                             Padding="-10"
-                            Background="{StaticResource PhidgetBackground}">
+                            Background="{StaticResource LoggingBackground}">
                             <dxe:CheckEdit
                                 Content="Log Phidget Events"
                                 IsChecked="{Binding VoltageInputs[0].LogPhidgetEvents, Mode=TwoWay}"
