@@ -12,7 +12,7 @@ using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22.Ex
 {
-    public class VoltageRatioInputEx : VoltageRatioInput, INotifyPropertyChanged
+    public class VoltageRatioInputEx : Phidgets.VoltageRatioInput, INotifyPropertyChanged
     {
         #region Constructors, Initialization, and Load
 
@@ -365,7 +365,7 @@ namespace VNC.Phidget22.Ex
 
         private void VoltageRatioInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            VoltageRatioInput voltageRatioInput = sender as VoltageRatioInput;
+            Phidgets.VoltageRatioInput voltageRatioInput = sender as Phidgets.VoltageRatioInput;
 
             if (LogPhidgetEvents)
             {

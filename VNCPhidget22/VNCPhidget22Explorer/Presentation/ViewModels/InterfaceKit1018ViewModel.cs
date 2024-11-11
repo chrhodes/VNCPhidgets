@@ -508,28 +508,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Visibility _analogInputsVisibility = Visibility.Collapsed;
-        public Visibility AnalogInputsVisibility
+        private Visibility _voltageInputsVisibility = Visibility.Collapsed;
+        public Visibility VoltageInputsVisibility
         {
-            get => _analogInputsVisibility;
+            get => _voltageInputsVisibility;
             set
             {
-                if (_analogInputsVisibility == value)
+                if (_voltageInputsVisibility == value)
                     return;
-                _analogInputsVisibility = value;
+                _voltageInputsVisibility = value;
                 OnPropertyChanged();
             }
         }
 
-        private Visibility _analogOutputsVisibility = Visibility.Collapsed;
-        public Visibility AnalogOutputsVisibility
+        private Visibility _voltageOutputsVisibility = Visibility.Collapsed;
+        public Visibility VoltageOutputsVisibility
         {
-            get => _analogOutputsVisibility;
+            get => _voltageOutputsVisibility;
             set
             {
-                if (_analogOutputsVisibility == value)
+                if (_voltageOutputsVisibility == value)
                     return;
-                _analogOutputsVisibility = value;
+                _voltageOutputsVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -553,15 +553,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                     DigitalInputsVisibility = deviceChannels.DigitalInputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
                     DigitalOutputsVisibility = deviceChannels.DigitalOutputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-                    AnalogInputsVisibility = deviceChannels.VoltageInputCount > 0 || deviceChannels.VoltageRatioInputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-                    AnalogOutputsVisibility = deviceChannels.VoltageOutputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                    VoltageInputsVisibility = deviceChannels.VoltageInputCount > 0 || deviceChannels.VoltageRatioInputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                    VoltageOutputsVisibility = deviceChannels.VoltageOutputCount > 0 ? Visibility.Visible : Visibility.Collapsed;
                 }
                 else
                 {
                     DigitalInputsVisibility = Visibility.Collapsed;
                     DigitalOutputsVisibility = Visibility.Collapsed;
-                    AnalogInputsVisibility = Visibility.Collapsed;
-                    AnalogOutputsVisibility = Visibility.Collapsed;
+                    VoltageInputsVisibility = Visibility.Collapsed;
+                    VoltageOutputsVisibility = Visibility.Collapsed;
                 }
 
                 OnPropertyChanged();

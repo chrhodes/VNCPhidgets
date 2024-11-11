@@ -230,9 +230,9 @@
                               Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 
-                <controls:PhidgetDevice x:Name="Phidget1" Margin="-5"
+                <!--<controls:PhidgetDevice x:Name="Phidget1" Margin="-5"
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
-                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"

@@ -20,6 +20,7 @@ using VNC.Phidget22;
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
+using DevExpress.CodeParser;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -756,7 +757,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // If do not specify a timeout, Open() returns
                 // before initial state is available
 
-                DigitalInputs[i].Open();
+                RCServos[i].Open();
                 //await Task.Run(() => DigitalOutputs[i].Open(500));
             }
 
@@ -835,19 +836,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
 
-                try
-                {
-                    for (int i = 0; i < servos.Count; i++)
-                    {
-                        AdvancedServoProperties[i].InitializeVelocity(ConvertStringToInitializeMotion(speed));
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
+                //try
+                //{
+                //    for (int i = 0; i < servos.Count; i++)
+                //    {
+                //        AdvancedServoProperties[i].InitializeVelocity(ConvertStringToInitializeMotion(speed));
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Log.Error(ex, Common.LOG_CATEGORY);
+                //}
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -920,19 +923,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
 
-                try
-                {
-                    for (int i = 0; i < servos.Count; i++)
-                    {
-                        AdvancedServoProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
+                //try
+                //{
+                //    for (int i = 0; i < servos.Count; i++)
+                //    {
+                //        AdvancedServoProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Log.Error(ex, Common.LOG_CATEGORY);
+                //}
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -1002,19 +1007,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
 
-                try
-                {
-                    for (int i = 0; i < servos.Count; i++)
-                    {
-                        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Percent50);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
+                //try
+                //{
+                //    for (int i = 0; i < servos.Count; i++)
+                //    {
+                //        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Percent50);
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Log.Error(ex, Common.LOG_CATEGORY);
+                //}
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -1083,19 +1090,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
 
-                try
-                {
-                    for (int i = 0; i < servos.Count; i++)
-                    {
-                        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Max);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
+                //try
+                //{
+                //    for (int i = 0; i < servos.Count; i++)
+                //    {
+                //        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Max);
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Log.Error(ex, Common.LOG_CATEGORY);
+                //}
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -1339,12 +1348,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // May need to give device chance to respond
 
-            ActiveAdvancedServo.AdvancedServo.Attach -= ActiveAdvancedServo_Attach;
-            ActiveAdvancedServo.AdvancedServo.Detach -= ActiveAdvancedServo_Detach;
+            // FIX(crhodes)
+            // 
+            //ActiveAdvancedServo.AdvancedServo.Attach -= ActiveAdvancedServo_Attach;
+            //ActiveAdvancedServo.AdvancedServo.Detach -= ActiveAdvancedServo_Detach;
 
-            ActiveAdvancedServo.AdvancedServo.CurrentChange -= ActiveAdvancedServo_CurrentChange;
-            ActiveAdvancedServo.AdvancedServo.PositionChange -= ActiveAdvancedServo_PositionChange;
-            ActiveAdvancedServo.AdvancedServo.VelocityChange -= ActiveAdvancedServo_VelocityChange;
+            //ActiveAdvancedServo.AdvancedServo.CurrentChange -= ActiveAdvancedServo_CurrentChange;
+            //ActiveAdvancedServo.AdvancedServo.PositionChange -= ActiveAdvancedServo_PositionChange;
+            //ActiveAdvancedServo.AdvancedServo.VelocityChange -= ActiveAdvancedServo_VelocityChange;
 
             await Task.Run(() => ActiveAdvancedServo.Close());
 
@@ -1401,8 +1412,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             for (int i = 0; i < ServoCount; i++)
             {
-                var advancedServo = ActiveAdvancedServo.AdvancedServo;
-                advancedServo.servos[i].Engaged = false;
+                //var advancedServo = ActiveAdvancedServo.AdvancedServo;
+                //advancedServo.servos[i].Engaged = false;
+                RCServos[i].Engaged = false;
             }
         }
 
@@ -1526,12 +1538,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // End Cut Four
 
+            // FIX(crhodes)
+            // 
+            //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+            //Phidget22.AdvancedServoServo servo = null;
 
-            AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-            Phidget22.AdvancedServoServo servo = null;
-
-            Int32 servoIndex = Int32.Parse(servoID);
-            servo = servos[servoIndex];
+            //Int32 servoIndex = Int32.Parse(servoID);
+            //servo = servos[servoIndex];
 
             // NOTE(crhodes)
             // Should be safe to get Acceleration, Velocity, and Position here
@@ -1542,11 +1555,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             try
             {
-                AdvancedServoProperties[servoIndex].PositionMin =
-                    AdvancedServoProperties[servoIndex].Position - AdvancedServoProperties[servoIndex].PositionRange;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoProperties[servoIndex].PositionMin =
+                //    AdvancedServoProperties[servoIndex].Position - AdvancedServoProperties[servoIndex].PositionRange;
 
-                AdvancedServoProperties[servoIndex].PositionMax =
-                    AdvancedServoProperties[servoIndex].Position + AdvancedServoProperties[servoIndex].PositionRange;
+                //AdvancedServoProperties[servoIndex].PositionMax =
+                //    AdvancedServoProperties[servoIndex].Position + AdvancedServoProperties[servoIndex].PositionRange;
 
                 //switch (servoIndex)
                 //{
@@ -1671,16 +1686,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Int32 servoIndex = Int32.Parse(value);
 
-            AdvancedServoServo servo = ActiveAdvancedServo.AdvancedServo.servos[servoIndex];
+            // FIX(crhodes)
+            // 
+            //AdvancedServoServo servo = ActiveAdvancedServo.AdvancedServo.servos[servoIndex];
 
             try
             {
-                servo.setServoParameters(
-                    AdvancedServoProperties[0].MinimumPulseWidth,
-                    AdvancedServoProperties[0].MaximumPulseWidth,
-                    AdvancedServoProperties[0].Degrees,
-                    (Double)AdvancedServoProperties[0].VelocityMax);
-                //servo.setServoParameters(MinimumPulseWidth_S0, MaximumPulseWidth_S0, Degrees_S0, (Double)VelocityMax_S0);
+                // FIX(crhodes)
+                // 
+                //servo.setServoParameters(
+                //    AdvancedServoProperties[0].MinimumPulseWidth,
+                //    AdvancedServoProperties[0].MaximumPulseWidth,
+                //    AdvancedServoProperties[0].Degrees,
+                //    (Double)AdvancedServoProperties[0].VelocityMax);
+                
             }
             catch (Exception ex)
             {
@@ -1767,10 +1786,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-                AdvancedServoServo servo = null;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                //AdvancedServoServo servo = null;
 
-                ServoCount = servos.Count;
+                //ServoCount = servos.Count;
 
                 try
                 {
@@ -1783,7 +1804,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         // calling GetPropertiesFromServo()
                         // because the changing the type changes the properties
 
-                        AdvancedServoProperties[i].ServoType = servos[i].Type;
+                        // FIX(crhodes)
+                        // 
+                        //AdvancedServoProperties[i].ServoType = servos[i].Type;
                     }
                 }
                 catch (Exception ex)
@@ -1806,10 +1829,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if ((Boolean)DeviceAttached)
             {
-                AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-                Phidget22.AdvancedServoServo servo = null;
+                // FIX(crhodes)
+                // 
+                //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+                //Phidget22.AdvancedServoServo servo = null;
 
-                ServoCount = servos.Count;
+                //ServoCount = servos.Count;
 
                 try
                 {

@@ -7,8 +7,8 @@
         <UseWPF>true</UseWPF>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
-        <VersionSuffix>development-13</VersionSuffix>
-        <FileVersion>2024.11.07A</FileVersion>
+        <VersionSuffix>development-22</VersionSuffix>
+        <FileVersion>2024.11.11A</FileVersion>
         <Description>Phidget22 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -37,11 +37,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <!--<Compile Remove="Presentation\ViewModels\AdvancedServo1061ViewModel.cs" />-->
-      <!--<Compile Remove="Presentation\ViewModels\AdvancedServo1061ViewModel.cs" />-->
       <Compile Remove="Presentation\ViewModels\HackAroundViewModel.cs" />
       <Compile Remove="Presentation\ViewModels\MainViewModel.cs" />
-      <Compile Remove="Presentation\ViewModels\ServoProperties.cs" />
       <!--<Compile Remove="Presentation\ViewModels\ServoProperties.cs" />
       <Compile Remove="Presentation\ViewModels\ServoType.cs" />-->
       <Compile Remove="Presentation\ViewModels\Stepper1063ViewModel.cs" />
@@ -58,8 +55,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <!--<Page Remove="Presentation\Views\AdvancedServo1061.xaml" />-->
-      <!--<Page Remove="Presentation\Views\AdvancedServo1061.xaml" />-->
       <Page Remove="Presentation\Views\HackAround.xaml" />
       <Page Remove="Presentation\Views\Main.xaml" />
       <Page Remove="Presentation\Views\MainDxLayoutControl.xaml" />

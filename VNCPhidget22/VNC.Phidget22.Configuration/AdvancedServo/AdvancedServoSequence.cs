@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class AdvancedServoSequence : Phidget22equenceBase
+    public class AdvancedServoSequence : PhidgetSequenceBase
     {
         /// <summary>
         /// Array of AdvancedServoServo actions in sequence

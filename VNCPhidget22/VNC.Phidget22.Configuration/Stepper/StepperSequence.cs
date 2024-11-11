@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class StepperSequence : Phidget22equenceBase
+    public class StepperSequence : PhidgetSequenceBase
     {
         /// <summary>
         /// Array of Stepper actions in sequence

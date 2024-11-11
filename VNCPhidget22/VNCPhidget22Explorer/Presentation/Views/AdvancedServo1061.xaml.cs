@@ -5,9 +5,9 @@ using System.Windows;
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidget2221Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
-namespace VNCPhidget2221Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class AdvancedServo1061 : ViewBase, IAdvancedServo1061, IInstanceCountV
     {
@@ -65,19 +65,19 @@ namespace VNCPhidget2221Explorer.Presentation.Views
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
-            Phidget1.DataContext = ViewModel;
+            //Phidget1.DataContext = ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
 
-        #region Enums (None)
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures (None)
+        #region Structures (none)
 
 
         #endregion
@@ -92,21 +92,21 @@ namespace VNCPhidget2221Explorer.Presentation.Views
 
         #endregion
 
-        #region Commands (None)
+        #region Commands (none)
 
         #endregion
 
-        #region Public Methods (None)
-
-
-        #endregion
-
-        #region Protected Methods (None)
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Private Methods (None)
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods (none)
 
 
         #endregion

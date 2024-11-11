@@ -126,11 +126,11 @@
       <FileName>Stepper\StepperSequenceConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.Phidget22equenceBase">
+  <Class Name="VNC.Phidget22.Configuration.Phidget22SequenceBase">
     <Position X="2.75" Y="20" Width="4.25" />
     <TypeIdentifier>
       <HashCode>AAAQAoAAAAAgAAAAAAAQAAQAAACAEEAAAEgAAAAAAgQ=</HashCode>
-      <FileName>Phidget22equenceBase.cs</FileName>
+      <FileName>Phidget22SequenceBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.PerformanceLibrary">

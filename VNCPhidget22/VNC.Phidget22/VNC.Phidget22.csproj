@@ -4,17 +4,16 @@
       <TargetFrameworks>net8.0-windows</TargetFrameworks>
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
-      <VersionSuffix>development-12</VersionSuffix>
-      <FileVersion>2024.11.08A</FileVersion>
-      <Description>Layer on top of Phidget22</Description>
+      <VersionSuffix>development-22</VersionSuffix>
+      <FileVersion>2024.11.11A</FileVersion>
+      <Description>Layer on top of Phidget22 and Performance Players</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>      
   </PropertyGroup>
 
   <ItemGroup><!--<Compile Remove="InterfaceKitEx.cs" />-->
     <!--<Compile Remove="AdvancedServoEx.cs" />-->
-    <!--<Compile Remove="StepperEx.cs" />-->
-  
+    <!--<Compile Remove="StepperEx.cs" />-->  
     <Compile Remove="Ex\StepperEx-Old.cs" />
   </ItemGroup>
 

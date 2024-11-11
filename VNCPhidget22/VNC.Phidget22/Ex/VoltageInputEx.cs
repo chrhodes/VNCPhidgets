@@ -12,7 +12,7 @@ using PhidgetsEvents = Phidget22.Events;
 
 namespace VNC.Phidget22.Ex
 {
-    public class VoltageInputEx : VoltageInput, INotifyPropertyChanged
+    public class VoltageInputEx : Phidgets.VoltageInput, INotifyPropertyChanged
     {
         #region Constructors, Initialization, and Load
 
@@ -403,7 +403,7 @@ namespace VNC.Phidget22.Ex
 
         private void VoltageInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            VoltageInput voltageInput = sender as VoltageInput;
+            Phidgets.VoltageInput voltageInput = sender as Phidgets.VoltageInput;
 
             if (LogPhidgetEvents)
             {
