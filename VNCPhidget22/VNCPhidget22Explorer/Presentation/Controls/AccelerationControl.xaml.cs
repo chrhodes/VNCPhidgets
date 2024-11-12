@@ -64,86 +64,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private static object OnCoerceCurrent(DependencyObject o, object value)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                return accelerationControl.OnCoerceCurrent((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                accelerationControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceCurrent(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnCurrentChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-        private static object OnCoerceMin(DependencyObject o, object value)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                return accelerationControl.OnCoerceMin((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnMinChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                accelerationControl.OnMinChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceMin(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnMinChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-        private static object OnCoerceMax(DependencyObject o, object value)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                return accelerationControl.OnCoerceMax((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnMaxChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                accelerationControl.OnMaxChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceMax(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnMaxChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-
         #endregion
 
         #region Enums (none)
@@ -161,8 +81,16 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
+        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            // NOTE(crhodes)
+            // If we don't do this the Servo does not get new value.
+            // Odd that it seemed like the UI was updating the servo before.
+            // Put a break point on ServoProperties Acceleration to see.
+            Acceleration = Double.Parse(e.NewValue.ToString());
+        }
 
         #endregion
 
@@ -172,6 +100,151 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Public Methods (none)
 
+        #region MinAcceleration
+
+        public static readonly DependencyProperty MinAccelerationProperty = DependencyProperty.Register(
+            "MinAcceleration", 
+            typeof(Double?), 
+            typeof(AccelerationControl),
+            new FrameworkPropertyMetadata(
+                0.0, 
+                new PropertyChangedCallback(OnMinAccelerationChanged), 
+                new CoerceValueCallback(OnCoerceMinAcceleration)
+                )
+            );
+
+        public Double? MinAcceleration
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(MinAccelerationProperty);
+            set => SetValue(MinAccelerationProperty, value);
+        }
+
+        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        {
+            AccelerationControl accelerationControl = o as AccelerationControl;
+            if (accelerationControl != null)
+                return accelerationControl.OnCoerceMinAcceleration((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnMinAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            AccelerationControl accelerationControl = o as AccelerationControl;
+            if (accelerationControl != null)
+                accelerationControl.OnMinAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceMinAcceleration(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinAccelerationChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+        #endregion
+
+        #region Acceleration
+
+        public static readonly DependencyProperty AccelerationProperty = DependencyProperty.Register(
+            "Acceleration", 
+            typeof(Double?), 
+            typeof(AccelerationControl),
+            new FrameworkPropertyMetadata(
+                0.0, 
+                new PropertyChangedCallback(OnAccelerationChanged), 
+                new CoerceValueCallback(OnCoerceAcceleration)
+                )
+            );
+
+        public Double? Acceleration
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(AccelerationProperty);
+            set => SetValue(AccelerationProperty, value);
+        }
+
+        private static object OnCoerceAcceleration(DependencyObject o, object value)
+        {
+            AccelerationControl accelerationControl = o as AccelerationControl;
+            if (accelerationControl != null)
+                return accelerationControl.OnCoerceAcceleration((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            AccelerationControl accelerationControl = o as AccelerationControl;
+            if (accelerationControl != null)
+                accelerationControl.OnAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceAcceleration(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnAccelerationChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxAcceleration
+
+        public static readonly DependencyProperty MaxAccelerationProperty = DependencyProperty.Register(
+            "MaxAcceleration", 
+            typeof(Double?), 
+            typeof(AccelerationControl),
+            new FrameworkPropertyMetadata(
+                0.0, 
+                new PropertyChangedCallback(OnMaxAccelerationChanged), 
+                new CoerceValueCallback(OnCoerceMaxAcceleration)
+                )
+            );
+
+        public Double? MaxAcceleration
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(MaxAccelerationProperty);
+            set => SetValue(MaxAccelerationProperty, value);
+        }
+
+        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        {
+            AccelerationControl accelerationControl = o as AccelerationControl;
+            if (accelerationControl != null)
+                return accelerationControl.OnCoerceMaxAcceleration((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            AccelerationControl accelerationControl = o as AccelerationControl;
+            if (accelerationControl != null)
+                accelerationControl.OnMaxAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceMaxAcceleration(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxAccelerationChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
 
         #endregion
 
@@ -204,43 +277,5 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-        public Double? Current
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(CurrentProperty);
-            set => SetValue(CurrentProperty, value);
-        }
-        public Double? Min
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(MinProperty);
-            set => SetValue(MinProperty, value);
-        }
-
-        public Double? Max
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(MaxProperty);
-            set => SetValue(MaxProperty, value);
-        }
-
-        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(Double?), typeof(AccelerationControl),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMaxChanged), new CoerceValueCallback(OnCoerceMax)));
-
-        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Double?), typeof(AccelerationControl),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
-
-        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(AccelerationControl), 
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));
-
-        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
-        {
-            // NOTE(crhodes)
-            // If we don't do this the Servo does not get new value.
-            // Odd that it seemed like the UI was updating the servo before.
-            // Put a break point on ServoProperties Acceleration to see.
-            Current = Double.Parse(e.NewValue.ToString());
-        }
     }
 }

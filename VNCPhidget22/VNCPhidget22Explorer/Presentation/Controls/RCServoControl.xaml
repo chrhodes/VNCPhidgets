@@ -72,7 +72,8 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" Padding="-10" >
+    <ScrollViewer>
+    <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" Padding="-10" ScrollBars="Auto" >
 
         <dxlc:LayoutGroup 
             View="GroupBox" Header="Event Logging" Orientation="Vertical" 
@@ -142,19 +143,19 @@
             <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
             <dxe:CheckEdit IsChecked="{Binding SpeedRampingState}" Content="Speed Ramping"
                             Background="{Binding SpeedRampingState, Mode=OneWay,
-                                Converter={StaticResource RedGreenConverter}}"/>
+                            Converter={StaticResource RedGreenConverter}}"/>
             <!--</dxlc:LayoutItem>-->
 
             <controls:VelocityControl
-                Min="{Binding MinVelocity, Mode=OneWay}"
-                Current="{Binding Velocity, Mode=TwoWay}"
-                Limit="{Binding VelocityLimit, Mode=TwoWay}"
-                Max="{Binding MaxVelocity, Mode=OneWay}"/>
+                MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
+                Velocity="{Binding Velocity, Mode=TwoWay}"
+                VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
+                MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
 
             <controls:AccelerationControl
-                Min="{Binding MinAcceleration, Mode=OneWay}"
-                Current="{Binding Acceleration, Mode=TwoWay}"
-                Max="{Binding MaxAcceleration, Mode=OneWay}"/>
+                MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
+                Acceleration="{Binding Acceleration, Mode=TwoWay}"
+                MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>
 
         </dxlc:LayoutGroup>
 
@@ -183,16 +184,6 @@
                 <dxe:TextEdit Text="{Binding Degrees, Mode=TwoWay}" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="MinVelocityLimit" LabelPosition="Top">
-                <dxe:TextEdit Text="{Binding MinVelocityLimit, Mode=TwoWay}" />
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="VelocityLimit" LabelPosition="Top">
-                <dxe:TextEdit Text="{Binding VelocityLimit, Mode=TwoWay}" />
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="MaxVelocityLimit" LabelPosition="Top">
-                <dxe:TextEdit Text="{Binding MaxVelocityLimit, Mode=TwoWay}" />
-            </dxlc:LayoutItem>
-
             <dxlc:LayoutItem>
                 <Button
                     Command="{Binding ConfigureServo2Command }"
@@ -204,5 +195,5 @@
         </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>
-
+    </ScrollViewer>
 </vncmvvm:ViewBase>

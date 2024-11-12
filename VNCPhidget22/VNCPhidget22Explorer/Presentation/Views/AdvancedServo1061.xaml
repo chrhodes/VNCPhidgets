@@ -259,7 +259,6 @@
 
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls"
                                   IsCollapsible="True" IsCollapsed="False" Padding="-10" >
-
                
                 <controls:RCServoControl ControlTitle="Servo S0"
                     LogPhidgetEvents="{Binding RCServos[0].LogPhidgetEvents,Mode=TwoWay}"
@@ -282,10 +281,12 @@
                     MinAcceleration="{Binding RCServos[0].MinAcceleration,Mode=TwoWay}"
                     Acceleration="{Binding RCServos[0].Acceleration,Mode=TwoWay}"
                     MaxAcceleration="{Binding RCServos[0].MaxAcceleration,Mode=TwoWay}"
-                                                                
+                     
+                    MinPositionServo="{Binding RCServos[0].MinPositionServo,Mode=TwoWay}"                     
                     MinPosition="{Binding RCServos[0].MinPosition,Mode=TwoWay}"
                     Position="{Binding RCServos[0].Position,Mode=TwoWay}"
-                    MaxPosition="{Binding RCServos[0].MaxPosition,Mode=TwoWay}"                                         
+                    MaxPosition="{Binding RCServos[0].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[0].MaxPositionServo,Mode=TwoWay}"
                                                         
                     MinPulseWidth="{Binding RCServos[0].MinPulseWidth,Mode=TwoWay}"
                     MaxPulseWidth="{Binding RCServos[0].MaxPulseWidth,Mode=TwoWay}"

@@ -67,32 +67,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        private static object OnCoerceLimit(DependencyObject o, object value)
-        {
-            VelocityControl velocityControl = o as VelocityControl;
-            if (velocityControl != null)
-                return velocityControl.OnCoerceLimit((Double?)value);
-            else
-                return value;
-        }
 
-        private static void OnLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            VelocityControl velocityControl = o as VelocityControl;
-            if (velocityControl != null)
-                velocityControl.OnLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceLimit(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnLimitChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
 
         #region Enums (none)
 
@@ -104,47 +79,202 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Fields and Properties (none)
+        #region Fields and Properties
 
-        public Double? Current
+        #region Velocity
+
+        public static readonly DependencyProperty VelocityProperty = DependencyProperty.Register(
+            "Velocity", 
+            typeof(Double?), 
+            typeof(VelocityControl),
+            new FrameworkPropertyMetadata(0.0, 
+                new PropertyChangedCallback(OnVelocityChanged), 
+                new CoerceValueCallback(OnCoerceVelocity)
+                )
+            );
+
+        public Double? Velocity
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(CurrentProperty);
-            set => SetValue(CurrentProperty, value);
+            get => (Double?)GetValue(VelocityProperty);
+            set => SetValue(VelocityProperty, value);
         }
 
-        public Double? Limit
+        private static object OnCoerceVelocity(DependencyObject o, object value)
+        {
+            VelocityControl positionControl = o as VelocityControl;
+            if (positionControl != null)
+                return positionControl.OnCoerceVelocity((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VelocityControl positionControl = o as VelocityControl;
+            if (positionControl != null)
+                positionControl.OnVelocityChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceVelocity(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnVelocityChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MinVelocityLimit
+
+        public static readonly DependencyProperty MinVelocityLimitProperty = DependencyProperty.Register(
+            "MinVelocityLimit", 
+            typeof(Double?), 
+            typeof(VelocityControl),
+            new FrameworkPropertyMetadata(
+                0.0, 
+                new PropertyChangedCallback(OnMinVelocityLimitChanged), 
+                new CoerceValueCallback(OnCoerceMinVelocityLimit)
+                )
+            );
+
+        public Double? MinVelocityLimit
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(LimitProperty);
-            set => SetValue(LimitProperty, value);
+            get => (Double?)GetValue(MinVelocityLimitProperty);
+            set => SetValue(MinVelocityLimitProperty, value);
         }
 
-        public Double? Min
+        private static object OnCoerceMinVelocityLimit(DependencyObject o, object value)
+        {
+            VelocityControl positionControl = o as VelocityControl;
+            if (positionControl != null)
+                return positionControl.OnCoerceMinVelocityLimit((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnMinVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VelocityControl positionControl = o as VelocityControl;
+            if (positionControl != null)
+                positionControl.OnMinVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceMinVelocityLimit(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinVelocityLimitChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region VelocityLimit
+
+        public static readonly DependencyProperty VelocityLimitProperty = DependencyProperty.Register(
+            "VelocityLimit", 
+            typeof(Double?), 
+            typeof(VelocityControl),
+            new FrameworkPropertyMetadata(
+                0.0, 
+                new PropertyChangedCallback(OnVelocityLimitChanged), 
+                new CoerceValueCallback(OnCoerceVelocityLimit)
+                )
+            );
+
+        public Double? VelocityLimit
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(MinProperty);
-            set => SetValue(MinProperty, value);
+            get => (Double?)GetValue(VelocityLimitProperty);
+            set => SetValue(VelocityLimitProperty, value);
         }
 
-        public Double? Max
+        private static object OnCoerceVelocityLimit(DependencyObject o, object value)
+        {
+            VelocityControl velocityControl = o as VelocityControl;
+            if (velocityControl != null)
+                return velocityControl.OnCoerceVelocityLimit((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VelocityControl velocityControl = o as VelocityControl;
+            if (velocityControl != null)
+                velocityControl.OnVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceVelocityLimit(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnVelocityLimitChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxVelocityLimit
+
+        public static readonly DependencyProperty MaxVelocityLimitProperty = DependencyProperty.Register(
+            "MaxVelocityLimit", 
+            typeof(Double?), 
+            typeof(VelocityControl),
+            new FrameworkPropertyMetadata(
+                0.0, 
+                new PropertyChangedCallback(OnMaxVelocityLimitChanged), 
+                new CoerceValueCallback(OnCoerceMaxVelocityLimit)
+                )
+            );
+
+        public Double? MaxVelocityLimit
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(MaxProperty);
-            set => SetValue(MaxProperty, value);
+            get => (Double?)GetValue(MaxVelocityLimitProperty);
+            set => SetValue(MaxVelocityLimitProperty, value);
         }
 
-        public static readonly DependencyProperty MaxProperty = DependencyProperty.Register("Max", typeof(Double?), typeof(VelocityControl),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMaxChanged), new CoerceValueCallback(OnCoerceMax)));
+        private static object OnCoerceMaxVelocityLimit(DependencyObject o, object value)
+        {
+            VelocityControl positionControl = o as VelocityControl;
+            if (positionControl != null)
+                return positionControl.OnCoerceMaxVelocityLimit((Double?)value);
+            else
+                return value;
+        }
 
-        public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Double?), typeof(VelocityControl),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
+        private static void OnMaxVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VelocityControl positionControl = o as VelocityControl;
+            if (positionControl != null)
+                positionControl.OnMaxVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
 
-        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(VelocityControl),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));
+        protected virtual Double? OnCoerceMaxVelocityLimit(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
 
-        public static readonly DependencyProperty LimitProperty = DependencyProperty.Register("Limit", typeof(Double?), typeof(VelocityControl),
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnLimitChanged), new CoerceValueCallback(OnCoerceLimit)));
+        protected virtual void OnMaxVelocityLimitChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
 
         #endregion
 
@@ -167,87 +297,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Private Methods
-
-
-        private static object OnCoerceCurrent(DependencyObject o, object value)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                return positionControl.OnCoerceCurrent((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                positionControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceCurrent(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnCurrentChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-        private static object OnCoerceMin(DependencyObject o, object value)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                return positionControl.OnCoerceMin((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnMinChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                positionControl.OnMinChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceMin(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnMinChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-        private static object OnCoerceMax(DependencyObject o, object value)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                return positionControl.OnCoerceMax((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnMaxChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                positionControl.OnMaxChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceMax(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnMaxChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
+        #region Private Methods (none)
 
 
         #endregion
@@ -270,7 +320,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             set => _instanceCountVP = value;
         }
 
-
         #endregion
 
         private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
@@ -278,8 +327,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             // NOTE(crhodes)
             // If we don't do this the Servo does not get new value.
             // Odd that it seemed like the UI was updating the servo before.
-            // Put a break point on ServoProperties VelocityLimit to see.
-            Limit = Double.Parse(e.NewValue.ToString());
+            // Put a break point on ServoProperties VelocityVelocityLimit to see.
+            VelocityLimit = Double.Parse(e.NewValue.ToString());
         }
     }
 }

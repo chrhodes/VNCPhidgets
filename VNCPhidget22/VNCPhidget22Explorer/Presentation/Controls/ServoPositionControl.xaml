@@ -112,8 +112,8 @@
                             UpdateSourceTrigger=PropertyChanged, 
                             Converter={StaticResource SpinEditConverter}}" 
                         Increment="1"
-                        MinValue="{Binding DeviceMin, Mode=OneWay, TargetNullValue=0}" 
-                        MaxValue="{Binding DeviceMax, Mode=OneWay, TargetNullValue=0}" 
+                        MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}" 
+                        MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
                         Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
                         IsFloatValue="False" />
                 </dxlc:LayoutItem>

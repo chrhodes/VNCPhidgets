@@ -314,6 +314,19 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        private Double _minPositionServo;
+        public new Double MinPositionServo
+        {
+            get => _minPositionServo;
+            set
+            {
+                if (_minPositionServo == value)
+                    return;
+                _minPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double _minPosition;
         public new Double MinPosition
         {
@@ -354,6 +367,20 @@ namespace VNC.Phidget22.Ex
                 _maxPosition = value;
 
                 base.MaxPosition = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxPositionServo;
+        public new Double MaxPositionServo
+        {
+            get => _maxPositionServo;
+            set
+            {
+                if (_maxPositionServo == value)
+                    return;
+                _maxPositionServo = value;
 
                 OnPropertyChanged();
             }
@@ -602,14 +629,16 @@ namespace VNC.Phidget22.Ex
             DataRate = rcServo.DataRate;
             MaxDataRate = rcServo.MaxDataRate;
 
-            MinPosition = rcServo.MinPosition;
+            // MinPosition can be set.  Save initial limit
+            MinPositionServo = MinPosition = rcServo.MinPosition;
             // NOTE(crhodes)
             // Position cannot be read until initially set
             // Initialize in middle of range
             Position = (rcServo.MaxPosition - rcServo.MinPosition) / 2;
             // Have to set TargetPosition before engaging
             TargetPosition = Position;
-            MaxPosition = rcServo.MaxPosition;
+            // MaxPosition can be set.  Save initial limit
+            MaxPositionServo = MaxPosition = rcServo.MaxPosition;
 
             MinPulseWidth = rcServo.MinPulseWidth;
             MaxPulseWidth = rcServo.MaxPulseWidth;
@@ -667,7 +696,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"RCServoEx_PositionChange: sender:{sender} {e.Position}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"RCServoEx_PositionChange: sender:{sender} position:{e.Position}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -682,7 +711,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"RCServoEx_VelocityChange: sender:{sender} {e.Velocity}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"RCServoEx_VelocityChange: sender:{sender} velocity:{e.Velocity}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -697,7 +726,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"RCServoEx_TargetPositionReached: sender:{sender} {e.Position}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"RCServoEx_TargetPositionReached: sender:{sender} position:{e.Position}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {

@@ -1100,6 +1100,54 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+        #region MinPositionServo
+
+        public static readonly DependencyProperty MinPositionServoProperty = DependencyProperty.Register(
+            "MinPositionServo",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMinPositionServoChanged),
+                new CoerceValueCallback(OnCoerceMinPositionServo)
+                )
+            );
+
+        public Double MinPositionServo
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinPositionServoProperty);
+            set => SetValue(MinPositionServoProperty, value);
+        }
+        private static object OnCoerceMinPositionServo(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinPositionServo((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinPositionServoChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinPositionServoChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinPositionServo(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinPositionServoChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #region MinPosition
 
         public static readonly DependencyProperty MinPositionProperty = DependencyProperty.Register(
@@ -1238,6 +1286,54 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         protected virtual void OnMaxPositionChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxPositionServo
+
+        public static readonly DependencyProperty MaxPositionServoProperty = DependencyProperty.Register(
+            "MaxPositionServo",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxPositionServoChanged),
+                new CoerceValueCallback(OnCoerceMaxPositionServo)
+                )
+            );
+
+        public Double MaxPositionServo
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxPositionServoProperty);
+            set => SetValue(MaxPositionServoProperty, value);
+        }
+        private static object OnCoerceMaxPositionServo(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxPositionServo((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxPositionServoChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxPositionServoChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxPositionServo(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxPositionServoChanged(Double oldValue, Double newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
