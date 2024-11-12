@@ -703,6 +703,8 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            Position = e.Position;
         }
 
         private void RCServoEx_VelocityChange(object sender, PhidgetsEvents.RCServoVelocityChangeEventArgs e)
@@ -718,6 +720,8 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            Velocity = e.Velocity;
         }
 
         private void RCServoEx_TargetPositionReached(object sender, PhidgetsEvents.RCServoTargetPositionReachedEventArgs e)
@@ -733,6 +737,8 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            Position = e.Position;
         }
 
         private void RCServoEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)

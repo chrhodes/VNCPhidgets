@@ -127,12 +127,13 @@
             Stopped="{Binding IsMoving, Mode=OneWay}"
             Current="{Binding Current, Mode=OneWay}"/>
 
-        <controls:ServoPositionControl
-            DeviceMin="{Binding MinPositionServo, Mode=OneWay}"
-            Min="{Binding MinPosition, Mode=TwoWay}"
-            Current="{Binding Position, Mode=TwoWay}"
-            Max="{Binding MaxPosition, Mode=TwoWay}"
-            DeviceMax="{Binding MaxPositionServo, Mode=OneWay}"
+        <controls:RCServoPositionControl
+            MinPositionServo="{Binding MinPositionServo, Mode=OneWay}"
+            MinPosition="{Binding MinPosition, Mode=TwoWay}"
+            Position="{Binding Position, Mode=OneWay}"
+            MaxPosition="{Binding MaxPosition, Mode=TwoWay}"
+            MaxPositionServo="{Binding MaxPositionServo, Mode=OneWay}"
+            TargetPosition="{Binding TargetPosition, Mode=TwoWay}"
             ServoIndex="{Binding Channel}"
             PositionRange="{Binding PositionRange}"/>
 
