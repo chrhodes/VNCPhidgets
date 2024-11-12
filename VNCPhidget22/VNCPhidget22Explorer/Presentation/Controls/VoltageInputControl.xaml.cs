@@ -8,6 +8,9 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
 using System.DirectoryServices.ActiveDirectory;
+using DevExpress.Xpf.Editors;
+using System.Windows.Input;
+using DevExpress.Xpf.LayoutControl;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
@@ -1298,8 +1301,28 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
+        private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            LayoutGroup lg = (LayoutGroup)sender;
+            var mbe = e;
+
+            var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
+            var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
+
+            var children = lg.Children;
+
+            foreach (var child in children)
+            {
+                if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
+                {
+                    if (leftCtrlDown) { ((CheckEdit)child).IsChecked = true; }
+                    if (leftAltDown) { ((CheckEdit)child).IsChecked = false; }
+
+                }
+            }
+        }
 
         #endregion
 

@@ -80,29 +80,31 @@
             VerticalAlignment="Top" HorizontalAlignment="Stretch"
             IsCollapsible="True" IsCollapsed="False"                                     
             Padding="-10"
-            Background="{StaticResource LoggingBackground}">
+            Background="{StaticResource LoggingBackground}"
+            MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
+            ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
             <dxe:CheckEdit
-                Content="Log Phidget Events"
+                Content="Phidget"
                 IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
-            <dxe:CheckEdit
-                Content="Log Error Events"
+            <dxe:CheckEdit 
+                Content="Error"
                 IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log PropertyChange Events"
+                Content="PropertyChange"
                 IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log PositionChange Events"
+                Content="PositionChange"
                 IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" 
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log VelocityChange Events"
+                Content="VelocityChange"
                 IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log TargetPositionReached Events"
+                Content="TargetPositionReached"
                 IsChecked="{Binding LogTargetPositionReached, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
 
@@ -164,20 +166,20 @@
                                       IsCollapsible="True" IsCollapsed="True" >
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                <dxlc:LayoutItem Label="MinimumPulseWidth" LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding MinPulseWidth, Mode=TwoWay}" />
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="MinimumPulseWidthLimit" LabelPosition="Top">
+                <dxlc:LayoutItem Label="MinPulseWidthLimit" LabelPosition="Top">
                     <dxe:TextEdit Text="{Binding MinPulseWidthLimit, Mode=TwoWay}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="MinPulseWidth" LabelPosition="Top">
+                    <dxe:TextEdit Text="{Binding MinPulseWidth, Mode=TwoWay}" />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                <dxlc:LayoutItem Label="MaxulseWidth" LabelPosition="Top">
-                    <dxe:TextEdit Text="{Binding MaxPulseWidth, Mode=TwoWay}" />
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="MinimumPulseWidthLimit" LabelPosition="Top">
+                <dxlc:LayoutItem Label="MaxPulseWidthLimit" LabelPosition="Top">
                     <dxe:TextEdit Text="{Binding MaxPulseWidthLimit, Mode=TwoWay}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="MaxPulseWidth" LabelPosition="Top">
+                    <dxe:TextEdit Text="{Binding MaxPulseWidth, Mode=TwoWay}" />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 

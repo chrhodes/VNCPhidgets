@@ -12,6 +12,8 @@ using VNC.Phidget22.Players;
 
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
+using Phidget22;
+using System.Collections.Generic;
 
 namespace VNC.Phidget22.Ex
 {
@@ -69,17 +71,28 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
-
         #endregion
 
         #region Enums (none)
 
+        public enum ServoType
+        {
+            DEFAULT,
+            HITEC_HS422,
+            SG90,
+            USER_DEFINED
+        }
 
         #endregion
 
         #region Structures (none)
 
+        public struct ServoConfiguration
+        {
+            public ServoType ServoType; // Do we really need this?
+            public Double MinPulseWidth;
+            public Double MaxPulseWidth;
+        }
 
         #endregion
 
@@ -111,6 +124,59 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        public static Dictionary<ServoType, ServoConfiguration> RCServoTypes = new Dictionary<ServoType, ServoConfiguration>()
+        {
+            [ServoType.DEFAULT] = new ServoConfiguration 
+            { 
+                ServoType = ServoType.DEFAULT, 
+                MinPulseWidth = 245, 
+                MaxPulseWidth = 2592 
+            },
+            [ServoType.HITEC_HS422] = new ServoConfiguration 
+            { 
+                ServoType = ServoType.HITEC_HS422, 
+                MinPulseWidth = 650, 
+                MaxPulseWidth = 2450 
+            },
+            [ServoType.SG90] = new ServoConfiguration
+            { 
+                ServoType = ServoType.SG90, 
+                MinPulseWidth = 650, 
+                MaxPulseWidth = 2450 
+            },
+            [ServoType.USER_DEFINED] = new ServoConfiguration 
+            { 
+                ServoType = ServoType.USER_DEFINED, 
+                MinPulseWidth = 1000, 
+                MaxPulseWidth = 1001
+            }
+        };
+
+        //public Dictionary<ServoType, ServoConfiguration> RCServoTypes
+        //{
+        //    get => _rCServoTypes;
+        //    set
+        //    {
+        //        if (_rCServoTypes == value)
+        //            return;
+        //        _rCServoTypes = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private ServoConfiguration _rCServoType = new ServoConfiguration { ServoType = ServoType.DEFAULT, MinPulseWidth = 245, MaxPulseWidth = 2592 };
+        public ServoConfiguration RCServoType
+        {
+            get => _rCServoType;
+            set
+            {
+                //if (_rCServoType == value)
+                //    return;
+                _rCServoType = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private bool _isAttached;
         public bool IsAttached
         {
@@ -692,7 +758,9 @@ namespace VNC.Phidget22.Ex
 
         private void RCServoEx_PositionChange(object sender, PhidgetsEvents.RCServoPositionChangeEventArgs e)
         {
-            if (LogPropertyChangeEvents)
+            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+
+            if (LogPositionChangeEvents)
             {
                 try
                 {
@@ -705,11 +773,14 @@ namespace VNC.Phidget22.Ex
             }
 
             Position = e.Position;
+            IsMoving = rcServo.IsMoving;
         }
 
         private void RCServoEx_VelocityChange(object sender, PhidgetsEvents.RCServoVelocityChangeEventArgs e)
         {
-            if (LogPropertyChangeEvents)
+            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+
+            if (LogVelocityChangeEvents)
             {
                 try
                 {
@@ -722,11 +793,14 @@ namespace VNC.Phidget22.Ex
             }
 
             Velocity = e.Velocity;
+            IsMoving = rcServo.IsMoving;
         }
 
         private void RCServoEx_TargetPositionReached(object sender, PhidgetsEvents.RCServoTargetPositionReachedEventArgs e)
         {
-            if (LogPropertyChangeEvents)
+            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+
+            if (LogTargetPositionReachedEvents)
             {
                 try
                 {
@@ -739,6 +813,7 @@ namespace VNC.Phidget22.Ex
             }
 
             Position = e.Position;
+            IsMoving = rcServo.IsMoving;
         }
 
         private void RCServoEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
