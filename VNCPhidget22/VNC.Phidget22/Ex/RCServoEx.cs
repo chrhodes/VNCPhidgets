@@ -140,19 +140,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _isMoving;
-        public new bool IsMoving
-        {
-            get => _isMoving;
-            set
-            {
-                if (_isMoving == value)
-                    return;
-                _isMoving = value;
-                OnPropertyChanged();
-            }
-        }
-
         private Double _minAcceleration;
         public new Double MinAcceleration
         {
@@ -310,6 +297,19 @@ namespace VNC.Phidget22.Ex
                 if (_maxFailsafeTime == value)
                     return;
                 _maxFailsafeTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isMoving;
+        public new bool IsMoving
+        {
+            get => _isMoving;
+            set
+            {
+                if (_isMoving == value)
+                    return;
+                _isMoving = value;
                 OnPropertyChanged();
             }
         }
@@ -603,15 +603,24 @@ namespace VNC.Phidget22.Ex
             MaxDataRate = rcServo.MaxDataRate;
 
             MinPosition = rcServo.MinPosition;
-            Position = rcServo.Position;
+            // NOTE(crhodes)
+            // Position cannot be read until initially set
+            // Initialize in middle of range
+            Position = (rcServo.MaxPosition - rcServo.MinPosition) / 2;
+            // Have to set TargetPosition before engaging
+            TargetPosition = Position;
             MaxPosition = rcServo.MaxPosition;
 
             MinPulseWidth = rcServo.MinPulseWidth;
             MaxPulseWidth = rcServo.MaxPulseWidth;
 
+            MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
+            MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
+
             Velocity = rcServo.Velocity;
 
             MinVelocityLimit = rcServo.MinVelocityLimit;
+            VelocityLimit = rcServo.VelocityLimit;
             MaxVelocityLimit = rcServo.MaxVelocityLimit;
             
             Voltage = rcServo.Voltage;

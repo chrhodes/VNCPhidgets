@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 
-using Phidgets=Phidget22;
+using Phidgets = Phidget22;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -11,11 +11,11 @@ using System.DirectoryServices.ActiveDirectory;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
-    public partial class RCServoontrol: ViewBase, IInstanceCountV
+    public partial class RCServoControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
-        
-        public RCServoontrol()
+
+        public RCServoControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -27,17 +27,17 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IVoltageInputControlViewModel)DataContext;
+            // ViewModel = (IRCServoControlViewModel)DataContext;
 
             // Can create directly
-            // ViewModel = VoltageInputControlViewModel();
+            // ViewModel = RCServoControlViewModel();
 
             InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // public VoltageInputControl(IVoltageInputControlViewModel viewModel)
+        // public RCServoControl(IRCServoControlViewModel viewModel)
         // {
         // Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
@@ -51,7 +51,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
 
-         private void InitializeView()
+        private void InitializeView()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
@@ -88,134 +88,13 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty ControlTitleProperty = DependencyProperty.Register(
             "ControlTitle",
             typeof(string),
-            typeof(VoltageInputControl),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
                 null,
                 new PropertyChangedCallback(OnControlTitleChanged),
                 new CoerceValueCallback(OnCoerceControlTitle)
                 )
             );
-
-        public Phidgets.VoltageRange VoltageRange
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Phidgets.VoltageRange)GetValue(VoltageRangeProperty);
-            set => SetValue(VoltageRangeProperty, value);
-        }
-        public Double MaxVoltageChangeTrigger
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(MaxVoltageChangeTriggerProperty);
-            set => SetValue(MaxVoltageChangeTriggerProperty, value);
-        }
-        public Double VoltageChangeTrigger
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(VoltageChangeTriggerProperty);
-            set => SetValue(VoltageChangeTriggerProperty, value);
-        }
-        public Double MinVoltageChangeTrigger
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(MinVoltageChangeTriggerProperty);
-            set => SetValue(MinVoltageChangeTriggerProperty, value);
-        }
-        public Double MaxVoltage
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(MaxVoltageProperty);
-            set => SetValue(MaxVoltageProperty, value);
-        }
-        public Double Voltage
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(VoltageProperty);
-            set => SetValue(VoltageProperty, value);
-        }
-        public Double MinVoltage
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(MinVoltageProperty);
-            set => SetValue(MinVoltageProperty, value);
-        }
-        public Double MaxDataRate
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(MaxDataRateProperty);
-            set => SetValue(MaxDataRateProperty, value);
-        }
-        public Double DataRate
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(DataRateProperty);
-            set => SetValue(DataRateProperty, value);
-        }
-        public Double MinDataRate
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(MinDataRateProperty);
-            set => SetValue(MinDataRateProperty, value);
-        }
-        public Int32 MaxDataInterval
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Int32)GetValue(MaxDataIntervalProperty);
-            set => SetValue(MaxDataIntervalProperty, value);
-        }
-        public Int32 DataInterval
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Int32)GetValue(DataIntervalProperty);
-            set => SetValue(DataIntervalProperty, value);
-        }
-        public Int32 MinDataInterval
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Int32)GetValue(MinDataIntervalProperty);
-            set => SetValue(MinDataIntervalProperty, value);
-        }
-        public Double SensorValue
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(SensorValueProperty);
-            set => SetValue(SensorValueProperty, value);
-        }
-        public Double SensorValueChangeTrigger
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double)GetValue(SensorValueChangeTriggerProperty);
-            set => SetValue(SensorValueChangeTriggerProperty, value);
-        }
-        public Phidgets.PowerSupply PowerSupply
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Phidgets.PowerSupply)GetValue(PowerSupplyProperty);
-            set => SetValue(PowerSupplyProperty, value);
-        }
-        public Phidgets.Unit SensorUnit
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Phidgets.Unit)GetValue(SensorUnitProperty);
-            set => SetValue(SensorUnitProperty, value);
-        }
-        public Phidgets.VoltageSensorType SensorType
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Phidgets.VoltageSensorType)GetValue(SensorTypeProperty);
-            set => SetValue(SensorTypeProperty, value);
-        }
-        public Boolean LogVoltageChangeEvents
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean)GetValue(LogVoltageChangeEventsProperty);
-            set => SetValue(LogVoltageChangeEventsProperty, value);
-        }
-        public Boolean LogSensorChangeEvents
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean)GetValue(LogSensorChangeEventsProperty);
-            set => SetValue(LogSensorChangeEventsProperty, value);
-        }
         public string ControlTitle
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
@@ -225,18 +104,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceControlTitle((string)value);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceControlTitle((string)value);
             else
                 return value;
         }
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceControlTitle(string value)
@@ -257,7 +136,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty IsAttachedProperty = DependencyProperty.Register(
             "IsAttached",
             typeof(Boolean),
-            typeof(VoltageInputControl),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(false,
                 new PropertyChangedCallback(OnIsAttachedChanged),
                 new CoerceValueCallback(OnCoerceIsAttached)
@@ -273,18 +152,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceIsAttached(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceIsAttached((Boolean)value);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceIsAttached((Boolean)value);
             else
                 return value;
         }
 
         private static void OnIsAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnIsAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnIsAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceIsAttached(Boolean value)
@@ -297,6 +176,55 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
+
+        #endregion
+
+        #region Engaged
+
+        public static readonly DependencyProperty EngagedProperty = DependencyProperty.Register(
+            "Engaged",
+            typeof(Boolean),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(false,
+                new PropertyChangedCallback(OnEngagedChanged),
+                new CoerceValueCallback(OnCoerceEngaged)
+                )
+            );
+
+        public Boolean Engaged
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(EngagedProperty);
+            set => SetValue(EngagedProperty, value);
+        }
+
+        private static object OnCoerceEngaged(DependencyObject o, object value)
+        {
+           RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceEngaged((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnEngagedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceEngaged(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnEngagedChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
         #endregion
 
         #region LogPhidgetEvents
@@ -304,7 +232,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty LogPhidgetEventsProperty = DependencyProperty.Register(
             "LogPhidgetEvents",
             typeof(Boolean),
-            typeof(VoltageInputControl),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
                 false,
                 new PropertyChangedCallback(OnLogPhidgetEventsChanged),
@@ -321,18 +249,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceLogPhidgetEvents((Boolean)value);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
                 return value;
         }
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceLogPhidgetEvents(Boolean value)
@@ -353,7 +281,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty LogErrorEventsProperty = DependencyProperty.Register(
             "LogErrorEvents",
             typeof(Boolean),
-            typeof(VoltageInputControl),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
                 false,
                 new PropertyChangedCallback(OnLogErrorEventsChanged),
@@ -370,18 +298,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceLogErrorEvents((Boolean)value);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceLogErrorEvents((Boolean)value);
             else
                 return value;
         }
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceLogErrorEvents(Boolean value)
@@ -402,7 +330,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty LogPropertyChangeEventsProperty = DependencyProperty.Register(
             "LogPropertyChangeEvents",
             typeof(Boolean),
-            typeof(VoltageInputControl),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
                 false,
                 new PropertyChangedCallback(OnLogPropertyChangeEventsChanged),
@@ -417,18 +345,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
                 return value;
         }
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceLogPropertyChangeEvents(Boolean value)
@@ -441,321 +369,1503 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
+
         #endregion
 
-        #region LogSensorChangeEvents
+        #region LogPositionChangeEvents
 
-        public static readonly DependencyProperty LogSensorChangeEventsProperty = DependencyProperty.Register(
-            "LogSensorChangeEvents", 
-            typeof(Boolean), 
-            typeof(VoltageInputControl), 
+        public static readonly DependencyProperty LogPositionChangeEventsProperty = DependencyProperty.Register(
+            "LogPositionChangeEvents",
+            typeof(Boolean),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                false, 
-                new PropertyChangedCallback(OnLogSensorChangeEventsChanged), 
-                new CoerceValueCallback(OnCoerceLogSensorChangeEvents)
+                false,
+                new PropertyChangedCallback(OnLogPositionChangeEventsChanged),
+                new CoerceValueCallback(OnCoerceLogPositionChangeEvents)
                 )
             );
 
+        public Boolean LogPositionChangeEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogPositionChangeEventsProperty);
+            set => SetValue(LogPositionChangeEventsProperty, value);
+        }
+
+        private static object OnCoerceLogPositionChangeEvents(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceLogPositionChangeEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogPositionChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnLogPositionChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogPositionChangeEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogPositionChangeEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region LogVoltageChangeEvents
+        #region LogVelocityChangeEvents
 
-        public static readonly DependencyProperty LogVoltageChangeEventsProperty = DependencyProperty.Register(
-            "LogVoltageChangeEvents", 
-            typeof(Boolean), 
-            typeof(VoltageInputControl), 
+        public static readonly DependencyProperty LogVelocityChangeEventsProperty = DependencyProperty.Register(
+            "LogVelocityChangeEvents",
+            typeof(Boolean),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                false, 
-                new PropertyChangedCallback(OnLogVoltageChangeEventsChanged), 
-                new CoerceValueCallback(OnCoerceLogVoltageChangeEvents)
+                false,
+                new PropertyChangedCallback(OnLogVelocityChangeEventsChanged),
+                new CoerceValueCallback(OnCoerceLogVelocityChangeEvents)
                 )
             );
 
+        public Boolean LogVelocityChangeEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogVelocityChangeEventsProperty);
+            set => SetValue(LogVelocityChangeEventsProperty, value);
+        }
+
+        private static object OnCoerceLogVelocityChangeEvents(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceLogVelocityChangeEvents((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnLogVelocityChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnLogVelocityChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceLogVelocityChangeEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnLogVelocityChangeEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region SensorType
+        #region LogTargetPositionReachedEvents
 
-        public static readonly DependencyProperty SensorTypeProperty = DependencyProperty.Register(
-            "SensorType", 
-            typeof(Phidgets.VoltageSensorType), 
-            typeof(VoltageInputControl), 
+        public static readonly DependencyProperty LogTargetPositionReachedEventsProperty = DependencyProperty.Register(
+            "LogTargetPositionReachedEvents",
+            typeof(Boolean),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                Phidgets.VoltageSensorType.Voltage, 
-                new PropertyChangedCallback(OnSensorTypeChanged), 
-                new CoerceValueCallback(OnCoerceSensorType)
+                false,
+                new PropertyChangedCallback(OnLogTargetPositionReachedEventsChanged),
+                new CoerceValueCallback(OnCoerceLogTargetPositionReachedEvents)
                 )
             );
 
+        public Boolean LogTargetPositionReachedEvents
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(LogTargetPositionReachedEventsProperty);
+            set => SetValue(LogTargetPositionReachedEventsProperty, value);
+        }
 
-        #endregion
+        private static object OnCoerceLogTargetPositionReachedEvents(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceLogTargetPositionReachedEvents((Boolean)value);
+            else
+                return value;
+        }
 
-        #region SensorUnit
+        private static void OnLogTargetPositionReachedEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnLogTargetPositionReachedEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
 
-        public static readonly DependencyProperty SensorUnitProperty = DependencyProperty.Register(
-            "SensorUnit", 
-            typeof(Phidgets.Unit), 
-            typeof(VoltageInputControl), 
-            new FrameworkPropertyMetadata(
-                Phidgets.Unit.Volt, 
-                new PropertyChangedCallback(OnSensorUnitChanged), 
-                new CoerceValueCallback(OnCoerceSensorUnit)
-                )
-            );
+        protected virtual Boolean OnCoerceLogTargetPositionReachedEvents(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
 
-
-        #endregion
-
-        #region PowerSupply
-
-        public static readonly DependencyProperty PowerSupplyProperty = DependencyProperty.Register(
-            "PowerSupply", 
-            typeof(Phidgets.PowerSupply), 
-            typeof(VoltageInputControl), 
-            new FrameworkPropertyMetadata(Phidgets.PowerSupply.Off, 
-                new PropertyChangedCallback(OnPowerSupplyChanged), 
-                new CoerceValueCallback(OnCoercePowerSupply)
-                )
-            );
-
-
-        #endregion
-
-        #region SensorValueChangeTrigger
-
-        public static readonly DependencyProperty SensorValueChangeTriggerProperty = DependencyProperty.Register(
-            "SensorValueChangeTrigger", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
-            new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnSensorValueChangeTriggerChanged), 
-                new CoerceValueCallback(OnCoerceSensorValueChangeTrigger)
-                )
-            );
-
-
-        #endregion
-
-        #region SensorValue
-        public static readonly DependencyProperty SensorValueProperty = DependencyProperty.Register(
-            "SensorValue", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
-            new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnSensorValueChanged), 
-                new CoerceValueCallback(OnCoerceSensorValue)
-                )
-            );
-
+        protected virtual void OnLogTargetPositionReachedEventsChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
         #region MinDataInterval
 
         public static readonly DependencyProperty MinDataIntervalProperty = DependencyProperty.Register(
-            "MinDataInterval", 
-            typeof(Int32), 
-            typeof(VoltageInputControl), 
+            "MinDataInterval",
+            typeof(Int32),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0, 
-                new PropertyChangedCallback(OnMinDataIntervalChanged), 
+                0,
+                new PropertyChangedCallback(OnMinDataIntervalChanged),
                 new CoerceValueCallback(OnCoerceMinDataInterval)
                 )
             );
 
+        public Int32 MinDataInterval
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(MinDataIntervalProperty);
+            set => SetValue(MinDataIntervalProperty, value);
+        }
+
+        private static object OnCoerceMinDataInterval(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinDataInterval((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnMinDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceMinDataInterval(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinDataIntervalChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
         #region DataInterval
 
         public static readonly DependencyProperty DataIntervalProperty = DependencyProperty.Register(
-            "DataInterval", 
-            typeof(Int32), 
-            typeof(VoltageInputControl), 
+            "DataInterval",
+            typeof(Int32),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0, 
-                new PropertyChangedCallback(OnDataIntervalChanged), 
+                0,
+                new PropertyChangedCallback(OnDataIntervalChanged),
                 new CoerceValueCallback(OnCoerceDataInterval)
                 )
             );
 
+        public Int32 DataInterval
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(DataIntervalProperty);
+            set => SetValue(DataIntervalProperty, value);
+        }
+
+        private static object OnCoerceDataInterval(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceDataInterval((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceDataInterval(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDataIntervalChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
         #region MaxDataInterval
 
         public static readonly DependencyProperty MaxDataIntervalProperty = DependencyProperty.Register(
-            "MaxDataInterval", 
-            typeof(Int32), 
-            typeof(VoltageInputControl), 
+            "MaxDataInterval",
+            typeof(Int32),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0, 
-                new PropertyChangedCallback(OnMaxDataIntervalChanged), 
+                0,
+                new PropertyChangedCallback(OnMaxDataIntervalChanged),
                 new CoerceValueCallback(OnCoerceMaxDataInterval)
                 )
             );
 
+        public Int32 MaxDataInterval
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(MaxDataIntervalProperty);
+            set => SetValue(MaxDataIntervalProperty, value);
+        }
+
+        private static object OnCoerceMaxDataInterval(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxDataInterval((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceMaxDataInterval(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxDataIntervalChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
         #region MinDataRate
 
         public static readonly DependencyProperty MinDataRateProperty = DependencyProperty.Register(
-            "MinDataRate", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+            "MinDataRate",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMinDataRateChanged), 
+                0.0,
+                new PropertyChangedCallback(OnMinDataRateChanged),
                 new CoerceValueCallback(OnCoerceMinDataRate)
                 )
             );
 
+        public Double MinDataRate
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinDataRateProperty);
+            set => SetValue(MinDataRateProperty, value);
+        }
+        private static object OnCoerceMinDataRate(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinDataRate((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinDataRate(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinDataRateChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
         #region DataRate
 
         public static readonly DependencyProperty DataRateProperty = DependencyProperty.Register(
-            "DataRate", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+            "DataRate",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
+                0.0,
                 new PropertyChangedCallback(OnDataRateChanged),
                 new CoerceValueCallback(OnCoerceDataRate)
                 )
             );
 
+        public Double DataRate
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(DataRateProperty);
+            set => SetValue(DataRateProperty, value);
+        }
+
+        private static object OnCoerceDataRate(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceDataRate((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceDataRate(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDataRateChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
         #region MaxDataRate
 
         public static readonly DependencyProperty MaxDataRateProperty = DependencyProperty.Register(
-            "MaxDataRate", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+            "MaxDataRate",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMaxDataRateChanged), 
+                0.0,
+                new PropertyChangedCallback(OnMaxDataRateChanged),
                 new CoerceValueCallback(OnCoerceMaxDataRate)
                 )
             );
 
+        public Double MaxDataRate
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxDataRateProperty);
+            set => SetValue(MaxDataRateProperty, value);
+        }
+
+        private static object OnCoerceMaxDataRate(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxDataRate((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxDataRate(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxDataRateChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region MinVoltage
-        public static readonly DependencyProperty MinVoltageProperty = DependencyProperty.Register(
-            "MinVoltage", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+        #region MinAcceleration
+
+        public static readonly DependencyProperty MinAccelerationProperty = DependencyProperty.Register(
+            "MinAcceleration",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMinVoltageChanged), 
-                new CoerceValueCallback(OnCoerceMinVoltage)
+                0.0,
+                new PropertyChangedCallback(OnMinAccelerationChanged),
+                new CoerceValueCallback(OnCoerceMinAcceleration)
                 )
             );
 
+        public Double MinAcceleration
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinAccelerationProperty);
+            set => SetValue(MinAccelerationProperty, value);
+        }
+        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinAcceleration((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinAcceleration(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinAccelerationChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region Voltage
-        public static readonly DependencyProperty VoltageProperty = DependencyProperty.Register(
-            "Voltage", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+        #region Acceleration
+
+        public static readonly DependencyProperty AccelerationProperty = DependencyProperty.Register(
+            "Acceleration",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnVoltageChanged), 
-                new CoerceValueCallback(OnCoerceVoltage)
+                0.0,
+                new PropertyChangedCallback(OnAccelerationChanged),
+                new CoerceValueCallback(OnCoerceAcceleration)
                 )
             );
 
+        public Double Acceleration
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(AccelerationProperty);
+            set => SetValue(AccelerationProperty, value);
+        }
+        private static object OnCoerceAcceleration(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceAcceleration((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceAcceleration(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnAccelerationChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region MaxVoltage
-        public static readonly DependencyProperty MaxVoltageProperty = DependencyProperty.Register(
-            "MaxVoltage", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+        #region MaxAcceleration
+
+        public static readonly DependencyProperty MaxAccelerationProperty = DependencyProperty.Register(
+            "MaxAcceleration",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMaxVoltageChanged), 
-                new CoerceValueCallback(OnCoerceMaxVoltage)
+                0.0,
+                new PropertyChangedCallback(OnMaxAccelerationChanged),
+                new CoerceValueCallback(OnCoerceMaxAcceleration)
                 )
             );
 
+        public Double MaxAcceleration
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxAccelerationProperty);
+            set => SetValue(MaxAccelerationProperty, value);
+        }
+        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxAcceleration((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxAcceleration(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxAccelerationChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region MinVoltageChangeTrigger
+        #region MinFailsafeTIme
 
-        public static readonly DependencyProperty MinVoltageChangeTriggerProperty = DependencyProperty.Register(
-            "MinVoltageChangeTrigger", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
+        public static readonly DependencyProperty MinFailsafeTImeProperty = DependencyProperty.Register(
+            "MinFailsafeTIme",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMinVoltageChangeTriggerChanged), 
-                new CoerceValueCallback(OnCoerceMinVoltageChangeTrigger)
+                0.0,
+                new PropertyChangedCallback(OnMinFailsafeTImeChanged),
+                new CoerceValueCallback(OnCoerceMinFailsafeTIme)
                 )
             );
 
+        public Double MinFailsafeTIme
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinFailsafeTImeProperty);
+            set => SetValue(MinFailsafeTImeProperty, value);
+        }
+        private static object OnCoerceMinFailsafeTIme(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinFailsafeTIme((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinFailsafeTImeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinFailsafeTImeChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinFailsafeTIme(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinFailsafeTImeChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region VoltageChangeTrigger
+        #region MaxFailsafeTIme
 
-        public static readonly DependencyProperty VoltageChangeTriggerProperty = DependencyProperty.Register(
-            "VoltageChangeTrigger", 
-            typeof(Double), 
-            typeof(VoltageInputControl),
+        public static readonly DependencyProperty MaxFailsafeTImeProperty = DependencyProperty.Register(
+            "MaxFailsafeTIme",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnVoltageChangeTriggerChanged), 
-                new CoerceValueCallback(OnCoerceVoltageChangeTrigger)
+                0.0,
+                new PropertyChangedCallback(OnMaxFailsafeTImeChanged),
+                new CoerceValueCallback(OnCoerceMaxFailsafeTIme)
                 )
             );
 
+        public Double MaxFailsafeTIme
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxFailsafeTImeProperty);
+            set => SetValue(MaxFailsafeTImeProperty, value);
+        }
+        private static object OnCoerceMaxFailsafeTIme(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxFailsafeTIme((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxFailsafeTImeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxFailsafeTImeChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxFailsafeTIme(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxFailsafeTImeChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region MaxVoltageChangeTrigger
+        #region IsMoving
 
-        public static readonly DependencyProperty MaxVoltageChangeTriggerProperty = DependencyProperty.Register(
-            "MaxVoltageChangeTrigger", 
-            typeof(Double), 
-            typeof(VoltageInputControl), 
-            new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMaxVoltageChangeTriggerChanged), 
-                new CoerceValueCallback(OnCoerceMaxVoltageChangeTrigger)
+        public static readonly DependencyProperty IsMovingProperty = DependencyProperty.Register(
+            "IsMoving",
+            typeof(Boolean),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(false,
+                new PropertyChangedCallback(OnIsMovingChanged),
+                new CoerceValueCallback(OnCoerceIsMoving)
                 )
             );
 
+        public Boolean IsMoving
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(IsMovingProperty);
+            set => SetValue(IsMovingProperty, value);
+        }
+
+        private static object OnCoerceIsMoving(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceIsMoving((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnIsMovingChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceIsMoving(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnIsMovingChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
 
         #endregion
 
-        #region VoltageRange
+        #region MinPosition
 
-        public static readonly DependencyProperty VoltageRangeProperty = DependencyProperty.Register(
-            "VoltageRange", 
-            typeof(Phidgets.VoltageRange),
-            typeof(VoltageInputControl), 
+        public static readonly DependencyProperty MinPositionProperty = DependencyProperty.Register(
+            "MinPosition",
+            typeof(Double),
+            typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                Phidgets.VoltageRange.Auto, 
-                new PropertyChangedCallback(OnVoltageRangeChanged), 
-                new CoerceValueCallback(OnCoerceVoltageRange)
+                0.0,
+                new PropertyChangedCallback(OnMinPositionChanged),
+                new CoerceValueCallback(OnCoerceMinPosition)
                 )
             );
-        
-        
+
+        public Double MinPosition
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinPositionProperty);
+            set => SetValue(MinPositionProperty, value);
+        }
+        private static object OnCoerceMinPosition(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinPosition((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinPositionChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinPosition(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinPositionChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Position
+
+        public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
+            "Position",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnPositionChanged),
+                new CoerceValueCallback(OnCoercePosition)
+                )
+            );
+
+        public Double Position
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(PositionProperty);
+            set => SetValue(PositionProperty, value);
+        }
+        private static object OnCoercePosition(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoercePosition((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnPositionChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoercePosition(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnPositionChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxPosition
+
+        public static readonly DependencyProperty MaxPositionProperty = DependencyProperty.Register(
+            "MaxPosition",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxPositionChanged),
+                new CoerceValueCallback(OnCoerceMaxPosition)
+                )
+            );
+
+        public Double MaxPosition
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxPositionProperty);
+            set => SetValue(MaxPositionProperty, value);
+        }
+        private static object OnCoerceMaxPosition(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxPosition((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxPositionChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxPosition(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxPositionChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MinPulseWidth
+
+        public static readonly DependencyProperty MinPulseWidthProperty = DependencyProperty.Register(
+            "MinPulseWidth",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMinPulseWidthChanged),
+                new CoerceValueCallback(OnCoerceMinPulseWidth)
+                )
+            );
+
+        public Double MinPulseWidth
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinPulseWidthProperty);
+            set => SetValue(MinPulseWidthProperty, value);
+        }
+        private static object OnCoerceMinPulseWidth(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinPulseWidth((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinPulseWidthChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinPulseWidthChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinPulseWidth(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinPulseWidthChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxPulseWidth
+
+        public static readonly DependencyProperty MaxPulseWidthProperty = DependencyProperty.Register(
+            "MaxPulseWidth",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxPulseWidthChanged),
+                new CoerceValueCallback(OnCoerceMaxPulseWidth)
+                )
+            );
+
+        public Double MaxPulseWidth
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxPulseWidthProperty);
+            set => SetValue(MaxPulseWidthProperty, value);
+        }
+        private static object OnCoerceMaxPulseWidth(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxPulseWidth((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxPulseWidthChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxPulseWidthChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxPulseWidth(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxPulseWidthChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MinPulseWidthLimit
+
+        public static readonly DependencyProperty MinPulseWidthLimitProperty = DependencyProperty.Register(
+            "MinPulseWidthLimit",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMinPulseWidthLimitChanged),
+                new CoerceValueCallback(OnCoerceMinPulseWidthLimit)
+                )
+            );
+
+        public Double MinPulseWidthLimit
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinPulseWidthLimitProperty);
+            set => SetValue(MinPulseWidthLimitProperty, value);
+        }
+        private static object OnCoerceMinPulseWidthLimit(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinPulseWidthLimit((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinPulseWidthLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinPulseWidthLimitChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinPulseWidthLimit(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinPulseWidthLimitChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxPulseWidthLimit
+
+        public static readonly DependencyProperty MaxPulseWidthLimitProperty = DependencyProperty.Register(
+            "MaxPulseWidthLimit",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxPulseWidthLimitChanged),
+                new CoerceValueCallback(OnCoerceMaxPulseWidthLimit)
+                )
+            );
+
+        public Double MaxPulseWidthLimit
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxPulseWidthLimitProperty);
+            set => SetValue(MaxPulseWidthLimitProperty, value);
+        }
+        private static object OnCoerceMaxPulseWidthLimit(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxPulseWidthLimit((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxPulseWidthLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxPulseWidthLimitChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxPulseWidthLimit(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxPulseWidthLimitChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SpeedRampingState
+
+        public static readonly DependencyProperty SpeedRampingStateProperty = DependencyProperty.Register(
+            "SpeedRampingState",
+            typeof(Boolean),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(false,
+                new PropertyChangedCallback(OnSpeedRampingStateChanged),
+                new CoerceValueCallback(OnCoerceSpeedRampingState)
+                )
+            );
+
+        public Boolean SpeedRampingState
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(SpeedRampingStateProperty);
+            set => SetValue(SpeedRampingStateProperty, value);
+        }
+
+        private static object OnCoerceSpeedRampingState(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceSpeedRampingState((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnSpeedRampingStateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnSpeedRampingStateChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceSpeedRampingState(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSpeedRampingStateChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region TargetPosition
+
+        public static readonly DependencyProperty TargetPositionProperty = DependencyProperty.Register(
+            "TargetPosition",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnTargetPositionChanged),
+                new CoerceValueCallback(OnCoerceTargetPosition)
+                )
+            );
+
+        public Double TargetPosition
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(TargetPositionProperty);
+            set => SetValue(TargetPositionProperty, value);
+        }
+        private static object OnCoerceTargetPosition(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceTargetPosition((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnTargetPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnTargetPositionChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceTargetPosition(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnTargetPositionChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MinTorque
+
+        public static readonly DependencyProperty MinTorqueProperty = DependencyProperty.Register(
+            "MinTorque",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMinTorqueChanged),
+                new CoerceValueCallback(OnCoerceMinTorque)
+                )
+            );
+
+        public Double MinTorque
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinTorqueProperty);
+            set => SetValue(MinTorqueProperty, value);
+        }
+        private static object OnCoerceMinTorque(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinTorque((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinTorque(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinTorqueChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Torque
+
+        public static readonly DependencyProperty TorqueProperty = DependencyProperty.Register(
+            "Torque",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnTorqueChanged),
+                new CoerceValueCallback(OnCoerceTorque)
+                )
+            );
+
+        public Double Torque
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(TorqueProperty);
+            set => SetValue(TorqueProperty, value);
+        }
+        private static object OnCoerceTorque(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceTorque((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceTorque(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnTorqueChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxTorque
+
+        public static readonly DependencyProperty MaxTorqueProperty = DependencyProperty.Register(
+            "MaxTorque",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxTorqueChanged),
+                new CoerceValueCallback(OnCoerceMaxTorque)
+                )
+            );
+
+        public Double MaxTorque
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxTorqueProperty);
+            set => SetValue(MaxTorqueProperty, value);
+        }
+        private static object OnCoerceMaxTorque(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxTorque((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxTorque(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxTorqueChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Velocity
+
+        public static readonly DependencyProperty VelocityProperty = DependencyProperty.Register(
+            "Velocity",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnVelocityChanged),
+                new CoerceValueCallback(OnCoerceVelocity)
+                )
+            );
+
+        public Double Velocity
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(VelocityProperty);
+            set => SetValue(VelocityProperty, value);
+        }
+        private static object OnCoerceVelocity(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceVelocity((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnVelocityChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceVelocity(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnVelocityChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MinVelocityLimit
+
+        public static readonly DependencyProperty MinVelocityLimitProperty = DependencyProperty.Register(
+            "MinVelocityLimit",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMinVelocityLimitChanged),
+                new CoerceValueCallback(OnCoerceMinVelocityLimit)
+                )
+            );
+
+        public Double MinVelocityLimit
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinVelocityLimitProperty);
+            set => SetValue(MinVelocityLimitProperty, value);
+        }
+        private static object OnCoerceMinVelocityLimit(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinVelocityLimit((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinVelocityLimit(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinVelocityLimitChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region VelocityLimit
+
+        public static readonly DependencyProperty VelocityLimitProperty = DependencyProperty.Register(
+            "VelocityLimit",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnVelocityLimitChanged),
+                new CoerceValueCallback(OnCoerceVelocityLimit)
+                )
+            );
+
+        public Double VelocityLimit
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(VelocityLimitProperty);
+            set => SetValue(VelocityLimitProperty, value);
+        }
+        private static object OnCoerceVelocityLimit(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceVelocityLimit((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceVelocityLimit(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnVelocityLimitChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region MaxVelocityLimit
+
+        public static readonly DependencyProperty MaxVelocityLimitProperty = DependencyProperty.Register(
+            "MaxVelocityLimit",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxVelocityLimitChanged),
+                new CoerceValueCallback(OnCoerceMaxVelocityLimit)
+                )
+            );
+
+        public Double MaxVelocityLimit
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxVelocityLimitProperty);
+            set => SetValue(MaxVelocityLimitProperty, value);
+        }
+        private static object OnCoerceMaxVelocityLimit(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxVelocityLimit((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxVelocityLimit(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxVelocityLimitChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
         #endregion
 
         #endregion
@@ -802,7 +1912,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             set => _instanceCountVP = value;
         }
 
-
-        #endregion        
+        #endregion
     }
 }
