@@ -46,7 +46,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
         private void InitializeViewModel()
         {
             Int64 startTicks = 0;

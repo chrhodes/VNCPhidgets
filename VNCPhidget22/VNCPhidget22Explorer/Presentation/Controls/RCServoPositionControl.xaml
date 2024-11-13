@@ -103,6 +103,7 @@
                     <dxe:SpinEdit 
                         EditValue="{Binding MinPosition, Mode=TwoWay, 
                             TargetNullValue=0,
+                            UpdateSourceTrigger=PropertyChanged,
                             Converter={StaticResource SpinEditConverter}}"
                         Increment="10"
                         MinValue="{Binding MinPositionServo, TargetNullValue=0}"
@@ -115,11 +116,10 @@
                     <dxe:SpinEdit 
                         EditValue="{Binding TargetPosition, Mode=TwoWay, 
                             TargetNullValue=0, 
-                            UpdateSourceTrigger=PropertyChanged, 
                             Converter={StaticResource SpinEditConverter}}" 
                         Increment="1"
-                        MinValue="{Binding PositionMin, Mode=OneWay, TargetNullValue=0}" 
-                        MaxValue="{Binding PositionMax, Mode=OneWay, TargetNullValue=0}" 
+                        MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
+                        MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
                         Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
                         IsFloatValue="False" />
                 </dxlc:LayoutItem>
@@ -128,6 +128,7 @@
                     <dxe:SpinEdit 
                         EditValue="{Binding MaxPosition, Mode=TwoWay, 
                             TargetNullValue=0,
+                            UpdateSourceTrigger=PropertyChanged,
                             Converter={StaticResource SpinEditConverter}}" 
                         Increment="10"
                         MinValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}"

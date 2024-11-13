@@ -95,7 +95,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             typeof(string),
             typeof(RCServoControl),
             new FrameworkPropertyMetadata(
-                null,
+                "",
                 new PropertyChangedCallback(OnControlTitleChanged),
                 new CoerceValueCallback(OnCoerceControlTitle)
                 )
@@ -143,7 +143,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             "IsAttached",
             typeof(Boolean),
             typeof(RCServoControl),
-            new FrameworkPropertyMetadata(false,
+            new FrameworkPropertyMetadata(
+                false,
                 new PropertyChangedCallback(OnIsAttachedChanged),
                 new CoerceValueCallback(OnCoerceIsAttached)
                 )
@@ -191,7 +192,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             "Engaged",
             typeof(Boolean),
             typeof(RCServoControl),
-            new FrameworkPropertyMetadata(false,
+            new FrameworkPropertyMetadata(
+                false,
                 new PropertyChangedCallback(OnEngagedChanged),
                 new CoerceValueCallback(OnCoerceEngaged)
                 )
@@ -525,6 +527,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+        #region ServoType
+
         public static readonly DependencyProperty ServoTypeProperty = DependencyProperty.Register(
             "ServoType", 
             typeof(RCServoEx.ServoType), 
@@ -572,6 +576,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             MinPulseWidth = servoConfiguration.MinPulseWidth;
             MaxPulseWidth = servoConfiguration.MaxPulseWidth;
         }
+
+        #endregion
 
         #region MinDataInterval
 
@@ -1112,7 +1118,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             "IsMoving",
             typeof(Boolean),
             typeof(RCServoControl),
-            new FrameworkPropertyMetadata(false,
+            new FrameworkPropertyMetadata(
+                false,
                 new PropertyChangedCallback(OnIsMovingChanged),
                 new CoerceValueCallback(OnCoerceIsMoving)
                 )
@@ -1592,7 +1599,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             "SpeedRampingState",
             typeof(Boolean),
             typeof(RCServoControl),
-            new FrameworkPropertyMetadata(false,
+            new FrameworkPropertyMetadata(
+                false,
                 new PropertyChangedCallback(OnSpeedRampingStateChanged),
                 new CoerceValueCallback(OnCoerceSpeedRampingState)
                 )

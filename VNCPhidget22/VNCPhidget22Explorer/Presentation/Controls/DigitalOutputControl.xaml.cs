@@ -553,10 +553,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
 
-        #endregion
-
-
-
-        
+        #endregion        
     }
 }

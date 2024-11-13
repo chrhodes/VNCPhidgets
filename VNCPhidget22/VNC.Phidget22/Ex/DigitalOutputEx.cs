@@ -126,8 +126,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _frequency;
-        public new Double? Frequency
+        private Double _frequency;
+        public new Double Frequency
         {
             get => _frequency;
             set
@@ -293,8 +293,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool? _state = null;
-        public new bool? State
+        private bool _state;
+        public new bool State
         {
             get => _state;
             set

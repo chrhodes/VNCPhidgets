@@ -791,15 +791,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[0].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[0].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[0].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[0].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[0].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[0].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[0].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[0].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[0].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[0].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[0].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[0].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[0].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[0].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -823,15 +823,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[1].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[1].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[1].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[1].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[1].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[1].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[1].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[1].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[1].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[1].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[1].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[1].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[1].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[1].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -855,15 +855,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[2].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[2].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[2].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[2].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[2].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[2].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[2].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[2].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[2].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[2].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[2].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[2].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[2].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[2].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -887,15 +887,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[3].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[3].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[3].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[3].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[3].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[3].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[3].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[3].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[3].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[3].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[3].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[3].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[3].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[3].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -919,15 +919,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[4].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[4].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[4].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[4].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[4].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[4].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[4].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[4].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[4].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[4].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[4].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[4].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[4].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[4].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -951,15 +951,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[5].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[5].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[5].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[5].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[5].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[5].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[5].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[5].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[5].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[5].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[5].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[5].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[5].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[5].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -983,15 +983,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[6].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[6].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[6].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[6].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[6].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[6].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[6].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[6].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[6].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[6].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[6].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[6].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[6].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[6].MaxVoltage,Mode=TwoWay}"
                                                         
@@ -1015,15 +1015,15 @@
                             SensorValueChangeTrigger="{Binding VoltageInputs[7].SensorValueChangeTrigger,Mode=TwoWay}"
                             SensorValue="{Binding VoltageInputs[7].SensorValue,Mode=TwoWay}"
                             
-                            MinDataInterval="{Binding VoltageInputs[7].MindDataInterval,Mode=TwoWay}"
+                            MinDataInterval="{Binding VoltageInputs[7].MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding VoltageInputs[7].DataInterval,Mode=TwoWay}"
                             MaxDataInterval="{Binding VoltageInputs[7].MaxDataInterval,Mode=TwoWay}"
                             
-                            MinDataRate="{Binding VoltageInputs[7].MindDataRate,Mode=TwoWay}"
+                            MinDataRate="{Binding VoltageInputs[7].MinDataRate,Mode=TwoWay}"
                             DataRate="{Binding VoltageInputs[7].DataRate,Mode=TwoWay}"
                             MaxDataRate="{Binding VoltageInputs[7].MaxDataRate,Mode=TwoWay}"
                             
-                            MinVoltage="{Binding VoltageInputs[7].MindVoltage,Mode=TwoWay}"
+                            MinVoltage="{Binding VoltageInputs[7].MinVoltage,Mode=TwoWay}"
                             Voltage="{Binding VoltageInputs[7].Voltage,Mode=TwoWay}"
                             MaxVoltage="{Binding VoltageInputs[7].MaxVoltage,Mode=TwoWay}"
                                                         

@@ -217,8 +217,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int? _DataInterval;
-        public new int? DataInterval
+        private int _DataInterval;
+        public new int DataInterval
         {
             get => _DataInterval;
             set
@@ -262,8 +262,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _DataRate;
-        public new Double? DataRate
+        private Double _DataRate;
+        public new Double DataRate
         {
             get => _DataRate;
             set
@@ -307,8 +307,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Voltage;
-        public new Double? Voltage
+        private Double _Voltage;
+        public new Double Voltage
         {
             get => _Voltage;
             set

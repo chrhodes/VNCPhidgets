@@ -152,8 +152,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Voltage;
-        public new Double? Voltage
+        private Double _Voltage;
+        public new Double Voltage
         {
             get => _Voltage;
             set

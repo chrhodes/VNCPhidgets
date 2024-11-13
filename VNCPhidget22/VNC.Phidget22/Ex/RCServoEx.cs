@@ -124,6 +124,9 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        // TODO(crhodes)
+        // Populate this from ConfigFile
+
         public static Dictionary<ServoType, ServoConfiguration> RCServoTypes = new Dictionary<ServoType, ServoConfiguration>()
         {
             [ServoType.DEFAULT] = new ServoConfiguration 
@@ -151,18 +154,6 @@ namespace VNC.Phidget22.Ex
                 MaxPulseWidth = 1001
             }
         };
-
-        //public Dictionary<ServoType, ServoConfiguration> RCServoTypes
-        //{
-        //    get => _rCServoTypes;
-        //    set
-        //    {
-        //        if (_rCServoTypes == value)
-        //            return;
-        //        _rCServoTypes = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private ServoConfiguration _rCServoType = new ServoConfiguration { ServoType = ServoType.DEFAULT, MinPulseWidth = 245, MaxPulseWidth = 2592 };
         public ServoConfiguration RCServoType
@@ -219,8 +210,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Acceleration;
-        public new Double? Acceleration
+        private Double _Acceleration;
+        public new Double Acceleration
         {
             get => _Acceleration;
             set
@@ -264,8 +255,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int? _DataInterval;
-        public new int? DataInterval
+        private int _DataInterval;
+        public new int DataInterval
         {
             get => _DataInterval;
             set
@@ -309,8 +300,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _DataRate;
-        public new Double? DataRate
+        private Double _DataRate;
+        public new Double DataRate
         {
             get => _DataRate;
             set
@@ -409,8 +400,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Position;
-        public new Double? Position
+        private Double _Position;
+        public new Double Position
         {
             get => _Position;
             set
@@ -526,8 +517,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _targetPosition;
-        public new Double? TargetPosition
+        private Double _targetPosition;
+        public new Double TargetPosition
         {
             get => _targetPosition;
             set
@@ -536,7 +527,7 @@ namespace VNC.Phidget22.Ex
                     return;
                 _targetPosition = value;
 
-                base.TargetPosition = (Double)value;
+                    base.TargetPosition = (Double)value;
 
                 OnPropertyChanged();
             }
@@ -555,8 +546,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _torque;
-        public new Double? Torque
+        private Double _torque;
+        public new Double Torque
         {
             get => _torque;
             set
@@ -581,8 +572,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Velocity;
-        public new Double? Velocity
+        private Double _Velocity;
+        public new Double Velocity
         {
             get => _Velocity;
             set
@@ -607,8 +598,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _VelocityLimit;
-        public new Double? VelocityLimit
+        private Double _VelocityLimit;
+        public new Double VelocityLimit
         {
             get => _VelocityLimit;
             set
@@ -697,12 +688,14 @@ namespace VNC.Phidget22.Ex
 
             // MinPosition can be set.  Save initial limit
             MinPositionServo = MinPosition = rcServo.MinPosition;
+
             // NOTE(crhodes)
             // Position cannot be read until initially set
             // Initialize in middle of range
             Position = (rcServo.MaxPosition - rcServo.MinPosition) / 2;
             // Have to set TargetPosition before engaging
             TargetPosition = Position;
+
             // MaxPosition can be set.  Save initial limit
             MaxPositionServo = MaxPosition = rcServo.MaxPosition;
 
@@ -726,11 +719,11 @@ namespace VNC.Phidget22.Ex
 
             //try
             //{
-            //MinFailsafeTime = rcServo.MinFailsafeTime;
-            //MaxFailsafeTime = rcServo.MaxFailsafeTime;
-            //MinTorque = rcServo.MinTorque;
-            //Torque = rcServo.Torque;
-            //MaxTorque = rcServo.MaxTorque;
+            //    MinFailsafeTime = rcServo.MinFailsafeTime;
+            //    MaxFailsafeTime = rcServo.MaxFailsafeTime;
+            //    MinTorque = rcServo.MinTorque;
+            //    Torque = rcServo.Torque;
+            //    MaxTorque = rcServo.MaxTorque;
             //}
             //catch (Phidgets.PhidgetException ex)
             //{
@@ -856,7 +849,6 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Public Methods
-
 
         /// <summary>
         /// Open Phidget and waitForAttachment

@@ -385,7 +385,9 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             typeof(Double?), 
             typeof(RCServoPositionControl),
             new FrameworkPropertyMetadata(
-        0.0, new PropertyChangedCallback(OnMaxPositionChanged), new CoerceValueCallback(OnCoerceMaxPosition)));
+                0.0, 
+                new PropertyChangedCallback(OnMaxPositionChanged), 
+                new CoerceValueCallback(OnCoerceMaxPosition)));
 
         public Double? MaxPosition
         {
@@ -425,8 +427,16 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region MaxPositionServo
 
-        public static readonly DependencyProperty MaxPositionServoProperty = DependencyProperty.Register("MaxPositionServo", typeof(Double?), typeof(RCServoPositionControl),
-            new FrameworkPropertyMetadata(0.0, new PropertyChangedCallback(OnMaxPositionServoChanged), new CoerceValueCallback(OnCoerceMaxPositionServo)));
+        public static readonly DependencyProperty MaxPositionServoProperty = DependencyProperty.Register(
+            "MaxPositionServo", 
+            typeof(Double?), 
+            typeof(RCServoPositionControl),
+                new FrameworkPropertyMetadata(
+                    0.0, 
+                    new PropertyChangedCallback(OnMaxPositionServoChanged), 
+                    new CoerceValueCallback(OnCoerceMaxPositionServo)
+                    )
+            );
 
         public Double? MaxPositionServo
         {
