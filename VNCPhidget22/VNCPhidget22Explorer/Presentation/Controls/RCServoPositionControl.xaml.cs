@@ -59,7 +59,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // NOTE(crhodes)
             // Put things here that initialize the View
-            // Hook even thandlers, etc.
+            // Hook event handlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
 
@@ -83,7 +83,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Fields and Properties (none)
+        #region Fields and Properties
 
         #region PositionRange
 
@@ -280,54 +280,54 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Position
+        //#region Position
 
-        public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
-            "Position",
-            typeof(Double?),
-            typeof(RCServoPositionControl),
-            new FrameworkPropertyMetadata(
-                0.0,
-                new PropertyChangedCallback(OnPositionChanged),
-                new CoerceValueCallback(OnCoercePosition)
-                )
-            );
+        //public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
+        //    "Position",
+        //    typeof(Double?),
+        //    typeof(RCServoPositionControl),
+        //    new FrameworkPropertyMetadata(
+        //        0.0,
+        //        new PropertyChangedCallback(OnPositionChanged),
+        //        new CoerceValueCallback(OnCoercePosition)
+        //        )
+        //    );
 
-        public Double? Position
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(PositionProperty);
-            set => SetValue(PositionProperty, value);
-        }
+        //public Double? Position
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Double?)GetValue(PositionProperty);
+        //    set => SetValue(PositionProperty, value);
+        //}
 
-        private static object OnCoercePosition(DependencyObject o, object value)
-        {
-            RCServoPositionControl positionControl = o as RCServoPositionControl;
-            if (positionControl != null)
-                return positionControl.OnCoercePosition((Double?)value);
-            else
-                return value;
-        }
+        //private static object OnCoercePosition(DependencyObject o, object value)
+        //{
+        //    RCServoPositionControl positionControl = o as RCServoPositionControl;
+        //    if (positionControl != null)
+        //        return positionControl.OnCoercePosition((Double?)value);
+        //    else
+        //        return value;
+        //}
 
-        private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            RCServoPositionControl positionControl = o as RCServoPositionControl;
-            if (positionControl != null)
-                positionControl.OnPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
+        //private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    RCServoPositionControl positionControl = o as RCServoPositionControl;
+        //    if (positionControl != null)
+        //        positionControl.OnPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        //}
 
-        protected virtual Double? OnCoercePosition(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
+        //protected virtual Double? OnCoercePosition(Double? value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
 
-        protected virtual void OnPositionChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
+        //protected virtual void OnPositionChanged(Double? oldValue, Double? newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
 
-        #endregion
+        //#endregion
 
         #region TargetPosition
 

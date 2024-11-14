@@ -98,14 +98,16 @@ namespace VNC.Phidget22.Ex
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; set; }
+        public bool LogPhidgetEvents { get; 
+            set; }
         public bool LogErrorEvents { get; set; }
         public bool LogPropertyChangeEvents { get; set; }
 
         public bool LogPositionChangeEvents { get; set; }
         public bool LogVelocityChangeEvents { get; set; }
 
-        public bool LogTargetPositionReachedEvents { get; set; }
+        public bool LogTargetPositionReachedEvents { get; 
+            set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
@@ -393,7 +395,8 @@ namespace VNC.Phidget22.Ex
                 if (_minPosition == value)
                     return;
                 _minPosition = value;
-
+                
+                
                 base.MinPosition = value;
 
                 OnPropertyChanged();
@@ -413,6 +416,22 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        private Double _targetPosition;
+        public new Double TargetPosition
+        {
+            get => _targetPosition;
+            set
+            {
+                if (_targetPosition == value)
+                    return;
+                _targetPosition = value;
+
+                base.TargetPosition = (Double)value;
+
+                OnPropertyChanged();
+            }
+        }
+
         private Double _maxPosition;
         public new Double MaxPosition
         {
@@ -422,7 +441,7 @@ namespace VNC.Phidget22.Ex
                 if (_maxPosition == value)
                     return;
                 _maxPosition = value;
-
+                
                 base.MaxPosition = value;
 
                 OnPropertyChanged();
@@ -517,21 +536,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double _targetPosition;
-        public new Double TargetPosition
-        {
-            get => _targetPosition;
-            set
-            {
-                if (_targetPosition == value)
-                    return;
-                _targetPosition = value;
-
-                    base.TargetPosition = (Double)value;
-
-                OnPropertyChanged();
-            }
-        }
 
         private Double _minTorque;
         public new Double MinTorque

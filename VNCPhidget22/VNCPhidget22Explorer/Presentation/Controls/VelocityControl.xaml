@@ -98,11 +98,11 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" HorizontalAlignment="Center">
+        <!--<dxlc:LayoutItem Label="Velocity" LabelPosition="Left" HorizontalAlignment="Center">
             <dxe:TextEdit Text="{Binding Velocity, Mode=OneWay}" IsReadOnly="True" 
                           HorizontalAlignment="Center" Width="50"
                           ToolTip="Current Velocity"/>
-        </dxlc:LayoutItem>
+        </dxlc:LayoutItem>-->
         
     </dxlc:LayoutGroup>
 

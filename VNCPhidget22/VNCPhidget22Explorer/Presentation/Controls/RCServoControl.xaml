@@ -73,7 +73,8 @@
     <!-- </UserControl.DataContext> -->
 
     <ScrollViewer>
-    <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" Padding="-10" ScrollBars="Auto" >
+    <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
+                      HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
 
         <dxlc:LayoutGroup 
             View="GroupBox" Header="Event Logging" Orientation="Vertical" 
@@ -105,7 +106,7 @@
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
                 Content="TargetPositionReached"
-                IsChecked="{Binding LogTargetPositionReached, Mode=TwoWay}"
+                IsChecked="{Binding LogTargetPositionReachedEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
 
         </dxlc:LayoutGroup>
@@ -123,19 +124,20 @@
                  Need to expose HeaderTitle so can set to StepperState or ServoState
                 -->
 
-        <controls:ServoStateControl
+        <controls:RCServoStateControl
             Engaged="{Binding Engaged, Mode=TwoWay}"
             SpeedRamping="{Binding SpeedRampingState, Mode=TwoWay}"
             Stopped="{Binding IsMoving, Mode=OneWay}"
+            Position="{Binding Position, Mode=OneWay}"
+            Velocity="{Binding Velocity, Mode=OneWay}"
             Current="{Binding Current, Mode=OneWay}"/>
 
         <controls:RCServoPositionControl
             MinPositionServo="{Binding MinPositionServo, Mode=OneWay}"
             MinPosition="{Binding MinPosition, Mode=TwoWay}"
-            Position="{Binding Position, Mode=OneWay}"
+            TargetPosition="{Binding TargetPosition, Mode=TwoWay}"            
             MaxPosition="{Binding MaxPosition, Mode=TwoWay}"
             MaxPositionServo="{Binding MaxPositionServo, Mode=OneWay}"
-            TargetPosition="{Binding TargetPosition, Mode=TwoWay}"
             ServoIndex="{Binding Channel}"
             PositionRange="{Binding PositionRange}"/>
 

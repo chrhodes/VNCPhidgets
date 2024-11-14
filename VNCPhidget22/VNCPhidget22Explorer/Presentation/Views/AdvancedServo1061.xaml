@@ -266,6 +266,7 @@
                     LogPropertyChangeEvents="{Binding RCServos[0].LogPropertyChangeEvents,Mode=TwoWay}"
                     LogPositionChangeEvents="{Binding RCServos[0].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[0].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[0].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                          
                     IsAttached="{Binding RCServos[0].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[0].Engaged, Mode=TwoWay}"

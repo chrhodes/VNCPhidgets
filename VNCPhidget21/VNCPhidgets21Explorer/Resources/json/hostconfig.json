@@ -58,7 +58,7 @@
       "Name": "psbc22", "IPAddress": "192.168.150.22", "Port": 5001, "Enable": true,
       "AdvancedServos": [
         { "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": false },
-        { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": false },
+        //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": false },
         { "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
@@ -76,7 +76,7 @@
       "Name": "psbc23", "IPAddress": "192.168.150.23", "Port": 5001, "Enable": true,
       "AdvancedServos": [
         //{ "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
-        //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],

@@ -500,6 +500,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceLogTargetPositionReachedEvents(DependencyObject o, object value)
         {
+            
             RCServoControl rcServoControl = o as RCServoControl;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogTargetPositionReachedEvents((Boolean)value);

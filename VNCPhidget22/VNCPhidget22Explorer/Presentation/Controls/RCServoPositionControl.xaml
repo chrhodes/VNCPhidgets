@@ -82,11 +82,11 @@
                                   IsReadOnly="True" HorizontalContentAlignment="Left"  />
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Position" LabelPosition="Top" HorizontalAlignment="Center">
+                <!--<dxlc:LayoutItem Label="Position" LabelPosition="Top" HorizontalAlignment="Center">
                     <dxe:TextEdit Text="{Binding Position, Mode=TwoWay}" 
                                   IsReadOnly="True" HorizontalContentAlignment="Right"
                                   Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 
                 <dxlc:LayoutItem Label="Device Max" LabelPosition="Top" HorizontalAlignment="Right">
                     <dxe:TextEdit Text="{Binding MaxPositionServo, Mode=TwoWay}" 
