@@ -330,5 +330,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             // Put a break point on ServoProperties VelocityVelocityLimit to see.
             VelocityLimit = Double.Parse(e.NewValue.ToString());
         }
+
+        private void VelocityIncrement_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+
+            seVelocityLimit.Increment = Int32.Parse(radioButton.Content.ToString());
+        }
     }
 }

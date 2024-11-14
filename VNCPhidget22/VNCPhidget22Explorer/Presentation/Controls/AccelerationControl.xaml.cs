@@ -277,5 +277,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
+
+        private void AccelerationIncrement_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+
+            seAcceleration.Increment = Int32.Parse(radioButton.Content.ToString());
+        }
     }
 }

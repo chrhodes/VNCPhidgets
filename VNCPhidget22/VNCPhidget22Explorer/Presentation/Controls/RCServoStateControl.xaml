@@ -31,7 +31,7 @@
     Background="{StaticResource ServoStateControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-     Height="75"
+    Height="75"
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
@@ -65,26 +65,26 @@
     <!-- </UserControl.DataContext> -->
 
     <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox"  Header="RCServo State" 
-                      Orientation="Horizontal"
-                      Padding="-5" >
+                      Orientation="Vertical" Padding="-10" >
         
-        <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             
             <!--<dxlc:LayoutItem Label="Engaged" LabelPosition="Left" Margin="-2" >-->
-                <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}" 
+                <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}"  HorizontalAlignment="Left"
+                         
                             Background="{Binding Engaged, Mode=OneWay, 
                                         Converter={StaticResource RedGreenConverter}}"/>
             <!--</dxlc:LayoutItem>-->
 
-            <!--<dxlc:LayoutItem Label="Stopped" LabelPosition="Left" Margin="-2" >-->
+            <!--<dxlc:LayoutItem Label="IsMoving" LabelPosition="Left" Margin="-2" HorizontalAlignment="Left"  VerticalAlignment="Center">-->
                 <dxe:CheckEdit Content="IsMoving" IsChecked="{Binding Stopped, Mode=TwoWay}" 
-                            Background="{Binding Stopped, Mode=OneWay, 
+                            Background="{Binding IsMoving, Mode=OneWay, 
                                         Converter={StaticResource RedGreenConverter}}"/>
             <!--</dxlc:LayoutItem>-->
             
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Padding="0,-5,-5,-5" >
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
             
             <dxlc:LayoutItem Label="Current" LabelPosition="Left" Width="100" HorizontalAlignment="Left">
                 <dxe:TextEdit Text="{Binding Current, Mode=OneWay}" IsReadOnly="True" />
@@ -94,12 +94,14 @@
                 
                 <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="100" >
                     <dxe:TextEdit Text="{Binding Position, Mode=OneWay}" IsReadOnly="True" 
-                          ToolTip="Current Position"/>
+                        ToolTip="Current Position"
+                        Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" Width="100" >
                     <dxe:TextEdit Text="{Binding Velocity, Mode=OneWay}" IsReadOnly="True" 
-                          ToolTip="Current Position"/>
+                        ToolTip="Current Position"
+                        Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
                 
             </dxlc:LayoutGroup>

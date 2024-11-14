@@ -72,19 +72,40 @@
     <dxlc:LayoutGroup x:Name="lgMain" Header="Acceleration" View="GroupBox" 
                       Orientation="Horizontal"  Padding="-10">
 
-        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left">
+        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" HorizontalContentAlignment="Left">
             <dxe:TextEdit Text="{Binding MinAcceleration, Mode=TwoWay}" IsReadOnly="True" 
                           Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
                           MinWidth="40" />
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutItem Label="Current" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
+        <dxlc:LayoutItem Label="+/- Acceleration" LabelPosition="Top" LabelHorizontalAlignment="Center" >
+
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" >
+                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="RightToLeft">100</RadioButton>
+                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="RightToLeft">10</RadioButton>
+                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="RightToLeft" IsChecked="True">1</RadioButton>
+                <dxe:SpinEdit 
+                        x:Name="seAcceleration" 
+                        EditValue="{Binding Acceleration, Mode=TwoWay, 
+                            TargetNullValue=0,
+                            Converter={StaticResource SpinEditConverter}}" 
+                        Increment="1"
+                        MinValue="{Binding MinAcceleration, Mode=OneWay, TargetNullValue=0}"
+                        MaxValue="{Binding MaxAcceleration, Mode=OneWay, TargetNullValue=0}" 
+                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="False" 
+                        EditValueChanged="SpinEdit_EditValueChanged"/>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutItem>
+        
+        <!--<dxlc:LayoutItem Label="+/- 100" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
 
             <dxe:SpinEdit
                 EditValue="{Binding Acceleration, Mode=TwoWay, 
                     TargetNullValue=0.0,
                     Converter ={StaticResource SpinEditConverter}}"
-                Increment="500"
+                Increment="100"
                 MinValue="{Binding MinAcceleration, Mode=OneWay, TargetNullValue=0.0}"
                 MaxValue="{Binding MaxAcceleration, Mode=OneWay, TargetNullValue=0.0}" 
                 Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
@@ -92,7 +113,21 @@
                 EditValueChanged="SpinEdit_EditValueChanged"/>
         </dxlc:LayoutItem>
 
-        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" >
+        <dxlc:LayoutItem Label="+/- 1000" LabelPosition="Top" LabelHorizontalAlignment="Center" Width="65" >
+
+            <dxe:SpinEdit
+                EditValue="{Binding Acceleration, Mode=TwoWay, 
+                    TargetNullValue=0.0,
+                    Converter ={StaticResource SpinEditConverter}}"
+                Increment="1000"
+                MinValue="{Binding MinAcceleration, Mode=OneWay, TargetNullValue=0.0}"
+                MaxValue="{Binding MaxAcceleration, Mode=OneWay, TargetNullValue=0.0}" 
+                Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                IsFloatValue="False" 
+                EditValueChanged="SpinEdit_EditValueChanged"/>
+        </dxlc:LayoutItem>-->
+
+        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" HorizontalContentAlignment="Right" >
             <dxe:TextEdit Text="{Binding MaxAcceleration, Mode=TwoWay}" IsReadOnly="True" 
                           Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
                           MinWidth="40" />

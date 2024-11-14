@@ -397,7 +397,7 @@ namespace VNC.Phidget22.Ex
                 _minPosition = value;
                 
                 
-                base.MinPosition = value;
+                    base.MinPosition = value;
 
                 OnPropertyChanged();
             }
@@ -536,7 +536,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-
         private Double _minTorque;
         public new Double MinTorque
         {
@@ -611,6 +610,9 @@ namespace VNC.Phidget22.Ex
                 if (_VelocityLimit == value)
                     return;
                 _VelocityLimit = value;
+
+                base.VelocityLimit = value;
+
                 OnPropertyChanged();
             }
         }
@@ -714,6 +716,8 @@ namespace VNC.Phidget22.Ex
             MinVelocityLimit = rcServo.MinVelocityLimit;
             VelocityLimit = rcServo.VelocityLimit;
             MaxVelocityLimit = rcServo.MaxVelocityLimit;
+
+            SpeedRampingState = rcServo.SpeedRampingState;
             
             Voltage = rcServo.Voltage;
 

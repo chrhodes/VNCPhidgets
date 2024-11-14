@@ -21,6 +21,7 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
 using DevExpress.CodeParser;
+using System.Windows;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -298,6 +299,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        private Visibility _rcServosVisibility = Visibility.Collapsed;
+        public Visibility RCServosVisibility
+        {
+            get => _rcServosVisibility;
+            set
+            {
+                if (_rcServosVisibility == value)
+                    return;
+                _rcServosVisibility = value;
+                OnPropertyChanged();
+            }
+        }
         #region AdvancedServo Events
 
         private bool _logCurrentChangeEvents = false;
@@ -447,6 +460,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenAdvancedServoCommand.RaiseCanExecuteChanged();
                 //PlayPerformanceCommand.RaiseCanExecuteChanged();
                 //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                // Set to null when host changes
+                if (value is not null)
+                {
+                    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[value.SerialNumber].DeviceChannels;
+
+                    RCServosVisibility = deviceChannels.RCServoCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                }
+                else
+                {
+                    RCServosVisibility = Visibility.Collapsed;
+                }
 
                 OnPropertyChanged();
             }

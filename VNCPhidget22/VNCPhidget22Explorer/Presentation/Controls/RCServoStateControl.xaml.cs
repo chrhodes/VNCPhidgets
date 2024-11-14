@@ -102,18 +102,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceSpeedRamping(DependencyObject o, object value)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                return servoStateControl.OnCoerceSpeedRamping((Boolean?)value);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                return rcServoStateControl.OnCoerceSpeedRamping((Boolean?)value);
             else
                 return value;
         }
 
         private static void OnSpeedRampingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                servoStateControl.OnSpeedRampingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                rcServoStateControl.OnSpeedRampingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
         protected virtual Boolean? OnCoerceSpeedRamping(Boolean? value)
@@ -147,18 +147,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                return servoStateControl.OnCoerceCurrent((Double?)value);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                return rcServoStateControl.OnCoerceCurrent((Double?)value);
             else
                 return value;
         }
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                servoStateControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                rcServoStateControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
 
         protected virtual Double? OnCoerceCurrent(Double? value)
@@ -175,47 +175,47 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Stopped
+        #region IsMoving
 
-        public static readonly DependencyProperty StoppedProperty = DependencyProperty.Register(
-            "Stopped", 
+        public static readonly DependencyProperty IsMovingProperty = DependencyProperty.Register(
+            "IsMoving", 
             typeof(Boolean?), 
             typeof(RCServoStateControl),
             new FrameworkPropertyMetadata(
                 null, 
-                new PropertyChangedCallback(OnStoppedChanged), 
-                new CoerceValueCallback(OnCoerceStopped)));
+                new PropertyChangedCallback(OnIsMovingChanged), 
+                new CoerceValueCallback(OnCoerceIsMoving)));
 
-        public Boolean? Stopped
+        public Boolean? IsMoving
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean?)GetValue(StoppedProperty);
-            set => SetValue(StoppedProperty, value);
+            get => (Boolean?)GetValue(IsMovingProperty);
+            set => SetValue(IsMovingProperty, value);
         }
 
-        private static object OnCoerceStopped(DependencyObject o, object value)
+        private static object OnCoerceIsMoving(DependencyObject o, object value)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                return servoStateControl.OnCoerceStopped((Boolean?)value);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                return rcServoStateControl.OnCoerceIsMoving((Boolean?)value);
             else
                 return value;
         }
 
-        private static void OnStoppedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                servoStateControl.OnStoppedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                rcServoStateControl.OnIsMovingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
-        protected virtual Boolean? OnCoerceStopped(Boolean? value)
+        protected virtual Boolean? OnCoerceIsMoving(Boolean? value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnStoppedChanged(Boolean? oldValue, Boolean? newValue)
+        protected virtual void OnIsMovingChanged(Boolean? oldValue, Boolean? newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -241,18 +241,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceEngaged(DependencyObject o, object value)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                return servoStateControl.OnCoerceEngaged((Boolean?)value);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                return rcServoStateControl.OnCoerceEngaged((Boolean?)value);
             else
                 return value;
         }
 
         private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl servoStateControl = o as RCServoStateControl;
-            if (servoStateControl != null)
-                servoStateControl.OnEngagedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                rcServoStateControl.OnEngagedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
         protected virtual Boolean? OnCoerceEngaged(Boolean? value)

@@ -258,9 +258,11 @@
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls"
-                                  IsCollapsible="True" IsCollapsed="False" Padding="-10" >
+                                  IsCollapsible="True" IsCollapsed="False" 
+                              Visibility="{Binding RCServosVisibility}"
+                              Padding="-10" >
                
-                <controls:RCServoControl ControlTitle="Servo S0"
+                <controls:RCServoControl ControlTitle="Servo S0" HorizontalAlignment="Left"
                     LogPhidgetEvents="{Binding RCServos[0].LogPhidgetEvents,Mode=TwoWay}"
                     LogErrorEvents="{Binding RCServos[0].LogErrorEvents,Mode=TwoWay}"
                     LogPropertyChangeEvents="{Binding RCServos[0].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -288,7 +290,7 @@
                                          
                     Position="{Binding RCServos[0].Position,Mode=TwoWay}"
                     TargetPosition="{Binding RCServos[0].TargetPosition,Mode=TwoWay}"
-                    IsMoving="{Binding RCServos[0].IsMOving, Mode=OneWay}"                                         
+                    IsMoving="{Binding RCServos[0].IsMoving, Mode=OneWay}"                                         
                                          
                     MaxPosition="{Binding RCServos[0].MaxPosition,Mode=TwoWay}"   
                     MaxPositionServo="{Binding RCServos[0].MaxPositionServo,Mode=TwoWay}"
@@ -299,8 +301,7 @@
                     MinPulseWidthLimit="{Binding RCServos[0].MinPulseWidthLimit,Mode=TwoWay}"
                     MaxPulseWidthLimit="{Binding RCServos[0].MaxPulseWidthLimit,Mode=TwoWay}"
                                          
-                    SpeedRampingState="{Binding RCServos[0].SpeedRampingState,Mode=TwoWay}"                 
-
+                    SpeedRampingState="{Binding RCServos[0].SpeedRampingState,Mode=TwoWay}"          
                                          
                     MinTorque="{Binding RCServos[0].MinTorque,Mode=TwoWay}"
                     Torque="{Binding RCServos[0].Torque,Mode=TwoWay}"

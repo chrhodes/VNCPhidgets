@@ -127,7 +127,7 @@
         <controls:RCServoStateControl
             Engaged="{Binding Engaged, Mode=TwoWay}"
             SpeedRamping="{Binding SpeedRampingState, Mode=TwoWay}"
-            Stopped="{Binding IsMoving, Mode=OneWay}"
+            IsMoving="{Binding IsMoving, Mode=OneWay}"
             Position="{Binding Position, Mode=OneWay}"
             Velocity="{Binding Velocity, Mode=OneWay}"
             Current="{Binding Current, Mode=OneWay}"/>
