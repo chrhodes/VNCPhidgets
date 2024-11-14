@@ -70,13 +70,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             SetPositionRangeCommand = new DelegateCommand<string>(SetPositionRange, SetPositionRangeCanExecute);
 
-            // HACK(crhodes)
-            // For now just hard code this.  Can have UI let us choose later.
-            // This could also come from PerformanceLibrary.
-            // See HackAroundViewModel.InitializeViewModel()
-            // Or maybe a method on something else in VNCPhidget22.Configuration
+            OpenRCServoCommand = new DelegateCommand<string>(OpenRCServo, OpenRCServoCanExecute);
 
-            HostConfigFileName = "hostconfig.json";
+
+        // End Cut Three
+
+        // HACK(crhodes)
+        // For now just hard code this.  Can have UI let us choose later.
+        // This could also come from PerformanceLibrary.
+        // See HackAroundViewModel.InitializeViewModel()
+        // Or maybe a method on something else in VNCPhidget22.Configuration
+
+        HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
             CreateChannels();
@@ -800,6 +805,92 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 return false;
             }
+        }
+
+        #endregion
+
+        #region OpenRCServo Command
+
+        public DelegateCommand<string> OpenRCServoCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _OpenRCServoHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE OpenRCServoCommandParameter;
+
+        public string OpenRCServoContent { get; set; } = "OpenRCServo";
+        public string OpenRCServoToolTip { get; set; } = "OpenRCServo ToolTip";
+
+        // Can get fancy and use Resources
+        //public string OpenRCServoContent { get; set; } = "ViewName_OpenRCServoContent";
+        //public string OpenRCServoToolTip { get; set; } = "ViewName_OpenRCServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenRCServoContent">OpenRCServo</system:String>
+        //    <system:String x:Key="ViewName_OpenRCServoContentToolTip">OpenRCServo ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE here
+        public void OpenRCServo(string servoNumber)
+        //public void OpenRCServo()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = "Cool, you called OpenRCServo";
+
+            PublishStatusMessage(Message);
+
+            // If launching a UserControl
+
+            // if (_OpenRCServoHost is null) _OpenRCServoHost = new WindowHost();
+            // var userControl = new USERCONTROL();
+
+            // _loggingConfigurationHost.DisplayUserControlInHost(
+            //     "TITLE GOES HERE",
+            //     //Common.DEFAULT_WINDOW_WIDTH,
+            //     //Common.DEFAULT_WINDOW_HEIGHT,
+            //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+            //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+            //     ShowWindowMode.Modeless_Show,
+            //     userControl);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenRCServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenRCServoEvent>().Publish(
+            //      new OpenRCServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class OpenRCServoEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenRCServoEvent>().Subscribe(OpenRCServo);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public bool OpenRCServoCanExecute(string value)
+        //public bool OpenRCServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
         }
 
         #endregion

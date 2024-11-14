@@ -257,7 +257,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Name="lgServoControls" Orientation="Horizontal" View="GroupBox" Header="Servo Controls"
+            <dxlc:LayoutGroup Name="lgServoControls" Header="Servo Controls" View="GroupBox" Orientation="Horizontal"  
                                   IsCollapsible="True" IsCollapsed="False" 
                               Visibility="{Binding RCServosVisibility}"
                               Padding="-10" >
@@ -270,6 +270,7 @@
                     LogVelocityChangeEvents="{Binding RCServos[0].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[0].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                          
+                    ServoNumber="0"
                     IsAttached="{Binding RCServos[0].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[0].Engaged, Mode=TwoWay}"
                             
@@ -312,6 +313,771 @@
                     MinVelocityLimit="{Binding RCServos[0].MinVelocityLimit,Mode=TwoWay}"
                     VelocityLimit="{Binding RCServos[0].VelocityLimit,Mode=TwoWay}"
                     MaxVelocityLimit="{Binding RCServos[0].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S1" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[1].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[1].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[1].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[1].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[1].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[1].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[1].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[1].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[1].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[1].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[1].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[1].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[1].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[1].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[1].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[1].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[1].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[1].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[1].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[1].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[1].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[1].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[1].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[1].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[1].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[1].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[1].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[1].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[1].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[1].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[1].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[1].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[1].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[1].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[1].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[1].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S2" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[2].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[2].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[2].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[2].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[2].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[2].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[2].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[2].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[2].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[2].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[2].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[2].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[2].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[2].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[2].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[2].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[2].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[2].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[2].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[2].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[2].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[2].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[2].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[2].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[2].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[2].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[2].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[2].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[2].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[2].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[2].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[2].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[2].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[2].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[2].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[2].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S3" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[3].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[3].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[3].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[3].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[3].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[3].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[3].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[3].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[3].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[3].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[3].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[3].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[3].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[3].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[3].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[3].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[3].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[3].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[3].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[3].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[3].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[3].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[3].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[3].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[3].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[3].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[3].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[3].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[3].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[3].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[3].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[3].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[3].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[3].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[3].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[3].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S4" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[4].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[4].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[4].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[4].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[4].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[4].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[4].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[4].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[4].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[4].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[4].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[4].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[4].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[4].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[4].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[4].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[4].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[4].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[4].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[4].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[4].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[4].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[4].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[4].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[4].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[4].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[4].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[4].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[4].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[4].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[4].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[4].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[4].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[4].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[4].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[4].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S5" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[5].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[5].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[5].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[5].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[5].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[5].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[5].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[5].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[5].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[5].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[5].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[5].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[5].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[5].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[5].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[5].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[5].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[5].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[5].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[5].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[5].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[5].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[5].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[5].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[5].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[5].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[5].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[5].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[5].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[5].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[5].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[5].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[5].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[5].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[5].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[5].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S6" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[6].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[6].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[6].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[6].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[6].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[6].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[6].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[6].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[6].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[6].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[6].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[6].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[6].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[6].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[6].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[6].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[6].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[6].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[6].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[6].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[6].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[6].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[6].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[6].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[6].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[6].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[6].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[6].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[6].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[6].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[6].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[6].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[6].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[6].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[6].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[6].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S7" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[7].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[7].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[7].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[7].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[7].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[7].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[7].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[7].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[7].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[7].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[7].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[7].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[7].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[7].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[7].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[7].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[7].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[7].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[7].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[7].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[7].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[7].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[7].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[7].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[7].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[7].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[7].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[7].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[7].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[7].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[7].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[7].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[7].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[7].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[7].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[7].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S8" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[8].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[8].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[8].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[8].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[8].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[8].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[8].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[8].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[8].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[8].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[8].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[8].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[8].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[8].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[8].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[8].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[8].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[8].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[8].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[8].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[8].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[8].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[8].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[8].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[8].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[8].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[8].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[8].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[8].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[8].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[8].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[8].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[8].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[8].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[8].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[8].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S9" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[9].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[9].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[9].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[9].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[9].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[9].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[9].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[9].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[9].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[9].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[9].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[9].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[9].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[9].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[9].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[9].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[9].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[9].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[9].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[9].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[9].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[9].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[9].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[9].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[9].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[9].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[9].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[9].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[9].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[9].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[9].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[9].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[9].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[9].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[9].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[9].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S10" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[10].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[10].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[10].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[10].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[10].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[10].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[10].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[10].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[10].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[10].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[10].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[10].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[10].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[10].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[10].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[10].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[10].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[10].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[10].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[10].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[10].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[10].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[10].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[10].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[10].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[10].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[10].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[10].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[10].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[10].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[10].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[10].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[10].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[10].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[10].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[10].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S11" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[11].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[11].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[11].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[11].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[11].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[11].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[11].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[11].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[11].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[11].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[11].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[11].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[11].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[11].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[11].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[11].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[11].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[11].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[11].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[11].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[11].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[11].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[11].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[11].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[11].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[11].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[11].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[11].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[11].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[11].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[11].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[11].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[11].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[11].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[11].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[11].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S12" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[12].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[12].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[12].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[12].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[12].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[12].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[12].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[12].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[12].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[12].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[12].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[12].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[12].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[12].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[12].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[12].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[12].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[12].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[12].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[12].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[12].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[12].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[12].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[12].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[12].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[12].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[12].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[12].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[12].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[12].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[12].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[12].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[12].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[12].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[12].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[12].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S13" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[13].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[13].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[13].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[13].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[13].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[13].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[13].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[13].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[13].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[13].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[13].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[13].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[13].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[13].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[13].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[13].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[13].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[13].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[13].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[13].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[13].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[13].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[13].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[13].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[13].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[13].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[13].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[13].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[13].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[13].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[13].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[13].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[13].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[13].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[13].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[13].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S14" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[14].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[14].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[14].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[14].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[14].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[14].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[14].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[14].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[14].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[14].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[14].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[14].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[14].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[14].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[14].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[14].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[14].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[14].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[14].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[14].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[14].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[14].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[14].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[14].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[14].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[14].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[14].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[14].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[14].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[14].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[14].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[14].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[14].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[14].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[14].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[14].MaxVelocityLimit,Mode=TwoWay}" />
+
+                <controls:RCServoControl ControlTitle="Servo S15" HorizontalAlignment="Left"
+                    LogPhidgetEvents="{Binding RCServos[15].LogPhidgetEvents,Mode=TwoWay}"
+                    LogErrorEvents="{Binding RCServos[15].LogErrorEvents,Mode=TwoWay}"
+                    LogPropertyChangeEvents="{Binding RCServos[15].LogPropertyChangeEvents,Mode=TwoWay}"
+                    LogPositionChangeEvents="{Binding RCServos[15].LogPositionChangeEvents,Mode=TwoWay}"
+                    LogVelocityChangeEvents="{Binding RCServos[15].LogVelocityChangeEvents,Mode=TwoWay}"
+                    LogTargetPositionReachedEvents="{Binding RCServos[15].LogTargetPositionReachedEvents,Mode=TwoWay}"
+                                         
+                    IsAttached="{Binding RCServos[15].IsAttached, Mode=TwoWay}"                                         
+                    Engaged="{Binding RCServos[15].Engaged, Mode=TwoWay}"
+                            
+                    MinDataInterval="{Binding RCServos[15].MinDataInterval,Mode=TwoWay}"
+                    DataInterval="{Binding RCServos[15].DataInterval,Mode=TwoWay}"
+                    MaxDataInterval="{Binding RCServos[15].MaxDataInterval,Mode=TwoWay}"
+                            
+                    MinDataRate="{Binding RCServos[15].MinDataRate,Mode=TwoWay}"
+                    DataRate="{Binding RCServos[15].DataRate,Mode=TwoWay}"
+                    MaxDataRate="{Binding RCServos[15].MaxDataRate,Mode=TwoWay}"
+                            
+                    MinAcceleration="{Binding RCServos[15].MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding RCServos[15].Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding RCServos[15].MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionServo="{Binding RCServos[15].MinPositionServo,Mode=TwoWay}"                     
+                    MinPosition="{Binding RCServos[15].MinPosition,Mode=TwoWay}"
+                                         
+                    Position="{Binding RCServos[15].Position,Mode=TwoWay}"
+                    TargetPosition="{Binding RCServos[15].TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding RCServos[15].IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPosition="{Binding RCServos[15].MaxPosition,Mode=TwoWay}"   
+                    MaxPositionServo="{Binding RCServos[15].MaxPositionServo,Mode=TwoWay}"
+                                                        
+                    MinPulseWidth="{Binding RCServos[15].MinPulseWidth,Mode=TwoWay}"
+                    MaxPulseWidth="{Binding RCServos[15].MaxPulseWidth,Mode=TwoWay}"
+                                         
+                    MinPulseWidthLimit="{Binding RCServos[15].MinPulseWidthLimit,Mode=TwoWay}"
+                    MaxPulseWidthLimit="{Binding RCServos[15].MaxPulseWidthLimit,Mode=TwoWay}"
+                                         
+                    SpeedRampingState="{Binding RCServos[15].SpeedRampingState,Mode=TwoWay}"          
+                                         
+                    MinTorque="{Binding RCServos[15].MinTorque,Mode=TwoWay}"
+                    Torque="{Binding RCServos[15].Torque,Mode=TwoWay}"
+                    MaxTorque="{Binding RCServos[15].MaxTorque,Mode=TwoWay}"                                             
+                            
+                    Velocity="{Binding RCServos[15].Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding RCServos[15].MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding RCServos[15].VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding RCServos[15].MaxVelocityLimit,Mode=TwoWay}" />
 
             </dxlc:LayoutGroup>
 

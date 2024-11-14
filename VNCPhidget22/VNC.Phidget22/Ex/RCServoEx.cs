@@ -17,7 +17,7 @@ using System.Collections.Generic;
 
 namespace VNC.Phidget22.Ex
 {
-    public class RCServoEx : Phidgets.RCServo, INotifyPropertyChanged
+    public partial class RCServoEx : Phidgets.RCServo, INotifyPropertyChanged
     {
         #region Constructors, Initialization, and Load
 
@@ -75,21 +75,13 @@ namespace VNC.Phidget22.Ex
 
         #region Enums (none)
 
-        public enum ServoType
-        {
-            DEFAULT,
-            HITEC_HS422,
-            SG90,
-            USER_DEFINED
-        }
-
         #endregion
 
         #region Structures (none)
 
         public struct ServoConfiguration
         {
-            public ServoType ServoType; // Do we really need this?
+            public RCServoType ServoType; // Do we really need this?
             public Double MinPulseWidth;
             public Double MaxPulseWidth;
         }
@@ -129,35 +121,35 @@ namespace VNC.Phidget22.Ex
         // TODO(crhodes)
         // Populate this from ConfigFile
 
-        public static Dictionary<ServoType, ServoConfiguration> RCServoTypes = new Dictionary<ServoType, ServoConfiguration>()
+        public static Dictionary<RCServoType, ServoConfiguration> RCServoTypes = new Dictionary<RCServoType, ServoConfiguration>()
         {
-            [ServoType.DEFAULT] = new ServoConfiguration 
+            [Ex.RCServoType.DEFAULT] = new ServoConfiguration
             { 
-                ServoType = ServoType.DEFAULT, 
+                ServoType = Ex.RCServoType.DEFAULT, 
                 MinPulseWidth = 245, 
                 MaxPulseWidth = 2592 
             },
-            [ServoType.HITEC_HS422] = new ServoConfiguration 
+            [Ex.RCServoType.HITEC_HS422] = new ServoConfiguration
             { 
-                ServoType = ServoType.HITEC_HS422, 
+                ServoType = Ex.RCServoType.HITEC_HS422, 
                 MinPulseWidth = 650, 
                 MaxPulseWidth = 2450 
             },
-            [ServoType.SG90] = new ServoConfiguration
+            [Ex.RCServoType.SG90] = new ServoConfiguration
             { 
-                ServoType = ServoType.SG90, 
+                ServoType = Ex.RCServoType.SG90, 
                 MinPulseWidth = 650, 
                 MaxPulseWidth = 2450 
             },
-            [ServoType.USER_DEFINED] = new ServoConfiguration 
+            [Ex.RCServoType.USER_DEFINED] = new ServoConfiguration
             { 
-                ServoType = ServoType.USER_DEFINED, 
+                ServoType = Ex.RCServoType.USER_DEFINED, 
                 MinPulseWidth = 1000, 
                 MaxPulseWidth = 1001
             }
         };
 
-        private ServoConfiguration _rCServoType = new ServoConfiguration { ServoType = ServoType.DEFAULT, MinPulseWidth = 245, MaxPulseWidth = 2592 };
+        private ServoConfiguration _rCServoType = new ServoConfiguration { ServoType = Ex.RCServoType.DEFAULT, MinPulseWidth = 245, MaxPulseWidth = 2592 };
         public ServoConfiguration RCServoType
         {
             get => _rCServoType;
@@ -193,7 +185,10 @@ namespace VNC.Phidget22.Ex
                     return;
                 _engaged = value;
 
-                base.Engaged = value;
+                if (Attached)
+                {
+                    base.Engaged = value;
+                }                
 
                 OnPropertyChanged();
             }
@@ -395,9 +390,11 @@ namespace VNC.Phidget22.Ex
                 if (_minPosition == value)
                     return;
                 _minPosition = value;
-                
-                
+
+                if (Attached)
+                {
                     base.MinPosition = value;
+                }                
 
                 OnPropertyChanged();
             }
@@ -441,8 +438,11 @@ namespace VNC.Phidget22.Ex
                 if (_maxPosition == value)
                     return;
                 _maxPosition = value;
-                
-                base.MaxPosition = value;
+
+                if (Attached)
+                {
+                    base.MaxPosition = value;
+                }
 
                 OnPropertyChanged();
             }

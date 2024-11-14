@@ -531,20 +531,20 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region ServoType
 
         public static readonly DependencyProperty ServoTypeProperty = DependencyProperty.Register(
-            "ServoType", 
-            typeof(RCServoEx.ServoType), 
+            "RCServoType", 
+            typeof(RCServoType), 
             typeof(RCServoControl), 
             new FrameworkPropertyMetadata(
-                RCServoEx.ServoType.DEFAULT, 
+                RCServoType.DEFAULT, 
                 new PropertyChangedCallback(OnServoTypeChanged), 
                 new CoerceValueCallback(OnCoerceServoType)
                 )
             );
 
-        public RCServoEx.ServoType ServoType
+        public RCServoType ServoType
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (RCServoEx.ServoType)GetValue(ServoTypeProperty);
+            get => (RCServoType)GetValue(ServoTypeProperty);
             set => SetValue(ServoTypeProperty, value);
         }
 
@@ -552,7 +552,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         {
             RCServoControl rCServoControl = o as RCServoControl;
             if (rCServoControl != null)
-                return rCServoControl.OnCoerceServoType((RCServoEx.ServoType)value);
+                return rCServoControl.OnCoerceServoType((RCServoType)value);
             else
                 return value;
         }
@@ -561,21 +561,71 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         {
             RCServoControl rCServoControl = o as RCServoControl;
             if (rCServoControl != null)
-                rCServoControl.OnServoTypeChanged((RCServoEx.ServoType)e.OldValue, (RCServoEx.ServoType)e.NewValue);
+                rCServoControl.OnServoTypeChanged((RCServoType)e.OldValue, (RCServoType)e.NewValue);
         }
 
-        protected virtual RCServoEx.ServoType OnCoerceServoType(RCServoEx.ServoType value)
+        protected virtual RCServoType OnCoerceServoType(RCServoType value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnServoTypeChanged(RCServoEx.ServoType oldValue, RCServoEx.ServoType newValue)
+        protected virtual void OnServoTypeChanged(RCServoType oldValue, RCServoType newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
             RCServoEx.ServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[ServoType];
             MinPulseWidth = servoConfiguration.MinPulseWidth;
             MaxPulseWidth = servoConfiguration.MaxPulseWidth;
+        }
+
+        #endregion
+
+
+        #region ServoNumber
+
+        public static readonly DependencyProperty ServoNumberProperty = DependencyProperty.Register(
+            "ServoNumber",
+            typeof(string),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                "0",
+                new PropertyChangedCallback(OnServoNumberChanged),
+                new CoerceValueCallback(OnCoerceServoNumber)
+                )
+            );
+
+        public string ServoNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(ServoNumberProperty);
+            set => SetValue(ServoNumberProperty, value);
+        }
+
+        private static object OnCoerceServoNumber(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceServoNumber((string)value);
+            else
+                return value;
+        }
+
+        private static void OnServoNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnServoNumberChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual string OnCoerceServoNumber(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnServoNumberChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
         #endregion

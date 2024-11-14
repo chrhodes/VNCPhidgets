@@ -80,6 +80,54 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties
 
+        #region Attached
+
+        public static readonly DependencyProperty IsAttachedProperty = DependencyProperty.Register(
+            "IsAttached",
+            typeof(Boolean?),
+            typeof(RCServoStateControl),
+            new FrameworkPropertyMetadata(
+                false,
+                new PropertyChangedCallback(OnIsAttachedChanged),
+                new CoerceValueCallback(OnCoerceIsAttached)));
+
+        public Boolean? IsAttached
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean?)GetValue(IsAttachedProperty);
+            set => SetValue(IsAttachedProperty, value);
+        }
+
+        private static object OnCoerceIsAttached(DependencyObject o, object value)
+        {
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                return rcServoStateControl.OnCoerceIsAttached((Boolean?)value);
+            else
+                return value;
+        }
+
+        private static void OnIsAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            if (rcServoStateControl != null)
+                rcServoStateControl.OnIsAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
+        }
+
+        protected virtual Boolean? OnCoerceIsAttached(Boolean? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnIsAttachedChanged(Boolean? oldValue, Boolean? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+
         #region SpeedRamping
 
         public static readonly DependencyProperty SpeedRampingProperty = DependencyProperty.Register(
@@ -411,16 +459,5 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-
-
-
-
-
-
-
-        
-        
-
     }
 }

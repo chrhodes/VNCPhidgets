@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
-
-using VNCPhidget22Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
-using System.Linq;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
@@ -78,37 +76,15 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties (none)
 
-
-        #endregion
-
-        #region Event Handlers
-
-        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
-        {
-            // NOTE(crhodes)
-            // If we don't do this the Servo does not get new value.
-            // Odd that it seemed like the UI was updating the servo before.
-            // Put a break point on ServoProperties Acceleration to see.
-            Acceleration = Double.Parse(e.NewValue.ToString());
-        }
-
-        #endregion
-
-        #region Commands (none)
-
-        #endregion
-
-        #region Public Methods (none)
-
         #region MinAcceleration
 
         public static readonly DependencyProperty MinAccelerationProperty = DependencyProperty.Register(
-            "MinAcceleration", 
-            typeof(Double?), 
+            "MinAcceleration",
+            typeof(Double?),
             typeof(AccelerationControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMinAccelerationChanged), 
+                0.0,
+                new PropertyChangedCallback(OnMinAccelerationChanged),
                 new CoerceValueCallback(OnCoerceMinAcceleration)
                 )
             );
@@ -146,17 +122,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
+
         #endregion
 
         #region Acceleration
 
         public static readonly DependencyProperty AccelerationProperty = DependencyProperty.Register(
-            "Acceleration", 
-            typeof(Double?), 
+            "Acceleration",
+            typeof(Double?),
             typeof(AccelerationControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnAccelerationChanged), 
+                0.0,
+                new PropertyChangedCallback(OnAccelerationChanged),
                 new CoerceValueCallback(OnCoerceAcceleration)
                 )
             );
@@ -200,12 +177,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region MaxAcceleration
 
         public static readonly DependencyProperty MaxAccelerationProperty = DependencyProperty.Register(
-            "MaxAcceleration", 
-            typeof(Double?), 
+            "MaxAcceleration",
+            typeof(Double?),
             typeof(AccelerationControl),
             new FrameworkPropertyMetadata(
-                0.0, 
-                new PropertyChangedCallback(OnMaxAccelerationChanged), 
+                0.0,
+                new PropertyChangedCallback(OnMaxAccelerationChanged),
                 new CoerceValueCallback(OnCoerceMaxAcceleration)
                 )
             );
@@ -248,6 +225,35 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+        #region Event Handlers
+
+        //private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        //{
+        //    // NOTE(crhodes)
+        //    // If we don't do this the Servo does not get new value.
+        //    // Odd that it seemed like the UI was updating the servo before.
+        //    // Put a break point on ServoProperties Acceleration to see.
+        //    Acceleration = Double.Parse(e.NewValue.ToString());
+        //}
+
+        private void AccelerationIncrement_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+
+            seAcceleration.Increment = Int32.Parse(radioButton.Content.ToString());
+        }
+
+        #endregion
+
+        #region Commands (none)
+
+        #endregion
+
+        #region Public Methods (none)
+
+
+        #endregion
+
         #region Protected Methods (none)
 
 
@@ -277,12 +283,5 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-        private void AccelerationIncrement_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
-
-            seAcceleration.Increment = Int32.Parse(radioButton.Content.ToString());
-        }
     }
 }

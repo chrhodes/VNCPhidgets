@@ -17,6 +17,7 @@
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
     xmlns:phidgets="clr-namespace:Phidget22;assembly=Phidget22.NET" 
+    xmlns:vncPhidget22Ex="clr-namespace:VNC.Phidget22.Ex;assembly=VNC.Phidget22"
     
     xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"      
@@ -110,11 +111,30 @@
                 HorizontalAlignment="Left"/>
 
         </dxlc:LayoutGroup>
+        
+        <!-- Second form uses CommandParameter -->
+        <dxlc:LayoutItem>
+            <Button x:Name="btnOpenRCServoCommand" DataContext="{Binding }"
+        		Command="{Binding OpenRCServoCommand }"
+                CommandParameter="{Binding ServoNumber}"                
+        		Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }"
+        		ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" />
+        </dxlc:LayoutItem>
+        <!-- <dxlc:LayoutItem> -->
+            <!-- <Button -->
+                <!-- Command="{Binding OpenRCServoCommand}" -->
+                <!-- CommandParameter="{Binding OpenRCServoCommandParameter}" -->
+                <!-- Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }" -->
+                <!-- ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" /> -->
+                <!-- <Button.Background> -->
+                    <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
+                <!-- </Button.Background> -->
+        <!-- </dxlc:LayoutItem> -->  
 
         <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-            <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type viewModels:ServoType}}}"
+            <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type vncPhidget22Ex:RCServoType}}}"
                                 SelectedIndex="0"
-                                EditValue="{ Binding Path=ServoType,
+                                EditValue="{ Binding Path=RCServoType,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
                                 Converter={StaticResource SelectedItemToEnumConverter} }" />
@@ -125,6 +145,7 @@
                 -->
 
         <controls:RCServoStateControl
+            IsAttached="{Binding IsAttached, Mode=OneWay}"
             Engaged="{Binding Engaged, Mode=TwoWay}"
             SpeedRamping="{Binding SpeedRampingState, Mode=TwoWay}"
             IsMoving="{Binding IsMoving, Mode=OneWay}"
@@ -132,7 +153,7 @@
             Velocity="{Binding Velocity, Mode=OneWay}"
             Current="{Binding Current, Mode=OneWay}"/>
 
-        <controls:RCServoPositionControl
+        <controls:RCServoTargetPositionControl
             MinPositionServo="{Binding MinPositionServo, Mode=OneWay}"
             MinPosition="{Binding MinPosition, Mode=TwoWay}"
             TargetPosition="{Binding TargetPosition, Mode=TwoWay}"            
@@ -142,8 +163,9 @@
             PositionRange="{Binding PositionRange}"/>
 
         <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
-                                    VerticalAlignment="Top"
-                                    IsCollapsible="True" IsCollapsed="False" Padding="-5" Background="AliceBlue">
+                        VerticalAlignment="Top"
+                        IsCollapsible="True" IsCollapsed="True" 
+                        Padding="-5" Background="AliceBlue">
 
             <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
             <dxe:CheckEdit IsChecked="{Binding SpeedRampingState}" Content="Speed Ramping"
@@ -151,9 +173,8 @@
                             Converter={StaticResource RedGreenConverter}}"/>
             <!--</dxlc:LayoutItem>-->
 
-            <controls:VelocityControl
+            <controls:VelocityLimitControl
                 MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
-                Velocity="{Binding Velocity, Mode=TwoWay}"
                 VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
                 MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
 

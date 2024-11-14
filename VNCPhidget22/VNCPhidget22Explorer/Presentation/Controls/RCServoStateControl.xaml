@@ -70,35 +70,38 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             
             <!--<dxlc:LayoutItem Label="Engaged" LabelPosition="Left" Margin="-2" >-->
-                <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}"  HorizontalAlignment="Left"
+                <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}" IsEnabled="{Binding IsAttached}"
+                               HorizontalAlignment="Left"
                          
                             Background="{Binding Engaged, Mode=OneWay, 
                                         Converter={StaticResource RedGreenConverter}}"/>
             <!--</dxlc:LayoutItem>-->
 
-            <!--<dxlc:LayoutItem Label="IsMoving" LabelPosition="Left" Margin="-2" HorizontalAlignment="Left"  VerticalAlignment="Center">-->
-                <dxe:CheckEdit Content="IsMoving" IsChecked="{Binding Stopped, Mode=TwoWay}" 
-                            Background="{Binding IsMoving, Mode=OneWay, 
-                                        Converter={StaticResource RedGreenConverter}}"/>
-            <!--</dxlc:LayoutItem>-->
-            
-        </dxlc:LayoutGroup>
+ 
 
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
-            
             <dxlc:LayoutItem Label="Current" LabelPosition="Left" Width="100" HorizontalAlignment="Left">
                 <dxe:TextEdit Text="{Binding Current, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>
 
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
+
+            <!--<dxlc:LayoutItem Label="IsMoving" LabelPosition="Left" Margin="-2" HorizontalAlignment="Left"  VerticalAlignment="Center">-->
+            <dxe:CheckEdit Content="IsMoving" IsChecked="{Binding IsMoving, Mode=TwoWay}" IsEnabled="{Binding IsAttached}"
+                           Background="{Binding IsMoving, Mode=OneWay, 
+                                       Converter={StaticResource RedGreenConverter}}"/>
+            <!--</dxlc:LayoutItem>-->
+
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                 
-                <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="100" >
+                <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="90" >
                     <dxe:TextEdit Text="{Binding Position, Mode=OneWay}" IsReadOnly="True" 
                         ToolTip="Current Position"
                         Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" Width="100" >
+                <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" Width="90" >
                     <dxe:TextEdit Text="{Binding Velocity, Mode=OneWay}" IsReadOnly="True" 
                         ToolTip="Current Position"
                         Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>

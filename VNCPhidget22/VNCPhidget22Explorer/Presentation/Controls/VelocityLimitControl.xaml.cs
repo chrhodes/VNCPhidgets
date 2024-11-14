@@ -7,11 +7,11 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
-    public partial class VelocityControl : ViewBase, IInstanceCountV
+    public partial class VelocityLimitControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public VelocityControl()
+        public VelocityLimitControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -54,7 +54,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // NOTE(crhodes)
             // Put things here that initialize the View
-            // Hook eventhandlers, etc.
+            // Hook event handlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
 
@@ -66,8 +66,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-
 
         #region Enums (none)
 
@@ -81,60 +79,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties
 
-        #region Velocity
-
-        public static readonly DependencyProperty VelocityProperty = DependencyProperty.Register(
-            "Velocity", 
-            typeof(Double?), 
-            typeof(VelocityControl),
-            new FrameworkPropertyMetadata(0.0, 
-                new PropertyChangedCallback(OnVelocityChanged), 
-                new CoerceValueCallback(OnCoerceVelocity)
-                )
-            );
-
-        public Double? Velocity
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(VelocityProperty);
-            set => SetValue(VelocityProperty, value);
-        }
-
-        private static object OnCoerceVelocity(DependencyObject o, object value)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                return positionControl.OnCoerceVelocity((Double?)value);
-            else
-                return value;
-        }
-
-        private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                positionControl.OnVelocityChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
-
-        protected virtual Double? OnCoerceVelocity(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
-
-        protected virtual void OnVelocityChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
-
-        #endregion
-
         #region MinVelocityLimit
 
         public static readonly DependencyProperty MinVelocityLimitProperty = DependencyProperty.Register(
             "MinVelocityLimit", 
             typeof(Double?), 
-            typeof(VelocityControl),
+            typeof(VelocityLimitControl),
             new FrameworkPropertyMetadata(
                 0.0, 
                 new PropertyChangedCallback(OnMinVelocityLimitChanged), 
@@ -151,18 +101,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceMinVelocityLimit(DependencyObject o, object value)
         {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                return positionControl.OnCoerceMinVelocityLimit((Double?)value);
+            VelocityLimitControl velocityLimitControl = o as VelocityLimitControl;
+            if (velocityLimitControl != null)
+                return velocityLimitControl.OnCoerceMinVelocityLimit((Double?)value);
             else
                 return value;
         }
 
         private static void OnMinVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                positionControl.OnMinVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
+            VelocityLimitControl velocityLimitControl = o as VelocityLimitControl;
+            if (velocityLimitControl != null)
+                velocityLimitControl.OnMinVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
 
         protected virtual Double? OnCoerceMinVelocityLimit(Double? value)
@@ -183,7 +133,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty VelocityLimitProperty = DependencyProperty.Register(
             "VelocityLimit", 
             typeof(Double?), 
-            typeof(VelocityControl),
+            typeof(VelocityLimitControl),
             new FrameworkPropertyMetadata(
                 0.0, 
                 new PropertyChangedCallback(OnVelocityLimitChanged), 
@@ -200,7 +150,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceVelocityLimit(DependencyObject o, object value)
         {
-            VelocityControl velocityControl = o as VelocityControl;
+            VelocityLimitControl velocityControl = o as VelocityLimitControl;
             if (velocityControl != null)
                 return velocityControl.OnCoerceVelocityLimit((Double?)value);
             else
@@ -209,7 +159,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static void OnVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VelocityControl velocityControl = o as VelocityControl;
+            VelocityLimitControl velocityControl = o as VelocityLimitControl;
             if (velocityControl != null)
                 velocityControl.OnVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -232,7 +182,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty MaxVelocityLimitProperty = DependencyProperty.Register(
             "MaxVelocityLimit", 
             typeof(Double?), 
-            typeof(VelocityControl),
+            typeof(VelocityLimitControl),
             new FrameworkPropertyMetadata(
                 0.0, 
                 new PropertyChangedCallback(OnMaxVelocityLimitChanged), 
@@ -249,18 +199,18 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         private static object OnCoerceMaxVelocityLimit(DependencyObject o, object value)
         {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                return positionControl.OnCoerceMaxVelocityLimit((Double?)value);
+            VelocityLimitControl velocityLimitControl = o as VelocityLimitControl;
+            if (velocityLimitControl != null)
+                return velocityLimitControl.OnCoerceMaxVelocityLimit((Double?)value);
             else
                 return value;
         }
 
         private static void OnMaxVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VelocityControl positionControl = o as VelocityControl;
-            if (positionControl != null)
-                positionControl.OnMaxVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
+            VelocityLimitControl velocityLimitControl = o as VelocityLimitControl;
+            if (velocityLimitControl != null)
+                velocityLimitControl.OnMaxVelocityLimitChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
 
         protected virtual Double? OnCoerceMaxVelocityLimit(Double? value)
@@ -278,8 +228,25 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
+        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            // NOTE(crhodes)
+            // If we don't do this the Servo does not get new value.
+            // Odd that it seemed like the UI was updating the servo before.
+            // Put a break point on ServoProperties VelocityVelocityLimit to see.
+
+            // I think this can also be handled in Xaml with UpdateSourceTrigger=PropertyChanged,
+            VelocityLimit = Double.Parse(e.NewValue.ToString());
+        }
+
+        private void VelocityLimitIncrement_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+
+            seVelocityLimit.Increment = Int32.Parse(radioButton.Content.ToString());
+        }
 
         #endregion
 
@@ -321,21 +288,5 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
-        {
-            // NOTE(crhodes)
-            // If we don't do this the Servo does not get new value.
-            // Odd that it seemed like the UI was updating the servo before.
-            // Put a break point on ServoProperties VelocityVelocityLimit to see.
-            VelocityLimit = Double.Parse(e.NewValue.ToString());
-        }
-
-        private void VelocityIncrement_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
-
-            seVelocityLimit.Increment = Int32.Parse(radioButton.Content.ToString());
-        }
     }
 }

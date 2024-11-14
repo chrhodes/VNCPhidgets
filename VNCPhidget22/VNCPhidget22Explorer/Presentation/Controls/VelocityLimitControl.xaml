@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidget22Explorer.Presentation.Controls.VelocityControl"
+    x:Class="VNCPhidget22Explorer.Presentation.Controls.VelocityLimitControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -32,7 +32,7 @@
     Background="{StaticResource VelocityControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="65"
+    Height="72"
 >  
    
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
@@ -66,46 +66,52 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox" Header="Velocity Limit"
+    <dxlc:LayoutGroup x:Name="lgMain" Header="Velocity Limit" View="GroupBox" 
                       Orientation="Horizontal"  Padding="-10" >
 
-        <!--<dxlc:LayoutGroup  View="Group" Orientation="Horizontal" >-->
+        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" 
+                        HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
+            <dxe:TextEdit Text="{Binding MinVelocityLimit, Mode=OneWay}" IsReadOnly="True" 
+                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                            MinWidth="40" />
+        </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" >
-                <dxe:TextEdit Text="{Binding MinVelocityLimit, Mode=OneWay}" IsReadOnly="True" 
-                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                              MinWidth="30" />
+        <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" Margin="-2,0,-2,0" >
+
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
+                <Label Content="+/-" />
+                <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight" >1000</RadioButton>
+                <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight">100</RadioButton>
+                <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight">10</RadioButton>
+                <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem  LabelPosition="Top" LabelHorizontalAlignment="Center" >
+                
+                <dxe:SpinEdit 
+                      x:Name="seVelocityLimit" 
+                      EditValue="{Binding VelocityLimit, Mode=TwoWay, 
+                          TargetNullValue=0, 
+                          Converter={StaticResource SpinEditConverter}}" 
+                      Increment="1"
+                      MinValue="{Binding MinVelocityLimit, Mode=OneWay, TargetNullValue=0}"
+                      MaxValue="{Binding MaxVelocityLimit, Mode=OneWay, TargetNullValue=0}" 
+                      Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                      IsFloatValue="False" 
+                      EditValueChanged="SpinEdit_EditValueChanged"/>
+
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="+/- VelocityLimit" LabelPosition="Top" LabelHorizontalAlignment="Center" >
+        </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Bottom" >
-                    <RadioButton GroupName="Scale" Click="VelocityIncrement_Click" FlowDirection="RightToLeft" >1000</RadioButton>
-                    <RadioButton GroupName="Scale" Click="VelocityIncrement_Click" FlowDirection="RightToLeft">100</RadioButton>
-                    <RadioButton GroupName="Scale" Click="VelocityIncrement_Click" FlowDirection="RightToLeft">10</RadioButton>
-                    <RadioButton GroupName="Scale" Click="VelocityIncrement_Click" FlowDirection="RightToLeft" IsChecked="True">1</RadioButton>
-                    <dxe:SpinEdit 
-                        x:Name="seVelocityLimit" 
-                        EditValue="{Binding VelocityLimit, Mode=TwoWay, 
-                            TargetNullValue=0,
-                            Converter={StaticResource SpinEditConverter}}" 
-                        Increment="1"
-                        MinValue="{Binding MinVelocityLimit, Mode=OneWay, TargetNullValue=0}"
-                        MaxValue="{Binding MaxVelocityLimit, Mode=OneWay, TargetNullValue=0}" 
-                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                        IsFloatValue="False" 
-                        EditValueChanged="SpinEdit_EditValueChanged"/>
-                </dxlc:LayoutGroup>
+        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" 
+                         HorizontalContentAlignment="Right" VerticalAlignment="Bottom" >
+            <dxe:TextEdit  Text="{Binding MaxVelocityLimit, Mode=OneWay}" IsReadOnly="True" 
+                            Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                            MinWidth="30"/>
+        </dxlc:LayoutItem>
 
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" HorizontalContentAlignment="Right" >
-                <dxe:TextEdit  Text="{Binding MaxVelocityLimit, Mode=OneWay}" IsReadOnly="True" 
-                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                              MinWidth="30"/>
-            </dxlc:LayoutItem>
-
-        <!--</dxlc:LayoutGroup>-->
 
     </dxlc:LayoutGroup>
 
