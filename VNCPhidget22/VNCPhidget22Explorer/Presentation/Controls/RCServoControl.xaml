@@ -112,24 +112,46 @@
 
         </dxlc:LayoutGroup>
         
-        <!-- Second form uses CommandParameter -->
-        <dxlc:LayoutItem>
-            <Button x:Name="btnOpenRCServoCommand" DataContext="{Binding }"
-        		Command="{Binding OpenRCServoCommand }"
-                CommandParameter="{Binding ServoNumber}"                
-        		Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }"
-        		ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" />
-        </dxlc:LayoutItem>
-        <!-- <dxlc:LayoutItem> -->
-            <!-- <Button -->
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                <dxlc:LayoutItem>
+                    <Button x:Name="btnOpenRCServoCommand" 
+                        DataContext="{Binding DataContext, 
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+        		        Command="{Binding OpenRCServoCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ServoNumber}"                
+        		        Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }"
+        		        ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" />
+                </dxlc:LayoutItem>
+                <!-- <dxlc:LayoutItem> -->
+                <!-- <Button -->
                 <!-- Command="{Binding OpenRCServoCommand}" -->
                 <!-- CommandParameter="{Binding OpenRCServoCommandParameter}" -->
                 <!-- Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }" -->
                 <!-- ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" /> -->
                 <!-- <Button.Background> -->
-                    <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
+                <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
                 <!-- </Button.Background> -->
-        <!-- </dxlc:LayoutItem> -->  
+                <!-- </dxlc:LayoutItem> -->
+                <dxlc:LayoutItem>
+                    <Button x:Name="btnCloseRCServoCommand" 
+                        DataContext="{Binding DataContext, 
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+        		        Command="{Binding CloseRCServoCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ServoNumber}"                
+        		        Content="{Binding CloseRCServoContent, FallbackValue='CloseRCServo' }"
+        		        ToolTip="{Binding CloseRCServoToolTip, FallbackValue='CloseRCServo ToolTip' }" />
+                </dxlc:LayoutItem>
+                <!-- <dxlc:LayoutItem> -->
+                <!-- <Button -->
+                <!-- Command="{Binding OpenRCServoCommand}" -->
+                <!-- CommandParameter="{Binding OpenRCServoCommandParameter}" -->
+                <!-- Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }" -->
+                <!-- ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" /> -->
+                <!-- <Button.Background> -->
+                <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
+                <!-- </Button.Background> -->
+                <!-- </dxlc:LayoutItem> -->
+            </dxlc:LayoutGroup>
 
         <dxlc:LayoutItem Label="Type" LabelPosition="Top">
             <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type vncPhidget22Ex:RCServoType}}}"

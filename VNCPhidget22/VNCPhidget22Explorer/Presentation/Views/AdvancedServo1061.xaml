@@ -321,7 +321,8 @@
                     LogPositionChangeEvents="{Binding RCServos[1].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[1].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[1].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                    
+                    ServoNumber="1"
                     IsAttached="{Binding RCServos[1].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[1].Engaged, Mode=TwoWay}"
                             
@@ -372,7 +373,8 @@
                     LogPositionChangeEvents="{Binding RCServos[2].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[2].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[2].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                    
+                    ServoNumber="2"
                     IsAttached="{Binding RCServos[2].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[2].Engaged, Mode=TwoWay}"
                             
@@ -423,7 +425,8 @@
                     LogPositionChangeEvents="{Binding RCServos[3].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[3].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[3].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+
+                    ServoNumber="3"                                         
                     IsAttached="{Binding RCServos[3].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[3].Engaged, Mode=TwoWay}"
                             
@@ -474,7 +477,8 @@
                     LogPositionChangeEvents="{Binding RCServos[4].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[4].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[4].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                                   
+                    ServoNumber="4"                                           
                     IsAttached="{Binding RCServos[4].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[4].Engaged, Mode=TwoWay}"
                             
@@ -525,7 +529,8 @@
                     LogPositionChangeEvents="{Binding RCServos[5].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[5].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[5].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                           
+                    ServoNumber="5"                                           
                     IsAttached="{Binding RCServos[5].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[5].Engaged, Mode=TwoWay}"
                             
@@ -576,7 +581,8 @@
                     LogPositionChangeEvents="{Binding RCServos[6].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[6].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[6].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                                  
+                    ServoNumber="6"                                           
                     IsAttached="{Binding RCServos[6].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[6].Engaged, Mode=TwoWay}"
                             
@@ -627,7 +633,8 @@
                     LogPositionChangeEvents="{Binding RCServos[7].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[7].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[7].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                          
+                    ServoNumber="7"                                           
                     IsAttached="{Binding RCServos[7].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[7].Engaged, Mode=TwoWay}"
                             
@@ -678,7 +685,8 @@
                     LogPositionChangeEvents="{Binding RCServos[8].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[8].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[8].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                               
+                    ServoNumber="8"                                           
                     IsAttached="{Binding RCServos[8].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[8].Engaged, Mode=TwoWay}"
                             
@@ -729,7 +737,8 @@
                     LogPositionChangeEvents="{Binding RCServos[9].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[9].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[9].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                             
+                    ServoNumber="9"                                           
                     IsAttached="{Binding RCServos[9].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[9].Engaged, Mode=TwoWay}"
                             
@@ -780,7 +789,8 @@
                     LogPositionChangeEvents="{Binding RCServos[10].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[10].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[10].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                                    
+                    ServoNumber="10"  
                     IsAttached="{Binding RCServos[10].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[10].Engaged, Mode=TwoWay}"
                             
@@ -831,7 +841,8 @@
                     LogPositionChangeEvents="{Binding RCServos[11].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[11].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[11].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                                
+                    ServoNumber="11"  
                     IsAttached="{Binding RCServos[11].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[11].Engaged, Mode=TwoWay}"
                             
@@ -882,7 +893,8 @@
                     LogPositionChangeEvents="{Binding RCServos[12].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[12].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[12].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                     
+                    ServoNumber="12"  
                     IsAttached="{Binding RCServos[12].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[12].Engaged, Mode=TwoWay}"
                             
@@ -933,7 +945,8 @@
                     LogPositionChangeEvents="{Binding RCServos[13].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[13].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[13].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+                    
+                    ServoNumber="13"                                           
                     IsAttached="{Binding RCServos[13].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[13].Engaged, Mode=TwoWay}"
                             
@@ -984,7 +997,8 @@
                     LogPositionChangeEvents="{Binding RCServos[14].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[14].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[14].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+
+                    ServoNumber="14"          
                     IsAttached="{Binding RCServos[14].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[14].Engaged, Mode=TwoWay}"
                             
@@ -1035,7 +1049,8 @@
                     LogPositionChangeEvents="{Binding RCServos[15].LogPositionChangeEvents,Mode=TwoWay}"
                     LogVelocityChangeEvents="{Binding RCServos[15].LogVelocityChangeEvents,Mode=TwoWay}"
                     LogTargetPositionReachedEvents="{Binding RCServos[15].LogTargetPositionReachedEvents,Mode=TwoWay}"
-                                         
+
+                    ServoNumber="15"            
                     IsAttached="{Binding RCServos[15].IsAttached, Mode=TwoWay}"                                         
                     Engaged="{Binding RCServos[15].Engaged, Mode=TwoWay}"
                             
