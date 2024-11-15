@@ -15,7 +15,7 @@ namespace VNC.Phidget22.Configuration
         public Int32 SerialNumber { get; set; }
 
         /// <summary>
-        /// Type of Sequence {AS, IK, ST}
+        /// Type of Sequence {AS, IK, RCS, ST}
         /// Maybe make this enum
         /// </summary>
         public string SequenceType { get; set; }

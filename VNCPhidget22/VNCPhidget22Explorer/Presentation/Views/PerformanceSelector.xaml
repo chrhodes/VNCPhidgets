@@ -50,6 +50,7 @@
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />
         <converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />
         <converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
+        <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />         
         <converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />
         <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
          <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
@@ -77,7 +78,8 @@
     -->
     <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
           
-        <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" >
+        <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical"
+                          IsCollapsible="True" IsCollapsed="False">
 
             <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top">-->
                 
@@ -422,7 +424,251 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup x:Name="lgInterfaceKitSequences" Header="InterfaceKit Sequences" View="GroupBox" 
+                <dxlc:LayoutGroup x:Name="lgRCServoSequences" Header="RCServo Sequences" View="GroupBox" 
+                              Orientation="Horizontal" VerticalAlignment="Top"
+                              IsCollapsible="True" IsCollapsed="False" >
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        <dxlc:LayoutItem Label="RCServos" LabelPosition="Left" HorizontalAlignment="Left">
+
+                            <dxe:ComboBoxEdit Width="150" 
+                            ItemsSource="{Binding RCServos}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedRCServo}"
+                            SelectedIndex="0"/>
+                        </dxlc:LayoutItem>
+
+                        <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        
+                        <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit Width="300"
+                                ItemsSource="{Binding RCServoSequenceConfigFiles}"
+                                SelectedItem="{Binding RCServoSequenceConfigFileName}" >
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
+                                Command="{Binding ReloadRCServoSequenceConfigFilesCommand}"
+                                ToolTip="Reload Config File" Width="20"/>
+
+                    </dxlc:LayoutGroup>-->
+
+                        <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" LabelPosition="Left" >
+                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
+                            ItemsSource="{Binding RCServoSequences}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedRCServoSequences}"
+                            EditValue="{ Binding 
+                                Path=SelectedRCServoSequences,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfRCServoSequenceConverter} }" >
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Description }" Width="300" TextWrapping="Wrap" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="BeforeActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.BeforeActionLoopSequences.Count, Mode=OneWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Background="LawnGreen" Padding="5">
+
+                            <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedRCServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                                <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
+                                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.ActionLoops.Count, Mode=OneWay}" />
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
+                                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Actions.Count, Mode=OneWay}" />
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
+                                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.ExecuteActionsInParallel }" />
+                                </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedRCServoSequence.ActionDuration }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedRCServoSequence.EndActionLoopSequences.Count, Mode=OneWay}" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutItem Label="AfterActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.AfterActionLoopSequences.Count, Mode=OneWay}" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="NextSequence" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedRCServoSequence.NextSequence.Name }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="Type" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedRCServoSequence.NextSequence.SequenceType }" />
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
+                                <dxe:TextEdit Text="{Binding SelectedRCServoSequence.NextSequence.Loops }" />
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <!--<dxlc:LayoutGroup Header="Sequence Host" View="GroupBox" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Host.Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Host.IPAddress }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Host.Port }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.RCServos[0].Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.RCServos[0].SerialNumber }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>-->
+
+                        <!--<dxlc:LayoutGroup Header="Active Host" View="GroupBox" Orientation="Horizontal"
+                                      HorizontalAlignment="Center">
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding ActiveRCServoHost.Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding ActiveRCServoHost.Host.IPAddress }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding ActiveRCServoHost.Host.Port }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding ActiveRCServoHost.RCServos[0].Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding ActiveRCServoHost.RCServos[0].SerialNumber }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>-->
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
+
+                        <!--<dxlc:LayoutItem>
+                        <Button 
+                		        Command="{Binding InitializeServosCommand }"
+                		        CommandParameter="{Binding InitializeServosCommandParameter}"
+                		        Content="{Binding InitializeServosContent, FallbackValue='Initialize Servos' }"
+                		        ToolTip="{Binding InitializeServosToolTip, FallbackValue='Initialize Servos ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                		    Command="{Binding EngageAndCenterCommand }"
+                		    CommandParameter="{Binding EngageAndCenterCommandParameter}"
+                		    Content="{Binding EngageAndCenterContent, FallbackValue='Engage and Center' }"
+                		    ToolTip="{Binding EngageAndCenterToolTip, FallbackValue='Engage and Center ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem>
+                        <Button 
+                		    Command="{Binding ResetLimitsCommand }"
+                		    Content="Reset Limits"
+                		    ToolTip="Reset Position Limits to Device Min/Max" />
+                    </dxlc:LayoutItem>-->
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	Command="{Binding SetMotionParametersCommand }"
+                            CommandParameter="Slow"
+                        	Content="Set Motion (Slow)"
+                        	ToolTip="Set Acceleration (500) and VelocityLimit (100)" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem>
+                            <Button 
+                        	Command="{Binding SetMotionParametersCommand }"
+                            CommandParameter="Fast"
+                        	Content="Set Motion  (Fast)"
+                        	ToolTip="Set Acceleration (5000) and VelocityLimit (1000)" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem>
+                                <Button 
+                        	    Command="{Binding RelativeAccelerationCommand }"
+                                CommandParameter="{Binding ElementName=cbeRelativeAccelerationRC, Path=SelectedItemValue}"
+                        	    Content="Acceleration -/+" />
+                            </dxlc:LayoutItem>
+
+                            <dxe:ComboBoxEdit x:Name="cbeRelativeAccelerationRC" 
+                                          HorizontalAlignment="Right" VerticalAlignment="Top" Width="55"
+                                          ItemsSource="{Binding RelativeAccelerationAdjustment}">
+                            </dxe:ComboBoxEdit>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem>
+                                <Button 
+                        	    Command="{Binding RelativeVelocityLimitCommand }"
+                                CommandParameter="{Binding ElementName=cbeRelativeVelocityLimitRC, Path=SelectedItemValue}"
+                        	    Content="VelocityLimit -/+" />
+                            </dxlc:LayoutItem>
+
+                            <dxe:ComboBoxEdit x:Name="cbeRelativeVelocityLimitRC"
+                                          HorizontalAlignment="Right" VerticalAlignment="Top" Width="55"
+                            ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
+                            </dxe:ComboBoxEdit>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutItem  VerticalAlignment="Stretch" >
+                            <Button 
+		                    Command="{Binding PlayRCServoSequenceCommand }"
+                            CommandParameter="false"
+		                    Content="{Binding PlayRCServoSequenceContent, FallbackValue='PlaySequence' }"
+		                    ToolTip="{Binding PlayRCServoSequenceToolTip, FallbackValue='PlayRCServoSequence ToolTip' }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup x:Name="lgInterfaceKitSequences" Header="InterfaceKit Sequences" View="GroupBox" 
                               Orientation="Horizontal" VerticalAlignment="Top" 
                               IsCollapsible="True" IsCollapsed="False" >
 

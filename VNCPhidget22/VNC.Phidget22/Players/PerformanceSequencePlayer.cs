@@ -125,6 +125,10 @@ namespace VNC.Phidget22.Players
                                 nextPerformanceSequence = await ExecuteInterfaceKitPerformanceSequence(nextPerformanceSequence);
                                 break;
 
+                            case "RCS":
+                                nextPerformanceSequence = await ExecuteRCServoPerformanceSequence(nextPerformanceSequence);
+                                break;
+
                             case "ST":
                                 nextPerformanceSequence = await ExecuteStepperPerformanceSequence(nextPerformanceSequence);
                                 break;
@@ -206,6 +210,111 @@ namespace VNC.Phidget22.Players
             //        //}
 
             //        phidgetHost = GetAdvancedServoHost((int)performanceSequence.SerialNumber);
+
+            //        if (phidgetHost == null) 
+            //        {
+            //            Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //            nextPerformanceSequence = null;
+            //        }
+
+            //        if (phidgetHost is not null)
+            //        {
+            //            if (advancedServoSequence.BeforeActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in advancedServoSequence.BeforeActionLoopSequences)
+            //                {
+            //                    await ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
+
+            //            await phidgetHost.RunActionLoops(advancedServoSequence);
+
+            //            if (advancedServoSequence.AfterActionLoopSequences is not null)
+            //            {
+            //                foreach (PerformanceSequence sequence in advancedServoSequence.AfterActionLoopSequences)
+            //                {
+            //                    await ExecutePerformanceSequence(sequence);
+            //                }
+            //            }
+
+            //            if (advancedServoSequence.SequenceDuration is not null)
+            //            {
+            //                if (LogPerformanceSequence)
+            //                {
+            //                    Log.Trace($"Zzzzz Sequence:>{advancedServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+            //                }
+            //                Thread.Sleep((Int32)advancedServoSequence.SequenceDuration);
+            //            }
+
+            //            nextPerformanceSequence = advancedServoSequence.NextSequence;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
+            //        nextPerformanceSequence = null;
+            //    }
+
+            //    if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.Error(ex, Common.LOG_CATEGORY);
+            //}
+
+            return nextPerformanceSequence;
+        }
+
+
+        private async Task<PerformanceSequence> ExecuteRCServoPerformanceSequence(PerformanceSequence performanceSequence)
+        {
+            Int64 startTicks = 0;
+            PerformanceSequence nextPerformanceSequence = null;
+
+            // TODO(crhodes)
+            // 
+
+            //try
+            //{
+            //    RCServoEx phidgetHost = null;
+
+            //    if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(performanceSequence.Name ?? ""))
+            //    {
+            //        var advancedServoSequence = PerformanceLibrary.AvailableRCServoSequences[performanceSequence.Name];
+
+            //        if (LogPerformanceSequence)
+            //        {
+            //            startTicks = Log.Trace($"Executing AS Performance Sequence" +
+            //                //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
+            //                $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+            //                $" name:>{advancedServoSequence?.Name}<" +
+            //                $" sequenceLoops:>{advancedServoSequence?.SequenceLoops}<" +
+            //                $" beforeActionLoopSequences:>{advancedServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+            //                $" startActionLoopSequences:>{advancedServoSequence?.StartActionLoopSequences?.Count()}<" +
+            //                $" actionLoops:>{advancedServoSequence?.ActionLoops}<" +
+            //                $" executeActionsInParallel:>{advancedServoSequence?.ExecuteActionsInParallel}<" +
+            //                $" actionDuration:>{advancedServoSequence?.ActionsDuration}<" +
+            //                $" endActionLoopSequences:>{advancedServoSequence?.EndActionLoopSequences?.Count()}<" +
+            //                $" afterActionLoopSequences:>{advancedServoSequence?.AfterActionLoopSequences?.Count()}<" +
+            //                $" sequenceDuration:>{advancedServoSequence?.SequenceDuration}<" +
+            //                $" nextSequence:>{advancedServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+            //        }
+
+            //        //if (advancedServoSequence.SerialNumber is not null)
+            //        //{
+            //        //    phidgetHost = GetRCServoHost((int)advancedServoSequence.SerialNumber);
+            //        //}
+            //        //else if (ActiveRCServoHost is not null)
+            //        //{
+            //        //    phidgetHost = ActiveRCServoHost;
+            //        //}
+            //        //else
+            //        //{
+            //        //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
+            //        //    nextPerformanceSequence = null;
+            //        //}
+
+            //        phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber);
 
             //        if (phidgetHost == null) 
             //        {

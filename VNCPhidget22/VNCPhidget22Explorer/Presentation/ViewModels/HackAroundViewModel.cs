@@ -60,7 +60,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
 
             PlayPerformanceCommand = new DelegateCommand (PlayPerformance, PlayPerformanceCanExecute);
+            
             PlayAdvancedServoSequenceCommand = new DelegateCommand(PlayAdvancedServoSequence, PlayAdvancedServoSequenceCanExecute);
+
+            PlayRCServoSequenceCommand = new DelegateCommand(PlayRCServoSequence, PlayRCServoSequenceCanExecute);
 
             //InitializeServosCommand = new DelegateCommand(InitializeServos, InitializeServosCanExecute);
             //EngageAndCenterCommand = new DelegateCommand(EngageAndCenter, EngageAndCenterCanExecute);
@@ -84,6 +87,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             AdvancedServoSequences = PerformanceLibrary.AvailableAdvancedServoSequences.Values.ToList();
+            RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
             InterfaceKitSequences = PerformanceLibrary.AvailableInterfaceKitSequences.Values.ToList();
             StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
@@ -469,6 +473,169 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region RCServo
+
+        private IEnumerable<VNCPhidgetConfig.RCServo> _RCServos;
+        public IEnumerable<VNCPhidgetConfig.RCServo> RCServos
+        {
+            get
+            {
+                if (null == _RCServos)
+                {
+                    // TODO(crhodes)
+                    // Load this like the sensors.xml for now
+
+                    //_InterfaceKits =
+                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+                    //    select new InterfaceKit(
+                    //        item.Attribute("Name").Value,
+                    //        item.Attribute("IPAddress").Value,
+                    //        item.Attribute("Port").Value,
+                    //        bool.Parse(item.Attribute("Enable").Value)
+                    //        );
+                }
+
+                return _RCServos;
+            }
+
+            set
+            {
+                _RCServos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.RCServo _selectedRCServo;
+        public VNCPhidgetConfig.RCServo SelectedRCServo
+        {
+            get => _selectedRCServo;
+            set
+            {
+                if (_selectedRCServo == value)
+                    return;
+                _selectedRCServo = value;
+
+                //OpenRCServoCommand.RaiseCanExecuteChanged();
+                //PlayPerformanceCommand.RaiseCanExecuteChanged();
+                //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
+
+        //private bool _logCurrentChangeEvents = false;
+        //public bool LogCurrentChangeEvents
+        //{
+        //    get => _logCurrentChangeEvents;
+        //    set
+        //    {
+        //        if (_logCurrentChangeEvents == value)
+        //            return;
+        //        _logCurrentChangeEvents = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private bool _logPositionChangeEvents = false;
+        //public bool LogPositionChangeEvents
+        //{
+        //    get => _logPositionChangeEvents;
+        //    set
+        //    {
+        //        if (_logPositionChangeEvents == value)
+        //            return;
+        //        _logPositionChangeEvents = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private bool _logVelocityChangeEvents = false;
+        //public bool LogVelocityChangeEvents
+        //{
+        //    get => _logVelocityChangeEvents;
+        //    set
+        //    {
+        //        if (_logVelocityChangeEvents == value)
+        //            return;
+        //        _logVelocityChangeEvents = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
+        //{
+        //    -5000,
+        //    -1000,
+        //    -500,
+        //    -100,
+        //    -50,
+        //    50,
+        //    100,
+        //    500,
+        //    1000,
+        //    5000
+        //};
+
+        //public List<Int32> RelativeVelocityLimitAdjustment { get; } = new List<Int32>
+        //{
+        //    -1000,
+        //    -500,
+        //    -100,
+        //    -50,
+        //    -10,
+        //    10,
+        //    50,
+        //    100,
+        //    500,
+        //    1000
+        //};
+
+        private IEnumerable<VNCPhidgetConfig.RCServoSequence> _rcServoSequences;
+        public IEnumerable<VNCPhidgetConfig.RCServoSequence> RCServoSequences
+        {
+            get => _rcServoSequences;
+            set
+            {
+                _rcServoSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.RCServoSequence? _selectedRCServoSequence;
+        public VNCPhidgetConfig.RCServoSequence? SelectedRCServoSequence
+        {
+            get => _selectedRCServoSequence;
+            set
+            {
+                if (_selectedRCServoSequence == value) return;
+
+                _selectedRCServoSequence = value;
+                OnPropertyChanged();
+
+                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<VNCPhidgetConfig.RCServoSequence> _selectedRCServoSequences;
+        public List<VNCPhidgetConfig.RCServoSequence> SelectedRCServoSequences
+        {
+            get => _selectedRCServoSequences;
+            set
+            {
+                if (_selectedRCServoSequences == value)
+                {
+                    return;
+                }
+
+                _selectedRCServoSequences = value;
+                OnPropertyChanged();
+
+                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -1170,6 +1337,115 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region PlayRCServoSequence Command
+
+        public DelegateCommand PlayRCServoSequenceCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
+        //public TYPE PlaySequenceCommandParameter;
+        public string PlayRCServoSequenceContent { get; set; } = "Play Sequence";
+        public string PlayRCServoSequenceToolTip { get; set; } = "PlayRCServoSequence ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlaySequenceContent { get; set; } = "ViewName_PlaySequenceContent";
+        //public string PlaySequenceToolTip { get; set; } = "ViewName_PlaySequenceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlaySequenceContent">PlaySequence</system:String>
+        //    <system:String x:Key="ViewName_PlaySequenceContentToolTip">PlaySequence ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlaySequence(TYPE value)
+        public async void PlayRCServoSequence()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayRCServoSequence) Enter", Common.LOG_CATEGORY);
+
+            Message = "Cool, you called PlayRCServoSequence";
+
+            // TODO(crhodes)
+            // This has sideffect of setting ActivePerformancePlayer.
+            // Think through whether this make sense.
+
+            PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+            foreach (VNCPhidgetConfig.RCServoSequence sequence in SelectedRCServoSequences)
+            {
+                if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+
+                try
+                {
+                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
+                        new VNCPhidgetConfig.PerformanceSequence
+                        {
+                            SerialNumber = SelectedRCServo.SerialNumber,
+                            Name = sequence.Name,
+                            SequenceType = "RCS",
+                            SequenceLoops = sequence.SequenceLoops
+                        };
+
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
+                    {
+                        if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+                        //nextPerformanceSequence = await performanceSequencePlayer.ExecutePerformanceSequenceLoops(nextPerformanceSequence);
+                        await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayRCServoSequence) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public bool PlayPerformanceCanExecute(TYPE value)
+        public bool PlayRCServoSequenceCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (SelectedRCServoSequences?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
         #region AdvancedServo Individual Commands
 
         #region InitializeServos Command
@@ -1507,7 +1783,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             };
 
-            await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
+            // FIX(crhodes)
+            // 
+            //await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
 
             //VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence = 
             //     new PerformanceSequence 
@@ -1571,7 +1849,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }                
             };
 
-            await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
+            // FIX(crhodes)
+            // 
+            //await ActivePerformanceSequencePlayer.ActiveAdvancedServoHost.RunActionLoops(advancedServoSequence);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RelativeVelocityLimit) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1958,30 +2238,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //}
 
-        private void PhidgetManager_Error(object sender, Phidget22.Events.ErrorEventArgs e)
-        {
-            Log.Trace($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
-        }
+        //private void PhidgetManager_Error(object sender, Phidget22.Events.ErrorEventArgs e)
+        //{
+        //    Log.Trace($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
+        //}
 
-        private void PhidgetManager_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
-        {
-            Log.Trace($"ServerDisconnect {e.Device}", Common.LOG_CATEGORY);
-        }
+        //private void PhidgetManager_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
+        //{
+        //    Log.Trace($"ServerDisconnect {e.Device}", Common.LOG_CATEGORY);
+        //}
 
-        private void PhidgetManager_ServerConnect(object sender, Phidget22.Events.ServerConnectEventArgs e)
-        {
-            Log.Trace($"ServerConnect {e.Device}", Common.LOG_CATEGORY);
-        }
+        //private void PhidgetManager_ServerConnect(object sender, Phidget22.Events.ServerConnectEventArgs e)
+        //{
+        //    Log.Trace($"ServerConnect {e.Device}", Common.LOG_CATEGORY);
+        //}
 
-        private void PhidgetManager_Detach(object sender, Phidget22.Events.DetachEventArgs e)
-        {
-            Log.Trace($"Detach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
-        }
+        //private void PhidgetManager_Detach(object sender, Phidget22.Events.DetachEventArgs e)
+        //{
+        //    Log.Trace($"Detach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
+        //}
 
-        private void PhidgetManager_Attach(object sender, Phidget22.Events.AttachEventArgs e)
-        {
-            Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
-        }
+        //private void PhidgetManager_Attach(object sender, Phidget22.Events.AttachEventArgs e)
+        //{
+        //    Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
+        //}
 
         private void Button5Execute()
         {
