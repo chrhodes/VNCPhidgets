@@ -752,12 +752,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             for (int i = 0; i < deviceChannels.RCServoCount; i++)
             {
-                // NOTE(crhodes)
-                // If do not specify a timeout, Open() may return
-                // before initial state is available in Attch event
-
                 await Task.Run(() => RCServos[i].Open());
-                //await Task.Run(() => DigitalOutputs[i].Open(500));
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -829,7 +824,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenRCServoContentToolTip">OpenRCServo ToolTip</system:String>  
 
         // If using CommandParameter, figure out TYPE here
-        public void OpenRCServo(string servoNumber)
+        public async void OpenRCServo(string servoNumber)
         //public void OpenRCServo()
         {
             Int64 startTicks = 0;
@@ -840,6 +835,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called OpenRCServo";
 
             PublishStatusMessage(Message);
+
+            Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+            Int32 number;
+
+            if (Int32.TryParse(servoNumber, out number))
+            {
+                RCServos[number].SerialNumber = serialNumber;
+
+                await Task.Run(() => RCServos[number].Open());
+            }
+            else
+            {
+                Message = $"Cannot parse servoNumber:>{servoNumber}<";
+                Log.Error(Message, Common.LOG_CATEGORY);
+            }
 
             // If launching a UserControl
 
@@ -894,92 +904,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-
-        #region CloseRCServo Command
-
-        public DelegateCommand<string> CloseRCServoCommand { get; set; }
-        // If displaying UserControl
-        // public static WindowHost _CloseRCServoHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseRCServoCommandParameter;
-
-        public string CloseRCServoContent { get; set; } = "CloseRCServo";
-        public string CloseRCServoToolTip { get; set; } = "CloseRCServo ToolTip";
-
-        // Can get fancy and use Resources
-        //public string CloseRCServoContent { get; set; } = "ViewName_CloseRCServoContent";
-        //public string CloseRCServoToolTip { get; set; } = "ViewName_CloseRCServoContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_CloseRCServoContent">CloseRCServo</system:String>
-        //    <system:String x:Key="ViewName_CloseRCServoContentToolTip">CloseRCServo ToolTip</system:String>  
-
-        // If using CommandParameter, figure out TYPE here
-        public void CloseRCServo(string servoNumber)
-        //public void CloseRCServo()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            Message = "Cool, you called CloseRCServo";
-
-            PublishStatusMessage(Message);
-
-            // If launching a UserControl
-
-            // if (_CloseRCServoHost is null) _CloseRCServoHost = new WindowHost();
-            // var userControl = new USERCONTROL();
-
-            // _loggingConfigurationHost.DisplayUserControlInHost(
-            //     "TITLE GOES HERE",
-            //     //Common.DEFAULT_WINDOW_WIDTH,
-            //     //Common.DEFAULT_WINDOW_HEIGHT,
-            //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
-            //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
-            //     ShowWindowMode.Modeless_Show,
-            //     userControl);
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<CloseRCServoEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<CloseRCServoEvent>().Publish(
-            //      new CloseRCServoEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Four - Put this in PrismEvents
-
-            // public class CloseRCServoEvent : PubSubEvent { }
-
-            // End Cut Four
-
-            // Start Cut Five - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<CloseRCServoEvent>().Subscribe(CloseRCServo);
-
-            // End Cut Five
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        // If using CommandParameter, figure out TYPE and fix above
-        public bool CloseRCServoCanExecute(string value)
-        //public bool CloseRCServoCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
-        }
-
-        #endregion
 
         #region InitializeVelocityCommand
 
@@ -1529,7 +1453,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ActiveAdvancedServo.AdvancedServo.PositionChange -= ActiveAdvancedServo_PositionChange;
             //ActiveAdvancedServo.AdvancedServo.VelocityChange -= ActiveAdvancedServo_VelocityChange;
 
-            await Task.Run(() => ActiveAdvancedServo.Close());
+            DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedAdvancedServo.SerialNumber].DeviceChannels;
+
+            Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+
+            ConfigureRCServos(deviceChannels.RCServoCount, serialNumber);
+
+            for (int i = 0; i < deviceChannels.RCServoCount; i++)
+            {
+                await Task.Run(() => RCServos[i].Close());
+            }
 
             DeviceAttached = false;
             UpdateAdvancedServoProperties();
@@ -1543,6 +1476,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             InitializeVelocityCommand.RaiseCanExecuteChanged();
             InitializeAccelerationCommand.RaiseCanExecuteChanged();
+
             //InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
             //InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
 
@@ -1602,6 +1536,109 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #region CloseRCServo Command
+
+        public DelegateCommand<string> CloseRCServoCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _CloseRCServoHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE CloseRCServoCommandParameter;
+
+        public string CloseRCServoContent { get; set; } = "CloseRCServo";
+        public string CloseRCServoToolTip { get; set; } = "CloseRCServo ToolTip";
+
+        // Can get fancy and use Resources
+        //public string CloseRCServoContent { get; set; } = "ViewName_CloseRCServoContent";
+        //public string CloseRCServoToolTip { get; set; } = "ViewName_CloseRCServoContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_CloseRCServoContent">CloseRCServo</system:String>
+        //    <system:String x:Key="ViewName_CloseRCServoContentToolTip">CloseRCServo ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE here
+        public async void CloseRCServo(string servoNumber)
+        //public void CloseRCServo()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = "Cool, you called CloseRCServo";
+
+            PublishStatusMessage(Message);
+
+            Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+            Int32 number;
+
+            if (Int32.TryParse(servoNumber, out number))
+            {
+                RCServos[number].SerialNumber = serialNumber;
+
+                await Task.Run(() => RCServos[number].Close());
+            }
+            else
+            {
+                Message = $"Cannot parse servoNumber:>{servoNumber}<";
+                Log.Error(Message, Common.LOG_CATEGORY);
+            }
+
+
+            // If launching a UserControl
+
+            // if (_CloseRCServoHost is null) _CloseRCServoHost = new WindowHost();
+            // var userControl = new USERCONTROL();
+
+            // _loggingConfigurationHost.DisplayUserControlInHost(
+            //     "TITLE GOES HERE",
+            //     //Common.DEFAULT_WINDOW_WIDTH,
+            //     //Common.DEFAULT_WINDOW_HEIGHT,
+            //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+            //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+            //     ShowWindowMode.Modeless_Show,
+            //     userControl);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<CloseRCServoEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<CloseRCServoEvent>().Publish(
+            //      new CloseRCServoEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class CloseRCServoEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<CloseRCServoEvent>().Subscribe(CloseRCServo);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public bool CloseRCServoCanExecute(string value)
+        //public bool CloseRCServoCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion
+
 
         #region ConfigureServo Command
 
