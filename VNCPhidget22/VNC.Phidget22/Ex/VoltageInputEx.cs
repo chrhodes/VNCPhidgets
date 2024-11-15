@@ -93,6 +93,7 @@ namespace VNC.Phidget22.Ex
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
+        public bool LogActionVerification { get; set; }
 
         private int _serialNumber;
         public int SerialNumber

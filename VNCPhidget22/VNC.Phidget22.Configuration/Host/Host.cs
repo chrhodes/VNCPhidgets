@@ -2,6 +2,11 @@
 
 namespace VNC.Phidget22.Configuration
 {
+    /// <summary>
+    /// An IP addressable device
+    /// (typically a SBC)
+    /// that provides one or more types of Phidgets
+    /// </summary>
     public class Host
     {
         public string Name { get; set; } = "HOST NAME";
@@ -11,9 +16,19 @@ namespace VNC.Phidget22.Configuration
 
         public AdvancedServo[]? AdvancedServos { get; set; }
 
+        public DigitalInput[]? DigitalInputs { get; set; }
+
+        public DigitalOutput[]? DigitalOutputs { get; set; }
+
         public InterfaceKit[]? InterfaceKits { get; set; }
 
+        public RCServo[]? RCServos { get; set; }
+
         public Stepper[]? Steppers { get; set; }
+
+        public VoltageInput[]? VoltageInputs { get; set; }
+
+        public VoltageOutput[]? VoltageOutputs { get; set; }
     }
 }
 

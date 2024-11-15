@@ -7,7 +7,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Index of VoltageOutput on board 
         /// </summary>
-        public int VoltageOutIndex { get; set; }
+        public int Channel { get; set; }
    
         /// <summary>
         /// Set DigitalOut value

@@ -80,14 +80,29 @@
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
+      "DigitalInputs": [
+        { "Name": "DigitalInput 99415", "SerialNumber": 99415, "Open": true },
+      ],
+      "DigitalOutputs": [
+        { "Name": "DigitalOutput 99415", "SerialNumber": 99415, "Open": true },
+      ],
       "InterfaceKits": [
         { "Name": "psbc23 IK-48284", "SerialNumber": 48284, "Open": true, "Embedded": true },
         { "Name": "InterfaceKit-124744", "SerialNumber": 124744, "Open": true, "Embedded": false }
+      ],
+      "RCServos": [
+        { "Name": "RCServo 99415", "SerialNumber": 99415, "Open": true },
       ],
       "Steppers": [
         //{ "Name": "Stepper 268213", "SerialNumber": 268213 },
         //{ "Name": "Stepper 270348", "SerialNumber": 270348 },
         //{ "Name": "Stepper 270460", "SerialNumber": 270460 },
+      ],
+      "VoltageInputs": [
+        { "Name": "VoltageInput 99415", "SerialNumber": 99415, "Open": true },
+      ],
+      "VoltageOutputs": [
+        { "Name": "VoltageOutput 99415", "SerialNumber": 99415, "Open": true },
       ],
     },
         {

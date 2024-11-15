@@ -30,9 +30,13 @@ namespace VNC.Phidget22.Configuration
             LoadPerformances();
 
             LoadAdvancedServoSequences();
-            LoadRCServoSequences();
+            LoadDigitalInputSequences();
+            LoadDigitalOutputSequences();
             LoadInterfaceKitSequences();
+            LoadRCServoSequences();
             LoadStepperSequences();
+            LoadVoltageInputSequences();
+            LoadVoltageOutputSequences();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -59,14 +63,26 @@ namespace VNC.Phidget22.Configuration
         public static Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
             new Dictionary<string, AdvancedServoSequence>();
 
-        public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
-            new Dictionary<string, RCServoSequence>();
+        public static Dictionary<string, DigitalInputSequence> AvailableDigitalInputSequences { get; set; } =
+             new Dictionary<string, DigitalInputSequence>();
+
+        public static Dictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences { get; set; } =
+            new Dictionary<string, DigitalOutputSequence>();
 
         public static Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; } =
             new Dictionary<string, InterfaceKitSequence>();
 
+        public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
+            new Dictionary<string, RCServoSequence>();
+
         public static Dictionary<string, StepperSequence> AvailableStepperSequences { get; set; } =
             new Dictionary<string, StepperSequence>();
+
+        public static Dictionary<string, VoltageInputSequence> AvailableVoltageInputSequences { get; set; } =
+             new Dictionary<string, VoltageInputSequence>();
+
+        public static Dictionary<string, VoltageOutputSequence> AvailableVoltageOutputSequences { get; set; } =
+            new Dictionary<string, VoltageOutputSequence>();
 
         #endregion
 
@@ -85,7 +101,6 @@ namespace VNC.Phidget22.Configuration
         public void LoadHostsConfig()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             string configFile = "hostconfig.json";
 
@@ -208,6 +223,119 @@ namespace VNC.Phidget22.Configuration
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        public void LoadDigitalInputSequences()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableDigitalInputSequences.Clear();
+
+            foreach (string configFile in GetListOfDigitalInputConfigFiles())
+            {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    DigitalInputSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<DigitalInputSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.DigitalInputSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableDigitalInputSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalInputConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadDigitalOutputSequences()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableDigitalOutputSequences.Clear();
+
+            foreach (string configFile in GetListOfDigitalOutputConfigFiles())
+            {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    DigitalOutputSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<DigitalOutputSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.DigitalOutputSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableDigitalOutputSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+        public void LoadInterfaceKitSequences()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableInterfaceKitSequences.Clear();
+
+            foreach (string configFile in GetListOfInterfaceKitConfigFiles())
+            {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    InterfaceKitSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<InterfaceKitSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.InterfaceKitSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfInterfaceKitConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         public void LoadRCServoSequences()
         {
             Int64 startTicks = 0;
@@ -246,44 +374,6 @@ namespace VNC.Phidget22.Configuration
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadInterfaceKitSequences()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
-
-            AvailableInterfaceKitSequences.Clear();
-  
-            foreach (string configFile in GetListOfInterfaceKitConfigFiles())
-            {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    InterfaceKitSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<InterfaceKitSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    foreach (var sequence in sequenceConfig.InterfaceKitSequences.ToDictionary(k => k.Name, v => v))
-                    {
-                        AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfInterfaceKitConfigFiles()", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
-            }
-
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         public void LoadStepperSequences()
         {
             Int64 startTicks = 0;
@@ -311,6 +401,82 @@ namespace VNC.Phidget22.Configuration
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadVoltageInputSequences()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableVoltageInputSequences.Clear();
+
+            foreach (string configFile in GetListOfVoltageInputConfigFiles())
+            {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    VoltageInputSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.VoltageInputSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableVoltageInputSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageInputConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadVoltageOutputSequences()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableVoltageOutputSequences.Clear();
+
+            foreach (string configFile in GetListOfVoltageOutputConfigFiles())
+            {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    VoltageOutputSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<VoltageOutputSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.VoltageOutputSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableVoltageOutputSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageOutputConfigFiles()", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -379,7 +545,7 @@ namespace VNC.Phidget22.Configuration
             return files;
         }
 
-        private IEnumerable<string> GetListOfRCServoConfigFiles()
+        private IEnumerable<string> GetListOfDigitalInputConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -388,7 +554,22 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"RCServoSequences\RCServoSequenceConfig_99415.json"
+                @"DigitalInputSequences\DigitalInputSequenceConfig_124744.json"
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfDigitalOutputConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+
+            List<string> files = new List<string>
+            {
+                @"DigitalOutputSequences\DigitalOutputSequenceConfig_124744.json"
             };
 
             return files;
@@ -413,6 +594,21 @@ namespace VNC.Phidget22.Configuration
             return files;
         }
 
+        private IEnumerable<string> GetListOfRCServoConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+
+            List<string> files = new List<string>
+            {
+                @"RCServoSequences\RCServoSequenceConfig_99415.json"
+            };
+
+            return files;
+        }
+
         private IEnumerable<string> GetListOfStepperConfigFiles()
         {
             // HACK(crhodes)
@@ -422,6 +618,36 @@ namespace VNC.Phidget22.Configuration
             List<string> files = new List<string>
             {
                 @"StepperSequences\StepperSequenceConfig_1.json",
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfVoltageInputConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+
+            List<string> files = new List<string>
+            {
+                @"VoltageInputSequences\VoltageInputSequenceConfig_124744.json"
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfVoltageOutputConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+
+            List<string> files = new List<string>
+            {
+                @"VoltageOutputSequences\VoltagelOutputSequenceConfig_XXXX.json"
             };
 
             return files;

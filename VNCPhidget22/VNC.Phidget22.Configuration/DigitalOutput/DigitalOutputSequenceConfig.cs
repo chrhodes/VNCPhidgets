@@ -11,12 +11,12 @@
 
                 Actions = new[]
                 {
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
+                    new DigitalOutputAction { Channel = 0, DigitalOut = true, Duration=500 },
+                    new DigitalOutputAction { Channel = 0, DigitalOut = false, Duration=500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = false, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = false, Duration = 500 }
                 }
             },
             new DigitalOutputSequence
@@ -26,12 +26,12 @@
 
                 Actions = new[]
                 {
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
+                    new DigitalOutputAction { Channel = 0, DigitalOut = true, Duration=500 },
+                    new DigitalOutputAction { Channel = 0, DigitalOut = false, Duration=500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = false, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = false, Duration = 500 }
                 }
             },
             new DigitalOutputSequence
@@ -42,12 +42,12 @@
 
                 Actions = new[]
                 {
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
+                    new DigitalOutputAction { Channel = 0, DigitalOut = true, Duration=500 },
+                    new DigitalOutputAction { Channel = 0, DigitalOut = false, Duration=500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = false, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = false, Duration = 500 }
                 }
             },
             new DigitalOutputSequence
@@ -58,12 +58,12 @@
 
                 Actions = new[]
                 {
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
+                    new DigitalOutputAction { Channel = 0, DigitalOut = true, Duration=500 },
+                    new DigitalOutputAction { Channel = 0, DigitalOut = false, Duration=500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = false, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = false, Duration = 500 }
                 }
             },
             new DigitalOutputSequence
@@ -74,12 +74,12 @@
 
                 Actions = new[]
                 {
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
+                    new DigitalOutputAction { Channel = 0, DigitalOut = true, Duration=500 },
+                    new DigitalOutputAction { Channel = 0, DigitalOut = false, Duration=500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = false, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = false, Duration = 500 }
                 }
             },
             new DigitalOutputSequence
@@ -89,12 +89,12 @@
 
                 Actions = new[]
                 {
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = true, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 0, DigitalOut = false, Duration=500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 1, DigitalOut = false, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = true, Duration = 500 },
-                    new DigitalOutputAction { DigitalOutIndex = 2, DigitalOut = false, Duration = 500 }
+                    new DigitalOutputAction { Channel = 0, DigitalOut = true, Duration=500 },
+                    new DigitalOutputAction { Channel = 0, DigitalOut = false, Duration=500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 1, DigitalOut = false, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = true, Duration = 500 },
+                    new DigitalOutputAction { Channel = 2, DigitalOut = false, Duration = 500 }
                 }
             },
         };

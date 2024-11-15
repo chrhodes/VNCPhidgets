@@ -5,6 +5,8 @@
         public const string APPLICATION_NAME = "VNCPhidget";
         public new const string LOG_CATEGORY = "VNCPhidget";
 
+        public static PhidgetDeviceLibrary PhidgetDeviceLibrary;
+
         //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
         public static int? PhidgetOpenTimeout { get; set; } = null; // ms
     }

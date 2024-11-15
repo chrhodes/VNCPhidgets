@@ -60,6 +60,7 @@ namespace VNC.Phidget22
 
             Thread.Sleep(1000);
 
+            Common.PhidgetDeviceLibrary = this;
             //if (host.AdvancedServos is not null)
             //{
             //    foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)

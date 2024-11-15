@@ -169,6 +169,12 @@
         <None Update="Resources\json\AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\json\DigitalInputSequences\DigitalInputSequenceConfig_124744.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequenceConfig_124744.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\hostconfig.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -209,6 +215,12 @@
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\VoltageInputSequences\VoltageInputSequenceConfig_124744.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\VoltageOutputSequences\VoltageOutputSequenceConfig_XXXX.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="vnccoreloggingconfig-Debug.json">

@@ -245,8 +245,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 AdvancedServos = _selectedHost.AdvancedServos?.ToList<VNCPhidgetConfig.AdvancedServo>();
+                DigitalInputs = _selectedHost.DigitalInputs?.ToList<VNCPhidgetConfig.DigitalInput>();
+                DigitalOutputs = _selectedHost.DigitalOutputs?.ToList<VNCPhidgetConfig.DigitalOutput>();
                 InterfaceKits = _selectedHost.InterfaceKits?.ToList<VNCPhidgetConfig.InterfaceKit>();
+                RCServos = _selectedHost.RCServos?.ToList<VNCPhidgetConfig.RCServo>();
                 Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
+                VoltageInputs = _selectedHost.VoltageInputs?.ToList<VNCPhidgetConfig.VoltageInput>();
+                VoltageOutputs = _selectedHost.VoltageOutputs?.ToList<VNCPhidgetConfig.VoltageOutput>();
             }
         }
 
@@ -473,6 +478,168 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region DigitalInput
+
+        private IEnumerable<VNCPhidgetConfig.DigitalInput> _DigitalInputs;
+        public IEnumerable<VNCPhidgetConfig.DigitalInput> DigitalInputs
+        {
+            get
+            {
+                return _DigitalInputs;
+            }
+
+            set
+            {
+                _DigitalInputs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.DigitalInput _selectedDigitalInput;
+        public VNCPhidgetConfig.DigitalInput SelectedDigitalInput
+        {
+            get => _selectedDigitalInput;
+            set
+            {
+                if (_selectedDigitalInput == value)
+                    return;
+                _selectedDigitalInput = value;
+
+                //OpenDigitalInputCommand.RaiseCanExecuteChanged();
+                //PlayPerformanceCommand.RaiseCanExecuteChanged();
+                //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<VNCPhidgetConfig.DigitalInputSequence> _digitalInputSequences;
+        public IEnumerable<VNCPhidgetConfig.DigitalInputSequence> DigitalInputSequences
+        {
+            get => _digitalInputSequences;
+            set
+            {
+                _digitalInputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.DigitalInputSequence? _selectedDigitalInputSequence;
+        public VNCPhidgetConfig.DigitalInputSequence? SelectedDigitalInputSequence
+        {
+            get => _selectedDigitalInputSequence;
+            set
+            {
+                if (_selectedDigitalInputSequence == value) return;
+
+                _selectedDigitalInputSequence = value;
+                OnPropertyChanged();
+
+                //PlayDigitalInputSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<VNCPhidgetConfig.DigitalInputSequence> _selectedDigitalInputSequences;
+        public List<VNCPhidgetConfig.DigitalInputSequence> SelectedDigitalInputSequences
+        {
+            get => _selectedDigitalInputSequences;
+            set
+            {
+                if (_selectedDigitalInputSequences == value)
+                {
+                    return;
+                }
+
+                _selectedDigitalInputSequences = value;
+                OnPropertyChanged();
+
+                //PlayDigitalInputSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region DigitalOutput
+
+        private IEnumerable<VNCPhidgetConfig.DigitalOutput> _DigitalOutputs;
+        public IEnumerable<VNCPhidgetConfig.DigitalOutput> DigitalOutputs
+        {
+            get
+            {
+                return _DigitalOutputs;
+            }
+
+            set
+            {
+                _DigitalOutputs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.DigitalOutput _selectedDigitalOutput;
+        public VNCPhidgetConfig.DigitalOutput SelectedDigitalOutput
+        {
+            get => _selectedDigitalOutput;
+            set
+            {
+                if (_selectedDigitalOutput == value)
+                    return;
+                _selectedDigitalOutput = value;
+
+                //OpenDigitalOutputCommand.RaiseCanExecuteChanged();
+                //PlayPerformanceCommand.RaiseCanExecuteChanged();
+                //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<VNCPhidgetConfig.DigitalOutputSequence> _digitalOutputSequences;
+        public IEnumerable<VNCPhidgetConfig.DigitalOutputSequence> DigitalOutputSequences
+        {
+            get => _digitalOutputSequences;
+            set
+            {
+                _digitalOutputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.DigitalOutputSequence? _selectedDigitalOutputSequence;
+        public VNCPhidgetConfig.DigitalOutputSequence? SelectedDigitalOutputSequence
+        {
+            get => _selectedDigitalOutputSequence;
+            set
+            {
+                if (_selectedDigitalOutputSequence == value) return;
+
+                _selectedDigitalOutputSequence = value;
+                OnPropertyChanged();
+
+                //PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<VNCPhidgetConfig.DigitalOutputSequence> _selectedDigitalOutputSequences;
+        public List<VNCPhidgetConfig.DigitalOutputSequence> SelectedDigitalOutputSequences
+        {
+            get => _selectedDigitalOutputSequences;
+            set
+            {
+                if (_selectedDigitalOutputSequences == value)
+                {
+                    return;
+                }
+
+                _selectedDigitalOutputSequences = value;
+                OnPropertyChanged();
+
+                //PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -877,6 +1044,169 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 PlayStepperSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+        #region VoltageInput
+
+        private IEnumerable<VNCPhidgetConfig.VoltageInput> _VoltageInputs;
+        public IEnumerable<VNCPhidgetConfig.VoltageInput> VoltageInputs
+        {
+            get
+            {
+                return _VoltageInputs;
+            }
+
+            set
+            {
+                _VoltageInputs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.VoltageInput _selectedVoltageInput;
+        public VNCPhidgetConfig.VoltageInput SelectedVoltageInput
+        {
+            get => _selectedVoltageInput;
+            set
+            {
+                if (_selectedVoltageInput == value)
+                    return;
+                _selectedVoltageInput = value;
+
+                //OpenVoltageInputCommand.RaiseCanExecuteChanged();
+                //PlayPerformanceCommand.RaiseCanExecuteChanged();
+                //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<VNCPhidgetConfig.VoltageInputSequence> _voltageInputSequences;
+        public IEnumerable<VNCPhidgetConfig.VoltageInputSequence> VoltageInputSequences
+        {
+            get => _voltageInputSequences;
+            set
+            {
+                _voltageInputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.VoltageInputSequence? _selectedVoltageInputSequence;
+        public VNCPhidgetConfig.VoltageInputSequence? SelectedVoltageInputSequence
+        {
+            get => _selectedVoltageInputSequence;
+            set
+            {
+                if (_selectedVoltageInputSequence == value) return;
+
+                _selectedVoltageInputSequence = value;
+                OnPropertyChanged();
+
+                //PlayVoltageInputSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<VNCPhidgetConfig.VoltageInputSequence> _selectedVoltageInputSequences;
+        public List<VNCPhidgetConfig.VoltageInputSequence> SelectedVoltageInputSequences
+        {
+            get => _selectedVoltageInputSequences;
+            set
+            {
+                if (_selectedVoltageInputSequences == value)
+                {
+                    return;
+                }
+
+                _selectedVoltageInputSequences = value;
+                OnPropertyChanged();
+
+                //PlayVoltageInputSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        #endregion
+
+
+        #region VoltageOutput
+
+        private IEnumerable<VNCPhidgetConfig.VoltageOutput> _VoltageOutputs;
+        public IEnumerable<VNCPhidgetConfig.VoltageOutput> VoltageOutputs
+        {
+            get
+            {
+                return _VoltageOutputs;
+            }
+
+            set
+            {
+                _VoltageOutputs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.VoltageOutput _selectedVoltageOutput;
+        public VNCPhidgetConfig.VoltageOutput SelectedVoltageOutput
+        {
+            get => _selectedVoltageOutput;
+            set
+            {
+                if (_selectedVoltageOutput == value)
+                    return;
+                _selectedVoltageOutput = value;
+
+                //OpenVoltageOutputCommand.RaiseCanExecuteChanged();
+                //PlayPerformanceCommand.RaiseCanExecuteChanged();
+                //PlaySequenceCommand.RaiseCanExecuteChanged();
+
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<VNCPhidgetConfig.VoltageOutputSequence> _voltageOutputSequences;
+        public IEnumerable<VNCPhidgetConfig.VoltageOutputSequence> VoltageOutputSequences
+        {
+            get => _voltageOutputSequences;
+            set
+            {
+                _voltageOutputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.VoltageOutputSequence? _selectedVoltageOutputSequence;
+        public VNCPhidgetConfig.VoltageOutputSequence? SelectedVoltageOutputSequence
+        {
+            get => _selectedVoltageOutputSequence;
+            set
+            {
+                if (_selectedVoltageOutputSequence == value) return;
+
+                _selectedVoltageOutputSequence = value;
+                OnPropertyChanged();
+
+                //PlayVoltageOutputSequenceCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<VNCPhidgetConfig.VoltageOutputSequence> _selectedVoltageOutputSequences;
+        public List<VNCPhidgetConfig.VoltageOutputSequence> SelectedVoltageOutputSequences
+        {
+            get => _selectedVoltageOutputSequences;
+            set
+            {
+                if (_selectedVoltageOutputSequences == value)
+                {
+                    return;
+                }
+
+                _selectedVoltageOutputSequences = value;
+                OnPropertyChanged();
+
+                //PlayVoltageOutputSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 

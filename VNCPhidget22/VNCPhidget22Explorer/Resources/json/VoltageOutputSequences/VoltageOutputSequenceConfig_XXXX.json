@@ -1,0 +1,12 @@
+{
+  "VoltageOutputSequences": [
+    {
+      "SerialNumber": xxxx,
+      "Name": "xxx", 
+      "Description": "xxx", 
+      "Actions": [
+        { "Channel": 0,  },
+      ]
+    },
+  ]
+}

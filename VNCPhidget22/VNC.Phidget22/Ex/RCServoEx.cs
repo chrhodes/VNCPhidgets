@@ -90,19 +90,18 @@ namespace VNC.Phidget22.Ex
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; 
-            set; }
+        public bool LogPhidgetEvents { get; set; }
         public bool LogErrorEvents { get; set; }
         public bool LogPropertyChangeEvents { get; set; }
 
         public bool LogPositionChangeEvents { get; set; }
         public bool LogVelocityChangeEvents { get; set; }
 
-        public bool LogTargetPositionReachedEvents { get; 
-            set; }
+        public bool LogTargetPositionReachedEvents { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
+        public bool LogActionVerification { get; set; }
 
         private int _serialNumber;
         public int SerialNumber
@@ -985,10 +984,12 @@ namespace VNC.Phidget22.Ex
         //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
-        public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)
+        public async Task RunActionLoops(RCServoSequence rcServoSequence)
         {
             long startTicks = 0;
 
+            // FIX(crhodes)
+            // 
             //try
             //{
             //    if (LogPerformanceSequence)
@@ -1624,9 +1625,9 @@ namespace VNC.Phidget22.Ex
         {
             long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            var advancedServoSequence = args.AdvancedServoSequence;
+            var rcServoSequence = args.RCServoSequence;
 
-            await RunActionLoops(advancedServoSequence);
+            await RunActionLoops(rcServoSequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

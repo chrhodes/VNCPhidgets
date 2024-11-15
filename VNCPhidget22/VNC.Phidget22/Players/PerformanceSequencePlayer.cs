@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Ex;
 
 namespace VNC.Phidget22.Players
 {
@@ -22,6 +23,7 @@ namespace VNC.Phidget22.Players
 
         public PerformanceSequencePlayer(IEventAggregator eventAggregator)
         {
+            
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
@@ -50,15 +52,22 @@ namespace VNC.Phidget22.Players
 
         // TODO(crhodes)
         // 
-        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
-        //public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
-        //public StepperEx ActiveStepperHost { get; set; }
+        public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+        public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
+        public RCServoEx ActiveRCServoHost { get; set; }
+        public StepperEx ActiveStepperHost { get; set; }
 
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
 
-        // AdvancedServo events
+        // Phidget Events
+
+        public bool LogPhidgetEvents { get; set; }
+        public bool LogErrorEvents { get; set; }
+        public bool LogPropertyChangeEvents { get; set; }
+
+        // AdvancedServo and RCServo events
 
         public bool LogCurrentChangeEvents { get; set; }
         public bool LogPositionChangeEvents { get; set; }
@@ -70,9 +79,7 @@ namespace VNC.Phidget22.Players
         public bool LogOutputChangeEvents { get; set; }
         public bool LogSensorChangeEvents { get; set; }
 
-        // Phidget Events
-
-        public bool LogPhidgetEvents { get; set; }
+        //
 
         #endregion
 
@@ -87,6 +94,14 @@ namespace VNC.Phidget22.Players
 
         #region Public Methods
 
+        /// <summary>
+        /// Dispatches performanceSequence
+        /// to Execution<TYPE>PerformanceSequence
+        /// while performanceSequence.NextPerformanceSequence
+        /// is not null
+        /// </summary>
+        /// <param name="performanceSequence"></param>
+        /// <returns></returns>
         public async Task ExecutePerformanceSequence(PerformanceSequence performanceSequence)
         {
             Int64 startTicks = 0;
@@ -265,107 +280,106 @@ namespace VNC.Phidget22.Players
             return nextPerformanceSequence;
         }
 
-
         private async Task<PerformanceSequence> ExecuteRCServoPerformanceSequence(PerformanceSequence performanceSequence)
         {
             Int64 startTicks = 0;
             PerformanceSequence nextPerformanceSequence = null;
 
-            // TODO(crhodes)
+            // FIX(crhodes)
             // 
 
-            //try
-            //{
-            //    RCServoEx phidgetHost = null;
+            try
+            {
+                RCServoEx phidgetHost = null;
 
-            //    if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(performanceSequence.Name ?? ""))
-            //    {
-            //        var advancedServoSequence = PerformanceLibrary.AvailableRCServoSequences[performanceSequence.Name];
+                if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(performanceSequence.Name ?? ""))
+                {
+                    var rcServoSequence = PerformanceLibrary.AvailableRCServoSequences[performanceSequence.Name];
 
-            //        if (LogPerformanceSequence)
-            //        {
-            //            startTicks = Log.Trace($"Executing AS Performance Sequence" +
-            //                //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
-            //                $" serialNumber:>{performanceSequence?.SerialNumber}<" +
-            //                $" name:>{advancedServoSequence?.Name}<" +
-            //                $" sequenceLoops:>{advancedServoSequence?.SequenceLoops}<" +
-            //                $" beforeActionLoopSequences:>{advancedServoSequence?.BeforeActionLoopSequences?.Count()}<" +
-            //                $" startActionLoopSequences:>{advancedServoSequence?.StartActionLoopSequences?.Count()}<" +
-            //                $" actionLoops:>{advancedServoSequence?.ActionLoops}<" +
-            //                $" executeActionsInParallel:>{advancedServoSequence?.ExecuteActionsInParallel}<" +
-            //                $" actionDuration:>{advancedServoSequence?.ActionsDuration}<" +
-            //                $" endActionLoopSequences:>{advancedServoSequence?.EndActionLoopSequences?.Count()}<" +
-            //                $" afterActionLoopSequences:>{advancedServoSequence?.AfterActionLoopSequences?.Count()}<" +
-            //                $" sequenceDuration:>{advancedServoSequence?.SequenceDuration}<" +
-            //                $" nextSequence:>{advancedServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-            //        }
+                    if (LogPerformanceSequence)
+                    {
+                        startTicks = Log.Trace($"Executing RCS Performance Sequence" +
+                            //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
+                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+                            $" name:>{rcServoSequence?.Name}<" +
+                            $" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                            $" beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            $" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                            $" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                            $" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                            $" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                            $" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                            $" afterActionLoopSequences:>{rcServoSequence?.AfterActionLoopSequences?.Count()}<" +
+                            $" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                            $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+                    }
 
-            //        //if (advancedServoSequence.SerialNumber is not null)
-            //        //{
-            //        //    phidgetHost = GetRCServoHost((int)advancedServoSequence.SerialNumber);
-            //        //}
-            //        //else if (ActiveRCServoHost is not null)
-            //        //{
-            //        //    phidgetHost = ActiveRCServoHost;
-            //        //}
-            //        //else
-            //        //{
-            //        //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
-            //        //    nextPerformanceSequence = null;
-            //        //}
+                    //if (advancedServoSequence.SerialNumber is not null)
+                    //{
+                    //    phidgetHost = GetRCServoHost((int)advancedServoSequence.SerialNumber);
+                    //}
+                    //else if (ActiveRCServoHost is not null)
+                    //{
+                    //    phidgetHost = ActiveRCServoHost;
+                    //}
+                    //else
+                    //{
+                    //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
+                    //    nextPerformanceSequence = null;
+                    //}
 
-            //        phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber);
+                    phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber);
 
-            //        if (phidgetHost == null) 
-            //        {
-            //            Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
-            //            nextPerformanceSequence = null;
-            //        }
+                    if (phidgetHost == null)
+                    {
+                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        nextPerformanceSequence = null;
+                    }
 
-            //        if (phidgetHost is not null)
-            //        {
-            //            if (advancedServoSequence.BeforeActionLoopSequences is not null)
-            //            {
-            //                foreach (PerformanceSequence sequence in advancedServoSequence.BeforeActionLoopSequences)
-            //                {
-            //                    await ExecutePerformanceSequence(sequence);
-            //                }
-            //            }
+                    if (phidgetHost is not null)
+                    {
+                        if (rcServoSequence.BeforeActionLoopSequences is not null)
+                        {
+                            foreach (PerformanceSequence sequence in rcServoSequence.BeforeActionLoopSequences)
+                            {
+                                await ExecutePerformanceSequence(sequence);
+                            }
+                        }
 
-            //            await phidgetHost.RunActionLoops(advancedServoSequence);
+                        await phidgetHost.RunActionLoops(rcServoSequence);
 
-            //            if (advancedServoSequence.AfterActionLoopSequences is not null)
-            //            {
-            //                foreach (PerformanceSequence sequence in advancedServoSequence.AfterActionLoopSequences)
-            //                {
-            //                    await ExecutePerformanceSequence(sequence);
-            //                }
-            //            }
+                        if (rcServoSequence.AfterActionLoopSequences is not null)
+                        {
+                            foreach (PerformanceSequence sequence in rcServoSequence.AfterActionLoopSequences)
+                            {
+                                await ExecutePerformanceSequence(sequence);
+                            }
+                        }
 
-            //            if (advancedServoSequence.SequenceDuration is not null)
-            //            {
-            //                if (LogPerformanceSequence)
-            //                {
-            //                    Log.Trace($"Zzzzz Sequence:>{advancedServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-            //                }
-            //                Thread.Sleep((Int32)advancedServoSequence.SequenceDuration);
-            //            }
+                        if (rcServoSequence.SequenceDuration is not null)
+                        {
+                            if (LogPerformanceSequence)
+                            {
+                                Log.Trace($"Zzzzz Sequence:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
+                        }
 
-            //            nextPerformanceSequence = advancedServoSequence.NextSequence;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
-            //        nextPerformanceSequence = null;
-            //    }
+                        nextPerformanceSequence = rcServoSequence.NextSequence;
+                    }
+                }
+                else
+                {
+                    Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
+                    nextPerformanceSequence = null;
+                }
 
-            //    if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log.Error(ex, Common.LOG_CATEGORY);
-            //}
+                if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             return nextPerformanceSequence;
         }
@@ -575,7 +589,7 @@ namespace VNC.Phidget22.Players
             return nextPerformanceSequence;
         }
 
-        // TODO(crhodes)
+        // FIX(crhodes)
         // 
 
         //private AdvancedServoEx GetAdvancedServoHost(int serialNumber)
@@ -688,6 +702,65 @@ namespace VNC.Phidget22.Players
 
         //    return interfaceKitHost;
         //}
+
+        private RCServoEx GetRCServoHost(int serialNumber)
+        {
+            PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
+
+            RCServoEx rcServoHost = null;
+
+            if (phidgetDevice?.PhidgetEx is not null)
+            {
+                rcServoHost = ActiveRCServoHost;
+                //rcServoHost = (RCServoEx)phidgetDevice;
+
+                rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+                rcServoHost.LogErrorEvents = LogErrorEvents;
+                rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+                rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+                rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+                rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+                rcServoHost.LogSequenceAction = LogSequenceAction;
+                rcServoHost.LogActionVerification = LogActionVerification;
+            }
+            else
+            {
+                rcServoHost = new RCServoEx(
+                    serialNumber,
+                    new RCServoConfiguration(),
+                    EventAggregator);
+
+                //rcServoHost = (RCServoEx)phidgetDevice.PhidgetEx;
+
+                rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+
+                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+                rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+                rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+                rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+                rcServoHost.LogSequenceAction = LogSequenceAction;
+                rcServoHost.LogActionVerification = LogActionVerification;
+
+                // TODO(crhodes)
+                // Should we do open somewhere else?
+                // If this times out we need to clear phidgetDevice
+
+                //rcServoHost.Open(Common.PhidgetOpenTimeout);
+            }
+
+            // NOTE(crhodes)
+            // Save this so we can use it in other commands
+            // that don't specify a SerialNumber
+
+            ActiveRCServoHost = rcServoHost;
+
+            return rcServoHost;
+        }
+
         //private StepperEx GetStepperHost(int serialNumber)
         //{
         //    StepperEx stepperHost = null;

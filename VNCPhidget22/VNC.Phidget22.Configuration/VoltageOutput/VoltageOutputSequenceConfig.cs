@@ -11,12 +11,12 @@
 
                 Actions = new[]
                 {
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = true, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = false, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = false, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = false, Duration = 500 }
+                    new VoltageOutputAction { Channel = 0, VoltageOut = true, Duration=500 },
+                    new VoltageOutputAction { Channel = 0, VoltageOut = false, Duration=500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = false, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = false, Duration = 500 }
                 }
             },
             new VoltageOutputSequence
@@ -26,12 +26,12 @@
 
                 Actions = new[]
                 {
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = true, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = false, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = false, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = false, Duration = 500 }
+                    new VoltageOutputAction { Channel = 0, VoltageOut = true, Duration=500 },
+                    new VoltageOutputAction { Channel = 0, VoltageOut = false, Duration=500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = false, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = false, Duration = 500 }
                 }
             },
             new VoltageOutputSequence
@@ -42,12 +42,12 @@
 
                 Actions = new[]
                 {
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = true, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = false, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = false, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = false, Duration = 500 }
+                    new VoltageOutputAction { Channel = 0, VoltageOut = true, Duration=500 },
+                    new VoltageOutputAction { Channel = 0, VoltageOut = false, Duration=500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = false, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = false, Duration = 500 }
                 }
             },
             new VoltageOutputSequence
@@ -58,12 +58,12 @@
 
                 Actions = new[]
                 {
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = true, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = false, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = false, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = false, Duration = 500 }
+                    new VoltageOutputAction { Channel = 0, VoltageOut = true, Duration=500 },
+                    new VoltageOutputAction { Channel = 0, VoltageOut = false, Duration=500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = false, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = false, Duration = 500 }
                 }
             },
             new VoltageOutputSequence
@@ -74,12 +74,12 @@
 
                 Actions = new[]
                 {
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = true, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = false, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = false, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = false, Duration = 500 }
+                    new VoltageOutputAction { Channel = 0, VoltageOut = true, Duration=500 },
+                    new VoltageOutputAction { Channel = 0, VoltageOut = false, Duration=500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = false, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = false, Duration = 500 }
                 }
             },
             new VoltageOutputSequence
@@ -89,12 +89,12 @@
 
                 Actions = new[]
                 {
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = true, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 0, VoltageOut = false, Duration=500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 1, VoltageOut = false, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = true, Duration = 500 },
-                    new VoltageOutputAction { VoltageOutIndex = 2, VoltageOut = false, Duration = 500 }
+                    new VoltageOutputAction { Channel = 0, VoltageOut = true, Duration=500 },
+                    new VoltageOutputAction { Channel = 0, VoltageOut = false, Duration=500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 1, VoltageOut = false, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = true, Duration = 500 },
+                    new VoltageOutputAction { Channel = 2, VoltageOut = false, Duration = 500 }
                 }
             },
         };
