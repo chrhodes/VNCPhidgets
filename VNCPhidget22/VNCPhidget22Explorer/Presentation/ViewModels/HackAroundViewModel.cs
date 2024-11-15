@@ -5,7 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Phidget22;
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -13,13 +14,11 @@ using Prism.Services.Dialogs;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget22;
+using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
 
-using VNCPhidget22.Configuration;
-
-using VNCPhidgetConfig = VNCPhidget22.Configuration;
+using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -749,7 +748,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "Button1 Clicked";
 
-            PlayParty();
+            //PlayParty();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button1Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -759,26 +758,26 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button2Execute) Enter", Common.LOG_CATEGORY);
 
-            Message = "Button2 Clicked - Opening PhidgetManager";
+            //Message = "Button2 Clicked - Opening PhidgetManager";
 
-            Phidget22.Manager phidgetManager = new Phidget22.Manager();
+            //Phidget22.Manager phidgetManager = new Phidget22.Manager();
 
-            phidgetManager.Attach += PhidgetManager_Attach;
-            phidgetManager.Detach += PhidgetManager_Detach;
-            phidgetManager.ServerConnect += PhidgetManager_ServerConnect;
-            phidgetManager.ServerDisconnect += PhidgetManager_ServerDisconnect;
-            phidgetManager.Error += PhidgetManager_Error;
+            //phidgetManager.Attach += PhidgetManager_Attach;
+            //phidgetManager.Detach += PhidgetManager_Detach;
+            //phidgetManager.ServerConnect += PhidgetManager_ServerConnect;
+            //phidgetManager.ServerDisconnect += PhidgetManager_ServerDisconnect;
+            //phidgetManager.Error += PhidgetManager_Error;
 
-            phidgetManager.open();
-            //phidgetManager.open("192.168.150.21", 5001);
+            //phidgetManager.open();
+            ////phidgetManager.open("192.168.150.21", 5001);
 
-            phidgetManager.Attach -= PhidgetManager_Attach;
-            phidgetManager.Detach -= PhidgetManager_Detach;
-            phidgetManager.ServerConnect -= PhidgetManager_ServerConnect;
-            phidgetManager.ServerDisconnect -= PhidgetManager_ServerDisconnect;
-            phidgetManager.Error -= PhidgetManager_Error;
+            //phidgetManager.Attach -= PhidgetManager_Attach;
+            //phidgetManager.Detach -= PhidgetManager_Detach;
+            //phidgetManager.ServerConnect -= PhidgetManager_ServerConnect;
+            //phidgetManager.ServerDisconnect -= PhidgetManager_ServerDisconnect;
+            //phidgetManager.Error -= PhidgetManager_Error;
 
-            phidgetManager.close();
+            //phidgetManager.close();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button2Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -845,7 +844,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 }
             };
 
-            EventAggregator.GetEvent<VNC.Phidget.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
+            EventAggregator.GetEvent<VNC.Phidget22.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button4Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1862,102 +1861,102 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             return ActivePerformanceSequencePlayer;
         }
 
-        private async Task PlayParty()
-        {
-            const Int32 sbc11SerialNumber = 46049;
+        //private async Task PlayParty()
+        //{
+        //    const Int32 sbc11SerialNumber = 46049;
 
-            const Int32 sbc21SerialNumber = 48301;
-            const Int32 sbc22SerialNumber = 251831;
-            const Int32 sbc23SerialNumber = 48284;
+        //    const Int32 sbc21SerialNumber = 48301;
+        //    const Int32 sbc22SerialNumber = 251831;
+        //    const Int32 sbc23SerialNumber = 48284;
 
-            //InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true, EventAggregator);
-            InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
-            InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true, EventAggregator);
-            InterfaceKitEx ifkEx23 = new InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true, EventAggregator);
+        //    //InterfaceKitEx ifkEx11 = new InterfaceKitEx("192.168.150.11", 5001, sbc11SerialNumber, embedded: true, EventAggregator);
+        //    InterfaceKitEx ifkEx21 = new InterfaceKitEx("192.168.150.21", 5001, sbc21SerialNumber, embedded: true, EventAggregator);
+        //    InterfaceKitEx ifkEx22 = new InterfaceKitEx("192.168.150.22", 5001, sbc22SerialNumber, embedded: true, EventAggregator);
+        //    InterfaceKitEx ifkEx23 = new InterfaceKitEx("192.168.150.23", 5001, sbc23SerialNumber, embedded: true, EventAggregator);
 
-            try
-            {
-                //ifkEx11.Open(Common.PhidgetOpenTimeout);
-                ifkEx21.Open(Common.PhidgetOpenTimeout);
-                ifkEx22.Open(Common.PhidgetOpenTimeout);
-                ifkEx23.Open(Common.PhidgetOpenTimeout);
+        //    try
+        //    {
+        //        //ifkEx11.Open(Common.PhidgetOpenTimeout);
+        //        ifkEx21.Open(Common.PhidgetOpenTimeout);
+        //        ifkEx22.Open(Common.PhidgetOpenTimeout);
+        //        ifkEx23.Open(Common.PhidgetOpenTimeout);
 
-                await Task.Run(() =>
-                {
-                    Parallel.Invoke(
-                         () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
-                         () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
-                         () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats)
-                     //() => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
-                     //Parallel.Invoke(
-                     //     () => InterfaceKitParty2(ifkEx21, 10, 5 * Repeats),
-                     //     () => InterfaceKitParty2(ifkEx22, 10, 10 * Repeats),
-                     //     () => InterfaceKitParty2(ifkEx23, 10, 20 * Repeats)
-                     //     () => InterfaceKitParty2(ifkEx11, 10, 8 * Repeats)
-                     );
-                });
+        //        await Task.Run(() =>
+        //        {
+        //            Parallel.Invoke(
+        //                 () => InterfaceKitParty2(ifkEx21, 500, 5 * Repeats),
+        //                 () => InterfaceKitParty2(ifkEx22, 250, 10 * Repeats),
+        //                 () => InterfaceKitParty2(ifkEx23, 125, 20 * Repeats)
+        //             //() => InterfaceKitParty2(ifkEx11, 333, 8 * Repeats)
+        //             //Parallel.Invoke(
+        //             //     () => InterfaceKitParty2(ifkEx21, 10, 5 * Repeats),
+        //             //     () => InterfaceKitParty2(ifkEx22, 10, 10 * Repeats),
+        //             //     () => InterfaceKitParty2(ifkEx23, 10, 20 * Repeats)
+        //             //     () => InterfaceKitParty2(ifkEx11, 10, 8 * Repeats)
+        //             );
+        //        });
 
-                //ifkEx11.Close();
-                ifkEx21.Close();
-                ifkEx22.Close();
-                ifkEx23.Close();
-            }
-            catch (PhidgetException pe)
-            {
-                switch (pe.Type)
-                {
-                    case Phidget22.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
-                        //System.Diagnostics.Debug.WriteLine(
-                        //    string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
-                        //        ifk.SerialNumber));
-                        break;
+        //        //ifkEx11.Close();
+        //        ifkEx21.Close();
+        //        ifkEx22.Close();
+        //        ifkEx23.Close();
+        //    }
+        //    catch (PhidgetException pe)
+        //    {
+        //        switch (pe.Type)
+        //        {
+        //            case Phidget22.PhidgetException.ErrorType.PHIDGET_ERR_TIMEOUT:
+        //                //System.Diagnostics.Debug.WriteLine(
+        //                //    string.Format("TimeOut Error.  InterfaceKit {0} not attached.  Disable in ConfigFile or attach",
+        //                //        ifk.SerialNumber));
+        //                break;
 
-                    default:
-                        //System.Diagnostics.Debug.WriteLine(
-                        //    string.Format("{0}\nInterface Kit {0}",
-                        //pe.ToString(),
-                        //        ifk.SerialNumber));
-                        break;
-                }
+        //            default:
+        //                //System.Diagnostics.Debug.WriteLine(
+        //                //    string.Format("{0}\nInterface Kit {0}",
+        //                //pe.ToString(),
+        //                //        ifk.SerialNumber));
+        //                break;
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
-        private void InterfaceKitParty2(VNC.Phidget.InterfaceKitEx ifkEx, Int32 sleep, Int32 loops)
-        {
-            try
-            {
-                Log.Debug($"InterfaceKitParty2 {ifkEx.Host.IPAddress},{ifkEx.Host.Port} {ifkEx.SerialNumber} " +
-                    $"sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
+        //private void InterfaceKitParty2(VNC.Phidget22.InterfaceKitEx ifkEx, Int32 sleep, Int32 loops)
+        //{
+        //    try
+        //    {
+        //        //Log.Debug($"InterfaceKitParty2 {ifkEx.Host.IPAddress},{ifkEx.Host.Port} {ifkEx.SerialNumber} " +
+        //        //    $"sleep:{sleep} loops:{loops}", Common.LOG_CATEGORY);
 
-                InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.InterfaceKit.outputs;
+        //        //InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.InterfaceKit.outputs;
 
-                for (int i = 0; i < loops; i++)
-                {
-                    ifkDigitalOut[0] = true;
-                    Thread.Sleep(sleep);
-                    ifkDigitalOut[1] = true;
-                    Thread.Sleep(sleep);
-                    ifkDigitalOut[2] = true;
-                    Thread.Sleep(sleep);
+        //        //for (int i = 0; i < loops; i++)
+        //        //{
+        //        //    ifkDigitalOut[0] = true;
+        //        //    Thread.Sleep(sleep);
+        //        //    ifkDigitalOut[1] = true;
+        //        //    Thread.Sleep(sleep);
+        //        //    ifkDigitalOut[2] = true;
+        //        //    Thread.Sleep(sleep);
 
-                    ifkDigitalOut[0] = false;
-                    Thread.Sleep(sleep);
-                    ifkDigitalOut[1] = false;
-                    Thread.Sleep(sleep);
-                    ifkDigitalOut[2] = false;
-                    Thread.Sleep(sleep);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
+        //        //    ifkDigitalOut[0] = false;
+        //        //    Thread.Sleep(sleep);
+        //        //    ifkDigitalOut[1] = false;
+        //        //    Thread.Sleep(sleep);
+        //        //    ifkDigitalOut[2] = false;
+        //        //    Thread.Sleep(sleep);
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+        //}
 
         private void PhidgetManager_Error(object sender, Phidget22.Events.ErrorEventArgs e)
         {
@@ -1990,7 +1989,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "Button5 Clicked";
 
-            EventAggregator.GetEvent<VNC.Phidget.Events.InterfaceKitSequenceEvent>().Publish(new VNC.Phidget.Events.SequenceEventArgs());
+            EventAggregator.GetEvent<VNC.Phidget22.Events.InterfaceKitSequenceEvent>().Publish(new VNC.Phidget22.Events.SequenceEventArgs());
 
             Log.Info("End", Common.LOG_CATEGORY, startTicks);
         }

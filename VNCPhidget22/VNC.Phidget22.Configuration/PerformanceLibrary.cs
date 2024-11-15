@@ -30,6 +30,7 @@ namespace VNC.Phidget22.Configuration
             LoadPerformances();
 
             LoadAdvancedServoSequences();
+            LoadRCServoSequences();
             LoadInterfaceKitSequences();
             LoadStepperSequences();
 
@@ -57,6 +58,9 @@ namespace VNC.Phidget22.Configuration
 
         public static Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
             new Dictionary<string, AdvancedServoSequence>();
+
+        public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
+            new Dictionary<string, RCServoSequence>();
 
         public static Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; } =
             new Dictionary<string, InterfaceKitSequence>();
@@ -203,6 +207,45 @@ namespace VNC.Phidget22.Configuration
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        public void LoadRCServoSequences()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableRCServoSequences.Clear();
+
+            foreach (string configFile in GetListOfRCServoConfigFiles())
+            {
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    RCServoSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<RCServoSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.RCServoSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableRCServoSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         public void LoadInterfaceKitSequences()
         {
             Int64 startTicks = 0;
@@ -331,6 +374,21 @@ namespace VNC.Phidget22.Configuration
                 //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
                 //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
                 //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
+            };
+
+            return files;
+        }
+
+        private IEnumerable<string> GetListOfRCServoConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+
+            List<string> files = new List<string>
+            {
+                @"RCServoSequences\RCServoSequenceConfig_99415.json"
             };
 
             return files;

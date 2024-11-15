@@ -6,6 +6,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
+using Phidgets = Phidget22;
+using PhidgetsEvents = Phidget22.Events;
+
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -15,8 +18,7 @@ using VNC.Core.Mvvm;
 using VNC.Phidget22;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels

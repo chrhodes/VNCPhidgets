@@ -71,8 +71,8 @@ namespace VNCPhidget22Explorer
 
             // FIX(crhodes)
             // 
-            //containerRegistry.Register<HackAround>();
-            //containerRegistry.Register<HackAroundViewModel>();
+            containerRegistry.Register<HackAround>();
+            containerRegistry.Register<HackAroundViewModel>();
 
             // containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
             // containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
@@ -130,7 +130,7 @@ namespace VNCPhidget22Explorer
             //_regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region2, typeof(Stepper1063));
             //_regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
 
-            //_regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
+            _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
 
             _regionManager.RegisterViewWithRegion(RegionNames.VNCLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCLoggingConfig));
             _regionManager.RegisterViewWithRegion(RegionNames.VNCCoreLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCCoreLoggingConfig));
