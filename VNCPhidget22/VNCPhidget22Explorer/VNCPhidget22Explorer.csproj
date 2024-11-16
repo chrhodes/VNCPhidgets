@@ -214,6 +214,9 @@
         <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_99415.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_99415.json.bak">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>

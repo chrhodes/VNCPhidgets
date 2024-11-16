@@ -13,7 +13,7 @@
   "Debug04": true,
   "ApplicationStart": true,
   "ApplicationEnd": true,
-  "ApplicationInitialize": false,
+  "ApplicationInitialize": true,
   "Application": true,
   "ApplicationServices": true,
   "Domain": true,

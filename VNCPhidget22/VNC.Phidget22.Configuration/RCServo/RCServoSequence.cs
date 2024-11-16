@@ -3,7 +3,7 @@
     public class RCServoSequence : PhidgetSequenceBase
     {
         /// <summary>
-        /// Array of RCServo actions in sequence
+        /// Array of RCServo actions for channel in sequence
         /// </summary>
         public RCServoAction[]? Actions { get; set; }
     }

@@ -1,7 +1,7 @@
 {
   "VoltageOutputSequences": [
     {
-      "SerialNumber": xxxx,
+      "SerialNumber": 0,
       "Name": "xxx", 
       "Description": "xxx", 
       "Actions": [

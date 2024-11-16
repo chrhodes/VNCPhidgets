@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -218,6 +219,10 @@ namespace VNCPhidget22Explorer
             Shell shell = Container.Resolve<Shell>();
             //Shell shell = Container.Resolve<RibbonShell>();
 
+            IEventAggregator eventAggregator = Container.Resolve<IEventAggregator>();
+
+            Common.EventAggregator = eventAggregator;
+
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return shell;
@@ -247,6 +252,29 @@ namespace VNCPhidget22Explorer
 
             base.InitializeModules();
 
+            InitializePhidgets();
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void InitializePhidgets()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            // HACK(crhodes)
+            // This is a way to get Phidget22.Net.AddServer called.
+            // Revisit.
+
+
+            // NOTE(crhodes)
+            // This will read hostconfig to know what servers we have
+
+            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
+
+            // This will use a Phidget Manager to determine what Phidgets are attached.
+
+            Common.PhidgetDeviceLibrary = new PhidgetDeviceLibrary(Common.EventAggregator);
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -321,8 +349,6 @@ namespace VNCPhidget22Explorer
             //TODO(crhodes)
             // Add any necessary checks for config files, etc
             // That are required by application
-
-
         }
 
         private void InitializeApplication()
@@ -349,19 +375,19 @@ namespace VNCPhidget22Explorer
             Common.DeveloperUIMode = Visibility.Collapsed;  // No space reserved
 #endif
 
-            // HACK(crhodes)
-            // This is a way to get Phidget22.Net.AddServer called.
-            // Revisit.
+            //// HACK(crhodes)
+            //// This is a way to get Phidget22.Net.AddServer called.
+            //// Revisit.
 
 
-            // NOTE(crhodes)
-            // This will read hostconfig to know what servers we have
+            //// NOTE(crhodes)
+            //// This will read hostconfig to know what servers we have
 
-            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
+            //PerformanceLibrary performanceLibrary = new PerformanceLibrary();
 
-            // This will use a Phidget Manager to determine what Phidgets are attached.
+            //// This will use a Phidget Manager to determine what Phidgets are attached.
 
-            Common.PhidgetDeviceLibrary = new PhidgetDeviceLibrary();
+            //Common.PhidgetDeviceLibrary = new PhidgetDeviceLibrary();
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

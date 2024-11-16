@@ -21,6 +21,11 @@ namespace VNC.Phidget22.Configuration
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
+        /// PhidgetChannel
+        /// </summary>
+        public int Channel { get; set; }
+
+        /// <summary>
         /// Description of sequence (optional)
         /// </summary>
         public string? Description { get; set; }

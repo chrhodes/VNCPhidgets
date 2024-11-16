@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
+using Prism.Events;
 using Prism.Ioc;
 
 using VNC.Phidget22;
@@ -30,6 +31,7 @@ namespace VNCPhidget22Explorer
         public const string cCONFIG_FILE = @"C:\temp\VNCPhidget22Explorer_Config.xml";
 
         public static IContainerProvider Container;
+        public static IEventAggregator EventAggregator;
 
         public static Shell? CurrentShell;
         public static RibbonShell? CurrentRibbonShell;

@@ -54,6 +54,9 @@ namespace VNC.Phidget22.Players
         // 
         public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
         public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
+
+        // TODO(crhodes)
+        // This needs to be something fancier as we can have multiple RCServoHost per IP and multiple IP's
         public RCServoEx ActiveRCServoHost { get; set; }
         public StepperEx ActiveStepperHost { get; set; }
 
@@ -301,7 +304,7 @@ namespace VNC.Phidget22.Players
                     {
                         startTicks = Log.Trace($"Executing RCS Performance Sequence" +
                             //$" serialNumber:>{advancedServoSequence?.SerialNumber}<" +
-                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+                            //$" serialNumber:>{performanceSequence?.SerialNumber}<" +
                             $" name:>{rcServoSequence?.Name}<" +
                             $" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
                             $" beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
@@ -329,7 +332,7 @@ namespace VNC.Phidget22.Players
                     //    nextPerformanceSequence = null;
                     //}
 
-                    phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber);
+                    phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber, rcServoSequence.Channel);
 
                     if (phidgetHost == null)
                     {
@@ -704,65 +707,88 @@ namespace VNC.Phidget22.Players
         //    return interfaceKitHost;
         //}
 
-        private RCServoEx GetRCServoHost(int serialNumber)
+        private RCServoEx GetRCServoHost(int serialNumber, int channel)
         {
             PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
-            RCServoEx rcServoHost = ActiveRCServoHost;
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-            if (rcServoHost is not null)
+            RCServoEx rcServoHost = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+
+            rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+            rcServoHost.LogErrorEvents = LogErrorEvents;
+            rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+            rcServoHost.LogSequenceAction = LogSequenceAction;
+            rcServoHost.LogActionVerification = LogActionVerification;
+
+            if (rcServoHost.Attached is false)
             {
-                rcServoHost = ActiveRCServoHost;
-                //rcServoHost = (RCServoEx)phidgetDevice;
-
-                rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
-                rcServoHost.LogErrorEvents = LogErrorEvents;
-                rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-                rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-                rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-                rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-                rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                rcServoHost.LogSequenceAction = LogSequenceAction;
-                rcServoHost.LogActionVerification = LogActionVerification;
-            }
-            else
-            {
-                rcServoHost = new RCServoEx(
-                    serialNumber,
-                    new RCServoConfiguration(),
-                    EventAggregator);
-
-                //rcServoHost = (RCServoEx)phidgetDevice.PhidgetEx;
-
-                rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
-
-                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-                rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-                rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-                rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-                rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
-                rcServoHost.LogSequenceAction = LogSequenceAction;
-                rcServoHost.LogActionVerification = LogActionVerification;
-
-                // TODO(crhodes)
-                // Should we do open somewhere else?
-                // If this times out we need to clear phidgetDevice
-
-                rcServoHost.Open();
-                //rcServoHost.Open(Common.PhidgetOpenTimeout);
+                rcServoHost.Open(500);                
             }
 
-            // NOTE(crhodes)
-            // Save this so we can use it in other commands
-            // that don't specify a SerialNumber
+            //RCServoEx rcServoHost = ActiveRCServoHost;
 
-            ActiveRCServoHost = rcServoHost;
+            //if (rcServoHost is not null)
+            //{
+            //    rcServoHost = ActiveRCServoHost;
+            //    //rcServoHost = (RCServoEx)phidgetDevice;
+
+            //    rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+            //    rcServoHost.LogErrorEvents = LogErrorEvents;
+            //    rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //    //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //    rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            //    rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //    rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            //    rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+            //    rcServoHost.LogSequenceAction = LogSequenceAction;
+            //    rcServoHost.LogActionVerification = LogActionVerification;
+            //}
+            //else
+            //{
+            //    rcServoHost = new RCServoEx(
+            //        serialNumber,
+            //        new RCServoConfiguration(),
+            //        EventAggregator);
+
+            //    //rcServoHost = (RCServoEx)phidgetDevice.PhidgetEx;
+
+            //    rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+
+            //    //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //    rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            //    rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //    rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            //    rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+            //    rcServoHost.LogSequenceAction = LogSequenceAction;
+            //    rcServoHost.LogActionVerification = LogActionVerification;
+
+            //    // TODO(crhodes)
+            //    // Should we do open somewhere else?
+            //    // If this times out we need to clear phidgetDevice
+
+            //    rcServoHost.Open();
+            //    //rcServoHost.Open(Common.PhidgetOpenTimeout);
+            //}
+
+            //// NOTE(crhodes)
+            //// Save this so we can use it in other commands
+            //// that don't specify a SerialNumber
+
+            //ActiveRCServoHost = rcServoHost;
 
             return rcServoHost;
         }

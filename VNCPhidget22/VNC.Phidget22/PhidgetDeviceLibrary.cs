@@ -13,6 +13,8 @@ using System.Net;
 using System.Threading.Channels;
 using System.Threading;
 using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Ex;
+using Prism.Events;
 
 namespace VNC.Phidget22
 {
@@ -22,11 +24,16 @@ namespace VNC.Phidget22
     public class PhidgetDeviceLibrary
     {
         #region Constructors, Initialization, and Load
-        public PhidgetDeviceLibrary()
+
+        private readonly IEventAggregator _eventAggregator;
+
+        public PhidgetDeviceLibrary(IEventAggregator eventAggregator)
+        //public PhidgetDeviceLibrary()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
+            _eventAggregator = eventAggregator;
             BuildPhidgetDeviceDictionary();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
@@ -36,7 +43,7 @@ namespace VNC.Phidget22
         {
             Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            _availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
+            //_availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
 
             // NOTE(crhodes)
             // EnableServerDiscovery does not work consistently
@@ -62,48 +69,6 @@ namespace VNC.Phidget22
             Thread.Sleep(1000);
 
             Common.PhidgetDeviceLibrary = this;
-            //if (host.AdvancedServos is not null)
-            //{
-            //    foreach (VNCPhidgetConfig.AdvancedServo advancedServo in host.AdvancedServos)
-            //    {
-            //        _availablePhidget22.Add(
-            //            advancedServo.SerialNumber,
-            //            new PhidgetDevice(
-            //                host.IPAddress, host.Port,
-            //                DeviceClass.AdvancedServo, 
-            //                ChannelClass.RCServo,
-            //                advancedServo.SerialNumber));
-            //    }
-            //}
-
-            //if (host.InterfaceKits is not null)
-            //{
-            //    foreach (VNCPhidgetConfig.InterfaceKit interfaceKit in host.InterfaceKits)
-            //    {
-            //        _availablePhidget22.Add(
-            //            interfaceKit.SerialNumber,
-            //            new PhidgetDevice(
-            //                host.IPAddress, host.Port,
-            //                DeviceClass.InterfaceKit, 
-            //                ChannelClass.None,
-            //                interfaceKit.SerialNumber));
-            //    }
-            //}
-
-            //if (host.Steppers is not null)
-            //{
-            //    foreach (VNCPhidgetConfig.Stepper stepper in host.Steppers)
-            //    {
-            //        _availablePhidget22.Add(
-            //            stepper.SerialNumber,
-            //            new PhidgetDevice(
-            //                host.IPAddress, host.Port,
-            //                DeviceClass.Stepper,
-            //                ChannelClass.None,
-            //                stepper.SerialNumber));
-            //    }
-            //}
-
 
             Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -113,8 +78,9 @@ namespace VNC.Phidget22
         #region Fields and Properties
 
         //public static Dictionary<Int32, PhidgetDevice> AvailablePhidget22 = new Dictionary<Int32, PhidgetDevice>();
-        public Dictionary<Int32, PhidgetDevice> _availablePhidgets;
-        public Dictionary<Int32, PhidgetDevice> AvailablePhidgets 
+
+        public Dictionary<Int32, PhidgetDevice> _availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
+        public Dictionary<Int32, PhidgetDevice> AvailablePhidgets
         {
             get
             {
@@ -124,11 +90,13 @@ namespace VNC.Phidget22
                 //}
                 return _availablePhidgets;
             }
-            set 
-            { 
+            set
+            {
 
-            } 
+            }
         }
+
+        public static Dictionary<SerialChannel, RCServoEx> RCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
 
         // TODO(crhodes)
         // Populate this from ConfigFile
@@ -337,6 +305,21 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
+                    Log.Trace($"Adding new RCServoChannel SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    RCServoChannels.Add(
+                        new SerialChannel()
+                        {
+                            SerialNumber = phidgetDevice.SerialNumber,
+                            Channel = deviceChannels.RCServoCount
+                        },
+                        new RCServoEx(phidgetDevice.SerialNumber,
+                            new RCServoConfiguration()
+                            {
+                                Channel = deviceChannels.RCServoCount
+                            },
+                            _eventAggregator
+                        )
+                    );
                     deviceChannels.RCServoCount++;
                     break;
 

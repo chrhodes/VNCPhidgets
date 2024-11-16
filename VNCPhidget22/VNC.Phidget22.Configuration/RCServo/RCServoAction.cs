@@ -5,12 +5,12 @@ namespace VNC.Phidget22.Configuration
 {
     public class RCServoAction
     {
-        /// <summary>
-        /// Index of servo on board 
-        /// </summary>
-        public int ServoIndex { get; set; }
+        ///// <summary>
+        ///// Index of servo on board 
+        ///// </summary>
+        //public int ServoIndex { get; set; }
 
-          public RCServoType? RCServoType { get; set; }
+        public RCServoType? RCServoType { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)

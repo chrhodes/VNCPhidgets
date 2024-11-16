@@ -357,6 +357,7 @@ namespace VNC.Phidget22.Configuration
 
                     foreach (var sequence in sequenceConfig.RCServoSequences.ToDictionary(k => k.Name, v => v))
                     {
+                        
                         AvailableRCServoSequences.Add(sequence.Key, sequence.Value);
                     }
                 }
@@ -647,7 +648,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageOutputSequences\VoltagelOutputSequenceConfig_XXXX.json"
+                @"VoltageOutputSequences\VoltageOutputSequenceConfig_XXXX.json"
             };
 
             return files;

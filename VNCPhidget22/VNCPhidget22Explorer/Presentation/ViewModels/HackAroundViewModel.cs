@@ -2474,6 +2474,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
             ActivePerformanceSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
             ActivePerformanceSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            ActivePerformanceSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
 
             ActivePerformanceSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
             ActivePerformanceSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;

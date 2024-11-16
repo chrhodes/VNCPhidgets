@@ -131,7 +131,7 @@ namespace VNC.Phidget22.Ex
                 OnPropertyChanged();
             }
         }
-        
+
         private bool _isAttached;
         public bool IsAttached
         {
@@ -158,7 +158,7 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.Engaged = value;
-                }                
+                }
 
                 OnPropertyChanged();
             }
@@ -176,7 +176,7 @@ namespace VNC.Phidget22.Ex
                 OnPropertyChanged();
             }
         }
-
+       
         private Double _Acceleration;
         public new Double Acceleration
         {
@@ -1402,15 +1402,15 @@ namespace VNC.Phidget22.Ex
         {
             Int64 startTicks = 0;
 
-            Int32 index = action.ServoIndex;
+            //Int32 index = action.ServoIndex;
             var channel = Channel;
 
             StringBuilder actionMessage = new StringBuilder();
 
             if (LogSequenceAction)
             {
-                startTicks = Log.Trace($"Enter servo:{index}", Common.LOG_CATEGORY);
-                actionMessage.Append($"servo:{index}");
+                startTicks = Log.Trace($"Enter servo:{Channel}", Common.LOG_CATEGORY);
+                actionMessage.Append($"servo:{Channel}");
             }
 
             //RCServo servo = AdvancedServo.servos[index];
@@ -1596,7 +1596,7 @@ namespace VNC.Phidget22.Ex
             catch (PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{index} source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.Error($"servo:{Channel} source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
                 Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
