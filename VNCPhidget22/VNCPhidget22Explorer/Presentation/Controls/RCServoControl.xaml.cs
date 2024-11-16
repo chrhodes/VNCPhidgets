@@ -12,6 +12,7 @@ using System.Windows.Input;
 using DevExpress.Xpf.LayoutControl;
 using DevExpress.Xpf.Editors;
 using VNC.Phidget22.Ex;
+using VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
@@ -572,10 +573,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         protected virtual void OnServoTypeChanged(RCServoType oldValue, RCServoType newValue)
         {
+            MinPulseWidth = PhidgetDeviceLibrary.RCServoTypes[newValue].MinPulseWidth;
+            MaxPulseWidth = PhidgetDeviceLibrary.RCServoTypes[newValue].MaxPulseWidth;
             // TODO: Add your property changed side-effects. Descendants can override as well.
-            RCServoEx.ServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[ServoType];
-            MinPulseWidth = servoConfiguration.MinPulseWidth;
-            MaxPulseWidth = servoConfiguration.MaxPulseWidth;
+            //RCServoEx.RCServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[ServoType];
+            //MinPulseWidth = servoConfiguration.MinPulseWidth;
+            //MaxPulseWidth = servoConfiguration.MaxPulseWidth;
         }
 
         #endregion

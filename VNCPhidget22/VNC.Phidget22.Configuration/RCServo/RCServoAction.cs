@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace VNC.Phidget22.Configuration
 {
@@ -9,9 +10,7 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public int ServoIndex { get; set; }
 
-        // TODO(crhodes)
-        // How to do this going forward.  May need our own enum
-        //public Phidget22.ServoServo.ServoType? ServoType { get; set; }
+          public RCServoType? RCServoType { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)

@@ -38,10 +38,6 @@
         <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
     </ItemGroup>
     
-    <ItemGroup>
-        <ProjectReference Include="..\VNC.Phidget22.Configuration\VNC.Phidget22.Configuration.csproj" />
-    </ItemGroup>
-
     <!--<ItemGroup>
         <Reference Include="Phidget21.NET">
             <HintPath>..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
@@ -64,6 +60,7 @@
     <Choose>
         <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
+                <ProjectReference Include="..\VNC.Phidget22.Configuration\VNC.Phidget22.Configuration.csproj" />                
                 <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
             </ItemGroup>
         </When>

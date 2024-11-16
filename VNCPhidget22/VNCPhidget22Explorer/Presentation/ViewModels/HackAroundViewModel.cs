@@ -409,6 +409,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logTargetPositionReachedEvents = false;
+        public bool LogTargetPositionReachedEvents
+        {
+            get => _logTargetPositionReachedEvents;
+            set
+            {
+                if (_logTargetPositionReachedEvents == value)
+                    return;
+                _logTargetPositionReachedEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<Int32> RelativeAccelerationAdjustment { get; } = new List<Int32>
         {                
             -5000,

@@ -12,6 +12,7 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using System.Net;
 using System.Threading.Channels;
 using System.Threading;
+using VNC.Phidget22.Configuration;
 
 namespace VNC.Phidget22
 {
@@ -128,6 +129,37 @@ namespace VNC.Phidget22
 
             } 
         }
+
+        // TODO(crhodes)
+        // Populate this from ConfigFile
+
+        public static Dictionary<RCServoType, RCServoPulseWidths> RCServoTypes = new Dictionary<RCServoType, RCServoPulseWidths>()
+        {
+            [VNC.Phidget22.Configuration.RCServoType.DEFAULT] = new RCServoPulseWidths
+            {
+                RCServoType = VNC.Phidget22.Configuration.RCServoType.DEFAULT,
+                MinPulseWidth = 245,
+                MaxPulseWidth = 2592
+            },
+            [VNC.Phidget22.Configuration.RCServoType.HITEC_HS422] = new RCServoPulseWidths
+            {
+                RCServoType = VNC.Phidget22.Configuration.RCServoType.HITEC_HS422,
+                MinPulseWidth = 650,
+                MaxPulseWidth = 2450
+            },
+            [VNC.Phidget22.Configuration.RCServoType.SG90] = new RCServoPulseWidths
+            {
+                RCServoType = VNC.Phidget22.Configuration.RCServoType.SG90,
+                MinPulseWidth = 650,
+                MaxPulseWidth = 2450
+            },
+            [VNC.Phidget22.Configuration.RCServoType.USER_DEFINED] = new RCServoPulseWidths
+            {
+                RCServoType = VNC.Phidget22.Configuration.RCServoType.USER_DEFINED,
+                MinPulseWidth = 1000,
+                MaxPulseWidth = 1001
+            }
+        };
 
         public bool LogPhidgetEvents { get; set; } = true;
 

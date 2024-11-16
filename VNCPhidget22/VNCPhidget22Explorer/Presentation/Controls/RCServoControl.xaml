@@ -18,6 +18,7 @@
     
     xmlns:phidgets="clr-namespace:Phidget22;assembly=Phidget22.NET" 
     xmlns:vncPhidget22Ex="clr-namespace:VNC.Phidget22.Ex;assembly=VNC.Phidget22"
+    xmlns:vncPhidgetConfiguration="clr-namespace:VNC.Phidget22.Configuration;assembly=VNC.Phidget22.Configuration"
     
     xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"      
@@ -154,17 +155,14 @@
             </dxlc:LayoutGroup>
 
         <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-            <dxe:ComboBoxEdit ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type vncPhidget22Ex:RCServoType}}}"
-                                SelectedIndex="0"
-                                EditValue="{ Binding Path=RCServoType,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemToEnumConverter} }" />
+                <dxe:ComboBoxEdit 
+                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type vncPhidgetConfiguration:RCServoType}}}"
+                    SelectedIndex="0"
+                    EditValue="{ Binding Path=RCServoType,
+                    Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged,
+                    Converter={StaticResource SelectedItemToEnumConverter} }" />
         </dxlc:LayoutItem>
-
-        <!-- TODO(crhodes)
-                 Need to expose HeaderTitle so can set to StepperState or ServoState
-                -->
 
         <controls:RCServoStateControl
             IsAttached="{Binding IsAttached, Mode=OneWay}"

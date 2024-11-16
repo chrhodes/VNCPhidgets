@@ -163,6 +163,19 @@ namespace VNC.Phidget22.Players
             }
         }
 
+        private bool _logTargetPositionReachedEvents = false;
+        public bool LogTargetPositionReachedEvents
+        {
+            get => _logTargetPositionReachedEvents;
+            set
+            {
+                if (_logTargetPositionReachedEvents == value)
+                    return;
+                _logTargetPositionReachedEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region InterfaceKit
@@ -447,6 +460,7 @@ namespace VNC.Phidget22.Players
             ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
             ActivePerformanceSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
             ActivePerformanceSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            ActivePerformanceSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
             ActivePerformanceSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
             ActivePerformanceSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;

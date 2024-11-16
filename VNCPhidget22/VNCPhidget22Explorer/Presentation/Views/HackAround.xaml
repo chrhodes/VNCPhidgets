@@ -147,6 +147,8 @@
                                     IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
                         <dxe:CheckEdit Content="Log VelocityChange Events"
                                     IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log TargetPositionReached Events"
+                                    IsChecked="{Binding LogTargetPositionReachedEvents, Mode=TwoWay}" />
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" 

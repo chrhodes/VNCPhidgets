@@ -755,6 +755,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 await Task.Run(() => RCServos[i].Open());
             }
 
+            OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+            RefreshAdvancedServoCommand.RaiseCanExecuteChanged();
+            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+
+            InitializeVelocityCommand.RaiseCanExecuteChanged();
+            InitializeAccelerationCommand.RaiseCanExecuteChanged();
+
             // Uncomment this if you are telling someone else to handle this
 
             // Common.EventAggregator.GetEvent<OpenAdvancedServoEvent>().Publish();
@@ -812,8 +819,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // If using CommandParameter, figure out TYPE here
         //public TYPE OpenRCServoCommandParameter;
 
-        public string OpenRCServoContent { get; set; } = "OpenRCServo";
-        public string OpenRCServoToolTip { get; set; } = "OpenRCServo ToolTip";
+        public string OpenRCServoContent { get; set; } = "Open";
+        public string OpenRCServoToolTip { get; set; } = "Open RCServo";
 
         // Can get fancy and use Resources
         //public string OpenRCServoContent { get; set; } = "ViewName_OpenRCServoContent";
@@ -903,7 +910,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
-
 
         #region InitializeVelocityCommand
 
@@ -1546,8 +1552,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // If using CommandParameter, figure out TYPE here
         //public TYPE CloseRCServoCommandParameter;
 
-        public string CloseRCServoContent { get; set; } = "CloseRCServo";
-        public string CloseRCServoToolTip { get; set; } = "CloseRCServo ToolTip";
+        public string CloseRCServoContent { get; set; } = "Close";
+        public string CloseRCServoToolTip { get; set; } = "Close RCServo";
 
         // Can get fancy and use Resources
         //public string CloseRCServoContent { get; set; } = "ViewName_CloseRCServoContent";

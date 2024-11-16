@@ -72,6 +72,7 @@ namespace VNC.Phidget22.Players
         public bool LogCurrentChangeEvents { get; set; }
         public bool LogPositionChangeEvents { get; set; }
         public bool LogVelocityChangeEvents { get; set; }
+        public bool LogTargetPositionReachedEvents { get; set; }
 
         // InterfaceKit events
 
@@ -707,9 +708,9 @@ namespace VNC.Phidget22.Players
         {
             PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
-            RCServoEx rcServoHost = null;
+            RCServoEx rcServoHost = ActiveRCServoHost;
 
-            if (phidgetDevice?.PhidgetEx is not null)
+            if (rcServoHost is not null)
             {
                 rcServoHost = ActiveRCServoHost;
                 //rcServoHost = (RCServoEx)phidgetDevice;
@@ -721,6 +722,8 @@ namespace VNC.Phidget22.Players
                 //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
                 rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
                 rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+                rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
                 rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
                 rcServoHost.LogSequenceAction = LogSequenceAction;
@@ -741,6 +744,8 @@ namespace VNC.Phidget22.Players
                 rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
                 rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
+                rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
                 rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
                 rcServoHost.LogSequenceAction = LogSequenceAction;
                 rcServoHost.LogActionVerification = LogActionVerification;
@@ -749,6 +754,7 @@ namespace VNC.Phidget22.Players
                 // Should we do open somewhere else?
                 // If this times out we need to clear phidgetDevice
 
+                rcServoHost.Open();
                 //rcServoHost.Open(Common.PhidgetOpenTimeout);
             }
 
