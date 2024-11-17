@@ -342,7 +342,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _minPositionServo;
-        public new Double MinPositionServo
+        public Double MinPositionServo
         {
             get => _minPositionServo;
             set
@@ -355,7 +355,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _minPositionStop;
-        public new Double MinPositionStop
+        public Double MinPositionStop
         {
             get => _minPositionStop;
             set
@@ -434,7 +434,7 @@ namespace VNC.Phidget22.Ex
         Boolean NewPositionAchieved = false;
 
         private Double _maxPositionStop;
-        public new Double MaxPositionStop
+        public Double MaxPositionStop
         {
             get => _maxPositionStop;
             set

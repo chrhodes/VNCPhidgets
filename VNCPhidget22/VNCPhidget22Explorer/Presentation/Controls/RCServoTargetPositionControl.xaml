@@ -249,17 +249,16 @@
 
             <dxlc:LayoutItem x:Name="liPositionScale" HorizontalAlignment="Left">
                 <dxe:SpinEdit 
-                    Value="{Binding PositionScale, Mode=TwoWay}" 
+                    Value="{Binding PositionScaleRange, Mode=TwoWay}" 
                     Increment="5"
                     MinValue="0"
                     MaxValue="100" 
                     IsFloatValue="False" />
             </dxlc:LayoutItem>
 
-
             <dxlc:LayoutItem x:Name="liPositionStops" HorizontalAlignment="Right">
                 <dxe:SpinEdit 
-                    Value="{Binding PositionStops, Mode=TwoWay}" 
+                    Value="{Binding PositionStopRange, Mode=TwoWay}" 
                     Increment="5"
                     MinValue="0"
                     MaxValue="100" 
@@ -269,7 +268,7 @@
             <dxlc:LayoutItem HorizontalAlignment="Right" >
                 <Button Content="+/- Stops" 
                         ToolTip="Set {Min,Max}PositionStop Current +/- value" 
-                        Click="ResetMinMaxPosition_Click"/>
+                        Click="SetPositionStops_Click"/>
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>

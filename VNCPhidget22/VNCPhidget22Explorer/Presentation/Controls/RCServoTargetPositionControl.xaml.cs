@@ -96,49 +96,98 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties
 
-        #region PositionScale
+        #region PositionScaleRange
 
-        public static readonly DependencyProperty PositionScaleProperty = DependencyProperty.Register(
-            "PositionScale", 
+        public static readonly DependencyProperty PositionScaleRangeProperty = DependencyProperty.Register(
+            "PositionScaleRange", 
             typeof(Int32), 
             typeof(RCServoTargetPositionControl),
             new FrameworkPropertyMetadata(
                 10, 
-                new PropertyChangedCallback(OnPositionScaleChanged), 
-                new CoerceValueCallback(OnCoercePositionScale)
+                new PropertyChangedCallback(OnPositionScaleRangeChanged), 
+                new CoerceValueCallback(OnCoercePositionScaleRange)
                 )
             );
 
-        public Int32 PositionScale
+        public Int32 PositionScaleRange
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Int32)GetValue(PositionScaleProperty);
-            set => SetValue(PositionScaleProperty, value);
+            get => (Int32)GetValue(PositionScaleRangeProperty);
+            set => SetValue(PositionScaleRangeProperty, value);
         }
 
-        private static object OnCoercePositionScale(DependencyObject o, object value)
+        private static object OnCoercePositionScaleRange(DependencyObject o, object value)
         {
             RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
             if (positionControl != null)
-                return positionControl.OnCoercePositionScale((Int32)value);
+                return positionControl.OnCoercePositionScaleRange((Int32)value);
             else
                 return value;
         }
 
-        private static void OnPositionScaleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnPositionScaleRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
             if (positionControl != null)
-                positionControl.OnPositionScaleChanged((Int32)e.OldValue, (Int32)e.NewValue);
+                positionControl.OnPositionScaleRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
 
-        protected virtual Int32 OnCoercePositionScale(Int32 value)
+        protected virtual Int32 OnCoercePositionScaleRange(Int32 value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnPositionScaleChanged(Int32 oldValue, Int32 newValue)
+        protected virtual void OnPositionScaleRangeChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region PositionStopRange
+
+        public static readonly DependencyProperty PositionStopRangeProperty = DependencyProperty.Register(
+            "PositionStopRange",
+            typeof(Int32),
+            typeof(RCServoTargetPositionControl),
+            new FrameworkPropertyMetadata(
+                10,
+                new PropertyChangedCallback(OnPositionStopRangeChanged),
+                new CoerceValueCallback(OnCoercePositionStopRange)
+                )
+            );
+
+        public Int32 PositionStopRange
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(PositionStopRangeProperty);
+            set => SetValue(PositionStopRangeProperty, value);
+        }
+
+        private static object OnCoercePositionStopRange(DependencyObject o, object value)
+        {
+            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            if (positionControl != null)
+                return positionControl.OnCoercePositionStopRange((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnPositionStopRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            if (positionControl != null)
+                positionControl.OnPositionStopRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoercePositionStopRange(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnPositionStopRangeChanged(Int32 oldValue, Int32 newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -571,18 +620,26 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             ((TrackBarEdit)sender).Value = (Double)centerPosition;
         }
 
-        private void SetPositionScale_Click(object sender, RoutedEventArgs e)
-        {
-            var centerPosition = (MaxPosition - MinPosition) / 2 + MinPosition;
-
-            MinPosition = MinPositionStop = centerPosition - PositionScale;
-            MaxPosition = MaxPositionStop = centerPosition + PositionScale;
-        }
-
         private void ResetMinMaxPosition_Click(object sender, RoutedEventArgs e)
         {
             MinPosition = MinPositionStop = MinPositionServo;
             MaxPosition = MaxPositionStop = MaxPositionServo;
+        }
+
+        private void SetPositionScale_Click(object sender, RoutedEventArgs e)
+        {
+            var centerPosition = (MaxPosition - MinPosition) / 2 + MinPosition;
+
+            MinPosition = MinPositionStop = centerPosition - PositionScaleRange;
+            MaxPosition = MaxPositionStop = centerPosition + PositionScaleRange;
+        }
+
+        private void SetPositionStops_Click(object sender, RoutedEventArgs e)
+        {
+            var centerPosition = (MaxPosition - MinPosition) / 2 + MinPosition;
+
+            MinPositionStop = centerPosition - PositionStopRange;
+            MaxPositionStop = centerPosition + PositionStopRange;
         }
 
         private void SetTargetPosition(object sender, RoutedEventArgs e)

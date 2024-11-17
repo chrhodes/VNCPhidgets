@@ -181,7 +181,8 @@
             MaxPositionStop="{Binding MaxPositionStop, Mode=TwoWay}"            
             MaxPosition="{Binding MaxPosition, Mode=TwoWay}"
             MaxPositionServo="{Binding MaxPositionServo, Mode=OneWay}"
-            PositionScale="{Binding PositionScale}"/>
+            PositionScaleRange="{Binding PositionScaleRange}"
+            PositionStopRange="{Binding PositionStopRange}" />
 
         <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
                         VerticalAlignment="Top"
