@@ -38,7 +38,7 @@
     Background="{StaticResource PositionControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="180"
+    Height="205"
 >  
     <!-- TODO:(crhodes)
         Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
@@ -77,7 +77,7 @@
 
     <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-        <dxlc:LayoutGroup x:Name="lgMain" Header="Position" View="GroupBox" 
+        <dxlc:LayoutGroup x:Name="lgMain" Header="TargetPosition" View="GroupBox" 
                           Orientation="Vertical"  Padding="-10">
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
@@ -85,6 +85,12 @@
                 <dxlc:LayoutItem Label="Servo Min" LabelPosition="Top" LabelHorizontalAlignment="Right" HorizontalAlignment="Left">
                     <dxe:TextEdit Text="{Binding MinPositionServo, Mode=TwoWay}" 
                                   IsReadOnly="True" HorizontalContentAlignment="Left"  />
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Reset" 
+                        ToolTip="Reset {Min,Max}Position to Servo defaults" 
+                        Click="ResetMinMaxPosition_Click"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Servo Max" LabelPosition="Top" HorizontalAlignment="Right">
@@ -97,93 +103,109 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" 
+                <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Center" 
                          HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
+                    
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <dxlc:LayoutItem Label="Scale" LabelPosition="Top" HorizontalAlignment="Left">
+                            <dxe:SpinEdit 
+                                EditValue="{Binding MinPosition, Mode=TwoWay, 
+                                    TargetNullValue=0,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SpinEditConverter}}"
+                                Increment="10"
+                                MinValue="{Binding MinPositionServo, TargetNullValue=0}"
+                                MaxValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}" 
+                                Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                                IsFloatValue="False" />
+                        </dxlc:LayoutItem>                  
 
-                    <dxe:SpinEdit 
-                        EditValue="{Binding MinPosition, Mode=TwoWay, 
-                            TargetNullValue=0,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource SpinEditConverter}}"
-                        Increment="10"
-                        MinValue="{Binding MinPositionServo, TargetNullValue=0}"
-                        MaxValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}" 
-                        Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                        IsFloatValue="False" />
+                        <dxlc:LayoutItem Label="Stop" LabelPosition="Top" HorizontalAlignment="Center">
+                            <dxe:SpinEdit 
+                                EditValue="{Binding MinPositionStop, Mode=TwoWay, 
+                                    TargetNullValue=0,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SpinEditConverter}}"
+                                Increment="1"
+                                MinValue="{Binding MinPosition, TargetNullValue=0}"
+                                MaxValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}" 
+                                Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                                IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+
+                    </StackPanel>
+                    
                 </dxlc:LayoutItem>
 
-                <!--<dxlc:LayoutItem Label="Target +/- 1" LabelPosition="Top" LabelHorizontalAlignment="Center" ToolTip="+/- 1">
-                    <dxe:SpinEdit 
-                        EditValue="{Binding TargetPosition, Mode=TwoWay, 
-                            TargetNullValue=0,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource SpinEditConverter}}" 
-                        Increment="1"
-                        MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
-                        MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
-                        Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                        IsFloatValue="True" />
-                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="+/- TargetPosition" LabelPosition="Top" LabelHorizontalAlignment="Center" HorizontalAlignment="Left">
 
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Bottom" Margin="-2,0,-2,0" >
 
-                <dxlc:LayoutItem Label="Target +/- 10" LabelPosition="Top" LabelHorizontalAlignment="Center" ToolTip="+/- 10" >
-                    <dxe:SpinEdit 
-                        EditValue="{Binding TargetPosition, Mode=TwoWay, 
-                            TargetNullValue=0,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource SpinEditConverter}}" 
-                        Increment="10"
-                        MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
-                        MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
-                        Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                        IsFloatValue="True" />
-                </dxlc:LayoutItem>-->
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                            <Label />
+                            <RadioButton x:Name="rb50" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">50</RadioButton>
+                            <RadioButton x:Name="rb10" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
+                            <RadioButton x:Name="rb5" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
+                            <RadioButton x:Name="rb1" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+                        </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" Margin="-2,0,-2,0" >
+                        <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                        <Label Content="+/-" />
-                        <RadioButton x:Name="rb50" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">50</RadioButton>
-                        <RadioButton x:Name="rb10" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
-                        <RadioButton x:Name="rb5" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
-                        <RadioButton x:Name="rb1" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+                            <dxe:SpinEdit
+                                x:Name="seTargetPosition"
+                                EditValue="{Binding TargetPosition, Mode=TwoWay, 
+                                    TargetNullValue=0,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SpinEditConverter}}" 
+                                Increment="1"
+                                MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
+                                MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
+                                Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                                IsFloatValue="True" />
+
+                        </dxlc:LayoutItem>
+
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
+                </dxlc:LayoutItem>
 
-                        <dxe:SpinEdit
-                            x:Name="seTargetPosition"
-                            EditValue="{Binding TargetPosition, Mode=TwoWay, 
-                                TargetNullValue=0,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SpinEditConverter}}" 
-                            Increment="1"
-                            MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
-                            MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
-                            Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                            IsFloatValue="True" />
+                <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Center" 
+                        HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
 
-                    </dxlc:LayoutItem>
+                    <StackPanel Orientation="Horizontal">
 
-                </dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="Stop" LabelPosition="Top" HorizontalAlignment="Center">
+                            <dxe:SpinEdit 
+                               EditValue="{Binding MaxPositionStop, Mode=TwoWay, 
+                                   TargetNullValue=0,
+                                   UpdateSourceTrigger=PropertyChanged,
+                                   Converter={StaticResource SpinEditConverter}}"
+                               Increment="1"
+                               MinValue="{Binding TargetPosition, TargetNullValue=0}"
+                               MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
+                               Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                               IsFloatValue="False" />
+                        </dxlc:LayoutItem>
+                        
+                        <dxlc:LayoutItem Label="Scale" LabelPosition="Top" HorizontalAlignment="Center">    
+                            <dxe:SpinEdit 
+                                EditValue="{Binding MaxPosition, Mode=TwoWay, 
+                                    TargetNullValue=0,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SpinEditConverter}}" 
+                                Increment="10"
+                                MinValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}"
+                                MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
+                                Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                                IsFloatValue="True" />
+                        </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" 
-                         HorizontalContentAlignment="Right" VerticalAlignment="Bottom" >
-                    <dxe:SpinEdit 
-                        EditValue="{Binding MaxPosition, Mode=TwoWay, 
-                            TargetNullValue=0,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource SpinEditConverter}}" 
-                        Increment="10"
-                        MinValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}"
-                        MaxValue="{Binding MaxPositionServo, Mode=OneWay, TargetNullValue=0}" 
-                        Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                        IsFloatValue="False" />
+                    </StackPanel>
+
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
-
-
 
             <dxe:TrackBarEdit 
                 Value="{Binding TargetPosition, Mode=TwoWay, TargetNullValue=0}" 
@@ -195,53 +217,24 @@
 
         </dxlc:LayoutGroup>
 
-        <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" Margin="-2,0,-2,0" >
-
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                <Label Content="+/-" />
-                <RadioButton GroupName="Scale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" >50</RadioButton>
-                <RadioButton GroupName="Scale" Click="PositionIncrement_Click" FlowDirection="LeftToRight">10</RadioButton>
-                <RadioButton GroupName="Scale" Click="PositionIncrement_Click" FlowDirection="LeftToRight">5</RadioButton>
-                <RadioButton GroupName="Scale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
-
-                <dxe:SpinEdit 
-                       EditValue="{Binding TargetPosition, Mode=TwoWay, 
-                           TargetNullValue=0,
-                           UpdateSourceTrigger=PropertyChanged,
-                           Converter={StaticResource SpinEditConverter}}" 
-                       Increment="10"
-                       MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
-                       MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
-                       Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                       IsFloatValue="True" />
-
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>-->
-
-
-
         <dxlc:LayoutGroup Orientation="Horizontal">
             
             <dxlc:LayoutItem HorizontalAlignment="Left" >
                 <Button Content="Min" CommandParameter="Min" Padding="2"
                         ToolTip="Tests full position range (recommend slowly)" 
-                        Click="TestFullPositionRange_Click"/>
+                        Click="SetTargetPosition"/>
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem HorizontalAlignment="Center">
                 <Button Content="Center" CommandParameter="Center" Padding="2"
                         ToolTip="Tests full position range (recommend slowly)" 
-                        Click="TestFullPositionRange_Click"/>
+                        Click="SetTargetPosition"/>
             </dxlc:LayoutItem>
             
             <dxlc:LayoutItem HorizontalAlignment="Right">
                 <Button Content="Max" CommandParameter="Max" Padding="2"
                         ToolTip="Tests full position range (recommend slowly)" 
-                        Click="TestFullPositionRange_Click"/>
+                        Click="SetTargetPosition"/>
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
@@ -249,14 +242,24 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
             <dxlc:LayoutItem HorizontalAlignment="Left" >
-                <Button Content="+/- Range" 
-                        ToolTip="Set Position Range to Current +/- value" 
-                        Click="SetPositionRange_Click"/>
+                <Button Content="+/- Scale" 
+                        ToolTip="Set {Miin,Max}Position to Current +/- value" 
+                        Click="SetPositionScale_Click"/>
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem x:Name="liPositionRange" HorizontalAlignment="Left">
+            <dxlc:LayoutItem x:Name="liPositionScale" HorizontalAlignment="Left">
                 <dxe:SpinEdit 
-                    Value="{Binding PositionRange, Mode=TwoWay}" 
+                    Value="{Binding PositionScale, Mode=TwoWay}" 
+                    Increment="5"
+                    MinValue="0"
+                    MaxValue="100" 
+                    IsFloatValue="False" />
+            </dxlc:LayoutItem>
+
+
+            <dxlc:LayoutItem x:Name="liPositionStops" HorizontalAlignment="Right">
+                <dxe:SpinEdit 
+                    Value="{Binding PositionStops, Mode=TwoWay}" 
                     Increment="5"
                     MinValue="0"
                     MaxValue="100" 
@@ -264,8 +267,8 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem HorizontalAlignment="Right" >
-                <Button Content="Reset Range" 
-                        ToolTip="Reset {Min,Max}Position to Servo defaults" 
+                <Button Content="+/- Stops" 
+                        ToolTip="Set {Min,Max}PositionStop Current +/- value" 
                         Click="ResetMinMaxPosition_Click"/>
             </dxlc:LayoutItem>
 

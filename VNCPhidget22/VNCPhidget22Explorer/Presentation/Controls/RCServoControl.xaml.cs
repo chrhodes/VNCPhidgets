@@ -1359,6 +1359,55 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+
+        #region MinPositionStop
+
+        public static readonly DependencyProperty MinPositionStopProperty = DependencyProperty.Register(
+            "MinPositionStop",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMinPositionStopChanged),
+                new CoerceValueCallback(OnCoerceMinPositionStop)
+                )
+            );
+
+        public Double MinPositionStop
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MinPositionStopProperty);
+            set => SetValue(MinPositionStopProperty, value);
+        }
+        private static object OnCoerceMinPositionStop(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMinPositionStop((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMinPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMinPositionStopChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMinPositionStop(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMinPositionStopChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #region Position
 
         public static readonly DependencyProperty PositionProperty = DependencyProperty.Register(
@@ -1406,6 +1455,56 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
+
+
+        #region MaxPositionStop
+
+        public static readonly DependencyProperty MaxPositionStopProperty = DependencyProperty.Register(
+            "MaxPositionStop",
+            typeof(Double),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnMaxPositionStopChanged),
+                new CoerceValueCallback(OnCoerceMaxPositionStop)
+                )
+            );
+
+        public Double MaxPositionStop
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(MaxPositionStopProperty);
+            set => SetValue(MaxPositionStopProperty, value);
+        }
+        private static object OnCoerceMaxPositionStop(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceMaxPositionStop((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnMaxPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnMaxPositionStopChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceMaxPositionStop(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnMaxPositionStopChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
 
         #region MaxPosition
 

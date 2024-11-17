@@ -354,6 +354,19 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        private Double _minPositionStop;
+        public new Double MinPositionStop
+        {
+            get => _minPositionStop;
+            set
+            {
+                if (_minPositionStop == value)
+                    return;
+                _minPositionStop = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double _minPosition;
         public new Double MinPosition
         {
@@ -394,9 +407,23 @@ namespace VNC.Phidget22.Ex
             {
                 if (_targetPosition == value)
                     return;
-                _targetPosition = value;
 
-                base.TargetPosition = (Double)value;
+                if (value < MinPositionStop)
+                {
+                    Log.Warning($"Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}", Common.LOG_CATEGORY);
+                    base.TargetPosition = _targetPosition = MinPositionStop;
+                }
+                else if (value > MaxPositionStop)
+                {
+                    Log.Warning($"Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}", Common.LOG_CATEGORY);
+                    base.TargetPosition = _targetPosition = MaxPositionStop;
+                }
+                else
+                {
+                    _targetPosition = value;
+
+                    base.TargetPosition = (Double)value;
+                }
 
                 OnPropertyChanged();
             }
@@ -405,6 +432,19 @@ namespace VNC.Phidget22.Ex
         Int64 StartTargetPositionTime;
 
         Boolean NewPositionAchieved = false;
+
+        private Double _maxPositionStop;
+        public new Double MaxPositionStop
+        {
+            get => _maxPositionStop;
+            set
+            {
+                if (_maxPositionStop == value)
+                    return;
+                _maxPositionStop = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Double _maxPosition;
         public new Double MaxPosition
@@ -640,63 +680,78 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
+            try
+            {
+                // Set properties to values from Phidget
 
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
+                MinPulseWidth = rcServo.MinPulseWidth;
+                MaxPulseWidth = rcServo.MaxPulseWidth;
 
-            //IsAttached = dOutput.Attached;
+                MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
+                MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
 
-            // Just set it so UI behaves well
-            IsAttached = true;
+                MinPulseWidth = rcServo.MinPulseWidth;
+                MaxPulseWidth = rcServo.MaxPulseWidth;
 
-            Engaged = rcServo.Engaged;
+                MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
+                MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
 
-            // TODO(crhodes)
-            // 
-            // This needs to be set before being read
-            //SensorUnit = RCServo.SensorUnit;
+                SpeedRampingState = rcServo.SpeedRampingState;
 
-            MinAcceleration = rcServo.MinAcceleration;
-            Acceleration = rcServo.Acceleration;
-            MaxAcceleration = rcServo.MaxAcceleration;
+                // TODO(crhodes)
+                // 
+                // This needs to be set before being read
+                //SensorUnit = RCServo.SensorUnit;
 
-            MinDataInterval = rcServo.MinDataInterval;
-            DataInterval = rcServo.DataInterval;
-            MaxDataInterval = rcServo.MaxDataInterval;
+                MinAcceleration = rcServo.MinAcceleration;
+                Acceleration = rcServo.Acceleration;
+                MaxAcceleration = rcServo.MaxAcceleration;
 
-            MinDataRate = rcServo.MinDataRate;
-            DataRate = rcServo.DataRate;
-            MaxDataRate = rcServo.MaxDataRate;
+                Velocity = rcServo.Velocity;
 
-            // MinPosition can be set.  Save initial limit
-            MinPositionServo = MinPosition = rcServo.MinPosition;
+                MinVelocityLimit = rcServo.MinVelocityLimit;
+                VelocityLimit = rcServo.VelocityLimit;
+                MaxVelocityLimit = rcServo.MaxVelocityLimit;
 
-            // NOTE(crhodes)
-            // Position cannot be read until initially set
-            // Initialize in middle of range
-            Position = (rcServo.MaxPosition - rcServo.MinPosition) / 2;
-            // Have to set TargetPosition before engaging
-            TargetPosition = Position;
+                MinDataInterval = rcServo.MinDataInterval;
+                DataInterval = rcServo.DataInterval;
+                MaxDataInterval = rcServo.MaxDataInterval;
 
-            // MaxPosition can be set.  Save initial limit
-            MaxPositionServo = MaxPosition = rcServo.MaxPosition;
+                MinDataRate = rcServo.MinDataRate;
+                DataRate = rcServo.DataRate;
+                MaxDataRate = rcServo.MaxDataRate;
 
-            MinPulseWidth = rcServo.MinPulseWidth;
-            MaxPulseWidth = rcServo.MaxPulseWidth;
+                // MinPosition can be set.  Save initial limit
+                MinPositionServo = MinPosition = MinPositionStop = rcServo.MinPosition;
 
-            MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
-            MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
+                // MaxPosition can be set.  Save initial limit
+                MaxPositionServo = MaxPosition = MaxPositionStop = rcServo.MaxPosition;
 
-            Velocity = rcServo.Velocity;
-
-            MinVelocityLimit = rcServo.MinVelocityLimit;
-            VelocityLimit = rcServo.VelocityLimit;
-            MaxVelocityLimit = rcServo.MaxVelocityLimit;
-
-            SpeedRampingState = rcServo.SpeedRampingState;
+                // NOTE(crhodes)
+                // Position cannot be read until initially set
+                // Initialize in middle of range
+                Position = (rcServo.MaxPosition - rcServo.MinPosition) / 2;
+                // Have to set TargetPosition before engaging
+                TargetPosition = Position;
             
-            Voltage = rcServo.Voltage;
+                Voltage = rcServo.Voltage;
+
+
+                // NOTE(crhodes)
+                // Shockingly, this is not set until after Attach Event
+
+                //IsAttached = dOutput.Attached;
+
+                // Just set it so UI behaves well
+                IsAttached = true;
+
+                Engaged = rcServo.Engaged;
+
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all RCServo support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -1156,7 +1211,7 @@ namespace VNC.Phidget22.Ex
         /// </summary>
         /// <param name="positionMin"></param>
         /// <param name="servo"></param>
-        public void SetPositionMin(Double positionMin)
+        public void SetPositionScaleMin(Double positionMin)
         {
             try
             {
@@ -1192,6 +1247,65 @@ namespace VNC.Phidget22.Ex
                 if (LogSequenceAction)
                 {
                     Log.Trace($"End positionMin:{positionMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.Error($"index:{index} positionMin:{positionMin}" +
+                //    $" servo.PositionMin:{servo.PositionMin}" +
+                //    $" servo.PositionMax:{servo.PositionMax}" +
+                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMin"></param>
+        /// <param name="servo"></param>
+        public void SetPositionStopMin(Double positionStopMin)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    //Log.Trace($"Begin positionMin:{positionMin}" +
+                    //    $" PositionMin:{PositionMin}" +
+                    //    $" PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (positionMin < 0)
+                //{
+                //    positionMin = InitialServoLimits[index].DevicePositionMin;
+                //}
+                //else if (positionMin < InitialServoLimits[index].DevicePositionMin)
+                //{
+                //    positionMin = InitialServoLimits[index].DevicePositionMin;
+                //}
+                //else if (positionMin > servo.PositionMax)
+                //{
+                //    positionMin = servo.PositionMax;
+                //}
+
+                //if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
+
+                // TODO(crhodes)
+                // Figure out if we need any of the above
+
+                MinPositionStop = positionStopMin;
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End positionMin:{positionStopMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (PhidgetException pex)
@@ -1264,12 +1378,64 @@ namespace VNC.Phidget22.Ex
             return position;
         }
 
+
         /// <summary>
         /// Bounds check and set position
         /// </summary>
         /// <param name="positionMax"></param>
         /// <param name="servo"></param>
-        public void SetPositionMax(Double positionMax)
+        public void SetPositionStopMax(Double positionMax)
+        {
+            try
+            {
+                if (LogSequenceAction)
+                {
+                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
+                    //    $" servo.PositionMin:{servo.PositionMin}" +
+                    //    $" servo.PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (positionMax < 0)
+                //{
+                //    positionMax = InitialServoLimits[index].DevicePositionMax;
+                //}
+                //else if (positionMax < servo.PositionMin)
+                //{
+                //    positionMax = servo.PositionMin;
+                //}
+                //else if (positionMax > InitialServoLimits[index].DevicePositionMax)
+                //{
+                //    positionMax = InitialServoLimits[index].DevicePositionMax;
+                //}
+
+                //if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
+
+                MaxPosition = positionMax;
+
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMax"></param>
+        /// <param name="servo"></param>
+        public void SetPositionScaleMax(Double positionMax)
         {
             try
             {
@@ -1499,18 +1665,32 @@ namespace VNC.Phidget22.Ex
                     SetVelocityLimit((Double)velocityLimit);
                 }
 
-                if (action.PositionMin is not null)
+                if (action.PositionScaleMin is not null)
                 {
-                    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionMin}<");
+                    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionScaleMin}<");
 
-                    SetPositionMin((Double)action.PositionMin);
+                    SetPositionScaleMin((Double)action.PositionScaleMin);
                 }
 
-                if (action.PositionMax is not null)
+                if (action.PositionScaleMax is not null)
                 {
-                    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionMax}<");
+                    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionScaleMax}<");
 
-                    SetPositionMax((Double)action.PositionMax);
+                    SetPositionScaleMax((Double)action.PositionScaleMax);
+                }
+
+                if (action.PositionStopMin is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" positionMin:>{action.PositionStopMin}<");
+
+                    SetPositionScaleMin((Double)action.PositionStopMin);
+                }
+
+                if (action.PositionStopMax is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" positionMax:>{action.PositionStopMax}<");
+
+                    SetPositionStopMax((Double)action.PositionStopMax);
                 }
 
                 if (action.SpeedRampingState is not null)

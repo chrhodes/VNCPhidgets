@@ -12,6 +12,9 @@ namespace VNC.Phidget22.Configuration
 
         public RCServoType? RCServoType { get; set; }
 
+        // TODO(crhodes)
+        // Do we want to support changing MinPulseWidth and MaxPulseWidth?
+
         /// <summary>
         /// Engage Servo (optional)
         /// </summary>
@@ -38,9 +41,14 @@ namespace VNC.Phidget22.Configuration
         public Double? RelativeVelocityLimit { get; set; }
 
         /// <summary>
-        /// TargetPosition (optional)
+        /// Scaled Minimum TargetPosition (optional)
         /// </summary>
-        public Double? PositionMin { get; set; }
+        public Double? PositionScaleMin { get; set; }
+
+        /// <summary>
+        /// Minimum TargetPosition (optional)
+        /// </summary>
+        public Double? PositionStopMin { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
@@ -53,9 +61,14 @@ namespace VNC.Phidget22.Configuration
         public Double? RelativePosition { get; set; }
 
         /// <summary>
-        /// TargetPosition (optional)
+        /// Maximum TargetPosition (optional)
         /// </summary>
-        public Double? PositionMax { get; set; }
+        public Double? PositionStopMax { get; set; }
+
+        /// <summary>
+        /// Scaled Maximum TargetPosition (optional)
+        /// </summary>
+        public Double? PositionScaleMax { get; set; }
 
         public bool? SpeedRampingState { get; set; }
 

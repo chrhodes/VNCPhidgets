@@ -176,10 +176,12 @@
         <controls:RCServoTargetPositionControl
             MinPositionServo="{Binding MinPositionServo, Mode=OneWay}"
             MinPosition="{Binding MinPosition, Mode=TwoWay}"
-            TargetPosition="{Binding TargetPosition, Mode=TwoWay}"            
+            MinPositionStop="{Binding MinPositionStop, Mode=TwoWay}"
+            TargetPosition="{Binding TargetPosition, Mode=TwoWay}"    
+            MaxPositionStop="{Binding MaxPositionStop, Mode=TwoWay}"            
             MaxPosition="{Binding MaxPosition, Mode=TwoWay}"
             MaxPositionServo="{Binding MaxPositionServo, Mode=OneWay}"
-            PositionRange="{Binding PositionRange}"/>
+            PositionScale="{Binding PositionScale}"/>
 
         <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
                         VerticalAlignment="Top"
