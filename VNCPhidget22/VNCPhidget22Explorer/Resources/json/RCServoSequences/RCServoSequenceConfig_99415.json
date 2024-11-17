@@ -9,7 +9,7 @@
       "Description": "", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 90 },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
         { "TargetPosition": 120 },
         { "TargetPosition": 150 },
         { "TargetPosition": 120 },
@@ -27,7 +27,7 @@
       "Description": "", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 90 },
+        { "Engaged": true, "VelocityLimit": 250, "Acceleration": 1000, "TargetPosition": 90 },
         { "TargetPosition": 120 },
         { "TargetPosition": 150 },
         { "TargetPosition": 120 },
@@ -45,7 +45,25 @@
       "Description": "", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 90 },
+        { "Engaged": true, "VelocityLimit": 1000, "Acceleration": 1000, "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo0-SR Off", 
+      "Channel": 0,
+      "Description": "", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "SpeedRampingState": false, "TargetPosition": 90 },
         { "TargetPosition": 120 },
         { "TargetPosition": 150 },
         { "TargetPosition": 120 },

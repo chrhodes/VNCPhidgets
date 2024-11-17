@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Threading;
 
 using Prism.Events;
@@ -16,6 +17,8 @@ using Phidget22;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media;
+using System.Diagnostics;
 
 namespace VNC.Phidget22.Ex
 {
@@ -399,6 +402,10 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        Int64 StartTargetPositionTime;
+
+        Boolean NewPositionAchieved = false;
+
         private Double _maxPosition;
         public new Double MaxPosition
         {
@@ -775,7 +782,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"RCServoEx_TargetPositionReached: sender:{sender} position:{e.Position}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"RCServoEx_TargetPositionReached: sender:{sender} position:{e.Position}", Common.LOG_CATEGORY, StartTargetPositionTime);
                 }
                 catch (Exception ex)
                 {
@@ -785,6 +792,7 @@ namespace VNC.Phidget22.Ex
 
             Position = e.Position;
             IsMoving = rcServo.IsMoving;
+            NewPositionAchieved = true;
         }
 
         private void RCServoEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
@@ -1505,6 +1513,13 @@ namespace VNC.Phidget22.Ex
                     SetPositionMax((Double)action.PositionMax);
                 }
 
+                if (action.SpeedRampingState is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" speedRampingState:>{action.SpeedRampingState}<");
+
+                    SpeedRampingState = (Boolean)action.SpeedRampingState;
+                }
+
                 // NOTE(crhodes)
                 // Engage the servo before doing other actions as some,
                 // e.g. TargetPosition, requires servo to be engaged.
@@ -1566,12 +1581,50 @@ namespace VNC.Phidget22.Ex
                         }
                     }
 
-                    TargetPosition = targetPosition;
+                    //var currentp = Position;
+                    //var newp = Position;
+
+                    //Boolean asyncCallComplete = false;
+
+                    //    Log.Trace($"Before currentp:{currentp} targetPosition:{targetPosition} newp:{newp} ", Common.LOG_CATEGORY);
+
+                    //    IAsyncResult result = BeginSetTargetPosition(targetPosition, delegate (IAsyncResult result)
+                    //    {
+                    //        try
+                    //        {
+                    //            EndSetTargetPosition(result);
+                    //            newp = Position;
+                    //            asyncCallComplete = true;
+                    //            Log.Trace($"IAsync currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted}", Common.LOG_CATEGORY);
+                    //        }
+                    //        catch (Exception ex)
+                    //        {
+                    //            Log.Error(ex, Common.LOG_CATEGORY);
+                    //        }
+                    //    }, null);
+
+                    //    Log.Trace($"After currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted}", Common.LOG_CATEGORY);
+
+                    //var msSleep = 0;
+                    //while (! asyncCallComplete)
+                    //{
+                    //    Thread.Sleep(1);
+                    //    msSleep++;
+                    //}
+
+                    //Log.Trace($"After2 currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted} msSleep:{msSleep}", Common.LOG_CATEGORY);
+
+                    //TargetPosition = targetPosition;
 
                     // TODO(crhodes)
                     // Figure out how to use new event
 
-                    //VerifyNewPositionAchieved(servo, index, SetPosition(targetPosition, servo, index));
+                    NewPositionAchieved = false;    // TargetPositionReached Eventhandler will set true;
+                    StartTargetPositionTime = Stopwatch.GetTimestamp();
+
+                    TargetPosition = targetPosition;
+                    
+                    VerifyNewPositionAchieved(targetPosition);
                 }
 
                 if (action.RelativePosition is not null)
@@ -1579,11 +1632,11 @@ namespace VNC.Phidget22.Ex
                     var targetPosition = TargetPosition + (Double)action.RelativePosition;
                     if (LogSequenceAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({targetPosition})");
 
-                    TargetPosition = targetPosition;
-                    // TODO(crhodes)
-                    // Figure out how to use new event
+                    NewPositionAchieved = false;    // TargetPositionReached Eventhandler will set true;
 
-                    //VerifyNewPositionAchieved(servo, index, SetPosition(targetPosition, servo, index));
+                    TargetPosition = targetPosition;
+
+                    VerifyNewPositionAchieved(targetPosition);
                 }
 
                 if (action.Duration > 0)
@@ -1657,54 +1710,42 @@ namespace VNC.Phidget22.Ex
         //    }
         //}
 
-        //private void VerifyNewPositionAchieved(AdvancedServoServo servo, Int32 index, Double targetPosition)
-        //{
-        //    Int64 startTicks = 0;
-        //    var msSleep = 0;
+        private void VerifyNewPositionAchieved(Double targetPosition)
+        {
+            Int64 startTicks = 0;
+            var msSleep = 0;
 
-        //    try
-        //    {
-        //        if (LogSequenceAction)
-        //        {
-        //            startTicks = Log.Trace($"Enter servo:{index} targetPosition:{targetPosition}", Common.LOG_CATEGORY);
-        //        }
+            try
+            {
+                if (LogActionVerification)
+                {
+                    startTicks = Log.Trace($"Enter targetPosition:{targetPosition}", Common.LOG_CATEGORY);
+                }
 
-        //        //while (servo.Position != targetPosition)
-        //        //{
-        //        //    Thread.Sleep(1);
-        //        //    msSleep++;
-        //        //}
+                do
+                {
+                    if (LogActionVerification) Log.Trace($"velocity:{Velocity,8:0.000} position:{Position,7:0.000}" +
+                        $" - isMoving:{IsMoving}", Common.LOG_CATEGORY);
+                    Thread.Sleep(1);
+                    msSleep++;
+                }
+                while (NewPositionAchieved is false);
 
-        //        // NOTE(crhodes)
-        //        // Maybe poll velocity != 0
-        //        do
-        //        {
-        //            if (LogActionVerification) Log.Trace($"servo:{index}" +
-        //                $" - velocity:{servo.Velocity,8:0.000} position:{servo.Position,7:0.000}" +
-        //                $" - stopped:{servo.Stopped}", Common.LOG_CATEGORY);
-        //            Thread.Sleep(1);
-        //            msSleep++;
-        //        }
-        //        while (servo.Position != targetPosition);
-        //        // NOTE(crhodes)
-        //        // Stopped does not mean we got there.
-        //        //while (! servo.Stopped ) ;
-
-        //        if (LogActionVerification)
-        //        {
-        //            Log.Trace($"Exit servo:{index} servoPosition:{servo.Position,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
-        //        }
-        //    }
-        //    catch (PhidgetException pex)
-        //    {
-        //        Log.Error(pex, Common.LOG_CATEGORY);
-        //        Log.Error($"servo:{index} source:{pex.Source} type:{pex.Type} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
+                if (LogActionVerification)
+                {
+                    Log.Trace($"Exit Position:{Position,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+            catch (PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
 
         #endregion
 

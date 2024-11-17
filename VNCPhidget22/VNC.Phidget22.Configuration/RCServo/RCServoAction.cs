@@ -57,6 +57,8 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public Double? PositionMax { get; set; }
 
+        public bool? SpeedRampingState { get; set; }
+
         /// <summary>
         /// Duration of step in ms (sleep time after step)
         /// </summary>

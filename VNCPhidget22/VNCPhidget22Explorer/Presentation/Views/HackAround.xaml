@@ -121,7 +121,9 @@
             <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Vertical"
                         IsCollapsible="True" IsCollapsed="False" Padding="-5">
 
-                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" >
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top"
+                                    MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
+ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
                     <dxe:CheckEdit Content="Log Performance" 
                                         IsChecked="{Binding LogPerformance}" HorizontalAlignment="Left" />
 
@@ -140,7 +142,9 @@
 
                     <dxlc:LayoutGroup Header="AdvancedServo Events" View="GroupBox" 
                                       Orientation="Vertical" VerticalAlignment="Top"
-                                    IsCollapsible="True" IsCollapsed="False" Padding="-5">
+                                    IsCollapsible="True" IsCollapsed="False" Padding="-5"
+                                      MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
+                                    ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
                         <dxe:CheckEdit Content="Log CurrentChange Events"
                                     IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
                         <dxe:CheckEdit Content="Log PositionChange Events"

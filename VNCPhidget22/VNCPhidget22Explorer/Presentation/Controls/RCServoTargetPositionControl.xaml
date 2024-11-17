@@ -265,8 +265,8 @@
 
             <dxlc:LayoutItem HorizontalAlignment="Right" >
                 <Button Content="Reset Range" 
-                        ToolTip="Set Position Range to Current +/- value" 
-                        Click="SetPositionRange_Click"/>
+                        ToolTip="Reset {Min,Max}Position to Servo defaults" 
+                        Click="ResetMinMaxPosition_Click"/>
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>

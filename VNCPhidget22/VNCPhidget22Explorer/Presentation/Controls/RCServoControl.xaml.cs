@@ -633,6 +633,54 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+
+        #region Current
+
+        public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register(
+            "Current",
+            typeof(Double?),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata
+            (null,
+                new PropertyChangedCallback(OnCurrentChanged),
+                new CoerceValueCallback(OnCoerceCurrent)));
+
+        public Double? Current
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double?)GetValue(CurrentProperty);
+            set => SetValue(CurrentProperty, value);
+        }
+        private static object OnCoerceCurrent(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceCurrent((Double?)value);
+            else
+                return value;
+        }
+
+        private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        }
+
+        protected virtual Double? OnCoerceCurrent(Double? value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnCurrentChanged(Double? oldValue, Double? newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+
+        #endregion
+
         #region MinDataInterval
 
         public static readonly DependencyProperty MinDataIntervalProperty = DependencyProperty.Register(

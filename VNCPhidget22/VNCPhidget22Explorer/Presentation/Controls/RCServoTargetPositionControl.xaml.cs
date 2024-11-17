@@ -473,6 +473,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             MaxPosition = TargetPosition + PositionRange;
         }
 
+        private void ResetMinMaxPosition_Click(object sender, RoutedEventArgs e)
+        {
+            MinPosition = MinPositionServo;
+            MaxPosition = MaxPositionServo;
+        }
+
         private void TestFullPositionRange_Click(object sender, RoutedEventArgs e)
         {
             var rea = e;
@@ -549,9 +555,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
 
+
         #endregion
-
-
     }
 }
 

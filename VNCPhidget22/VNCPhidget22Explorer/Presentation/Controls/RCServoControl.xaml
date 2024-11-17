@@ -179,7 +179,6 @@
             TargetPosition="{Binding TargetPosition, Mode=TwoWay}"            
             MaxPosition="{Binding MaxPosition, Mode=TwoWay}"
             MaxPositionServo="{Binding MaxPositionServo, Mode=OneWay}"
-            ServoIndex="{Binding Channel}"
             PositionRange="{Binding PositionRange}"/>
 
         <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"

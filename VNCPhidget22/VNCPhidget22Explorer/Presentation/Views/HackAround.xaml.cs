@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
+
+using DevExpress.Xpf.Editors;
+using DevExpress.Xpf.LayoutControl;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -64,6 +68,27 @@ namespace VNCPhidget22Explorer.Presentation.Views
             set => _instanceCountVP = value;
         }
 
-        #endregion        
+        #endregion
+
+        private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            LayoutGroup lg = (LayoutGroup)sender;
+            var mbe = e;
+
+            var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
+            var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
+
+            var children = lg.Children;
+
+            foreach (var child in children)
+            {
+                if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
+                {
+                    if (leftCtrlDown) { ((CheckEdit)child).IsChecked = true; }
+                    if (leftAltDown) { ((CheckEdit)child).IsChecked = false; }
+
+                }
+            }
+        }
     }
 }
