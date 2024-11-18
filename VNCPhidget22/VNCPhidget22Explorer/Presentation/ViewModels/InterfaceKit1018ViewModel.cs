@@ -58,6 +58,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
             CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
 
+            OpenDigitalInputCommand = new DelegateCommand<string>(OpenDigitalInput, OpenDigitalInputCanExecute);
+            CloseDigitalInputCommand = new DelegateCommand<string>(CloseDigitalInput, CloseDigitalInputCanExecute);
+
+            OpenDigitalOutputCommand = new DelegateCommand<string>(OpenDigitalOutput, OpenDigitalOutputCanExecute);
+            CloseDigitalOutputCommand = new DelegateCommand<string>(CloseDigitalOutput, CloseDigitalOutputCanExecute);
+
+            OpenVoltageInputCommand = new DelegateCommand<string>(OpenVoltageInput, OpenVoltageInputCanExecute);
+            CloseVoltageInputCommand = new DelegateCommand<string>(CloseVoltageInput, CloseVoltageInputCanExecute);
+
             // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
             // This could also come from PerformanceLibrary.

@@ -94,84 +94,84 @@
         
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 
-            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" VerticalAlignment="Top">
+            <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
 
-                <dxlc:LayoutGroup Orientation="Horizontal" >
-                    
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-                        
-                        <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
-                            <dxe:ComboBoxEdit Width="150" 
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="150" 
                                      ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
                                      SelectedItem="{Binding SelectedInterfaceKit}"
                                      SelectedIndex="0"/>
-                        </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                            <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
+                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
                                  Background="White" 
                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        
-                    </dxlc:LayoutGroup>     
-                    
-                    <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
-                                      Background="White"                                       
-                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True"
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
+                    <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
                                       Background="White"                                       
                                       Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                        <Button 
+                <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
+                    <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True"
+                                      Background="White"                                       
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                    <Button 
 		                    Command="{Binding OpenInterfaceKitCommand }"
 		                    Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"
 		                    ToolTip="{Binding OpenInterfaceKitToolTip, FallbackValue='OpenIK ToolTip' }" />
-                    </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
-                        <Button 
+                <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
+                    <Button 
                 		    Command="{Binding CloseInterfaceKitCommand }"
                 		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
                 		    ToolTip="{Binding CloseInterfaceKitToolTip, FallbackValue='CloseIK ToolTip' }" />
-                    </dxlc:LayoutItem>
-                    
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
 
-                <dxlc:LayoutGroup Name="lgPhidget22Status" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lgPhidget22Status" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
                                   IsCollapsible="True" IsCollapsed="False"  >
 
-                    <!--<controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
+                <!--<controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
                                AttachedPhidgetDevice="{Binding Phidget22Device, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />-->
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                   Margin="-5,0,-5,0"
                                   Padding="5,0,0,0"
                                   Background="{StaticResource LoggingBackground}">
 
-                        <dxe:CheckEdit
+                    <dxe:CheckEdit
                             Content="Log InputChange Events"
                             IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}"
                             HorizontalAlignment="Left"/>
-                        <dxe:CheckEdit
+                    <dxe:CheckEdit
                             Content="Log OutputChange Events"
                             IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" 
                             HorizontalAlignment="Left"/>
-                        <dxe:CheckEdit
+                    <dxe:CheckEdit
                             Content="Log SensorChange Events"
                             IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}"
                             HorizontalAlignment="Left"/>
-                        
-                    </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" VerticalAlignment="Top">
 
                 <dxlc:LayoutGroup x:Name="lgDigitalInputs" Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" 
                                   IsCollapsible="True" IsCollapsed="False"

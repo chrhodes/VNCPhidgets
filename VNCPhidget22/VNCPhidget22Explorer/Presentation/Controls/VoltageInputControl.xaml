@@ -157,8 +157,7 @@
 
         <dxlc:LayoutItem Label="Power Supply" LabelPosition="Top">
             <!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />-->
-            <dxe:TextEdit Name="teAIPS" Text="{Binding Source={vncenum:EnumBindingSource 
-                        {x:Type phidgets:PowerSupply}}, Mode=OneWay}" />            
+            <TextBox Text="{Binding PowerSupply,StringFormat={}{0} PowerSupply}"/>
             <!--<dxe:ListBoxEdit 
                     ItemsSource="{Binding Source={vncenum:EnumBindingSource 
                         {x:Type phidgets:PowerSupply}}}"/>-->
