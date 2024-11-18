@@ -233,17 +233,41 @@
                 <!--<controls:PhidgetDevice x:Name="Phidget1" Margin="-5"
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
+                
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
+                   VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                   Margin="-5,0,-5,0"
+                   Padding="5,0,0,0"
+                   Background="{StaticResource LoggingBackground}">
+
+                    <dxe:CheckEdit
+                        Content="Log Phidget Events"
+                        IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="Log Error Events"
+                        IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="Log PropertyChange Events"
+                        IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="Log SequenceAction"
+                        IsChecked="{Binding LogSequenceAction, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="Log ActionVerification"
+                        IsChecked="{Binding LogActionVerification, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>                    
+
+                </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                                   VerticalAlignment="Top" HorizontalAlignment="Stretch"
                                   Margin="-5,0,-5,0"
                                   Padding="5,0,0,0"
                                   Background="{StaticResource LoggingBackground}">
-
-                    <dxe:CheckEdit
-                        Content="Log CurrentChange Events"
-                        IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}"
-                        HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Log PositionChange Events"
                         IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}"
@@ -252,7 +276,14 @@
                             Content="Log VelocityChange Events"
                             IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
                         HorizontalAlignment="Left"/>
-
+                    <dxe:CheckEdit
+                            Content="Log TaqrgetPositionReached Events"
+                            IsChecked="{Binding LogTargetPositionReachedEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="Log CurrentChange Events"
+                        IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>

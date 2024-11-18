@@ -22,6 +22,9 @@ using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
 using DevExpress.CodeParser;
 using System.Windows;
+using DevExpress.Xpf.Editors.Helpers;
+using System.Threading.Channels;
+using System.Collections.ObjectModel;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -127,7 +130,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             for (int i = 0; i < 16; i++)
             {
+                // TODO(crhodes)
+                // This is what we were doing
+                // What
+         
                 RCServos[i] = new RCServoEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
+
+                // See if can switch to the RCServos that were created by the manager
+
+                // Ugh, we don't know the serialnumber yet.  Won't know until we select
+                // an AdvancedServo
+
+                //RCServos[i] = GetRCServoHost(serialNumber, i);
             }
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -229,19 +243,58 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
 
-                if (ActiveAdvancedServo is not null)
-                {                   
-                    ActiveAdvancedServo.LogPhidgetEvents = value;
+                //if (ActiveAdvancedServo is not null)
+                //{                   
+                //    ActiveAdvancedServo.LogPhidgetEvents = value;
 
-                    // NOTE(crhodes)
-                    // There is some logging in ServoProperties that is handled separate
-                    // from the logging in AdvancedServoEx and PhidgetEx
+                //    // NOTE(crhodes)
+                //    // There is some logging in ServoProperties that is handled separate
+                //    // from the logging in AdvancedServoEx and PhidgetEx
 
-                    for (int i = 0; i < 8; i++)
-                    {
-                        AdvancedServoProperties[i].LogPhidgetEvents = value;
-                    }
-                }
+                //    for (int i = 0; i < 8; i++)
+                //    {
+                //        AdvancedServoProperties[i].LogPhidgetEvents = value;
+                //    }
+                //}
+            }
+        }
+
+        private bool _logErrorEvents = false;
+        public bool LogErrorEvents
+        {
+            get => _logErrorEvents;
+            set
+            {
+                if (_logErrorEvents == value)
+                    return;
+                _logErrorEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPropertyChangeEvents = false;
+        public bool LogPropertyChangeEvents
+        {
+            get => _logPropertyChangeEvents;
+            set
+            {
+                if (_logPropertyChangeEvents == value)
+                    return;
+                _logPropertyChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPerformanceSequence = false;
+        public bool LogPerformanceSequence
+        {
+            get => _logPerformanceSequence;
+            set
+            {
+                if (_logPerformanceSequence == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
             }
         }
 
@@ -255,20 +308,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
+            }
+        }
 
-                if (ActiveAdvancedServo is not null)
-                {
-                    ActiveAdvancedServo.LogSequenceAction = value;
-
-                    // NOTE(crhodes)
-                    // There is some logging in StepperProperties that is handled separate
-                    // from the logging in StepperEx and PhidgetEx
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        AdvancedServoProperties[i].LogSequenceAction = value;
-                    }
-                }
+        private bool _logActionVerification = false;
+        public bool LogActionVerification
+        {
+            get => _logActionVerification;
+            set
+            {
+                if (_logActionVerification == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
             }
         }
 
@@ -288,6 +340,39 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region AdvancedServo
+
+        // TODO(crhodes)
+        // If we make this an ObservableCollection can we avoid
+        // creating them in CreateChannels
+        //
+        // How would binding in UI work?
+        //ObservableCollection<RCServoEx> _rcServos2= new ObservableCollection<RCServoEx>();
+        //ObservableCollection<RCServoEx> RCServos2
+        //{
+        //    get
+        //    {
+        //        return _rcServos2;
+        //    }
+        //    set
+        //    {
+        //        _rcServos2 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        Dictionary<int,RCServoEx> _rcServos3 = new Dictionary<int, RCServoEx>();
+        Dictionary<int, RCServoEx> RCServos3
+        {
+            get
+            {
+                return _rcServos3;
+            }
+            set
+            {
+                _rcServos3 = value;
+                OnPropertyChanged();
+            }
+        }
 
         RCServoEx[] _rcServos = new RCServoEx[16];
         public RCServoEx[] RCServos
@@ -328,10 +413,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _logCurrentChangeEvents = value;
                 OnPropertyChanged();
 
-                if (ActiveAdvancedServo is not null)
-                {
-                    ActiveAdvancedServo.LogCurrentChangeEvents = _logCurrentChangeEvents;
-                }
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogCurrentChangeEvents = _logCurrentChangeEvents;
+                //}
             }
         }
 
@@ -346,10 +431,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _logPositionChangeEvents = value;
                 OnPropertyChanged();
 
-                if (ActiveAdvancedServo is not null)
-                {
-                    ActiveAdvancedServo.LogPositionChangeEvents = _logPositionChangeEvents;
-                }
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogPositionChangeEvents = _logPositionChangeEvents;
+                //}
             }
         }
 
@@ -364,10 +449,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _logVelocityChangeEvents = value;
                 OnPropertyChanged();
 
-                if (ActiveAdvancedServo is not null)
-                {
-                    ActiveAdvancedServo.LogVelocityChangeEvents = _logVelocityChangeEvents;
-                }
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogVelocityChangeEvents = _logVelocityChangeEvents;
+                //}
+            }
+        }
+
+        private bool _logTargetPositionReachedEvents = false;
+        public bool LogTargetPositionReachedEvents
+        {
+            get => _logTargetPositionReachedEvents;
+            set
+            {
+                if (_logTargetPositionReachedEvents == value)
+                    return;
+                _logTargetPositionReachedEvents = value;
+                OnPropertyChanged();
+
+                //if (ActiveAdvancedServo is not null)
+                //{
+                //    ActiveAdvancedServo.LogTargetPositionReachedEvents = _logTargetPositionReachedEvents;
+                //}
             }
         }
 
@@ -750,9 +853,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             ConfigureRCServos(deviceChannels.RCServoCount, serialNumber);
 
-            for (int i = 0; i < deviceChannels.RCServoCount; i++)
+            for (int channel = 0; channel < deviceChannels.RCServoCount; channel++)
             {
-                await Task.Run(() => RCServos[i].Open());
+                // Old
+
+                //await Task.Run(() => RCServos[channel].Open());
+
+                //await Task.Run(() => RCServos[channel].Open());
+                var servoHost = GetRCServoHost(serialNumber, channel);
+
+                if (RCServos3.ContainsKey(channel) is false)
+                {
+                    RCServos3.Add(channel, servoHost);
+                }
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -844,13 +957,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
-            Int32 number;
+            Int32 channel;
 
-            if (Int32.TryParse(servoNumber, out number))
+            if (Int32.TryParse(servoNumber, out channel))
             {
-                RCServos[number].SerialNumber = serialNumber;
+                // old
+                //RCServos[channel].SerialNumber = serialNumber;
 
-                await Task.Run(() => RCServos[number].Open());
+                //await Task.Run(() => RCServos[channel].Open());
+                var servoHost = GetRCServoHost(serialNumber, channel);
+
+                if (RCServos3.ContainsKey(channel) is false)
+                {
+                    RCServos3.Add(channel, servoHost);
+                }
+
+                // TODO(crhodes)
+                // Should this go here?  See if bindings work.
+                //RCServos[channel] = servoHost;
             }
             else
             {
@@ -907,6 +1031,45 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             return true;
+        }
+
+        private RCServoEx GetRCServoHost(int serialNumber, int channel)
+        {
+            RCServoConfiguration rcServoConfiguration = new RCServoConfiguration()
+            {
+                LogPhidgetEvents = LogPhidgetEvents,
+                LogErrorEvents = LogErrorEvents,
+                LogPropertyChangeEvents = LogPropertyChangeEvents,
+
+                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents,
+                LogPositionChangeEvents = LogPositionChangeEvents,
+                LogVelocityChangeEvents = LogVelocityChangeEvents,
+
+                LogTargetPositionReachedEvents = LogTargetPositionReachedEvents,
+
+                LogPerformanceSequence = LogPerformanceSequence,
+                LogSequenceAction = LogSequenceAction,
+                LogActionVerification = LogActionVerification
+            };
+
+            //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.ConfigureRCServoHost(serialNumber, channel, RCServoConfiguration);
+            RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
+            
+            //rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+            //rcServoHost.LogErrorEvents = LogErrorEvents;
+            //rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            ////rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            //rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            //rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+            //rcServoHost.LogSequenceAction = LogSequenceAction;
+            //rcServoHost.LogActionVerification = LogActionVerification;
+
+            return rcServoHost;
         }
 
         #endregion
@@ -1473,7 +1636,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             DeviceAttached = false;
             UpdateAdvancedServoProperties();
 
-            ActiveAdvancedServo = null;
+            //ActiveAdvancedServo = null;
             //ClearDigitalInputsAndOutputs();
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();

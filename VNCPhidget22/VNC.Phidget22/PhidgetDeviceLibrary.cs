@@ -391,6 +391,54 @@ namespace VNC.Phidget22
 
         #region Public Methods (none)
 
+        /// <summary>
+        /// Returns Open RCServoEx channel hosted by serialNumber
+        /// configured based on configuration
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <param name="channel"></param>
+        /// <param name="configuration"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public RCServoEx OpenRCServoHost(int serialNumber, int channel, RCServoConfiguration configuration)
+        {
+            //PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
+
+            SerialChannel serialChannel = 
+                new SerialChannel() 
+                    { 
+                        SerialNumber = serialNumber, 
+                        Channel = channel 
+                    };
+
+            RCServoEx rcServoHost = RCServoChannels[serialChannel];
+
+            if (rcServoHost is null) throw new Exception($"Cannot find RCServoChannel for serialNumber:{serialNumber} channel:{channel}");
+
+            // TODO(crhodes)
+            // Maybe RCServoEx has a RCServoConfiguration property that we just set
+
+            rcServoHost.LogPhidgetEvents = configuration.LogPhidgetEvents;
+            rcServoHost.LogErrorEvents = configuration.LogErrorEvents;
+            rcServoHost.LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            rcServoHost.LogPositionChangeEvents = configuration.LogPositionChangeEvents;
+            rcServoHost.LogVelocityChangeEvents = configuration.LogVelocityChangeEvents;
+
+            rcServoHost.LogTargetPositionReachedEvents = configuration.LogTargetPositionReachedEvents;
+
+            rcServoHost.LogPerformanceSequence = configuration.LogPerformanceSequence;
+            rcServoHost.LogSequenceAction = configuration.LogSequenceAction;
+            rcServoHost.LogActionVerification = configuration.LogActionVerification;
+
+            if (rcServoHost.Attached is false)
+            {
+                rcServoHost.Open(500);
+            }
+
+            return rcServoHost;
+        }
 
         #endregion
 
