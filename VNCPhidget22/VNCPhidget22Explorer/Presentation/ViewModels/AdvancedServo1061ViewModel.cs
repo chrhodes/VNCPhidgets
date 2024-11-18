@@ -1645,7 +1645,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region ConfigureServo Command
 
         public DelegateCommand ConfigureServoCommand { get; set; }

@@ -91,6 +91,29 @@
                 HorizontalAlignment="Left"/>
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            <dxlc:LayoutItem>
+                <Button x:Name="btnOpenDigitalOutputCommand" 
+            DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		    Command="{Binding OpenDigitalOutputCommand }"
+            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		    Content="{Binding OpenDigitalOutputContent, FallbackValue='OpenDigitalOutput' }"
+      		    ToolTip="{Binding OpenDigitalOutputToolTip, FallbackValue='OpenDigitalOutput ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button x:Name="btnCloseDigitalOutputCommand" 
+            DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		    Command="{Binding CloseDigitalOutputCommand }"
+            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		    Content="{Binding CloseDigitalOutputContent, FallbackValue='CloseDigitalOutput' }"
+      		    ToolTip="{Binding CloseDigitalOutputToolTip, FallbackValue='CloseDigitalOutput ToolTip' }" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+        
         <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Top">
             <dxe:CheckEdit 
                 Name="ceDO0" Tag="0"  

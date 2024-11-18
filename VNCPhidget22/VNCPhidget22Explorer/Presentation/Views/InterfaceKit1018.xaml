@@ -176,74 +176,22 @@
                 <dxlc:LayoutGroup x:Name="lgDigitalInputs" Orientation="Horizontal" View="GroupBox" Header="Digital Inputs" 
                                   IsCollapsible="True" IsCollapsed="False"
                                   Visibility="{Binding DigitalInputsVisibility}">
-                    <!--<dxlc:LayoutGroup.GroupBoxStyle>
-                        <Style TargetType="dxlc:GroupBox">
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="BorderThickness" Value="0" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="TitleVisibility" Value="Collapsed" />
-                        </Style>
-                    </dxlc:LayoutGroup.GroupBoxStyle>-->
 
-                    <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Left"
-                                      Margin="-8,-8,5,-8">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Horizontal">
 
-                        <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
-                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                            IsCollapsible="True" IsCollapsed="False"                                   
-                            Padding="-10"
-                            Background="{StaticResource LoggingBackground}">
-                            <dxe:CheckEdit
-                                    Content="Phidget"
-                                    IsChecked="{Binding DigitalInputs[0].LogPhidgetEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                    Content="Error"
-                                    IsChecked="{Binding DigitalInputs[0].LogErrorEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                    Content="PropertyChange"
-                                    IsChecked="{Binding DigitalOutputs[0].LogPropertyChangeEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                    Content="SensorChange"
-                                    IsChecked="{Binding DigitalInputs[0].LogStateChangeEvents, Mode=TwoWay}" 
-                                    HorizontalAlignment="Left"/>
+                    <controls:DigitalInputControl ControlTitle="DI0"
+                         ChannelNumber="0"
+                        IsAttached="{Binding DigitalInputs[0].IsAttached, Mode=TwoWay}"
+                        State="{Binding DigitalInputs[0].State, Mode=OneWay}"
+                        LogPhidgetEvents="{Binding DigitalInputs[0].LogPhidgetEvents,Mode=TwoWay}"
+                        LogErrorEvents="{Binding DigitalInputs[0].LogErrorEvents,Mode=TwoWay}"
+                        LogPropertyChangeEvents="{Binding DigitalInputs[0].LogPropertyChangeEvents,Mode=TwoWay}"
+                        LogStateChangeEvents="{Binding DigitalInputs[0].LogStateChangeEvents,Mode=TwoWay}"
+                        InputMode="{Binding DigitalInputs[0].InputMode,Mode=TwoWay}" />
 
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutItem Label="DI0" LabelPosition="Top">
-                            <dxe:CheckEdit Name="ceDI0" Tag="0"  
-                               IsEnabled="{Binding DigitalInputs[0].IsAttached}" 
-                               IsChecked="{Binding DigitalInputs[0].State}"
-                               Background="{Binding DigitalInputs[0].State, 
-                                            Mode=OneWay, 
-                                            Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-
-                        --><!-- NOTE(crhodes)
-                         Need a ValueConverter for this enum
-                        --><!--
-                        <dxlc:LayoutItem HorizontalAlignment="Left" Label="InputMode" LabelPosition="Top">
-                            <dxe:TextEdit Text="{Binding DigitalInputs[0].InputMode, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>-->
-
-                    <controls:DigitalInputControl
-                       ControlTitle="DI0"
-                       IsAttached="{Binding DigitalInputs[0].IsAttached, Mode=TwoWay}"
-                       State="{Binding DigitalInputs[0].State, Mode=OneWay}"
-                       LogPhidgetEvents="{Binding DigitalInputs[0].LogPhidgetEvents,Mode=TwoWay}"
-                       LogErrorEvents="{Binding DigitalInputs[0].LogErrorEvents,Mode=TwoWay}"
-                       LogPropertyChangeEvents="{Binding DigitalInputs[0].LogPropertyChangeEvents,Mode=TwoWay}"
-                       LogStateChangeEvents="{Binding DigitalInputs[0].LogStateChangeEvents,Mode=TwoWay}"
-                       InputMode="{Binding DigitalInputs[0].InputMode,Mode=TwoWay}" />
-
-                    <controls:DigitalInputControl
-                       ControlTitle="DI1"
+                    <controls:DigitalInputControl ControlTitle="DI1"
+                         ChannelNumber="1"
                        IsAttached="{Binding DigitalInputs[1].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[1].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[1].LogPhidgetEvents,Mode=TwoWay}"
@@ -252,8 +200,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[1].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[1].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                       ControlTitle="DI2"
+                    <controls:DigitalInputControl ControlTitle="DI2"
+                         ChannelNumber="2"
                        IsAttached="{Binding DigitalInputs[2].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[2].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[2].LogPhidgetEvents,Mode=TwoWay}"
@@ -262,8 +210,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[2].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[2].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                       ControlTitle="DI3"
+                    <controls:DigitalInputControl ControlTitle="DI3"
+                        ChannelNumber="3"                                                  
                        IsAttached="{Binding DigitalInputs[3].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[3].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[3].LogPhidgetEvents,Mode=TwoWay}"
@@ -272,8 +220,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[3].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[3].InputMode,Mode=TwoWay}" />
                     
-                    <controls:DigitalInputControl
-                       ControlTitle="DI4"
+                    <controls:DigitalInputControl ControlTitle="DI4"
+                       ChannelNumber="4"                                                  
                        IsAttached="{Binding DigitalInputs[4].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[4].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[4].LogPhidgetEvents,Mode=TwoWay}"
@@ -282,8 +230,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[4].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[4].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                       ControlTitle="DI5"
+                    <controls:DigitalInputControl ControlTitle="DI5"
+                       ChannelNumber="5"
                        IsAttached="{Binding DigitalInputs[5].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[5].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[5].LogPhidgetEvents,Mode=TwoWay}"
@@ -292,8 +240,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[5].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[5].InputMode,Mode=TwoWay}" />
                     
-                    <controls:DigitalInputControl
-                       ControlTitle="DI6"
+                    <controls:DigitalInputControl ControlTitle="DI6"
+                       ChannelNumber="6"                                                  
                        IsAttached="{Binding DigitalInputs[6].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[6].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[6].LogPhidgetEvents,Mode=TwoWay}"
@@ -302,8 +250,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[6].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[6].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                       ControlTitle="DI7"
+                    <controls:DigitalInputControl ControlTitle="DI7"
+                       ChannelNumber="7"                                                  
                        IsAttached="{Binding DigitalInputs[7].IsAttached, Mode=TwoWay}"
                        State="{Binding DigitalInputs[7].State, Mode=OneWay}"
                        LogPhidgetEvents="{Binding DigitalInputs[7].LogPhidgetEvents,Mode=TwoWay}"
@@ -312,8 +260,8 @@
                        LogStateChangeEvents="{Binding DigitalInputs[7].LogStateChangeEvents,Mode=TwoWay}"
                        InputMode="{Binding DigitalInputs[7].InputMode,Mode=TwoWay}" />
                     
-                    <controls:DigitalInputControl
-                        ControlTitle="DI8"
+                    <controls:DigitalInputControl ControlTitle="DI8"
+                        ChannelNumber="8"                                                  
                         IsAttached="{Binding DigitalInputs[8].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[8].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[8].LogPhidgetEvents,Mode=TwoWay}"
@@ -322,8 +270,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[8].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[8].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                        ControlTitle="DI9"
+                    <controls:DigitalInputControl ControlTitle="DI9"
+                        ChannelNumber="9"
                         IsAttached="{Binding DigitalInputs[9].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[9].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[9].LogPhidgetEvents,Mode=TwoWay}"
@@ -332,8 +280,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[9].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[9].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                        ControlTitle="DI10"
+                    <controls:DigitalInputControl ControlTitle="DI10"
+                        ChannelNumber="10"
                         IsAttached="{Binding DigitalInputs[10].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[10].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[10].LogPhidgetEvents,Mode=TwoWay}"
@@ -342,8 +290,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[10].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[10].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                        ControlTitle="DI11"
+                    <controls:DigitalInputControl ControlTitle="DI11"
+                        ChannelNumber="11"
                         IsAttached="{Binding DigitalInputs[11].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[11].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[11].LogPhidgetEvents,Mode=TwoWay}"
@@ -352,8 +300,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[11].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[11].InputMode,Mode=TwoWay}" />
                     
-                    <controls:DigitalInputControl
-                        ControlTitle="DI12"
+                    <controls:DigitalInputControl ControlTitle="DI12"
+                        ChannelNumber="12"
                         IsAttached="{Binding DigitalInputs[12].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[12].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[12].LogPhidgetEvents,Mode=TwoWay}"
@@ -362,8 +310,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[12].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[12].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                        ControlTitle="DI13"
+                    <controls:DigitalInputControl ControlTitle="DI13"
+                        ChannelNumber="13"                                                  
                         IsAttached="{Binding DigitalInputs[13].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[13].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[13].LogPhidgetEvents,Mode=TwoWay}"
@@ -372,8 +320,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[13].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[13].InputMode,Mode=TwoWay}" />
                     
-                    <controls:DigitalInputControl
-                        ControlTitle="DI14"
+                    <controls:DigitalInputControl ControlTitle="DI14"
+                        ChannelNumber="14"
                         IsAttached="{Binding DigitalInputs[14].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[14].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[14].LogPhidgetEvents,Mode=TwoWay}"
@@ -382,8 +330,8 @@
                         LogStateChangeEvents="{Binding DigitalInputs[14].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[14].InputMode,Mode=TwoWay}" />
 
-                    <controls:DigitalInputControl
-                        ControlTitle="DI15"
+                    <controls:DigitalInputControl ControlTitle="DI15"
+                        ChannelNumber="15"
                         IsAttached="{Binding DigitalInputs[15].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalInputs[15].State, Mode=OneWay}"
                         LogPhidgetEvents="{Binding DigitalInputs[15].LogPhidgetEvents,Mode=TwoWay}"
@@ -391,62 +339,20 @@
                         LogPropertyChangeEvents="{Binding DigitalInputs[15].LogPropertyChangeEvents,Mode=TwoWay}"
                         LogStateChangeEvents="{Binding DigitalInputs[15].LogStateChangeEvents,Mode=TwoWay}"
                         InputMode="{Binding DigitalInputs[15].InputMode,Mode=TwoWay}" />
-                    
+
+                        </StackPanel>
+                    </ScrollViewer>
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup x:Name="lgDigitalOutputs" Orientation="Horizontal" View="GroupBox" Header="Digital Outputs"
                     IsCollapsible="True" IsCollapsed="False" 
                     Visibility="{Binding DigitalOutputsVisibility}">
 
-                    <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Left"
-                                      Margin="-8,-8,5,-8">
-                        <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
-                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                            IsCollapsible="True" IsCollapsed="False"                                     
-                            Padding="-10"
-                            Background="{StaticResource LoggingBackground}">
-                            <dxe:CheckEdit
-                                    Content="Phidget"
-                                    IsChecked="{Binding DigitalOutputs[0].LogPhidgetEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                    Content="Error"
-                                    IsChecked="{Binding DigitalOutputs[0].LogErrorEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                    Content="PropertyChange"
-                                    IsChecked="{Binding DigitalOutputs[0].LogPropertyChangeEvents, Mode=TwoWay}"
-                                    HorizontalAlignment="Left"/>
-                        </dxlc:LayoutGroup>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Horizontal">
 
-                        <dxlc:LayoutItem Label="DO0" LabelPosition="Top">
-                            <dxe:CheckEdit 
-                                Name="ceDO0" Tag="0"  
-                                IsEnabled="{Binding DigitalOutputs[0].IsAttached}" 
-                                IsChecked="{Binding DigitalOutputs[0].State}"
-                                Background="{Binding DigitalOutputs[0].State, Mode=OneWay, 
-                                            Converter={StaticResource RedGreenConverter}}"/>
-                        </dxlc:LayoutItem>
-                        
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
-                            
-                            <dxlc:LayoutItem HorizontalAlignment="Left" Label="Min" LabelPosition="Top">
-                                <dxe:TextEdit Text="{Binding DigitalOutputs[0].MinDutyCycle}" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Center" Label="DutyCycle" LabelPosition="Top">
-                                <dxe:TextEdit Text="{Binding DigitalOutputs[0].DutyCycle}" />
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem HorizontalAlignment="Right" Label="Max" LabelPosition="Top">
-                                <dxe:TextEdit Text="{Binding DigitalOutputs[0].MaxDutyCycle}" />
-                            </dxlc:LayoutItem>
-                            
-                        </dxlc:LayoutGroup>
-                        
-                    </dxlc:LayoutGroup>-->
-
-                    <controls:DigitalOutputControl
-                        ControlTitle="DO0"
+                            <controls:DigitalOutputControl ControlTitle="DO0"
+                                                   ChannelNumber="0"
                         IsAttached="{Binding DigitalOutputs[0].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[0].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[0].LogPhidgetEvents,Mode=TwoWay}"
@@ -456,8 +362,8 @@
                         DutyCycle="{Binding DigitalOutputs[0].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[0].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO1"
+                    <controls:DigitalOutputControl ControlTitle="DO1"
+                                                   ChannelNumber="1"
                         IsAttached="{Binding DigitalOutputs[1].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[1].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[1].LogPhidgetEvents,Mode=TwoWay}"
@@ -467,8 +373,8 @@
                         DutyCycle="{Binding DigitalOutputs[1].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[1].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO2"
+                    <controls:DigitalOutputControl ControlTitle="DO2"
+                                                   ChannelNumber="2"
                         IsAttached="{Binding DigitalOutputs[2].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[2].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[2].LogPhidgetEvents,Mode=TwoWay}"
@@ -478,8 +384,8 @@
                         DutyCycle="{Binding DigitalOutputs[2].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[2].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO3"
+                    <controls:DigitalOutputControl ControlTitle="DO3"
+                                                   ChannelNumber="3"
                         IsAttached="{Binding DigitalOutputs[3].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[3].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[3].LogPhidgetEvents,Mode=TwoWay}"
@@ -489,8 +395,8 @@
                         DutyCycle="{Binding DigitalOutputs[3].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[3].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO4"
+                    <controls:DigitalOutputControl ControlTitle="DO4"
+                                                   ChannelNumber="4"
                         IsAttached="{Binding DigitalOutputs[4].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[4].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[4].LogPhidgetEvents,Mode=TwoWay}"
@@ -500,8 +406,8 @@
                         DutyCycle="{Binding DigitalOutputs[4].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[4].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl                         
-                        ControlTitle="DO5"
+                    <controls:DigitalOutputControl ControlTitle="DO5"
+                                                   ChannelNumber="5"
                         IsAttached="{Binding DigitalOutputs[5].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[5].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[5].LogPhidgetEvents,Mode=TwoWay}"
@@ -511,8 +417,8 @@
                         DutyCycle="{Binding DigitalOutputs[5].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[5].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO6"
+                    <controls:DigitalOutputControl ControlTitle="DO6"
+                                                   ChannelNumber="6"
                         IsAttached="{Binding DigitalOutputs[6].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[6].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[6].LogPhidgetEvents,Mode=TwoWay}"
@@ -522,8 +428,8 @@
                         DutyCycle="{Binding DigitalOutputs[6].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[6].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO7"
+                    <controls:DigitalOutputControl ControlTitle="DO7"
+                                                   ChannelNumber="7"
                         IsAttached="{Binding DigitalOutputs[7].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[7].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[7].LogPhidgetEvents,Mode=TwoWay}"
@@ -533,8 +439,8 @@
                         DutyCycle="{Binding DigitalOutputs[7].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[7].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO8"
+                    <controls:DigitalOutputControl ControlTitle="DO8"
+                                                   ChannelNumber="8"
                         IsAttached="{Binding DigitalOutputs[8].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[8].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[8].LogPhidgetEvents,Mode=TwoWay}"
@@ -544,8 +450,8 @@
                         DutyCycle="{Binding DigitalOutputs[8].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[8].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO9"
+                    <controls:DigitalOutputControl ControlTitle="DO9"
+                                                   ChannelNumber="9"
                         IsAttached="{Binding DigitalOutputs[9].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[9].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[9].LogPhidgetEvents,Mode=TwoWay}"
@@ -555,8 +461,8 @@
                         DutyCycle="{Binding DigitalOutputs[9].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[9].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO10"
+                    <controls:DigitalOutputControl ControlTitle="DO10"
+                                                   ChannelNumber="10"
                         IsAttached="{Binding DigitalOutputs[10].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[10].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[10].LogPhidgetEvents,Mode=TwoWay}"
@@ -566,8 +472,8 @@
                         DutyCycle="{Binding DigitalOutputs[10].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[10].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO11"
+                    <controls:DigitalOutputControl ControlTitle="DO11"
+                                                   ChannelNumber="11"
                         IsAttached="{Binding DigitalOutputs[11].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[11].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[11].LogPhidgetEvents,Mode=TwoWay}"
@@ -577,8 +483,8 @@
                         DutyCycle="{Binding DigitalOutputs[11].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[11].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO12"
+                    <controls:DigitalOutputControl ControlTitle="DO12"
+                                                   ChannelNumber="12"
                         IsAttached="{Binding DigitalOutputs[12].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[12].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[12].LogPhidgetEvents,Mode=TwoWay}"
@@ -588,8 +494,8 @@
                         DutyCycle="{Binding DigitalOutputs[12].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[12].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO13"
+                    <controls:DigitalOutputControl ControlTitle="DO13"
+                                                   ChannelNumber="13"
                         IsAttached="{Binding DigitalOutputs[13].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[13].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[13].LogPhidgetEvents,Mode=TwoWay}"
@@ -599,8 +505,8 @@
                         DutyCycle="{Binding DigitalOutputs[13].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[13].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO14"
+                    <controls:DigitalOutputControl ControlTitle="DO14"
+                                                   ChannelNumber="14"
                         IsAttached="{Binding DigitalOutputs[14].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[14].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[14].LogPhidgetEvents,Mode=TwoWay}"
@@ -610,8 +516,8 @@
                         DutyCycle="{Binding DigitalOutputs[14].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[14].MaxDutyCycle,Mode=TwoWay}" />
 
-                    <controls:DigitalOutputControl 
-                        ControlTitle="DO15"
+                    <controls:DigitalOutputControl ControlTitle="DO15"
+                                                   ChannelNumber="15"
                         IsAttached="{Binding DigitalOutputs[15].IsAttached, Mode=TwoWay}"
                         State="{Binding DigitalOutputs[15].State, Mode=TwoWay}"
                         LogPhidgetEvents="{Binding DigitalOutputs[15].LogPhidgetEvents,Mode=TwoWay}"
@@ -621,164 +527,19 @@
                         DutyCycle="{Binding DigitalOutputs[15].DutyCycle,Mode=TwoWay}"
                         MaxDutyCycle="{Binding DigitalOutputs[15].MaxDutyCycle,Mode=TwoWay}" />
 
+                        </StackPanel>
+                    </ScrollViewer>
+                    
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup x:Name="lgVoltageInputs" Orientation="Horizontal" View="GroupBox" Header="Voltage Inputs" 
                     IsCollapsible="True" IsCollapsed="False" 
                     Visibility="{Binding VoltageInputsVisibility}" >
 
-                    <!--<dxlc:LayoutGroup Name="lgAnalogInputs_A0" Orientation="Vertical" HorizontalAlignment="Left">
-
-                        <dxlc:LayoutGroup 
-                            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
-                            VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                            IsCollapsible="True" IsCollapsed="False"                                     
-                            Padding="-10"
-                            Background="{StaticResource LoggingBackground}">
-                            <dxe:CheckEdit
-                                Content="Log Phidget Events"
-                                IsChecked="{Binding VoltageInputs[0].LogPhidgetEvents, Mode=TwoWay}"
-                                HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                Content="Log Error Events"
-                                IsChecked="{Binding VoltageInputs[0].LogErrorEvents, Mode=TwoWay}"
-                                HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                Content="Log PropertyChange Events"
-                                IsChecked="{Binding VoltageInputs[0].LogPropertyChangeEvents, Mode=TwoWay}"
-                                HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                Content="Log SensorChange Events"
-                                IsChecked="{Binding VoltageInputs[0].LogSensorChangeEvents, Mode=TwoWay}" 
-                                HorizontalAlignment="Left"/>
-                            <dxe:CheckEdit
-                                Content="Log VoltageChange Events"
-                                IsChecked="{Binding VoltageInputs[0].LogVoltageChangeEvents, Mode=TwoWay}"
-                                HorizontalAlignment="Left"/>
-
-                        </dxlc:LayoutGroup>
-                        
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
-                            <dxlc:LayoutItem x:Name="liSensorTypeA0" Label="Sensor Type" LabelPosition="Top" 
-                                         Visibility="{Binding IsChecked,ElementName=ceRatioMode, 
-                                                        Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-                                <dxe:ComboBoxEdit 
-                                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageSensorType}}}"
-                                    SelectedItem="{Binding VoltageInputs[0].SensorType}"
-                                    SelectedIndex="0"/>
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem x:Name="liRatioSensorTypeA0" Label="Sensor Type" LabelPosition="Top"
-                                         Visibility="{Binding IsChecked, ElementName=ceRatioMode, 
-                                                        Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <dxe:ComboBoxEdit 
-                                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
-                                    SelectedItem="{Binding VoltageRatioInputs[0].SensorType}"
-                                    SelectedIndex="0"/>
-                            </dxlc:LayoutItem>
-                            
-                            <dxe:CheckEdit x:Name="ceRatioMode" Content="Ratio" ToolTip="Set VoltageRatio Mode"
-                                           IsChecked="{Binding AIRatioMode0}" 
-                                           VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-                            --><!--<RadioButton x:Name="rbVoltage"  GroupName="SensorMode" Click="SensorMode_Click" IsChecked="True">Voltage</RadioButton>
-                            <RadioButton x:Name="rbRatioVoltage" GroupName="SensorMode" Click="SensorMode_Click">RatioVoltage</RadioButton>--><!--
-                            
-                        </dxlc:LayoutGroup>
-
-
-                        
-                        <dxlc:LayoutItem Label="A0 Power Supply" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAIPS" Tag="0" Text="{Binding VoltageInputs[0].PowerSupply, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="A0 SChgTrigger" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAI_A0VSCT" Tag="0" Text="{Binding VoltageInputs[0].SensorValueChangeTrigger, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="A0 Unit" LabelPosition="Top">
-                            <dxe:TextEdit Name="teAIUnit0" Text="{Binding VoltageInputs[0].Unit, Mode=OneWay}" IsReadOnly="True" />
-                        </dxlc:LayoutItem>
-                        
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
-
-                            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MinVoltage, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-                            
-                            <dxlc:LayoutItem Label="Voltage" LabelPosition="Top" HorizontalAlignment="Center">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].Voltage, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MaxVoltage, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-  
-                        </dxlc:LayoutGroup>
-                        
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch" >
-                            
-                            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MinDataRate, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="DataRate" LabelPosition="Top" HorizontalAlignment="Center">
-
-                                <dxe:SpinEdit Value="{Binding VoltageInputs[0].DataRate, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding VoltageInputs[0].MinDataRate, Mode=OneWay}" 
-                                          MaxValue="{Binding VoltageInputs[0].MaxDataRate, Mode=OneWay}" 
-                                          IsFloatValue="True" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MaxDataRate, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-                            
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                            
-                            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MinDataRate, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="DataInterval" LabelPosition="Top" HorizontalAlignment="Center">
-                                <dxe:SpinEdit Increment="1"
-                                    Value="{Binding VoltageInputs[0].DataInterval, Mode=TwoWay}" 
-                                    MinValue="{Binding VoltageInputs[0].MinDataInterval, Mode=OneWay}" 
-                                    MaxValue="{Binding VoltageInputs[0].MaxDataInterval, Mode=OneWay}" 
-                                    IsFloatValue="False" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MaxDataInterval, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-                            
-                        </dxlc:LayoutGroup> 
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch"  >
-                            
-                            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MinVoltageChangeTrigger, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="ChangeTrigger" LabelPosition="Top" HorizontalAlignment="Center">
-                                <dxe:SpinEdit Increment="1"
-                                    Value="{Binding VoltageInputs[0].VoltageChangeTrigger, Mode=TwoWay}" 
-                                    MinValue="{Binding VoltageInputs[0].MinVoltageChangeTrigger, Mode=OneWay}" 
-                                    MaxValue="{Binding VoltageInputs[0].MaxVoltageChangeTrigger, Mode=OneWay}" 
-                                    IsFloatValue="False" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
-                                <dxe:TextEdit Text="{Binding VoltageInputs[0].MaxVoltageChangeTrigger, Mode=OneWay}" IsReadOnly="True" />
-                            </dxlc:LayoutItem>
-                            
-                        </dxlc:LayoutGroup>
-
-                    </dxlc:LayoutGroup>-->
-
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI0"
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Horizontal">
+                            <controls:VoltageInputControl ControlTitle="VI0"
+                                                          ChannelNumber="0"
                             IsAttached="{Binding VoltageInputs[0].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[0].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[0].LogErrorEvents,Mode=TwoWay}"
@@ -809,8 +570,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[0].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI1"
+                            <controls:VoltageInputControl ControlTitle="VI1"
+                                                          ChannelNumber="1"
                             IsAttached="{Binding VoltageInputs[1].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[1].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[1].LogErrorEvents,Mode=TwoWay}"
@@ -841,8 +602,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[0].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI2"
+                            <controls:VoltageInputControl ControlTitle="VI2"
+                                                          ChannelNumber="2"
                             IsAttached="{Binding VoltageInputs[2].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[2].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[2].LogErrorEvents,Mode=TwoWay}"
@@ -873,8 +634,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[2].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI3"
+                            <controls:VoltageInputControl ControlTitle="VI3"
+                                                          ChannelNumber="3"
                             IsAttached="{Binding VoltageInputs[3].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[3].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[3].LogErrorEvents,Mode=TwoWay}"
@@ -905,8 +666,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[3].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI4"
+                            <controls:VoltageInputControl ControlTitle="VI4"
+                                                          ChannelNumber="4"
                             IsAttached="{Binding VoltageInputs[4].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[4].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[4].LogErrorEvents,Mode=TwoWay}"
@@ -937,8 +698,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[4].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI5"
+                            <controls:VoltageInputControl ControlTitle="VI5"
+                                                          ChannelNumber="5"
                             IsAttached="{Binding VoltageInputs[5].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[5].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[5].LogErrorEvents,Mode=TwoWay}"
@@ -969,8 +730,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[5].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI6"
+                            <controls:VoltageInputControl ControlTitle="VI6"
+                                                          ChannelNumber="6"
                             IsAttached="{Binding VoltageInputs[6].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[6].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[6].LogErrorEvents,Mode=TwoWay}"
@@ -1001,8 +762,8 @@
                             
                             VoltageRange="{Binding VoltageInputs[6].VoltageRange,Mode=TwoWay}" />
 
-                    <controls:VoltageInputControl 
-                            ControlTitle="VI7"
+                            <controls:VoltageInputControl ControlTitle="VI7"
+                                                          ChannelNumber="7"
                             IsAttached="{Binding VoltageInputs[7].IsAttached, Mode=TwoWay}"
                             LogPhidgetEvents="{Binding VoltageInputs[7].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding VoltageInputs[7].LogErrorEvents,Mode=TwoWay}"
@@ -1032,6 +793,8 @@
                             MaxVoltageChangeTrigger="{Binding VoltageInputs[7].MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
                             VoltageRange="{Binding VoltageInputs[7].VoltageRange,Mode=TwoWay}" />
+                        </StackPanel>
+                    </ScrollViewer>
 
                 </dxlc:LayoutGroup>
 

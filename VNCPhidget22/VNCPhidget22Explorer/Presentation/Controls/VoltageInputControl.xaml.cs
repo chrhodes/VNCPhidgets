@@ -133,6 +133,56 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
         #endregion
 
+
+        #region ChannelNumber
+
+        public static readonly DependencyProperty ChannelNumberProperty = DependencyProperty.Register(
+            "ChannelNumber",
+            typeof(string),
+            typeof(VoltageInputControl),
+            new FrameworkPropertyMetadata(
+                "0",
+                new PropertyChangedCallback(OnChannelNumberChanged),
+                new CoerceValueCallback(OnCoerceChannelNumber)
+                )
+            );
+
+        public string ChannelNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(ChannelNumberProperty);
+            set => SetValue(ChannelNumberProperty, value);
+        }
+
+        private static object OnCoerceChannelNumber(DependencyObject o, object value)
+        {
+            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
+            if (VoltageInputControl != null)
+                return VoltageInputControl.OnCoerceChannelNumber((string)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
+            if (VoltageInputControl != null)
+                VoltageInputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual string OnCoerceChannelNumber(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelNumberChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #region IsAttached
 
         public static readonly DependencyProperty IsAttachedProperty = DependencyProperty.Register(
@@ -472,6 +522,55 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+        #region RatioSensorType
+
+        public static readonly DependencyProperty RatioSensorTypeProperty = DependencyProperty.Register(
+            "RatioSensorType",
+            typeof(Phidgets.VoltageRatioSensorType),
+            typeof(VoltageInputControl),
+            new FrameworkPropertyMetadata(
+                Phidgets.VoltageRatioSensorType.VoltageRatio,
+                new PropertyChangedCallback(OnRatioSensorTypeChanged),
+                new CoerceValueCallback(OnCoerceRatioSensorType)
+                )
+            );
+
+        public Phidgets.VoltageRatioSensorType RatioSensorType
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Phidgets.VoltageRatioSensorType)GetValue(RatioSensorTypeProperty);
+            set => SetValue(RatioSensorTypeProperty, value);
+        }
+
+        private static object OnCoerceRatioSensorType(DependencyObject o, object value)
+        {
+            VoltageInputControl voltageInputControl = o as VoltageInputControl;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceRatioSensorType((Phidgets.VoltageRatioSensorType)value);
+            else
+                return value;
+        }
+
+        private static void OnRatioSensorTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageInputControl voltageInputControl = o as VoltageInputControl;
+            if (voltageInputControl != null)
+                voltageInputControl.OnRatioSensorTypeChanged((Phidgets.VoltageRatioSensorType)e.OldValue, (Phidgets.VoltageRatioSensorType)e.NewValue);
+        }
+
+        protected virtual Phidgets.VoltageRatioSensorType OnCoerceRatioSensorType(Phidgets.VoltageRatioSensorType value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnRatioSensorTypeChanged(Phidgets.VoltageRatioSensorType oldValue, Phidgets.VoltageRatioSensorType newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #region SensorUnit
 
         public static readonly DependencyProperty SensorUnitProperty = DependencyProperty.Register(
@@ -526,7 +625,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             "PowerSupply", 
             typeof(Phidgets.PowerSupply), 
             typeof(VoltageInputControl), 
-            new FrameworkPropertyMetadata(Phidgets.PowerSupply.Off, 
+            new FrameworkPropertyMetadata(
+                Phidgets.PowerSupply.Off, 
                 new PropertyChangedCallback(OnPowerSupplyChanged), 
                 new CoerceValueCallback(OnCoercePowerSupply)
                 )

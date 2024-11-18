@@ -82,7 +82,8 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                <dxlc:LayoutItem Label="Servo Min" LabelPosition="Top" LabelHorizontalAlignment="Right" HorizontalAlignment="Left">
+                <dxlc:LayoutItem Label="Servo Min" LabelPosition="Top" 
+                                 LabelHorizontalAlignment="Right" HorizontalAlignment="Left">
                     <dxe:TextEdit Text="{Binding MinPositionServo, Mode=TwoWay}" 
                                   IsReadOnly="True" HorizontalContentAlignment="Left"  />
                 </dxlc:LayoutItem>

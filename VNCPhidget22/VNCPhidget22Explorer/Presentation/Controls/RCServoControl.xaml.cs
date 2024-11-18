@@ -71,6 +71,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             lgMain.DataContext = this;
+            //liConfigureServo.DataContext = this.Parent;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -583,7 +584,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-
         #region ServoNumber
 
         public static readonly DependencyProperty ServoNumberProperty = DependencyProperty.Register(
@@ -632,7 +632,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
 
         #region Current
 
@@ -1359,7 +1358,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-
         #region MinPositionStop
 
         public static readonly DependencyProperty MinPositionStopProperty = DependencyProperty.Register(
@@ -1456,7 +1454,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-
         #region MaxPositionStop
 
         public static readonly DependencyProperty MaxPositionStopProperty = DependencyProperty.Register(
@@ -1504,7 +1501,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
 
         #region MaxPosition
 
@@ -2227,10 +2223,108 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+        #region PositionScaleRange
+
+        public static readonly DependencyProperty PositionScaleRangeProperty = DependencyProperty.Register(
+            "PositionScaleRange",
+            typeof(Int32),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                10,
+                new PropertyChangedCallback(OnPositionScaleRangeChanged),
+                new CoerceValueCallback(OnCoercePositionScaleRange)
+                )
+            );
+
+        public Int32 PositionScaleRange
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(PositionScaleRangeProperty);
+            set => SetValue(PositionScaleRangeProperty, value);
+        }
+
+        private static object OnCoercePositionScaleRange(DependencyObject o, object value)
+        {
+            RCServoControl positionControl = o as RCServoControl;
+            if (positionControl != null)
+                return positionControl.OnCoercePositionScaleRange((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnPositionScaleRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl positionControl = o as RCServoControl;
+            if (positionControl != null)
+                positionControl.OnPositionScaleRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoercePositionScaleRange(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnPositionScaleRangeChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region PositionStopRange
+
+        public static readonly DependencyProperty PositionStopRangeProperty = DependencyProperty.Register(
+            "PositionStopRange",
+            typeof(Int32),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                10,
+                new PropertyChangedCallback(OnPositionStopRangeChanged),
+                new CoerceValueCallback(OnCoercePositionStopRange)
+                )
+            );
+
+        public Int32 PositionStopRange
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(PositionStopRangeProperty);
+            set => SetValue(PositionStopRangeProperty, value);
+        }
+
+        private static object OnCoercePositionStopRange(DependencyObject o, object value)
+        {
+            RCServoControl positionControl = o as RCServoControl;
+            if (positionControl != null)
+                return positionControl.OnCoercePositionStopRange((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnPositionStopRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl positionControl = o as RCServoControl;
+            if (positionControl != null)
+                positionControl.OnPositionStopRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoercePositionStopRange(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnPositionStopRangeChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #endregion
 
         #region Event Handlers
-        
+
         private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             LayoutGroup lg = (LayoutGroup)sender;

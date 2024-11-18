@@ -23,13 +23,13 @@
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
     
-    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
+    xmlns:vncwpfconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
     
     xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"    
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core" 
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"   
     
     xmlns:prism="http://prismlibrary.com/"   
     prism:ViewModelLocator.AutoWireViewModel="False"
@@ -50,7 +50,7 @@
         <converters:SpinEditConverter x:Key="SpinEditConverter" />
         <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
         <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
-        <vncconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />        
+        <vncwpfconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
         <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
@@ -105,6 +105,29 @@
 
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            <dxlc:LayoutItem>
+                <Button x:Name="btnOpenVoltageInputCommand" 
+            DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		    Command="{Binding OpenVoltageInputCommand }"
+            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		    Content="{Binding OpenVoltageInputContent, FallbackValue='OpenVoltageInput' }"
+      		    ToolTip="{Binding OpenVoltageInputToolTip, FallbackValue='OpenVoltageInput ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button x:Name="btnCloseVoltageInputCommand" 
+            DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		    Command="{Binding CloseVoltageInputCommand }"
+            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		    Content="{Binding CloseVoltageInputContent, FallbackValue='CloseVoltageInput' }"
+      		    ToolTip="{Binding CloseVoltageInputToolTip, FallbackValue='CloseVoltageInput ToolTip' }" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
             <dxlc:LayoutItem x:Name="liSensorTypeA0" Label="Sensor Type" LabelPosition="Top" 
                     Visibility="{Binding IsChecked,ElementName=ceRatioMode, 
@@ -120,7 +143,7 @@
                     Converter={StaticResource BooleanToVisibilityConverter}}">
                 <dxe:ComboBoxEdit 
                     ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
-                    SelectedItem="{Binding VoltageRatioInputs[0].SensorType}"
+                    SelectedItem="{Binding RatioSensorType}"
                     SelectedIndex="0"/>
             </dxlc:LayoutItem>
 
@@ -133,11 +156,16 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutItem Label="Power Supply" LabelPosition="Top">
-            <dxe:TextEdit Name="teAIPS" Tag="0" Text="{Binding PowerSupply, Mode=OneWay}" />
+            <!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />-->
+            <dxe:TextEdit Name="teAIPS" Text="{Binding Source={vncenum:EnumBindingSource 
+                        {x:Type phidgets:PowerSupply}}, Mode=OneWay}" />            
+            <!--<dxe:ListBoxEdit 
+                    ItemsSource="{Binding Source={vncenum:EnumBindingSource 
+                        {x:Type phidgets:PowerSupply}}}"/>-->
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="SensorValueChangeTrigger" LabelPosition="Top">
-            <dxe:TextEdit Name="teAI_A0VSCT" Tag="0" Text="{Binding SensorValueChangeTrigger, Mode=OneWay}" />
+            <dxe:TextEdit Name="teAI_A0VSCT" Text="{Binding SensorValueChangeTrigger, Mode=OneWay}" />
         </dxlc:LayoutItem>
 
         <dxlc:LayoutItem Label="Unit" LabelPosition="Top">
@@ -168,10 +196,12 @@
 
             <dxlc:LayoutItem Label="DataRate" LabelPosition="Top" HorizontalAlignment="Center">
 
-                <dxe:SpinEdit Value="{Binding DataRate, Mode=TwoWay}" Increment="5"
-                                          MinValue="{Binding MinDataRate, Mode=OneWay}" 
-                                          MaxValue="{Binding MaxDataRate, Mode=OneWay}" 
-                                          IsFloatValue="True" />
+                <dxe:SpinEdit 
+                    Value="{Binding DataRate, Mode=TwoWay}" 
+                    Increment="5"
+                    MinValue="{Binding MinDataRate, Mode=OneWay}" 
+                    MaxValue="{Binding MaxDataRate, Mode=OneWay}" 
+                    IsFloatValue="True" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
@@ -187,11 +217,12 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="DataInterval" LabelPosition="Top" HorizontalAlignment="Center">
-                <dxe:SpinEdit Increment="1"
-                                    Value="{Binding DataInterval, Mode=TwoWay}" 
-                                    MinValue="{Binding MinDataInterval, Mode=OneWay}" 
-                                    MaxValue="{Binding MaxDataInterval, Mode=OneWay}" 
-                                    IsFloatValue="False" />
+                <dxe:SpinEdit
+                    Value="{Binding DataInterval, Mode=TwoWay}"
+                    Increment="1"                         
+                    MinValue="{Binding MinDataInterval, Mode=OneWay}" 
+                    MaxValue="{Binding MaxDataInterval, Mode=OneWay}" 
+                    IsFloatValue="False" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">

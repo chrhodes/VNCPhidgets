@@ -135,6 +135,55 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
+        #region ChannelNumber
+
+        public static readonly DependencyProperty ChannelNumberProperty = DependencyProperty.Register(
+            "ChannelNumber",
+            typeof(string),
+            typeof(DigitalOutputControl),
+            new FrameworkPropertyMetadata(
+                "0",
+                new PropertyChangedCallback(OnChannelNumberChanged),
+                new CoerceValueCallback(OnCoerceChannelNumber)
+                )
+            );
+
+        public string ChannelNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(ChannelNumberProperty);
+            set => SetValue(ChannelNumberProperty, value);
+        }
+
+        private static object OnCoerceChannelNumber(DependencyObject o, object value)
+        {
+            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            if (DigitalOutputControl != null)
+                return DigitalOutputControl.OnCoerceChannelNumber((string)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            if (DigitalOutputControl != null)
+                DigitalOutputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual string OnCoerceChannelNumber(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelNumberChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #region LogPhidgetsEvents
 
         public static readonly DependencyProperty LogPhidgetEventsProperty = DependencyProperty.Register("LogPhidgetEvents", typeof(Boolean), typeof(DigitalOutputControl), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(OnLogPhidgetEventsChanged), new CoerceValueCallback(OnCoerceLogPhidgetEvents)));
