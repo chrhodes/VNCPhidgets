@@ -51,38 +51,6 @@
 
     <DockPanel Margin="5">
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
-                    Visibility="{Binding DeveloperUIMode,
-                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
-            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
-
-            <!-- This is useful for debugging V VM constructor issues --><!--
-
-            <StackPanel Orientation="Horizontal">
-
-                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="0" >
-                    <Label Content="-V:" />
-                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
-                    <Label Content="-VP:" />
-                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
-                </StackPanel>
-
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
-                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
-                <Label Content=" -VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-
-        </StackPanel>-->
         
         <TextBlock DockPanel.Dock="Top"
             Text="{Binding Message}"
@@ -123,7 +91,7 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top"
                                     MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
-ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
+                                    ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
                     <dxe:CheckEdit Content="Log Performance" 
                                         IsChecked="{Binding LogPerformance}" HorizontalAlignment="Left" />
 
@@ -145,25 +113,32 @@ ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
                                     IsCollapsible="True" IsCollapsed="False" Padding="-5"
                                       MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
                                     ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
-                        <dxe:CheckEdit Content="Log CurrentChange Events"
+                        <StackPanel Orientation="Vertical">
+                            <dxe:CheckEdit Content="Log CurrentChange Events"
                                     IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit Content="Log PositionChange Events"
+                            <dxe:CheckEdit Content="Log PositionChange Events"
                                     IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit Content="Log VelocityChange Events"
+                            <dxe:CheckEdit Content="Log VelocityChange Events"
                                     IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit Content="Log TargetPositionReached Events"
+                            <dxe:CheckEdit Content="Log TargetPositionReached Events"
                                     IsChecked="{Binding LogTargetPositionReachedEvents, Mode=TwoWay}" />
+                        </StackPanel>
+
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" 
                                       Orientation="Vertical" VerticalAlignment="Top"
                                     IsCollapsible="True" IsCollapsed="False" Padding="-5">
-                        <dxe:CheckEdit Content="Log InputChange Events"
+                        
+                        <StackPanel Orientation="Vertical">
+                            <dxe:CheckEdit Content="Log InputChange Events"
                                     IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit Content="Log OutputChange Events"
+                            <dxe:CheckEdit Content="Log OutputChange Events"
                                     IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
-                        <dxe:CheckEdit Content="Log SensorChange Events"
+                            <dxe:CheckEdit Content="Log SensorChange Events"
                                     IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
+                        </StackPanel>
+
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup Header="Stepper Events" View="GroupBox" Orientation="Vertical"
@@ -178,9 +153,17 @@ ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
 
                 </dxlc:LayoutGroup>
 
+                
                 <dxlc:LayoutItem >
-                    <dxe:CheckEdit Content="Log Phidget Events"
+                    <StackPanel Orientation="Horizontal">
+
+                        <dxe:CheckEdit Content="Log Phidget Events"
                                        IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log Error Events"
+                                       IsChecked="{Binding LogErrorEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log PropertyChange Events"
+                                       IsChecked="{Binding LogPropertyChyange, Mode=TwoWay}" />
+                    </StackPanel>
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>

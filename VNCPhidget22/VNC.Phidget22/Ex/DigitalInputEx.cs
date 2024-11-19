@@ -87,7 +87,7 @@ namespace VNC.Phidget22.Ex
         #region Fields and Properties
 
         public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; }
+        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
         public bool LogPropertyChangeEvents { get; set; }
 
         public bool LogStateChangeEvents { get; set; }
@@ -414,6 +414,24 @@ namespace VNC.Phidget22.Ex
 
         //    try
         //    {
+        // NOTE(crhodes)
+        // First make any logging changes
+
+        //        #region Logging
+
+        //        if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean) action.LogPhidgetEvents;
+        //        if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean) action.LogErrorEvents;
+        //        if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean) action.LogPropertyChangeEvents;
+
+        //        if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean) action.LogPositionChangeEvents;
+        //        if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean) action.LogVelocityChangeEvents;
+        //        if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean) action.LogTargetPositionReachedEvents;
+
+        //        if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean) action.LogPerformanceSequence;
+        //        if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean) action.LogSequenceAction;
+        //        if (action.LogActionVerification is not null) LogActionVerification = (Boolean) action.LogActionVerification;
+
+        //#endregion
         //        if (action.DigitalOut is not null)
         //        { 
         //            if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");

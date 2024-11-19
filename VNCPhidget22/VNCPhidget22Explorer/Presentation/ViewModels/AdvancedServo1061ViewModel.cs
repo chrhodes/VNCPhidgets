@@ -259,7 +259,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logErrorEvents = false;
+        private bool _logErrorEvents = true;    // Probably always want to see errors
         public bool LogErrorEvents
         {
             get => _logErrorEvents;
@@ -964,7 +964,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // old
                 RCServos[channel].SerialNumber = serialNumber;
 
-                await Task.Run(() => RCServos[channel].Open());
+                await Task.Run(() => RCServos[channel].Open(500));
 
                 //var servoHost = GetRCServoHost(serialNumber, channel);
 
@@ -1056,6 +1056,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             };
 
             //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.ConfigureRCServoHost(serialNumber, channel, RCServoConfiguration);
+
+            // NOTE(crhodes)
+            // This is a new method that got added.  Maybe problem is here.
             RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
             
             //rcServoHost.LogPhidgetEvents = LogPhidgetEvents;

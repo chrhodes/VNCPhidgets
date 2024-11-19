@@ -4,12 +4,30 @@
     // Engage and Center Servos
     //
     { 
+      "Name": "Open Servo0", 
+      "Channel": 0,
+      "Description": "", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true,  "LogPhidgetEvents": true }
+      ]
+    },
+    { 
+      "Name": "Close Servo0", 
+      "Channel": 0,
+      "Description": "", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Close": true }
+      ]
+    },
+    { 
       "Name": "Engage and Move Servo0", 
       "Channel": 0,
       "Description": "", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
         { "TargetPosition": 120 },
         { "TargetPosition": 150 },
         { "TargetPosition": 120 },

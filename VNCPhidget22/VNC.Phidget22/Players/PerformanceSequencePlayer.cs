@@ -67,7 +67,7 @@ namespace VNC.Phidget22.Players
         // Phidget Events
 
         public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; }
+        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
         public bool LogPropertyChangeEvents { get; set; }
 
         // AdvancedServo and RCServo events
@@ -729,9 +729,28 @@ namespace VNC.Phidget22.Players
             rcServoHost.LogSequenceAction = LogSequenceAction;
             rcServoHost.LogActionVerification = LogActionVerification;
 
+            // TODO(crhodes)
+            // Maybe we just let the Action.Open do the open
+
             if (rcServoHost.Attached is false)
             {
-                rcServoHost.Open();                
+                // NOTE(crhodes)
+                // Things that work and things that don't
+                //
+                // This does work
+                //rcServoHost.Open(500);
+
+                // This does not work.
+                //rcServoHost.Open();
+
+                // This does work
+
+                //rcServoHost.Open();
+                //Thread.Sleep(500);
+
+                // This does not work.
+                //await Task.Run(() => rcServoHost.Open());
+
             }
 
             return rcServoHost;

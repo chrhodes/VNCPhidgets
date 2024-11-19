@@ -10,10 +10,36 @@ namespace VNC.Phidget22.Configuration
         ///// </summary>
         //public int ServoIndex { get; set; }
 
+        #region Logging
+
+        public bool? LogPhidgetEvents { get; set; }
+        public bool? LogErrorEvents { get; set; }
+        public bool? LogPropertyChangeEvents { get; set; }
+
+        public bool? LogPositionChangeEvents { get; set; }
+        public bool? LogVelocityChangeEvents { get; set; }
+        public bool? LogTargetPositionReachedEvents { get; set; }
+
+        public bool? LogPerformanceSequence { get; set; }
+        public bool? LogSequenceAction { get; set; }
+        public bool? LogActionVerification { get; set; }
+
+        #endregion
+
         public RCServoType? RCServoType { get; set; }
 
         // TODO(crhodes)
         // Do we want to support changing MinPulseWidth and MaxPulseWidth?
+
+        /// <summary>
+        /// Open RCServo (optional)
+        /// </summary>
+        public bool? Open { get; set; }
+
+        /// <summary>
+        /// Close RCServo (optional)
+        /// </summary>
+        public bool? Close { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)

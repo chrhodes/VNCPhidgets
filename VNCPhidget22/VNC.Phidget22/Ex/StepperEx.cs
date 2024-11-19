@@ -90,7 +90,7 @@ namespace VNC.Phidget22.Ex
         #region Fields and Properties
 
         public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; }
+        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
         public bool LogPropertyChangeEvents { get; set; }
 
         public bool LogPositionChangeEvents { get; set; }

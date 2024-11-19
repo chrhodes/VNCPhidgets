@@ -41,10 +41,10 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _rcServoConfiguration = rcServoConfiguration;
+            _rcServoConfiguration = rcServoConfiguration; // Probaly don't need to save
             _eventAggregator = eventAggregator;
 
-            InitializePhidget();
+            InitializePhidget(rcServoConfiguration);
 
             _eventAggregator.GetEvent<RCServoSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -55,14 +55,29 @@ namespace VNC.Phidget22.Ex
         /// Configures RCServo using RCServoConfiguration
         /// and establishes event handlers
         /// </summary>
-        private void InitializePhidget()
+        private void InitializePhidget(RCServoConfiguration configuration)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
-            Channel = _rcServoConfiguration.Channel;
+            Channel = configuration.Channel;
             IsRemote = true;
+
+            // NOTE(crhodes)
+            // Having these passed in is handy for Performance stuff where there is no UI
+
+            LogPhidgetEvents = configuration.LogPhidgetEvents;
+            LogErrorEvents = configuration.LogErrorEvents;
+            LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            LogPositionChangeEvents = configuration.LogPositionChangeEvents;
+            LogVelocityChangeEvents = configuration.LogVelocityChangeEvents;
+            LogTargetPositionReachedEvents = configuration.LogTargetPositionReachedEvents;
+
+            LogPerformanceSequence = configuration.LogPerformanceSequence;
+            LogSequenceAction = configuration.LogSequenceAction;
+            LogActionVerification = configuration.LogActionVerification;
 
             Attach += RCServoEx_Attach;
             Detach += RCServoEx_Detach;
@@ -93,7 +108,7 @@ namespace VNC.Phidget22.Ex
         #region Logging
 
         public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; }
+        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
         public bool LogPropertyChangeEvents { get; set; }
 
         public bool LogPositionChangeEvents { get; set; }
@@ -684,11 +699,8 @@ namespace VNC.Phidget22.Ex
             {
                 // Set properties to values from Phidget
 
-                // NOTE(crhodes)
-                // These are not available until Attach completes?
-
-                //MinPulseWidth = rcServo.MinPulseWidth;
-                //MaxPulseWidth = rcServo.MaxPulseWidth;
+                MinPulseWidth = rcServo.MinPulseWidth;
+                MaxPulseWidth = rcServo.MaxPulseWidth;
 
                 MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
                 MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
@@ -1588,6 +1600,25 @@ namespace VNC.Phidget22.Ex
 
             try
             {
+                // NOTE(crhodes)
+                // First make any logging changes
+
+                #region Logging
+
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
+
+                if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean)action.LogPositionChangeEvents;
+                if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
+                if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
+
+                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
+
+                #endregion
+
                 if (action.RCServoType is not null)
                 {
                     if (LogSequenceAction) actionMessage.Append($" servoType:>{action.RCServoType}<");
@@ -1613,6 +1644,23 @@ namespace VNC.Phidget22.Ex
                     // FIX(crhodes)
                     // 
                     //SaveServoLimits(servo, index);
+                }
+
+                if (action.Open is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" open:>{action.Open}<");
+
+                    // TODO(crhodes)
+                    // Do we need a delay here?
+                    // This is where a call back from Attach event would be great!
+                    Open();
+                }
+
+                if (action.Close is not null)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" close:>{action.Close}<");
+
+                    Close();
                 }
 
                 // NOTE(crhodes)
