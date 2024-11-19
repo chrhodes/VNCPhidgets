@@ -434,7 +434,7 @@ namespace VNC.Phidget22
 
             if (rcServoHost.Attached is false)
             {
-                rcServoHost.Open(500);
+                rcServoHost.Open();
             }
 
             return rcServoHost;

@@ -684,14 +684,11 @@ namespace VNC.Phidget22.Ex
             {
                 // Set properties to values from Phidget
 
-                MinPulseWidth = rcServo.MinPulseWidth;
-                MaxPulseWidth = rcServo.MaxPulseWidth;
+                // NOTE(crhodes)
+                // These are not available until Attach completes?
 
-                MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
-                MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
-
-                MinPulseWidth = rcServo.MinPulseWidth;
-                MaxPulseWidth = rcServo.MaxPulseWidth;
+                //MinPulseWidth = rcServo.MinPulseWidth;
+                //MaxPulseWidth = rcServo.MaxPulseWidth;
 
                 MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
                 MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;

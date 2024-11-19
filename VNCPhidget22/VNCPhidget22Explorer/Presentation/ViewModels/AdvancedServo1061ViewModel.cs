@@ -962,15 +962,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Int32.TryParse(servoNumber, out channel))
             {
                 // old
-                //RCServos[channel].SerialNumber = serialNumber;
+                RCServos[channel].SerialNumber = serialNumber;
 
-                //await Task.Run(() => RCServos[channel].Open());
-                var servoHost = GetRCServoHost(serialNumber, channel);
+                await Task.Run(() => RCServos[channel].Open());
 
-                if (RCServos3.ContainsKey(channel) is false)
-                {
-                    RCServos3.Add(channel, servoHost);
-                }
+                //var servoHost = GetRCServoHost(serialNumber, channel);
+
+                //if (RCServos3.ContainsKey(channel) is false)
+                //{
+                //    RCServos3.Add(channel, servoHost);
+                //}
 
                 // TODO(crhodes)
                 // Should this go here?  See if bindings work.
@@ -1037,19 +1038,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             RCServoConfiguration rcServoConfiguration = new RCServoConfiguration()
             {
-                LogPhidgetEvents = LogPhidgetEvents,
-                LogErrorEvents = LogErrorEvents,
-                LogPropertyChangeEvents = LogPropertyChangeEvents,
+                Channel = (Int16)channel,
 
-                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents,
-                LogPositionChangeEvents = LogPositionChangeEvents,
-                LogVelocityChangeEvents = LogVelocityChangeEvents,
+                LogPhidgetEvents = RCServos[channel].LogPhidgetEvents,
+                LogErrorEvents = RCServos[channel].LogErrorEvents,
+                LogPropertyChangeEvents = RCServos[channel].LogPropertyChangeEvents,
 
-                LogTargetPositionReachedEvents = LogTargetPositionReachedEvents,
+                //rcServoHost.LogCurrentChangeEvents =  RCServos[channel].LogCurrentChangeEvents,
+                LogPositionChangeEvents = RCServos[channel].LogPositionChangeEvents,
+                LogVelocityChangeEvents = RCServos[channel].LogVelocityChangeEvents,
 
-                LogPerformanceSequence = LogPerformanceSequence,
-                LogSequenceAction = LogSequenceAction,
-                LogActionVerification = LogActionVerification
+                LogTargetPositionReachedEvents = RCServos[channel].LogTargetPositionReachedEvents,
+
+                LogPerformanceSequence = RCServos[channel].LogPerformanceSequence,
+                LogSequenceAction = RCServos[channel].LogSequenceAction,
+                LogActionVerification = RCServos[channel].LogActionVerification
             };
 
             //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.ConfigureRCServoHost(serialNumber, channel, RCServoConfiguration);
