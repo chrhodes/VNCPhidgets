@@ -135,7 +135,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // This is what we were doing
                 // What
          
-                RCServos[i] = new RCServoEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
+                //RCServos[i] = new RCServoEx(0, new RCServoConfiguration() { Channel = (Int16)i }, EventAggregator);
 
                 // See if can switch to the RCServos that were created by the manager
 
@@ -385,6 +385,118 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             set
             {
                 _rcServos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo0;
+        public RCServoEx RCServo0
+        {
+            get
+            {
+                return _rcServo0;
+            }
+            set
+            {
+                _rcServo0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo1;
+        public RCServoEx RCServo1
+        {
+            get
+            {
+                return _rcServo1;
+            }
+            set
+            {
+                _rcServo1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo2;
+        public RCServoEx RCServo2
+        {
+            get
+            {
+                return _rcServo2;
+            }
+            set
+            {
+                _rcServo2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo3;
+        public RCServoEx RCServo3
+        {
+            get
+            {
+                return _rcServo3;
+            }
+            set
+            {
+                _rcServo3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo4;
+        public RCServoEx RCServo4
+        {
+            get
+            {
+                return _rcServo4;
+            }
+            set
+            {
+                _rcServo4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo5;
+        public RCServoEx RCServo5
+        {
+            get
+            {
+                return _rcServo5;
+            }
+            set
+            {
+                _rcServo5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo6;
+        public RCServoEx RCServo6
+        {
+            get
+            {
+                return _rcServo6;
+            }
+            set
+            {
+                _rcServo6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        RCServoEx _rcServo7;
+        public RCServoEx RCServo7
+        {
+            get
+            {
+                return _rcServo7;
+            }
+            set
+            {
+                _rcServo7 = value;
                 OnPropertyChanged();
             }
         }
@@ -853,22 +965,23 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
 
-            ConfigureRCServos(deviceChannels.RCServoCount, serialNumber);
+            //ConfigureRCServos(deviceChannels.RCServoCount, serialNumber);
 
             for (int channel = 0; channel < deviceChannels.RCServoCount; channel++)
             {
-                // Old
+                OpenRCServo(channel.ToString());
+                //// Old
 
-                //await Task.Run(() => RCServos[channel].Open());
+                ////await Task.Run(() => RCServos[channel].Open());
                 
-                var servoHost = GetRCServoHost(serialNumber, channel);
+                //var servoHost = GetRCServoHost(serialNumber, channel);
 
-                if (RCServos3.ContainsKey(channel) is false)
-                {
-                    RCServos3.Add(channel, servoHost);
-                }
+                //if (RCServos3.ContainsKey(channel) is false)
+                //{
+                //    RCServos3.Add(channel, servoHost);
+                //}
 
-                await Task.Run(() => servoHost.Open());
+                //await Task.Run(() => servoHost.Open());
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -993,19 +1106,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 if (rcServoHostB.IsOpen is false)
                 {
-                    rcServoHostB.LogPhidgetEvents = rcServoHostA.LogPhidgetEvents;
-                    rcServoHostB.LogErrorEvents = rcServoHostA.LogErrorEvents;
-                    rcServoHostB.LogPropertyChangeEvents = rcServoHostA.LogPropertyChangeEvents;
+                    //rcServoHostB.LogPhidgetEvents = rcServoHostA.LogPhidgetEvents;
+                    rcServoHostB.LogErrorEvents = RCServo0.LogErrorEvents;
+                    //rcServoHostB.LogPropertyChangeEvents = rcServoHostA.LogPropertyChangeEvents;
 
-                    //rcServoHost.LogCurrentChangeEvents = rcServoHostA.LogCurrentChangeEvents;
-                    rcServoHostB.LogPositionChangeEvents = rcServoHostA.LogPositionChangeEvents;
-                    rcServoHostB.LogVelocityChangeEvents = rcServoHostA.LogVelocityChangeEvents;
+                    ////rcServoHost.LogCurrentChangeEvents = rcServoHostA.LogCurrentChangeEvents;
+                    //rcServoHostB.LogPositionChangeEvents = rcServoHostA.LogPositionChangeEvents;
+                    //rcServoHostB.LogVelocityChangeEvents = rcServoHostA.LogVelocityChangeEvents;
 
-                    rcServoHostB.LogTargetPositionReachedEvents = rcServoHostA.LogTargetPositionReachedEvents;
+                    //rcServoHostB.LogTargetPositionReachedEvents = rcServoHostA.LogTargetPositionReachedEvents;
 
-                    rcServoHostB.LogPerformanceSequence = rcServoHostA.LogPerformanceSequence;
-                    rcServoHostB.LogSequenceAction = rcServoHostA.LogSequenceAction;
-                    rcServoHostB.LogActionVerification = rcServoHostA.LogActionVerification;
+                    //rcServoHostB.LogPerformanceSequence = rcServoHostA.LogPerformanceSequence;
+                    //rcServoHostB.LogSequenceAction = rcServoHostA.LogSequenceAction;
+                    //rcServoHostB.LogActionVerification = rcServoHostA.LogActionVerification;
 
                     // TODO(crhodes)
                     // Until we figure out how to start with RCServoChannels
@@ -1013,63 +1126,47 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     // Hum, this did not update UI, bummer
 
                     //RCServos[channel] = rcServoHostB;
+                    //RCServo0 = rcServoHostB;
 
                     await Task.Run(() => rcServoHostB.Open(500));
 
                     var a1 = rcServoHostB.Attached;
                     var a2 = rcServoHostB.IsAttached;
 
-                    RCServos[channel].IsAttached = rcServoHostB.IsAttached;
+                    switch (channel)
+                    {
+                        case 0:
+                            RCServo0 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].MinPulseWidthLimit = rcServoHostB.MinPulseWidthLimit;
-                    RCServos[channel].MinPulseWidth = rcServoHostB.MinPulseWidth;
-                    RCServos[channel].MaxPulseWidth = rcServoHostB.MaxPulseWidthLimit;
-                    RCServos[channel].MaxPulseWidthLimit = rcServoHostB.MaxPulseWidthLimit;
+                        case 1:
+                            RCServo1 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].SpeedRampingState = rcServoHostB.SpeedRampingState;
+                        case 2:
+                            RCServo2 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].MinAcceleration = rcServoHostB.MinAcceleration;
-                    RCServos[channel].Acceleration = rcServoHostB.Acceleration;
-                    RCServos[channel].MaxAcceleration = rcServoHostB.MaxAcceleration;
+                        case 3:
+                            RCServo3 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].Velocity = rcServoHostB.Velocity;
+                        case 4:
+                            RCServo4 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].MinVelocityLimit = rcServoHostB.MinVelocityLimit;
-                    RCServos[channel].VelocityLimit = rcServoHostB.VelocityLimit;
-                    RCServos[channel].MaxVelocityLimit = rcServoHostB.MaxVelocityLimit;
+                        case 5:
+                            RCServo5 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].MinDataInterval = rcServoHostB.MinDataInterval;
-                    RCServos[channel].DataInterval = rcServoHostB.DataInterval;
-                    RCServos[channel].MaxDataInterval = rcServoHostB.MaxDataInterval;
+                        case 6:
+                            RCServo6 = rcServoHostB;
+                            break;
 
-                    RCServos[channel].MinDataRate = rcServoHostB.MinDataRate;
-                    RCServos[channel].DataRate = rcServoHostB.DataRate;
-                    RCServos[channel].MaxDataRate = rcServoHostB.MaxDataRate;
-
-                    RCServos[channel].MinPositionServo = rcServoHostB.MinPositionServo;
-                    RCServos[channel].MinPosition = rcServoHostB.MinPosition;
-                    RCServos[channel].MinPositionStop = rcServoHostB.MinPositionStop;
-                        ;
-                    RCServos[channel].Position = rcServoHostB.Position;
-
-                    RCServos[channel].MaxPositionServo = rcServoHostB.MaxPositionServo;
-                    RCServos[channel].MaxPosition = rcServoHostB.MaxPosition;
-                    RCServos[channel].MaxPositionStop = rcServoHostB.MaxPositionStop;
-
-
-                    RCServos[channel].TargetPosition = rcServoHostB.TargetPosition;
-
-                    RCServos[channel].Voltage = rcServoHostB.Voltage;
-
-
-                    //RCServos[channel].IsAttached.RaisePropertiesChanged();
-
-                    RCServos[channel].Engaged = rcServoHostB.Engaged;
-
-                    //RCServos[channel].Engaged = rcServoHostB.Engaged;
-                    //RCServos[channel].Position = rcServoHostB.Position;
-
-                    //RCServos[channel].TargetPosition = rcServoHostB.TargetPosition;
+                        case 7:
+                            RCServo7 = rcServoHostB;
+                            break;
+                    }
                 }
 
                 OpenRCServoCommand.RaiseCanExecuteChanged();
