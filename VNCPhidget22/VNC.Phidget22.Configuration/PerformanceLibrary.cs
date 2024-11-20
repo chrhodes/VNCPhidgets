@@ -508,6 +508,7 @@ namespace VNC.Phidget22.Configuration
             List<string> files = new List<string>
             {
                 @"Performances\PerformanceConfig_InitializationAndFinalization.json",
+                @"Performances\PerformanceConfig_Test.json",
 
                 @"Performances\PerformanceConfig_Skulls_1.json",
                 @"Performances\PerformanceConfig_Skulls_2.json",

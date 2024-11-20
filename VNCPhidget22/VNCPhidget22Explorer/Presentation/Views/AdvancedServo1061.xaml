@@ -306,7 +306,7 @@
                             ServoNumber="0"
                             IsAttached="{Binding RCServo0.IsAttached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
-                            DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"
+                            RCServoAttached="{Binding RCServoAttached, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo0.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo0.DataInterval,Mode=TwoWay}"

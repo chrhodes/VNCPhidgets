@@ -13,12 +13,12 @@
   "Debug04": true,
   "ApplicationStart": true,
   "ApplicationEnd": true,
-  "ApplicationInitialize": true,
+  "ApplicationInitialize": false,
   "Application": true,
   "ApplicationServices": true,
   "Domain": true,
   "DomainServices": true,
-  "Constructor": true,
+  "Constructor": false,
   "Core": true,
   "Event": true,
   "EventHandler": true,
@@ -29,9 +29,9 @@
   "Infrastructure": true,
   "Presentation": true,
   "View": true,
-  "ViewLow": true,
+  "ViewLow": false,
   "ViewModel": true,
-  "ViewModelLow": true,
+  "ViewModelLow": false,
 
   "INPC": true
 }

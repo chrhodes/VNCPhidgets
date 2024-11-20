@@ -712,7 +712,7 @@ namespace VNC.Phidget22.Players
             Int64 startTicks = 0;
             if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
+            //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
