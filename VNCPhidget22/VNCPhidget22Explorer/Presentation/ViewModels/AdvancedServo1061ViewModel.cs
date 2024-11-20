@@ -1107,7 +1107,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (rcServoHostB.IsOpen is false)
                 {
                     //rcServoHostB.LogPhidgetEvents = rcServoHostA.LogPhidgetEvents;
-                    rcServoHostB.LogErrorEvents = RCServo0.LogErrorEvents;
+                    //rcServoHostB.LogErrorEvents = RCServo0.LogErrorEvents;
                     //rcServoHostB.LogPropertyChangeEvents = rcServoHostA.LogPropertyChangeEvents;
 
                     ////rcServoHost.LogCurrentChangeEvents = rcServoHostA.LogCurrentChangeEvents;
