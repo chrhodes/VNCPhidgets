@@ -21,7 +21,7 @@
   "Constructor": false,
   "Core": true,
   "Event": true,
-  "EventHandler": true,
+  "EventHandler": false,
   "Module": true,
   "ModuleInitialize": true,
   "Persistence": true,

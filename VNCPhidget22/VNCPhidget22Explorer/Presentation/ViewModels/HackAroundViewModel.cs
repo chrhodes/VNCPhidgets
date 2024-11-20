@@ -1493,7 +1493,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 //}
 
-                await performancePlayer.RunPerformanceLoops(nextPerformance);
+                // NOTE(crhodes)
+                // Run on another thread to keep UI active
+                await Task.Run(async () =>
+                {
+                    await performancePlayer.RunPerformanceLoops(nextPerformance);
+                });
+
+                //await performancePlayer.RunPerformanceLoops(nextPerformance);
 
                 nextPerformance = nextPerformance?.NextPerformance;
 

@@ -145,23 +145,32 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Manager_Attach: {channel} {channel.DeviceClass} {channel.DeviceID}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach: {channel} {channel.DeviceClass} {channel.DeviceID}", Common.LOG_CATEGORY);
 
                     switch (channel.DeviceClass)
                     {
                         case Phidgets.DeviceClass.Dictionary:
-                            Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
-                            Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                            if(Common.VNCLogging.ApplicationInitialize)
+                            {
+                                Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+                                Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                            }
                             break;
 
                         case Phidgets.DeviceClass.Hub:
-                            Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
-                            Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                            if (Common.VNCLogging.ApplicationInitialize)
+                            {
+                                Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+                                Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                            }
                             break;
 
                         case Phidgets.DeviceClass.VINT:
-                            Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
-                            Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                            if (Common.VNCLogging.ApplicationInitialize)
+                            {
+                                Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+                                Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                            }
                             break;
 
                         //case DeviceClass.InterfaceKit:
@@ -171,7 +180,6 @@ namespace VNC.Phidget22
                         // NOTE(crhodes)
                         // For everything else assume it is a Physical Phidget
                         default:
-
                             AddPhidgetDevice(channel);
                             break;
                     }
@@ -306,7 +314,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
-                    Log.Trace($"Adding new RCServoChannel SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new RCServoChannel SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
                     RCServoChannels.Add(
                         new SerialChannel()
                         {
