@@ -210,12 +210,12 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <!--<dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                     <Button
                         Command="{Binding RefreshAdvancedServoCommand }"
                         Content="{Binding RefreshAdvancedServoContent, FallbackValue='Refresh' }"
                         ToolTip="{Binding RefreshAdvancedServoToolTip, FallbackValue='Refresh ToolTip' }" />
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
 
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button
@@ -238,7 +238,8 @@
                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
                    Margin="-5,0,-5,0"
                    Padding="5,0,0,0"
-                   Background="{StaticResource LoggingBackground}">
+                   Background="{StaticResource LoggingBackground}" MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
+                   ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
 
                     <dxe:CheckEdit
                         Content="Log Phidget Events"
@@ -303,8 +304,9 @@
                             LogTargetPositionReachedEvents="{Binding RCServo0.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                          
                             ServoNumber="0"
-                            IsAttached="{Binding RCServo0.IsAttached, Mode=TwoWay}"                                         
+                            IsAttached="{Binding RCServo0.IsAttached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
+                            DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo0.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo0.DataInterval,Mode=TwoWay}"

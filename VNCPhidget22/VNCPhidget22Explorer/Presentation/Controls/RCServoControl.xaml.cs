@@ -184,6 +184,61 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         protected virtual void OnIsAttachedChanged(Boolean oldValue, Boolean newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
+            // NOTE(crhodes)
+            // This tells the ViewModel that the control has changed
+            // So the Open/Close buttons behave properly when Performance stuff
+            // Opens/Closes channel
+            DeviceAttached = newValue;
+        }
+
+        #endregion
+
+
+        #region DeviceAttached
+
+        public static readonly DependencyProperty DeviceAttachedProperty = DependencyProperty.Register(
+            "DeviceAttached",
+            typeof(Boolean),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                false,
+                new PropertyChangedCallback(OnDeviceAttachedChanged),
+                new CoerceValueCallback(OnCoerceDeviceAttached)
+                )
+            );
+
+        public Boolean DeviceAttached
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(DeviceAttachedProperty);
+            set => SetValue(DeviceAttachedProperty, value);
+        }
+
+        private static object OnCoerceDeviceAttached(DependencyObject o, object value)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                return rcServoControl.OnCoerceDeviceAttached((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnDeviceAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl rcServoControl = o as RCServoControl;
+            if (rcServoControl != null)
+                rcServoControl.OnDeviceAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceDeviceAttached(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnDeviceAttachedChanged(Boolean oldValue, Boolean newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
         #endregion
@@ -2333,14 +2388,17 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
             var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
 
+            var rightAltDown = Keyboard.IsKeyDown(Key.RightAlt);
+            var rightCtrlDown = Keyboard.IsKeyDown(Key.RightCtrl);
+
             var children = lg.Children;
 
             foreach (var child in children)
             {
                 if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
                 {
-                    if (leftCtrlDown) { ((CheckEdit)child).IsChecked = true; }
-                    if (leftAltDown) { ((CheckEdit)child).IsChecked = false; }
+                    if (leftCtrlDown || rightCtrlDown) { ((CheckEdit)child).IsChecked = true; }
+                    if (leftAltDown || rightAltDown) { ((CheckEdit)child).IsChecked = false; }
 
                 }
             }

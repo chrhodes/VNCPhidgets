@@ -50,6 +50,30 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            LayoutGroup lg = (LayoutGroup)sender;
+            var mbe = e;
+
+            var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
+            var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
+
+            var rightAltDown = Keyboard.IsKeyDown(Key.RightAlt);
+            var rightCtrlDown = Keyboard.IsKeyDown(Key.RightCtrl);
+
+            var children = lg.Children;
+
+            foreach (var child in children)
+            {
+                if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
+                {
+                    if (leftCtrlDown || rightCtrlDown) { ((CheckEdit)child).IsChecked = true; }
+                    if (leftAltDown || rightAltDown) { ((CheckEdit)child).IsChecked = false; }
+
+                }
+            }
+        }
+
         #region IInstanceCount
 
         private static int _instanceCountV;
@@ -69,26 +93,5 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
-        private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            LayoutGroup lg = (LayoutGroup)sender;
-            var mbe = e;
-
-            var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
-            var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
-
-            var children = lg.Children;
-
-            foreach (var child in children)
-            {
-                if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
-                {
-                    if (leftCtrlDown) { ((CheckEdit)child).IsChecked = true; }
-                    if (leftAltDown) { ((CheckEdit)child).IsChecked = false; }
-
-                }
-            }
-        }
     }
 }

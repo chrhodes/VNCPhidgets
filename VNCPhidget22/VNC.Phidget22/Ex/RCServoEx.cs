@@ -420,8 +420,13 @@ namespace VNC.Phidget22.Ex
             get => _targetPosition;
             set
             {
-                if (_targetPosition == value)
-                    return;
+                // NOTE(crhodes)
+                // Always have to set TargetPostion before engaging.
+                // The wrapped property could also be reset on Close()
+                // decided to fix here
+
+                //if (_targetPosition == value)
+                //    return;
 
                 if (value < MinPositionStop)
                 {
@@ -745,7 +750,6 @@ namespace VNC.Phidget22.Ex
             
                 Voltage = rcServo.Voltage;
 
-
                 // NOTE(crhodes)
                 // Shockingly, the Attached property is not set until after Attach Event
                 // It is also R/O so we cannot set.
@@ -901,7 +905,6 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-
         public new void Open()
         {
             Int64 startTicks = 0;
@@ -933,69 +936,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        /// <summary>
-        /// Open Phidget and waitForAttachment
-        /// </summary>
-        /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
-        //public new void Open(int? timeOut = null)
-        //{
-        //    long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-        //    try
-        //    {
-        //        // FIX(crhodes)
-        //        // There is no AdvancedServo in Phidget22.
-        //        // This is where we probably open all the stuff on the Phidget
-        //        // or we can just open what we use
-
-        //        var rcServoCount = _deviceChannels.RCServoCount;
-        //        var currentInputCount = _deviceChannels.CurrentInputCount;
-
-        //        // HACK(crhodes)
-        //        // Trying to get new RCC0004_0 AdvancedServo board to work with
-        //        // Legacy SBC1 or SBC2.  No luck.
-        //        // Only seems to work it directly attached, sigh.
-        //        //AdvancedServo.open(SerialNumber);
-        //        //AdvancedServo.open(-1);
-
-        //        // TODO(crhodes)
-        //        // Decide if want to open everything or pass in config to only open what we need
-
-        //        for (int i = 0; i < rcServoCount; i++)
-        //        {
-        //            RCServos[i].Open();
-        //        }
-
-        //        for (int i = 0; i < currentInputCount; i++)
-        //        {
-        //            CurrentInputs[i].Open();
-        //        }
-
-        //        //AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
-
-        //        //if (timeOut is not null)
-        //        //{
-        //        //    AdvancedServo.waitForAttachment((Int32)timeOut); 
-        //        //}
-        //        //else 
-        //        //{ 
-        //        //    AdvancedServo.waitForAttachment();
-        //        //}
-
-        //    }
-        //    catch (Phidgets.PhidgetException pex)
-        //    {
-        //        Log.Error(pex, Common.LOG_CATEGORY);
-        //        Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
+  
         //public event EventHandler PhidgetDeviceAttached;
 
         //override protected void PhidgetDeviceIsAttached()
@@ -1009,55 +950,6 @@ namespace VNC.Phidget22.Ex
         //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
         //{
         //    PhidgetDeviceAttached?.Invoke(this, e);
-        //}
-
-        //public void Close()
-        //{
-        //    long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-        //    try
-        //    {
-        //        // FIX(crhodes)
-        //        // There is no AdvancedServo in Phidget22.
-        //        // This is where we probably close all the stuff on the Phidget
-        //        // or we can just close what we use
-
-        //        var rcServoCount = _deviceChannels.RCServoCount;
-        //        var currentInputCount = _deviceChannels.CurrentInputCount;
-
-        //        // NOTE(crhodes)
-        //        // We may be logging events.  Remove them before closing
-
-        //        if (LogCurrentChangeEvents) LogCurrentChangeEvents = false;
-        //        if (LogPositionChangeEvents) LogPositionChangeEvents = false;
-        //        if (LogVelocityChangeEvents) LogVelocityChangeEvents = false;
-
-        //        // TODO(crhodes)
-        //        // Decide if want to close everything or pass in config to only open what we need
-
-        //        for (int i = 0; i < rcServoCount; i++)
-        //        {
-        //            RCServos[i].Close();
-        //        }
-
-        //        for (int i = 0; i < currentInputCount; i++)
-        //        {
-        //            CurrentInputs[i].Close();
-        //        }
-
-        //        //AdvancedServo.close();
-        //    }
-        //    catch (Phidgets.PhidgetException pex)
-        //    {
-        //        Log.Error(pex, Common.LOG_CATEGORY);
-        //        Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
         public async Task RunActionLoops(RCServoSequence rcServoSequence)

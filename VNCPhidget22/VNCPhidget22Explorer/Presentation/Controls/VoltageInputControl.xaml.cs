@@ -1411,14 +1411,17 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
             var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
 
+            var rightAltDown = Keyboard.IsKeyDown(Key.RightAlt);
+            var rightCtrlDown = Keyboard.IsKeyDown(Key.RightCtrl);
+
             var children = lg.Children;
 
             foreach (var child in children)
             {
                 if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
                 {
-                    if (leftCtrlDown) { ((CheckEdit)child).IsChecked = true; }
-                    if (leftAltDown) { ((CheckEdit)child).IsChecked = false; }
+                    if (leftCtrlDown || rightCtrlDown) { ((CheckEdit)child).IsChecked = true; }
+                    if (leftAltDown || rightAltDown) { ((CheckEdit)child).IsChecked = false; }
 
                 }
             }
