@@ -41,7 +41,8 @@ namespace VNC.Phidget22
 
         private void BuildPhidgetDeviceDictionary()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             //_availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
 
@@ -70,7 +71,7 @@ namespace VNC.Phidget22
 
             Common.PhidgetDeviceLibrary = this;
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -402,6 +403,10 @@ namespace VNC.Phidget22
         /// <exception cref="Exception"></exception>
         public RCServoEx OpenRCServoHost(int serialNumber, int channel, RCServoConfiguration configuration)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+
             //PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
             SerialChannel serialChannel = 
@@ -411,7 +416,12 @@ namespace VNC.Phidget22
                         Channel = channel 
                     };
 
+            // TODO(crhodes)
+            // Is this where we do this?
+
             RCServoEx rcServoHost = RCServoChannels[serialChannel];
+
+            //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
 
             if (rcServoHost is null) throw new Exception($"Cannot find RCServoChannel for serialNumber:{serialNumber} channel:{channel}");
 
@@ -436,6 +446,8 @@ namespace VNC.Phidget22
             {
                 rcServoHost.Open();
             }
+
+            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
 
             return rcServoHost;
         }

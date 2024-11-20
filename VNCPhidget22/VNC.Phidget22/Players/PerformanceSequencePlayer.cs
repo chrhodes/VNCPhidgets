@@ -709,6 +709,9 @@ namespace VNC.Phidget22.Players
 
         private RCServoEx GetRCServoHost(int serialNumber, int channel)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
             PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
@@ -732,8 +735,8 @@ namespace VNC.Phidget22.Players
             // TODO(crhodes)
             // Maybe we just let the Action.Open do the open
 
-            if (rcServoHost.Attached is false)
-            {
+            //if (rcServoHost.Attached is false)
+            //{
                 // NOTE(crhodes)
                 // Things that work and things that don't
                 //
@@ -751,7 +754,9 @@ namespace VNC.Phidget22.Players
                 // This does not work.
                 //await Task.Run(() => rcServoHost.Open());
 
-            }
+            //}
+
+            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
 
             return rcServoHost;
         }

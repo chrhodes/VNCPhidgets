@@ -25,6 +25,7 @@ using System.Windows;
 using DevExpress.Xpf.Editors.Helpers;
 using System.Threading.Channels;
 using System.Collections.ObjectModel;
+using VNCPhidget22Explorer.Presentation.Controls;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -565,6 +566,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedAdvancedServo = value;
 
                 OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+                OpenRCServoCommand.RaiseCanExecuteChanged();
                 //PlayPerformanceCommand.RaiseCanExecuteChanged();
                 //PlaySequenceCommand.RaiseCanExecuteChanged();
 
@@ -858,14 +860,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // Old
 
                 //await Task.Run(() => RCServos[channel].Open());
-
-                //await Task.Run(() => RCServos[channel].Open());
+                
                 var servoHost = GetRCServoHost(serialNumber, channel);
 
                 if (RCServos3.ContainsKey(channel) is false)
                 {
                     RCServos3.Add(channel, servoHost);
                 }
+
+                await Task.Run(() => servoHost.Open());
             }
 
             OpenAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -961,10 +964,116 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Int32.TryParse(servoNumber, out channel))
             {
-                // old
-                RCServos[channel].SerialNumber = serialNumber;
+                // old                
 
-                await Task.Run(() => RCServos[channel].Open(500));
+                RCServoEx rcServoHostA = RCServos[channel];
+
+                // new 
+
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+               
+                RCServoEx rcServoHostB = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+
+                // TODO(crhodes)
+                // Do we need to do this
+                //RCServos[channel] = rcServoHostB;
+
+                // old
+
+                //if (rcServoHostA.IsOpen is false)
+                //{
+                //    // If we are first to open need to set serialNumber
+
+                //    RCServos[channel].SerialNumber = serialNumber;
+                //    await Task.Run(() => rcServoHostA.Open(500));
+                //    //await Task.Run(() => RCServos[channel].Open(500));
+                //}                
+
+                // new
+
+                if (rcServoHostB.IsOpen is false)
+                {
+                    rcServoHostB.LogPhidgetEvents = rcServoHostA.LogPhidgetEvents;
+                    rcServoHostB.LogErrorEvents = rcServoHostA.LogErrorEvents;
+                    rcServoHostB.LogPropertyChangeEvents = rcServoHostA.LogPropertyChangeEvents;
+
+                    //rcServoHost.LogCurrentChangeEvents = rcServoHostA.LogCurrentChangeEvents;
+                    rcServoHostB.LogPositionChangeEvents = rcServoHostA.LogPositionChangeEvents;
+                    rcServoHostB.LogVelocityChangeEvents = rcServoHostA.LogVelocityChangeEvents;
+
+                    rcServoHostB.LogTargetPositionReachedEvents = rcServoHostA.LogTargetPositionReachedEvents;
+
+                    rcServoHostB.LogPerformanceSequence = rcServoHostA.LogPerformanceSequence;
+                    rcServoHostB.LogSequenceAction = rcServoHostA.LogSequenceAction;
+                    rcServoHostB.LogActionVerification = rcServoHostA.LogActionVerification;
+
+                    // TODO(crhodes)
+                    // Until we figure out how to start with RCServoChannels
+                    // set our local to what we found
+                    // Hum, this did not update UI, bummer
+
+                    //RCServos[channel] = rcServoHostB;
+
+                    await Task.Run(() => rcServoHostB.Open(500));
+
+                    var a1 = rcServoHostB.Attached;
+                    var a2 = rcServoHostB.IsAttached;
+
+                    RCServos[channel].IsAttached = rcServoHostB.IsAttached;
+
+                    RCServos[channel].MinPulseWidthLimit = rcServoHostB.MinPulseWidthLimit;
+                    RCServos[channel].MinPulseWidth = rcServoHostB.MinPulseWidth;
+                    RCServos[channel].MaxPulseWidth = rcServoHostB.MaxPulseWidthLimit;
+                    RCServos[channel].MaxPulseWidthLimit = rcServoHostB.MaxPulseWidthLimit;
+
+                    RCServos[channel].SpeedRampingState = rcServoHostB.SpeedRampingState;
+
+                    RCServos[channel].MinAcceleration = rcServoHostB.MinAcceleration;
+                    RCServos[channel].Acceleration = rcServoHostB.Acceleration;
+                    RCServos[channel].MaxAcceleration = rcServoHostB.MaxAcceleration;
+
+                    RCServos[channel].Velocity = rcServoHostB.Velocity;
+
+                    RCServos[channel].MinVelocityLimit = rcServoHostB.MinVelocityLimit;
+                    RCServos[channel].VelocityLimit = rcServoHostB.VelocityLimit;
+                    RCServos[channel].MaxVelocityLimit = rcServoHostB.MaxVelocityLimit;
+
+                    RCServos[channel].MinDataInterval = rcServoHostB.MinDataInterval;
+                    RCServos[channel].DataInterval = rcServoHostB.DataInterval;
+                    RCServos[channel].MaxDataInterval = rcServoHostB.MaxDataInterval;
+
+                    RCServos[channel].MinDataRate = rcServoHostB.MinDataRate;
+                    RCServos[channel].DataRate = rcServoHostB.DataRate;
+                    RCServos[channel].MaxDataRate = rcServoHostB.MaxDataRate;
+
+                    RCServos[channel].MinPositionServo = rcServoHostB.MinPositionServo;
+                    RCServos[channel].MinPosition = rcServoHostB.MinPosition;
+                    RCServos[channel].MinPositionStop = rcServoHostB.MinPositionStop;
+                        ;
+                    RCServos[channel].Position = rcServoHostB.Position;
+
+                    RCServos[channel].MaxPositionServo = rcServoHostB.MaxPositionServo;
+                    RCServos[channel].MaxPosition = rcServoHostB.MaxPosition;
+                    RCServos[channel].MaxPositionStop = rcServoHostB.MaxPositionStop;
+
+
+                    RCServos[channel].TargetPosition = rcServoHostB.TargetPosition;
+
+                    RCServos[channel].Voltage = rcServoHostB.Voltage;
+
+
+                    //RCServos[channel].IsAttached.RaisePropertiesChanged();
+
+                    RCServos[channel].Engaged = rcServoHostB.Engaged;
+
+                    //RCServos[channel].Engaged = rcServoHostB.Engaged;
+                    //RCServos[channel].Position = rcServoHostB.Position;
+
+                    //RCServos[channel].TargetPosition = rcServoHostB.TargetPosition;
+                }
+
+                OpenRCServoCommand.RaiseCanExecuteChanged();
+                CloseRCServoCommand.RaiseCanExecuteChanged();
 
                 //var servoHost = GetRCServoHost(serialNumber, channel);
 
@@ -1026,16 +1135,44 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool OpenRCServoCanExecute(string value)
+        public bool OpenRCServoCanExecute(string servoNumber)
         //public bool OpenRCServoCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            return true;
+            Int32 channel;
+
+            Int32.TryParse(servoNumber, out channel);
+
+            if (SelectedAdvancedServo is null) return false;
+
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
+
+            RCServoEx? rcServoHost;
+
+            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out rcServoHost)) return false;
+            //{
+                
+            //}
+            //RCServoEx rcServoHostB = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+
+            if (rcServoHost is null) return false;
+
+            if (rcServoHost.IsOpen)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private RCServoEx GetRCServoHost(int serialNumber, int channel)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
             RCServoConfiguration rcServoConfiguration = new RCServoConfiguration()
             {
                 Channel = (Int16)channel,
@@ -1060,7 +1197,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This is a new method that got added.  Maybe problem is here.
             RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
-            
+
             //rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
             //rcServoHost.LogErrorEvents = LogErrorEvents;
             //rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
@@ -1074,6 +1211,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
             //rcServoHost.LogSequenceAction = LogSequenceAction;
             //rcServoHost.LogActionVerification = LogActionVerification;
+
+            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
 
             return rcServoHost;
         }
@@ -1746,13 +1885,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
-            Int32 number;
+            Int32 channel;
 
-            if (Int32.TryParse(servoNumber, out number))
+            if (Int32.TryParse(servoNumber, out channel))
             {
-                RCServos[number].SerialNumber = serialNumber;
+                // old
 
-                await Task.Run(() => RCServos[number].Close());
+                RCServoEx rcServoHostA = RCServos[channel];
+
+                // new 
+
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+
+                RCServoEx rcServoHostB = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+
+                await Task.Run(() => rcServoHostB.Close());
             }
             else
             {
@@ -1760,6 +1907,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 Log.Error(Message, Common.LOG_CATEGORY);
             }
 
+            OpenRCServoCommand.RaiseCanExecuteChanged();
+            CloseRCServoCommand.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -1804,12 +1953,33 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool CloseRCServoCanExecute(string value)
+        public bool CloseRCServoCanExecute(string servoNumber)
         //public bool CloseRCServoCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            return true;
+            Int32 channel;
+
+            Int32.TryParse(servoNumber, out channel);
+
+            if (SelectedAdvancedServo is null) return false;
+
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
+
+            RCServoEx? rcServoHost;
+
+            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out rcServoHost)) return false;
+
+            if (rcServoHost is null) return false;
+
+            if (rcServoHost.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         #endregion

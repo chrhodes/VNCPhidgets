@@ -2354,6 +2354,11 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Public Methods (none)
 
+        public void UpdateProperties(RCServoEx servo)
+        {
+            IsAttached = servo.IsAttached;
+            Engaged = servo.Engaged;
+        }
 
         #endregion
 

@@ -747,9 +747,10 @@ namespace VNC.Phidget22.Ex
 
 
                 // NOTE(crhodes)
-                // Shockingly, this is not set until after Attach Event
+                // Shockingly, the Attached property is not set until after Attach Event
+                // It is also R/O so we cannot set.
 
-                //IsAttached = dOutput.Attached;
+                //IsAttached = rcServo.Attached;
 
                 // Just set it so UI behaves well
                 IsAttached = true;
@@ -899,6 +900,38 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Public Methods
+
+
+        public new void Open()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+
+            base.Open();
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void Open(Int32 timeout)
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+
+            base.Open(timeout);
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void Close()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+
+            base.Close();
+            IsAttached = Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
 
         /// <summary>
         /// Open Phidget and waitForAttachment
@@ -1163,6 +1196,7 @@ namespace VNC.Phidget22.Ex
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
+
 
         /// <summary>
         /// Bounds check and set velocity

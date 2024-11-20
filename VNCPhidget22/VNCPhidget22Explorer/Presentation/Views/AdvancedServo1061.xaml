@@ -294,7 +294,7 @@
                               Padding="-10" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Horizontal">
-                        <controls:RCServoControl ControlTitle="Servo S0" HorizontalAlignment="Left"
+                        <controls:RCServoControl x:Name="rcServoControl0"  ControlTitle="Servo S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[0].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[0].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[0].LogPropertyChangeEvents,Mode=TwoWay}"
