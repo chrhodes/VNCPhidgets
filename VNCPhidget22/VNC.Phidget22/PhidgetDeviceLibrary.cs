@@ -102,6 +102,7 @@ namespace VNC.Phidget22
         public static Dictionary<SerialChannel, RCServoEx> RCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
         public static Dictionary<SerialChannel, StepperEx> StepperChannels = new Dictionary<SerialChannel, StepperEx>();
         public static Dictionary<SerialChannel, VoltageInputEx> VoltageInputChannels = new Dictionary<SerialChannel, VoltageInputEx>();
+        public static Dictionary<SerialChannel, VoltageRatioInputEx> VoltageRatioInputChannels = new Dictionary<SerialChannel, VoltageRatioInputEx>();
         public static Dictionary<SerialChannel, VoltageOutputEx> VoltageOutputChannels = new Dictionary<SerialChannel, VoltageOutputEx>();
 
         // TODO(crhodes)
@@ -354,6 +355,21 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.Stepper:
+                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new Stepper SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    StepperChannels.Add(
+                        new SerialChannel()
+                        {
+                            SerialNumber = phidgetDevice.SerialNumber,
+                            Channel = deviceChannels.StepperCount
+                        },
+                        new StepperEx(phidgetDevice.SerialNumber,
+                            new StepperConfiguration()
+                            {
+                                Channel = deviceChannels.StepperCount
+                            },
+                            _eventAggregator
+                        )
+                    );
                     deviceChannels.StepperCount++;
                     break;
 
@@ -362,14 +378,59 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.VoltageInput:
-                    deviceChannels.VoltageInputCount++;
+                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new VoltageInput SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    VoltageInputChannels.Add(
+                        new SerialChannel()
+                        {
+                            SerialNumber = phidgetDevice.SerialNumber,
+                            Channel = deviceChannels.VoltageInputCount
+                        },
+                        new VoltageInputEx(phidgetDevice.SerialNumber,
+                            new VoltageInputConfiguration()
+                            {
+                                Channel = deviceChannels.VoltageInputCount
+                            },
+                            _eventAggregator
+                        )
+                    );
                     break;
 
                 case Phidgets.ChannelClass.VoltageOutput:
+                    deviceChannels.VoltageInputCount++;
+                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new VoltageOutput SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    VoltageOutputChannels.Add(
+                        new SerialChannel()
+                        {
+                            SerialNumber = phidgetDevice.SerialNumber,
+                            Channel = deviceChannels.VoltageOutputCount
+                        },
+                        new VoltageOutputEx(phidgetDevice.SerialNumber,
+                            new VoltageOutputConfiguration()
+                            {
+                                Channel = deviceChannels.VoltageOutputCount
+                            },
+                            _eventAggregator
+                        )
+                    );
                     deviceChannels.VoltageOutputCount++;
                     break;
 
                 case Phidgets.ChannelClass.VoltageRatioInput:
+                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new VoltageRatioInput SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    VoltageRatioInputChannels.Add(
+                        new SerialChannel()
+                        {
+                            SerialNumber = phidgetDevice.SerialNumber,
+                            Channel = deviceChannels.VoltageRatioInputCount
+                        },
+                        new VoltageRatioInputEx(phidgetDevice.SerialNumber,
+                            new VoltageRatioInputConfiguration()
+                            {
+                                Channel = deviceChannels.VoltageRatioInputCount
+                            },
+                            _eventAggregator
+                        )
+                    );
                     deviceChannels.VoltageRatioInputCount++;
                     break;
 

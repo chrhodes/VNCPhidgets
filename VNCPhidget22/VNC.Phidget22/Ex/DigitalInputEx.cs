@@ -86,14 +86,57 @@ namespace VNC.Phidget22.Ex
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
-        public bool LogPropertyChangeEvents { get; set; }
+        // NOTE(crhodes)
+        // UI binds to these properties so need to use INPC
 
-        public bool LogStateChangeEvents { get; set; }
+        bool _logPhidgetEvents;
+        public bool LogPhidgetEvents
+        {
+            get { return _logPhidgetEvents; }
+            set { _logPhidgetEvents = value; OnPropertyChanged(); }
+        }
 
-        public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
+        bool _logErrorEvents = true;    // probably always want to see Errors
+        public bool LogErrorEvents
+        {
+            get { return _logErrorEvents; }
+            set { _logErrorEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPropertyChangeEvents;
+        public bool LogPropertyChangeEvents
+        {
+            get { return _logPropertyChangeEvents; }
+            set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logStateChangeEvents;
+        public bool LogStateChangeEvents 
+        {
+            get { return _logStateChangeEvents; } 
+            set { _logStateChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPerformanceSequence;
+        public bool LogPerformanceSequence
+        {
+            get { return _logPerformanceSequence; }
+            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+        }
+
+        bool _logSequenceAction;
+        public bool LogSequenceAction
+        {
+            get { return _logSequenceAction; }
+            set { _logSequenceAction = value; OnPropertyChanged(); }
+        }
+
+        bool _logActionVerification;
+        public bool LogActionVerification
+        {
+            get { return _logActionVerification; }
+            set { _logActionVerification = value; OnPropertyChanged(); }
+        }
 
         private int _serialNumber;
         public int SerialNumber
@@ -296,7 +339,6 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Public Methods
-
 
         private new void Open()
         {

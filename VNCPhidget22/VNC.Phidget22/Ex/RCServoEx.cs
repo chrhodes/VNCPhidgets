@@ -107,18 +107,71 @@ namespace VNC.Phidget22.Ex
 
         #region Logging
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
-        public bool LogPropertyChangeEvents { get; set; }
+        // NOTE(crhodes)
+        // UI binds to these properties so need to use INPC
 
-        public bool LogPositionChangeEvents { get; set; }
-        public bool LogVelocityChangeEvents { get; set; }
+        bool _logPhidgetEvents;
+        public bool LogPhidgetEvents
+        {
+            get { return _logPhidgetEvents; }
+            set { _logPhidgetEvents = value; OnPropertyChanged(); }
+        }
 
-        public bool LogTargetPositionReachedEvents { get; set; }
+        bool _logErrorEvents = true;    // probably always want to see Errors
+        public bool LogErrorEvents
+        {
+            get { return _logErrorEvents; }
+            set { _logErrorEvents = value; OnPropertyChanged(); }
+        }
 
-        public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
-        public bool LogActionVerification { get; set; }
+        bool _logPropertyChangeEvents;
+        public bool LogPropertyChangeEvents
+        {
+            get { return _logPropertyChangeEvents; }
+            set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPositionChangeEvents;
+        public bool LogPositionChangeEvents
+        {
+            get { return _logPositionChangeEvents; }
+            set { _logPositionChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logVelocityChangeEvents;
+        public bool LogVelocityChangeEvents
+        {
+            get { return _logVelocityChangeEvents; }
+            set { _logVelocityChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logTargetPositionReachedEvents;
+        public bool LogTargetPositionReachedEvents
+        {
+            get { return _logTargetPositionReachedEvents; }
+            set { _logTargetPositionReachedEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPerformanceSequence;
+        public bool LogPerformanceSequence
+        {
+            get { return _logPerformanceSequence; }
+            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+        }
+
+        bool _logSequenceAction;
+        public bool LogSequenceAction
+        {
+            get { return _logSequenceAction; }
+            set { _logSequenceAction = value; OnPropertyChanged(); }
+        }
+
+        bool _logActionVerification;
+        public bool LogActionVerification
+        {
+            get { return _logActionVerification; }
+            set { _logActionVerification = value; OnPropertyChanged(); }
+        }
 
         #endregion
 

@@ -87,6 +87,7 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
         #endregion
 
         #region Enums (none)
@@ -103,18 +104,71 @@ namespace VNC.Phidget22.Ex
 
         #region Logging
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
-        public bool LogPropertyChangeEvents { get; set; }
+        // NOTE(crhodes)
+        // UI binds to these properties so need to use INPC
 
-        public bool LogPositionChangeEvents { get; set; }
-        public bool LogVelocityChangeEvents { get; set; }
+        bool _logPhidgetEvents;
+        public bool LogPhidgetEvents
+        {
+            get { return _logPhidgetEvents; }
+            set { _logPhidgetEvents = value; OnPropertyChanged(); }
+        }
 
-        public bool LogStoppedEvents { get; set; }
+        bool _logErrorEvents = true;    // probably always want to see Errors
+        public bool LogErrorEvents
+        {
+            get { return _logErrorEvents; }
+            set { _logErrorEvents = value; OnPropertyChanged(); }
+        }
 
-        public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
-        public bool LogActionVerification { get; set; }
+        bool _logPropertyChangeEvents;
+        public bool LogPropertyChangeEvents
+        {
+            get { return _logPropertyChangeEvents; }
+            set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPositionChangeEvents;
+        public bool LogPositionChangeEvents
+        {
+            get { return _logPositionChangeEvents; }
+            set { _logPositionChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logVelocityChangeEvents;
+        public bool LogVelocityChangeEvents
+        {
+            get { return _logVelocityChangeEvents; }
+            set { _logVelocityChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logStoppedEvents;
+        public bool LogStoppedEvents
+        {
+            get { return _logStoppedEvents; }
+            set { _logStoppedEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPerformanceSequence;
+        public bool LogPerformanceSequence
+        {
+            get { return _logPerformanceSequence; }
+            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+        }
+
+        bool _logSequenceAction;
+        public bool LogSequenceAction
+        {
+            get { return _logSequenceAction; }
+            set { _logSequenceAction = value; OnPropertyChanged(); }
+        }
+
+        bool _logActionVerification;
+        public bool LogActionVerification
+        {
+            get { return _logActionVerification; }
+            set { _logActionVerification = value; OnPropertyChanged(); }
+        }
 
         #endregion
 
@@ -174,8 +228,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Acceleration;
-        public new Double? Acceleration
+        private Double _Acceleration;
+        public new Double Acceleration
         {
             get => _Acceleration;
             set
@@ -186,7 +240,7 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.Acceleration = (int)value;
+                    base.Acceleration = value;
                 }
 
                 OnPropertyChanged();
@@ -219,8 +273,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _CurrentLimit;
-        public new Double? CurrentLimit
+        private Double _CurrentLimit;
+        public new Double CurrentLimit
         {
             get => _CurrentLimit;
             set
@@ -231,7 +285,7 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.CurrentLimit = (int)value;
+                    base.CurrentLimit = value;
                 }
 
                 OnPropertyChanged();
@@ -264,8 +318,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int? _DataInterval;
-        public new int? DataInterval
+        private int _DataInterval;
+        public new int DataInterval
         {
             get => _DataInterval;
             set
@@ -276,7 +330,7 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.DataInterval = (int)value;
+                    base.DataInterval = value;
                 }
 
                 OnPropertyChanged();
@@ -309,8 +363,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _DataRate;
-        public new Double? DataRate
+        private Double _DataRate;
+        public new Double DataRate
         {
             get => _DataRate;
             set
@@ -321,7 +375,7 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.DataRate = (int)value;
+                    base.DataRate = value;
                 }
 
                 OnPropertyChanged();
@@ -367,8 +421,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _holdingCurrentLimit;
-        public new Double? HoldingCurrentLimit
+        private Double _holdingCurrentLimit;
+        public new Double HoldingCurrentLimit
         {
             get => _holdingCurrentLimit;
             set
@@ -379,7 +433,7 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.HoldingCurrentLimit = (int)value;
+                    base.HoldingCurrentLimit = value;
                 }
 
                 OnPropertyChanged();
@@ -438,8 +492,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Position;
-        public new Double? Position
+        private Double _Position;
+        public new Double Position
         {
             get => _Position;
             set
@@ -556,8 +610,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _Velocity;
-        public new Double? Velocity
+        private Double _Velocity;
+        public new Double Velocity
         {
             get => _Velocity;
             set
@@ -582,8 +636,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _VelocityLimit;
-        public new Double? VelocityLimit
+        private Double _VelocityLimit;
+        public new Double VelocityLimit
         {
             get => _VelocityLimit;
             set
@@ -591,6 +645,9 @@ namespace VNC.Phidget22.Ex
                 if (_VelocityLimit == value)
                     return;
                 _VelocityLimit = value;
+
+                base.VelocityLimit = value;
+
                 OnPropertyChanged();
             }
         }
@@ -608,8 +665,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _rescaleFactor;
-        public new Double? RescaleFactor
+        private Double _rescaleFactor;
+        public new Double RescaleFactor
         {
             get => _rescaleFactor;
             set
@@ -623,6 +680,23 @@ namespace VNC.Phidget22.Ex
                 OnPropertyChanged();
             }
         }
+
+        private StepperControlMode _controlMode;
+        public StepperControlMode ControlMode
+        {
+            get => _controlMode;
+            set
+            {
+                if (_controlMode == value)
+                    return;
+                _controlMode = value;
+
+                base.ControlMode = value;
+
+                OnPropertyChanged();
+            }
+        }
+        
 
         #endregion
 
@@ -664,11 +738,12 @@ namespace VNC.Phidget22.Ex
             MinAcceleration = stepper.MinAcceleration;
             Acceleration = stepper.Acceleration;
             MaxAcceleration = stepper.MaxAcceleration;
-            ControlMode = stepper.ControlMode;
 
-            MinCurrentLimit = stepper.MinCurrentLimit;
-            CurrentLimit = stepper.CurrentLimit;
-            MaxCurrentLimit = stepper.MaxCurrentLimit;
+            Velocity = stepper.Velocity;
+
+            MinVelocityLimit = stepper.MinVelocityLimit;
+            VelocityLimit = stepper.VelocityLimit;
+            MaxVelocityLimit = stepper.MaxVelocityLimit;
 
             MinDataInterval = stepper.MinDataInterval;
             DataInterval = stepper.DataInterval;
@@ -678,19 +753,25 @@ namespace VNC.Phidget22.Ex
             DataRate = stepper.DataRate;
             MaxDataRate = stepper.MaxDataRate;
 
-            MinFailsafeTime = stepper.MinFailsafeTime;
-            MaxFailsafeTime = stepper.MaxFailsafeTime;
+            // MinPosition can be set.  Save initial limit
+            MinPositionStepper = MinPosition = MinPositionStop = stepper.MinPosition;
 
-            MinPosition = stepper.MinPosition;
-            Position = stepper.Position;
-            MaxPosition = stepper.MaxPosition;
+            // MaxPosition can be set.  Save initial limit
+            MaxPositionStepper = MaxPosition = MaxPositionStop = stepper.MaxPosition;
 
+            //// NOTE(crhodes)
+            //// Position cannot be read until initially set
+            //// Initialize in middle of range
+            //Position = (rcServo.MaxPosition - stepper.MinPosition) / 2;
+            //// Have to set TargetPosition before engaging
+            //TargetPosition = Position;
+
+            MinCurrentLimit = stepper.MinCurrentLimit;
+            CurrentLimit = stepper.CurrentLimit;
+            MaxCurrentLimit = stepper.MaxCurrentLimit;
+
+            ControlMode = stepper.ControlMode;
             RescaleFactor = stepper.RescaleFactor;
-
-            Velocity = stepper.Velocity;
-
-            MinVelocityLimit = stepper.MinVelocityLimit;
-            MaxVelocityLimit = stepper.MaxVelocityLimit;
 
             // Not all RCServo support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -698,7 +779,8 @@ namespace VNC.Phidget22.Ex
 
             //try
             //{
-            //  
+            //    MinFailsafeTime = stepper.MinFailsafeTime;
+            //    MaxFailsafeTime = stepper.MaxFailsafeTime;
             //}
             //catch (Phidgets.PhidgetException ex)
             //{
@@ -726,7 +808,7 @@ namespace VNC.Phidget22.Ex
 
         private void StepperEx_PositionChange(object sender, PhidgetsEvents.StepperPositionChangeEventArgs e)
         {
-            if (LogPropertyChangeEvents)
+            if (LogPositionChangeEvents)
             {
                 try
                 {
@@ -758,7 +840,7 @@ namespace VNC.Phidget22.Ex
 
         private void StepperEx_VelocityChange(object sender, PhidgetsEvents.StepperVelocityChangeEventArgs e)
         {
-            if (LogPropertyChangeEvents)
+            if (LogVelocityChangeEvents)
             {
                 try
                 {
@@ -771,23 +853,6 @@ namespace VNC.Phidget22.Ex
             }
 
             Velocity = e.Velocity;
-        }
-
-        private void StepperEx_TargetPositionReached(object sender, PhidgetsEvents.RCServoTargetPositionReachedEventArgs e)
-        {
-            if (LogPropertyChangeEvents)
-            {
-                try
-                {
-                    Log.EVENT_HANDLER($"StepperEx_TargetPositionReached: sender:{sender} {e.Position}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-
-            Position = e.Position;
         }
 
         private void StepperEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
@@ -831,221 +896,124 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
+        public new void Open()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
 
-        /// <summary>
-        /// Open Phidget and waitForAttachment
-        /// </summary>
-        /// <param name="timeOut">Optionally time out after timeOut(ms)</param>
-        //public new void Open(int? timeOut = null)
-        //{
-        //    long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
+            base.Open();
 
-        //    try
-        //    {
-        //        // FIX(crhodes)
-        //        // There is no AdvancedServo in Phidget22.
-        //        // This is where we probably open all the stuff on the Phidget
-        //        // or we can just open what we use
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
 
-        //        var stepperCount = _deviceChannels.RCServoCount;
-        //        var currentInputCount = _deviceChannels.CurrentInputCount;
+        public new void Open(Int32 timeout)
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
 
-        //        // HACK(crhodes)
-        //        // Trying to get new RCC0004_0 AdvancedServo board to work with
-        //        // Legacy SBC1 or SBC2.  No luck.
-        //        // Only seems to work it directly attached, sigh.
-        //        //AdvancedServo.open(SerialNumber);
-        //        //AdvancedServo.open(-1);
+            base.Open(timeout);
 
-        //        // TODO(crhodes)
-        //        // Decide if want to open everything or pass in config to only open what we need
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
 
-        //        for (int i = 0; i < stepperCount; i++)
-        //        {
-        //            RCServos[i].Open();
-        //        }
+        public new void Close()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
 
-        //        for (int i = 0; i < currentInputCount; i++)
-        //        {
-        //            CurrentInputs[i].Open();
-        //        }
+            base.Close();
+            IsAttached = Attached;
 
-        //        //AdvancedServo.open(SerialNumber, Host.IPAddress, Host.Port);
-
-        //        //if (timeOut is not null)
-        //        //{
-        //        //    AdvancedServo.waitForAttachment((Int32)timeOut); 
-        //        //}
-        //        //else 
-        //        //{ 
-        //        //    AdvancedServo.waitForAttachment();
-        //        //}
-
-        //    }
-        //    catch (Phidgets.PhidgetException pex)
-        //    {
-        //        Log.Error(pex, Common.LOG_CATEGORY);
-        //        Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //public event EventHandler PhidgetDeviceAttached;
-
-        //override protected void PhidgetDeviceIsAttached()
-        //{
-        //    OnPhidgetDeviceAttached(new EventArgs());
-        //}
-
-        //// NOTE(crhodes)
-        //// This tells the UI that we have an attached Phidget
-
-        //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
-        //{
-        //    PhidgetDeviceAttached?.Invoke(this, e);
-        //}
-
-        //public void Close()
-        //{
-        //    long startTicks = Log.Trace("Enter", Common.LOG_CATEGORY);
-
-        //    try
-        //    {
-        //        // FIX(crhodes)
-        //        // There is no AdvancedServo in Phidget22.
-        //        // This is where we probably close all the stuff on the Phidget
-        //        // or we can just close what we use
-
-        //        var stepperCount = _deviceChannels.RCServoCount;
-        //        var currentInputCount = _deviceChannels.CurrentInputCount;
-
-        //        // NOTE(crhodes)
-        //        // We may be logging events.  Remove them before closing
-
-        //        if (LogCurrentChangeEvents) LogCurrentChangeEvents = false;
-        //        if (LogPositionChangeEvents) LogPositionChangeEvents = false;
-        //        if (LogVelocityChangeEvents) LogVelocityChangeEvents = false;
-
-        //        // TODO(crhodes)
-        //        // Decide if want to close everything or pass in config to only open what we need
-
-        //        for (int i = 0; i < stepperCount; i++)
-        //        {
-        //            RCServos[i].Close();
-        //        }
-
-        //        for (int i = 0; i < currentInputCount; i++)
-        //        {
-        //            CurrentInputs[i].Close();
-        //        }
-
-        //        //AdvancedServo.close();
-        //    }
-        //    catch (Phidgets.PhidgetException pex)
-        //    {
-        //        Log.Error(pex, Common.LOG_CATEGORY);
-        //        Log.Error($"source:{pex.Source} message:{pex.Message} description:{pex.Description} detail:{pex.Detail} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-
-        //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
 
         public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)
         {
             long startTicks = 0;
 
-            //try
-            //{
-            //    if (LogPerformanceSequence)
-            //    {
-            //        startTicks = Log.Trace(
-            //            $"Running Action Loops" +
-            //            $" advancedServoSequence:>{advancedServoSequence.Name}<" +
-            //            $" startActionLoopSequences:>{advancedServoSequence.StartActionLoopSequences?.Count()}<" +
-            //            $" actionLoops:>{advancedServoSequence.ActionLoops}<" +
-            //            $" actions:>{advancedServoSequence.Actions?.Count()}<" +
-            //            $" actionsDuration:>{advancedServoSequence.ActionsDuration}<" +
-            //            $" endActionLoopSequences:>{advancedServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
-            //    }
+            try
+            {
+                //    if (LogPerformanceSequence)
+                //    {
+                //        startTicks = Log.Trace(
+                //            $"Running Action Loops" +
+                //            $" advancedServoSequence:>{advancedServoSequence.Name}<" +
+                //            $" startActionLoopSequences:>{advancedServoSequence.StartActionLoopSequences?.Count()}<" +
+                //            $" actionLoops:>{advancedServoSequence.ActionLoops}<" +
+                //            $" actions:>{advancedServoSequence.Actions?.Count()}<" +
+                //            $" actionsDuration:>{advancedServoSequence.ActionsDuration}<" +
+                //            $" endActionLoopSequences:>{advancedServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                //    }
 
-            //    if (advancedServoSequence.Actions is not null)
-            //    {
-            //        for (int actionLoop = 0; actionLoop < advancedServoSequence.ActionLoops; actionLoop++)
-            //        {
-            //            if (advancedServoSequence.StartActionLoopSequences is not null)
-            //            {
-            //                // TODO(crhodes)
-            //                // May want to create a new player instead of reaching for the property.
+                //    if (advancedServoSequence.Actions is not null)
+                //    {
+                //        for (int actionLoop = 0; actionLoop < advancedServoSequence.ActionLoops; actionLoop++)
+                //        {
+                //            if (advancedServoSequence.StartActionLoopSequences is not null)
+                //            {
+                //                // TODO(crhodes)
+                //                // May want to create a new player instead of reaching for the property.
 
-            //                PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
-            //                player.LogPerformanceSequence = LogPerformanceSequence;
-            //                player.LogSequenceAction = LogSequenceAction;
+                //                PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                //                player.LogPerformanceSequence = LogPerformanceSequence;
+                //                player.LogSequenceAction = LogSequenceAction;
 
-            //                foreach (PerformanceSequence sequence in advancedServoSequence.StartActionLoopSequences)
-            //                {
-            //                    await player.ExecutePerformanceSequence(sequence);
-            //                }
-            //            }
+                //                foreach (PerformanceSequence sequence in advancedServoSequence.StartActionLoopSequences)
+                //                {
+                //                    await player.ExecutePerformanceSequence(sequence);
+                //                }
+                //            }
 
-            //            if (advancedServoSequence.ExecuteActionsInParallel)
-            //            {
-            //                if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                //            if (advancedServoSequence.ExecuteActionsInParallel)
+                //            {
+                //                if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-            //                Parallel.ForEach(advancedServoSequence.Actions, async action =>
-            //                {
-            //                    // FIX(crhodes)
-            //                    // 
-            //                    //await PerformAction(action);
-            //                });
-            //            }
-            //            else
-            //            {
-            //                if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                //                Parallel.ForEach(advancedServoSequence.Actions, async action =>
+                //                {
+                //                    // FIX(crhodes)
+                //                    // 
+                //                    //await PerformAction(action);
+                //                });
+                //            }
+                //            else
+                //            {
+                //                if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-            //                foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
-            //                {
-            //                    // FIX(crhodes)
-            //                    // 
-            //                    //await PerformAction(action);
-            //                }
-            //            }
+                //                foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
+                //                {
+                //                    // FIX(crhodes)
+                //                    // 
+                //                    //await PerformAction(action);
+                //                }
+                //            }
 
-            //            if (advancedServoSequence.ActionsDuration is not null)
-            //            {
-            //                if (LogSequenceAction)
-            //                {
-            //                    Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
-            //                }
-            //                Thread.Sleep((int)advancedServoSequence.ActionsDuration);
-            //            }
+                //            if (advancedServoSequence.ActionsDuration is not null)
+                //            {
+                //                if (LogSequenceAction)
+                //                {
+                //                    Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                //                }
+                //                Thread.Sleep((int)advancedServoSequence.ActionsDuration);
+                //            }
 
-            //            if (advancedServoSequence.EndActionLoopSequences is not null)
-            //            {
-            //                PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
-            //                player.LogPerformanceSequence = LogPerformanceSequence;
-            //                player.LogSequenceAction = LogSequenceAction;
+                //            if (advancedServoSequence.EndActionLoopSequences is not null)
+                //            {
+                //                PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
+                //                player.LogPerformanceSequence = LogPerformanceSequence;
+                //                player.LogSequenceAction = LogSequenceAction;
 
-            //                foreach (PerformanceSequence sequence in advancedServoSequence.EndActionLoopSequences)
-            //                {
-            //                    await player.ExecutePerformanceSequence(sequence);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log.Error(ex, Common.LOG_CATEGORY);
-            //}
+                //                foreach (PerformanceSequence sequence in advancedServoSequence.EndActionLoopSequences)
+                //                {
+                //                    await player.ExecutePerformanceSequence(sequence);
+                //                }
+                //            }
+                //        }
+                //    }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }

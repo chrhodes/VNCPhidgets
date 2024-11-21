@@ -348,7 +348,58 @@
                             VelocityLimit="{Binding Stepper0.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding Stepper0.MaxVelocityLimit,Mode=TwoWay}" 
                               
+                            ControlMode="{Binding Stepper0.ControlMode,Mode=TwoWay}"                                                 
                             RescaleFactor="{Binding Stepper0.RescaleFactor,Mode=TwoWay}" />
+
+                        <!--<controls:StepperControl ControlTitle="Stepper S1" HorizontalAlignment="Left"
+                            LogPhidgetEvents="{Binding Stepper1.LogPhidgetEvents,Mode=TwoWay}"
+                            LogErrorEvents="{Binding Stepper1.LogErrorEvents,Mode=TwoWay}"
+                            LogPropertyChangeEvents="{Binding Stepper1.LogPropertyChangeEvents,Mode=TwoWay}"
+                            LogPositionChangeEvents="{Binding Stepper1.LogPositionChangeEvents,Mode=TwoWay}"
+                            LogVelocityChangeEvents="{Binding Stepper1.LogVelocityChangeEvents,Mode=TwoWay}"
+                            LogStoppedEvents="{Binding Stepper1.LogStoppedEvents,Mode=TwoWay}"                                                 
+                                         
+                            StepperNumber="1"
+                            IsAttached="{Binding Stepper1.IsAttached, Mode=TwoWay}"
+                            Engaged="{Binding Stepper1.Engaged, Mode=TwoWay}"
+                            StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
+                                                 
+                            MinCurrentLimit="{Binding Stepper1.MinCurrentLimit,Mode=TwoWay}"
+                            CurrentLimit="{Binding Stepper1.CurrentLimit,Mode=TwoWay}"
+                            HoldingCurrentLimit="{Binding Stepper1.HoldingCurrentLimit,Mode=TwoWay}"                                             
+                            MaxCurrentLimit="{Binding Stepper1.MaxCurrentLimit,Mode=TwoWay}"
+
+                            MinDataInterval="{Binding Stepper1.MinDataInterval,Mode=TwoWay}"
+                            DataInterval="{Binding Stepper1.DataInterval,Mode=TwoWay}"
+                            MaxDataInterval="{Binding Stepper1.MaxDataInterval,Mode=TwoWay}"
+                            
+                            MinDataRate="{Binding Stepper1.MinDataRate,Mode=TwoWay}"
+                            DataRate="{Binding Stepper1.DataRate,Mode=TwoWay}"
+                            MaxDataRate="{Binding Stepper1.MaxDataRate,Mode=TwoWay}"
+                            
+                            MinAcceleration="{Binding Stepper1.MinAcceleration,Mode=TwoWay}"
+                            Acceleration="{Binding Stepper1.Acceleration,Mode=TwoWay}"
+                            MaxAcceleration="{Binding Stepper1.MaxAcceleration,Mode=TwoWay}"
+                     
+                            MinPositionStepper="{Binding Stepper1.MinPositionStepper,Mode=TwoWay}"                     
+                            MinPosition="{Binding Stepper1.MinPosition,Mode=TwoWay}"
+                            MinPositionStop="{Binding Stepper1.MinPositionStop,Mode=TwoWay}"                                                 
+                                         
+                            Position="{Binding Stepper1.Position,Mode=TwoWay}"
+                            TargetPosition="{Binding Stepper1.TargetPosition,Mode=TwoWay}"
+                            IsMoving="{Binding Stepper1.IsMoving, Mode=OneWay}"                                         
+                                         
+                            MaxPositionStop="{Binding Stepper1.MaxPositionStop,Mode=TwoWay}"
+                            MaxPosition="{Binding Stepper1.MaxPosition,Mode=TwoWay}"   
+                            MaxPositionStepper="{Binding Stepper1.MaxPositionStepper,Mode=TwoWay}"
+                            
+                            Velocity="{Binding Stepper1.Velocity,Mode=TwoWay}"
+                                         
+                            MinVelocityLimit="{Binding Stepper1.MinVelocityLimit,Mode=TwoWay}"
+                            VelocityLimit="{Binding Stepper1.VelocityLimit,Mode=TwoWay}"
+                            MaxVelocityLimit="{Binding Stepper1.MaxVelocityLimit,Mode=TwoWay}" 
+                              
+                            RescaleFactor="{Binding Stepper1.RescaleFactor,Mode=TwoWay}" />-->
 
                     </StackPanel>
                 </ScrollViewer>

@@ -540,18 +540,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedStepper = value;
 
                 OpenSteppersCommand.RaiseCanExecuteChanged();
-                OpenSteppersCommand.RaiseCanExecuteChanged();
+                OpenStepperCommand.RaiseCanExecuteChanged();
 
                 // Set to null when host changes
                 if (value is not null)
                 {
                     DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[value.SerialNumber].DeviceChannels;
 
-                    StepperVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                    SteppersVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
                 }
                 else
                 {
-                    StepperVisibility = Visibility.Collapsed;
+                    SteppersVisibility = Visibility.Collapsed;
                 }
 
                 OnPropertyChanged();
@@ -1584,26 +1584,26 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                StepperEx rcServoHost = PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                StepperEx stepperHost = PhidgetDeviceLibrary.StepperChannels[serialChannel];
 
                 // NOTE(crhodes)
                 // If this is the first time the channel is open use the global Logging settings
                 // Can turn off what is not need in Channel UI once open before further interacitons
 
-                //if (rcServoHost.IsOpen is false)
+                //if (stepperHost.IsOpen is false)
                 //{
-                //    await Task.Run(() => rcServoHost.Open(500));
+                //    await Task.Run(() => stepperHost.Open(500));
 
                 // NOTE(crhodes)
                 // Connect the UI to the Control so the UI is bound to the information
 
                 // TODO(crhodes)
                 // Come back and try to clean this up.  Made a mess trying to debug the can't open twice issue
-                // which was TargetPostion not being set (;
+                // which was TargetPosition not being set (;
                 switch (channel)
                 {
                     case 0:
-                        //Stepper0 = rcServoHost;
+                        //Stepper0 = stepperHost;
                         if (Stepper0 is null)
                         {
                             Stepper0 = PhidgetDeviceLibrary.StepperChannels[serialChannel];
@@ -1799,11 +1799,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
 
-            StepperEx? rcServoHost;
+            StepperEx? stepperHost;
 
-            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out rcServoHost)) return false;
+            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out stepperHost)) return false;
 
-            if (rcServoHost.IsAttached)
+            if (stepperHost.IsAttached)
             {
                 return false;
             }
@@ -1910,26 +1910,26 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool CloseStepperCanExecute(string servoNumber)
+        public bool CloseStepperCanExecute(string stepperNumber)
         //public bool CloseStepperCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             Int32 channel;
 
-            Int32.TryParse(servoNumber, out channel);
+            if (!Int32.TryParse(stepperNumber, out channel)) throw new Exception($"Cannot parse stepperNumber:{stepperNumber}");
 
             if (SelectedStepper is null) return false;
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
 
-            StepperEx? rcServoHost;
+            StepperEx? stepperHost;
 
-            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out rcServoHost)) return false;
+            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out stepperHost)) return false;
 
-            if (rcServoHost is null) return false;
+            if (stepperHost is null) return false;
 
-            if (rcServoHost.IsAttached)
+            if (stepperHost.IsAttached)
             {
                 return true;
             }

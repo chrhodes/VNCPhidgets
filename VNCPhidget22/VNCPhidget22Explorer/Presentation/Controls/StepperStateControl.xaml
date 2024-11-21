@@ -64,7 +64,7 @@
         <!-- <localvm:AccelerationControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox"  Header="RCServo State" 
+    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox"  Header="Stepper State" 
                       Orientation="Vertical" Padding="-10" >
         
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >

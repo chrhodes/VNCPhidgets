@@ -109,8 +109,8 @@
                 IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="TargetPositionReached"
-                IsChecked="{Binding LogTargetPositionReachedEvents, Mode=TwoWay}"
+                Content="Stopped"
+                IsChecked="{Binding StoppedEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
 
         </dxlc:LayoutGroup>
@@ -132,7 +132,7 @@
                 <Button x:Name="btnCloseStepperCommand" 
                 DataContext="{Binding DataContext, 
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-        		Command="{Binding CloseStepperommand }"
+        		Command="{Binding CloseStepperCommand }"
                 CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
         		Content="{Binding CloseStepperContent, FallbackValue='CloseStepper' }"
         		ToolTip="{Binding CloseStepperToolTip, FallbackValue='CloseStepperoolTip' }" />
@@ -159,14 +159,14 @@
             <!--</dxlc:LayoutItem>-->
 
             <controls:VelocityLimitControl
-            MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
-            VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
-            MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
+                MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
+                VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
+                MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
 
             <controls:AccelerationControl
-            MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
-            Acceleration="{Binding Acceleration, Mode=TwoWay}"
-            MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>
+                MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
+                Acceleration="{Binding Acceleration, Mode=TwoWay}"
+                MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>
 
         </dxlc:LayoutGroup>
 
@@ -175,25 +175,39 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
+                <dxlc:LayoutItem Label="ControlMode" LabelPosition="Top">
+                    <dxe:ComboBoxEdit 
+                        ItemsSource="{Binding Source={vncenum:EnumBindingSource 
+                            {x:Type phidgets:StepperControlMode}}}"
+                        SelectedIndex="0"
+                        EditValue="{ Binding Path=ControlMode,Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SelectedItemToEnumConverter} }" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="RescaleFactor" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
+                    <dxe:TextEdit Text="{Binding RescaleFactor, Mode=TwoWay}" />
+                </dxlc:LayoutItem>
+
                 <dxlc:LayoutGroup 
-                View="Group" Orientation="Horizontal" Background="AliceBlue" >
+                    View="Group" Orientation="Horizontal" Background="AliceBlue" >
 
                     <dxlc:LayoutItem Label="Min" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
-                        <dxe:TextEdit Text="{Binding StepperProperties[0].PositionMin, Mode=OneWay}"  IsReadOnly="True"/>
+                        <dxe:TextEdit Text="{Binding MinPosition, Mode=OneWay}"  IsReadOnly="True"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
                         <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Name="teCurrentPosition" Text="{Binding StepperProperties[0].CurrentPosition, Mode=TwoWay}" />
+                            <dxe:TextEdit Name="teCurrentPosition" Text="{Binding CurrentPosition, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Target" LabelPosition="Top">
-                            <dxe:TextEdit Name="teTargetPosition" Text="{Binding StepperProperties[0].TargetPosition, Mode=TwoWay}" />
+                            <dxe:TextEdit Name="teTargetPosition" Text="{Binding TargetPosition, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="Max" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
-                        <dxe:TextEdit Text="{Binding StepperProperties[0].PositionMax, Mode=OneWay}" IsReadOnly="True" />
+                        <dxe:TextEdit Text="{Binding MaxPosition, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
@@ -211,18 +225,18 @@
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
                 <dxlc:LayoutItem Label="Step Angle"
-            LabelPosition="Left">
+                    LabelPosition="Left">
                     <!--<dxe:ComboBoxEdit		                                 
-                EditValue="{Binding
+                       EditValue="{Binding
                     Path=SelectedFileFormats,
                     Mode=TwoWay,
                     UpdateSourceTrigger=PropertyChanged,
                     Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
                     <dxe:ComboBoxEdit x:Name="cbeStepAngle" IsEnabled="{Binding DeviceAttached}"
                         EditValueType="{x:Type sys:Double}"
-                        EditValue="{Binding StepperProperties[0].StepAngle}" >
-                        <!--SelectedItem="{Binding StepperProperties[0].StepAngle }" >-->
-                        <!--SelectedItem="{Binding StepperProperties[0].StepAngle, Converter={StaticResource SelectedItemToDoubleConverter} }" >-->
+                        EditValue="{Binding StepAngle}" >
+                        <!--SelectedItem="{Binding StepAngle }" >-->
+                        <!--SelectedItem="{Binding StepAngle, Converter={StaticResource SelectedItemToDoubleConverter} }" >-->
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:ComboBoxStyleSettings />
                             <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->

@@ -85,6 +85,7 @@
             Background="{StaticResource LoggingBackground}"
             MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
             ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
+            
             <dxe:CheckEdit
                 Content="Phidget"
                 IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"

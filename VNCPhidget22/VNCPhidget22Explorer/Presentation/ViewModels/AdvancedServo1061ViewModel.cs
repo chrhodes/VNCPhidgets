@@ -942,7 +942,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region InitializeVelocityCommand
 
         //public DelegateCommand InitializeVelocityCommand { get; set; }
@@ -1986,8 +1985,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Add any before button is enabled logic.
             Int32 channel;
 
-            Int32.TryParse(servoNumber, out channel);
-
+            if (!Int32.TryParse(servoNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{servoNumber}");
+            
             if (SelectedAdvancedServo is null) return false;
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };

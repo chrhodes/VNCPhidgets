@@ -203,7 +203,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         public static readonly DependencyProperty StepperIndexProperty = DependencyProperty.Register("StepperIndex", typeof(Int32?), typeof(StepperPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnStepperIndexChanged), new CoerceValueCallback(OnCoerceStepperIndex)));
 
-
         public static readonly DependencyProperty MinProperty = DependencyProperty.Register("Min", typeof(Int64?), typeof(StepperPositionControl),
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
 

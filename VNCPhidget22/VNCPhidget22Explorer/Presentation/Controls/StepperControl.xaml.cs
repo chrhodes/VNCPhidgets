@@ -247,8 +247,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
                 false,
                 new PropertyChangedCallback(OnLogErrorEventsChanged),
                 new CoerceValueCallback(OnCoerceLogErrorEvents)
-                ))
-            ;
+                )
+            );
 
         public Boolean LogErrorEvents
         {
@@ -2077,6 +2077,56 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
+
+        #endregion
+
+        #region ControlMode
+
+        public static readonly DependencyProperty ControlModeProperty = DependencyProperty.Register(
+            "ControlMode",
+            typeof(Phidgets.StepperControlMode),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                Phidgets.StepperControlMode.Step,
+                new PropertyChangedCallback(OnControlModeChanged),
+                new CoerceValueCallback(OnCoerceControlMode)
+                )
+            );
+
+        public Phidgets.StepperControlMode ControlMode
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Phidgets.StepperControlMode)GetValue(ControlModeProperty);
+            set => SetValue(ControlModeProperty, value);
+        }
+
+        private static object OnCoerceControlMode(DependencyObject o, object value)
+        {
+            StepperControl stepperControl = o as StepperControl;
+            if (stepperControl != null)
+                return stepperControl.OnCoerceControlMode((Phidgets.StepperControlMode)value);
+            else
+                return value;
+        }
+
+        private static void OnControlModeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl stepperControl = o as StepperControl;
+            if (stepperControl != null)
+                stepperControl.OnControlModeChanged((Phidgets.StepperControlMode)e.OldValue, (Phidgets.StepperControlMode)e.NewValue);
+        }
+
+        protected virtual Phidgets.StepperControlMode OnCoerceControlMode(Phidgets.StepperControlMode value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnControlModeChanged(Phidgets.StepperControlMode oldValue, Phidgets.StepperControlMode newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
 
         #endregion
 

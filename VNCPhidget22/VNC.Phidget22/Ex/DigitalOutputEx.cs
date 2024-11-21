@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 using Prism.Events;
 using VNC.Phidget22.Configuration;
@@ -79,12 +80,50 @@ namespace VNC.Phidget22.Ex
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
-        public bool LogPropertyChangeEvents { get; set; }
+        // NOTE(crhodes)
+        // UI binds to these properties so need to use INPC
 
-        public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
+        bool _logPhidgetEvents;
+        public bool LogPhidgetEvents
+        {
+            get { return _logPhidgetEvents; }
+            set { _logPhidgetEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logErrorEvents = true;    // probably always want to see Errors
+        public bool LogErrorEvents
+        {
+            get { return _logErrorEvents; }
+            set { _logErrorEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPropertyChangeEvents;
+        public bool LogPropertyChangeEvents
+        {
+            get { return _logPropertyChangeEvents; }
+            set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPerformanceSequence;
+        public bool LogPerformanceSequence
+        {
+            get { return _logPerformanceSequence; }
+            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+        }
+
+        bool _logSequenceAction;
+        public bool LogSequenceAction
+        {
+            get { return _logSequenceAction; }
+            set { _logSequenceAction = value; OnPropertyChanged(); }
+        }
+
+        bool _logActionVerification;
+        public bool LogActionVerification
+        {
+            get { return _logActionVerification; }
+            set { _logActionVerification = value; OnPropertyChanged(); }
+        }
 
         private int _serialNumber;
         public int SerialNumber
@@ -431,7 +470,6 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-
         private new void Open()
         {
             Int64 startTicks = 0;
@@ -476,96 +514,96 @@ namespace VNC.Phidget22.Ex
         //    PhidgetDeviceAttached?.Invoke(this, e);
         //}
 
-        //public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
-        //{
-        //    try
-        //    {
-        //        Int64 startTicks = 0;
+        public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
+        {
+            try
+            {
+                //        Int64 startTicks = 0;
 
-        //        if (LogSequenceAction)
-        //        {
-        //            startTicks = Log.Trace(
-        //                $"Running Action Loops" +
-        //                $" interfaceKitSequence:>{interfaceKitSequence.Name}<" +
-        //                $" startActionLoopSequences:>{interfaceKitSequence.StartActionLoopSequences?.Count()}<" +
-        //                $" actionLoops:>{interfaceKitSequence.ActionLoops}<" +
-        //                $" actions:>{interfaceKitSequence.Actions.Count()}<" +
-        //                $" actionsDuration:>{interfaceKitSequence?.ActionsDuration}<" +
-        //                $" endActionLoopSequences:>{interfaceKitSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
-        //        }
+                //        if (LogSequenceAction)
+                //        {
+                //            startTicks = Log.Trace(
+                //                $"Running Action Loops" +
+                //                $" interfaceKitSequence:>{interfaceKitSequence.Name}<" +
+                //                $" startActionLoopSequences:>{interfaceKitSequence.StartActionLoopSequences?.Count()}<" +
+                //                $" actionLoops:>{interfaceKitSequence.ActionLoops}<" +
+                //                $" actions:>{interfaceKitSequence.Actions.Count()}<" +
+                //                $" actionsDuration:>{interfaceKitSequence?.ActionsDuration}<" +
+                //                $" endActionLoopSequences:>{interfaceKitSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                //        }
 
-        //        if (interfaceKitSequence.Actions is not null)
-        //        {
-        //            for (int actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
-        //            {
-        //                if (interfaceKitSequence.StartActionLoopSequences is not null)
-        //                {
-        //                    // TODO(crhodes)
-        //                    // May want to create a new player instead of reaching for the property.
+                //        if (interfaceKitSequence.Actions is not null)
+                //        {
+                //            for (int actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
+                //            {
+                //                if (interfaceKitSequence.StartActionLoopSequences is not null)
+                //                {
+                //                    // TODO(crhodes)
+                //                    // May want to create a new player instead of reaching for the property.
 
-        //                    PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
-        //                    player.LogPerformanceSequence = LogPerformanceSequence;
-        //                    player.LogSequenceAction = LogSequenceAction;
+                //                    PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                //                    player.LogPerformanceSequence = LogPerformanceSequence;
+                //                    player.LogSequenceAction = LogSequenceAction;
 
-        //                    foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
-        //                    {
-        //                        await player.ExecutePerformanceSequence(sequence);
-        //                    }
-        //                }
+                //                    foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
+                //                    {
+                //                        await player.ExecutePerformanceSequence(sequence);
+                //                    }
+                //                }
 
-        //                if (interfaceKitSequence.ExecuteActionsInParallel)
-        //                {
-        //                    if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                //                if (interfaceKitSequence.ExecuteActionsInParallel)
+                //                {
+                //                    if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-        //                    Parallel.ForEach(interfaceKitSequence.Actions, async action =>
-        //                    {
-        //                        // TODO(crhodes)
-        //                        // Decide if want to close everything or pass in config to only open what we need
-        //                        //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
-        //                    });
-        //                }
-        //                else
-        //                {
-        //                    if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                //                    Parallel.ForEach(interfaceKitSequence.Actions, async action =>
+                //                    {
+                //                        // TODO(crhodes)
+                //                        // Decide if want to close everything or pass in config to only open what we need
+                //                        //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                //                    });
+                //                }
+                //                else
+                //                {
+                //                    if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-        //                    foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
-        //                    {
-        //                        // FIX(crhodes)
-        //                        // 
-        //                        //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
-        //                    }
-        //                }
+                //                    foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
+                //                    {
+                //                        // FIX(crhodes)
+                //                        // 
+                //                        //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                //                    }
+                //                }
 
-        //                if (interfaceKitSequence.ActionsDuration is not null)
-        //                {
-        //                    if (LogSequenceAction)
-        //                    {
-        //                        Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
-        //                    }
-        //                    Thread.Sleep((Int32)interfaceKitSequence.ActionsDuration);
-        //                }
+                //                if (interfaceKitSequence.ActionsDuration is not null)
+                //                {
+                //                    if (LogSequenceAction)
+                //                    {
+                //                        Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                //                    }
+                //                    Thread.Sleep((Int32)interfaceKitSequence.ActionsDuration);
+                //                }
 
-        //                if (interfaceKitSequence.EndActionLoopSequences is not null)
-        //                {
-        //                    PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
-        //                    player.LogPerformanceSequence = LogPerformanceSequence;
-        //                    player.LogSequenceAction = LogSequenceAction;
+                //                if (interfaceKitSequence.EndActionLoopSequences is not null)
+                //                {
+                //                    PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
+                //                    player.LogPerformanceSequence = LogPerformanceSequence;
+                //                    player.LogSequenceAction = LogSequenceAction;
 
-        //                    foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
-        //                    {
-        //                        await player.ExecutePerformanceSequence(sequence);
-        //                    }
-        //                }
-        //            }
-        //        }
+                //                    foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
+                //                    {
+                //                        await player.ExecutePerformanceSequence(sequence);
+                //                    }
+                //                }
+                //            }
+                //        }
 
-        //        if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
+                //        if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
 
         #endregion
 
