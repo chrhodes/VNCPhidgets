@@ -149,11 +149,11 @@
 
                         <dxdo:LayoutGroup Orientation="Horizontal" ItemHeight="Auto" >
 
-                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
+                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="True" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                             </dxdo:LayoutPanel> 
 
-                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="false" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
                             </dxdo:LayoutPanel>
 
@@ -165,19 +165,19 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region3}"/>
                             </dxdo:LayoutPanel>
 
-                            <!--<dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="480" >
+                            <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="480" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
                             </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="Stepper1063-2" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="Stepper1063-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region2}"/>
                             </dxdo:LayoutPanel>
 
                             <dxdo:LayoutPanel Caption="Stepper1063-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region3}"/>
-                            </dxdo:LayoutPanel>-->
+                            </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
                             </dxdo:LayoutPanel>
 

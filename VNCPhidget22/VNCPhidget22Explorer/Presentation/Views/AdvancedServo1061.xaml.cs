@@ -64,7 +64,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            this.lgPhidget22tatus.IsCollapsed = true;
+            this.lgPhidget22Status.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 

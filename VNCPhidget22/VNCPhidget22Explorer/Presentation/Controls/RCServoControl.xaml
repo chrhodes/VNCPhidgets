@@ -111,6 +111,8 @@
                 HorizontalAlignment="Left"/>
 
         </dxlc:LayoutGroup>
+
+        <!--Open/Close-->
         
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             <dxlc:LayoutItem>
@@ -246,4 +248,5 @@
     </dxlc:LayoutGroup>
         
     </ScrollViewer>
+    
 </vncmvvm:ViewBase>

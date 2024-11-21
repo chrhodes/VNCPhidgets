@@ -14,6 +14,7 @@ using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 using System.Windows.Navigation;
 using Phidget22;
+using System.Configuration;
 
 namespace VNC.Phidget22.Ex
 {
@@ -39,7 +40,7 @@ namespace VNC.Phidget22.Ex
             _stepperConfiguration = stepperConfiguration;
             _eventAggregator = eventAggregator;
 
-            InitializePhidget();
+            InitializePhidget(stepperConfiguration);
 
             _eventAggregator.GetEvent<RCServoSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -50,14 +51,29 @@ namespace VNC.Phidget22.Ex
         /// Configures Stepper using StepperConfiguration
         /// and establishes event handlers
         /// </summary>
-        private void InitializePhidget()
+        private void InitializePhidget(StepperConfiguration configuration)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
-            Channel = _stepperConfiguration.Channel;
+            Channel = configuration.Channel;
             IsRemote = true;
+
+            // NOTE(crhodes)
+            // Having these passed in is handy for Performance stuff where there is no UI
+
+            LogPhidgetEvents = configuration.LogPhidgetEvents;
+            LogErrorEvents = configuration.LogErrorEvents;
+            LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            LogPositionChangeEvents = configuration.LogPositionChangeEvents;
+            LogVelocityChangeEvents = configuration.LogVelocityChangeEvents;
+            LogStoppedEvents = configuration.LogStoppedEvents;
+
+            LogPerformanceSequence = configuration.LogPerformanceSequence;
+            LogSequenceAction = configuration.LogSequenceAction;
+            LogActionVerification = configuration.LogActionVerification;
 
             Attach += StepperEx_Attach;
             Detach += StepperEx_Detach;
@@ -70,10 +86,6 @@ namespace VNC.Phidget22.Ex
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-
-
-
 
         #endregion
 
@@ -89,6 +101,8 @@ namespace VNC.Phidget22.Ex
 
         #region Fields and Properties
 
+        #region Logging
+
         public bool LogPhidgetEvents { get; set; }
         public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
         public bool LogPropertyChangeEvents { get; set; }
@@ -101,6 +115,8 @@ namespace VNC.Phidget22.Ex
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
+
+        #endregion
 
         private int _serialNumber;
         public int SerialNumber
@@ -141,19 +157,6 @@ namespace VNC.Phidget22.Ex
 
                 base.Engaged = value;
 
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _isMoving;
-        public new bool IsMoving
-        {
-            get => _isMoving;
-            set
-            {
-                if (_isMoving == value)
-                    return;
-                _isMoving = value;
                 OnPropertyChanged();
             }
         }
@@ -383,6 +386,45 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        private bool _isMoving;
+        public new bool IsMoving
+        {
+            get => _isMoving;
+            set
+            {
+                if (_isMoving == value)
+                    return;
+                _isMoving = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minPositionStepper;
+        public Double MinPositionStepper
+        {
+            get => _minPositionStepper;
+            set
+            {
+                if (_minPositionStepper == value)
+                    return;
+                _minPosition = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minPositionStop;
+        public Double MinPositionStop
+        {
+            get => _minPositionStop;
+            set
+            {
+                if (_minPositionStop == value)
+                    return;
+                _minPositionStop = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double _minPosition;
         public new Double MinPosition
         {
@@ -409,6 +451,58 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        private Double _targetPosition;
+        public new Double TargetPosition
+        {
+            get => _targetPosition;
+            set
+            {
+                // NOTE(crhodes)
+                // Always have to set TargetPostion before engaging.
+                // The wrapped property could also be reset on Close()
+                // decided to fix here
+
+                //if (_targetPosition == value)
+                //    return;
+
+                if (value < MinPositionStop)
+                {
+                    Log.Warning($"Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}", Common.LOG_CATEGORY);
+                    base.TargetPosition = _targetPosition = MinPositionStop;
+                }
+                else if (value > MaxPositionStop)
+                {
+                    Log.Warning($"Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}", Common.LOG_CATEGORY);
+                    base.TargetPosition = _targetPosition = MaxPositionStop;
+                }
+                else
+                {
+                    _targetPosition = value;
+
+                    base.TargetPosition = (Double)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        Int64 StartTargetPositionTime;
+
+        Boolean NewPositionAchieved = false;
+
+        private Double _maxPositionStop;
+        public Double MaxPositionStop
+        {
+            get => _maxPositionStop;
+            set
+            {
+                if (_maxPositionStop == value)
+                    return;
+                _maxPositionStop = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Double _maxPosition;
         public new Double MaxPosition
         {
@@ -422,6 +516,19 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        private Double _maxPositionStepper;
+        public new Double MaxPositionStepper
+        {
+            get => _maxPositionStepper;
+            set
+            {
+                if (_maxPositionStepper == value)
+                    return;
+                _maxPositionStepper = value;
+
+                OnPropertyChanged();
+            }
+        }
 
         private Double _minVelocity;
         public new Double MinVelocity
@@ -436,22 +543,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _rescaleFactor;
-        public new Double? RescaleFactor
-        {
-            get => _rescaleFactor;
-            set
-            {
-                if (_rescaleFactor == value)
-                    return;
-                _rescaleFactor = value;
-
-                base.RescaleFactor = (Double)value;
-
-                OnPropertyChanged();
-            }
-        }
-
         private Double _maxVelocity;
         public new Double MaxVelocity
         {
@@ -461,22 +552,6 @@ namespace VNC.Phidget22.Ex
                 if (_maxVelocity == value)
                     return;
                 _maxVelocity = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _targetPosition;
-        public new Double? TargetPosition
-        {
-            get => _targetPosition;
-            set
-            {
-                if (_targetPosition == value)
-                    return;
-                _targetPosition = value;
-
-                base.TargetPosition = (Double)value;
-
                 OnPropertyChanged();
             }
         }
@@ -529,6 +604,22 @@ namespace VNC.Phidget22.Ex
                 if (_maxVelocityLimit == value)
                     return;
                 _maxVelocityLimit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _rescaleFactor;
+        public new Double? RescaleFactor
+        {
+            get => _rescaleFactor;
+            set
+            {
+                if (_rescaleFactor == value)
+                    return;
+                _rescaleFactor = value;
+
+                base.RescaleFactor = (Double)value;
+
                 OnPropertyChanged();
             }
         }

@@ -7,7 +7,7 @@ using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
 
-namespace VNCPhidget2221Explorer.Presentation.ViewModels
+namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     // TODO(crhodes)
     // Not sure we need INPCBase.  See if any bindings reach for this class

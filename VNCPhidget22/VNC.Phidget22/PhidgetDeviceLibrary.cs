@@ -97,7 +97,12 @@ namespace VNC.Phidget22
             }
         }
 
+        public static Dictionary<SerialChannel, DigitalInputEx> DigitalInputChannels = new Dictionary<SerialChannel, DigitalInputEx>();
+        public static Dictionary<SerialChannel, DigitalOutputEx> DigitalOutputChannels = new Dictionary<SerialChannel, DigitalOutputEx>();
         public static Dictionary<SerialChannel, RCServoEx> RCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
+        public static Dictionary<SerialChannel, StepperEx> StepperChannels = new Dictionary<SerialChannel, StepperEx>();
+        public static Dictionary<SerialChannel, VoltageInputEx> VoltageInputChannels = new Dictionary<SerialChannel, VoltageInputEx>();
+        public static Dictionary<SerialChannel, VoltageOutputEx> VoltageOutputChannels = new Dictionary<SerialChannel, VoltageOutputEx>();
 
         // TODO(crhodes)
         // Populate this from ConfigFile

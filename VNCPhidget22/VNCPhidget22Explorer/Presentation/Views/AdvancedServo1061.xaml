@@ -77,6 +77,7 @@
         <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
         <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+        <converters:SelectedItemToDoubleConverter x:Key="SelectedItemToDoubleConverter" />        
     </vncmvvm:ViewBase.Resources>
 
     <!-- Can declare ViewModel in Xaml -->
@@ -85,6 +86,7 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel Margin="5">
+        
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
         <controls:HostSelector DockPanel.Dock="Top" />
@@ -117,6 +119,8 @@
                             ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
 
+                <!--Velocity-->
+                
                 <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
                               Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
 
@@ -164,16 +168,13 @@
 
                 </dxlc:LayoutGroup>
 
+                <!--Acceleration-->
+                
                 <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
                                   Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                     <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
-                        <!--<dxe:ComboBoxEdit
-                        EditValue="{Binding
-                            Path=SelectedFileFormats,
-                            Mode=TwoWay,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
+
                         <dxe:ComboBoxEdit x:Name="cbeAccelerationScale">
                             <dxe:ComboBoxEdit.StyleSettings>
                                 <dxe:ComboBoxStyleSettings />
@@ -226,7 +227,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Name="lgPhidget22tatus" View="GroupBox" Header="PhidgetDevice Status and Event Logging"
+            <dxlc:LayoutGroup Name="lgPhidget22Status" View="GroupBox" Header="PhidgetDevice Status and Event Logging"
                               Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 
@@ -1161,6 +1162,7 @@
                             MaxVelocityLimit="{Binding RCServos[15].MaxVelocityLimit,Mode=TwoWay}" />
                     </StackPanel>
                 </ScrollViewer>
+                
             </dxlc:LayoutGroup>
  
         </dxlc:LayoutControl>

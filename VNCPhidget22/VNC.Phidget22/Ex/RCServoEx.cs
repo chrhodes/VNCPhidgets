@@ -95,10 +95,10 @@ namespace VNC.Phidget22.Ex
 
         #region Enums (none)
 
+
         #endregion
 
         #region Structures (none)
-
 
 
         #endregion

@@ -213,7 +213,7 @@
       "Description": "", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
         { "TargetPosition": 120 },
         { "TargetPosition": 150 },
         { "TargetPosition": 120 },

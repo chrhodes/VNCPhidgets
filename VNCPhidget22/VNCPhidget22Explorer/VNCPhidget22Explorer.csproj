@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-22</VersionSuffix>
-        <FileVersion>2024.11.18A</FileVersion>
+        <FileVersion>2024.11.21A</FileVersion>
         <Description>Phidget22 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>
@@ -37,17 +37,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <!--<Compile Remove="Presentation\ViewModels\HackAroundViewModel.cs" />-->
       <Compile Remove="Presentation\ViewModels\MainViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\StepperProperties.cs" />
       <!--<Compile Remove="Presentation\ViewModels\ServoProperties.cs" />
       <Compile Remove="Presentation\ViewModels\ServoType.cs" />-->
-      <Compile Remove="Presentation\ViewModels\Stepper1063ViewModel.cs" />
-      <Compile Remove="Presentation\ViewModels\StepperProperties.cs" />
-      <!--<Compile Remove="Presentation\Views\AdvancedServo1061.xaml.cs" />-->
-      <!--<Compile Remove="Presentation\Views\HackAround.xaml.cs" />-->
+      <!--<Compile Remove="Presentation\ViewModels\Stepper1063ViewModel.cs" />
+      <Compile Remove="Presentation\ViewModels\StepperProperties.cs" />-->
       <Compile Remove="Presentation\Views\Main.xaml.cs" />
       <Compile Remove="Presentation\Views\MainDxLayoutControl.xaml.cs" />
-      <Compile Remove="Presentation\Views\Stepper1063.xaml.cs" />
+      <!--<Compile Remove="Presentation\Views\Stepper1063.xaml.cs" />-->
     </ItemGroup>
 
     <ItemGroup>
@@ -55,10 +53,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <!--<Page Remove="Presentation\Views\HackAround.xaml" />-->
       <Page Remove="Presentation\Views\Main.xaml" />
       <Page Remove="Presentation\Views\MainDxLayoutControl.xaml" />
-      <Page Remove="Presentation\Views\Stepper1063.xaml" />
+      <!--<Page Remove="Presentation\Views\Stepper1063.xaml" />-->
     </ItemGroup>
 
     <!--<PropertyGroup Condition="'$(TargetFramework)' == 'net48'">

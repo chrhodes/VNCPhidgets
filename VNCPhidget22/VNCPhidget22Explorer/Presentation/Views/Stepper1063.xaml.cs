@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
+using DevExpress.Xpf.Editors;
+using DevExpress.Xpf.LayoutControl;
 using DevExpress.XtraRichEdit.Layout.Engine;
 
 using VNC;
 using VNC.Core.Mvvm;
 
-using VNCPhidget2221Explorer.Presentation.ViewModels;
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
-namespace VNCPhidget2221Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class Stepper1063 : ViewBase, IStepper1063, IInstanceCountV
     {
@@ -62,12 +65,12 @@ namespace VNCPhidget2221Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
-            this.lgPhidget22tatus.IsCollapsed = true;
+            this.lgPhidget22Status.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
-            Phidget1.DataContext = ViewModel;
+            //Phidget1.DataContext = ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -91,6 +94,29 @@ namespace VNCPhidget2221Explorer.Presentation.Views
 
         #region Event Handlers (none)
 
+        private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            LayoutGroup lg = (LayoutGroup)sender;
+            var mbe = e;
+
+            var leftAltDown = Keyboard.IsKeyDown(Key.LeftAlt);
+            var leftCtrlDown = Keyboard.IsKeyDown(Key.LeftCtrl);
+
+            var rightAltDown = Keyboard.IsKeyDown(Key.RightAlt);
+            var rightCtrlDown = Keyboard.IsKeyDown(Key.RightCtrl);
+
+            var children = lg.Children;
+
+            foreach (var child in children)
+            {
+                if (child.GetType() == typeof(DevExpress.Xpf.Editors.CheckEdit))
+                {
+                    if (leftCtrlDown || rightCtrlDown) { ((CheckEdit)child).IsChecked = true; }
+                    if (leftAltDown || rightAltDown) { ((CheckEdit)child).IsChecked = false; }
+
+                }
+            }
+        }
 
         #endregion
 
