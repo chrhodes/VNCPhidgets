@@ -98,7 +98,7 @@
                 <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="120" >
                     <dxe:TextEdit Text="{Binding Position, Mode=OneWay}" IsReadOnly="True" 
                         ToolTip="Current Position" HorizontalContentAlignment="Right"
-                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                        Mask="f1" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" Width="90" >
