@@ -2256,6 +2256,13 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             }
         }
 
+        private void PositionIncrement_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+
+            seTargetPosition.Increment = Int32.Parse(radioButton.Content.ToString());
+        }
+
         #endregion
 
         #region Commands (none)
@@ -2301,5 +2308,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
+
+
     }
 }

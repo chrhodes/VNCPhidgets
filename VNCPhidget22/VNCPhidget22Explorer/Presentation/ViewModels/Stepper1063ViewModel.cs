@@ -71,12 +71,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //RotateCommand = new DelegateCommand<TYPE>(Rotate, RotateCanExecute);
 
 
-            ZeroCurentPositionCommand = new DelegateCommand(ZeroCurentPosition, ZeroCurentPositionCanExecute);
+            //ZeroCurrentPositionCommand = new DelegateCommand(ZeroCurrentPosition, ZeroCurrentPositionCanExecute);
 
             // If using CommandParameter, figure out TYPE here and below
             // and remove above declaration
-            //ZeroCurentPositionCommand = new DelegateCommand<TYPE>(ZeroCurentPosition, ZeroCurentPositionCanExecute);
-
+            ZeroCurrentPositionCommand = new DelegateCommand<string>(ZeroCurrentPosition, ZeroCurrentPositionCanExecute);
 
             // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
@@ -2060,57 +2059,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region ZeroCurentPosition Command
+        #region ZeroCurrentPosition Command
 
-        // Start Cut Three - Put this in Fields and Properties
-
-        public DelegateCommand ZeroCurentPositionCommand { get; set; }
+        //public DelegateCommand ZeroCurrentPositionCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
-        //public DelegateCommand<TYPE> ZeroCurentPositionCommand { get; set; }
-
-        // End Cut Three
-
-        // End Cut Two
+        public DelegateCommand<string> ZeroCurrentPositionCommand { get; set; }
 
         // If displaying UserControl
-        // public static WindowHost _ZeroCurentPositionHost = null;
+        // public static WindowHost _ZeroCurrentPositionHost = null;
 
         // If using CommandParameter, figure out TYPE here
-        //public TYPE ZeroCurentPositionCommandParameter;
+        //public TYPE ZeroCurrentPositionCommandParameter;
 
-        public string ZeroCurentPositionContent { get; set; } = "ZeroCurentPosition";
-        public string ZeroCurentPositionToolTip { get; set; } = "ZeroCurentPosition ToolTip";
+        public string ZeroCurrentPositionContent { get; set; } = "ZeroCurrentPosition";
+        public string ZeroCurrentPositionToolTip { get; set; } = "ZeroCurrentPosition ToolTip";
 
         // Can get fancy and use Resources
-        //public string ZeroCurentPositionContent { get; set; } = "ViewName_ZeroCurentPositionContent";
-        //public string ZeroCurentPositionToolTip { get; set; } = "ViewName_ZeroCurentPositionContentToolTip";
+        //public string ZeroCurrentPositionContent { get; set; } = "ViewName_ZeroCurrentPositionContent";
+        //public string ZeroCurrentPositionToolTip { get; set; } = "ViewName_ZeroCurrentPositionContentToolTip";
 
         // Put these in Resource File
-        //    <system:String x:Key="ViewName_ZeroCurentPositionContent">ZeroCurentPosition</system:String>
-        //    <system:String x:Key="ViewName_ZeroCurentPositionContentToolTip">ZeroCurentPosition ToolTip</system:String>  
+        //    <system:String x:Key="ViewName_ZeroCurrentPositionContent">ZeroCurrentPosition</system:String>
+        //    <system:String x:Key="ViewName_ZeroCurrentPositionContentToolTip">ZeroCurrentPosition ToolTip</system:String>  
 
         // If using CommandParameter, figure out TYPE here
-        //public void ZeroCurentPosition(TYPE value)
-        public void ZeroCurentPosition()
+        public void ZeroCurrentPosition(string stepperNumber)
+        //public void ZeroCurrentPosition()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
 
-            Message = "Cool, you called ZeroCurentPosition";
+            Message = "Cool, you called ZeroCurrentPosition";
 
             PublishStatusMessage(Message);
 
-            // FIX(crhodes)
-            // 
-            //StepperProperties[0].CurrentPosition = 0;
-            //StepperProperties[0].TargetPosition = 0;
+            Int32 channel;
+
+            if (!Int32.TryParse(stepperNumber, out channel)) throw new Exception($"Cannot parse stepperNumber:{stepperNumber}");
+
+            switch (channel)
+            {
+                case 0:
+                    Stepper0.Position = 0;
+                    Stepper0.TargetPosition = 0;
+                    break;
+
+                case 1:
+                    Stepper1.Position = 0;
+                    Stepper1.TargetPosition = 0;
+                    break;
+
+                case 2:
+                    Stepper2.Position = 0;
+                    Stepper2.TargetPosition = 0;
+                    break;
+
+                case 3:
+                    Stepper3.Position = 0;
+                    Stepper3.TargetPosition = 0;
+                    break;
+
+                //case 4:
+                //    Stepper4.Position = 0;
+                //    Stepper4.TargetPosition = 0;
+                //    break;
+
+                //case 5:
+                //    Stepper5.Position = 0;
+                //    Stepper5.TargetPosition = 0;
+                //    break;
+
+                //case 6:
+                //    Stepper6.Position = 0;
+                //    Stepper6.TargetPosition = 0;
+                //    break;
+
+                //case 7:
+                //    Stepper7.Position = 0;
+                //    Stepper7.TargetPosition = 0;
+                //    break;
+            }
+
+                // FIX(crhodes)
+                // 
+                //StepperProperties[0].CurrentPosition = 0;
+                //StepperProperties[0].TargetPosition = 0;
 
             // If launching a UserControl
 
-            // if (_ZeroCurentPositionHost is null) _ZeroCurentPositionHost = new WindowHost();
+            // if (_ZeroCurrentPositionHost is null) _ZeroCurrentPositionHost = new WindowHost();
             // var userControl = new USERCONTROL();
 
             // _loggingConfigurationHost.DisplayUserControlInHost(
@@ -2124,12 +2164,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // Uncomment this if you are telling someone else to handle this
 
-            // Common.EventAggregator.GetEvent<ZeroCurentPositionEvent>().Publish();
+            // Common.EventAggregator.GetEvent<ZeroCurrentPositionEvent>().Publish();
 
             // May want EventArgs
 
-            //  EventAggregator.GetEvent<ZeroCurentPositionEvent>().Publish(
-            //      new ZeroCurentPositionEventArgs()
+            //  EventAggregator.GetEvent<ZeroCurrentPositionEvent>().Publish(
+            //      new ZeroCurrentPositionEventArgs()
             //      {
             //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
             //            Process = _contextMainViewModel.Context.SelectedProcess
@@ -2137,13 +2177,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // Start Cut Four - Put this in PrismEvents
 
-            // public class ZeroCurentPositionEvent : PubSubEvent { }
+            // public class ZeroCurrentPositionEvent : PubSubEvent { }
 
             // End Cut Four
 
             // Start Cut Five - Put this in places that listen for event
 
-            //Common.EventAggregator.GetEvent<ZeroCurentPositionEvent>().Subscribe(ZeroCurentPosition);
+            //Common.EventAggregator.GetEvent<ZeroCurrentPositionEvent>().Subscribe(ZeroCurrentPosition);
 
             // End Cut Five
 
@@ -2151,8 +2191,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool ZeroCurentPositionCanExecute(TYPE value)
-        public bool ZeroCurentPositionCanExecute()
+        public bool ZeroCurrentPositionCanExecute(string stepperNumber)
+        //public bool ZeroCurrentPositionCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.

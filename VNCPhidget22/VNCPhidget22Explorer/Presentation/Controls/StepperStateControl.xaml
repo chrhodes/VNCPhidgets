@@ -95,10 +95,10 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                 
-                <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="90" >
+                <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="120" >
                     <dxe:TextEdit Text="{Binding Position, Mode=OneWay}" IsReadOnly="True" 
-                        ToolTip="Current Position"
-                        Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                        ToolTip="Current Position" HorizontalContentAlignment="Right"
+                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" Width="90" >

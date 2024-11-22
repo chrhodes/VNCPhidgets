@@ -170,7 +170,7 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup x:Name="lgPosition" View="GroupBox" Orientation="Horizontal" Header="Position"
+        <dxlc:LayoutGroup x:Name="lgPosition" Header="Position" View="GroupBox" Orientation="Horizontal" 
                         Padding="-10">
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
@@ -192,21 +192,51 @@
                 <dxlc:LayoutGroup 
                     View="Group" Orientation="Horizontal" Background="AliceBlue" >
 
-                    <dxlc:LayoutItem Label="Min" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
+                    <dxlc:LayoutItem Label="Min" LabelPosition="Top" VerticalAlignment="Bottom" LabelHorizontalAlignment="Center">
                         <dxe:TextEdit Text="{Binding MinPosition, Mode=OneWay}"  IsReadOnly="True"/>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                    <dxlc:LayoutItem Label="Target" LabelPosition="Top">
+                        <dxe:TextEdit Name="teTargetPosition" Text="{Binding TargetPosition, Mode=TwoWay}" />
+                    </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Bottom" Margin="-2,0,-2,0" >
+
+                            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                                <Label />
+                                <RadioButton x:Name="rb90" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">90</RadioButton>                                
+                                <RadioButton x:Name="rb45" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">45</RadioButton>
+                                <RadioButton x:Name="rb10" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
+                                <RadioButton x:Name="rb5" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
+                                <RadioButton x:Name="rb1" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
+
+                                <dxe:SpinEdit
+                                    x:Name="seTargetPosition"
+                                    EditValue="{Binding TargetPosition, Mode=TwoWay, 
+                                        TargetNullValue=0,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SpinEditConverter}}" 
+                                    Increment="1"
+                                    MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
+                                    MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
+                                    Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                                    IsFloatValue="True" />
+
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+                        <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" >
                         <dxlc:LayoutItem Label="Current" LabelPosition="Top">
                             <dxe:TextEdit Name="teCurrentPosition" Text="{Binding CurrentPosition, Mode=TwoWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Target" LabelPosition="Top">
-                            <dxe:TextEdit Name="teTargetPosition" Text="{Binding TargetPosition, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutItem Label="Max" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
+                    </dxlc:LayoutGroup>-->
+
+                    <dxlc:LayoutItem Label="Max" LabelPosition="Top" VerticalAlignment="Bottom" LabelHorizontalAlignment="Center">
                         <dxe:TextEdit Text="{Binding MaxPosition, Mode=OneWay}" IsReadOnly="True" />
                     </dxlc:LayoutItem>
 
@@ -215,9 +245,12 @@
                 <!-- Second form uses CommandParameter -->
                 <dxlc:LayoutItem>
                     <Button 
-		        Command="{Binding ZeroCurentPositionCommand }"
-		        Content="{Binding ZeroCurentPositionContent, FallbackValue='ZeroCurentPosition' }"
-		        ToolTip="{Binding ZeroCurentPositionToolTip, FallbackValue='ZeroCurentPosition ToolTip' }" />
+                        DataContext="{Binding DataContext, 
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                        
+		                Command="{Binding ZeroCurrentPositionCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
+		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
+		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
@@ -269,18 +302,22 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
                         <dxlc:LayoutItem>
                             <Button 
-              		    Command="{Binding RotateCommand }"
-                        CommandParameter="CW"
-              		    Content="ClockWise"
-              		    ToolTip="Rotate ClockWise # Degrees" />
+                                DataContext="{Binding DataContext, 
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                                
+              		            Command="{Binding RotateCommand }"
+                                CommandParameter="CW"
+              		            Content="ClockWise"
+              		            ToolTip="Rotate ClockWise # Degrees" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem>
                             <Button 
-              		    Command="{Binding RotateCommand }"
-                        CommandParameter="CCW"
-              		    Content="CounterClockWise"
-              		    ToolTip="Rotate ClockWise # Degrees" />
+                                DataContext="{Binding DataContext, 
+                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                                
+              		            Command="{Binding RotateCommand }"
+                                CommandParameter="CCW"
+              		            Content="CounterClockWise"
+              		            ToolTip="Rotate ClockWise # Degrees" />
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <!-- Second form uses CommandParameter -->
