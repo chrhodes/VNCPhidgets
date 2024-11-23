@@ -21,6 +21,7 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
 using System.Windows;
+using DevExpress.Xpo.Logger.Transport;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -1785,24 +1786,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool OpenStepperCanExecute(string stepperNumber)
+        public bool OpenStepperCanExecute(string channelNumber)
         //public bool OpenStepperCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             Int32 channel;
 
-            if (!Int32.TryParse(stepperNumber, out channel)) throw new Exception($"Cannot parse stepperNumber:{stepperNumber}");
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
             if (SelectedStepper is null) return false;
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
 
-            StepperEx? stepperHost;
+            StepperEx? host;
 
-            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out stepperHost)) return false;
+            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (stepperHost.IsAttached)
+            if (host.IsAttached)
             {
                 return false;
             }
@@ -1909,26 +1910,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool CloseStepperCanExecute(string stepperNumber)
+        public bool CloseStepperCanExecute(string channelNumber)
         //public bool CloseStepperCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             Int32 channel;
 
-            if (!Int32.TryParse(stepperNumber, out channel)) throw new Exception($"Cannot parse stepperNumber:{stepperNumber}");
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
             if (SelectedStepper is null) return false;
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
 
-            StepperEx? stepperHost;
+            StepperEx? host;
 
-            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out stepperHost)) return false;
+            if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (stepperHost is null) return false;
-
-            if (stepperHost.IsAttached)
+            if (host.IsAttached)
             {
                 return true;
             }

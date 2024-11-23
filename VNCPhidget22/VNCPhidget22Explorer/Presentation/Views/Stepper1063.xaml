@@ -231,7 +231,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Name="lgPhidget22Status" View="GroupBox" Header="PhidgetDevice Status and Event Logging"
+            <dxlc:LayoutGroup Name="lgPhidget22Status" Header="PhidgetDevice Status and Event Logging" View="GroupBox" 
                               Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 

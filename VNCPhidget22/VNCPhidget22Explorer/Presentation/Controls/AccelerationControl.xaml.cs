@@ -80,152 +80,152 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Fields and Properties (none)
 
-        #region MinAcceleration
+        //#region MinAcceleration
 
-        public static readonly DependencyProperty MinAccelerationProperty = DependencyProperty.Register(
-            "MinAcceleration",
-            typeof(Double?),
-            typeof(AccelerationControl),
-            new FrameworkPropertyMetadata(
-                0.0,
-                new PropertyChangedCallback(OnMinAccelerationChanged),
-                new CoerceValueCallback(OnCoerceMinAcceleration)
-                )
-            );
+        //public static readonly DependencyProperty MinAccelerationProperty = DependencyProperty.Register(
+        //    "MinAcceleration",
+        //    typeof(Double?),
+        //    typeof(AccelerationControl),
+        //    new FrameworkPropertyMetadata(
+        //        0.0,
+        //        new PropertyChangedCallback(OnMinAccelerationChanged),
+        //        new CoerceValueCallback(OnCoerceMinAcceleration)
+        //        )
+        //    );
 
-        public Double? MinAcceleration
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(MinAccelerationProperty);
-            set => SetValue(MinAccelerationProperty, value);
-        }
+        //public Double? MinAcceleration
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Double?)GetValue(MinAccelerationProperty);
+        //    set => SetValue(MinAccelerationProperty, value);
+        //}
 
-        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                return accelerationControl.OnCoerceMinAcceleration((Double?)value);
-            else
-                return value;
-        }
+        //private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        //{
+        //    AccelerationControl accelerationControl = o as AccelerationControl;
+        //    if (accelerationControl != null)
+        //        return accelerationControl.OnCoerceMinAcceleration((Double?)value);
+        //    else
+        //        return value;
+        //}
 
-        private static void OnMinAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                accelerationControl.OnMinAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
+        //private static void OnMinAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    AccelerationControl accelerationControl = o as AccelerationControl;
+        //    if (accelerationControl != null)
+        //        accelerationControl.OnMinAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        //}
 
-        protected virtual Double? OnCoerceMinAcceleration(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
+        //protected virtual Double? OnCoerceMinAcceleration(Double? value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
 
-        protected virtual void OnMinAccelerationChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
+        //protected virtual void OnMinAccelerationChanged(Double? oldValue, Double? newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Acceleration
+        //#region Acceleration
 
-        public static readonly DependencyProperty AccelerationProperty = DependencyProperty.Register(
-            "Acceleration",
-            typeof(Double?),
-            typeof(AccelerationControl),
-            new FrameworkPropertyMetadata(
-                0.0,
-                new PropertyChangedCallback(OnAccelerationChanged),
-                new CoerceValueCallback(OnCoerceAcceleration)
-                )
-            );
+        //public static readonly DependencyProperty AccelerationProperty = DependencyProperty.Register(
+        //    "Acceleration",
+        //    typeof(Double?),
+        //    typeof(AccelerationControl),
+        //    new FrameworkPropertyMetadata(
+        //        0.0,
+        //        new PropertyChangedCallback(OnAccelerationChanged),
+        //        new CoerceValueCallback(OnCoerceAcceleration)
+        //        )
+        //    );
 
-        public Double? Acceleration
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(AccelerationProperty);
-            set => SetValue(AccelerationProperty, value);
-        }
+        //public Double? Acceleration
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Double?)GetValue(AccelerationProperty);
+        //    set => SetValue(AccelerationProperty, value);
+        //}
 
-        private static object OnCoerceAcceleration(DependencyObject o, object value)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                return accelerationControl.OnCoerceAcceleration((Double?)value);
-            else
-                return value;
-        }
+        //private static object OnCoerceAcceleration(DependencyObject o, object value)
+        //{
+        //    AccelerationControl accelerationControl = o as AccelerationControl;
+        //    if (accelerationControl != null)
+        //        return accelerationControl.OnCoerceAcceleration((Double?)value);
+        //    else
+        //        return value;
+        //}
 
-        private static void OnAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                accelerationControl.OnAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
+        //private static void OnAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    AccelerationControl accelerationControl = o as AccelerationControl;
+        //    if (accelerationControl != null)
+        //        accelerationControl.OnAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        //}
 
-        protected virtual Double? OnCoerceAcceleration(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
+        //protected virtual Double? OnCoerceAcceleration(Double? value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
 
-        protected virtual void OnAccelerationChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
+        //protected virtual void OnAccelerationChanged(Double? oldValue, Double? newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
 
-        #endregion
+        //#endregion
 
-        #region MaxAcceleration
+        //#region MaxAcceleration
 
-        public static readonly DependencyProperty MaxAccelerationProperty = DependencyProperty.Register(
-            "MaxAcceleration",
-            typeof(Double?),
-            typeof(AccelerationControl),
-            new FrameworkPropertyMetadata(
-                0.0,
-                new PropertyChangedCallback(OnMaxAccelerationChanged),
-                new CoerceValueCallback(OnCoerceMaxAcceleration)
-                )
-            );
+        //public static readonly DependencyProperty MaxAccelerationProperty = DependencyProperty.Register(
+        //    "MaxAcceleration",
+        //    typeof(Double?),
+        //    typeof(AccelerationControl),
+        //    new FrameworkPropertyMetadata(
+        //        0.0,
+        //        new PropertyChangedCallback(OnMaxAccelerationChanged),
+        //        new CoerceValueCallback(OnCoerceMaxAcceleration)
+        //        )
+        //    );
 
-        public Double? MaxAcceleration
-        {
-            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Double?)GetValue(MaxAccelerationProperty);
-            set => SetValue(MaxAccelerationProperty, value);
-        }
+        //public Double? MaxAcceleration
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Double?)GetValue(MaxAccelerationProperty);
+        //    set => SetValue(MaxAccelerationProperty, value);
+        //}
 
-        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                return accelerationControl.OnCoerceMaxAcceleration((Double?)value);
-            else
-                return value;
-        }
+        //private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        //{
+        //    AccelerationControl accelerationControl = o as AccelerationControl;
+        //    if (accelerationControl != null)
+        //        return accelerationControl.OnCoerceMaxAcceleration((Double?)value);
+        //    else
+        //        return value;
+        //}
 
-        private static void OnMaxAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
-        {
-            AccelerationControl accelerationControl = o as AccelerationControl;
-            if (accelerationControl != null)
-                accelerationControl.OnMaxAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
-        }
+        //private static void OnMaxAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    AccelerationControl accelerationControl = o as AccelerationControl;
+        //    if (accelerationControl != null)
+        //        accelerationControl.OnMaxAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
+        //}
 
-        protected virtual Double? OnCoerceMaxAcceleration(Double? value)
-        {
-            // TODO: Keep the proposed value within the desired range.
-            return value;
-        }
+        //protected virtual Double? OnCoerceMaxAcceleration(Double? value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
 
-        protected virtual void OnMaxAccelerationChanged(Double? oldValue, Double? newValue)
-        {
-            // TODO: Add your property changed side-effects. Descendants can override as well.
-        }
+        //protected virtual void OnMaxAccelerationChanged(Double? oldValue, Double? newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
 
-        #endregion
+        //#endregion
 
         #endregion
 

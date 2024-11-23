@@ -90,10 +90,10 @@
 
                 <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
 
-                    <dxe:SpinEdit
-                        x:Name="seAcceleration" 
+                    <dxe:SpinEdit x:Name="seAcceleration" 
                         EditValue="{Binding Acceleration, Mode=TwoWay, 
-                            TargetNullValue=0, UpdateSourceTrigger=PropertyChanged,
+                            TargetNullValue=0, 
+                            UpdateSourceTrigger=PropertyChanged,
                             Converter={StaticResource SpinEditConverter}}" 
                         Increment="1"
                         MinValue="{Binding MinAcceleration, Mode=OneWay, TargetNullValue=0}"

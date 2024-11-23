@@ -144,6 +144,9 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem>
+                    <!-- NOTE(crhodes)
+                     This doesn't work.  Looking for Command in StepperControl
+                    -->
                     <!--<Button x:Name="btnZeroPosition"
 		                Command="{Binding ZeroCurrentPositionCommand }"
                         CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
@@ -158,8 +161,37 @@
 		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
 		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />-->
 
+                    <!-- NOTE(crhodes)
+                     This works
+                    -->
                     <Button x:Name="btnZeroPosition"
-                    DataContext="{Binding DataContext, 
+                        DataContext="{Binding DataContext, 
+                                    RelativeSource={RelativeSource 
+                                        Mode=FindAncestor, 
+                                        AncestorType=controls:StepperControl,
+                                        AncestorLevel=1}}"
+		                Command="{Binding ZeroCurrentPositionCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
+		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
+		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />
+
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem>
+                    <!-- NOTE(crhodes)
+                     This doesn't work
+                    -->
+                    <!--<Button x:Name="btnZeroPosition"
+		                Command="{Binding ZeroCurrentPositionCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
+		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
+		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />-->
+
+                    <!-- NOTE(crhodes)
+                     This works
+                    -->
+                    <Button x:Name="btnZeroPosition2"
+                        DataContext="{Binding DataContext, 
                                     RelativeSource={RelativeSource 
                                         Mode=FindAncestor, 
                                         AncestorType=UserControl,

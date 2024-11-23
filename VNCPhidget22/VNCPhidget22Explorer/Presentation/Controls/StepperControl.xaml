@@ -162,15 +162,19 @@
                         Converter={StaticResource RedGreenConverter}}"/>-->
                     <!--</dxlc:LayoutItem>-->
 
-                    <controls:VelocityLimitControl
+                    <!--<controls:VelocityLimitControl
                         MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
                         VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
-                        MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
+                        MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>-->
 
-                    <controls:AccelerationControl
+                    <controls:VelocityLimitControl />
+
+                    <!--<controls:AccelerationControl
                         MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
                         Acceleration="{Binding Acceleration, Mode=TwoWay}"
-                        MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>
+                        MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>-->
+
+                    <controls:AccelerationControl />
 
                 </dxlc:LayoutGroup>
 

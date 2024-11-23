@@ -193,7 +193,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #endregion
 
-
         #region RCServoAttached
 
         public static readonly DependencyProperty RCServoAttachedProperty = DependencyProperty.Register(
