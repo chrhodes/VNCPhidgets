@@ -32,12 +32,8 @@
     Background="{StaticResource AccelerationControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="72"
+    MinHeight="72"
 >
-    <!-- TODO:(crhodes)
-        Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
-    <!-- <SolidColorBrush x:Key="AccelerationControlBackground" Color="#A0A0A0" /> -->
-    
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
     <!-- <d:DesignerProperties.DesignStyle> -->
@@ -69,50 +65,55 @@
         <!-- <localvm:AccelerationControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" Header="Acceleration" View="GroupBox" 
+    <DockPanel>
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        
+        <dxlc:LayoutGroup x:Name="lgMain" Header="Acceleration" View="GroupBox" 
                       Orientation="Horizontal"  Padding="-10">
 
-        <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" 
-                         HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
-            <dxe:TextEdit Text="{Binding MinAcceleration, Mode=TwoWay}" IsReadOnly="True" 
-                          Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                          MinWidth="40"  />
-        </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" 
+                             HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
+                <dxe:TextEdit Text="{Binding MinAcceleration, Mode=TwoWay}" IsReadOnly="True" 
+                              Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                              MinWidth="40"  />
+            </dxlc:LayoutItem>
 
-        <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" Margin="-2,0,-2,0" >
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" Margin="-2,0,-2,0" >
             
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                <Label Content="+/-" />
-                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight" >1000</RadioButton>
-                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight">100</RadioButton>
-                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight">10</RadioButton>
-                <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    <Label Content="+/-" />
+                    <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight" >1000</RadioButton>
+                    <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight">100</RadioButton>
+                    <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight">10</RadioButton>
+                    <RadioButton GroupName="Scale" Click="AccelerationIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
+
+                    <dxe:SpinEdit
+                        x:Name="seAcceleration" 
+                        EditValue="{Binding Acceleration, Mode=TwoWay, 
+                            TargetNullValue=0, UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SpinEditConverter}}" 
+                        Increment="1"
+                        MinValue="{Binding MinAcceleration, Mode=OneWay, TargetNullValue=0}"
+                        MaxValue="{Binding MaxAcceleration, Mode=OneWay, TargetNullValue=0}" 
+                        Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="False" /> 
+
+                </dxlc:LayoutItem>
+            
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
-
-                <dxe:SpinEdit
-                    x:Name="seAcceleration" 
-                    EditValue="{Binding Acceleration, Mode=TwoWay, 
-                        TargetNullValue=0, UpdateSourceTrigger=PropertyChanged,
-                        Converter={StaticResource SpinEditConverter}}" 
-                    Increment="1"
-                    MinValue="{Binding MinAcceleration, Mode=OneWay, TargetNullValue=0}"
-                    MaxValue="{Binding MaxAcceleration, Mode=OneWay, TargetNullValue=0}" 
-                    Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                    IsFloatValue="False" /> 
-
+            <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" 
+                             HorizontalContentAlignment="Right" VerticalAlignment="Bottom" >
+                <dxe:TextEdit Text="{Binding MaxAcceleration, Mode=TwoWay}" IsReadOnly="True" 
+                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True" 
+                              MinWidth="40" />
             </dxlc:LayoutItem>
-            
+
         </dxlc:LayoutGroup>
-
-        <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" 
-                         HorizontalContentAlignment="Right" VerticalAlignment="Bottom" >
-            <dxe:TextEdit Text="{Binding MaxAcceleration, Mode=TwoWay}" IsReadOnly="True" 
-                          Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True" 
-                          MinWidth="40" />
-        </dxlc:LayoutItem>
-
-    </dxlc:LayoutGroup>
+        
+    </DockPanel>
 
 </vncmvvm:ViewBase>

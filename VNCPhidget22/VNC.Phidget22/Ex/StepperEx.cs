@@ -677,6 +677,11 @@ namespace VNC.Phidget22.Ex
 
                 base.RescaleFactor = (Double)value;
 
+                // NOTE(crhodes)
+                // Unfortunately no events are fired by setting new RescaleFactor
+                // Go get new values;
+                RefreshServoProperties();
+
                 OnPropertyChanged();
             }
         }
@@ -695,8 +700,7 @@ namespace VNC.Phidget22.Ex
 
                 OnPropertyChanged();
             }
-        }
-        
+        }        
 
         #endregion
 
@@ -925,6 +929,37 @@ namespace VNC.Phidget22.Ex
             IsAttached = Attached;
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void AddPositionOffset(Double offset)
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+
+            base.AddPositionOffset(offset);
+            // NOTE(crhodes)
+            // Unfortunately no events are fired by AddPositionOffset()
+            // Go get new values;
+            RefreshServoProperties();
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        void RefreshServoProperties()
+        {
+            MinAcceleration = base.MinAcceleration;
+            Acceleration = base.Acceleration;
+            MaxAcceleration = base.MaxAcceleration;
+
+            MinVelocityLimit = base.MinVelocityLimit;
+            VelocityLimit = base.VelocityLimit;
+            MaxVelocityLimit = base.MaxVelocityLimit;
+
+            MinPosition = base.MinPosition;
+            Position = base.Position;
+            MaxPosition = base.MaxPosition;
+
+            TargetPosition = base.TargetPosition;
         }
 
         public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)

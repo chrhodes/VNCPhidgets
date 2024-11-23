@@ -2103,27 +2103,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             switch (channel)
             {
                 case 0:
-                    var start = Stepper0.Position;
-                    var offset = start * -1.0;
-                    Stepper0.AddPositionOffset(offset);
-                    var end = Stepper0.Position;
-                    //Stepper0.Position = 0;
-                    //Stepper0.TargetPosition = 0;
+                    Stepper0?.AddPositionOffset(-Stepper0.Position);
                     break;
 
                 case 1:
-                    Stepper1.Position = 0;
-                    //Stepper1.TargetPosition = 0;
+                    Stepper1.AddPositionOffset(-Stepper1.Position);
                     break;
 
                 case 2:
-                    Stepper2.Position = 0;
-                    //Stepper2.TargetPosition = 0;
+                    Stepper2.AddPositionOffset(-Stepper2.Position);
                     break;
 
                 case 3:
-                    Stepper3.Position = 0;
-                    //Stepper3.TargetPosition = 0;
+                    Stepper3.AddPositionOffset(-Stepper3.Position);
                     break;
 
                 //case 4:

@@ -60,7 +60,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
-            lgMain.DataContext = this;
+            //lgMain.DataContext = this;
+            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

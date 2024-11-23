@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
-using Phidgets = Phidget22;
+using DevExpress.Xpf.Editors;
+using DevExpress.Xpf.LayoutControl;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget22;
-using System.DirectoryServices.ActiveDirectory;
-using System.Windows.Input;
-using DevExpress.Xpf.LayoutControl;
-using DevExpress.Xpf.Editors;
 using VNC.Phidget22.Ex;
-using VNC.Phidget22.Configuration;
+
+using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
@@ -72,6 +70,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             lgMain.DataContext = this;
             //liConfigureStepper.DataContext = this.Parent;
+            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -2127,7 +2126,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
 
-
         #endregion
 
         #region PositionScaleRange
@@ -2256,12 +2254,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             }
         }
 
-        private void PositionIncrement_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
+        //private void PositionIncrement_Click(object sender, RoutedEventArgs e)
+        //{
+        //    System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
 
-            seTargetPosition.Increment = Int32.Parse(radioButton.Content.ToString());
-        }
+        //    seTargetPosition.Increment = Int32.Parse(radioButton.Content.ToString());
+        //}
 
         #endregion
 
@@ -2308,7 +2306,5 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-
     }
 }

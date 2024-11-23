@@ -19,6 +19,7 @@
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
     xmlns:phidgets="clr-namespace:Phidget22;assembly=Phidget22.NET" 
+    
     xmlns:vncPhidget22Ex="clr-namespace:VNC.Phidget22.Ex;assembly=VNC.Phidget22"
     xmlns:vncPhidgetConfiguration="clr-namespace:VNC.Phidget22.Configuration;assembly=VNC.Phidget22.Configuration"
     
@@ -77,270 +78,136 @@
     <!-- </UserControl.DataContext> -->
 
     <ScrollViewer>
-    <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
-                      HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
-
-        <dxlc:LayoutGroup Header="Event Logging" View="GroupBox" Orientation="Vertical" 
-            VerticalAlignment="Top" HorizontalAlignment="Stretch"
-            IsCollapsible="True" IsCollapsed="False"                                     
-            Padding="-10"
-            Background="{StaticResource LoggingBackground}"
-            MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
-            ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
+        <DockPanel>
+            <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
             
-            <dxe:CheckEdit
-                Content="Phidget"
-                IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
-                HorizontalAlignment="Left"/>
-            <dxe:CheckEdit 
-                Content="Error"
-                IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
-                HorizontalAlignment="Left"/>
-            <dxe:CheckEdit
-                Content="PropertyChange"
-                IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
-                HorizontalAlignment="Left"/>
-            <dxe:CheckEdit
-                Content="PositionChange"
-                IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" 
-                HorizontalAlignment="Left"/>
-            <dxe:CheckEdit
-                Content="VelocityChange"
-                IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
-                HorizontalAlignment="Left"/>
-            <dxe:CheckEdit
-                Content="Stopped"
-                IsChecked="{Binding StoppedEvents, Mode=TwoWay}"
-                HorizontalAlignment="Left"/>
+            <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
+                              HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
 
-        </dxlc:LayoutGroup>
-        
-        <!--Open/Close-->
-        
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-            <dxlc:LayoutItem>
-                <Button x:Name="btnOpenRCServoCommand" 
-                    DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-        		    Command="{Binding OpenStepperCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
-        		    Content="{Binding OpenStepperContent, FallbackValue='OpenStepper' }"
-        		    ToolTip="{Binding OpenStepperToolTip, FallbackValue='OpenStepper ToolTip' }" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem>
-                <Button x:Name="btnCloseStepperCommand" 
-                DataContext="{Binding DataContext, 
-                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-        		Command="{Binding CloseStepperCommand }"
-                CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
-        		Content="{Binding CloseStepperContent, FallbackValue='CloseStepper' }"
-        		ToolTip="{Binding CloseStepperToolTip, FallbackValue='CloseStepperoolTip' }" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <controls:StepperStateControl
-            IsAttached="{Binding IsAttached, Mode=OneWay}"
-            Engaged="{Binding Engaged, Mode=TwoWay}"
-            IsMoving="{Binding IsMoving, Mode=OneWay}"
-            Position="{Binding Position, Mode=OneWay}"
-            Velocity="{Binding Velocity, Mode=OneWay}" />
-
-        <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
-            VerticalAlignment="Top"
-            IsCollapsible="True" IsCollapsed="True" 
-            Padding="-5" Background="AliceBlue">
-
-            <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
-            <!--<dxe:CheckEdit IsChecked="{Binding SpeedRampingState}" Content="Speed Ramping"
-                Background="{Binding SpeedRampingState, Mode=OneWay,
-                Converter={StaticResource RedGreenConverter}}"/>-->
-            <!--</dxlc:LayoutItem>-->
-
-            <controls:VelocityLimitControl
-                MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
-                VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
-                MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
-
-            <controls:AccelerationControl
-                MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
-                Acceleration="{Binding Acceleration, Mode=TwoWay}"
-                MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup x:Name="lgPosition" Header="Position" View="GroupBox" Orientation="Horizontal" 
-                        Padding="-10">
-
-            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-
-                <dxlc:LayoutItem Label="ControlMode" LabelPosition="Top">
-                    <dxe:ComboBoxEdit 
-                        ItemsSource="{Binding Source={vncenum:EnumBindingSource 
-                            {x:Type phidgets:StepperControlMode}}}"
-                        SelectedIndex="0"
-                        EditValue="{ Binding Path=ControlMode,Mode=TwoWay,
-                            UpdateSourceTrigger=PropertyChanged,
-                            Converter={StaticResource SelectedItemToEnumConverter} }" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="RescaleFactor" LabelPosition="Top" VerticalAlignment="Center" LabelHorizontalAlignment="Center">
-                    <dxe:TextEdit Text="{Binding RescaleFactor, Mode=TwoWay}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutGroup 
-                    View="Group" Orientation="Horizontal" Background="AliceBlue" >
-
-                    <dxlc:LayoutItem Label="Min" LabelPosition="Top" VerticalAlignment="Bottom" LabelHorizontalAlignment="Center">
-                        <dxe:TextEdit Text="{Binding MinPosition, Mode=OneWay}"  IsReadOnly="True"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Label="Target" LabelPosition="Top">
-                        <dxe:TextEdit Name="teTargetPosition" Text="{Binding TargetPosition, Mode=TwoWay}" />
-                    </dxlc:LayoutItem>
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Bottom" Margin="-2,0,-2,0" >
-
-                            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                                <Label />
-                                <RadioButton x:Name="rb90" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">90</RadioButton>                                
-                                <RadioButton x:Name="rb45" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">45</RadioButton>
-                                <RadioButton x:Name="rb10" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
-                                <RadioButton x:Name="rb5" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
-                                <RadioButton x:Name="rb1" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
-                            </dxlc:LayoutGroup>
-
-                            <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >
-
-                                <dxe:SpinEdit
-                                    x:Name="seTargetPosition"
-                                    EditValue="{Binding TargetPosition, Mode=TwoWay, 
-                                        TargetNullValue=0,
-                                        UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource SpinEditConverter}}" 
-                                    Increment="1"
-                                    MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
-                                    MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
-                                    Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                                    IsFloatValue="True" />
-
-                            </dxlc:LayoutItem>
-
-                        </dxlc:LayoutGroup>
-                        <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-                        <dxlc:LayoutItem Label="Current" LabelPosition="Top">
-                            <dxe:TextEdit Name="teCurrentPosition" Text="{Binding CurrentPosition, Mode=TwoWay}" />
-                        </dxlc:LayoutItem>
-
-
-                    </dxlc:LayoutGroup>-->
-
-                    <dxlc:LayoutItem Label="Max" LabelPosition="Top" VerticalAlignment="Bottom" LabelHorizontalAlignment="Center">
-                        <dxe:TextEdit Text="{Binding MaxPosition, Mode=OneWay}" IsReadOnly="True" />
-                    </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Header="Event Logging" View="GroupBox" Orientation="Vertical" 
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    IsCollapsible="True" IsCollapsed="False"                                     
+                    Padding="-10"
+                    Background="{StaticResource LoggingBackground}"
+                    MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
+                    ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
+            
+                    <dxe:CheckEdit
+                        Content="Phidget"
+                        IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit 
+                        Content="Error"
+                        IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="PropertyChange"
+                        IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="PositionChange"
+                        IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" 
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="VelocityChange"
+                        IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                        Content="Stopped"
+                        IsChecked="{Binding StoppedEvents, Mode=TwoWay}"
+                        HorizontalAlignment="Left"/>
 
                 </dxlc:LayoutGroup>
-
-                <!-- Second form uses CommandParameter -->
-                <dxlc:LayoutItem>
-                    <Button 
-                        DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                        
-		                Command="{Binding ZeroCurrentPositionCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
-		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
-		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-
-                <dxlc:LayoutItem Label="Step Angle"
-                    LabelPosition="Left">
-                    <!--<dxe:ComboBoxEdit		                                 
-                       EditValue="{Binding
-                    Path=SelectedFileFormats,
-                    Mode=TwoWay,
-                    UpdateSourceTrigger=PropertyChanged,
-                    Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
-                    <dxe:ComboBoxEdit x:Name="cbeStepAngle" IsEnabled="{Binding DeviceAttached}"
-                        EditValueType="{x:Type sys:Double}"
-                        EditValue="{Binding StepAngle}" >
-                        <!--SelectedItem="{Binding StepAngle }" >-->
-                        <!--SelectedItem="{Binding StepAngle, Converter={StaticResource SelectedItemToDoubleConverter} }" >-->
-                        <dxe:ComboBoxEdit.StyleSettings>
-                            <dxe:ComboBoxStyleSettings />
-                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                            <!--<dxe:RadioComboBoxStyleSettings/>-->
-                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
-                            <!--<dxe:TokenComboBoxStyleSettings/>-->
-                        </dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:ComboBoxEditItem Content="0.9" />
-                        <dxe:ComboBoxEditItem Content="1.8" />
-                        <dxe:ComboBoxEditItem Content="3.75" />
-                    </dxe:ComboBoxEdit>
-                </dxlc:LayoutItem>
-
+        
+                <!--Open/Close-->
+        
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                    <!-- <dxlc:LayoutItem> -->
-                    <!-- <Button -->
-                    <!-- Command="{Binding ZeroCurentPositionCommand}" -->
-                    <!-- CommandParameter="{Binding ZeroCurentPositionCommandParameter}" -->
-                    <!-- Content="{Binding ZeroCurentPositionContent, FallbackValue='ZeroCurentPosition' }" -->
-                    <!-- ToolTip="{Binding ZeroCurentPositionToolTip, FallbackValue='ZeroCurentPosition ToolTip' }" /> -->
-                    <!-- <Button.Background> -->
-                    <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
-                    <!-- </Button.Background> -->
-                    <!-- </dxlc:LayoutItem> -->
-                    <dxlc:LayoutItem Label="Degrees" LabelPosition="Top" HorizontalAlignment="Left" >
-                        <dxe:TextEdit Text="{Binding Degrees, Mode=TwoWay}" />
+                    <dxlc:LayoutItem>
+                        <Button x:Name="btnOpenRCServoCommand" 
+                            DataContext="{Binding DataContext, 
+                                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+        		            Command="{Binding OpenStepperCommand }"
+                            CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
+        		            Content="{Binding OpenStepperContent, FallbackValue='OpenStepper' }"
+        		            ToolTip="{Binding OpenStepperToolTip, FallbackValue='OpenStepper ToolTip' }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
-                        <dxlc:LayoutItem>
-                            <Button 
-                                DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                                
-              		            Command="{Binding RotateCommand }"
-                                CommandParameter="CW"
-              		            Content="ClockWise"
-              		            ToolTip="Rotate ClockWise # Degrees" />
-                        </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <Button x:Name="btnCloseStepperCommand" 
+                        DataContext="{Binding DataContext, 
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+        		        Command="{Binding CloseStepperCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
+        		        Content="{Binding CloseStepperContent, FallbackValue='CloseStepper' }"
+        		        ToolTip="{Binding CloseStepperToolTip, FallbackValue='CloseStepperoolTip' }" />
+                    </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem>
-                            <Button 
-                                DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                                
-              		            Command="{Binding RotateCommand }"
-                                CommandParameter="CCW"
-              		            Content="CounterClockWise"
-              		            ToolTip="Rotate ClockWise # Degrees" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                    <!-- Second form uses CommandParameter -->
-
-
-                    <!-- <dxlc:LayoutItem> -->
-                    <!-- <Button -->
-                    <!-- Command="{Binding RotateCommand}" -->
-                    <!-- CommandParameter="{Binding RotateCommandParameter}" -->
-                    <!-- Content="{Binding RotateContent, FallbackValue='Rotate' }" -->
-                    <!-- ToolTip="{Binding RotateToolTip, FallbackValue='Rotate ToolTip' }" /> -->
-                    <!-- <Button.Background> -->
-                    <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
-                    <!-- </Button.Background> -->
-                    <!-- </dxlc:LayoutItem> -->
                 </dxlc:LayoutGroup>
 
-            </dxlc:LayoutGroup>
+                <controls:StepperStateControl
+                    IsAttached="{Binding IsAttached, Mode=OneWay}"
+                    Engaged="{Binding Engaged, Mode=TwoWay}"
+                    IsMoving="{Binding IsMoving, Mode=OneWay}"
+                    Position="{Binding Position, Mode=OneWay}"
+                    Velocity="{Binding Velocity, Mode=OneWay}" />
 
-        </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                    VerticalAlignment="Top"
+                    IsCollapsible="True" IsCollapsed="True" 
+                    Padding="-5" Background="AliceBlue">
 
-        </dxlc:LayoutGroup>
-        
+                    <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
+                    <!--<dxe:CheckEdit IsChecked="{Binding SpeedRampingState}" Content="Speed Ramping"
+                        Background="{Binding SpeedRampingState, Mode=OneWay,
+                        Converter={StaticResource RedGreenConverter}}"/>-->
+                    <!--</dxlc:LayoutItem>-->
+
+                    <controls:VelocityLimitControl
+                        MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
+                        VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
+                        MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>
+
+                    <controls:AccelerationControl
+                        MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
+                        Acceleration="{Binding Acceleration, Mode=TwoWay}"
+                        MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>
+
+                </dxlc:LayoutGroup>
+
+                <controls:StepperPositionControl
+                 
+                    StepperNumber="0"
+                    IsAttached="{Binding IsAttached, Mode=TwoWay}"
+                    Engaged="{Binding Engaged, Mode=TwoWay}"
+                    StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
+                                                 
+                    MinAcceleration="{Binding MinAcceleration,Mode=TwoWay}"
+                    Acceleration="{Binding Acceleration,Mode=TwoWay}"
+                    MaxAcceleration="{Binding MaxAcceleration,Mode=TwoWay}"
+                     
+                    MinPositionStepper="{Binding MinPositionStepper,Mode=TwoWay}"                     
+                    MinPosition="{Binding MinPosition,Mode=TwoWay}"
+                    MinPositionStop="{Binding MinPositionStop,Mode=TwoWay}"                                                 
+                                         
+                    Position="{Binding Position,Mode=TwoWay}"
+                    TargetPosition="{Binding TargetPosition,Mode=TwoWay}"
+                    IsMoving="{Binding IsMoving, Mode=OneWay}"                                         
+                                         
+                    MaxPositionStop="{Binding MaxPositionStop,Mode=TwoWay}"
+                    MaxPosition="{Binding MaxPosition,Mode=TwoWay}"   
+                    MaxPositionStepper="{Binding MaxPositionStepper,Mode=TwoWay}"
+                            
+                    Velocity="{Binding Velocity,Mode=TwoWay}"
+                                         
+                    MinVelocityLimit="{Binding MinVelocityLimit,Mode=TwoWay}"
+                    VelocityLimit="{Binding VelocityLimit,Mode=TwoWay}"
+                    MaxVelocityLimit="{Binding MaxVelocityLimit,Mode=TwoWay}" 
+                              
+                    ControlMode="{Binding ControlMode,Mode=TwoWay}"                                                 
+                    RescaleFactor="{Binding RescaleFactor,Mode=TwoWay}" />
+
+                </dxlc:LayoutGroup>
+        </DockPanel>
     </ScrollViewer>
     
 </vncmvvm:ViewBase>

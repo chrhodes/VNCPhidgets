@@ -19,7 +19,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             InstanceCountV++;
             InitializeComponent();
 
-            lgMain.DataContext = this;
             // Expose ViewModel
 
             // If View First with ViewModel in Xaml
@@ -28,6 +27,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // Can create directly
             // ViewModel = AccelerationControlViewModel();
+
+            InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -53,11 +54,14 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             // NOTE(crhodes)
             // Put things here that initialize the View
-            // Hook eventhandlers, etc.
+            // Hook event handlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
+
+            //lgMain.DataContext = this;
+            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
