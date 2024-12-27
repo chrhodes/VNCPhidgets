@@ -113,51 +113,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             return jsonOptions;
         }
 
-        private void CreateChannels()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
-
-            // NOTE(crhodes)
-            // This ViewModel needs to support all types of InterfaceKits
-            // Configure all channels that might exist and wire up event handlers
-            // The SelectedInterfaceKit property change event can enable and disable as needed.
-            // TODO(crhodes)
-            // Figure out what do in UI (if anything) if all channels not present on a device
-            // Hide controls maybe
-
-            // NOTE(crhodes)
-            // Need to create early so bindings work.
-
-            // TODO(crhodes)
-            // 
-            // Handle the most an InterfaceKit might have
-            // Maybe initialize some defaults, and channel
-
-            for (int i = 0; i < 16; i++)
-            {
-                DigitalInputs[i] = new DigitalInputEx(0, new DigitalInputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 16; i++)
-            {
-                DigitalOutputs[i] = new DigitalOutputEx(0, new DigitalOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                VoltageInputs[i] = new VoltageInputEx(0, new VoltageInputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                VoltageRatioInputs[i] = new VoltageRatioInputEx(0, new VoltageRatioInputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-            for (int i = 0; i < 8; i++)
-            {
-                VoltageOutputs[i] = new VoltageOutputEx(0, new VoltageOutputConfiguration() { Channel = (Int16)i }, EventAggregator);
-            }
-
-            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         #endregion
 
         #region Enums (none)
@@ -227,36 +182,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        //private IEnumerable<VNCPhidgetConfig.Sensor> _Sensors2;
-        //public IEnumerable<VNCPhidgetConfig.Sensor> Sensors2
-        //{
-        //    get
-        //    {
-        //        if (null == _Sensors2)
-        //        {
-        //            // TODO(crhodes)
-        //            // Load this like the sensors.xml for now
-
-        //            //_Sensors =
-        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Sensors").Elements("Sensor")
-        //            //    select new Sensor(
-        //            //        item.Attribute("Name").Value,
-        //            //        item.Attribute("IPAddress").Value,
-        //            //        item.Attribute("Port").Value,
-        //            //        bool.Parse(item.Attribute("Enable").Value)
-        //            //        );
-        //        }
-
-        //        return _Sensors2;
-        //    }
-
-        //    set
-        //    {
-        //        _Sensors2 = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         #endregion
 
         #region Phidget
@@ -311,6 +236,45 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_logPropertyChangeEvents == value)
                     return;
                 _logPropertyChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logStateChangeEvents = false;
+        public bool LogStateChangeEvents
+        {
+            get => _logStateChangeEvents;
+            set
+            {
+                if (_logStateChangeEvents == value)
+                    return;
+                _logStateChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logSensorChangeEvents = false;
+        public bool LogSensorChangeEvents
+        {
+            get => _logSensorChangeEvents;
+            set
+            {
+                if (_logSensorChangeEvents == value)
+                    return;
+                _logSensorChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logVoltageChangeEvents = false;
+        public bool LogVoltageChangeEvents
+        {
+            get => _logVoltageChangeEvents;
+            set
+            {
+                if (_logVoltageChangeEvents == value)
+                    return;
+                _logVoltageChangeEvents = value;
                 OnPropertyChanged();
             }
         }
@@ -578,8 +542,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region DigitalOutput
-
+        #region DigitalOutpu
 
         private DigitalOutputEx _digitalOutput0;
         public DigitalOutputEx DigitalOutput0
@@ -1178,7 +1141,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region VoltageOutput
 
-
         private VoltageOutputEx _voltageOutput0;
         public VoltageOutputEx VoltageOutput0
         {
@@ -1376,64 +1338,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region InterfaceKit Events
-
-        private bool _logInputChangeEvents = false;
-        public bool LogInputChangeEvents
-        {
-            get => _logInputChangeEvents;
-            set
-            {
-                if (_logInputChangeEvents == value)
-                    return;
-                _logInputChangeEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveInterfaceKit is not null)
-                //{
-                //    ActiveInterfaceKit.LogSensorChangeEvents = _logInputChangeEvents;
-                //}
-            }
-        }
-
-        private bool _logOutputChangeEvents = false;
-        public bool LogOutputChangeEvents
-        {
-            get => _logOutputChangeEvents;
-            set
-            {
-                if (_logOutputChangeEvents == value)
-                    return;
-                _logOutputChangeEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveInterfaceKit is not null)
-                //{
-                //    ActiveInterfaceKit.LogOutputChangeEvents = _logOutputChangeEvents;
-                //}
-            }
-        }
-
-        private bool _logSensorChangeEvents = false;
-        public bool LogSensorChangeEvents
-        {
-            get => _logSensorChangeEvents;
-            set
-            {
-                if (_logSensorChangeEvents == value)
-                    return;
-                _logSensorChangeEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveInterfaceKit is not null)
-                //{
-                //    ActiveInterfaceKit.LogSensorChangeEvents = _logSensorChangeEvents;
-                //}
-            }
-        }
-
-        #endregion
-
         private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
         public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
         {
@@ -1557,7 +1461,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // May want to make this just a Phidget22.InterfaceKit to avoid all the ActiveInterfaceKit.InterfaceKit stuff
+        // May want to make this just a Phidget22.InterfaceKit
+        // to avoid all the ActiveInterfaceKit.InterfaceKit stuff
 
         private DigitalOutputEx _activeInterfaceKit;
         public DigitalOutputEx ActiveInterfaceKit
@@ -1597,7 +1502,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Event Handler
+        #region Event Handlers (none)
 
 
 
