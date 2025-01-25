@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -10,36 +11,109 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged
+    public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged, IViewSize
     {
-        public RibbonShellViewModel _viewModel;
+        #region Contructors, Initialization, and Load
 
         public RibbonShell(RibbonShellViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter ({viewModel.GetType()})", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
+
             InitializeView();
 
-            _viewModel = viewModel;
-            DataContext = _viewModel;
+            ViewModel = viewModel;     // AppVersionInfo needs this.
 
-            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeView()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.View) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook event handlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = _viewModel.GetType().ToString().Split('.').Last();
 
             Common.CurrentRibbonShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
-            // NOTE(crhodes)
-            // Put things here that initialize the View
+            // Establish any additional DataContext(s), e.g. to things held in this View
+            
+            spDeveloperInfo.DataContext = this;
 
-            if (Common.VNCLogging.View) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region Fields and Properties
+
+        private string _viewType;
+
+        public string ViewType
+        {
+            get => _viewType;
+            set
+            {
+                if (_viewType == value)
+                {
+                    return;
+                }
+
+                _viewType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RibbonShellViewModel _viewModel;
+
+        public RibbonShellViewModel ViewModel
+        {
+            get { return _viewModel; }
+
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
+            }
+        }
+
+        private string _viewModelType;
+
+        public string ViewModelType
+        {
+            get => _viewModelType;
+            set
+            {
+                if (_viewModelType == value)
+                {
+                    return;
+                }
+
+                _viewModelType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Size _windowSize;
+        public Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
         }
 
         private Visibility _developerUIMode = Visibility.Collapsed;
@@ -54,6 +128,20 @@ namespace VNCPhidgets21Explorer.Presentation.Views
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region EventHandlers
+
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            _viewModel.WindowSize = newSize;
+            spDeveloperInfo.WindowSize = newSize;
+        }
+
+        #endregion
 
         #region INotifyPropertyChanged
 
@@ -99,5 +187,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
+
     }
 }

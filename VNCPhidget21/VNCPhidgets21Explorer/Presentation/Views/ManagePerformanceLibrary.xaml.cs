@@ -5,6 +5,7 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
+using System.Linq;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
@@ -14,13 +15,14 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         
         public ManagePerformanceLibrary()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-            
-			// Expose ViewModel
-						
+
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IManagePerformanceLibraryViewModel)DataContext;
@@ -28,31 +30,41 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Can create directly
             // ViewModel = ManagePerformanceLibraryViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         public ManagePerformanceLibrary(IManagePerformanceLibraryViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            ViewModel = viewModel;
-            
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+
             InitializeView();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         private void InitializeView()
         {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-            
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
             // NOTE(crhodes)
             // Put things here that initialize the View
-            
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
         
         #endregion

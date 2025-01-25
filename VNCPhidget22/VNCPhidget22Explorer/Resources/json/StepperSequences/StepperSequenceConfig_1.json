@@ -1,0 +1,45 @@
+{
+  "StepperSequences": [
+    //These need to be updated to reflect what can be done with a Stepper motor
+    //This is from AdvancedServo
+    //
+    // Initialize Stepper
+    //
+    {
+      "Name": "Initialize Stepper", 
+      "Description": "Initialize Stepper",
+      "UsageNotes": "Does not Engage Stepper",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "StepperIndex": 0, "Acceleration": 5000, "VelocityLimit": 720 },
+      ],
+    },
+    //
+    // Engage Stepper
+    //
+    {
+      "Name": "Engage Stepper", 
+      "Description": "Engage Stepper",
+      "UsageNotes": "Engages Stepper",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "StepperIndex": 0, "Engaged":  true },
+      ],
+    },
+    //
+    // Rotate +/- 90
+    //
+    {
+      "Name": "Rotate +/- 90", 
+      "Description": "Rotate +/- 90",
+      "UsageNotes": "Rotate +/- 90",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  90 },
+        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  -90 },
+        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  -90 },
+        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  90 },
+      ],
+    },
+  ]
+}

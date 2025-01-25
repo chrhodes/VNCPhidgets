@@ -5,9 +5,15 @@ namespace VNCPhidget21.Configuration
     public class StepperAction
     {
         /// <summary>
-        /// Index of servo on board 
+        /// Index of stepper on board (likely 1)
         /// </summary>
-        public int ServoIndex { get; set; }
+        public int StepperIndex { get; set; }
+
+        /// <summary>
+        /// Degrees of rotation for one full step
+        /// which is 16 micro steps (1/16)
+        /// </summary>
+        public Double? StepAngle { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)
@@ -20,24 +26,51 @@ namespace VNCPhidget21.Configuration
         public Double? Acceleration { get; set; }
 
         /// <summary>
+        /// Acceleration (+/-) from current Acceleration (optional)
+        /// </summary>
+        public Double? RelativeAcceleration { get; set; }
+
+        /// <summary>
         /// Servo Velocity (optional)
         /// </summary>
         public Double? VelocityLimit { get; set; }
 
         /// <summary>
-        /// TargetPosition (optional)
+        /// VelocityLimit (+/-) from current VelocityLimit (optional)
         /// </summary>
-        public double? PositionMin { get; set; }
+        public Double? RelativeVelocityLimit { get; set; }
+
+        /// <summary>
+        /// Servo Velocity (optional)
+        /// </summary>
+        public Double? CurrentLimit { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? TargetPosition { get; set; }
+        public Int64? CurrentPosition { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
         /// </summary>
-        public double? PositionMax { get; set; }
+        public Int64? TargetPosition { get; set; }
+
+        /// <summary>
+        /// Position (+/-)  from current Position (optional)
+        /// in 1/16 step Micro Steps
+        /// </summary>
+        public Int64? RelativeTargetPosition { get; set; }
+
+        /// <summary>
+        /// Position (+/-)  from current Position (optional)
+        /// in degrees
+        /// </summary>
+        public Int64? RelativeTargetDegrees { get; set; }
+
+        /// <summary>
+        /// TargetPosition (optional)
+        /// </summary>
+        //public double? PositionMax { get; set; }
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

@@ -16,6 +16,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"      
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
@@ -40,50 +42,58 @@
             <!-- <Setter Property="Background" Value="White" /> -->
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
-    
-    <!-- <vncmvvm:ViewBase.Resources> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <converters:SpinEditConverter x:Key="SpinEditConverter" />
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
         <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
         <!-- <DataTemplate x:Key="dataTemplatePositionControl"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding XPath=@Name}" /> -->
-            <!-- </StackPanel> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
 
         <!-- <DataTemplate x:Key="dataTemplatePositionControlX"> -->
-            <!-- <StackPanel> -->
-                <!-- <Label Content="{Binding Name}" /> -->
-            <!-- </StackPanel> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-    <!-- </vncmvvm:ViewBase.Resources> -->
-    
+    </vncmvvm:ViewBase.Resources>
+
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox" Orientation="Vertical" Header="Velocity" Padding="-10" >
+    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox" Header="Velocity"
+                      Orientation="Vertical"  Padding="-10" >
         
         <dxlc:LayoutGroup  View="Group" Orientation="Horizontal" >
             
             <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Left" >
-                <dxe:TextEdit Text="{Binding Min, Mode=OneWay}" IsReadOnly="True" HorizontalContentAlignment="Left" HorizontalAlignment="Left"
-                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True" />
+                <dxe:TextEdit Text="{Binding Min, Mode=OneWay}" IsReadOnly="True" 
+                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                              MinWidth="40" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Limit" LabelPosition="Top" Width="50" LabelHorizontalAlignment="Center" >
-                <!--<dxe:TextEdit Text="{Binding Limit, Mode=TwoWay}" />-->
-                <dxe:SpinEdit EditValue="{Binding Limit, Mode=TwoWay, TargetNullValue=0}" Increment="50" 
-                            MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
-                            MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
-                            Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                            IsFloatValue="False" />
+            <dxlc:LayoutItem Label="Limit" LabelPosition="Top" Width="65" LabelHorizontalAlignment="Center" >
+                <dxe:SpinEdit 
+                    EditValue="{Binding Limit, Mode=TwoWay, 
+                        TargetNullValue=0,
+                        Converter={StaticResource SpinEditConverter}}" 
+                    Increment="50" 
+                    MinValue="{Binding Min, Mode=OneWay, TargetNullValue=0}"
+                    MaxValue="{Binding Max, Mode=OneWay, TargetNullValue=0}" 
+                    Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                    IsFloatValue="False" 
+                    EditValueChanged="SpinEdit_EditValueChanged"/>
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right">
-                <dxe:TextEdit Text="{Binding Max, Mode=OneWay}" IsReadOnly="True" HorizontalContentAlignment="Right" HorizontalAlignment="Right"
-                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+            <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Right" >
+                <dxe:TextEdit  Text="{Binding Max, Mode=OneWay}" IsReadOnly="True" 
+                              Mask="d"  MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                              MinWidth="40"/>
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>

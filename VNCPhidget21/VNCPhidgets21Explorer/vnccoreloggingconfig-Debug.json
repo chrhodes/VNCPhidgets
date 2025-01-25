@@ -18,7 +18,7 @@
   "ApplicationServices": true,
   "Domain": true,
   "DomainServices": true,
-  "Constructor": true,
+  "Constructor": false,
   "Core": true,
   "Event": true,
   "EventHandler": true,

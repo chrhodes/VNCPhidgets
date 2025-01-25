@@ -10,6 +10,11 @@ namespace VNCPhidget21.Configuration
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
+        /// SerialNumber of Phidget that will run PerformanceSequence
+        /// </summary>
+        public Int32 SerialNumber { get; set; }
+
+        /// <summary>
         /// Type of Sequence {AS, IK, ST}
         /// Maybe make this enum
         /// </summary>

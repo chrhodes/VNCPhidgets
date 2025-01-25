@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 using VNC;
@@ -14,12 +15,11 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         
         public PhidgetDevice()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-
-            lgPhidgetDevice.DataContext = this;
 
             // Expose ViewModel
 
@@ -30,7 +30,9 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // Can create directly
             // ViewModel = PhidgetViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //public Phidget(IPhidgetViewModel viewModel)
@@ -46,6 +48,26 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            lgPhidgetDevice.DataContext = this;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
 
         protected virtual string OnCoerceDeviceLibraryVersion(string value)
         {
@@ -74,23 +96,12 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
                 phidget.OnDeviceLibraryVersionChanged((string)e.OldValue, (string)e.NewValue);
         }
 
-        private void InitializeView()
-        {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
-
-            // NOTE(crhodes)
-            // Put things here that initialize the View
-
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-        #endregion
-
-        #region Enums (None)
+        #region Enums (none)
 
 
         #endregion
 
-        #region Structures (None)
+        #region Structures (none)
 
 
         #endregion
@@ -563,26 +574,26 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers (none)
 
 
         #endregion
 
-        #region Commands (None)
+        #region Commands (none)
 
         #endregion
 
-        #region Public Methods (None)
-
-
-        #endregion
-
-        #region Protected Methods (None)
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Private Methods (None)
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods (none)
 
 
         #endregion

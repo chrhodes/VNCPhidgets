@@ -1,7 +1,0 @@
-﻿VNCPhidgets22Explorer\Presentation\
-VNCPhidgets22Explorer\Presentation\Converters\
-VNCPhidgets22Explorer\Presentation\ModelWrappers\
-VNCPhidgets22Explorer\Presentation\ViewModels\
-VNCPhidgets22Explorer\Presentation\Views\
-
-Notes for using this template

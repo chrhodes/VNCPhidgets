@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 using Phidgets;
 
@@ -18,7 +19,8 @@ using VNCPhidgetConfig = VNCPhidget21.Configuration;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
 {
-    public class InterfaceKit1018ViewModel : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
+    public class InterfaceKit1018ViewModel 
+        : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -26,60 +28,62 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             // TODO(crhodes)
             // Save constructor parameters here
 
             InitializeViewModel();
-
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            InstanceCountVM++;
 
-            // Turn on logging of PropertyChanged from VNC.Core
-            // We display the logging in 
-            //LogOnPropertyChanged = true;
 
             // TODO(crhodes)
             //
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
+
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
             CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
 
-            // TODO(crhodes)
+            // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
+            // This could also come from PerformanceLibrary.
+            // See HackAroundViewModel.InitializeViewModel()
+            // Or maybe a method on something else in VNCPhidget21.Configuration
 
             HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
-            //SayHelloCommand = new DelegateCommand(
-            //    SayHello, SayHelloCanExecute);
-
             Message = "InterfaceKitViewModel says hello";
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void LoadUIConfig()
         {
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             string jsonString = File.ReadAllText(HostConfigFileName);
 
             VNCPhidgetConfig.HostConfig ? hostConfig = 
                 JsonSerializer.Deserialize< VNCPhidgetConfig.HostConfig >
                 (jsonString, GetJsonSerializerOptions());
-            this.Hosts = hostConfig.Hosts.ToList();
-            this.Sensors2 = hostConfig.Sensors.ToList();
 
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            Hosts = hostConfig.Hosts.ToList();
+            Sensors2 = hostConfig.Sensors.ToList();
+
+            if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         JsonSerializerOptions GetJsonSerializerOptions()
@@ -107,6 +111,21 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        private string _message;
+        public string Message
+        {
+            get => _message;
+            set
+            {
+                if (_message == value)
+                    return;
+                _message = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region Host
+
         private string _hostConfigFileName;
 
         public string HostConfigFileName
@@ -122,42 +141,10 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        //private VNCPhidgetConfig.HostConfig _hostConfig;
-        //public VNCPhidgetConfig.HostConfig HostConfig
-        //{
-        //    get => _hostConfig;
-        //    set
-        //    {
-        //        if (_hostConfig == value)
-        //            return;
-        //        _hostConfig = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
         public IEnumerable<VNCPhidgetConfig.Host> Hosts
         {
-            get
-            {
-                if (null == _Hosts)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
-
-                    //_Hosts =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-                    //    select new Host(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        bool.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
-
-                return _Hosts;
-            }
-
+            get => _Hosts;
             set
             {
                 _Hosts = value;
@@ -178,6 +165,132 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
+
+        #region Phidget
+
+        private Phidgets.Phidget _phidgetDevice;
+        public Phidgets.Phidget PhidgetDevice
+        {
+            get => _phidgetDevice;
+            set
+            {
+                if (_phidgetDevice == value)
+                    return;
+                _phidgetDevice = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _logPhidgetEvents = false;
+        public bool LogPhidgetEvents
+        {
+            get => _logPhidgetEvents;
+            set
+            {
+                if (_logPhidgetEvents == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null) ActiveInterfaceKit.LogPhidgetEvents = value;
+            }
+        }
+
+        private bool _logSequenceAction = false;
+        public bool LogSequenceAction
+        {
+            get => _logSequenceAction;
+            set
+            {
+                if (_logSequenceAction == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSequenceAction = value;
+                }
+            }
+        }
+
+        private bool? _deviceAttached;
+        public bool? DeviceAttached
+        {
+            get => _deviceAttached;
+            set
+            {
+                if (_deviceAttached == value)
+                    return;
+                _deviceAttached = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region InterfaceKit
+
+        #region InterfaceKit Events
+
+        private bool _logInputChangeEvents = false;
+        public bool LogInputChangeEvents
+        {
+            get => _logInputChangeEvents;
+            set
+            {
+                if (_logInputChangeEvents == value)
+                    return;
+                _logInputChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSensorChangeEvents = _logInputChangeEvents;
+                }
+            }
+        }
+
+        private bool _logOutputChangeEvents = false;
+        public bool LogOutputChangeEvents
+        {
+            get => _logOutputChangeEvents;
+            set
+            {
+                if (_logOutputChangeEvents == value)
+                    return;
+                _logOutputChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogOutputChangeEvents = _logOutputChangeEvents;
+                }
+            }
+        }
+
+        private bool _logSensorChangeEvents = false;
+        public bool LogSensorChangeEvents
+        {
+            get => _logSensorChangeEvents;
+            set
+            {
+                if (_logSensorChangeEvents == value)
+                    return;
+                _logSensorChangeEvents = value;
+                OnPropertyChanged();
+
+                if (ActiveInterfaceKit is not null)
+                {
+                    ActiveInterfaceKit.LogSensorChangeEvents = _logSensorChangeEvents;
+                }
+            }
+        }
+
+        #endregion
 
         private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
         public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
@@ -254,285 +367,7 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        private Phidgets.Phidget _phidgetDevice;
-        public Phidgets.Phidget PhidgetDevice
-        {
-            get => _phidgetDevice;
-            set
-            {
-                if (_phidgetDevice == value)
-                    return;
-                _phidgetDevice = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        private bool _logPhidgetEvents = false;
-        public bool LogPhidgetEvents
-        {
-            get => _logPhidgetEvents;
-            set
-            {
-                if (_logPhidgetEvents == value)
-                    return;
-                _logPhidgetEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null) ActiveInterfaceKit.LogPhidgetEvents = value;
-            }
-        }
-
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool _logInputChangeEvents = false;
-        public bool LogInputChangeEvents
-        {
-            get => _logInputChangeEvents;
-            set
-            {
-                if (_logInputChangeEvents == value)
-                    return;
-                _logInputChangeEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogSensorChangeEvents = _logInputChangeEvents;
-                }
-            }
-        }
-
-        private bool _logOutputChangeEvents = false;
-        public bool LogOutputChangeEvents
-        {
-            get => _logOutputChangeEvents;
-            set
-            {
-                if (_logOutputChangeEvents == value)
-                    return;
-                _logOutputChangeEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogOutputChangeEvents = _logOutputChangeEvents;
-                }
-            }
-        }
-
-        private bool _logSensorChangeEvents = false;
-        public bool LogSensorChangeEvents
-        {
-            get => _logSensorChangeEvents;
-            set
-            {
-                if (_logSensorChangeEvents == value)
-                    return;
-                _logSensorChangeEvents = value;
-                OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogSensorChangeEvents = _logSensorChangeEvents;
-                }
-            }
-        }
-
         #region InterfaceKit Phidget Properties
-
-        //private string _iKAddress;
-        //public string IkAddress
-        //{
-        //    get => _iKAddress;
-        //    set
-        //    {
-        //        if (_iKAddress == value)
-        //            return;
-        //        _iKAddress = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private bool? _iKAttached;
-        //public bool? IkAttached
-        //{
-        //    get => _iKAttached;
-        //    set
-        //    {
-        //        if (_iKAttached == value)
-        //            return;
-        //        _iKAttached = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        private bool? _deviceAttached;
-        public bool? DeviceAttached
-        {
-            get => _deviceAttached;
-            set
-            {
-                if (_deviceAttached == value)
-                    return;
-                _deviceAttached = value;
-                OnPropertyChanged();
-            }
-        }
-
-        //private bool? _ikAttachedToServer;
-        //public bool? IkAttachedToServer
-        //{
-        //    get => _ikAttachedToServer;
-        //    set
-        //    {
-        //        if (_ikAttachedToServer == value)
-        //            return;
-        //        _ikAttachedToServer = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikClass;
-        //public string IkClass
-        //{
-        //    get => _ikClass;
-        //    set
-        //    {
-        //        if (_ikClass == value)
-        //            return;
-        //        _ikClass = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikID;
-        //public string IkID
-        //{
-        //    get => _ikID;
-        //    set
-        //    {
-        //        if (_ikID == value)
-        //            return;
-        //        _ikID = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikLabel;
-        //public string IkLabel
-        //{
-        //    get => _ikLabel;
-        //    set
-        //    {
-        //        if (_ikLabel == value)
-        //            return;
-        //        _ikLabel = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikLibraryVersion;
-        //public string IkLibraryVersion
-        //{
-        //    get => _ikLibraryVersion;
-        //    set
-        //    {
-        //        if (_ikLibraryVersion == value)
-        //            return;
-        //        _ikLibraryVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikName;
-        //public string IkName
-        //{
-        //    get => _ikName;
-        //    set
-        //    {
-        //        if (_ikName == value)
-        //            return;
-        //        _ikName = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _ikPort;
-        //public int? IkPort
-        //{
-        //    get => _ikPort;
-        //    set
-        //    {
-        //        if (_ikPort == value)
-        //            return;
-        //        _ikPort = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _ikSerialNumber;
-        //public int? IkSerialNumber
-        //{
-        //    get => _ikSerialNumber;
-        //    set
-        //    {
-        //        if (_ikSerialNumber == value)
-        //            return;
-        //        _ikSerialNumber = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikServerID;
-        //public string IkServerID
-        //{
-        //    get => _ikServerID;
-        //    set
-        //    {
-        //        if (_ikServerID == value)
-        //            return;
-        //        _ikServerID = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private string _ikType;
-        //public string IkType
-        //{
-        //    get => _ikType;
-        //    set
-        //    {
-        //        if (_ikType == value)
-        //            return;
-        //        _ikType = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private int? _ikVersion;
-        //public int? IkVersion
-        //{
-        //    get => _ikVersion;
-        //    set
-        //    {
-        //        if (_ikVersion == value)
-        //            return;
-        //        _ikVersion = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         #region Sensor Input
 
@@ -1855,329 +1690,49 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
-        #region Hosts
-
-        //private Host _HOST;
-        //public Host HOST
-        //{
-        //    get { return _HOST; }
-        //    set { _HOST = value; }
-        //}
-
-        //private Dictionary<string, Host> _HostD;
-        //public Dictionary<string, Host> HostD
-        //{
-        //    get
-        //    {
-        //        if (_HostD == null)
-        //        {
-        //            _HostD = new Dictionary<string, Host>();
-        //        }
-        //        return _HostD;
-        //    }
-        //    set
-        //    {
-        //        _HostD = value;
-        //    }
-        //}
-
-        //private IEnumerable<Host> _Hosts;
-        //public IEnumerable<Host> Hosts
-        //{
-        //    get
-        //    {
-        //        if (null == _Hosts)
-        //        {
-        //            // TODO(crhodes)
-        //            // Load this like the sensors.xml for now
-
-        //            //_Hosts =
-        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("Hosts").Elements("Host")
-        //            //    select new Host(
-        //            //        item.Attribute("Name").Value,
-        //            //        item.Attribute("IPAddress").Value,
-        //            //        item.Attribute("Port").Value,
-        //            //        bool.Parse(item.Attribute("Enable").Value)
-        //            //        );
-        //        }
-
-        //        return _Hosts;
-        //    }
-
-        //    set
-        //    {
-        //        _Hosts = value;
-        //    }
-        //}
-
-        #endregion
-
-        #region InterfaceKits
-
-        //private InterfaceKitEx _IK;
-        //public InterfaceKitEx IK
-        //{
-        //    get { return _IK; }
-        //    set { _IK = value; }
-        //}
-
-        //private Dictionary<string, InterfaceKitEx> _InterfaceKitsD;
-        //public Dictionary<string, InterfaceKitEx> InterfaceKitsD
-        //{
-        //    get
-        //    {
-        //        if (null == _InterfaceKitsD)
-        //        {
-        //            _InterfaceKitsD = new Dictionary<string, InterfaceKitEx>();
-        //        }
-        //        return _InterfaceKitsD;
-        //    }
-        //    set
-        //    {
-        //        _InterfaceKitsD = value;
-        //    }
-        //}
-
-        //private Collection<string> _InterfaceKits;
-        //public Collection<string> InterfaceKits
-        //{
-        //    get
-        //    {
-        //        if (null == _InterfaceKits)
-        //        {
-        //            _InterfaceKits = new Collection<string>();
-        //        }
-        //        return _InterfaceKits;
-        //    }
-        //    set
-        //    {
-        //        _InterfaceKits = value;
-        //    }
-        //}
-
-        #endregion
-
-        #endregion
-
-        #region Commands
-
-        #region Command ConfigFileName DoubleClick
-
-        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
-
-        public void ConfigFileName_DoubleClick()
-        {
-            Message = "ConfigFileName_DoubleClick";
-        }
-
-        #endregion
-
-        #region OpenInterfaceKit Command
-
-        public DelegateCommand OpenInterfaceKitCommand { get; set; }
-        public string OpenInterfaceKitContent { get; set; } = "Open";
-        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
-
-        // Can get fancy and use Resources
-        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
-        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
-        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
-
-        public void OpenInterfaceKit()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called OpenInterfaceKit";
-
-            
-            ActiveInterfaceKit = new InterfaceKitEx(
-                SelectedHost.IPAddress,
-                SelectedHost.Port,
-                SelectedInterfaceKit.SerialNumber,
-                SelectedInterfaceKit.Embedded, 
-                EventAggregator);
-
-            ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
-
-            // NOTE(crhodes)
-            // Capture Digital Input and Output changes so we can update the UI
-            // The InterfaceKitEx attaches to these events also.
-            // It logs the changes if Log{Input,Output,Sensor}ChangeEvents are set to true.
-
-            ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
-            ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
-
-            // NOTE(crhodes)
-            // Let's do see if we can watch some analog data stream in.
-
-            ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
-
-            ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
-
-            ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
-            ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
-            ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
-
-            ActiveInterfaceKit.Open();
-
-            //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
-
-            //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
-            //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
-            //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
-
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
-            //      new OpenInterfaceKitEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class OpenInterfaceKitEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
-
-            // End Cut Four
-
-            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool OpenInterfaceKitCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (SelectedInterfaceKit is not null)
-            {
-                if (DeviceAttached is not null)
-                    return !(Boolean)DeviceAttached;
-                else
-                    return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-        #endregion
-
-        #region CloseInterfaceKit Command
-
-        public DelegateCommand CloseInterfaceKitCommand { get; set; }
-        public string CloseInterfaceKitContent { get; set; } = "Close";
-        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
-
-        // Can get fancy and use Resources
-        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
-        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
-        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
-
-        public void CloseInterfaceKit()
-        {
-            Int64 startTicks = Log.EVENT("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called CloseInterfaceKit";
-
-            ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
-            ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
-
-            ActiveInterfaceKit.Close();
-            UpdateInterfaceKitProperties();
-            ActiveInterfaceKit = null;
-            ClearDigitalInputsAndOutputs();
-
-            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
-            //      new CloseInterfaceKitEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class CloseInterfaceKitEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
-
-            // End Cut Four
-
-            Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public bool CloseInterfaceKitCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
-            else
-                return false;
-        }
-
-        #endregion
-
-        #region SayHello Command
-
-        private void SayHello()
-        {
-            Int64 startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            Message = $"Hello from {this.GetType()}";
-
-            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private bool SayHelloCanExecute()
-        {
-            return true;
-        }
-
         #endregion
 
         #endregion
 
         #region Event Handlers
+
+        private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+        {
+            try
+            {
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveInterfaceKit_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                DeviceAttached = device.Attached;
+
+                // TODO(crhodes)
+                // This is where properties should be grabbed
+                UpdateInterfaceKitProperties();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
+        {
+            try
+            {
+                Phidgets.Phidget device = (Phidgets.Phidget)sender;
+                Log.Trace($"ActiveInterfaceKit_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
+
+                DeviceAttached = device.Attached;
+
+                // TODO(crhodes)
+                // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
+                UpdateInterfaceKitProperties();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
 
         private void ActiveInterfaceKit_SensorChange(object sender, Phidgets.Events.SensorChangeEventArgs e)
         {
@@ -2392,20 +1947,272 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         }
 
-        private void ActiveInterfaceKit_Attach(object sender, Phidgets.Events.AttachEventArgs e)
+
+
+        #endregion
+
+        #region Commands
+
+        #region Command ConfigFileName DoubleClick
+
+        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+
+        public void ConfigFileName_DoubleClick()
         {
-            try
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
+
+            Message = "ConfigFileName_DoubleClick";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region OpenInterfaceKit Command
+
+        public DelegateCommand OpenInterfaceKitCommand { get; set; }
+        public string OpenInterfaceKitContent { get; set; } = "Open";
+        public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string OpenInterfaceKitContent { get; set; } = "ViewName_OpenInterfaceKitContent";
+        //public string OpenInterfaceKitToolTip { get; set; } = "ViewName_OpenInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
+
+        public async void OpenInterfaceKit()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenInterfaceKit) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called OpenInterfaceKit";
+
+            
+            ActiveInterfaceKit = new InterfaceKitEx(
+                SelectedHost.IPAddress,
+                SelectedHost.Port,
+                SelectedInterfaceKit.SerialNumber,
+                SelectedInterfaceKit.Embedded, 
+                EventAggregator);
+
+            ActiveInterfaceKit.InterfaceKit.Attach += ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.InterfaceKit.Detach += ActiveInterfaceKit_Detach;
+
+            // NOTE(crhodes)
+            // Capture Digital Input and Output changes so we can update the UI
+            // The InterfaceKitEx attaches to these events also.
+            // It logs the changes if Log{Input,Output,Sensor}ChangeEvents are set to true.
+
+            ActiveInterfaceKit.InterfaceKit.OutputChange += ActiveInterfaceKit_OutputChange;
+            ActiveInterfaceKit.InterfaceKit.InputChange += ActiveInterfaceKit_InputChange;
+
+            // NOTE(crhodes)
+            // Let's do see if we can watch some analog data stream in.
+
+            ActiveInterfaceKit.InterfaceKit.SensorChange += ActiveInterfaceKit_SensorChange;
+
+            ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
+
+            ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+
+            await Task.Run(() => ActiveInterfaceKit.Open());
+
+            //ActiveInterfaceKit.LogPhidgetEvents = LogPhidgetEvents;
+
+            //ActiveInterfaceKit.LogInputChangeEvents = LogInputChangeEvents;
+            //ActiveInterfaceKit.LogOutputChangeEvents = LogOutputChangeEvents;
+            //ActiveInterfaceKit.LogSensorChangeEvents = LogSensorChangeEvents;
+
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenInterfaceKitEvent>().Publish(
+            //      new OpenInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class OpenInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenInterfaceKitEvent>().Subscribe(OpenInterfaceKit);
+
+            // End Cut Four
+
+            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool OpenInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (SelectedInterfaceKit is not null)
             {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Attach {device.Address},{device.Port} S#:{device.SerialNumber}", Common.LOG_CATEGORY);
-                // TODO(crhodes)
-                // This is where properties should be grabbed
-                UpdateInterfaceKitProperties();
+                if (DeviceAttached is not null)
+                    return !(Boolean)DeviceAttached;
+                else
+                    return true;
             }
-            catch (Exception ex)
+            else
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                return false;
             }
+
+        }
+
+        #endregion
+
+        #region CloseInterfaceKit Command
+
+        public DelegateCommand CloseInterfaceKitCommand { get; set; }
+        public string CloseInterfaceKitContent { get; set; } = "Close";
+        public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
+
+        // Can get fancy and use Resources
+        //public string CloseInterfaceKitContent { get; set; } = "ViewName_CloseInterfaceKitContent";
+        //public string CloseInterfaceKitToolTip { get; set; } = "ViewName_CloseInterfaceKitContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContent">CloseInterfaceKit</system:String>
+        //    <system:String x:Key="ViewName_CloseInterfaceKitContentToolTip">CloseInterfaceKit ToolTip</system:String>  
+
+        public void CloseInterfaceKit()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseInterfaceKit) Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called CloseInterfaceKit";
+
+            ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
+            ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
+
+            ActiveInterfaceKit.Close();
+            UpdateInterfaceKitProperties();
+            ActiveInterfaceKit = null;
+            ClearDigitalInputsAndOutputs();
+
+            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<CloseInterfaceKitEvent>().Publish(
+            //      new CloseInterfaceKitEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class CloseInterfaceKitEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<CloseInterfaceKitEvent>().Subscribe(CloseInterfaceKit);
+
+            // End Cut Four
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(CloseInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public bool CloseInterfaceKitCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //return true;
+            if (DeviceAttached is not null)
+                return (Boolean)DeviceAttached;
+            else
+                return false;
+        }
+
+        #endregion
+
+        #region SayHello Command
+
+        private void SayHello()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
+
+            Message = $"Hello from {this.GetType()}";
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private bool SayHelloCanExecute()
+        {
+            return true;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Methods (none)
+
+
+        #endregion
+
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods
+
+        private void ClearDigitalInputsAndOutputs()
+        {
+            DI0 = DO0 = null;
+            DI1 = DO1 = null;
+            DI2 = DO2 = null;
+            DI3 = DO3 = null;
+            DI4 = DO4 = null;
+            DI5 = DO5 = null;
+            DI6 = DO6 = null;
+            DI7 = DO7 = null;
+            DI8 = DO8 = null;
+            DI9 = DO9 = null;
+            DI10 = DO10 = null;
+            DI11 = DO11 = null;
+            DI12 = DO12 = null;
+            DI13 = DO13 = null;
+            DI14 = DO14 = null;
+            DI15 = DO15 = null;
+        }
+
+        private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
+        {
+
         }
 
         private void UpdateInterfaceKitProperties()
@@ -2514,62 +2321,6 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
             CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-        }
-
-        private void ActiveInterfaceKit_Detach(object sender, Phidgets.Events.DetachEventArgs e)
-        {
-            try
-            {
-                Phidgets.Phidget device = (Phidgets.Phidget)sender;
-                Log.Trace($"ActiveInterfaceKit_Detach {device.Address},{device.SerialNumber}", Common.LOG_CATEGORY);
-
-                // TODO(crhodes)
-                // What kind of cleanup?  Maybe set ActiveInterfaceKit to null.  Clear UI
-                UpdateInterfaceKitProperties();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        #endregion
-
-        #region Publi (none)c Methods
-
-
-        #endregion
-
-        #region Protected Methods
-
-
-        #endregion
-
-        #region Private Methods
-
-        private void ClearDigitalInputsAndOutputs()
-        {
-            DI0 = DO0 = null;
-            DI1 = DO1 = null;
-            DI2 = DO2 = null;
-            DI3 = DO3 = null;
-            DI4 = DO4 = null;
-            DI5 = DO5 = null;
-            DI6 = DO6 = null;
-            DI7 = DO7 = null;
-            DI8 = DO8 = null;
-            DI9 = DO9 = null;
-            DI10 = DO10 = null;
-            DI11 = DO11 = null;
-            DI12 = DO12 = null;
-            DI13 = DO13 = null;
-            DI14 = DO14 = null;
-            DI15 = DO15 = null;
-        }
-
-        private void PopulateSensorValues(InterfaceKitAnalogSensor interfaceKitAnalogSensor)
-        {
-
         }
 
         #endregion

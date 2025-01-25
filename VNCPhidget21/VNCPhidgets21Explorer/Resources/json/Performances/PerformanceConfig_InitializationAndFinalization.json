@@ -1,0 +1,37 @@
+{
+  // This contains the necessary sequences to begin and end shows.
+  // Shows should not appear in this file.  
+  // However, other performances should be able to count on 
+  // Begin the Show and Bring to Attention having been called.
+  //
+  "Name": "PerformanceConfig_InitializationAndFinalization",
+  "Description": "General Things for Beginning and Ending Performances",
+  "Performances": [
+    { 
+      "Name": "Begin the Show",
+      "Description": "Initialize servos and set Position Limits.  Does not Enage servos.",
+      "Loops": 1, "PlaySequencesInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Initialize Skulls" },
+        { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Initialize Skulls" },
+      ]
+    },
+    { 
+      "Name": "Bring to Attention",
+      "Description": "Engage and Center all servos",
+      "Loops": 1, "PlaySequencesInParallel": true,
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Wake up Skulls" },
+        { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Wake up Skulls" }
+      ]
+    },
+    { 
+      "Name": "Disengage All Servos and Close Phidgets",
+      "Description": "End the Show",
+      "PerformanceSequences": [
+        { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Sleep Skulls" },
+        { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Sleep Skulls" }
+      ]
+    },
+  ]
+}

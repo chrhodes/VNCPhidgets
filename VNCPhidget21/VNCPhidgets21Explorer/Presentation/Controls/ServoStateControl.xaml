@@ -33,11 +33,6 @@
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
      Height="75"
 >
-
-    <!-- TODO:(crhodes)
-        Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
-    <!-- <SolidColorBrush x:Key="AccelerationControlBackground" Color="#A0A0A0" /> -->
-    
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
     <!-- <d:DesignerProperties.DesignStyle> -->
@@ -69,34 +64,29 @@
         <!-- <localvm:AccelerationControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain"  View="GroupBox" Orientation="Horizontal" Header="ServoState" Padding="-5" >
+    <dxlc:LayoutGroup x:Name="lgMain" View="GroupBox"  Header="ServoState" Orientation="Horizontal"
+                      Padding="-5" >
         
-        <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >-->
-
-            <dxlc:LayoutItem Label="Engaged" LabelPosition="Top">
-                <dxe:CheckEdit IsChecked="{Binding Engaged}" HorizontalAlignment="Center"
+        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Width="80" >
+            
+            <dxlc:LayoutItem Label="Engaged" LabelPosition="Left" Margin="-2" >
+                <dxe:CheckEdit IsChecked="{Binding Engaged, Mode=TwoWay}" HorizontalAlignment="Center"
                             Background="{Binding Engaged, Mode=OneWay, 
-                    Converter={StaticResource RedGreenConverter}}"/>
+                                        Converter={StaticResource RedGreenConverter}}"/>
             </dxlc:LayoutItem>
 
-            <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Top">
-                <dxe:CheckEdit IsChecked="{Binding SpeedRamping}"
-                            Background="{Binding SpeedRamping, Mode=OneWay, 
-                    Converter={StaticResource RedGreenConverter}}"/>
-            </dxlc:LayoutItem>-->
-
-            <dxlc:LayoutItem Label="Stopped" LabelPosition="Top">
-                <dxe:CheckEdit IsChecked="{Binding Stopped}" HorizontalAlignment="Center"
+            <dxlc:LayoutItem Label="Stopped" LabelPosition="Left" Margin="-2" >
+                <dxe:CheckEdit IsChecked="{Binding Stopped, Mode=TwoWay}" HorizontalAlignment="Center"
                             Background="{Binding Stopped, Mode=OneWay, 
-                    Converter={StaticResource RedGreenConverter}}"/>
+                                        Converter={StaticResource RedGreenConverter}}"/>
             </dxlc:LayoutItem>
+            
+        </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="Current" LabelPosition="Top" HorizontalAlignment="Right" Width="50">
-                <dxe:TextEdit Text="{Binding Current, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-
-        <!--</dxlc:LayoutGroup>-->
-     
+        <dxlc:LayoutItem Label="Current" LabelPosition="Top" HorizontalAlignment="Right" Width="40">
+            <dxe:TextEdit Text="{Binding Current, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
+    
     </dxlc:LayoutGroup>
 
 </vncmvvm:ViewBase>

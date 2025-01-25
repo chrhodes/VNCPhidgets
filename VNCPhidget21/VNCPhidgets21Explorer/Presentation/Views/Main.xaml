@@ -1,6 +1,6 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCPhidgets21Explorer.Presentation.Views.Main"
-    x:Name="thisMain"
+    x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,6 +17,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
@@ -31,6 +33,8 @@
     Background="{StaticResource MainBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
  >
     <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="UserControl"> -->
@@ -106,8 +110,8 @@
         </StackPanel>
 
         <!-- This is useful for debugging V VM constructor issues -->
-
-        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <!--<StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal" Margin="5">
                 <Label Content="V:" />
                 <Label Content="{Binding ElementName=thisMain, Path=InstanceCountV}" />
@@ -116,7 +120,7 @@
                 <Label Content="VM:" />
                 <Label Content="{Binding InstanceCountVM}" />
             </StackPanel>
-        </StackPanel>
+        </StackPanel>-->
         
     </Grid>
     

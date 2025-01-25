@@ -1,15 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-using DevExpress.Xpf.Printing;
-
 //using Microsoft.AspNetCore.SignalR.Protocol;
 
-using static Phidgets.ServoServo;
 
 namespace VNCPhidgets21Explorer.Presentation.Converters
 {

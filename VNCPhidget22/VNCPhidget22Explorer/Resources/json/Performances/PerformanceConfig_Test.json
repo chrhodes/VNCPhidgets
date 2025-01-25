@@ -1,0 +1,83 @@
+{
+  "Name": "PerformanceConfig_Test",
+  "Description": "Testing",
+  "Performances": [
+    //
+    // Open/Close Servos 99415
+    //
+    {
+      "Name": "Open Servos 99415",
+      "Description": "",
+      "Loops": 1,
+      "PlaySequencesInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo0" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo1" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo2" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo3" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo4" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo5" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo6" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Open Servo7" },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Close Servos 99415",
+      "Description": "",
+      "Loops": 1,
+      "PlaySequencesInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo0" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo1" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo2" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo3" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo4" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo5" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo6" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Close Servo7" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Sequential Sequences 99415
+    //
+    {
+      "Name": "Sequential Sequences 99415",
+      "Description": "",
+      "Loops": 1,
+      "PlaySequencesInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Parallel Sequences 99415
+    //
+    {
+      "Name": "Parallel Sequences 99415",
+      "Description": "",
+      "Loops": 1,
+      "PlaySequencesInParallel": true,
+      "PerformanceSequences": [
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
+        { "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
+        //{ "SequenceType": "RCS", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
+      ],
+      "NextPerformance": null
+    },   
+  ]
+}

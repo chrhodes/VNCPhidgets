@@ -22,7 +22,7 @@
         <Setter Property="Background" Value="White" />
     </Style>
 
-    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
     <SolidColorBrush x:Key="CombinedMainBackground" Color="#00E0F0" />
     <SolidColorBrush x:Key="CombinedNavigationBackground" Color="#90FFFF" />
@@ -40,6 +40,7 @@
     <SolidColorBrush x:Key="ShellBackground" Color="#C0C0C0" />
     <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />    
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#8080F0" />    
 
     <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#F0F0F0" />
 

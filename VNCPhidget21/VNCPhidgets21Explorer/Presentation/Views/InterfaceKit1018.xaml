@@ -19,24 +19,31 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    
+    xmlns:phidget="clr-namespace:Phidgets;assembly=Phidget21.NET"
        
     xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
-    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"  
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
+    
+    xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
     
     xmlns:prism="http://prismlibrary.com/"
 
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Background="{StaticResource InterfaceKitBackground}"    
+    Background="{StaticResource InterfaceKitBackground}"  
  
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!--xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"-->
@@ -54,12 +61,10 @@
         <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
         <XmlDataProvider x:Key="InterfaceKitList" Source="/Resources/InterfaceKitList.xml" XPath="InterfaceKits/InterfaceKit" />
-        <!--<XmlDataProvider x:Key="SensorList" Source="SensorList.xml" XPath="Sensors/Sensor" />
-        <XmlDataProvider x:Key="HostList" Source="HostList.xml" XPath="Hosts/Host" />-->
+        <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
     </vncmvvm:ViewBase.Resources>
     
-    <!--<UserControl.Resources>-->
-        
+    <!--<UserControl.Resources>-->        
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
         <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToInterfaceKitWrapperConverter" /> -->
@@ -82,82 +87,53 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel Margin="5">
-        <!--<TextBlock Text="InterfaceKit" DockPanel.Dock="Top" />-->
-        <!-- Maybe put the Host Selection up here -->
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <views:HostSelector DockPanel.Dock="Top" />
+        <controls:HostSelector DockPanel.Dock="Top" />
         
-        <!-- This is useful for debugging V VM constructor issues -->
+        <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 
-        <DockPanel DockPanel.Dock="Bottom" >
-            
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5">
-                <Label Content="Message:" />
-                <Label Content="{Binding Message}" />
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-
-        </DockPanel>
-
-        <dxlc:LayoutControl Orientation="Vertical">
-
-            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" Padding="0"  >
+            <dxlc:LayoutGroup Name="lgInterfaceKits" Orientation="Vertical" VerticalAlignment="Top">
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
                     
-                    <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
-                        <dxe:ComboBoxEdit Width="150" 
-                                          ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
-                                          SelectedItem="{Binding SelectedInterfaceKit}"
-                                          SelectedIndex="0"/>
-                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                        
+                        <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
+                            <dxe:ComboBoxEdit Width="150" 
+                                     ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
+                                     SelectedItem="{Binding SelectedInterfaceKit}"
+                                     SelectedIndex="0"/>
+                        </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                        <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
-                                      Background="White" 
-                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
-                    </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
+                            <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
+                                 Background="White" 
+                                 Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        </dxlc:LayoutItem>
+                        
+                    </dxlc:LayoutGroup>     
                     
                     <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
                         <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
                                       Background="White"                                       
                                       Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
-                    
+
                     <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
                         <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True"
                                       Background="White"                                       
                                       Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Log Phidget Events" HorizontalAlignment="Right" >
-                        
-                        <!-- TODO(crhodes)
-                         Figure out how to bind to SelectedInterfaceKit is not null
-                        -->
-                        <dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"/>
-                        <!--<dxe:CheckEdit IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
-                                       IsEnabled="{Binding SelectedInterfaceKit.Enable}"/>-->
-
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                         <Button 
 		                    Command="{Binding OpenInterfaceKitCommand }"
 		                    Content="{Binding OpenInterfaceKitContent, FallbackValue='OpenIK' }"
 		                    ToolTip="{Binding OpenInterfaceKitToolTip, FallbackValue='OpenIK ToolTip' }" />
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                         <Button 
                 		    Command="{Binding CloseInterfaceKitCommand }"
                 		    Content="{Binding CloseInterfaceKitContent, FallbackValue='CloseIK' }"
@@ -166,24 +142,31 @@
                     
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Name="lgPhidgetStatus" Header="PhidgetDevice Status" Orientation="Vertical" View="GroupBox" 
-                                  IsCollapsible="True" IsCollapsed="True"  >
+                <dxlc:LayoutGroup Name="lgPhidgetStatus" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
+                                  IsCollapsible="True" IsCollapsed="False"  >
 
-                    <controls:PhidgetDevice x:Name="Phidget1" Margin="-10,-10,-10,0" 
+                    <controls:PhidgetDevice x:Name="Phidget1" Margin="-5" 
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" 
+                                  VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  Margin="-5,0,-5,0"
+                                  Padding="5,0,0,0"
+                                  Background="{StaticResource PhidgetBackground}">
 
                         <dxe:CheckEdit
                             Content="Log InputChange Events"
-                            IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
+                            IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}"
+                            HorizontalAlignment="Left"/>
                         <dxe:CheckEdit
                             Content="Log OutputChange Events"
-                            IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
+                            IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" 
+                            HorizontalAlignment="Left"/>
                         <dxe:CheckEdit
                             Content="Log SensorChange Events"
-                            IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
+                            IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}"
+                            HorizontalAlignment="Left"/>
                         
                     </dxlc:LayoutGroup>
 

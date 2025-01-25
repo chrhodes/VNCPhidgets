@@ -1,12 +1,14 @@
 ﻿<vncmvvm:ViewBase
     x:Class="VNCPhidgets21Explorer.Presentation.Views.AppVersionInfo"
-    x:Name="thisAppVersionInfo"
+    x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"    
    
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
     
@@ -18,7 +20,9 @@
 
     Background="{StaticResource AppVersionInfoBackground}"
     
-    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    d:DesignStyle="{StaticResource vncDesignStyleUC}"
+    
+    SizeChanged="thisControl_SizeChanged"
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
 

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets21Explorer", "VN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidgets21Explorer.Core", "VNCPhidgets21Explorer.Core\VNCPhidgets21Explorer.Core.csproj", "{9E675398-06FA-4ABD-A7A4-B377F4F1C1A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget", "..\VNC.Phidget\VNC.Phidget.csproj", "{7E565559-41E9-4D7E-A07C-F7BB31C2545F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.Phidget21", "VNC.Phidget21\VNC.Phidget21.csproj", "{7E565559-41E9-4D7E-A07C-F7BB31C2545F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNCPhidget21.Configuration", "VNCPhidget21.Configuration\VNCPhidget21.Configuration.csproj", "{95A3C694-B058-43DD-9253-2D04253749F2}"
 EndProject

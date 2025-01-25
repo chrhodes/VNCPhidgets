@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -13,13 +15,14 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         
         public AdvancedServo1061()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
-            
-			// Expose ViewModel
-						
+
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IAdvancedServo1061ViewModel)DataContext;
@@ -27,33 +30,44 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Can create directly
             // ViewModel = AdvancedServo1061ViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         public AdvancedServo1061(IAdvancedServo1061ViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            ViewModel = viewModel;
-            
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+
             InitializeView();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         private void InitializeView()
         {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
             this.lgPhidgetStatus.IsCollapsed = true;
 
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
+            Phidget1.DataContext = ViewModel;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -68,13 +82,12 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Fields and Properties (none)
 
-        //public Phidgets.ServoServo.ServoType ServoTypeEnum;
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Event Handlers (none)
 
 
         #endregion

@@ -10,18 +10,18 @@ namespace VNCPhidget21.Configuration
         public string Name { get; set; } = "PERFORMANCE NAME";
 
         /// <summary>
-        /// Description of Sequence
+        /// Description of Performance
         /// </summary>
         public string? Description { get; set; }
 
         /// <summary>
-        /// Name of Performance[] to call before executing PerformanceSequences[]
-        /// before calling NextSequence
+        /// Performance[] to call before executing PerformanceSequences[] and/or Performances[]
+        /// before calling NextPerformance
         /// </summary>
         public Performance[]? BeforePerformanceLoopPerformances { get; set; }
 
         /// <summary>
-        /// Number of loops of PerformanceSequences[]
+        /// Number of loops of PerformanceSequences[] and/or Performances[]
         /// </summary>
         public Int32 PerformanceLoops { get; set; } = 1;
 
@@ -33,18 +33,25 @@ namespace VNCPhidget21.Configuration
         public PerformanceSequence[]? PerformanceSequences { get; set; }
 
         /// <summary>
-        /// Duration in ms of sleep time after PerformanceSequences[] completed)
+        /// Play Performances in Parallel or Sequential (false)
+        /// </summary>
+        public Boolean PlayPerformancesInParallel { get; set; } = false;
+
+        public Performance[]? Performances { get; set; }
+
+        /// <summary>
+        /// Duration in ms of sleep time after PerformanceSequences[] or Performances[] completed
         /// </summary>
         public Int32? Duration { get; set; }
 
         /// <summary>
-        /// Name of Performance[] to call after executing PerformanceSequences[]
+        /// Performance[] to call after executing PerformanceSequences[]
         /// before calling NextSequence
         /// </summary>
         public Performance[]? AfterPerformanceLoopPerformances { get; set; }
 
         /// <summary>
-        /// Performance to invoke at end of Loops of PerformanceSequences (optional)
+        /// Performance to invoke at end of Loops of PerformanceSequences or Performances
         /// none or null to stop
         /// </summary>
         public Performance? NextPerformance { get; set; }

@@ -2,6 +2,7 @@
 using System.Windows;
 
 using VNC;
+using VNC.Core;
 using VNC.Core.Mvvm;
 
 namespace VNCPhidgets21Explorer.Presentation.ViewModels
@@ -13,25 +14,31 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
 
         public RibbonShellViewModel()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountVM++;
 
             InitializeViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
         {
-            Int64 startTicks = Log.VIEWMODEL("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            InstanceCountVM++;
+            // NOTE(crhodes)
+            // Put things here that initialize the ViewModel
+            // Initialize EventHandlers, Commands, etc.
 
             DeveloperUIMode = Common.DeveloperUIMode;
 
-            // TODO(crhodes)
-            //
+            InformationApplication = Common.InformationApplication;
+            InformationVNCCore = Common.InformationVNCCore;
 
-            Log.VIEWMODEL("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ViewLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -62,6 +69,19 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
             }
         }
 
+        private System.Windows.Size _windowSize;
+        public System.Windows.Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Visibility _developerUIMode = Visibility.Visible;
         public Visibility DeveloperUIMode
         {
@@ -74,6 +94,9 @@ namespace VNCPhidgets21Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public Information InformationApplication { get; set; }
+        public Information InformationVNCCore { get; set; }
 
         #endregion
 

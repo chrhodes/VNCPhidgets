@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Phidget22.Phidget">
+    <Position X="1.25" Y="11.75" Width="4.75" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Phidget22.Phidget.LogLevel" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+      <Enum Name="Phidget22.Phidget.PhidgetClass" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+      <Enum Name="Phidget22.Phidget.PhidgetID" Collapsed="true">
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.AdvancedServoServo">
+    <Position X="5.25" Y="2.5" Width="7.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.AdvancedServo">
+    <Position X="0.5" Y="2.5" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.InterfaceKit">
+    <Position X="4.5" Y="7.25" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.InterfaceKitAnalogSensor">
+    <Position X="9.25" Y="11.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.InterfaceKitAnalogSensorCollection">
+    <Position X="8" Y="10.25" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.InterfaceKitDigitalInputCollection">
+    <Position X="8" Y="7.25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.InterfaceKitDigitalOutputCollection">
+    <Position X="8" Y="8.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.Stepper">
+    <Position X="7.25" Y="15.75" Width="3.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.StepperStepper">
+    <Position X="9" Y="19.25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

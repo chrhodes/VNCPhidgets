@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VNCPhidget22Explorer.Presentation.ViewModels.ServoProperties">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="VNCPhidget22Explorer.Presentation.ViewModels.ServoProperties.CenterAndInitialize" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Presentation\ViewModels\ServoProperties.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>oAFAJUKAqJIgQAAgAACBAQAAAAAiNAJKAKAGhWCEBSA=</HashCode>
+      <FileName>Presentation\ViewModels\ServoProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

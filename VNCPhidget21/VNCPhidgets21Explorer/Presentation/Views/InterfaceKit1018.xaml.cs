@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
@@ -13,7 +15,8 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         
         public InterfaceKit1018()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
@@ -27,76 +30,113 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             // Can create directly
             // ViewModel = InterfaceKitViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         public InterfaceKit1018(IInterfaceKitViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            ViewModel = viewModel;
-            
+            ViewModel = viewModel;   // ViewBase sets the DataContext to ViewModel
+
             InitializeView();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
         
         private void InitializeView()
         {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
             this.lgPhidgetStatus.IsCollapsed = true;
 
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
+            Phidget1.DataContext = ViewModel;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
-        #endregion
-
-        #region Enums (None)
-
 
         #endregion
 
-        #region Structures (None)
+        #region Enums (none)
 
 
         #endregion
 
-        #region Fields and Properties (None)
+        #region Structures (none)
 
 
         #endregion
 
-        #region Event Handlers (None)
+        #region Fields and Properties (none)
+
+        //private System.Windows.Size _windowSize;
+        //public System.Windows.Size WindowSize
+        //{
+        //    get => _windowSize;
+        //    set
+        //    {
+        //        if (_windowSize == value)
+        //            return;
+        //        _windowSize = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        #endregion
+
+        #region Event Handlers
+
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+#if LOGGING
+            Int64 startTicks = 0;
+            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+#endif
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            WindowSize = newSize;
+
+#if LOGGING
+            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+#endif
+        }
+
+        #endregion
+
+        #region Commands (none)
+
+        #endregion
+
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Commands (None)
-         
-        #endregion
-
-        #region Public Methods (None)
+        #region Protected Methods (none)
 
 
         #endregion
 
-        #region Protected Methods (None)
+        #region Private Methods (none)
 
 
         #endregion
 
-        #region Private Methods (None)
-
-
-        #endregion   
-        
         #region IInstanceCount
 
         private static int _instanceCountV;

@@ -1,0 +1,38 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VoltageRatio_Example.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="calibrationURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.phidgets.com/docs/Calibrating_Load_Cells</Value>
+    </Setting>
+    <Setting Name="title0" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Step 1 - Zero Load</Value>
+    </Setting>
+    <Setting Name="title1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Step 2a - Rated Output</Value>
+    </Setting>
+    <Setting Name="state0" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1. Remove all external weight from the system.
+
+2. Wait until the measurement is stable and press "Continue".</Value>
+    </Setting>
+    <Setting Name="state1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1. If you have a calibration sheet for your load cell(s), enter the rated output and the load cell capacity below.  Then press "Calibrate".
+
+2. If you do not have a calibration sheet for your load cell(s), press "Skip".</Value>
+    </Setting>
+    <Setting Name="state2" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1. Apply a known weight to the system.  This should be as close to the maximum rating for the system as possible.
+
+2. Enter the weight into the input box below.
+
+3. Wait until the measurement is stable and press "Calibrate".</Value>
+    </Setting>
+    <Setting Name="title2" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Step 2b - Non-Zero Load</Value>
+    </Setting>
+    <Setting Name="ratedOutputURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.phidgets.com/docs/Calibrating_Load_Cells#Step_2a:_Enter_the_Rated_Output</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -6,12 +6,11 @@
         {
             new StepperSequence
             {
-                SerialNumber = 46049,
                 Name="SequenceStepper 1",
 
                 Actions = new[]
                 {
-                    new StepperAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true }
+                    new StepperAction { StepperIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true }
                 }
             } 
         };

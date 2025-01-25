@@ -8,6 +8,11 @@ using VNC;
 
 namespace VNCPhidget21.Configuration
 {
+    /// <summary>
+    /// Maintains Library of Hosts, Performances,
+    /// and {AdvancedServo,InterfaceKit,Stepper}Sequences
+    /// which are loaded from json config files
+    /// </summary>
     public class PerformanceLibrary
     {
         #region Constructors, Initialization, and Load
@@ -17,16 +22,18 @@ namespace VNCPhidget21.Configuration
 
         public PerformanceLibrary()
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
-            LoadHostConfig();
+            LoadHostsConfig();
 
             LoadPerformances();
+
             LoadAdvancedServoSequences();
             LoadInterfaceKitSequences();
             LoadStepperSequences();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -43,16 +50,10 @@ namespace VNCPhidget21.Configuration
 
         #region Fields and Properties
 
-        //public bool LogPerformance { get; set; }
-
-        //public PerformanceSequencePlayer PerformanceSequencePlayer { get; set; }
-
         public static List<Host> Hosts {  get; private set; } = new List<Host>();
 
         public static Dictionary<string, Performance> AvailablePerformances { get; set; } =
             new Dictionary<string, Performance>();
-
-        //public IEnumerable<Performance> Performances { get; set; }
 
         public static Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
             new Dictionary<string, AdvancedServoSequence>();
@@ -72,117 +73,188 @@ namespace VNCPhidget21.Configuration
 
         #region Commands (None)
 
+
         #endregion
 
         #region Public Methods
 
-        public void LoadHostConfig()
+        public void LoadHostsConfig()
         {
-            string HostConfigFileName = "hostconfig.json";
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            Int64 startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
+            string configFile = "hostconfig.json";
 
-            string jsonString = File.ReadAllText(HostConfigFileName);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
-            HostConfig? hostConfig
-                = JsonSerializer.Deserialize<HostConfig>
-                (jsonString, GetJsonSerializerOptions());
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
 
-            Hosts = hostConfig.Hosts.ToList();
+                HostConfig? hostConfig
+                    = JsonSerializer.Deserialize<HostConfig>
+                    (jsonString, GetJsonSerializerOptions());
 
-            Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+                Hosts = hostConfig.Hosts.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadPerformances()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailablePerformances.Clear();
 
             foreach (string configFile in GetListOfPerformanceConfigFiles())
             {
-                string jsonString = File.ReadAllText(configFile);
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
-                PerformanceConfig? performanceConfig
-                    = JsonSerializer.Deserialize<PerformanceConfig>
-                    (jsonString, GetJsonSerializerOptions());
-
-                foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
+                try
                 {
-                    AvailablePerformances.Add(performance.Key, performance.Value);
+                    string jsonString = File.ReadAllText(configFile);
+
+                    PerformanceConfig? performanceConfig
+                        = JsonSerializer.Deserialize<PerformanceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailablePerformances.Add(performance.Key, performance.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 
         public void LoadAdvancedServoSequences()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableAdvancedServoSequences.Clear();
 
             foreach (string configFile in GetListOfAdvancedServoConfigFiles())
             {
-                string jsonString = File.ReadAllText(configFile);
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
-                AdvancedServoSequenceConfig? sequenceConfig
-                    = JsonSerializer.Deserialize<AdvancedServoSequenceConfig>
-                    (jsonString, GetJsonSerializerOptions());
-
-                foreach (var sequence in sequenceConfig.AdvancedServoSequences.ToDictionary(k => k.Name, v => v))
+                try
                 {
-                    AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
+                    string jsonString = File.ReadAllText(configFile);
+
+                    AdvancedServoSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<AdvancedServoSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.AdvancedServoSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
         public void LoadInterfaceKitSequences()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableInterfaceKitSequences.Clear();
-
+  
             foreach (string configFile in GetListOfInterfaceKitConfigFiles())
             {
-                string jsonString = File.ReadAllText(configFile);
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
-                InterfaceKitSequenceConfig? sequenceConfig
-                    = JsonSerializer.Deserialize<InterfaceKitSequenceConfig>
-                    (jsonString, GetJsonSerializerOptions());
-
-                foreach (var sequence in sequenceConfig.InterfaceKitSequences.ToDictionary(k => k.Name, v => v))
+                try
                 {
-                    AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
+                    string jsonString = File.ReadAllText(configFile);
+
+                    InterfaceKitSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<InterfaceKitSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.InterfaceKitSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfInterfaceKitConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadStepperSequences()
         {
-            Int64 startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableStepperSequences.Clear();
 
             foreach (string configFile in GetListOfStepperConfigFiles())
             {
-                string jsonString = File.ReadAllText(configFile);
+                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
-                StepperSequenceConfig? sequenceConfig
-                    = JsonSerializer.Deserialize<StepperSequenceConfig>
-                    (jsonString, GetJsonSerializerOptions());
-
-                foreach (var sequence in sequenceConfig.StepperSequences.ToDictionary(k => k.Name, v => v))
+                try
                 {
-                    AvailableStepperSequences.Add(sequence.Key, sequence.Value);
+                    string jsonString = File.ReadAllText(configFile);
+
+                    StepperSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<StepperSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.StepperSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        AvailableStepperSequences.Add(sequence.Key, sequence.Value);
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
                 }
             }
 
-            Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -196,16 +268,21 @@ namespace VNCPhidget21.Configuration
 
         private IEnumerable<string> GetListOfPerformanceConfigFiles()
         {
-            // TODO(crhodes)
+            // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
 
             List<string> files = new List<string>
             {
-                @"Performances\PerformanceConfig_1.json",
-                @"Performances\PerformanceConfig_2.json",
-                @"Performances\PerformanceConfig_3.json",
+                @"Performances\PerformanceConfig_InitializationAndFinalization.json",
 
-                @"Performances\PerformanceConfig_Skulls.json",
+                @"Performances\PerformanceConfig_Skulls_1.json",
+                @"Performances\PerformanceConfig_Skulls_2.json",
+                @"Performances\PerformanceConfig_Skulls_3.json",
+
+                //@"Performances\PerformanceConfig_2.json",
+                //@"Performances\PerformanceConfig_3.json",
             };
 
             return files;
@@ -213,17 +290,25 @@ namespace VNCPhidget21.Configuration
 
         private IEnumerable<string> GetListOfAdvancedServoConfigFiles()
         {
-            // TODO(crhodes)
+            // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
 
             List<string> files = new List<string>
             {
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
+                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
+
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
+                //// These may go away after stuff moves to Initialization
+                ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
+                ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
+
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
             };
 
             return files;
@@ -231,8 +316,10 @@ namespace VNCPhidget21.Configuration
 
         private IEnumerable<string> GetListOfInterfaceKitConfigFiles()
         {
-            // TODO(crhodes)
+            // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
 
             List<string> files = new List<string>
             {
@@ -248,12 +335,13 @@ namespace VNCPhidget21.Configuration
 
         private IEnumerable<string> GetListOfStepperConfigFiles()
         {
-            // TODO(crhodes)
+            // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
 
             List<string> files = new List<string>
             {
-                @"localhost\localhost_StepperSequenceConfig_1.json",
+                @"StepperSequences\StepperSequenceConfig_1.json",
             };
 
             return files;

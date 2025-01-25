@@ -1,35 +1,70 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 
 using DevExpress.Xpf.Bars;
-using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Grid;
-using DevExpress.Xpf.Ribbon;
-
 
 using VNC;
 using VNC.Core.Mvvm;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class Ribbon : VNC.Core.Mvvm.ViewBase, IRibbon, IInstanceCountV
+    public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
     {
 
         public Ribbon(ViewModels.IRibbonViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            ViewModel = viewModel;
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+            
+            spDeveloperInfo.DataContext = this;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #region Fields and Properties
+
+        
+        public bool IsAdvancedMode
+        {
+            get => _isAdvancedMode;
+            set
+            {
+                if (_isAdvancedMode == value)
+                    return;
+                _isAdvancedMode = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        #endregion
 
         #region IInstanceCount
 
+        private bool _isAdvancedMode;
         private static int _instanceCountV;
 
         public int InstanceCountV
@@ -541,7 +576,7 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             //    }
         }
 
-        private void ShowUserControl(UserControl control)
+        private void ShowUserControl(System.Windows.Controls.UserControl control)
         {
             ////UnhookTitleEvent(_currentControl);
             //splashScreenGrid.Children.Clear();

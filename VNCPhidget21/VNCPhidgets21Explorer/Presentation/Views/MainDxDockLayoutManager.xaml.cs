@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 
 using VNC;
@@ -11,29 +12,59 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 {
     public partial class MainDxDockLayoutManager : ViewBase, IMain, IInstanceCountV
     {
-        public MainDxDockLayoutManagerViewModel _viewModel;
+        //public MainDxDockLayoutManagerViewModel _viewModel;
 
         public MainDxDockLayoutManager(MainDxDockLayoutManagerViewModel viewModel)
         {
-            Int64 startTicks = Log.Trace(String.Format("Enter"), Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
             InitializeComponent();
 
-            _viewModel = viewModel;
-            DataContext = _viewModel;
+            ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+            //DataContext = _viewModel;
 
-            Log.Trace(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void SaveLayout_Click(object sender, RoutedEventArgs e)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SaveLayout_Click) Enter", Common.LOG_CATEGORY);
+
             dlm.SaveLayoutToXml(Common.cCONFIG_FILE);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SaveLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void RestoreLayout_Click(object sender, RoutedEventArgs e)
         {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RestoreLayout_Click) Enter", Common.LOG_CATEGORY);
+
             dlm.RestoreLayoutFromXml(Common.cCONFIG_FILE);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RestoreLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #region IInstanceCount

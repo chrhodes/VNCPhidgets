@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Phidgets.Accelerometer" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AccelerometerAxis" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AccelerometerAxisCollection" Collapsed="true">
+    <Position X="0.5" Y="2" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AdvancedServo" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AdvancedServoServo" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AdvancedServoServoCollection" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Analog" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AnalogOutput" Collapsed="true">
+    <Position X="3.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.AnalogOutputCollection" Collapsed="true">
+    <Position X="3.25" Y="2" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Bridge" Collapsed="true">
+    <Position X="3.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.BridgeInput" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.BridgeInputCollection" Collapsed="true">
+    <Position X="3.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Dictionary" Collapsed="true">
+    <Position X="3.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Encoder" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.EncoderDigitalInputCollection" Collapsed="true">
+    <Position X="5.5" Y="1.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.EncoderEncoderCollection" Collapsed="true">
+    <Position X="5.5" Y="2" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.EncoderEncoderWithEnable" Collapsed="true">
+    <Position X="5.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.EncoderEncoderWithEnableCollection" Collapsed="true">
+    <Position X="5.5" Y="3.5" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.FrequencyCounter" Collapsed="true">
+    <Position X="5.5" Y="4.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.FrequencyCounterInput" Collapsed="true">
+    <Position X="5.5" Y="5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.FrequencyCounterInputCollection" Collapsed="true">
+    <Position X="5.5" Y="5.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.GPS" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.InterfaceKit" Collapsed="true">
+    <Position X="8.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.InterfaceKitAnalogSensor" Collapsed="true">
+    <Position X="8.75" Y="2" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.InterfaceKitAnalogSensorCollection" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.InterfaceKitDigitalInputCollection" Collapsed="true">
+    <Position X="8.75" Y="3.25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.InterfaceKitDigitalOutputCollection" Collapsed="true">
+    <Position X="8.75" Y="4" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.IR" Collapsed="true">
+    <Position X="8.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.IRCode" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.IRCodeInfo" Collapsed="true">
+    <Position X="8.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.IRLearnedCode" Collapsed="true">
+    <Position X="8.75" Y="7" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.KeyListener" Collapsed="true">
+    <Position X="9.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.LED" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.LEDLEDCollection" Collapsed="true">
+    <Position X="12.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Manager" Collapsed="true">
+    <Position X="12.25" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControl" Collapsed="true">
+    <Position X="12.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlAnalogSensor" Collapsed="true">
+    <Position X="12.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlAnalogSensorCollection" Collapsed="true">
+    <Position X="12.25" Y="4.25" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlDigitalInputCollection" Collapsed="true">
+    <Position X="12.25" Y="5" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlEncoder" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlEncoderCollection" Collapsed="true">
+    <Position X="12.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlMotor" Collapsed="true">
+    <Position X="12.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.MotorControlMotorCollection" Collapsed="true">
+    <Position X="12.25" Y="8.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Phidget" Collapsed="true">
+    <Position X="13.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.PhidgetCollection" Collapsed="true">
+    <Position X="15.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.PhidgetException" Collapsed="true">
+    <Position X="17" Y="13.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.PHSensor" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.PHSensorSensor" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.RFID" Collapsed="true">
+    <Position X="15.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.RFIDDigitalOutputCollection" Collapsed="true">
+    <Position X="15.5" Y="3.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Servo" Collapsed="true">
+    <Position X="15.5" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.ServoServo" Collapsed="true">
+    <Position X="15.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.ServoServoCollection" Collapsed="true">
+    <Position X="15.75" Y="5.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Spatial" Collapsed="true">
+    <Position X="15.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialAccelerometerAxis" Collapsed="true">
+    <Position X="15.75" Y="7" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialAccelerometerAxisCollection" Collapsed="true">
+    <Position X="15.75" Y="7.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialCompassAxis" Collapsed="true">
+    <Position X="15.75" Y="8.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialCompassAxisCollection" Collapsed="true">
+    <Position X="15.75" Y="9.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialEventData" Collapsed="true">
+    <Position X="15.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialGyroAxis" Collapsed="true">
+    <Position X="15.75" Y="11" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.SpatialGyroAxisCollection" Collapsed="true">
+    <Position X="15.75" Y="11.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.Stepper" Collapsed="true">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.StepperDigitalInputCollection" Collapsed="true">
+    <Position X="19" Y="1.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.StepperStepper" Collapsed="true">
+    <Position X="19" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.StepperStepperCollection" Collapsed="true">
+    <Position X="19" Y="2.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TemperatureSensor" Collapsed="true">
+    <Position X="19" Y="3.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TemperatureSensorAmbientSensor" Collapsed="true">
+    <Position X="19" Y="4.25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TemperatureSensorSensor" Collapsed="true">
+    <Position X="19" Y="5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TemperatureSensorSensorCollection" Collapsed="true">
+    <Position X="19" Y="5.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCD" Collapsed="true">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDColumnCollection" Collapsed="true">
+    <Position X="23" Y="1.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDCustomCharacter" Collapsed="true">
+    <Position X="23" Y="2" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDCustomCharacterCollection" Collapsed="true">
+    <Position X="23.25" Y="2.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDRow" Collapsed="true">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDRowCollection" Collapsed="true">
+    <Position X="23.25" Y="4.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDScreen" Collapsed="true">
+    <Position X="23.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLCDScreenCollection" Collapsed="true">
+    <Position X="23.25" Y="5.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLED" Collapsed="true">
+    <Position X="23.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLEDRow" Collapsed="true">
+    <Position X="23.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.TextLEDRowCollection" Collapsed="true">
+    <Position X="23.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.WeightSensor" Collapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidgets.WeightSensorSensor" Collapsed="true">
+    <Position X="26.25" Y="1.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

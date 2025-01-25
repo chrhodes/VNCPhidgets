@@ -13,7 +13,7 @@ namespace VNCPhidget21.Configuration
         /// Phidget on which to run sequence (optional)
         /// Use current Phidget if null
         /// </summary>
-        public Int32? SerialNumber { get; set; }
+        //public Int32? SerialNumber { get; set; }
 
         /// <summary>
         /// Name of sequence

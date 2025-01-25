@@ -13,7 +13,7 @@
   "Debug04": true,
   "ApplicationStart": true,
   "ApplicationEnd": true,
-  "ApplicationInitialize": true,
+  "ApplicationInitialize": false,
   "Application": true,
   "ApplicationServices": true,
   "Domain": true,
@@ -33,5 +33,5 @@
   "ViewModel": true,
   "ViewModelLow": true,
 
-  "INPC": false
+  "INPC": true
 }

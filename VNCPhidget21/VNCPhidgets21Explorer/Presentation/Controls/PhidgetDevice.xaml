@@ -20,7 +20,7 @@
     Background="{StaticResource PhidgetBackground}"
 
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
-    Height="115"
+    Height="150"
 >
 <!-- NOTE(crhodes)
     Have to set the Height manually above to get the control to behave when embedded in another Xaml file.
@@ -66,9 +66,11 @@
     <!-- </UserControl.DataContext> -->
 
     <!-- Simple Layout using Grid -->
-    <dxlc:LayoutControl Orientation="Vertical">
+    <!--<dxlc:LayoutControl Orientation="Vertical" Padding="2">-->
 
-        <dxlc:LayoutGroup x:Name="lgPhidgetDevice" Orientation="Vertical" View="Group">
+    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+      
+        <dxlc:LayoutGroup x:Name="lgPhidgetDevice" Orientation="Vertical" View="Group" Padding="5">
             <!--<dxlc:LayoutGroup.GroupBoxStyle>
                        <Style TargetType="dxlc:GroupBox">
                            <Setter Property="Background" Value="Transparent" />
@@ -98,6 +100,43 @@
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
                 </dxlc:LayoutItem>
 
+                <dxlc:LayoutItem Label="Attached" HorizontalAlignment="Left">
+                    <dxe:TextEdit EditValue="{Binding DeviceAttached, Mode=OneWay}" IsReadOnly="True"
+                                   Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="AttachedToServer" HorizontalAlignment="Left">
+                    <dxe:TextEdit EditValue="{Binding DeviceAttachedToServer, Mode=OneWay}" IsReadOnly="True"
+                                   Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                <dxlc:LayoutItem Label="Name">
+                    <dxe:TextEdit EditValue="{Binding DeviceName, Mode=TwoWay}" IsReadOnly="True"
+                              Background="White"
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Type">
+                    <dxe:TextEdit EditValue="{Binding DeviceType, Mode=OneWay}" IsReadOnly="True"
+                                     Background="White"
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Class">
+                    <dxe:TextEdit EditValue="{Binding DeviceClass, Mode=OneWay}" IsReadOnly="True"
+                                     Background="White"
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
                 <dxlc:LayoutItem Label="ID" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceID, Mode=OneWay}" IsReadOnly="True"
                               Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
@@ -115,16 +154,6 @@
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
                 </dxlc:LayoutItem>
                 
-                <dxlc:LayoutItem Label="Attached" HorizontalAlignment="Right">
-                    <dxe:TextEdit EditValue="{Binding DeviceAttached, Mode=OneWay}" IsReadOnly="True"
-                                     Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="AttachedToServer" HorizontalAlignment="Right">
-                    <dxe:TextEdit EditValue="{Binding DeviceAttachedToServer, Mode=OneWay}" IsReadOnly="True"
-                                     Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
-                </dxlc:LayoutItem>
-
             </dxlc:LayoutGroup>
 
             <!--<dxlc:LayoutItem Label="ServerID">
@@ -133,36 +162,31 @@
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>-->
 
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-
-                <dxlc:LayoutItem Label="Name">
-                    <dxe:TextEdit EditValue="{Binding DeviceName, Mode=TwoWay}" IsReadOnly="True"
-                              Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
-                </dxlc:LayoutItem>
-                
-                <dxlc:LayoutItem Label="Type">
-                    <dxe:TextEdit EditValue="{Binding DeviceType, Mode=OneWay}" IsReadOnly="True"
-                                     Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="Class">
-                    <dxe:TextEdit EditValue="{Binding DeviceClass, Mode=OneWay}" IsReadOnly="True"
-                                     Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
-                </dxlc:LayoutItem>
-
-            </dxlc:LayoutGroup>
 
             <dxlc:LayoutItem Label="LibraryVersion">
                 <dxe:TextEdit EditValue="{Binding DeviceLibraryVersion, Mode=OneWay}" IsReadOnly="True"
-                                     Background="White"
+                              Background="White" MinHeight="40"
                               Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
             </dxlc:LayoutItem>
 
+            <!-- All Phidgets have general events, see PhidgetEx -->
+
         </dxlc:LayoutGroup>
+
+        <!-- This should use the DataContext of the ViewModel -->
         
-    </dxlc:LayoutControl>
+        <dxlc:LayoutGroup x:Name="lgLogging" View="Group" Orientation="Horizontal" Padding="5,-5,5,-5">
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <dxe:CheckEdit Content="Log Phidget Events" IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <dxe:CheckEdit Content="Log Sequence Actions" IsChecked="{Binding LogSequenceAction, Mode=TwoWay}" />
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+
+    </dxlc:LayoutGroup>
+
+    <!--</dxlc:LayoutControl>-->
     
 </vncmvvm:ViewBase>

@@ -17,7 +17,8 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
-
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"  
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
@@ -32,6 +33,8 @@
     Background="{StaticResource MainBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+    
+    SizeChanged="thisControl_SizeChanged"
  >
     <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="UserControl"> -->
@@ -46,36 +49,63 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="75" />
-            <RowDefinition Height="320" />
-            <!--<RowDefinition Height="100" />
-            <RowDefinition Height="100" />-->
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <DockPanel Margin="5">
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+                    Visibility="{Binding DeveloperUIMode,
+                                RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
+            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-        <TextBlock Text="{Binding Message}"
-                   HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="24" />
+            <!-- This is useful for debugging V VM constructor issues --><!--
 
-        <views:HostSelector Grid.Row="1" />
+            <StackPanel Orientation="Horizontal">
 
-        <Grid Grid.Row="2" >
-            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0" >
+                    <Label Content="-V:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
+                    <Label Content="-VP:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
+                <Label Content=" -VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
+
+        </StackPanel>-->
+        
+        <TextBlock DockPanel.Dock="Top"
+            Text="{Binding Message}"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            FontSize="24" />
+       
+        <!--<controls:HostSelector DockPanel.Dock="Top" />-->
+
+        <dxlc:LayoutGroup Orientation="Vertical">
+
+            <dxlc:LayoutGroup View="GroupBox" Header="Party" Orientation="Vertical" VerticalAlignment="Top"
+                              IsCollapsible="True" IsCollapsed="True">
                 <Button Content="Party" Command="{Binding Button1Command}" Width="400" Margin="5" />
                 <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
-                    <Button Content="OpenPhidgetManager" Command="{Binding Button2Command}" Width="200" Margin="2" />
-                    <Button Content="Button3" Command="{Binding Button3Command}" Width="200"  Margin="2"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"></StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Button Content="Send AdvancedServo Event" Command="{Binding Button4Command}" Width="200" Margin="2" />
-                    <Button Content="Send InterfaceKit Event" Command="{Binding Button5Command}" Width="200"  Margin="2"/>
-                </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="OpenPhidgetManager" Command="{Binding Button2Command}" Width="200" Margin="2" />
+                        <Button Content="Button3" Command="{Binding Button3Command}" Width="200"  Margin="2"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="Send AdvancedServo Event" Command="{Binding Button4Command}" Width="200" Margin="2" />
+                        <Button Content="Send InterfaceKit Event" Command="{Binding Button5Command}" Width="200"  Margin="2"/>
+                    </StackPanel>
                 </StackPanel>
                 <dxlc:LayoutItem HorizontalAlignment="Right"
                     Label="Repeats"
@@ -85,107 +115,74 @@
                         Value="{Binding Repeats, Mode=TwoWay}"
                         MinValue="1" />
                 </dxlc:LayoutItem>
-                
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Horizontal" 
-                          IsCollapsible="True" IsCollapsed="False" Height="60" Padding="-5">
+            </dxlc:LayoutGroup>
 
-                        <dxe:CheckEdit Content="Log Performance" 
-                                       IsChecked="{Binding LogPerformance}" HorizontalAlignment="Left" />
+            <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Vertical"
+                        IsCollapsible="True" IsCollapsed="False" Padding="-5">
 
-                        <dxe:CheckEdit Content="Log Performance Sequence" 
-                                       IsChecked="{Binding LogPerformanceSequence}" HorizontalAlignment="Left" />
-  
-                        <dxe:CheckEdit Content="Log Sequence Action" 
-                                       IsChecked="{Binding LogSequenceAction}" HorizontalAlignment="Right"/>
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top" >
+                    <dxe:CheckEdit Content="Log Performance" 
+                                        IsChecked="{Binding LogPerformance}" HorizontalAlignment="Left" />
 
-                        <dxe:CheckEdit Content="Log Action Verification" 
-                                       IsChecked="{Binding LogActionVerification}" HorizontalAlignment="Right"/>
+                    <dxe:CheckEdit Content="Log Performance Sequence" 
+                                        IsChecked="{Binding LogPerformanceSequence}" HorizontalAlignment="Left" />
 
-                    </dxlc:LayoutGroup>
+                    <dxe:CheckEdit Content="Log Sequence Action" 
+                                        IsChecked="{Binding LogSequenceAction}" HorizontalAlignment="Right"/>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                        
-                        <dxlc:LayoutGroup Header="AdvancedServo Events" View="GroupBox" Orientation="Vertical"
-                                      IsCollapsible="True" IsCollapsed="False" Padding="-5">
-                            <dxe:CheckEdit Content="Log CurrentChange Events"
-                                       IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
-                            <dxe:CheckEdit Content="Log PositionChange Events"
-                                       IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
-                            <dxe:CheckEdit Content="Log VelocityChange Events"
-                                       IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
-                        </dxlc:LayoutGroup>
+                    <dxe:CheckEdit Content="Log Action Verification" 
+                                        IsChecked="{Binding LogActionVerification}" HorizontalAlignment="Right"/>
 
-                        <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" Orientation="Vertical"
-                                      IsCollapsible="True" IsCollapsed="False" Padding="-5">
-                            <dxe:CheckEdit Content="Log InputChange Events"
-                                       IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
-                            <dxe:CheckEdit Content="Log OutputChange Events"
-                                       IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
-                            <dxe:CheckEdit Content="Log SensorChange Events"
-                                       IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
-                        </dxlc:LayoutGroup>
-
-
-                        <dxlc:LayoutGroup Header="Stepper Events" View="GroupBox" Orientation="Vertical"
-                                      IsCollapsible="True" IsCollapsed="False" Padding="-5">
-                            <!--<dxe:CheckEdit Content="Log InputChange Events"
-                                       IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
-                            <dxe:CheckEdit Content="Log OutputChange Events"
-                                       IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
-                            <dxe:CheckEdit Content="Log SensorChange Events"
-                                       IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />-->
-                        </dxlc:LayoutGroup>
-
-                    </dxlc:LayoutGroup>
-
-                    <dxlc:LayoutItem >
-                        <dxe:CheckEdit Content="Log Phidget Events"
-                                       IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
-                    </dxlc:LayoutItem>
-                                  
                 </dxlc:LayoutGroup>
 
-            </StackPanel>
-        </Grid>
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-        <!--<Button Grid.Row="2" Content="Button2" Command="{Binding Button2Command}" Width="400" Margin="10" />
+                    <dxlc:LayoutGroup Header="AdvancedServo Events" View="GroupBox" 
+                                      Orientation="Vertical" VerticalAlignment="Top"
+                                    IsCollapsible="True" IsCollapsed="False" Padding="-5">
+                        <dxe:CheckEdit Content="Log CurrentChange Events"
+                                    IsChecked="{Binding LogCurrentChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log PositionChange Events"
+                                    IsChecked="{Binding LogPositionChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log VelocityChange Events"
+                                    IsChecked="{Binding LogVelocityChangeEvents, Mode=TwoWay}" />
+                    </dxlc:LayoutGroup>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="10" HorizontalAlignment="Center">
-            <Button  Content="Calculate" Command="{Binding Button3Command}"
-                     Width="190" Margin="0,0,10,0" />
+                    <dxlc:LayoutGroup Header="InterfaceKit Events" View="GroupBox" 
+                                      Orientation="Vertical" VerticalAlignment="Top"
+                                    IsCollapsible="True" IsCollapsed="False" Padding="-5">
+                        <dxe:CheckEdit Content="Log InputChange Events"
+                                    IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log OutputChange Events"
+                                    IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log SensorChange Events"
+                                    IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />
+                    </dxlc:LayoutGroup>
 
-            <StackPanel Orientation="Horizontal"  VerticalAlignment="Center">
-                <TextBox Text="{Binding Numerator}" FontSize="36" />
-            </StackPanel>
+                    <dxlc:LayoutGroup Header="Stepper Events" View="GroupBox" Orientation="Vertical"
+                                    IsCollapsible="True" IsCollapsed="False" Padding="-5">
+                        <!--<dxe:CheckEdit Content="Log InputChange Events"
+                                    IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log OutputChange Events"
+                                    IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" />
+                        <dxe:CheckEdit Content="Log SensorChange Events"
+                                    IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" />-->
+                    </dxlc:LayoutGroup>
 
-            <Label Content=" / " FontSize="36" VerticalAlignment="Center" />
+                </dxlc:LayoutGroup>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBox Text="{Binding Denominator}" FontSize="36" />
-            </StackPanel>
+                <dxlc:LayoutItem >
+                    <dxe:CheckEdit Content="Log Phidget Events"
+                                       IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}" />
+                </dxlc:LayoutItem>
 
-            <Label Content=" = " FontSize="36" VerticalAlignment="Center" />
+            </dxlc:LayoutGroup>
 
-            <TextBox Text="{Binding Answer}" FontSize="36"  VerticalAlignment="Center" />
-        </StackPanel>-->
+            <views:PerformanceSelector />
 
-        <views:PerformanceSelector Grid.Row="3"/>
-        
-        <!-- This is useful for debugging V VM constructor issues -->
+        </dxlc:LayoutGroup>
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="V:" />
-                <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <Label Content="VM:" />
-                <Label Content="{Binding InstanceCountVM}" />
-            </StackPanel>
-        </StackPanel>
-        
-    </Grid>
-    
+    </DockPanel>
+       
 </vncmvvm:ViewBase>

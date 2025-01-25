@@ -9,11 +9,16 @@
 
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:controls="clr-namespace:VNCPhidgets21Explorer.Presentation.Controls"
+    xmlns:converters="clr-namespace:VNCPhidgets21Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidgets21Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidgets21Explorer.Presentation.ViewModels"
 
     xmlns:core="clr-namespace:VNCPhidgets21Explorer.Core;assembly=VNCPhidgets21Explorer.Core"
+    
+    xmlns:vnccore="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncwpf="clr-namespace:VNC.WPF.Presentation;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation;assembly=VNC.WPF.Presentation"
 
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
@@ -24,6 +29,8 @@
     Width="2400" Height="1250"
     
     d:DesignStyle="{StaticResource vncDesignStyleW}"
+    
+    SizeChanged="thisControl_SizeChanged"
  >
      <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="Window"> -->
@@ -32,49 +39,55 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
     
     <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
-    
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <DockPanel>
+        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
+            Visibility="{Binding DeveloperUIMode,
+                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >
+            --><!-- Use Visibility="{Binding DeveloperModeUI} to use ViewModel property -->
 
-        <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+            <!-- This is useful for debugging V VM constructor issues --><!--
 
-        <dxlc:LayoutGroup Name="lg_Footer" View="Group" Orientation="Horizontal"
-            Grid.Row="1"
-            Visibility="{Binding ElementName=thisControl, Path=DeveloperUIMode}"
-            Padding="3,0,0,0" >
+            <StackPanel Orientation="Horizontal">
 
-            <!-- This is useful for debugging V VM constructor issues -->
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                    <Label Content="{Binding ElementName=thisControl, Path=ViewType}" />
+                </StackPanel>
 
-            <dxlc:LayoutItem Label="V:" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountV}" />
-            </dxlc:LayoutItem>
+                <StackPanel Orientation="Horizontal" Margin="0" >
+                    <Label Content="-V:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" />
+                </StackPanel>
 
-            <dxlc:LayoutItem Label="VP:" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                <TextBlock Text="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
-            </dxlc:LayoutItem>
+                <StackPanel Orientation="Horizontal" Margin="5,0,5,0" >
+                    <Label Content="-VP:" />
+                    <Label Content="{Binding ElementName=thisControl, Path=InstanceCountVP}" />
+                </StackPanel>
 
-            <dxlc:LayoutItem Label="VM:" VerticalAlignment="Center" >
-                <TextBlock Text="{Binding InstanceCountVM}" />
-            </dxlc:LayoutItem>
+            </StackPanel>
 
-            <dxlc:LayoutGroup View="Group" Orientation="Vertical">
-                <dxlc:LayoutItem Label="Width:" VerticalAlignment="Center" >
-                    <TextBlock Text="{Binding WindowSize.Width, StringFormat={}{0:0}}" />
-                </dxlc:LayoutItem>
+            <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
+                <Label Content="{Binding ElementName=thisControl, Path=ViewModelType}" />
+                <Label Content=" -VM:" />
+                <Label Content="{Binding InstanceCountVM}" />
+            </StackPanel>
 
-                <dxlc:LayoutItem Label="Height:" VerticalAlignment="Center" >
-                    <TextBlock Text="{Binding WindowSize.Height, StringFormat={}{0:0}}" />
-                </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
+        </StackPanel>-->
 
-            <views:AppVersionInfo HorizontalAlignment="Right" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
-        </dxlc:LayoutGroup>
+            <ContentControl Grid.Row="0" prism:RegionManager.RegionName="{x:Static core:RegionNames.RibbonRegion}" />
+            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" />
+            <ContentControl Grid.Row="2" prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
 
-    </Grid>
+        </Grid>
+
+    </DockPanel>
 
 </Window>

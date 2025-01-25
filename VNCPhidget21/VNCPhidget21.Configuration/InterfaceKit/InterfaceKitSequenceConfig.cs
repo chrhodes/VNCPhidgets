@@ -6,7 +6,7 @@
         {
             new InterfaceKitSequence
             {
-                SerialNumber = 124744,
+                //SerialNumber = 124744,
                 Name="localhost_SequenceIK 1",
 
                 Actions = new[]
@@ -21,7 +21,7 @@
             },
             new InterfaceKitSequence
             {
-                SerialNumber = 46049,
+                //SerialNumber = 46049,
                 Name="psbc11_SequenceIK 1",
 
                 Actions = new[]
@@ -36,7 +36,7 @@
             },
             new InterfaceKitSequence
             {
-                SerialNumber = 48301,
+                //SerialNumber = 48301,
                 Name="psbc21_SequenceIK 1",
                 NextSequence = new PerformanceSequence { Name = "psbc22_SequenceIK 1", SequenceType = "IK" },
 
@@ -52,7 +52,7 @@
             },
             new InterfaceKitSequence
             {
-                SerialNumber = 48301,
+                //SerialNumber = 48301,
                 Name="psbc21_SequenceIK 1 Parallel",
                 ExecuteActionsInParallel = true,
 
@@ -68,7 +68,7 @@
             },
             new InterfaceKitSequence
             {
-                SerialNumber = 251831,
+                //SerialNumber = 251831,
                 Name="psbc22_SequenceIK 1",
                 NextSequence = new PerformanceSequence { Name = "psbc23_SequenceIK 1", SequenceType = "IK" },
 
@@ -84,7 +84,7 @@
             },
             new InterfaceKitSequence
             {
-                SerialNumber = 48284,
+                //SerialNumber = 48284,
                 Name="psbc23_SequenceIK 1",
 
                 Actions = new[]

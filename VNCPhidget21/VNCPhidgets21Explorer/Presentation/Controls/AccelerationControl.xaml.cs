@@ -5,6 +5,7 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
+using System.Linq;
 
 namespace VNCPhidgets21Explorer.Presentation.Controls
 {
@@ -14,14 +15,15 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         
         public AccelerationControl()
         {
-            Int64 startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
             InitializeComponent();
 
             lgMain.DataContext = this;
-			// Expose ViewModel
-						
+            // Expose ViewModel
+
             // If View First with ViewModel in Xaml
 
             // ViewModel = (IAccelerationControlViewModel)DataContext;
@@ -29,7 +31,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             // Can create directly
             // ViewModel = AccelerationControlViewModel();
 
-            Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //public AccelerationControl(IAccelerationControlViewModel viewModel)
@@ -45,6 +47,22 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
 
         //    Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         //}
+
+        private void InitializeView()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+
+            // Establish any additional DataContext(s), e.g. to things held in this View
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
@@ -124,15 +142,7 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
-        private void InitializeView()
-        {
-            Int64 startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
-            // NOTE(crhodes)
-            // Put things here that initialize the View
-
-            Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
-        }
 
         #endregion
 
@@ -222,7 +232,15 @@ namespace VNCPhidgets21Explorer.Presentation.Controls
             new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnMinChanged), new CoerceValueCallback(OnCoerceMin)));
 
         public static readonly DependencyProperty CurrentProperty = DependencyProperty.Register("Current", typeof(Double?), typeof(AccelerationControl), 
-            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));   
+            new FrameworkPropertyMetadata(null, new PropertyChangedCallback(OnCurrentChanged), new CoerceValueCallback(OnCoerceCurrent)));
 
+        private void SpinEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            // NOTE(crhodes)
+            // If we don't do this the Servo does not get new value.
+            // Odd that it seemed like the UI was updating the servo before.
+            // Put a break point on ServoProperties Acceleration to see.
+            Current = Double.Parse(e.NewValue.ToString());
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
@@ -10,9 +11,9 @@ using VNCPhidgets21Explorer.Presentation.ViewModels;
 
 namespace VNCPhidgets21Explorer.Presentation.Views
 {
-    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged
+    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged, IViewSize
     {
-        public ShellViewModel _viewModel;
+        #region Contructors, Initialization, and Load
 
         public Shell()
         {
@@ -21,25 +22,22 @@ namespace VNCPhidgets21Explorer.Presentation.Views
 
             InstanceCountV++;
             InitializeComponent();
-            InitializeView();
 
             // Wire up ViewModel if needed
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IViewABCViewModel)DataContext;
+            // ViewModel = (ICatViewModel)DataContext;
 
             // Can create directly
 
-            // ViewModel = IViewABC$ViewModel();
+            // ViewModel = CatViewModel();
 
             // Can use ourselves for everything
 
             //DataContext = this;
 
-            // Or just a specific thing
-
-            //tbViewMessage.DataContext = this;
+            InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -49,28 +47,104 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
-            InstanceCountV++;
+            InstanceCountVP++;
+
             InitializeComponent();
+
+            ViewModel = viewModel;
+
+            // For the rare case where the ViewModel needs to know about the View
+            // ViewModel.View = this;
+
             InitializeView();
 
-            _viewModel = viewModel;
-            DataContext = _viewModel;
-
-            Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeView()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.View) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Put things here that initialize the View
+            // Hook event handlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = _viewModel.GetType().ToString().Split('.').Last();
 
             Common.CurrentShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
-            // NOTE(crhodes)
-            // Put things here that initialize the View
+            // Establish any additional DataContext(s), e.g. to things held in this View
 
-            if (Common.VNCLogging.View) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            spDeveloperInfo.DataContext = this;
+
+            if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region Fields and Properties
+
+        private string _viewType;
+
+        public string ViewType
+        {
+            get => _viewType;
+            set
+            {
+                if (_viewType == value)
+                {
+                    return;
+                }
+
+                _viewType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ShellViewModel _viewModel;
+
+        public ShellViewModel ViewModel
+        {
+            get { return _viewModel; }
+
+            set
+            {
+                _viewModel = value;
+                DataContext = _viewModel;
+            }
+        }
+
+        private string _viewModelType;
+
+        public string ViewModelType
+        {
+            get => _viewModelType;
+            set
+            {
+                if (_viewModelType == value)
+                {
+                    return;
+                }
+
+                _viewModelType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Size _windowSize;
+        public Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
         }
 
         private Visibility _developerUIMode = Visibility.Collapsed;
@@ -86,6 +160,19 @@ namespace VNCPhidgets21Explorer.Presentation.Views
             }
         }
 
+        #endregion
+
+        #region EventHandlers
+
+        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var newSize = e.NewSize;
+            var previousSize = e.PreviousSize;
+            _viewModel.WindowSize = newSize;
+            spDeveloperInfo.WindowSize = newSize;
+        }
+
+        #endregion
 
         #region INotifyPropertyChanged
 
@@ -111,7 +198,6 @@ namespace VNCPhidgets21Explorer.Presentation.Views
         }
 
         #endregion
-
 
         #region IInstanceCount
 
