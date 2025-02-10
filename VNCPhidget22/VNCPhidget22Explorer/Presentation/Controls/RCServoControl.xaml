@@ -186,9 +186,9 @@
             PositionScaleRange="{Binding PositionScaleRange}"
             PositionStopRange="{Binding PositionStopRange}" />
 
-        <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+        <dxlc:LayoutGroup x:Name="lgMovementCharacteristics" Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
                         VerticalAlignment="Top"
-                        IsCollapsible="True" IsCollapsed="True" 
+                        IsCollapsible="True" IsCollapsed="False" 
                         Padding="-5" Background="AliceBlue">
 
             <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
@@ -213,8 +213,8 @@
 
             </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="ConfigureServo" View="GroupBox" Orientation="Vertical"
-                                      IsCollapsible="True" IsCollapsed="True" >
+            <dxlc:LayoutGroup x:Name="lgConfigureServo" Header="ConfigureServo" View="GroupBox" Orientation="Vertical"
+                                      IsCollapsible="True" IsCollapsed="False" >
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                 <dxlc:LayoutItem Label="MinPulseWidthLimit" LabelPosition="Top">

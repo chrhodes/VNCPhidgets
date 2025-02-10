@@ -192,7 +192,7 @@
                     -->
                     <Button x:Name="btnZeroPosition2"
                         DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource 
+                                        RelativeSource={RelativeSource 
                                         Mode=FindAncestor, 
                                         AncestorType=UserControl,
                                         AncestorLevel=2}}"
@@ -246,28 +246,43 @@
                     <!-- </Button.Background> -->
                     <!-- </dxlc:LayoutItem> -->
                     <dxlc:LayoutItem Label="Degrees" LabelPosition="Top" HorizontalAlignment="Left" >
-                        <dxe:TextEdit Text="{Binding Degrees, Mode=TwoWay}" />
+                        <!--<dxe:TextEdit Text="{Binding Degrees, Mode=TwoWay}" />-->
+                        <dxe:TextEdit x:Name="teDegrees" Text="1" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
                         <dxlc:LayoutItem>
-                            <Button 
+                            <!--<Button 
                                 DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                                
+                                                RelativeSource={RelativeSource 
+                                                    Mode=FindAncestor, 
+                                                    AncestorType=UserControl,
+                                                    AncestorLevel=2}}"                                
               		            Command="{Binding RotateCommand }"
                                 CommandParameter="CW"
               		            Content="ClockWise"
-              		            ToolTip="Rotate ClockWise # Degrees" />
+              		            ToolTip="Rotate ClockWise # Degrees" />-->
+
+                            <Button Content="ClockWise" CommandParameter="CW" Padding="2"
+                                ToolTip="Rotates Clockwise" 
+                                Click="SetTargetPosition"/>
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem>
-                            <Button 
+                            <!--<Button 
                                 DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"                                
+                                                RelativeSource={RelativeSource  
+                                                    Mode=FindAncestor, 
+                                                    AncestorType=UserControl,
+                                                    AncestorLevel=2}}"                                
               		            Command="{Binding RotateCommand }"
                                 CommandParameter="CCW"
               		            Content="CounterClockWise"
-              		            ToolTip="Rotate ClockWise # Degrees" />
+              		            ToolTip="Rotate ClockWise # Degrees" />-->
+
+                            <Button Content="ClockWise" CommandParameter="CCW" Padding="2"
+                                ToolTip="Rotates Clockwise" 
+                                Click="SetTargetPosition"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <!-- Second form uses CommandParameter -->

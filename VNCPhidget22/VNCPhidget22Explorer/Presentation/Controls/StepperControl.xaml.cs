@@ -72,6 +72,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             //liConfigureStepper.DataContext = this.Parent;
             spDeveloperInfo.DataContext = this;
 
+            lgMovement.IsCollapsed = true;
+
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -2073,6 +2075,56 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         protected virtual void OnRescaleFactorChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+
+        #region StepAngle
+
+        public static readonly DependencyProperty StepAngleProperty = DependencyProperty.Register(
+            "StepAngle",
+            typeof(Double),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnStepAngleChanged),
+                new CoerceValueCallback(OnCoerceStepAngle)
+                )
+            );
+
+        public Double StepAngle
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(StepAngleProperty);
+            set => SetValue(StepAngleProperty, value);
+        }
+
+        private static object OnCoerceStepAngle(DependencyObject o, object value)
+        {
+            StepperControl stepperControl = o as StepperControl;
+            if (stepperControl != null)
+                return stepperControl.OnCoerceStepAngle((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnStepAngleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl stepperControl = o as StepperControl;
+            if (stepperControl != null)
+                stepperControl.OnStepAngleChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceStepAngle(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnStepAngleChanged(Double oldValue, Double newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }

@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace VNCPhidget22Explorer.Presentation.Converters
 {
-    class ForegroundColorConverter : IValueConverter
+    public class ForegroundColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

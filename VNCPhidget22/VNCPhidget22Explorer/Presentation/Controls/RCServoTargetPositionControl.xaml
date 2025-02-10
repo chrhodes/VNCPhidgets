@@ -145,10 +145,10 @@
 
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                             <Label />
-                            <RadioButton x:Name="rb50" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">50</RadioButton>
-                            <RadioButton x:Name="rb10" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
-                            <RadioButton x:Name="rb5" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
-                            <RadioButton x:Name="rb1" GroupName="PositionScale" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
+                            <RadioButton x:Name="rb50" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">50</RadioButton>
+                            <RadioButton x:Name="rb10" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
+                            <RadioButton x:Name="rb5" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
+                            <RadioButton x:Name="rb1" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
                         </dxlc:LayoutGroup>
 
                         <dxlc:LayoutItem  LabelPosition="Top" VerticalAlignment="Top" LabelHorizontalAlignment="Center" >

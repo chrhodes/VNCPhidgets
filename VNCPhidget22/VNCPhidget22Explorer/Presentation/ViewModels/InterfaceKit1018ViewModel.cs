@@ -21,6 +21,7 @@ using VNC.Phidget22.Ex;
 
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using System.Threading.Channels;
+//using Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -345,6 +346,22 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region DigitalInput
 
+        //DigitalInputEx[] _digitalInputs = new DigitalInputEx[16];
+
+        //public DigitalInputEx[] DigitalInputs
+        //{
+        //    get
+        //    {
+        //        return _digitalInputs;
+        //    }
+        //    set
+        //    {
+        //        _digitalInputs = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+
         private DigitalInputEx _digitalInput0;
         public DigitalInputEx DigitalInput0
         {
@@ -542,7 +559,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region DigitalOutpu
+        #region DigitalOutput
 
         private DigitalOutputEx _digitalOutput0;
         public DigitalOutputEx DigitalOutput0
@@ -577,6 +594,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             set
             {
                 if (_digitalOutput2 == value)
+                    return;
+                _digitalOutput2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DigitalOutputEx _digitalOutput3;
+        public DigitalOutputEx DigitalOutput3
+        {
+            get => _digitalOutput3;
+            set
+            {
+                if (_digitalOutput3 == value)
                     return;
                 _digitalOutput2 = value;
                 OnPropertyChanged();
@@ -1596,7 +1626,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // If do not specify a timeout, Open() may return
                 // before initial state is available in Attach event
 
-                await Task.Run(() => DigitalInputs[i].Open());
+                //await Task.Run(() => DigitalInputs[i].Open());
                 //await Task.Run(() => DigitalOutputs[i].Open(500));
             }
 
@@ -1608,7 +1638,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // If do not specify a timeout, Open() returns
                 // before initial state is available
                 
-                DigitalOutputs[i].Open();
+                //DigitalOutputs[i].Open();
                 //await Task.Run(() => DigitalOutputs[i].Open(500));
             }
 
@@ -1620,7 +1650,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // If do not specify a timeout, Open() returns
                 // before initial state is available
                 
-                VoltageInputs[i].Open();
+                //VoltageInputs[i].Open();
                 //await Task.Run(() => VoltageOutputs[i].Open(500));
             }
 
@@ -1632,7 +1662,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // If do not specify a timeout, Open() returns
                 // before initial state is available
 
-                VoltageRatioInputs[i].Open();
+                //VoltageRatioInputs[i].Open();
                 //await Task.Run(() => VoltageOutputs[i].Open(500));
             }
 
@@ -1644,7 +1674,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 // If do not specify a timeout, Open() returns
                 // before initial state is available
 
-                VoltageOutputs[i].Open();
+                //VoltageOutputs[i].Open();
                 //await Task.Run(() => VoltageOutputs[i].Open(500));
             }
 
@@ -1811,30 +1841,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //ActiveInterfaceKit.Close();
 
-            for (int i = 0; i < DigitalInputs.Count(); i++)
-            {
-                DigitalInputs[i].Close();
-            }
+            //for (int i = 0; i < DigitalInputs.Count(); i++)
+            //{
+            //    DigitalInputs[i].Close();
+            //}
 
-            for (int i = 0; i < DigitalOutputs.Count(); i++)
-            {
-                DigitalOutputs[i].Close();
-            }
+            //for (int i = 0; i < DigitalOutputs.Count(); i++)
+            //{
+            //    DigitalOutputs[i].Close();
+            //}
 
-            for (int i = 0; i < VoltageInputs.Count(); i++)
-            {
-                VoltageInputs[i].Close();
-            }
+            //for (int i = 0; i < VoltageInputs.Count(); i++)
+            //{
+            //    VoltageInputs[i].Close();
+            //}
 
-            for (int i = 0; i < VoltageRatioInputs.Count(); i++)
-            {
-                VoltageRatioInputs[i].Close();
-            }
+            //for (int i = 0; i < VoltageRatioInputs.Count(); i++)
+            //{
+            //    VoltageRatioInputs[i].Close();
+            //}
 
-            for (int i = 0; i < VoltageOutputs.Count(); i++)
-            {
-                VoltageOutputs[i].Close();
-            }
+            //for (int i = 0; i < VoltageOutputs.Count(); i++)
+            //{
+            //    VoltageOutputs[i].Close();
+            //}
 
             UpdateInterfaceKitProperties();
             ActiveInterfaceKit = null;
@@ -1921,17 +1951,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
             Int32 number;
 
-            if (Int32.TryParse(channelNumber, out number))
-            {
-                DigitalInputs[number].SerialNumber = serialNumber;
+            //if (Int32.TryParse(channelNumber, out number))
+            //{
+            //    DigitalInputs[number].SerialNumber = serialNumber;
 
-                await Task.Run(() => DigitalInputs[number].Open());
-            }
-            else
-            {
-                Message = $"Cannot parse channelNumber:>{channelNumber}<";
-                Log.Error(Message, Common.LOG_CATEGORY);
-            }
+            //    await Task.Run(() => DigitalInputs[number].Open());
+            //}
+            //else
+            //{
+            //    Message = $"Cannot parse channelNumber:>{channelNumber}<";
+            //    Log.Error(Message, Common.LOG_CATEGORY);
+            //}
 
             // If launching a UserControl
 
@@ -2022,17 +2052,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
             Int32 number;
 
-            if (Int32.TryParse(channelNumber, out number))
-            {
-                DigitalInputs[number].SerialNumber = serialNumber;
+            //if (Int32.TryParse(channelNumber, out number))
+            //{
+            //    DigitalInputs[number].SerialNumber = serialNumber;
 
-                await Task.Run(() => DigitalInputs[number].Close());
-            }
-            else
-            {
-                Message = $"Cannot parse channelNumber:>{channelNumber}<";
-                Log.Error(Message, Common.LOG_CATEGORY);
-            }
+            //    await Task.Run(() => DigitalInputs[number].Close());
+            //}
+            //else
+            //{
+            //    Message = $"Cannot parse channelNumber:>{channelNumber}<";
+            //    Log.Error(Message, Common.LOG_CATEGORY);
+            //}
 
 
             // If launching a UserControl
@@ -2545,17 +2575,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
             Int32 number;
 
-            if (Int32.TryParse(channelNumber, out number))
-            {
-                VoltageInputs[number].SerialNumber = serialNumber;
+            //if (Int32.TryParse(channelNumber, out number))
+            //{
+            //    VoltageInputs[number].SerialNumber = serialNumber;
 
-                await Task.Run(() => VoltageInputs[number].Open());
-            }
-            else
-            {
-                Message = $"Cannot parse channelNumber:>{channelNumber}<";
-                Log.Error(Message, Common.LOG_CATEGORY);
-            }
+            //    await Task.Run(() => VoltageInputs[number].Open());
+            //}
+            //else
+            //{
+            //    Message = $"Cannot parse channelNumber:>{channelNumber}<";
+            //    Log.Error(Message, Common.LOG_CATEGORY);
+            //}
 
             // If launching a UserControl
 
@@ -2646,17 +2676,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
             Int32 number;
 
-            if (Int32.TryParse(channelNumber, out number))
-            {
-                VoltageInputs[number].SerialNumber = serialNumber;
+            //if (Int32.TryParse(channelNumber, out number))
+            //{
+            //    VoltageInputs[number].SerialNumber = serialNumber;
 
-                await Task.Run(() => VoltageInputs[number].Close());
-            }
-            else
-            {
-                Message = $"Cannot parse channelNumber:>{channelNumber}<";
-                Log.Error(Message, Common.LOG_CATEGORY);
-            }
+            //    await Task.Run(() => VoltageInputs[number].Close());
+            //}
+            //else
+            //{
+            //    Message = $"Cannot parse channelNumber:>{channelNumber}<";
+            //    Log.Error(Message, Common.LOG_CATEGORY);
+            //}
 
             // If launching a UserControl
 
@@ -2740,7 +2770,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    serialNumber,
                 //    new DigitalInputConfiguration() { Channel = i },
                 //    EventAggregator);
-                DigitalInputs[i].SerialNumber = serialNumber;
+                //DigitalInputs[i].SerialNumber = serialNumber;
             }
         }
 
@@ -2760,7 +2790,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    serialNumber,
                 //    new DigitalOutputConfiguration() { Channel = i },
                 //    EventAggregator);
-                DigitalOutputs[i].SerialNumber = serialNumber;
+                //DigitalOutputs[i].SerialNumber = serialNumber;
             }
         }
 
@@ -2780,7 +2810,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    serialNumber,
                 //    new VoltageInputConfiguration() { Channel = i },
                 //    EventAggregator);
-                VoltageInputs[i].SerialNumber = serialNumber;
+                //VoltageInputs[i].SerialNumber = serialNumber;
             }
         }
 
@@ -2800,7 +2830,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    serialNumber,
                 //    new VoltageRatioInputConfiguration() { Channel = i },
                 //    EventAggregator);
-                VoltageRatioInputs[i].SerialNumber = serialNumber;
+                //VoltageRatioInputs[i].SerialNumber = serialNumber;
             }
         }
 
@@ -2820,7 +2850,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    serialNumber,
                 //    new VoltageOutputConfiguration() { Channel = i },
                 //    EventAggregator);
-                VoltageOutputs[i].SerialNumber = serialNumber;
+                //VoltageOutputs[i].SerialNumber = serialNumber;
             }
         }
 

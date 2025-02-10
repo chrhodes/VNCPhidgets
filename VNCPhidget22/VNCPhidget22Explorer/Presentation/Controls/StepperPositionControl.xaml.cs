@@ -2290,6 +2290,55 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             seTargetPosition.Increment = Int32.Parse(radioButton.Content.ToString());
         }
 
+        private void SetTargetPosition(object sender, RoutedEventArgs e)
+        {
+            var rea = e;
+            var s = sender;
+
+            var direction = ((System.Windows.Controls.Button)sender).CommandParameter;
+
+            var stepAngle = Double.Parse(cbeStepAngle.Text);
+
+            Double circle = 360;
+            var circleSteps = circle / stepAngle;
+
+            var degrees = Double.Parse(teDegrees.Text);
+
+            var stepsToMove = (degrees / stepAngle) * 16; // 1/16 steps
+
+            //stepsToMove = stepsToMove * 16; // 1/16 steps
+
+            //switch (direction)
+            //{
+            //    case "CW":
+            //        StepperProperties[0].TargetPosition += stepsToMove;
+            //        break;
+
+            //    case "CCW":
+            //        StepperProperties[0].TargetPosition -= stepsToMove;
+            //        break;
+
+            //    default:
+            //        Log.Error($"Unexpected direction:>{direction}", Common.LOG_CATEGORY);
+            //        break;
+            //}
+
+            switch (direction)
+            {
+                case "CW":
+                    TargetPosition += stepsToMove;
+                    break;
+
+                case "CCW":
+                    TargetPosition -= stepsToMove;
+                    break;
+
+                default:
+                    Log.Error($"Unknown goToWhere >{direction}<", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
         #endregion
 
         #region Commands (none)
@@ -2329,6 +2378,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
+
+
     }
 }
 

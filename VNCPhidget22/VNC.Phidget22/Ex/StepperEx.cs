@@ -686,6 +686,30 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        // This is for UI.  The Phidget.Stepper does not have this property
+        // This might go away once we better understand RescaleFactor
+
+        private Double _stepAngle;
+        public new Double StepAngle
+        {
+            get => _stepAngle;
+            set
+            {
+                if (_stepAngle == value)
+                    return;
+                _stepAngle = value;
+
+                //base.RescaleFactor = (Double)value;
+
+                //// NOTE(crhodes)
+                //// Unfortunately no events are fired by setting new RescaleFactor
+                //// Go get new values;
+                //RefreshServoProperties();
+
+                OnPropertyChanged();
+            }
+        }
+
         private StepperControlMode _controlMode;
         public StepperControlMode ControlMode
         {

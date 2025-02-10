@@ -655,17 +655,25 @@ namespace VNCPhidget22Explorer.Presentation.Controls
                     TargetPosition = MinPosition;
                     break;
 
-                case "R-5":
-                    TargetPosition = TargetPosition -= 5;
-                    break;
+                // NOTE(crhodes)
+                // This is now handled with TargetPostion Increment/Decrement
+                // and PositionIncrement Scale RadioButtons
+
+                //case "R-5":
+                //    TargetPosition = TargetPosition -= 5;
+                //    break;
 
                 case "Center":
                     TargetPosition = (MaxPosition - MinPosition) / 2 + MinPosition;
                     break;
 
-                case "R+5":
-                    TargetPosition = TargetPosition += 5;
-                    break;
+                // NOTE(crhodes)
+                // This is now handled with TargetPostion Increment/Decrement
+                // and PositionIncrement Scale RadioButtons
+
+                //case "R+5":
+                //    TargetPosition = TargetPosition += 5;
+                //    break;
 
                 case "Max":
                     TargetPosition = MaxPosition;

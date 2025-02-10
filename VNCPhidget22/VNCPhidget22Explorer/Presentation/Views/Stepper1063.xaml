@@ -38,7 +38,7 @@
 
     Background="{StaticResource Stepper1063Background}"
 
-    d:DesignWidth="650" 
+    d:DesignWidth="750" 
 
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
     MinWidth="650"
@@ -349,7 +349,8 @@
                             MaxVelocityLimit="{Binding Stepper0.MaxVelocityLimit,Mode=TwoWay}" 
                               
                             ControlMode="{Binding Stepper0.ControlMode,Mode=TwoWay}"                                                 
-                            RescaleFactor="{Binding Stepper0.RescaleFactor,Mode=TwoWay}" />
+                            RescaleFactor="{Binding Stepper0.RescaleFactor,Mode=TwoWay}" 
+                            StepAngle="{Binding Stepper0.StepAngle,Mode=TwoWay}" />
 
                         <!--<controls:StepperControl ControlTitle="Stepper S1" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding Stepper1.LogPhidgetEvents,Mode=TwoWay}"
@@ -402,6 +403,7 @@
                             RescaleFactor="{Binding Stepper1.RescaleFactor,Mode=TwoWay}" />-->
 
                     </StackPanel>
+                    
                 </ScrollViewer>
                 
             </dxlc:LayoutGroup>

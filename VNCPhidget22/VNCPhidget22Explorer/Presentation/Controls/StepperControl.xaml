@@ -151,9 +151,9 @@
                     Position="{Binding Position, Mode=OneWay}"
                     Velocity="{Binding Velocity, Mode=OneWay}" />
 
-                <dxlc:LayoutGroup Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
+                <dxlc:LayoutGroup x:Name="lgMovement" Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
                     VerticalAlignment="Top"
-                    IsCollapsible="True" IsCollapsed="True" 
+                    IsCollapsible="True" IsCollapsed="False" 
                     Padding="-5" Background="AliceBlue">
 
                     <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
@@ -210,8 +210,10 @@
                     ControlMode="{Binding ControlMode,Mode=TwoWay}"                                                 
                     RescaleFactor="{Binding RescaleFactor,Mode=TwoWay}" />
 
-                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            
         </DockPanel>
+        
     </ScrollViewer>
     
 </vncmvvm:ViewBase>

@@ -72,7 +72,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             OpenRCServoCommand = new DelegateCommand<string>(OpenRCServo, OpenRCServoCanExecute);
             CloseRCServoCommand = new DelegateCommand<string>(CloseRCServo, CloseRCServoCanExecute);
 
-
             // HACK(crhodes)
             // For now just hard code this.  Can have UI let us choose later.
             // This could also come from PerformanceLibrary.
@@ -310,6 +309,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region RCServos
 
         RCServoEx[] _rcServos = new RCServoEx[16];
+
         public RCServoEx[] RCServos
         {
             get

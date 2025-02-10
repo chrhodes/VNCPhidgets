@@ -384,7 +384,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // I think some board support more than one Stepper
+        // I think some boards support more than one Stepper
         // Stub out four for now
 
         private StepperEx _stepper1;
@@ -1938,7 +1938,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
+
         #region Rotate Command
+
+        // TODO(crhodes)
+        // I think this belongs in StepperPositionControl
+        // like the stuff in RCServoTargetPositionControl
+
 
         // Start Cut Three - Put this in Fields and Properties
 
@@ -1974,12 +1980,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // 
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            //// TODO(crhodes)
-            //// Do something amazing.
+            // TODO(crhodes)
+            // Do something amazing.
 
-            //Message = "Cool, you called Rotate";
+            Message = "Cool, you called Rotate";
 
-            //PublishStatusMessage(Message);
+            PublishStatusMessage(Message);
 
             //var sa = StepperProperties[0].StepAngle;
 
@@ -2059,6 +2065,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region ZeroCurrentPosition Command
+
+        // TODO(crhodes)
+        // I think this belongs in StepperPositionControl
+        // like the stuff in RCServoTargetPositionControl
 
         //public DelegateCommand ZeroCurrentPositionCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
@@ -2198,12 +2208,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Public Methods
+        #region Public Methods (none)
 
 
         #endregion
 
-        #region Protected Methods
+        #region Protected Methods (none)
 
 
         #endregion
@@ -2432,13 +2442,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
-        private void InitializeStepperUI()
-        {
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    StepperProperties[i].InitializePropertiesToNull();
-            //}
-        }
+        //private void InitializeStepperUI()
+        //{
+        //    //for (int i = 0; i < 8; i++)
+        //    //{
+        //    //    StepperProperties[i].InitializePropertiesToNull();
+        //    //}
+        //}
 
         //private StepperProperties.MotionScale ConvertStringToInitializeMotion(string speed)
         //{
