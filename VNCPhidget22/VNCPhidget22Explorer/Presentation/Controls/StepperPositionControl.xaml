@@ -129,9 +129,8 @@
                                     Converter={StaticResource SpinEditConverter}}" 
                                 Increment="1"
                                 MinValue="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
-                                MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
-                                Mask="F3" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                                IsFloatValue="True" />
+                                MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}"                                 
+                                IsFloatValue="False" />
 
                         </dxlc:LayoutItem>
 
@@ -142,29 +141,24 @@
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
-
+               
+                <!-- NOTE(crhodes)
+                 Need access to StepperEx so can call AddPositionOffset
+                -->
                 <dxlc:LayoutItem>
                     <!-- NOTE(crhodes)
-                     This doesn't work.  Looking for Command in StepperControl
+                     This doesn't work.  Looking for Command in StepperPositionControl
                     -->
                     <!--<Button x:Name="btnZeroPosition"
-		                Command="{Binding ZeroCurrentPositionCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
-		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
-		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />-->
-
-                    <!--<Button x:Name="btnZeroPosition"
-                        DataContext="{Binding DataContext, 
-                                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=StepperControl}}"
 		                Command="{Binding ZeroCurrentPositionCommand }"
                         CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
 		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
 		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />-->
 
                     <!-- NOTE(crhodes)
-                     This works
+                     This works looks in StepperControl which has ViewModel set in Constructor\InitializeView
                     -->
-                    <Button x:Name="btnZeroPosition"
+                    <Button x:Name="btnZeroPosition1"
                         DataContext="{Binding DataContext, 
                                     RelativeSource={RelativeSource 
                                         Mode=FindAncestor, 
@@ -179,16 +173,7 @@
 
                 <dxlc:LayoutItem>
                     <!-- NOTE(crhodes)
-                     This doesn't work
-                    -->
-                    <!--<Button x:Name="btnZeroPosition"
-		                Command="{Binding ZeroCurrentPositionCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}" 
-		                Content="{Binding ZeroCurrentPositionContent, FallbackValue='ZeroCurrentPosition' }"
-		                ToolTip="{Binding ZeroCurrentPositionToolTip, FallbackValue='ZeroCurrentPosition ToolTip' }" />-->
-
-                    <!-- NOTE(crhodes)
-                     This works
+                     This works.  Uses ViewModel from UserControl (Stepper1063)
                     -->
                     <Button x:Name="btnZeroPosition2"
                         DataContext="{Binding DataContext, 
@@ -280,11 +265,12 @@
               		            Content="CounterClockWise"
               		            ToolTip="Rotate ClockWise # Degrees" />-->
 
-                            <Button Content="ClockWise" CommandParameter="CCW" Padding="2"
-                                ToolTip="Rotates Clockwise" 
+                            <Button Content="CounterClockWise" CommandParameter="CCW" Padding="2"
+                                ToolTip="Rotates CounterClockwise" 
                                 Click="SetTargetPosition"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
+                    
                     <!-- Second form uses CommandParameter -->
 
 

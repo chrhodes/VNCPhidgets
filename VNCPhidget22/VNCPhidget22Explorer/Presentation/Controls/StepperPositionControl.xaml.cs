@@ -81,7 +81,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             spDeveloperInfo.DataContext = this;
 
-            var dc = btnZeroPosition.DataContext;
+            var dc = btnZeroPosition1.DataContext;
 
             //var xx = this == thisControl;
 
