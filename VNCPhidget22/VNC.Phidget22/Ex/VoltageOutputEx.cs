@@ -4,8 +4,10 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 using Prism.Events;
+
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
+
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 

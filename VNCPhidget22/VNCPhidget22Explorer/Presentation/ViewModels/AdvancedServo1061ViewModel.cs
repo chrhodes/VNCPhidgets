@@ -276,6 +276,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        // TODO(crhodes)
+        // Since channels are now the focus, do we need this?
+
         private bool? _deviceAttached;
         public bool? DeviceAttached
         {
@@ -307,6 +310,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region AdvancedServo
 
         #region RCServos
+
+        // TODO(crhodes)
+        // I think we have moved away from array to have individual object6s to bind to.
 
         RCServoEx[] _rcServos = new RCServoEx[16];
 
@@ -1538,9 +1544,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
+
+            if (SelectedAdvancedServo is not null && DeviceAttached is not null)
+                return true;
             else
                 return false;
         }

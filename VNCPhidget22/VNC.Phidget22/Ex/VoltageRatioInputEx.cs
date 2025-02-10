@@ -689,13 +689,13 @@ namespace VNC.Phidget22.Ex
 
                 #endregion
 
-                #region Protected Methods (none)
+        #region Protected Methods (none)
 
 
 
-                #endregion
+        #endregion
 
-                #region Private Methods
+        #region Private Methods
 
                 // FIX(crhodes)
                 // 
@@ -758,9 +758,9 @@ namespace VNC.Phidget22.Ex
                 //    }
                 //}
 
-                #endregion
+        #endregion
 
-                #region INotifyPropertyChanged
+        #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

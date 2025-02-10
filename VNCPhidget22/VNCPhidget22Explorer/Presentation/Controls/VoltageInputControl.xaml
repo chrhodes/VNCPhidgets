@@ -83,23 +83,23 @@
             MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
             ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
             <dxe:CheckEdit
-                Content="Log Phidget Events"
+                Content="Phidget"
                 IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log Error Events"
+                Content="Error"
                 IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log PropertyChange Events"
+                Content="PropertyChange"
                 IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log SensorChange Events"
+                Content="SensorChange"
                 IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" 
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="Log VoltageChange Events"
+                Content="VoltageChange"
                 IsChecked="{Binding LogVoltageChangeEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
 
@@ -108,22 +108,22 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             <dxlc:LayoutItem>
                 <Button x:Name="btnOpenVoltageInputCommand" 
-            DataContext="{Binding DataContext, 
+                        DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-      		    Command="{Binding OpenVoltageInputCommand }"
-            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
-      		    Content="{Binding OpenVoltageInputContent, FallbackValue='OpenVoltageInput' }"
-      		    ToolTip="{Binding OpenVoltageInputToolTip, FallbackValue='OpenVoltageInput ToolTip' }" />
+      		            Command="{Binding OpenVoltageInputCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		                Content="{Binding OpenVoltageInputContent, FallbackValue='OpenVoltageInput' }"
+      		                ToolTip="{Binding OpenVoltageInputToolTip, FallbackValue='OpenVoltageInput ToolTip' }" />   
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
                 <Button x:Name="btnCloseVoltageInputCommand" 
-            DataContext="{Binding DataContext, 
-                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-      		    Command="{Binding CloseVoltageInputCommand }"
-            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
-      		    Content="{Binding CloseVoltageInputContent, FallbackValue='CloseVoltageInput' }"
-      		    ToolTip="{Binding CloseVoltageInputToolTip, FallbackValue='CloseVoltageInput ToolTip' }" />
+                        DataContext="{Binding DataContext, 
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		            Command="{Binding CloseVoltageInputCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		                Content="{Binding CloseVoltageInputContent, FallbackValue='CloseVoltageInput' }"
+      		                ToolTip="{Binding CloseVoltageInputToolTip, FallbackValue='CloseVoltageInput ToolTip' }" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
