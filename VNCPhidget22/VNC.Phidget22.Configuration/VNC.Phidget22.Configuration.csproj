@@ -4,8 +4,8 @@
     <TargetFramework>net8.0-windows</TargetFramework>
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
-      <VersionSuffix>development-22</VersionSuffix>
-      <FileVersion>2024.11.21A</FileVersion>
+      <VersionSuffix>development-23</VersionSuffix>
+      <FileVersion>2025.02.12A</FileVersion>
       <Description>Phidget Explorer Configuration</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>

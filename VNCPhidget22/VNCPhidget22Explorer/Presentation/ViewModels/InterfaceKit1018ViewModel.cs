@@ -3037,17 +3037,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContent">OpenVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContentToolTip">OpenVoltageRatioInput ToolTip</system:String>  
 
-        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRationInput, SerialChannel serialChannel)
+        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRatioInput, SerialChannel serialChannel)
         {
-            ConfigureInitialLogging(voltageRationInput);
+            ConfigureInitialLogging(voltageRatioInput);
 
-            if (voltageRationInput.IsOpen is false)
+            if (voltageRatioInput.IsOpen is false)
             {
-                await Task.Run(() => voltageRationInput.Open(500));
+                await Task.Run(() => voltageRatioInput.Open(500));
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageRationInput} already open", Common.LOG_CATEGORY);
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageRatioInput} already open", Common.LOG_CATEGORY);
             }
         }
 
@@ -3072,7 +3072,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                //VoltageRatioInputEx voltageRationInputHost = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
+                //VoltageRatioInputEx voltageRatioInputHost = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
 
                 switch (channel)
                 {

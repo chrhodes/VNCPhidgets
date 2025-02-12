@@ -146,7 +146,7 @@
                     Converter={StaticResource BooleanToVisibilityConverter}}">-->
                 <dxe:ComboBoxEdit 
                     ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
-                    SelectedItem="{Binding RatioSensorType}"
+                    SelectedItem="{Binding SensorType}"
                     SelectedIndex="0"/>
             </dxlc:LayoutItem>
 
@@ -158,13 +158,13 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="Power Supply" LabelPosition="Top">
-            <!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />-->
+        <!--<dxlc:LayoutItem Label="Power Supply" LabelPosition="Top">
+            --><!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />--><!--
             <TextBox Text="{Binding PowerSupply,StringFormat={}{0} PowerSupply}"/>
-            <!--<dxe:ListBoxEdit 
+            --><!--<dxe:ListBoxEdit 
                     ItemsSource="{Binding Source={vncenum:EnumBindingSource 
-                        {x:Type phidgets:PowerSupply}}}"/>-->
-        </dxlc:LayoutItem>
+                        {x:Type phidgets:PowerSupply}}}"/>--><!--
+        </dxlc:LayoutItem>-->
 
         <dxlc:LayoutItem Label="SensorValueChangeTrigger" LabelPosition="Top">
             <dxe:TextEdit Name="teAI_A0VSCT" Text="{Binding SensorValueChangeTrigger, Mode=OneWay}" />
