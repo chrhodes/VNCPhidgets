@@ -158,14 +158,6 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="Power Supply" LabelPosition="Top">
-            <!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />-->
-            <TextBox Text="{Binding PowerSupply,StringFormat={}{0} PowerSupply}"/>
-            <!--<dxe:ListBoxEdit 
-                    ItemsSource="{Binding Source={vncenum:EnumBindingSource 
-                        {x:Type phidgets:PowerSupply}}}"/>-->
-        </dxlc:LayoutItem>
-
         <dxlc:LayoutItem Label="SensorValueChangeTrigger" LabelPosition="Top">
             <dxe:TextEdit Name="teAI_A0VSCT" Text="{Binding SensorValueChangeTrigger, Mode=OneWay}" />
         </dxlc:LayoutItem>
@@ -263,6 +255,14 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
+
+        <dxlc:LayoutItem Label="Power Supply" LabelPosition="Top">
+            <!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />-->
+            <TextBox Text="{Binding PowerSupply,StringFormat={}{0} PowerSupply}"/>
+            <!--<dxe:ListBoxEdit 
+                    ItemsSource="{Binding Source={vncenum:EnumBindingSource 
+                        {x:Type phidgets:PowerSupply}}}"/>-->
+        </dxlc:LayoutItem>
 
     </dxlc:LayoutGroup>
 

@@ -82,6 +82,9 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
+
+        #region Logging
 
         bool _logPhidgetEvents;
         public bool LogPhidgetEvents
@@ -125,6 +128,8 @@ namespace VNC.Phidget22.Ex
             set { _logActionVerification = value; OnPropertyChanged(); }
         }
 
+        #endregion
+
         private int _serialNumber;
         public int SerialNumber
         {
@@ -158,8 +163,8 @@ namespace VNC.Phidget22.Ex
             get => _minFrequency;
             set
             {
-                if (_minFrequency == value)
-                    return;
+                //if (_minFrequency == value)
+                //    return;
                 _minFrequency = value;
                 OnPropertyChanged();
             }
@@ -190,8 +195,8 @@ namespace VNC.Phidget22.Ex
             get => _maxFrequency;
             set
             {
-                if (_maxFrequency == value)
-                    return;
+                //if (_maxFrequency == value)
+                //    return;
                 _maxFrequency = value;
                 OnPropertyChanged();
             }
@@ -222,8 +227,8 @@ namespace VNC.Phidget22.Ex
             get => _minDutyCycle;
             set
             {
-                if (_minDutyCycle == value)
-                    return;
+                //if (_minDutyCycle == value)
+                //    return;
                 _minDutyCycle = value;
                 OnPropertyChanged();
             }
@@ -254,8 +259,8 @@ namespace VNC.Phidget22.Ex
             get => _maxDutyCycle;
             set
             {
-                if (_maxDutyCycle == value)
-                    return;
+                //if (_maxDutyCycle == value)
+                //    return;
                 _maxDutyCycle = value;
                 OnPropertyChanged();
             }
@@ -267,8 +272,8 @@ namespace VNC.Phidget22.Ex
             get => _minFailsafeTime;
             set
             {
-                if (_minFailsafeTime == value)
-                    return;
+                //if (_minFailsafeTime == value)
+                //    return;
                 _minFailsafeTime = value;
                 OnPropertyChanged();
             }
@@ -280,8 +285,8 @@ namespace VNC.Phidget22.Ex
             get => _maxFailsafeTime;
             set
             {
-                if (_maxFailsafeTime == value)
-                    return;
+                //if (_maxFailsafeTime == value)
+                //    return;
                 _maxFailsafeTime = value;
                 OnPropertyChanged();
             }
@@ -293,8 +298,8 @@ namespace VNC.Phidget22.Ex
             get => _minLEDCurrentLimit;
             set
             {
-                if (_minLEDCurrentLimit == value)
-                    return;
+                //if (_minLEDCurrentLimit == value)
+                //    return;
                 _minLEDCurrentLimit = value;
                 OnPropertyChanged();
             }
@@ -325,8 +330,8 @@ namespace VNC.Phidget22.Ex
             get => _maxLEDCurrentLimit;
             set
             {
-                if (_maxLEDCurrentLimit == value)
-                    return;
+                //if (_maxLEDCurrentLimit == value)
+                //    return;
                 _maxLEDCurrentLimit = value;
                 OnPropertyChanged();
             }
@@ -341,6 +346,7 @@ namespace VNC.Phidget22.Ex
                 if (_state == value)
                     return;
                 _state = value;
+
                 if (Attached)
                 {
                     base.State = (bool)value;
@@ -380,11 +386,25 @@ namespace VNC.Phidget22.Ex
             // Just set it so UI behaves well
             IsAttached = true;
 
-            MinDutyCycle = digitalOutput.MinDutyCycle;
-            DutyCycle = digitalOutput.DutyCycle;
-            MaxDutyCycle = digitalOutput.MaxDutyCycle;
+            try
+            {
+                MinDutyCycle = digitalOutput.MinDutyCycle;
+                DutyCycle = digitalOutput.DutyCycle;
+                MaxDutyCycle = digitalOutput.MaxDutyCycle;
 
-            State = digitalOutput.State;
+                State = digitalOutput.State;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all DigitalOutput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -412,6 +432,18 @@ namespace VNC.Phidget22.Ex
             //        throw ex;
             //    }
             //}
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit DigitalOutputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void DigitalOutputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)

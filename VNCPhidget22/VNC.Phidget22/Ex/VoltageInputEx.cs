@@ -87,6 +87,7 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
 
         #region Logging
 
@@ -290,8 +291,8 @@ namespace VNC.Phidget22.Ex
             get => _minDataInterval;
             set
             {
-                if (_minDataInterval == value)
-                    return;
+                //if (_minDataInterval == value)
+                //    return;
                 _minDataInterval = value;
                 OnPropertyChanged();
             }
@@ -322,8 +323,8 @@ namespace VNC.Phidget22.Ex
             get => _maxDataInterval;
             set
             {
-                if (_maxDataInterval == value)
-                    return;
+                //if (_maxDataInterval == value)
+                //    return;
                 _maxDataInterval = value;
                 OnPropertyChanged();
             }
@@ -335,8 +336,8 @@ namespace VNC.Phidget22.Ex
             get => _minDataRate;
             set
             {
-                if (_minDataRate == value)
-                    return;
+                //if (_minDataRate == value)
+                //    return;
                 _minDataRate = value;
                 OnPropertyChanged();
             }
@@ -367,8 +368,8 @@ namespace VNC.Phidget22.Ex
             get => _maxDataRate;
             set
             {
-                if (_maxDataRate == value)
-                    return;
+                //if (_maxDataRate == value)
+                //    return;
                 _maxDataRate = value;
                 OnPropertyChanged();
             }
@@ -380,8 +381,8 @@ namespace VNC.Phidget22.Ex
             get => _minVoltage;
             set
             {
-                if (_minVoltage == value)
-                    return;
+                //if (_minVoltage == value)
+                //    return;
                 _minVoltage = value;
                 OnPropertyChanged();
             }
@@ -406,8 +407,8 @@ namespace VNC.Phidget22.Ex
             get => _maxVoltage;
             set
             {
-                if (_maxVoltage == value)
-                    return;
+            //    if (_maxVoltage == value)
+            //        return;
                 _maxVoltage = value;
                 OnPropertyChanged();
             }
@@ -419,8 +420,8 @@ namespace VNC.Phidget22.Ex
             get => _minVoltageChangeTrigger;
             set
             {
-                if (_minVoltageChangeTrigger == value)
-                    return;
+                //if (_minVoltageChangeTrigger == value)
+                //    return;
                 _minVoltageChangeTrigger = value;
                 OnPropertyChanged();
             }
@@ -451,8 +452,8 @@ namespace VNC.Phidget22.Ex
             get => _maxVoltageChangeTrigger;
             set
             {
-                if (_maxVoltageChangeTrigger == value)
-                    return;
+                //if (_maxVoltageChangeTrigger == value)
+                //    return;
                 _maxVoltageChangeTrigger = value;
                 OnPropertyChanged();
             }
@@ -514,23 +515,37 @@ namespace VNC.Phidget22.Ex
             //SensorUnit = voltageInput.SensorUnit;
             //SensorValue = voltageInput.SensorValue;
 
-            SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
+            try
+            {
+                SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
 
-            MinDataInterval = voltageInput.MinDataInterval;
-            DataInterval = voltageInput.DataInterval;
-            MaxDataInterval = voltageInput.MaxDataInterval;
+                MinDataInterval = voltageInput.MinDataInterval;
+                DataInterval = voltageInput.DataInterval;
+                MaxDataInterval = voltageInput.MaxDataInterval;
 
-            MinDataRate = voltageInput.MinDataRate;
-            DataRate = voltageInput.DataRate;
-            MaxDataRate = voltageInput.MaxDataRate;
+                MinDataRate = voltageInput.MinDataRate;
+                DataRate = voltageInput.DataRate;
+                MaxDataRate = voltageInput.MaxDataRate;
 
-            MinVoltage = voltageInput.MinVoltage;
-            Voltage = voltageInput.Voltage;
-            MaxVoltage = voltageInput.MaxVoltage;
+                MinVoltage = voltageInput.MinVoltage;
+                Voltage = voltageInput.Voltage;
+                MaxVoltage = voltageInput.MaxVoltage;
 
-            MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
-            VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
-            MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
+                MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
+                VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
+                MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all VoltageInput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -547,6 +562,18 @@ namespace VNC.Phidget22.Ex
             //        throw ex;
             //    }
             //}
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit VoltageInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void VoltageInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -639,7 +666,7 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-        private new void Open()
+        public new void Open()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -649,7 +676,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Open(Int32 timeout)
+        public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -659,7 +686,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Close()
+        public new void Close()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);

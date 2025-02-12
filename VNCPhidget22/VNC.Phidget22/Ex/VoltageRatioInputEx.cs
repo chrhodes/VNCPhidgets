@@ -87,6 +87,7 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
 
         #region Logging
 
@@ -278,8 +279,8 @@ namespace VNC.Phidget22.Ex
             get => _minDataInterval;
             set
             {
-                if (_minDataInterval == value)
-                    return;
+                //if (_minDataInterval == value)
+                //    return;
                 _minDataInterval = value;
                 OnPropertyChanged();
             }
@@ -310,9 +311,9 @@ namespace VNC.Phidget22.Ex
             get => _maxDataInterval;
             set
             {
-                if (_maxDataInterval == value)
-                    return;
-                _maxDataRate = value;
+                //if (_maxDataInterval == value)
+                //    return;
+                _maxDataInterval = value;
                 OnPropertyChanged();
             }
         }
@@ -323,8 +324,8 @@ namespace VNC.Phidget22.Ex
             get => _minDataRate;
             set
             {
-                if (_minDataRate == value)
-                    return;
+                //if (_minDataRate == value)
+                //    return;
                 _minDataRate = value;
                 OnPropertyChanged();
             }
@@ -355,8 +356,8 @@ namespace VNC.Phidget22.Ex
             get => _maxDataRate;
             set
             {
-                if (_maxDataRate == value)
-                    return;
+                //if (_maxDataRate == value)
+                //    return;
                 _maxDataRate = value;
                 OnPropertyChanged();
             }
@@ -368,8 +369,8 @@ namespace VNC.Phidget22.Ex
             get => _minVoltageRatio;
             set
             {
-                if (_minVoltageRatio == value)
-                    return;
+                //if (_minVoltageRatio == value)
+                //    return;
                 _minVoltageRatio = value;
                 OnPropertyChanged();
             }
@@ -394,8 +395,8 @@ namespace VNC.Phidget22.Ex
             get => _maxVoltageRatio;
             set
             {
-                if (_maxVoltageRatio == value)
-                    return;
+                //if (_maxVoltageRatio == value)
+                //    return;
                 _maxVoltageRatio = value;
                 OnPropertyChanged();
             }
@@ -407,8 +408,8 @@ namespace VNC.Phidget22.Ex
             get => _minVoltageRatioChangeTrigger;
             set
             {
-                if (_minVoltageRatioChangeTrigger == value)
-                    return;
+                //if (_minVoltageRatioChangeTrigger == value)
+                //    return;
                 _minVoltageRatioChangeTrigger = value;
                 OnPropertyChanged();
             }
@@ -439,8 +440,8 @@ namespace VNC.Phidget22.Ex
             get => _maxVoltageRatioChangeTrigger;
             set
             {
-                if (_maxVoltageRatioChangeTrigger == value)
-                    return;
+                //if (_maxVoltageRatioChangeTrigger == value)
+                //    return;
                 _maxVoltageRatioChangeTrigger = value;
                 OnPropertyChanged();
             }
@@ -483,23 +484,37 @@ namespace VNC.Phidget22.Ex
             //SensorUnit = voltageInput.SensorUnit;
             //SensorValue = voltageInput.SensorValue;
 
-            SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
+            try
+            {
+                SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
 
-            MinDataInterval = voltageRatioInput.MinDataInterval;
-            DataInterval = voltageRatioInput.DataInterval;
-            MaxDataInterval = voltageRatioInput.MaxDataInterval;
+                MinDataInterval = voltageRatioInput.MinDataInterval;
+                DataInterval = voltageRatioInput.DataInterval;
+                MaxDataInterval = voltageRatioInput.MaxDataInterval;
 
-            MinDataRate = voltageRatioInput.MinDataRate;
-            DataRate = voltageRatioInput.DataRate;
-            MaxDataRate = voltageRatioInput.MaxDataRate;
+                MinDataRate = voltageRatioInput.MinDataRate;
+                DataRate = voltageRatioInput.DataRate;
+                MaxDataRate = voltageRatioInput.MaxDataRate;
 
-            MinVoltageRatio = voltageRatioInput.MinVoltageRatio;
-            VoltageRatio = voltageRatioInput.VoltageRatio;
-            MaxVoltageRatio = voltageRatioInput.MaxVoltageRatio;
+                MinVoltageRatio = voltageRatioInput.MinVoltageRatio;
+                VoltageRatio = voltageRatioInput.VoltageRatio;
+                MaxVoltageRatio = voltageRatioInput.MaxVoltageRatio;
 
-            MinVoltageRatioChangeTrigger = voltageRatioInput.MinVoltageRatioChangeTrigger;
-            VoltageRatioChangeTrigger = voltageRatioInput.VoltageRatioChangeTrigger;
-            MaxVoltageRatioChangeTrigger = voltageRatioInput.MaxVoltageRatioChangeTrigger;
+                MinVoltageRatioChangeTrigger = voltageRatioInput.MinVoltageRatioChangeTrigger;
+                VoltageRatioChangeTrigger = voltageRatioInput.VoltageRatioChangeTrigger;
+                MaxVoltageRatioChangeTrigger = voltageRatioInput.MaxVoltageRatioChangeTrigger;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all VoltageRatioInput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -516,6 +531,18 @@ namespace VNC.Phidget22.Ex
             //        throw ex;
             //    }
             //}
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit VoltageRatioInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void VoltageRatioInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -608,7 +635,7 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-        private new void Open()
+        public new void Open()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -618,7 +645,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Open(Int32 timeout)
+        public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -628,7 +655,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Close()
+        public new void Close()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);

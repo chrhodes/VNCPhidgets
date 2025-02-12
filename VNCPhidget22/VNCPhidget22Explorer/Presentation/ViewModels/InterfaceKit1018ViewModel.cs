@@ -2651,7 +2651,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (voltageInput.IsOpen is false)
             {
-                await Task.Run(() => voltageInput.Open(500));
+                //await Task.Run(() => voltageInput.Open(5000));    // Wait 5 seconds to attach
+                await Task.Run(() => voltageInput.Open());  // Block until attached
             }
             else
             {
@@ -3043,7 +3044,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (voltageRatioInput.IsOpen is false)
             {
-                await Task.Run(() => voltageRatioInput.Open(500));
+                //await Task.Run(() => voltageRatioInput.Open(5000));    // Wait 5 seconds to attach
+                await Task.Run(() => voltageRatioInput.Open());  // Block until attached
             }
             else
             {

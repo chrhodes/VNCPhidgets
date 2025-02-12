@@ -84,6 +84,9 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
+
+        #region Logging
 
         bool _logPhidgetEvents;
         public bool LogPhidgetEvents
@@ -127,6 +130,8 @@ namespace VNC.Phidget22.Ex
             set { _logActionVerification = value; OnPropertyChanged(); }
         }
 
+        #endregion
+
         private int _serialNumber;
         public int SerialNumber
         {
@@ -160,8 +165,8 @@ namespace VNC.Phidget22.Ex
             get => _minFailsafeTime;
             set
             {
-                if (_minFailsafeTime == value)
-                    return;
+                //if (_minFailsafeTime == value)
+                //    return;
                 _minFailsafeTime = value;
                 OnPropertyChanged();
             }
@@ -173,8 +178,8 @@ namespace VNC.Phidget22.Ex
             get => _maxFailsafeTime;
             set
             {
-                if (_maxFailsafeTime == value)
-                    return;
+                //if (_maxFailsafeTime == value)
+                //    return;
                 _maxFailsafeTime = value;
                 OnPropertyChanged();
             }
@@ -186,8 +191,8 @@ namespace VNC.Phidget22.Ex
             get => _minVoltage;
             set
             {
-                if (_minVoltage == value)
-                    return;
+                //if (_minVoltage == value)
+                //    return;
                 _minVoltage = value;
                 OnPropertyChanged();
             }
@@ -202,6 +207,12 @@ namespace VNC.Phidget22.Ex
                 if (_Voltage == value)
                     return;
                 _Voltage = value;
+
+                if (Attached)
+                {
+                    base.Voltage = value;
+                }
+
                 OnPropertyChanged();
             }
         }
@@ -212,8 +223,8 @@ namespace VNC.Phidget22.Ex
             get => _maxVoltage;
             set
             {
-                if (_maxVoltage == value)
-                    return;
+                //if (_maxVoltage == value)
+                //    return;
                 _maxVoltage = value;
                 OnPropertyChanged();
             }
@@ -266,13 +277,27 @@ namespace VNC.Phidget22.Ex
             //IsAttached = voltageOutput.Attached;
 
             // Just set it so UI behaves well
-            IsAttached = true;
+            try
+            {
+                IsAttached = true;
 
-            MinVoltage = voltageOutput.MinVoltage;
-            Voltage = voltageOutput.Voltage;
-            MaxVoltage = voltageOutput.MaxVoltage;
+                MinVoltage = voltageOutput.MinVoltage;
+                Voltage = voltageOutput.Voltage;
+                MaxVoltage = voltageOutput.MaxVoltage;
 
-            VoltageOutputRange = voltageOutput.VoltageOutputRange;
+                VoltageOutputRange = voltageOutput.VoltageOutputRange;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all VoltageOutput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -290,6 +315,18 @@ namespace VNC.Phidget22.Ex
             //        throw ex;
             //    }
             //}
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit VoltageOutputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void VoltageOutputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -348,7 +385,7 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-        private new void Open()
+        public new void Open()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -358,7 +395,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Open(Int32 timeout)
+        public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -368,7 +405,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Close()
+        public new void Close()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);

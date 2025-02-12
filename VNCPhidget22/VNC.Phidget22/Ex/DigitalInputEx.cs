@@ -88,6 +88,9 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
+
+        #region Logging
 
         bool _logPhidgetEvents;
         public bool LogPhidgetEvents
@@ -137,6 +140,8 @@ namespace VNC.Phidget22.Ex
             get { return _logActionVerification; }
             set { _logActionVerification = value; OnPropertyChanged(); }
         }
+
+        #endregion
 
         private int _serialNumber;
         public int SerialNumber
@@ -209,8 +214,8 @@ namespace VNC.Phidget22.Ex
             get => _state;
             set
             {
-                if (_state == value)
-                    return;
+                //if (_state == value)
+                //    return;
                 _state = value;
 
                 OnPropertyChanged();
@@ -247,7 +252,21 @@ namespace VNC.Phidget22.Ex
             // Just set it so UI behaves well
             IsAttached = true;
 
-            State = digitalInput.State;
+            try
+            {
+                State = digitalInput.State;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all DigitalInput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -265,6 +284,18 @@ namespace VNC.Phidget22.Ex
             //        throw ex;
             //    }
             //}
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit DigitalInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void DigitalInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -340,7 +371,7 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-        private new void Open()
+        public new void Open()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -350,7 +381,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Open(Int32 timeout)
+        public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -360,7 +391,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Close()
+        public new void Close()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
