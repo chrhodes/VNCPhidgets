@@ -88,6 +88,8 @@ namespace VNC.Phidget22.Ex
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
 
+        #region Logging
+
         bool _logPhidgetEvents;
         public bool LogPhidgetEvents
         {
@@ -144,6 +146,8 @@ namespace VNC.Phidget22.Ex
             set { _logActionVerification = value; OnPropertyChanged(); }
         }
 
+        #endregion
+
         private int _serialNumber;
         public int SerialNumber
         {
@@ -171,6 +175,13 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        // TODO(crhodes)
+        // 
+        // There are two more properties that are not available on InterfaceKit1018
+        // Implement when we get a board that supports them
+        // BridgeEnabled
+        // BridgeGain
+
         private VoltageRatioSensorType _sensorType;
         public new VoltageRatioSensorType SensorType
         {
@@ -184,21 +195,47 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.SensorType = value;
+
+                    // Update values, SensorType changed
+
+                    SensorUnit_Unit = base.SensorUnit.Unit;
+                    SensorUnit_Name = base.SensorUnit.Name;
+                    SensorUnit_Symbol = base.SensorUnit.Symbol;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private UnitInfo _sensorUnit;
-        public new UnitInfo SensorUnit
+        private Unit _sensorUnit_Unit;
+        public Unit SensorUnit_Unit
         {
-            get => _sensorUnit;
+            get => _sensorUnit_Unit;
             set
             {
-                if (_sensorUnit.Unit == value.Unit)
-                    return;
-                _sensorUnit = value;
+                _sensorUnit_Unit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _sensorUnit_Name;
+        public string SensorUnit_Name
+        {
+            get => _sensorUnit_Name;
+            set
+            {
+                _sensorUnit_Name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _sensorUnit_Symbol;
+        public string SensorUnit_Symbol
+        {
+            get => _sensorUnit_Symbol;
+            set
+            {
+                _sensorUnit_Symbol = value;
                 OnPropertyChanged();
             }
         }
@@ -439,13 +476,14 @@ namespace VNC.Phidget22.Ex
             // Just set it so UI behaves well
             IsAttached = true;
 
-            SensorType = voltageRatioInput.SensorType;
-            SensorValue = voltageRatioInput.SensorValue;
-            SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
-
             // TODO(crhodes)
-            // Need to set before being read
-            //SensorUnit = voltageRatioInput.SensorUnit;
+            // 
+            // SensorType needs to be set before SensorUnit and SensorValue can be read
+            //SensorType = VoltageSensorType.Voltage;
+            //SensorUnit = voltageInput.SensorUnit;
+            //SensorValue = voltageInput.SensorValue;
+
+            SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
 
             MinDataInterval = voltageRatioInput.MinDataInterval;
             DataInterval = voltageRatioInput.DataInterval;
@@ -508,6 +546,8 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            SensorValue = e.SensorValue;
         }
 
         private void VoltageRatioInputEx_VoltageRatioChange(object sender, PhidgetsEvents.VoltageRatioInputVoltageRatioChangeEventArgs e)
@@ -523,6 +563,8 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            VoltageRatio = e.VoltageRatio;
         }
 
         private void VoltageRatioInputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)

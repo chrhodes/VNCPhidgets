@@ -85,16 +85,68 @@ namespace VNC.Phidget22.Ex
 
         #region Fields and Properties
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
-        public bool LogPropertyChangeEvents { get; set; }
+        // NOTE(crhodes)
+        // UI binds to these properties so need to use INPC
 
-        public bool LogSensorChangeEvents { get; set; }
-        public bool LogVoltageChangeEvents { get; set; }
+        #region Logging
 
-        public bool LogPerformanceSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
-        public bool LogActionVerification { get; set; }
+        bool _logPhidgetEvents;
+        public bool LogPhidgetEvents
+        {
+            get { return _logPhidgetEvents; }
+            set { _logPhidgetEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logErrorEvents = true;    // probably always want to see Errors
+        public bool LogErrorEvents
+        {
+            get { return _logErrorEvents; }
+            set { _logErrorEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPropertyChangeEvents;
+        public bool LogPropertyChangeEvents
+        {
+            get { return _logPropertyChangeEvents; }
+            set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logSensorChangeEvents;
+        public bool LogSensorChangeEvents
+        {
+            get { return _logSensorChangeEvents; }
+            set { _logSensorChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logVoltageChangeEvents;
+        public bool LogVoltageChangeEvents
+        {
+            get { return _logVoltageChangeEvents; }
+            set { _logVoltageChangeEvents = value; OnPropertyChanged(); }
+        }
+
+        bool _logPerformanceSequence;
+        public bool LogPerformanceSequence
+        {
+            get { return _logPerformanceSequence; }
+            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+        }
+
+        bool _logSequenceAction;
+        public bool LogSequenceAction
+        {
+            get { return _logSequenceAction; }
+            set { _logSequenceAction = value; OnPropertyChanged(); }
+        }
+
+        bool _logActionVerification;
+        public bool LogActionVerification
+        {
+            get { return _logActionVerification; }
+            set { _logActionVerification = value; OnPropertyChanged(); }
+        }
+
+        #endregion
 
         private int _serialNumber;
         public int SerialNumber
@@ -136,27 +188,53 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.SensorType = value;
+
+                    // Update values, SensorType changed
+
+                    SensorUnit_Unit = base.SensorUnit.Unit;
+                    SensorUnit_Name = base.SensorUnit.Name;
+                    SensorUnit_Symbol = base.SensorUnit.Symbol;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private Unit _sensorUnit;
-        public new Unit SensorUnit
+        private Unit _sensorUnit_Unit;
+        public Unit SensorUnit_Unit
         {
-            get => _sensorUnit;
+            get => _sensorUnit_Unit;
             set
             {
-                if (_sensorUnit == value)
-                    return;
-                _sensorUnit = value;
+                _sensorUnit_Unit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _sensorUnit_Name;
+        public string SensorUnit_Name
+        {
+            get => _sensorUnit_Name;
+            set
+            {
+                _sensorUnit_Name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _sensorUnit_Symbol;
+        public string SensorUnit_Symbol
+        {
+            get => _sensorUnit_Symbol;
+            set
+            {
+                _sensorUnit_Symbol = value;
                 OnPropertyChanged();
             }
         }
 
         private PowerSupply _powerSupply;
-        public PowerSupply PowerSupply
+        public new PowerSupply PowerSupply
         {
             get => _powerSupply;
             set
@@ -429,14 +507,14 @@ namespace VNC.Phidget22.Ex
             // Just set it so UI behaves well
             IsAttached = true;
 
-            SensorType = voltageInput.SensorType;
-            SensorValue = voltageInput.SensorValue;
-            SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
-
             // TODO(crhodes)
             // 
-            // This needs to be set before being read
+            // SensorType needs to be set before SensorUnit and SensorValue can be read
+            //SensorType = VoltageSensorType.Voltage;
             //SensorUnit = voltageInput.SensorUnit;
+            //SensorValue = voltageInput.SensorValue;
+
+            SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
 
             MinDataInterval = voltageInput.MinDataInterval;
             DataInterval = voltageInput.DataInterval;
