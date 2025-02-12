@@ -589,6 +589,17 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            switch (e.PropertyName)
+            {
+                case "x":
+                    
+                    break;
+
+                default:
+
+                    break;
+            }
         }
 
         private void VoltageInputEx_SensorChange(object sender, PhidgetsEvents.VoltageInputSensorChangeEventArgs e)

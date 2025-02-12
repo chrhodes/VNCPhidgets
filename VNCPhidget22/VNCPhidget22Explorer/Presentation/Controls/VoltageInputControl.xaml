@@ -77,7 +77,7 @@
         <!-- Logging -->
         
         <dxlc:LayoutGroup 
-            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+            x:Name="lgLogging" View="GroupBox" Header="Event Logging" Orientation="Vertical" 
             VerticalAlignment="Top" HorizontalAlignment="Stretch"
             IsCollapsible="True" IsCollapsed="False"                                     
             Padding="-10"
@@ -129,6 +129,10 @@
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
+
+        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
+
+        </dxlc:LayoutItem>
         
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
             <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top" >
@@ -158,19 +162,23 @@
 
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutItem Label="SensorValue" LabelPosition="Top" HorizontalAlignment="Center">
+            <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
+        
+        <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
+            <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Name" LabelPosition="Left">
+            <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Symbol" LabelPosition="Left">
+            <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
+
         <dxlc:LayoutItem Label="SensorValueChangeTrigger" LabelPosition="Top">
             <dxe:TextEdit Name="teAI_A0VSCT" Text="{Binding SensorValueChangeTrigger, Mode=OneWay}" />
         </dxlc:LayoutItem>
-
-        <dxlc:LayoutItem Label="Unit" LabelPosition="Top">
-            <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
-        </dxlc:LayoutItem>
-        <dxlc:LayoutItem Label="Name" LabelPosition="Top">
-            <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
-        </dxlc:LayoutItem>
-        <dxlc:LayoutItem Label="Symbol" LabelPosition="Top">
-            <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
-        </dxlc:LayoutItem>        
 
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
 

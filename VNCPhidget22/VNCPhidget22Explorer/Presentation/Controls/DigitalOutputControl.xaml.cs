@@ -68,6 +68,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             lgMain.DataContext = this;
+            lgLogging.IsCollapsed = true;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

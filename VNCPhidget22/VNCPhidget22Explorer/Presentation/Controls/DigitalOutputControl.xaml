@@ -68,8 +68,10 @@
 
     <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
         
+        <!--Logging-->
+        
         <dxlc:LayoutGroup 
-            View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+            x:Name="lgLogging" View="GroupBox" Header="Event Logging" Orientation="Vertical" 
             VerticalAlignment="Top" HorizontalAlignment="Stretch"
             IsCollapsible="True" IsCollapsed="False"                                     
             Padding="-10"
@@ -114,9 +116,9 @@
 
         </dxlc:LayoutGroup>
         
-        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Top">
+        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
             <dxe:CheckEdit 
-                Name="ceDO0" Tag="0"  
+                Tag="0"  
                 IsEnabled="{Binding IsAttached}" 
                 IsChecked="{Binding State}"
                 Background="{Binding State, Mode=OneWay, 
