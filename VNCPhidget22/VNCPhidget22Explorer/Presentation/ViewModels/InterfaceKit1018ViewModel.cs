@@ -68,9 +68,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             CloseDigitalOutputCommand = new DelegateCommand<string>(CloseDigitalOutput, CloseDigitalOutputCanExecute);
 
             OpenVoltageInputCommand = new DelegateCommand<string>(OpenVoltageInput, OpenVoltageInputCanExecute);
+            RefreshVoltageInputCommand = new DelegateCommand<string>(RefreshVoltageInput, RefreshVoltageInputCanExecute);
             CloseVoltageInputCommand = new DelegateCommand<string>(CloseVoltageInput, CloseVoltageInputCanExecute);
 
             OpenVoltageRatioInputCommand = new DelegateCommand<string>(OpenVoltageRatioInput, OpenVoltageRatioInputCanExecute);
+            RefreshVoltageRatioInputCommand = new DelegateCommand<string>(RefreshVoltageRatioInput, RefreshVoltageRatioInputCanExecute);
             CloseVoltageRatioInputCommand = new DelegateCommand<string>(CloseVoltageRatioInput, CloseVoltageRatioInputCanExecute);
 
             // HACK(crhodes)
@@ -2772,6 +2774,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
 
             OpenVoltageInputCommand.RaiseCanExecuteChanged();
+            RefreshVoltageInputCommand.RaiseCanExecuteChanged();
             CloseVoltageInputCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
@@ -2827,6 +2830,192 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             else
             {
                 return true;
+            }
+        }
+
+        #endregion
+
+        #region RefreshVoltageInput Command
+
+        public DelegateCommand<string> RefreshVoltageInputCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _RefreshVoltageInputHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE RefreshVoltageInputCommandParameter;
+
+        public string RefreshVoltageInputContent { get; set; } = "Refresh";
+        public string RefreshVoltageInputToolTip { get; set; } = "Refresh VoltageInput";
+
+        // Can get fancy and use Resources
+        //public string RefreshVoltageInputContent { get; set; } = "ViewName_RefreshVoltageInputContent";
+        //public string RefreshVoltageInputToolTip { get; set; } = "ViewName_RefreshVoltageInputContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RefreshVoltageInputContent">RefreshVoltageInput</system:String>
+        //    <system:String x:Key="ViewName_RefreshVoltageInputContentToolTip">RefreshVoltageInput ToolTip</system:String>  
+
+        private async Task RefreshVoltageInput(VoltageInputEx voltageInput, SerialChannel serialChannel)
+        {
+            if (voltageInput.IsOpen is true)
+            {
+                //await Task.Run(() => voltageInput.Refresh(5000));    // Wait 5 seconds to attach
+                await Task.Run(() => voltageInput.RefreshProperties());  // Block until attached
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+            }
+        }
+
+        // If using CommandParameter, figure out TYPE here
+        public async void RefreshVoltageInput(string channelNumber)
+        //public void RefreshVoltageInput()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = $"Cool, you called RefreshVoltageInput on Channel:{channelNumber}";
+
+            PublishStatusMessage(Message);
+
+            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 channel;
+
+            if (Int32.TryParse(channelNumber, out channel))
+            {
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+
+                //VoltageInputEx voltageInputHost = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
+
+                switch (channel)
+                {
+                    case 0:
+                        await RefreshVoltageInput(VoltageInput0, serialChannel);
+                        break;
+
+                    case 1:
+                        await RefreshVoltageInput(VoltageInput1, serialChannel);
+                        break;
+
+                    case 2:
+                        await RefreshVoltageInput(VoltageInput2, serialChannel);
+                        break;
+
+                    case 3:
+                        await RefreshVoltageInput(VoltageInput3, serialChannel);
+                        break;
+
+                    case 4:
+                        await RefreshVoltageInput(VoltageInput4, serialChannel);
+                        break;
+
+                    case 5:
+                        await RefreshVoltageInput(VoltageInput5, serialChannel);
+                        break;
+
+                    case 6:
+                        await RefreshVoltageInput(VoltageInput6, serialChannel);
+                        break;
+
+                    case 7:
+                        await RefreshVoltageInput(VoltageInput7, serialChannel);
+                        break;
+
+                    case 8:
+                        await RefreshVoltageInput(VoltageInput8, serialChannel);
+                        break;
+
+                    case 9:
+                        await RefreshVoltageInput(VoltageInput9, serialChannel);
+                        break;
+
+                    case 10:
+                        await RefreshVoltageInput(VoltageInput10, serialChannel);
+                        break;
+
+                    case 11:
+                        await RefreshVoltageInput(VoltageInput11, serialChannel);
+                        break;
+
+                    case 12:
+                        await RefreshVoltageInput(VoltageInput12, serialChannel);
+                        break;
+
+                    case 13:
+                        await RefreshVoltageInput(VoltageInput13, serialChannel);
+                        break;
+
+                    case 14:
+                        await RefreshVoltageInput(VoltageInput14, serialChannel);
+                        break;
+
+                    case 15:
+                        await RefreshVoltageInput(VoltageInput15, serialChannel);
+                        break;
+                }
+            }
+            else
+            {
+
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RefreshVoltageInputEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RefreshVoltageInputEvent>().Publish(
+            //      new RefreshVoltageInputEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class RefreshVoltageInputEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RefreshVoltageInputEvent>().Subscribe(RefreshVoltageInput);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public bool RefreshVoltageInputCanExecute(string channelNumber)
+        //public bool RefreshVoltageInputCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            Int32 channel;
+
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
+
+            if (SelectedInterfaceKit is null) return false;
+
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+
+            VoltageInputEx? host;
+
+            if (!PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue(serialChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -2943,6 +3132,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
 
             OpenVoltageInputCommand.RaiseCanExecuteChanged();
+            RefreshVoltageInputCommand.RaiseCanExecuteChanged();
             CloseVoltageInputCommand.RaiseCanExecuteChanged();
 
             // If launching a UserControl
@@ -3016,7 +3206,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
-
 
         #region OpenVoltageRatioInput Command
 
@@ -3165,6 +3354,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
 
             OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
+            RefreshVoltageRatioInputCommand.RaiseCanExecuteChanged();
             CloseVoltageRatioInputCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
@@ -3224,6 +3414,190 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #region RefreshVoltageRatioInput Command
+
+        public DelegateCommand<string> RefreshVoltageRatioInputCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _RefreshVoltageRatioInputHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE RefreshVoltageRatioInputCommandParameter;
+
+        public string RefreshVoltageRatioInputContent { get; set; } = "Refresh";
+        public string RefreshVoltageRatioInputToolTip { get; set; } = "Refresh VoltageRatioInput";
+
+        // Can get fancy and use Resources
+        //public string RefreshVoltageRatioInputContent { get; set; } = "ViewName_RefreshVoltageRatioInputContent";
+        //public string RefreshVoltageRatioInputToolTip { get; set; } = "ViewName_RefreshVoltageRatioInputContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RefreshVoltageRatioInputContent">RefreshVoltageRatioInput</system:String>
+        //    <system:String x:Key="ViewName_RefreshVoltageRatioInputContentToolTip">RefreshVoltageRatioInput ToolTip</system:String>  
+
+        private async Task RefreshVoltageRatioInput(VoltageRatioInputEx voltageInput, SerialChannel serialChannel)
+        {
+            if (voltageInput.IsOpen is true)
+            {
+                //await Task.Run(() => voltageInput.Refresh(5000));    // Wait 5 seconds to attach
+                await Task.Run(() => voltageInput.RefreshProperties());  // Block until attached
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+            }
+        }
+
+        // If using CommandParameter, figure out TYPE here
+        public async void RefreshVoltageRatioInput(string channelNumber)
+        //public void RefreshVoltageRatioInput()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = $"Cool, you called RefreshVoltageRatioInput on Channel:{channelNumber}";
+
+            PublishStatusMessage(Message);
+
+            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 channel;
+
+            if (Int32.TryParse(channelNumber, out channel))
+            {
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+
+                //VoltageRatioInputEx voltageInputHost = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
+
+                switch (channel)
+                {
+                    case 0:
+                        await RefreshVoltageRatioInput(VoltageRatioInput0, serialChannel);
+                        break;
+
+                    case 1:
+                        await RefreshVoltageRatioInput(VoltageRatioInput1, serialChannel);
+                        break;
+
+                    case 2:
+                        await RefreshVoltageRatioInput(VoltageRatioInput2, serialChannel);
+                        break;
+
+                    case 3:
+                        await RefreshVoltageRatioInput(VoltageRatioInput3, serialChannel);
+                        break;
+
+                    case 4:
+                        await RefreshVoltageRatioInput(VoltageRatioInput4, serialChannel);
+                        break;
+
+                    case 5:
+                        await RefreshVoltageRatioInput(VoltageRatioInput5, serialChannel);
+                        break;
+
+                    case 6:
+                        await RefreshVoltageRatioInput(VoltageRatioInput6, serialChannel);
+                        break;
+
+                    case 7:
+                        await RefreshVoltageRatioInput(VoltageRatioInput7, serialChannel);
+                        break;
+
+                    case 8:
+                        await RefreshVoltageRatioInput(VoltageRatioInput8, serialChannel);
+                        break;
+
+                    case 9:
+                        await RefreshVoltageRatioInput(VoltageRatioInput9, serialChannel);
+                        break;
+
+                    case 10:
+                        await RefreshVoltageRatioInput(VoltageRatioInput10, serialChannel);
+                        break;
+
+                    case 11:
+                        await RefreshVoltageRatioInput(VoltageRatioInput11, serialChannel);
+                        break;
+
+                    case 12:
+                        await RefreshVoltageRatioInput(VoltageRatioInput12, serialChannel);
+                        break;
+
+                    case 13:
+                        await RefreshVoltageRatioInput(VoltageRatioInput13, serialChannel);
+                        break;
+
+                    case 14:
+                        await RefreshVoltageRatioInput(VoltageRatioInput14, serialChannel);
+                        break;
+
+                    case 15:
+                        await RefreshVoltageRatioInput(VoltageRatioInput15, serialChannel);
+                        break;
+                }
+            }
+            else
+            {
+
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RefreshVoltageRatioInputEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RefreshVoltageRatioInputEvent>().Publish(
+            //      new RefreshVoltageRatioInputEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class RefreshVoltageRatioInputEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RefreshVoltageRatioInputEvent>().Subscribe(RefreshVoltageRatioInput);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public bool RefreshVoltageRatioInputCanExecute(string channelNumber)
+        //public bool RefreshVoltageRatioInputCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            Int32 channel;
+
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
+
+            if (SelectedInterfaceKit is null) return false;
+
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+
+            VoltageRatioInputEx? host;
+
+            if (!PhidgetDeviceLibrary.VoltageRatioInputChannels.TryGetValue(serialChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         #region CloseVoltageRatioInput Command
 
@@ -3335,6 +3709,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
 
             OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
+            RefreshVoltageRatioInputCommand.RaiseCanExecuteChanged();
             CloseVoltageRatioInputCommand.RaiseCanExecuteChanged();
 
             // If launching a UserControl
@@ -3406,6 +3781,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 return false;
             }
         }
+
+        #endregion
 
         #endregion
 

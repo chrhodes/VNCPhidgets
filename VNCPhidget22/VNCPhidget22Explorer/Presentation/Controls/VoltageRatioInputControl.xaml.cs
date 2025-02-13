@@ -1584,6 +1584,27 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             }
         }
 
+        private void SensorType_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            var sensorType = e.NewValue;
+
+            // TODO(crhodes)
+            // Can get fance and use colors, etc.
+
+            switch (sensorType)
+            {
+                case Phidgets.VoltageRatioSensorType.VoltageRatio:
+                    lgVoltageRatio.IsEnabled = true;
+                    lgSensor.IsEnabled = false;
+                    break;
+
+                default:
+                    lgVoltageRatio.IsEnabled = false;
+                    lgSensor.IsEnabled = true;
+                    break;
+            }
+        }
+
         #endregion
 
         #region Commands (none)

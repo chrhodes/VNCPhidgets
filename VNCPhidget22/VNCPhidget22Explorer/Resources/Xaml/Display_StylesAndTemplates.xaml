@@ -60,6 +60,8 @@
 
     <SolidColorBrush x:Key="HostSelectorBackground" Color="#C0FFC0" />
     <SolidColorBrush x:Key="AccelerationControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="ChangeTriggerControlBackground" Color="#A0A040" />    
+    <SolidColorBrush x:Key="DataIntervalAndRateControlBackground" Color="#A0A040" />
     <SolidColorBrush x:Key="PositionControlBackground" Color="#C0C0C0" />
     <SolidColorBrush x:Key="ServoStateControlBackground" Color="#D0D0D0" />
     <SolidColorBrush x:Key="StepperStateControlBackground" Color="#E0E0E0" />    

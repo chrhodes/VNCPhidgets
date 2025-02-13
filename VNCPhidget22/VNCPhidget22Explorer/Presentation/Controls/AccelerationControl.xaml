@@ -66,6 +66,7 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel>
+        
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         
         <dxlc:LayoutGroup x:Name="lgMain" Header="Acceleration" View="GroupBox" 

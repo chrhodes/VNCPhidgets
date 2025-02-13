@@ -520,15 +520,18 @@ namespace VNC.Phidget22.Ex
                 SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
 
                 MinDataInterval = voltageInput.MinDataInterval;
-                DataInterval = voltageInput.DataInterval;
+                //DataInterval = voltageInput.DataInterval;
+                DataInterval = 100; // 100ms (10Hz)
                 MaxDataInterval = voltageInput.MaxDataInterval;
 
                 MinDataRate = voltageInput.MinDataRate;
-                DataRate = voltageInput.DataRate;
+                //DataRate = voltageInput.DataRate;
+                DataRate = 10; // 10 Hz (100ms)
                 MaxDataRate = voltageInput.MaxDataRate;
 
                 MinVoltage = voltageInput.MinVoltage;
                 Voltage = voltageInput.Voltage;
+                SensorValue = voltageInput.SensorValue;
                 MaxVoltage = voltageInput.MaxVoltage;
 
                 MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
@@ -592,12 +595,16 @@ namespace VNC.Phidget22.Ex
 
             switch (e.PropertyName)
             {
-                case "x":
-                    
+                case "DataRate":
+                    DataRate = base.DataRate;
+                    break;
+
+                case "DataInterval":
+                    DataInterval = base.DataInterval;
                     break;
 
                 default:
-
+                    Log.EVENT_HANDLER($"DigitalOutputEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
                     break;
             }
         }
@@ -703,6 +710,17 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
 
             base.Close();
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+
+            DataInterval = base.DataInterval;
+            DataRate = base.DataRate;
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
