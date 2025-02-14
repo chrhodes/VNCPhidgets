@@ -54,7 +54,7 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
 
     <vncmvvm:ViewBase.Resources>
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
         <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
         <XmlDataProvider x:Key="StepperList" Source="/Resources/StepperList.xml" XPath="Steppers/Stepper" />
@@ -105,7 +105,7 @@
                     <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
                         <dxe:TextEdit EditValue="{Binding SelectedStepper.SerialNumber}" IsReadOnly="True" 
                                       Background="White" 
-                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                                      Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}"/>
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>

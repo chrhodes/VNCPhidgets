@@ -55,7 +55,7 @@
     
      <vncmvvm:ViewBase.Resources>
         <converters:SpinEditConverter x:Key="SpinEditConverter" />
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
         <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
         <vncconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->

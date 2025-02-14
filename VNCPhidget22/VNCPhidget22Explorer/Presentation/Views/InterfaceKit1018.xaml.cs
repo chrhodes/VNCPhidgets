@@ -67,11 +67,14 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
+            // TODO(crhodes)
+            // Figure out how to local handle lgInterfaceKits disabled/hidden until host selected
+            //this.lgInterfaceKits.IsEnabled = true;
             this.lgPhidget22Status.IsCollapsed = true;
 
-            //lgDigitalInputs.Visibility = Visibility.Collapsed;
-            //lgDigitalOutputs.Visibility = Visibility.Collapsed;
-            //lgAnalogInputs.Visibility = Visibility.Collapsed;
+            lgDigitalInputs.IsCollapsed = true;
+            lgDigitalOutputs.IsCollapsed = true;
+            lgVoltageInputs.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 

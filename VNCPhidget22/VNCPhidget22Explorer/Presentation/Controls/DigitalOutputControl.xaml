@@ -44,7 +44,7 @@
 
     <vncmvvm:ViewBase.Resources>
         <converters:SpinEditConverter x:Key="SpinEditConverter" />
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />        
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />        
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
         <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
@@ -122,7 +122,7 @@
                 IsEnabled="{Binding IsAttached}" 
                 IsChecked="{Binding State}"
                 Background="{Binding State, Mode=OneWay, 
-                            Converter={StaticResource RedGreenConverter}}"/>
+                            Converter={StaticResource BooleanToColorConverter}}"/>
         </dxlc:LayoutItem>
 
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >

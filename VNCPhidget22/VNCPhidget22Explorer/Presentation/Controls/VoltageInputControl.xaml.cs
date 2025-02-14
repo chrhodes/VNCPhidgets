@@ -70,6 +70,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
             lgMain.DataContext = this;
             lgLogging.IsCollapsed = true;
+            lgChangeTrigger.IsCollapsed = true;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -910,6 +911,56 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         protected virtual void OnSensorValueChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+
+        #region SensorValueOutOfRange
+
+        public static readonly DependencyProperty SensorValueOutOfRangeProperty = DependencyProperty.Register(
+            "SensorValueOutOfRange",
+            typeof(Boolean),
+            typeof(VoltageInputControl),
+            new FrameworkPropertyMetadata(
+                false,
+                new PropertyChangedCallback(OnSensorValueOutOfRangeChanged),
+                new CoerceValueCallback(OnCoerceSensorValueOutOfRange)
+                ))
+            ;
+
+        public Boolean SensorValueOutOfRange
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Boolean)GetValue(SensorValueOutOfRangeProperty);
+            set => SetValue(SensorValueOutOfRangeProperty, value);
+        }
+
+        private static object OnCoerceSensorValueOutOfRange(DependencyObject o, object value)
+        {
+            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
+            if (VoltageInputControl != null)
+                return VoltageInputControl.OnCoerceSensorValueOutOfRange((Boolean)value);
+            else
+                return value;
+        }
+
+        private static void OnSensorValueOutOfRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageInputControl VoltageInputControl = o as VoltageInputControl;
+            if (VoltageInputControl != null)
+                VoltageInputControl.OnSensorValueOutOfRangeChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+        }
+
+        protected virtual Boolean OnCoerceSensorValueOutOfRange(Boolean value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSensorValueOutOfRangeChanged(Boolean oldValue, Boolean newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }

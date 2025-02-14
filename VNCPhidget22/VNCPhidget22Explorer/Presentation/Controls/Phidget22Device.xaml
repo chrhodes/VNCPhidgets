@@ -41,7 +41,7 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
 
     <vncmvvm:ViewBase.Resources>
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
     </vncmvvm:ViewBase.Resources>
     <!-- <vncmvvm:ViewBase.Resources> -->
     <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
@@ -85,29 +85,29 @@
 
                 <dxlc:LayoutItem Label="Address" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceAddress, Mode=OneWay}" IsReadOnly="True"
-                                     Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                                     Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DevicePort, Mode=OneWay}" IsReadOnly="True"
                               Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceSerialNumber, Mode=OneWay}" IsReadOnly="True"
                               Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Attached" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceAttached, Mode=OneWay}" IsReadOnly="True"
-                                   Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                                   Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <!--<dxlc:LayoutItem Label="AttachedToServer" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceAttachedToServer, Mode=OneWay}" IsReadOnly="True"
-                                   Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                                   Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>-->
 
             </dxlc:LayoutGroup>
@@ -118,19 +118,19 @@
                 <dxlc:LayoutItem Label="Name">
                     <dxe:TextEdit EditValue="{Binding DeviceName, Mode=TwoWay}" IsReadOnly="True"
                               Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Type">
                     <dxe:TextEdit EditValue="{Binding DeviceType, Mode=OneWay}" IsReadOnly="True"
                                      Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Class">
                     <dxe:TextEdit EditValue="{Binding DeviceClass, Mode=OneWay}" IsReadOnly="True"
                                      Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
@@ -139,19 +139,19 @@
 
                 <dxlc:LayoutItem Label="ID" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceID, Mode=OneWay}" IsReadOnly="True"
-                              Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Background="White" Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Version" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceVersion, Mode=OneWay}" IsReadOnly="True"
                               Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Label" HorizontalAlignment="Left">
                     <dxe:TextEdit EditValue="{Binding DeviceLabel, Mode=OneWay}" IsReadOnly="True"
                               Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
                 </dxlc:LayoutItem>
                 
             </dxlc:LayoutGroup>
@@ -159,14 +159,14 @@
             <!--<dxlc:LayoutItem Label="ServerID">
                 <dxe:TextEdit EditValue="{Binding DeviceServerID, Mode=OneWay}" IsReadOnly="True"
                               Background="White"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
             </dxlc:LayoutItem>-->
 
 
             <dxlc:LayoutItem Label="LibraryVersion">
                 <dxe:TextEdit EditValue="{Binding DeviceLibraryVersion, Mode=OneWay}" IsReadOnly="True"
                               Background="White" MinHeight="40"
-                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}" />
+                              Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}" />
             </dxlc:LayoutItem>
 
             <!-- All Phidget22 have general events, see PhidgetEx -->

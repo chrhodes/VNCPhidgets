@@ -234,56 +234,7 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private PowerSupply _powerSupply;
-        public new PowerSupply PowerSupply
-        {
-            get => _powerSupply;
-            set
-            {
-                if (_powerSupply == value)
-                    return;
-                _powerSupply = value;
 
-                if (Attached)
-                {
-                    base.PowerSupply = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Double _sensorValueChangeTrigger;
-        public new Double SensorValueChangeTrigger
-        {
-            get => _sensorValueChangeTrigger;
-            set
-            {
-                if (_sensorValueChangeTrigger == value)
-                    return;
-                _sensorValueChangeTrigger = value;
-
-                if (Attached)
-                {
-                    base.SensorValueChangeTrigger = (Double)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Double _sensorValue;
-        public new Double SensorValue
-        {
-            get => _sensorValue;
-            set
-            {
-                if (_sensorValue == value)
-                    return;
-                _sensorValue = value;
-                OnPropertyChanged();
-            }
-        }
 
         private int _minDataInterval;
         public new int MinDataInterval
@@ -478,6 +429,77 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+
+
+        private Double _sensorValue;
+        public new Double SensorValue
+        {
+            get => _sensorValue;
+            set
+            {
+                if (_sensorValue == value)
+                    return;
+                _sensorValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _sensorValueChangeTrigger;
+        public new Double SensorValueChangeTrigger
+        {
+            get => _sensorValueChangeTrigger;
+            set
+            {
+                if (_sensorValueChangeTrigger == value)
+                    return;
+                _sensorValueChangeTrigger = value;
+
+                if (Attached)
+                {
+                    base.SensorValueChangeTrigger = (Double)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        // NOTE(crhodes)
+        // Flag OutOfRange Errors if in Sensor mode
+        // Detected in Error Event
+        // Cleared in SensorValueChanged Event
+
+        private bool _sensorValueOutOfRange;
+        public bool SensorValueOutOfRange
+        {
+            get => _sensorValueOutOfRange;
+            set
+            {
+                if (_sensorValueOutOfRange == value)
+                    return;
+                _sensorValueOutOfRange = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private PowerSupply _powerSupply;
+        public new PowerSupply PowerSupply
+        {
+            get => _powerSupply;
+            set
+            {
+                if (_powerSupply == value)
+                    return;
+                _powerSupply = value;
+
+                if (Attached)
+                {
+                    base.PowerSupply = value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Event Handlers
@@ -490,7 +512,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageInputEx_Attach: sender:{sender} isAttached:{IsAttached} sOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -544,6 +566,8 @@ namespace VNC.Phidget22.Ex
                 {
                     throw pex;
                 }
+
+                Log.Error(pex, Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -570,7 +594,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Exit VoltageInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Exit VoltageInputEx_Attach: sender:{sender} isAttached:{IsAttached} sOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -687,42 +711,45 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
 
             base.Open();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} timeout:{timeout}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen} timeout:{timeout}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            // TODO(crhodes)
+            // Maybe we call RefreshProperties() here instead of trying to get stuff in Attach
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
 
             base.Close();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
 
             DataInterval = base.DataInterval;
             DataRate = base.DataRate;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)

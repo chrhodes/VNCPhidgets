@@ -48,7 +48,8 @@
 
     <vncmvvm:ViewBase.Resources>
         <converters:SpinEditConverter x:Key="SpinEditConverter" />
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+        <converters:InverseBooleanToColorConverter x:Key="InverseBooleanToColorConverter" />        
         <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
         <vncwpfconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
@@ -174,26 +175,31 @@
 
         <dxlc:LayoutGroup x:Name="lgSensor" View="Group" Orientation="Vertical"  HorizontalAlignment="Stretch">
 
-            <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
-                <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
-                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True" />
-            </dxlc:LayoutItem>
-        
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                </dxlc:LayoutItem>
+
+                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text=" " Height="10" Width="10"
+                           Background="{Binding SensorValueOutOfRange, Mode=OneWay, 
+                                        Converter={StaticResource InverseBooleanToColorConverter}}"/>
+
+            </dxlc:LayoutGroup>
+
             <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
                 <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Name" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Symbol" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-            
+
         </dxlc:LayoutGroup>
 
         <controls:DataIntervalAndRateControl VerticalAlignment="Top"/>
 
-        <dxlc:LayoutGroup Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  VerticalAlignment="Top"
+        <dxlc:LayoutGroup x:Name="lgChangeTrigger" Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  VerticalAlignment="Top"
                       IsCollapsible="True" IsCollapsed="False" Padding="-10"  >
 
             <dxlc:LayoutGroup View="GroupBox" Header="Voltage Change" Orientation="Horizontal" HorizontalAlignment="Stretch"  >

@@ -31,6 +31,7 @@
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"    
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"   
     
+    xmlns:calc="clr-namespace:CalcBinding;assembly=CalcBinding"
     xmlns:prism="http://prismlibrary.com/"   
     prism:ViewModelLocator.AutoWireViewModel="False"
 
@@ -48,7 +49,8 @@
 
     <vncmvvm:ViewBase.Resources>
         <converters:SpinEditConverter x:Key="SpinEditConverter" />
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+        <converters:InverseBooleanToColorConverter x:Key="InverseBooleanToColorConverter" />
         <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
         <vncwpfconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
@@ -108,6 +110,7 @@
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            
             <dxlc:LayoutItem>
                 <Button x:Name="btnOpenVoltageRatioInputCommand" 
                         DataContext="{Binding DataContext, 
@@ -118,8 +121,8 @@
       		                ToolTip="{Binding OpenVoltageRatioInputToolTip, FallbackValue='OpenVoltageRatioInput ToolTip' }" />   
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem  Padding="-5" VerticalAlignment="Center">
-                <Button x:Name="btnRefreshVoltageRatioInputCommand" 
+            <dxlc:LayoutItem  VerticalAlignment="Center" HorizontalAlignment="Center" >
+                <Button x:Name="btnRefreshVoltageRatioInputCommand" Padding="0"
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		            Command="{Binding RefreshVoltageRatioInputCommand }"
@@ -154,7 +157,7 @@
                 EditValueChanged="SensorType_EditValueChanged" />
         </dxlc:LayoutItem>
 
-        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top"/>
 
         <dxlc:LayoutGroup x:Name="lgVoltageRatio" View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
 
@@ -175,30 +178,35 @@
 
         <dxlc:LayoutGroup x:Name="lgSensor" View="Group" Orientation="Vertical"  HorizontalAlignment="Stretch">
 
-            <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
-                <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                
+                <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
                               Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
-            </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
+
+                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text=" " Height="10" Width="10"
+                           Background="{Binding SensorValueOutOfRange, Mode=OneWay, 
+                                        Converter={StaticResource InverseBooleanToColorConverter}}"/>
+
+            </dxlc:LayoutGroup>
 
             <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
                 <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Name" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Symbol" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
 
         <controls:DataIntervalAndRateControl VerticalAlignment="Top" />
         
-        <dxlc:LayoutGroup Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  
+        <dxlc:LayoutGroup x:Name="lgChangeTrigger"  Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  
                           VerticalAlignment="Top"
-                            IsCollapsible="True" IsCollapsed="False" Padding="-10">
+                          IsCollapsible="True" IsCollapsed="False" Padding="-10">
             
-            <dxlc:LayoutGroup View="GroupBox" Header="VoltageRatio Change" Orientation="Horizontal" HorizontalAlignment="Stretch" >
+            <dxlc:LayoutGroup View="GroupBox" Header="VoltageRatio Change" Orientation="Horizontal" >
 
                 <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
                     <dxe:TextEdit Text="{Binding MinVoltageRatioChangeTrigger, Mode=OneWay}" IsReadOnly="True" />

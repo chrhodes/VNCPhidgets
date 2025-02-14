@@ -69,6 +69,7 @@ namespace VNCPhidget22Explorer.Presentation.Controls
             // Hook eventhandlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
+            lgMain.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
