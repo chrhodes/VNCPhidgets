@@ -2647,7 +2647,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageInputContent">OpenVoltageInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageInputContentToolTip">OpenVoltageInput ToolTip</system:String>  
 
-        private async Task OpenVoltageInput(VoltageInputEx voltageInput, SerialChannel serialChannel)
+        private async Task OpenVoltageInput(VoltageInputEx voltageInput)
         {
             ConfigureInitialLogging(voltageInput);
 
@@ -2689,82 +2689,82 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     case 0:
                         if (VoltageInput0 is null) VoltageInput0 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput0, serialChannel);
+                        await OpenVoltageInput(VoltageInput0);
                         break;
 
                     case 1:
                         if (VoltageInput1 is null) VoltageInput1 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput1, serialChannel);
+                        await OpenVoltageInput(VoltageInput1);
                         break;
 
                     case 2:
                         if (VoltageInput2 is null) VoltageInput2 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput2, serialChannel);
+                        await OpenVoltageInput(VoltageInput2);
                         break;
 
                     case 3:
                         if (VoltageInput3 is null) VoltageInput3 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput3, serialChannel);
+                        await OpenVoltageInput(VoltageInput3);
                         break;
 
                     case 4:
                         if (VoltageInput4 is null) VoltageInput4 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput4, serialChannel);
+                        await OpenVoltageInput(VoltageInput4);
                         break;
 
                     case 5:
                         if (VoltageInput5 is null) VoltageInput5 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput5, serialChannel);
+                        await OpenVoltageInput(VoltageInput5);
                         break;
 
                     case 6:
                         if (VoltageInput6 is null) VoltageInput6 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput6, serialChannel);
+                        await OpenVoltageInput(VoltageInput6);
                         break;
 
                     case 7:
                         if (VoltageInput7 is null) VoltageInput7 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput7, serialChannel);
+                        await OpenVoltageInput(VoltageInput7);
                         break;
 
                     case 8:
                         if (VoltageInput8 is null) VoltageInput8 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput8, serialChannel);
+                        await OpenVoltageInput(VoltageInput8);
                         break;
 
                     case 9:
                         if (VoltageInput9 is null) VoltageInput9 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput9, serialChannel);
+                        await OpenVoltageInput(VoltageInput9);
                         break;
 
                     case 10:
                         if (VoltageInput10 is null) VoltageInput10 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput10, serialChannel);
+                        await OpenVoltageInput(VoltageInput10);
                         break;
 
                     case 11:
                         if (VoltageInput11 is null) VoltageInput11 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput11, serialChannel);
+                        await OpenVoltageInput(VoltageInput11);
                         break;
 
                     case 12:
                         if (VoltageInput12 is null) VoltageInput12 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput12, serialChannel);
+                        await OpenVoltageInput(VoltageInput12);
                         break;
 
                     case 13:
                         if (VoltageInput13 is null) VoltageInput13 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput13, serialChannel);
+                        await OpenVoltageInput(VoltageInput13);
                         break;
 
                     case 14:
                         if (VoltageInput14 is null) VoltageInput14 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput14, serialChannel);
+                        await OpenVoltageInput(VoltageInput14);
                         break;
 
                     case 15:
                         if (VoltageInput15 is null) VoltageInput15 = PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
-                        await OpenVoltageInput(VoltageInput15, serialChannel);
+                        await OpenVoltageInput(VoltageInput15);
                         break;
                 }
             }
@@ -2855,12 +2855,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RefreshVoltageInputContent">RefreshVoltageInput</system:String>
         //    <system:String x:Key="ViewName_RefreshVoltageInputContentToolTip">RefreshVoltageInput ToolTip</system:String>  
 
-        private async Task RefreshVoltageInput(VoltageInputEx voltageInput, SerialChannel serialChannel)
+        private async Task RefreshVoltageInput(VoltageInputEx voltageInput)
         {
             if (voltageInput.IsOpen is true)
             {
-                //await Task.Run(() => voltageInput.Refresh(5000));    // Wait 5 seconds to attach
-                await Task.Run(() => voltageInput.RefreshProperties());  // Block until attached
+                await Task.Run(() => voltageInput.RefreshProperties());
             }
             else
             {
@@ -2894,67 +2893,67 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 switch (channel)
                 {
                     case 0:
-                        await RefreshVoltageInput(VoltageInput0, serialChannel);
+                        await RefreshVoltageInput(VoltageInput0);
                         break;
 
                     case 1:
-                        await RefreshVoltageInput(VoltageInput1, serialChannel);
+                        await RefreshVoltageInput(VoltageInput1);
                         break;
 
                     case 2:
-                        await RefreshVoltageInput(VoltageInput2, serialChannel);
+                        await RefreshVoltageInput(VoltageInput2);
                         break;
 
                     case 3:
-                        await RefreshVoltageInput(VoltageInput3, serialChannel);
+                        await RefreshVoltageInput(VoltageInput3);
                         break;
 
                     case 4:
-                        await RefreshVoltageInput(VoltageInput4, serialChannel);
+                        await RefreshVoltageInput(VoltageInput4);
                         break;
 
                     case 5:
-                        await RefreshVoltageInput(VoltageInput5, serialChannel);
+                        await RefreshVoltageInput(VoltageInput5);
                         break;
 
                     case 6:
-                        await RefreshVoltageInput(VoltageInput6, serialChannel);
+                        await RefreshVoltageInput(VoltageInput6);
                         break;
 
                     case 7:
-                        await RefreshVoltageInput(VoltageInput7, serialChannel);
+                        await RefreshVoltageInput(VoltageInput7);
                         break;
 
                     case 8:
-                        await RefreshVoltageInput(VoltageInput8, serialChannel);
+                        await RefreshVoltageInput(VoltageInput8);
                         break;
 
                     case 9:
-                        await RefreshVoltageInput(VoltageInput9, serialChannel);
+                        await RefreshVoltageInput(VoltageInput9);
                         break;
 
                     case 10:
-                        await RefreshVoltageInput(VoltageInput10, serialChannel);
+                        await RefreshVoltageInput(VoltageInput10);
                         break;
 
                     case 11:
-                        await RefreshVoltageInput(VoltageInput11, serialChannel);
+                        await RefreshVoltageInput(VoltageInput11);
                         break;
 
                     case 12:
-                        await RefreshVoltageInput(VoltageInput12, serialChannel);
+                        await RefreshVoltageInput(VoltageInput12);
                         break;
 
                     case 13:
-                        await RefreshVoltageInput(VoltageInput13, serialChannel);
+                        await RefreshVoltageInput(VoltageInput13);
                         break;
 
                     case 14:
-                        await RefreshVoltageInput(VoltageInput14, serialChannel);
+                        await RefreshVoltageInput(VoltageInput14);
                         break;
 
                     case 15:
-                        await RefreshVoltageInput(VoltageInput15, serialChannel);
+                        await RefreshVoltageInput(VoltageInput15);
                         break;
                 }
             }
@@ -3227,14 +3226,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContent">OpenVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContentToolTip">OpenVoltageRatioInput ToolTip</system:String>  
 
-        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRatioInput, SerialChannel serialChannel)
+        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRatioInput)
         {
             ConfigureInitialLogging(voltageRatioInput);
 
             if (voltageRatioInput.IsOpen is false)
             {
-                //await Task.Run(() => voltageRatioInput.Open(5000));    // Wait 5 seconds to attach
-                await Task.Run(() => voltageRatioInput.Open());  // Block until attached
+                await Task.Run(() => voltageRatioInput.Open(1000));    // Wait 1 seconds to attach
+                //await Task.Run(() => voltageRatioInput.Open());  // Block until attached
             }
             else
             {
@@ -3269,82 +3268,82 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 {
                     case 0:
                         if (VoltageRatioInput0 is null) VoltageRatioInput0 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput0, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput0);
                         break;
 
                     case 1:
                         if (VoltageRatioInput1 is null) VoltageRatioInput1 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput1, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput1);
                         break;
 
                     case 2:
                         if (VoltageRatioInput2 is null) VoltageRatioInput2 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput2, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput2);
                         break;
 
                     case 3:
                         if (VoltageRatioInput3 is null) VoltageRatioInput3 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput3, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput3);
                         break;
 
                     case 4:
                         if (VoltageRatioInput4 is null) VoltageRatioInput4 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput4, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput4);
                         break;
 
                     case 5:
                         if (VoltageRatioInput5 is null) VoltageRatioInput5 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput5, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput5);
                         break;
 
                     case 6:
                         if (VoltageRatioInput6 is null) VoltageRatioInput6 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput6, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput6);
                         break;
 
                     case 7:
                         if (VoltageRatioInput7 is null) VoltageRatioInput7 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput7, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput7);
                         break;
 
                     case 8:
                         if (VoltageRatioInput8 is null) VoltageRatioInput8 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput8, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput8);
                         break;
 
                     case 9:
                         if (VoltageRatioInput9 is null) VoltageRatioInput9 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput9, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput9);
                         break;
 
                     case 10:
                         if (VoltageRatioInput10 is null) VoltageRatioInput10 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput10, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput10);
                         break;
 
                     case 11:
                         if (VoltageRatioInput11 is null) VoltageRatioInput11 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput11, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput11);
                         break;
 
                     case 12:
                         if (VoltageRatioInput12 is null) VoltageRatioInput12 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput12, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput12);
                         break;
 
                     case 13:
                         if (VoltageRatioInput13 is null) VoltageRatioInput13 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput13, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput13);
                         break;
 
                     case 14:
                         if (VoltageRatioInput14 is null) VoltageRatioInput14 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput14, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput14);
                         break;
 
                     case 15:
                         if (VoltageRatioInput15 is null) VoltageRatioInput15 = PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel];
-                        await OpenVoltageRatioInput(VoltageRatioInput15, serialChannel);
+                        await OpenVoltageRatioInput(VoltageRatioInput15);
                         break;
                 }
             }
@@ -3435,12 +3434,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RefreshVoltageRatioInputContent">RefreshVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_RefreshVoltageRatioInputContentToolTip">RefreshVoltageRatioInput ToolTip</system:String>  
 
-        private async Task RefreshVoltageRatioInput(VoltageRatioInputEx voltageInput, SerialChannel serialChannel)
+        private async Task RefreshVoltageRatioInput(VoltageRatioInputEx voltageInput)
         {
             if (voltageInput.IsOpen is true)
             {
-                //await Task.Run(() => voltageInput.Refresh(5000));    // Wait 5 seconds to attach
-                await Task.Run(() => voltageInput.RefreshProperties());  // Block until attached
+                await Task.Run(() => voltageInput.RefreshProperties());
             }
             else
             {
@@ -3474,67 +3472,67 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 switch (channel)
                 {
                     case 0:
-                        await RefreshVoltageRatioInput(VoltageRatioInput0, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput0);
                         break;
 
                     case 1:
-                        await RefreshVoltageRatioInput(VoltageRatioInput1, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput1);
                         break;
 
                     case 2:
-                        await RefreshVoltageRatioInput(VoltageRatioInput2, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput2);
                         break;
 
                     case 3:
-                        await RefreshVoltageRatioInput(VoltageRatioInput3, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput3);
                         break;
 
                     case 4:
-                        await RefreshVoltageRatioInput(VoltageRatioInput4, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput4);
                         break;
 
                     case 5:
-                        await RefreshVoltageRatioInput(VoltageRatioInput5, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput5);
                         break;
 
                     case 6:
-                        await RefreshVoltageRatioInput(VoltageRatioInput6, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput6);
                         break;
 
                     case 7:
-                        await RefreshVoltageRatioInput(VoltageRatioInput7, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput7);
                         break;
 
                     case 8:
-                        await RefreshVoltageRatioInput(VoltageRatioInput8, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput8);
                         break;
 
                     case 9:
-                        await RefreshVoltageRatioInput(VoltageRatioInput9, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput9);
                         break;
 
                     case 10:
-                        await RefreshVoltageRatioInput(VoltageRatioInput10, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput10);
                         break;
 
                     case 11:
-                        await RefreshVoltageRatioInput(VoltageRatioInput11, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput11);
                         break;
 
                     case 12:
-                        await RefreshVoltageRatioInput(VoltageRatioInput12, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput12);
                         break;
 
                     case 13:
-                        await RefreshVoltageRatioInput(VoltageRatioInput13, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput13);
                         break;
 
                     case 14:
-                        await RefreshVoltageRatioInput(VoltageRatioInput14, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput14);
                         break;
 
                     case 15:
-                        await RefreshVoltageRatioInput(VoltageRatioInput15, serialChannel);
+                        await RefreshVoltageRatioInput(VoltageRatioInput15);
                         break;
                 }
             }

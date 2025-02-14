@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
-using Phidgets=Phidget22;
+using DevExpress.Xpf.Editors;
+using DevExpress.Xpf.LayoutControl;
+
+using EnumsNET;
 
 using VNC;
 using VNC.Core.Mvvm;
-using VNC.Phidget22;
-using System.DirectoryServices.ActiveDirectory;
-using DevExpress.Xpf.Editors;
-using System.Windows.Input;
-using DevExpress.Xpf.LayoutControl;
+
+using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
@@ -529,6 +530,54 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         protected virtual void OnSensorTypeChanged(Phidgets.VoltageRatioSensorType oldValue, Phidgets.VoltageRatioSensorType newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SensorDescription
+
+        public static readonly DependencyProperty SensorDescriptionProperty = DependencyProperty.Register(
+            "SensorDescription",
+            typeof(string),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                null,
+                new PropertyChangedCallback(OnSensorDescriptionChanged),
+                new CoerceValueCallback(OnCoerceSensorDescription)
+                )
+            );
+        public string SensorDescription
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (string)GetValue(SensorDescriptionProperty);
+            set => SetValue(SensorDescriptionProperty, value);
+        }
+
+        private static object OnCoerceSensorDescription(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceSensorDescription((string)value);
+            else
+                return value;
+        }
+
+        private static void OnSensorDescriptionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnSensorDescriptionChanged((string)e.OldValue, (string)e.NewValue);
+        }
+
+        protected virtual string OnCoerceSensorDescription(string value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSensorDescriptionChanged(string oldValue, string newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -1587,6 +1636,8 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         private void SensorType_EditValueChanged(object sender, EditValueChangedEventArgs e)
         {
             var sensorType = e.NewValue;
+
+            SensorDescription = ((Phidgets.VoltageSensorType)sensorType).AsString(EnumFormat.Description);
 
             // TODO(crhodes)
             // Can get fance and use colors, etc.

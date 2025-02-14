@@ -118,7 +118,7 @@
       		                ToolTip="{Binding OpenVoltageInputToolTip, FallbackValue='OpenVoltageInput ToolTip' }" />   
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem  Padding="-5" VerticalAlignment="Center">
+            <dxlc:LayoutItem Padding="-5" VerticalAlignment="Center">
                 <Button x:Name="btnRefreshVoltageInputCommand" 
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
@@ -140,9 +140,20 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
+        <!--<dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
 
+        </dxlc:LayoutItem>-->
+
+        <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+
+        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
+            <dxe:ComboBoxEdit x:Name="cbeSensorType"
+                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageSensorType}}}"
+                    SelectedItem="{Binding SensorType}"
+                    EditValueChanged="SensorType_EditValueChanged" />
         </dxlc:LayoutItem>
+
+        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
 
         <dxlc:LayoutGroup x:Name="lgVoltage" View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
 
@@ -151,34 +162,21 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Voltage" LabelPosition="Top" HorizontalAlignment="Center">
-                <dxe:TextEdit Text="{Binding Voltage, Mode=OneWay}" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding Voltage, Mode=OneWay}" IsReadOnly="True"
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"  />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
                 <dxe:TextEdit Text="{Binding MaxVoltage, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>
 
-        </dxlc:LayoutGroup>        
+        </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
-            <!--<dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top" 
-            Visibility="{Binding IsChecked,ElementName=ceRatioMode, 
-            Converter={StaticResource InverseBooleanToVisibilityConverter}}">-->
-            <dxe:ComboBoxEdit x:Name="cbeSensorType"
-                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageSensorType}}}"
-                    SelectedItem="{Binding SensorType}"
-                    SelectedIndex="0" 
-                    EditValueChanged="SensorType_EditValueChanged" />
-        </dxlc:LayoutItem>
-
-        <!-- TODO(crhodes)
-         Figure out how to get description from VoltageSensorType enum
-        -->
-        
         <dxlc:LayoutGroup x:Name="lgSensor" View="Group" Orientation="Vertical"  HorizontalAlignment="Stretch">
 
             <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
-                <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True" />
             </dxlc:LayoutItem>
         
             <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
@@ -193,9 +191,9 @@
             
         </dxlc:LayoutGroup>
 
-        <controls:DataIntervalAndRateControl VerticalAlignment="Bottom"/>
+        <controls:DataIntervalAndRateControl VerticalAlignment="Top"/>
 
-        <dxlc:LayoutGroup Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  VerticalAlignment="Bottom"
+        <dxlc:LayoutGroup Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  VerticalAlignment="Top"
                       IsCollapsible="True" IsCollapsed="False" Padding="-10"  >
 
             <dxlc:LayoutGroup View="GroupBox" Header="Voltage Change" Orientation="Horizontal" HorizontalAlignment="Stretch"  >

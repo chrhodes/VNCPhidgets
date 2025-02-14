@@ -520,13 +520,13 @@ namespace VNC.Phidget22.Ex
                 SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
 
                 MinDataInterval = voltageInput.MinDataInterval;
-                //DataInterval = voltageInput.DataInterval;
-                DataInterval = 100; // 100ms (10Hz)
+                DataInterval = voltageInput.DataInterval;
+                //DataInterval = 100; // 100ms (10Hz)
                 MaxDataInterval = voltageInput.MaxDataInterval;
 
                 MinDataRate = voltageInput.MinDataRate;
-                //DataRate = voltageInput.DataRate;
-                DataRate = 10; // 10 Hz (100ms)
+                DataRate = voltageInput.DataRate;
+                //DataRate = 10; // 10 Hz (100ms)
                 MaxDataRate = voltageInput.MaxDataRate;
 
                 MinVoltage = voltageInput.MinVoltage;
@@ -697,7 +697,7 @@ namespace VNC.Phidget22.Ex
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} timeout:{timeout}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 

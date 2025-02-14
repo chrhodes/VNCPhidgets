@@ -140,9 +140,21 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
+        <!--<dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
 
+        </dxlc:LayoutItem>-->
+
+        <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+        
+        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
+            <dxe:ComboBoxEdit 
+                ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
+                SelectedItem="{Binding SensorType}"
+                SelectedIndex="0"
+                EditValueChanged="SensorType_EditValueChanged" />
         </dxlc:LayoutItem>
+
+        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
 
         <dxlc:LayoutGroup x:Name="lgVoltageRatio" View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
 
@@ -151,7 +163,8 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Voltage" LabelPosition="Top" HorizontalAlignment="Center">
-                <dxe:TextEdit Text="{Binding VoltageRatio, Mode=OneWay}" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding VoltageRatio, Mode=OneWay}" IsReadOnly="True" 
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
@@ -160,25 +173,11 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
-            <!--<dxlc:LayoutItem Label="Sensor Type" LabelPosition="Top"
-                Visibility="{Binding IsChecked, ElementName=ceRatioMode, 
-                Converter={StaticResource BooleanToVisibilityConverter}}">-->
-            <dxe:ComboBoxEdit 
-                ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
-                SelectedItem="{Binding SensorType}"
-                SelectedIndex="0"
-                EditValueChanged="SensorType_EditValueChanged" />
-        </dxlc:LayoutItem>
-
-        <!-- TODO(crhodes)
-         Figure out how to get description from VoltageSensorType enum
-        -->
-
         <dxlc:LayoutGroup x:Name="lgSensor" View="Group" Orientation="Vertical"  HorizontalAlignment="Stretch">
 
             <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
-                <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True" />
+                <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
@@ -193,10 +192,10 @@
 
         </dxlc:LayoutGroup>
 
-        <controls:DataIntervalAndRateControl VerticalAlignment="Bottom" />
+        <controls:DataIntervalAndRateControl VerticalAlignment="Top" />
         
         <dxlc:LayoutGroup Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  
-                          VerticalAlignment="Bottom"
+                          VerticalAlignment="Top"
                             IsCollapsible="True" IsCollapsed="False" Padding="-10">
             
             <dxlc:LayoutGroup View="GroupBox" Header="VoltageRatio Change" Orientation="Horizontal" HorizontalAlignment="Stretch" >
@@ -207,13 +206,13 @@
 
                 <dxlc:LayoutItem Label="Change" LabelPosition="Top" HorizontalAlignment="Center">
                     <dxe:SpinEdit 
-                    Value="{Binding VoltageRatioChangeTrigger, Mode=TwoWay}" 
-                    Increment=".05"    
-                    MinValue="{Binding MinVoltageRatioChangeTrigger, Mode=OneWay}" 
-                    MaxValue="{Binding MaxVoltageRatioChangeTrigger, Mode=OneWay}" 
-                    Mask="F2" MaskType="Numeric" MaskUseAsDisplayFormat="True"
-                    IsFloatValue="True" 
-                    ToolTip="Change Trigger in Volts"/>
+                        Value="{Binding VoltageRatioChangeTrigger, Mode=TwoWay}" 
+                        Increment=".05"    
+                        MinValue="{Binding MinVoltageRatioChangeTrigger, Mode=OneWay}" 
+                        MaxValue="{Binding MaxVoltageRatioChangeTrigger, Mode=OneWay}" 
+                        Mask="F3" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="True" 
+                        ToolTip="Change Trigger in Volts"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
