@@ -17,7 +17,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class ManagePerformanceLibraryViewModel : EventViewModelBase, IManagePerformanceLibraryViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public ManagePerformanceLibraryViewModel(
@@ -53,6 +52,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
 
             Message = "ManagePerformanceLibraryViewModel says hello";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -104,6 +104,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadPerformanceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadPerformanceConfigFiles Clicked";
+            PublishStatusMessage(Message);
 
             //LoadPerformancesConfig();
 
@@ -116,6 +117,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadAdvancedServoSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // Call something in PerformanceSequencePlayer
@@ -131,6 +133,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadInterfaceKitSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // Call something in PerformanceSequencePlayer
@@ -146,6 +149,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadStepperSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
 
             Message = "ReloadStepperSequenceConfigFiles Clicked";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // Call something in PerformanceSequencePlayer
@@ -165,6 +169,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
 
             Message = $"Hello from {this.GetType()}";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
         }

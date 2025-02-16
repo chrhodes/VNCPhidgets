@@ -23,6 +23,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
             InstanceCountVP++;
+
             InitializeComponent();
 
             ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel

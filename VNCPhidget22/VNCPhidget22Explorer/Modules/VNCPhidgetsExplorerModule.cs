@@ -70,9 +70,21 @@ namespace VNCPhidget22Explorer
             containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
 
             // FIX(crhodes)
-            // 
+            // This works because the parameterless constructor does not exist in HackAround
             containerRegistry.Register<HackAround>();
             containerRegistry.Register<HackAroundViewModel>();
+
+            containerRegistry.Register<ManagePerformanceLibrary>();
+            // This calls the view's parameterliess constructor
+            //containerRegistry.Register<ManagePerformanceLibraryViewModel>();
+            // This calls the view's parameterized constructor
+            containerRegistry.Register<IManagePerformanceLibraryViewModel, ManagePerformanceLibraryViewModel>();
+
+            containerRegistry.Register<PhidgetDeviceLibrary>();
+            // This calls the view's parameterliess constructor
+            //containerRegistry.Register<PhidgetDeviceLibraryViewModel>();
+            // This calls the view's parameterized constructor
+            containerRegistry.Register<IPhidgetDeviceLibraryViewModel, PhidgetDeviceLibraryViewModel>();
 
             // containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
             // containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
@@ -129,6 +141,8 @@ namespace VNCPhidget22Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
 
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
+            _regionManager.RegisterViewWithRegion(RegionNames.ManagePerformanceLibraryRegion, typeof(ManagePerformanceLibrary));
+            _regionManager.RegisterViewWithRegion(RegionNames.PhidgetDeviceLibraryRegion, typeof(PhidgetDeviceLibrary));
 
             _regionManager.RegisterViewWithRegion(RegionNames.VNCLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCLoggingConfig));
             _regionManager.RegisterViewWithRegion(RegionNames.VNCCoreLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCCoreLoggingConfig));

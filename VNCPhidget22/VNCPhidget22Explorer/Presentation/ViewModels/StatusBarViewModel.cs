@@ -69,7 +69,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Event Handlers
-
         private void UpdateStatusMessage(string message)
         {
             Int64 startTicks = 0;
@@ -108,6 +107,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called LoggingConfiguration";
+            PublishStatusMessage(Message);
 
             if (_loggingConfigurationHost is null) _loggingConfigurationHost = new WindowHost(EventAggregator);
 

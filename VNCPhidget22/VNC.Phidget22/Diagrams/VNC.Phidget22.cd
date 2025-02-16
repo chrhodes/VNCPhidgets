@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.PhidgetDevice">
-    <Position X="2.25" Y="17.25" Width="5.5" />
+    <Position X="1" Y="18.5" Width="5.5" />
     <TypeIdentifier>
       <HashCode>AACABAAAgAAAAAEAAAAAAAAACAEQAAAAAAAAAAAiAAA=</HashCode>
       <FileName>PhidgetDevice.cs</FileName>
@@ -23,7 +23,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VNC.Phidget22.Players.PerformanceSequencePlayer">
-    <Position X="8.25" Y="23" Width="7.75" />
+    <Position X="6.75" Y="23" Width="7.75" />
     <TypeIdentifier>
       <HashCode>ACAgOAIgAAAgIAAAIAAAQAACQAAAAEFAAAIQAAEEogI=</HashCode>
       <FileName>Players\PerformanceSequencePlayer.cs</FileName>
@@ -32,43 +32,43 @@
   <Class Name="VNC.Phidget22.Configuration.DigitalInputConfiguration">
     <Position X="27.25" Y="11.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgCAAgAAAgIAAAAAAAAAAAAAAAAABAAAAAAAAAgAA=</HashCode>
       <FileName>Configuration\DigitalInputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.DigitalOutputConfiguration">
     <Position X="27" Y="13" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgCAAgAAAgIAAAAAAAAAAAAAAAAABAAAAAAAAAgAA=</HashCode>
       <FileName>Configuration\DigitalOutputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.RCServoConfiguration">
     <Position X="27" Y="14.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAgCAAgAAAgIAAAIAAAAAAAAAAAAABAAAAQAAAAgAA=</HashCode>
       <FileName>Configuration\RCServoConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.StepperConfiguration">
     <Position X="27.25" Y="15.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>ACAgCAAgAAAgIAAAAAAAAACAAAAAAABAAAAQAAAAgAA=</HashCode>
       <FileName>Configuration\StepperConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageOutputConfiguration">
     <Position X="27" Y="17.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgCAAgAAAgIAAAAAAAAAAAAAAAAABAAAAAAAAAgAA=</HashCode>
       <FileName>Configuration\VoltageOutputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputConfiguration">
     <Position X="27.25" Y="19.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Configuration\VotageRatioInputConfiguration.cs</FileName>
+      <HashCode>AAAgCAAgAAAgIAAAAAAAAAAAAAAAAABAAAAAAAAAgAA=</HashCode>
+      <FileName>Configuration\VoltageRatioInputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Events.AdvancedServoSequenceEvent">
@@ -158,7 +158,7 @@
   <Class Name="VNC.Phidget22.Ex.DigitalInputEx">
     <Position X="14.75" Y="0.5" Width="7.5" />
     <TypeIdentifier>
-      <HashCode>AAAACEQCAAAgIAABIACACAAAkAUAAAFhiAAAFEAAwwA=</HashCode>
+      <HashCode>AAAgCEQCgAAgIAQBIAaACAAAkAUAAEFhiAAAFECEwwA=</HashCode>
       <FileName>Ex\DigitalInputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -166,7 +166,7 @@
   <Class Name="VNC.Phidget22.Ex.DigitalOutputEx">
     <Position X="23" Y="0.5" Width="7.75" />
     <TypeIdentifier>
-      <HashCode>AFRCWECCAQEwIAgAIAAACCAAkKUIAQJggABBFAAAggE=</HashCode>
+      <HashCode>AFRiWECCAQEwIAwAIAYACCAAkKUIAUJggABBFACEggE=</HashCode>
       <FileName>Ex\DigitalOutputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -188,7 +188,7 @@
   <Class Name="VNC.Phidget22.Ex.RCServoEx">
     <Position X="31.25" Y="0.5" Width="6.75" />
     <TypeIdentifier>
-      <HashCode>KWJwmPFiAMIwIAiooJUKiSyAsQ+bIy/wAUCWVCAFix0=</HashCode>
+      <HashCode>KWJwmPFiAMIwIAyooJcKiSyAsQ+bI2/wAUCWVCCVix0=</HashCode>
       <FileName>Ex\RCServoEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -196,7 +196,7 @@
   <Class Name="VNC.Phidget22.Ex.StepperEx">
     <Position X="38.5" Y="0.5" Width="6.75" />
     <TypeIdentifier>
-      <HashCode>IGAwmGhCALAgIAAoK5QIkSyAsE8YIg/wQCU3FAAdowA=</HashCode>
+      <HashCode>IeBwmGli4LIgIASoK5YIkSyA8A8YIk/wQGU3FAC9owk=</HashCode>
       <FileName>Ex\StepperEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -204,7 +204,7 @@
   <Class Name="VNC.Phidget22.Ex.VoltageInputEx">
     <Position X="46" Y="0.5" Width="7.5" />
     <TypeIdentifier>
-      <HashCode>QAJgCGQCCCAmsAILvDAACEaBkAUAYhlAAAQCECAIgyA=</HashCode>
+      <HashCode>VgFgCGQCCAAmsAYLvDYICEaBmAUAYllgAQQCMCCMgyI=</HashCode>
       <FileName>Ex\VoltageInputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -212,7 +212,7 @@
   <Class Name="VNC.Phidget22.Ex.VoltageOutputEx">
     <Position X="63" Y="0.5" Width="8" />
     <TypeIdentifier>
-      <HashCode>IkAgGECCAAggIAACoAAAACIAkAUIABJAAAQAECAAwgA=</HashCode>
+      <HashCode>IkAgGECCAAggIAQCoAYAACIAkAUIAFJgAAQAECCEwgA=</HashCode>
       <FileName>Ex\VoltageOutputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -220,13 +220,13 @@
   <Class Name="VNC.Phidget22.Ex.VoltageRatioInputEx">
     <Position X="54" Y="0.5" Width="8.5" />
     <TypeIdentifier>
-      <HashCode>AGJgjGRCACAkIAAJIBAAAkSBkAUAYglAAAgTEQAJliQ=</HashCode>
+      <HashCode>BmFgjGRCQAAkIAQJKBYIAkSBmAUAYklgAQgTEQCNliQ=</HashCode>
       <FileName>Ex\VoltageRatioInputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VNC.Phidget22.Players.PerformancePlayer">
-    <Position X="0.75" Y="21.75" Width="5" />
+    <Position X="1" Y="23" Width="5" />
     <TypeIdentifier>
       <HashCode>ACAgCgAgACAkAAQAIAUAQAAAAAQAAEEYAAEQAAEUoAg=</HashCode>
       <FileName>Players\PerformancePlayer.cs</FileName>
@@ -242,7 +242,7 @@
   <Class Name="VNC.Phidget22.PhidgetDeviceLibrary">
     <Position X="1" Y="13.25" Width="6" />
     <TypeIdentifier>
-      <HashCode>QAAAAEACAEAoAgAAAAAQBAAAAAAIAABAAAAAAAAAAAA=</HashCode>
+      <HashCode>QABAAGACAEAoAgAAAAAQBAgAAAAIAABABAAAAACAAQA=</HashCode>
       <FileName>PhidgetDeviceLibrary.cs</FileName>
     </TypeIdentifier>
   </Class>

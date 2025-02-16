@@ -103,6 +103,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called DeveloperMode";
+            PublishStatusMessage(Message);
 
             EventAggregator.GetEvent<StatusMessageEvent>().Publish(Message);
 

@@ -39,7 +39,7 @@ namespace VNCPhidget22Explorer
         //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
         public static int? PhidgetOpenTimeout { get; set; } = null; // ms
 
-        public static PhidgetDeviceLibrary PhidgetDeviceLibrary;
+        public static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
 
         // These values are added to the dimensions of a hosting window if the
         // hosted User_Control specifies values for MinWidth/MinHeight.

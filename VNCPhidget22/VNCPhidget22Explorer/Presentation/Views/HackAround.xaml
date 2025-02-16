@@ -30,7 +30,7 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
     
-    Background="{StaticResource MainBackground}"
+    Background="{StaticResource HackAroundBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
     

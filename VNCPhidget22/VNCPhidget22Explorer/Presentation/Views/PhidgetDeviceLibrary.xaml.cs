@@ -1,19 +1,19 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
-
-using VNCPhidget22Explorer.Presentation.ViewModels;
 
 using VNC;
 using VNC.Core.Mvvm;
-using System.Linq;
+
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary, IInstanceCountV
+    public partial class PhidgetDeviceLibrary : ViewBase, IPhidgetDeviceLibrary, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
-        
-        public ManagePerformanceLibrary()
+
+        public PhidgetDeviceLibrary()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -22,24 +22,28 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             InitializeComponent();
 
-            // Expose ViewModel
+            // Wire up ViewModel if needed
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IManagePerformanceLibraryViewModel)DataContext;
+            // ViewModel = (IPhidgetDeviceLibraryViewModel)DataContext;
 
             // Can create directly
-            // ViewModel = ManagePerformanceLibraryViewModel();
+
+            // ViewModel = PhidgetDeviceLibraryViewModel();
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
 
             InitializeView();
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
-        public ManagePerformanceLibrary(IManagePerformanceLibraryViewModel viewModel)
+
+        public PhidgetDeviceLibrary(IPhidgetDeviceLibraryViewModel viewModel)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
             InstanceCountVP++;
 
@@ -47,20 +51,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
 
+            // For the rare case where the ViewModel needs to know about the View
+            // ViewModel.View = this;
+
             InitializeView();
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         private void InitializeView()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
-            ViewType = this.GetType().ToString().Split('.').Last();
-
             // NOTE(crhodes)
             // Put things here that initialize the View
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
@@ -68,7 +76,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         #endregion
 
         #region Enums (none)
@@ -92,7 +100,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #endregion
 
         #region Commands (none)
-         
+
         #endregion
 
         #region Public Methods (none)
@@ -108,8 +116,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Private Methods (none)
 
 
-        #endregion   
-        
+        #endregion
+
         #region IInstanceCount
 
         private static int _instanceCountV;

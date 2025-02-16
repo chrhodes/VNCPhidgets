@@ -27,16 +27,6 @@
     <SolidColorBrush x:Key="CombinedMainBackground" Color="#00E0F0" />
     <SolidColorBrush x:Key="CombinedNavigationBackground" Color="#90FFFF" />
 
-    <SolidColorBrush x:Key="xxxTYPExxxBackground" Color="#00FF00" />    
-    <SolidColorBrush x:Key="xxxTYPExxxMainBackground" Color="#10FF10" />
-    <SolidColorBrush x:Key="xxxTYPExxxNavigationBackground" Color="#90FF90" />
-    <SolidColorBrush x:Key="xxxTYPExxxDetailBackground" Color="#A0FFA0" />
-    
-    <SolidColorBrush x:Key="xxxITEMxxxBackground" Color="#F0E040" />
-    <SolidColorBrush x:Key="xxxITEMxxxDetailBackground" Color="#F0E040" />
-
-    <SolidColorBrush x:Key="xxxTYPExxxMeetingDetailBackground" Color="#F0C040" />
-
     <SolidColorBrush x:Key="ShellBackground" Color="#C0C0C0" />
     <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />    
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
@@ -55,7 +45,11 @@
     <SolidColorBrush x:Key="InterfaceKitBackground" Color="#B0B0B0" />
     <SolidColorBrush x:Key="AdvancedServo1061Background" Color="#B0B0B0" />
     <SolidColorBrush x:Key="Stepper1063Background" Color="#B0B0B0" />
-    
+
+    <SolidColorBrush x:Key="HackAroundBackground" Color="#A0A0A0" />
+    <SolidColorBrush x:Key="ManagePerformanceLibraryBackground" Color="#A0A0A0" />
+    <SolidColorBrush x:Key="PhidgetDeviceLibraryBackground" Color="#A0A0A0" />
+
     <SolidColorBrush x:Key="PhidgetBackground" Color="#A0A0FF" />
 
     <SolidColorBrush x:Key="HostSelectorBackground" Color="#C0FFC0" />
@@ -72,8 +66,6 @@
     <SolidColorBrush x:Key="VoltageInputControlBackground" Color="#C0A0C0" />
     <SolidColorBrush x:Key="VoltageRatioInputControlBackground" Color="#A0A080" />    
     <SolidColorBrush x:Key="VoltageOutputControlBackground" Color="#C080C0" />
-
-    <SolidColorBrush x:Key="ManagePerformanceLibraryBackground" Color="#A0A0A0" /> 
 
     <SolidColorBrush x:Key="ViewABackground" Color="#FFC0C0" />
     <SolidColorBrush x:Key="ViewBBackground" Color="#C0FFC0" />

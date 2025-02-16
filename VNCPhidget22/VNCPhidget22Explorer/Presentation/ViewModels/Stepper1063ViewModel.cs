@@ -88,6 +88,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             LoadUIConfig();
                
             Message = "Stepper1063ViewModel says hello";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -563,6 +564,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
 
             Message = "ConfigFileName_DoubleClick";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -593,6 +595,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called InitializeVelocity";
+            PublishStatusMessage(Message);
 
             if ((Boolean)DeviceAttached)
             {
@@ -678,6 +681,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //// TODO(crhodes)
             //// Do something amazing.
             //Message = "Cool, you called InitializeAcceleration";
+            //PublishStatusMessage(Message);
 
             //if ((Boolean)DeviceAttached)
             //{
@@ -760,6 +764,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called OpenStepper";
+            PublishStatusMessage(Message);
 
             DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedStepper.SerialNumber].DeviceChannels;
 
@@ -907,7 +912,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called OpenStepper";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedStepper.SerialNumber;
@@ -1163,6 +1167,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseSteppers";
+            PublishStatusMessage(Message);
 
             DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedStepper.SerialNumber].DeviceChannels;
 
@@ -1264,7 +1269,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called CloseStepper";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedStepper.SerialNumber;
@@ -1521,7 +1525,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called ZeroCurrentPosition";
-
             PublishStatusMessage(Message);
 
             Int32 channel;

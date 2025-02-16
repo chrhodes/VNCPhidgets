@@ -82,6 +82,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             LoadUIConfig();
 
             Message = "AdvancedServo1061ViewModel says hello";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -848,6 +849,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
 
             Message = "ConfigFileName_DoubleClick";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -882,6 +884,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called OpenAdvancedServo";
+            PublishStatusMessage(Message);
 
             DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedAdvancedServo.SerialNumber].DeviceChannels;
 
@@ -972,6 +975,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called InitializeSlowAdvancedServo";
+            PublishStatusMessage(Message);
 
             if ((Boolean)DeviceAttached)
             {
@@ -1059,6 +1063,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called InitializeAcceleration";
+            PublishStatusMessage(Message);
 
             if ((Boolean)DeviceAttached)
             {
@@ -1143,6 +1148,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called InitializeMediumAdvancedServo";
+            PublishStatusMessage(Message);
 
             if ((Boolean)DeviceAttached)
             {
@@ -1226,6 +1232,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you calledInitializeFastAdvancedServo";
+            PublishStatusMessage(Message);
 
             if ((Boolean)DeviceAttached)
             {
@@ -1477,6 +1484,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseAdvancedServo";
+            PublishStatusMessage(Message);
 
             DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedAdvancedServo.SerialNumber].DeviceChannels;
 
@@ -1600,7 +1608,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called OpenRCServo";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
@@ -1920,7 +1927,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called CloseRCServo";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
@@ -2036,6 +2042,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called ConfigureServo";
+            PublishStatusMessage(Message);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2096,6 +2103,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called SetPositionRange";
+            PublishStatusMessage(Message);
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2267,6 +2275,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = $"Cool, you called ConfigureServo2 and passed: {value}";
+            PublishStatusMessage(Message);
 
             Int32 servoIndex = Int32.Parse(value);
 
@@ -2339,6 +2348,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SayHello) Enter", Common.LOG_CATEGORY);
 
             Message = $"Hello from {this.GetType()}";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SayHello) Exit", Common.LOG_CATEGORY, startTicks);
         }

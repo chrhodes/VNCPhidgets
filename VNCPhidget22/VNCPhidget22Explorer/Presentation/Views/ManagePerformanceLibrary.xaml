@@ -124,30 +124,13 @@
     <!-- Simple Layout using DevExpress LayoutControl
          May need to add dxXMLNS -->
     
-     <DockPanel Margin="5"> 
-         <!--This is useful for debugging V VM constructor issues-->
+    <DockPanel Margin="5" VerticalAlignment="Top"> 
+
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <!--<DockPanel DockPanel.Dock="Bottom" > 
 
-             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5"> 
-                 <Label Content="Message:" /> 
-                 <Label Content="{Binding Message}" /> 
-             </StackPanel> 
+        <dxlc:LayoutControl Orientation="Vertical" >
 
-             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> 
-                 <Label Content="V:" /> 
-                 <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" /> 
-             </StackPanel> 
-             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> 
-                 <Label Content="VM:" /> 
-                 <Label Content="{Binding InstanceCountVM}" /> 
-             </StackPanel> 
-
-         </DockPanel>--> 
-
-         <dxlc:LayoutControl Orientation="Vertical" >
-
-             <dxlc:LayoutGroup Header="Config Files" View="GroupBox" Orientation="Vertical" >
+            <dxlc:LayoutGroup Header="Config Files" View="GroupBox" Orientation="Vertical" >
              
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 

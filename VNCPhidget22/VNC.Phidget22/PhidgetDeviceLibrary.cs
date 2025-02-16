@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Phidgets = Phidget22;
-using PhidgetEvents = Phidget22.Events;
-
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-
-using System.Net;
-using System.Threading.Channels;
 using System.Threading;
-using VNC.Phidget22.Configuration;
-using VNC.Phidget22.Ex;
+
 using Prism.Events;
+
+using VNC.Phidget22.Configuration;
+using VNCPhidgetConfig = VNC.Phidget22.Configuration;
+using VNC.Phidget22.Ex;
+
+using PhidgetEvents = Phidget22.Events;
+using Phidgets = Phidget22;
 
 namespace VNC.Phidget22
 {
     // TODO(crhodes)
     // Make this a Singleton
 
+    /// <summary>
+    /// Builds a PhidgetDevice Dictionary using the Phidgets.Manager class
+    /// Manually adds Servers(Hosts) based on entries in Hosts config file
+    /// </summary>
     public class PhidgetDeviceLibrary
     {
         #region Constructors, Initialization, and Load
@@ -107,6 +106,7 @@ namespace VNC.Phidget22
 
         // TODO(crhodes)
         // Populate this from ConfigFile
+        // Also used info that came from Phidgets.  It is in OneNote
 
         public static Dictionary<RCServoType, RCServoPulseWidths> RCServoTypes = new Dictionary<RCServoType, RCServoPulseWidths>()
         {
@@ -247,6 +247,7 @@ namespace VNC.Phidget22
                 case Phidgets.ChannelClass.DigitalInput:
                     if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new DigitalInput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalInputCount}", Common.LOG_CATEGORY);
+
                     DigitalInputChannels.Add(
                         new SerialChannel()
                         {
@@ -267,6 +268,7 @@ namespace VNC.Phidget22
                 case Phidgets.ChannelClass.DigitalOutput:
                     if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new DigitalOutput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalOutputCount}", Common.LOG_CATEGORY);
+
                     DigitalOutputChannels.Add(
                         new SerialChannel()
                         {
@@ -354,6 +356,7 @@ namespace VNC.Phidget22
                 case Phidgets.ChannelClass.RCServo:
                     if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new RCServoChannel" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+
                     RCServoChannels.Add(
                         new SerialChannel()
                         {
@@ -499,6 +502,7 @@ namespace VNC.Phidget22
         #region Commands (none)
 
 
+
         #endregion
 
         #region Public Methods (none)
@@ -512,65 +516,67 @@ namespace VNC.Phidget22
         /// <param name="configuration"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public RCServoEx OpenRCServoHost(int serialNumber, int channel, RCServoConfiguration configuration)
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+        //public RCServoEx OpenRCServoHost(int serialNumber, int channel, RCServoConfiguration configuration)
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
 
-            //PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
+        //    //PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
-            SerialChannel serialChannel = 
-                new SerialChannel() 
-                    { 
-                        SerialNumber = serialNumber, 
-                        Channel = channel 
-                    };
+        //    SerialChannel serialChannel = 
+        //        new SerialChannel() 
+        //            { 
+        //                SerialNumber = serialNumber, 
+        //                Channel = channel 
+        //            };
 
-            // TODO(crhodes)
-            // Is this where we do this?
+        //    // TODO(crhodes)
+        //    // Is this where we do this?
 
-            RCServoEx rcServoHost = RCServoChannels[serialChannel];
+        //    RCServoEx rcServoHost = RCServoChannels[serialChannel];
 
-            //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
+        //    //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
 
-            if (rcServoHost is null) throw new Exception($"Cannot find RCServoChannel for serialNumber:{serialNumber} channel:{channel}");
+        //    if (rcServoHost is null) throw new Exception($"Cannot find RCServoChannel for serialNumber:{serialNumber} channel:{channel}");
 
-            // TODO(crhodes)
-            // Maybe RCServoEx has a RCServoConfiguration property that we just set
+        //    // TODO(crhodes)
+        //    // Maybe RCServoEx has a RCServoConfiguration property that we just set
 
-            rcServoHost.LogPhidgetEvents = configuration.LogPhidgetEvents;
-            rcServoHost.LogErrorEvents = configuration.LogErrorEvents;
-            rcServoHost.LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+        //    rcServoHost.LogPhidgetEvents = configuration.LogPhidgetEvents;
+        //    rcServoHost.LogErrorEvents = configuration.LogErrorEvents;
+        //    rcServoHost.LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
 
-            //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            rcServoHost.LogPositionChangeEvents = configuration.LogPositionChangeEvents;
-            rcServoHost.LogVelocityChangeEvents = configuration.LogVelocityChangeEvents;
+        //    //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //    rcServoHost.LogPositionChangeEvents = configuration.LogPositionChangeEvents;
+        //    rcServoHost.LogVelocityChangeEvents = configuration.LogVelocityChangeEvents;
 
-            rcServoHost.LogTargetPositionReachedEvents = configuration.LogTargetPositionReachedEvents;
+        //    rcServoHost.LogTargetPositionReachedEvents = configuration.LogTargetPositionReachedEvents;
 
-            rcServoHost.LogPerformanceSequence = configuration.LogPerformanceSequence;
-            rcServoHost.LogSequenceAction = configuration.LogSequenceAction;
-            rcServoHost.LogActionVerification = configuration.LogActionVerification;
+        //    rcServoHost.LogPerformanceSequence = configuration.LogPerformanceSequence;
+        //    rcServoHost.LogSequenceAction = configuration.LogSequenceAction;
+        //    rcServoHost.LogActionVerification = configuration.LogActionVerification;
 
-            if (rcServoHost.Attached is false)
-            {
-                rcServoHost.Open();
-            }
+        //    if (rcServoHost.Attached is false)
+        //    {
+        //        rcServoHost.Open();
+        //    }
 
-            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+        //    if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
 
-            return rcServoHost;
-        }
+        //    return rcServoHost;
+        //}
 
         #endregion
 
         #region Protected Methods (none)
 
 
+
         #endregion
 
         #region Private Methods (none)
+
 
 
         #endregion
