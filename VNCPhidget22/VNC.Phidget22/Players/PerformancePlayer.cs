@@ -40,9 +40,11 @@ namespace VNC.Phidget22.Players
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
@@ -50,6 +52,10 @@ namespace VNC.Phidget22.Players
         #region Fields and Properties
 
         public PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+
+        #region Logging
+
+        #region Performance Logging
 
         // NOTE(crhodes)
         // Don't think we need INPC on these
@@ -106,7 +112,9 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        #region Phidget Device Logging Events
+        #endregion
+
+        #region Phidget Device Logging
 
         private bool _logPhidgetEvents = false;
 
@@ -234,16 +242,80 @@ namespace VNC.Phidget22.Players
 
         #endregion
 
+        #endregion
+
         #region Event Handlers (none)
+
 
 
         #endregion
 
         #region Commands (none)
 
+
+
         #endregion
 
         #region Public Methods
+        public async Task PlayPerformance(Performance performance)
+        {
+        //    if (LogPerformance)
+        //    {
+        //        Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
+        //            $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+        //            $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
+        //            $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
+        //            $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
+        //            $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+        //    }
+
+            Performance? nextPerformance = performance;
+
+            // NOTE(crhodes)
+            // Why would we need to check given UI brought us here.
+            // Might be useful generally
+
+            //if (AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+            //{ 
+
+            //}
+
+            //await Task.Run(async () =>
+            //{
+            //    await RunPerformanceLoops(nextPerformance);
+            //});
+
+            ////await performancePlayer.RunPerformanceLoops(nextPerformance);
+
+            //nextPerformance = nextPerformance?.NextPerformance;
+
+            while (nextPerformance is not null)
+            {
+                if (LogPerformance)
+                {
+                    Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
+                        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
+                        $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
+                        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
+                        $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+                }
+
+                if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                {
+                    nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+
+                    await RunPerformanceLoops(nextPerformance);
+
+                    nextPerformance = nextPerformance?.NextPerformance;
+                }
+                else
+                {
+                    Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                    nextPerformance = null;
+                }
+            }
+        }
 
         public async Task RunPerformanceLoops(Performance performance)
         {

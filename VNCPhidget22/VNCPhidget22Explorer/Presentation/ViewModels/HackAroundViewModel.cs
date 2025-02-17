@@ -69,11 +69,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //EngageAndCenterCommand = new DelegateCommand(EngageAndCenter, EngageAndCenterCanExecute);
             //ResetLimitsCommand = new DelegateCommand(ResetLimits);
 
-            SetMotionParametersCommand = new DelegateCommand<string>(SetMotionParameters);
-            RelativeAccelerationCommand = new DelegateCommand<Int32?>(RelativeAcceleration);
-            RelativeVelocityLimitCommand = new DelegateCommand<Int32?>(RelativeVelocityLimit);
+            //SetMotionParametersCommand = new DelegateCommand<string>(SetMotionParameters);
+            //RelativeAccelerationCommand = new DelegateCommand<Int32?>(RelativeAcceleration);
+            //RelativeVelocityLimitCommand = new DelegateCommand<Int32?>(RelativeVelocityLimit);
 
-            PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
+            // TODO(crhodes)
+            // This likely goes away
+            //PlayInterfaceKitSequenceCommand = new DelegateCommand(PlayInterfaceKitSequence, PlayInterfaceKitSequenceCanExecute);
+
+            PlayDigitalOutputSequenceCommand = new DelegateCommand(PlayDigitalOutputSequence, PlayDigitalOutputSequenceCanExecute);
 
             PlayStepperSequenceCommand = new DelegateCommand(PlayStepperSequence, PlayStepperSequenceCanExecute);
 
@@ -82,13 +86,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //ActivePerformancePlayer = GetPerformancePlayer();
 
-            Hosts = PerformanceLibrary.Hosts.ToList();
-
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+
+            Hosts = PerformanceLibrary.Hosts.ToList();
 
             AdvancedServoSequences = PerformanceLibrary.AvailableAdvancedServoSequences.Values.ToList();
             RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
-            InterfaceKitSequences = PerformanceLibrary.AvailableInterfaceKitSequences.Values.ToList();
+
+            //InterfaceKitSequences = PerformanceLibrary.AvailableInterfaceKitSequences.Values.ToList();
+            DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
+
             StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             // Turn on logging of PropertyChanged from VNC.Core
@@ -292,9 +299,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
 
                 PlayPerformanceCommand.RaiseCanExecuteChanged();
-                PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
+
+                //PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
                 //EngageAndCenterCommand.RaiseCanExecuteChanged();
-                PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
+                //PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -311,6 +321,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 _selectedPerformances = value;
                 OnPropertyChanged();
+
+                PlayPerformanceCommand.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
 
                 //PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
                 //EngageAndCenterCommand.RaiseCanExecuteChanged();
@@ -933,7 +947,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedInterfaceKitSequence = value;
                 OnPropertyChanged();
 
-                PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
+                //PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -951,7 +965,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedInterfaceKitSequences = value;
                 OnPropertyChanged();
 
-                PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
+                //PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -1142,7 +1156,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
-
 
         #region VoltageOutput
 
@@ -1713,6 +1726,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayRCServoSequence) Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called PlayRCServoSequence";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // This has sideffect of setting ActivePerformancePlayer.
@@ -1796,195 +1810,195 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region AdvancedServo Individual Commands
+        //#region AdvancedServo Individual Commands
 
-        #region InitializeServos Command
+        //#region InitializeServos Command
 
-        //public DelegateCommand InitializeServosCommand { get; set; }
-        //// If using CommandParameter, figure out TYPE here and above
-        //// and remove above declaration
-        ////public DelegateCommand<TYPE> InitializeServosCommand { get; set; }
-        ////public TYPE InitializeServosCommandParameter;
-        //public string InitializeServosContent { get; set; } = "InitializeServos";
-        //public string InitializeServosToolTip { get; set; } = "InitializeServos ToolTip";
+        ////public DelegateCommand InitializeServosCommand { get; set; }
+        ////// If using CommandParameter, figure out TYPE here and above
+        ////// and remove above declaration
+        //////public DelegateCommand<TYPE> InitializeServosCommand { get; set; }
+        //////public TYPE InitializeServosCommandParameter;
+        ////public string InitializeServosContent { get; set; } = "InitializeServos";
+        ////public string InitializeServosToolTip { get; set; } = "InitializeServos ToolTip";
 
-        //// Can get fancy and use Resources
-        ////public string InitializeServosContent { get; set; } = "ViewName_InitializeServosContent";
-        ////public string InitializeServosToolTip { get; set; } = "ViewName_InitializeServosContentToolTip";
+        ////// Can get fancy and use Resources
+        //////public string InitializeServosContent { get; set; } = "ViewName_InitializeServosContent";
+        //////public string InitializeServosToolTip { get; set; } = "ViewName_InitializeServosContentToolTip";
 
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_InitializeServosContent">InitializeServos</system:String>
-        ////    <system:String x:Key="ViewName_InitializeServosContentToolTip">InitializeServos ToolTip</system:String>  
+        ////// Put these in Resource File
+        //////    <system:String x:Key="ViewName_InitializeServosContent">InitializeServos</system:String>
+        //////    <system:String x:Key="ViewName_InitializeServosContentToolTip">InitializeServos ToolTip</system:String>  
 
-        //// If using CommandParameter, figure out TYPE and fix above
-        ////public void InitializeServos(TYPE value)
-        //public async void InitializeServos()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeServos) Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-        //    Message = "Cool, you called InitializeServos";
+        ////// If using CommandParameter, figure out TYPE and fix above
+        //////public void InitializeServos(TYPE value)
+        ////public async void InitializeServos()
+        ////{
+        ////    Int64 startTicks = 0;
+        ////    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeServos) Enter", Common.LOG_CATEGORY);
+        ////    // TODO(crhodes)
+        ////    // Do something amazing.
+        ////    Message = "Cool, you called InitializeServos";
 
-        //    // TODO(crhodes)
-        //    // This has sideffect of setting ActivePerformancePlayer.
-        //    // Think through whether this make sense.
-        //    // Also, unless we have multiple call here it only does one AdvancedServo
-        //    // We need a generic routine like "Engage and Center Servos
-        //    // that calls each of the appropriate Phidget22.
+        ////    // TODO(crhodes)
+        ////    // This has sideffect of setting ActivePerformancePlayer.
+        ////    // Think through whether this make sense.
+        ////    // Also, unless we have multiple call here it only does one AdvancedServo
+        ////    // We need a generic routine like "Engage and Center Servos
+        ////    // that calls each of the appropriate Phidget22.
 
-        //    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+        ////    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-        //    VNCPhidgetConfig.PerformanceSequence? advancedServoSequence =
-        //        new VNCPhidgetConfig.PerformanceSequence
-        //        {
-        //            Name = "Initialize Servos",
-        //            SequenceType = "AS"
-        //        };
+        ////    VNCPhidgetConfig.PerformanceSequence? advancedServoSequence =
+        ////        new VNCPhidgetConfig.PerformanceSequence
+        ////        {
+        ////            Name = "Initialize Servos",
+        ////            SequenceType = "AS"
+        ////        };
 
-        //    await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
+        ////    await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
 
-        //    // Uncomment this if you are telling someone else to handle this
+        ////    // Uncomment this if you are telling someone else to handle this
 
-        //    // Common.EventAggregator.GetEvent<InitializeServosEvent>().Publish();
+        ////    // Common.EventAggregator.GetEvent<InitializeServosEvent>().Publish();
 
-        //    // May want EventArgs
+        ////    // May want EventArgs
 
-        //    //  EventAggregator.GetEvent<InitializeServosEvent>().Publish(
-        //    //      new InitializeServosEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
+        ////    //  EventAggregator.GetEvent<InitializeServosEvent>().Publish(
+        ////    //      new InitializeServosEventArgs()
+        ////    //      {
+        ////    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        ////    //            Process = _contextMainViewModel.Context.SelectedProcess
+        ////    //      });
 
-        //    // Start Cut Three - Put this in PrismEvents
+        ////    // Start Cut Three - Put this in PrismEvents
 
-        //    // public class InitializeServosEvent : PubSubEvent { }
+        ////    // public class InitializeServosEvent : PubSubEvent { }
 
-        //    // End Cut Three
+        ////    // End Cut Three
 
-        //    // Start Cut Four - Put this in places that listen for event
+        ////    // Start Cut Four - Put this in places that listen for event
 
-        //    //Common.EventAggregator.GetEvent<InitializeServosEvent>().Subscribe(InitializeServos);
+        ////    //Common.EventAggregator.GetEvent<InitializeServosEvent>().Subscribe(InitializeServos);
 
-        //    // End Cut Four
+        ////    // End Cut Four
 
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeServos) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
+        ////    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeServos) Exit", Common.LOG_CATEGORY, startTicks);
+        ////}
 
-        //// If using CommandParameter, figure out TYPE and fix above
-        ////public bool InitializeServosCanExecute(TYPE value)
-        //public bool InitializeServosCanExecute()
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    return true;
+        ////// If using CommandParameter, figure out TYPE and fix above
+        //////public bool InitializeServosCanExecute(TYPE value)
+        ////public bool InitializeServosCanExecute()
+        ////{
+        ////    // TODO(crhodes)
+        ////    // Add any before button is enabled logic.
+        ////    return true;
 
-        //    //if (AdvancedServoSequenceConfigFileName is not null)
-        //    //{
-        //    //    return true;
-        //    //}
-        //    //else
-        //    //{
-        //    //    return false;
-        //    //}
-        //}
+        ////    //if (AdvancedServoSequenceConfigFileName is not null)
+        ////    //{
+        ////    //    return true;
+        ////    //}
+        ////    //else
+        ////    //{
+        ////    //    return false;
+        ////    //}
+        ////}
 
-        #endregion
+        //#endregion
 
-        #region EngageAndCenter Command
+        //#region EngageAndCenter Command
 
-        //public DelegateCommand EngageAndCenterCommand { get; set; }
-        //// If using CommandParameter, figure out TYPE here and above
-        //// and remove above declaration
-        ////public DelegateCommand<TYPE> EngageAndCenterCommand { get; set; }
-        ////public TYPE EngageAndCenterCommandParameter;
-        //public string EngageAndCenterContent { get; set; } = "EngageAndCenter";
-        //public string EngageAndCenterToolTip { get; set; } = "EngageAndCenter ToolTip";
+        ////public DelegateCommand EngageAndCenterCommand { get; set; }
+        ////// If using CommandParameter, figure out TYPE here and above
+        ////// and remove above declaration
+        //////public DelegateCommand<TYPE> EngageAndCenterCommand { get; set; }
+        //////public TYPE EngageAndCenterCommandParameter;
+        ////public string EngageAndCenterContent { get; set; } = "EngageAndCenter";
+        ////public string EngageAndCenterToolTip { get; set; } = "EngageAndCenter ToolTip";
 
-        //// Can get fancy and use Resources
-        ////public string EngageAndCenterContent { get; set; } = "ViewName_EngageAndCenterContent";
-        ////public string EngageAndCenterToolTip { get; set; } = "ViewName_EngageAndCenterContentToolTip";
+        ////// Can get fancy and use Resources
+        //////public string EngageAndCenterContent { get; set; } = "ViewName_EngageAndCenterContent";
+        //////public string EngageAndCenterToolTip { get; set; } = "ViewName_EngageAndCenterContentToolTip";
 
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_EngageAndCenterContent">EngageAndCenter</system:String>
-        ////    <system:String x:Key="ViewName_EngageAndCenterContentToolTip">EngageAndCenter ToolTip</system:String>  
+        ////// Put these in Resource File
+        //////    <system:String x:Key="ViewName_EngageAndCenterContent">EngageAndCenter</system:String>
+        //////    <system:String x:Key="ViewName_EngageAndCenterContentToolTip">EngageAndCenter ToolTip</system:String>  
 
-        //// If using CommandParameter, figure out TYPE and fix above
-        ////public void EngageAndCenter(TYPE value)
-        //public async void EngageAndCenter()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(EngageAndCenter) Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-        //    Message = "Cool, you called EngageAndCenter";
+        ////// If using CommandParameter, figure out TYPE and fix above
+        //////public void EngageAndCenter(TYPE value)
+        ////public async void EngageAndCenter()
+        ////{
+        ////    Int64 startTicks = 0;
+        ////    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(EngageAndCenter) Enter", Common.LOG_CATEGORY);
+        ////    // TODO(crhodes)
+        ////    // Do something amazing.
+        ////    Message = "Cool, you called EngageAndCenter";
 
-        //    // TODO(crhodes)
-        //    // This has sideffect of setting ActivePerformancePlayer.
-        //    // Think through whether this make sense.
-        //    // Also, unless we have multiple call here it only does one AdvancedServo
-        //    // We need a generic routine like "Engage and Center Servos
-        //    // that calls each of the appropriate Phidget22.
+        ////    // TODO(crhodes)
+        ////    // This has sideffect of setting ActivePerformancePlayer.
+        ////    // Think through whether this make sense.
+        ////    // Also, unless we have multiple call here it only does one AdvancedServo
+        ////    // We need a generic routine like "Engage and Center Servos
+        ////    // that calls each of the appropriate Phidget22.
 
-        //    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+        ////    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-        //    VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
-        //        new VNCPhidgetConfig.PerformanceSequence
-        //        {
-        //            Name = "Engage and Center Servos",
-        //            SequenceType = "AS"
-        //        };
+        ////    VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = 
+        ////        new VNCPhidgetConfig.PerformanceSequence
+        ////        {
+        ////            Name = "Engage and Center Servos",
+        ////            SequenceType = "AS"
+        ////        };
 
-        //    await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
+        ////    await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(advancedServoSequence);
 
-        //    // Uncomment this if you are telling someone else to handle this
+        ////    // Uncomment this if you are telling someone else to handle this
 
-        //    // Common.EventAggregator.GetEvent<EngageAndCenterEvent>().Publish();
+        ////    // Common.EventAggregator.GetEvent<EngageAndCenterEvent>().Publish();
 
-        //    // May want EventArgs
+        ////    // May want EventArgs
 
-        //    //  EventAggregator.GetEvent<EngageAndCenterEvent>().Publish(
-        //    //      new EngageAndCenterEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
+        ////    //  EventAggregator.GetEvent<EngageAndCenterEvent>().Publish(
+        ////    //      new EngageAndCenterEventArgs()
+        ////    //      {
+        ////    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        ////    //            Process = _contextMainViewModel.Context.SelectedProcess
+        ////    //      });
 
-        //    // Start Cut Three - Put this in PrismEvents
+        ////    // Start Cut Three - Put this in PrismEvents
 
-        //    // public class EngageAndCenterEvent : PubSubEvent { }
+        ////    // public class EngageAndCenterEvent : PubSubEvent { }
 
-        //    // End Cut Three
+        ////    // End Cut Three
 
-        //    // Start Cut Four - Put this in places that listen for event
+        ////    // Start Cut Four - Put this in places that listen for event
 
-        //    //Common.EventAggregator.GetEvent<EngageAndCenterEvent>().Subscribe(EngageAndCenter);
+        ////    //Common.EventAggregator.GetEvent<EngageAndCenterEvent>().Subscribe(EngageAndCenter);
 
-        //    // End Cut Four
+        ////    // End Cut Four
 
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(EngageAndCenter) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
+        ////    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(EngageAndCenter) Exit", Common.LOG_CATEGORY, startTicks);
+        ////}
 
-        //// If using CommandParameter, figure out TYPE and fix above
-        ////public bool EngageAndCenterCanExecute(TYPE value)
-        //public bool EngageAndCenterCanExecute()
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    return true;
+        ////// If using CommandParameter, figure out TYPE and fix above
+        //////public bool EngageAndCenterCanExecute(TYPE value)
+        ////public bool EngageAndCenterCanExecute()
+        ////{
+        ////    // TODO(crhodes)
+        ////    // Add any before button is enabled logic.
+        ////    return true;
 
-        //    //if (AdvancedServoSequenceConfigFileName is not null)
-        //    //{
-        //    //    return true;
-        //    //}
-        //    //else
-        //    //{
-        //    //    return false;
-        //    //}
-        //}
+        ////    //if (AdvancedServoSequenceConfigFileName is not null)
+        ////    //{
+        ////    //    return true;
+        ////    //}
+        ////    //else
+        ////    //{
+        ////    //    return false;
+        ////    //}
+        ////}
 
-        #endregion
+        //#endregion
 
         #region SetMotionParameters Command
 
@@ -2196,7 +2210,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 5, RelativeVelocityLimit = relativeVelocityLimit},
                     new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 6, RelativeVelocityLimit = relativeVelocityLimit},
                     new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 7, RelativeVelocityLimit = relativeVelocityLimit}
-                }                
+                }
             };
 
             // FIX(crhodes)
@@ -2208,17 +2222,127 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #endregion
-        
-        #region PlayInterfaceKitSequence Command
+        //#endregion
 
-        public DelegateCommand PlayInterfaceKitSequenceCommand { get; set; }
+        //#region PlayInterfaceKitSequence Command
+
+        //public DelegateCommand PlayInterfaceKitSequenceCommand { get; set; }
+        //// If using CommandParameter, figure out TYPE here and above
+        //// and remove above declaration
+        ////public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
+        ////public TYPE PlaySequenceCommandParameter;
+        //public string PlayInterfaceKitSequenceContent { get; set; } = "Play Sequence";
+        //public string PlayInterfaceKitSequenceToolTip { get; set; } = "PlayInterfaceKitSequence ToolTip";
+
+        //// Can get fancy and use Resources
+        ////public string PlaySequenceContent { get; set; } = "ViewName_PlaySequenceContent";
+        ////public string PlaySequenceToolTip { get; set; } = "ViewName_PlaySequenceContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_PlaySequenceContent">PlaySequence</system:String>
+        ////    <system:String x:Key="ViewName_PlaySequenceContentToolTip">PlaySequence ToolTip</system:String>  
+
+        //// If using CommandParameter, figure out TYPE and fix above
+        ////public void PlaySequence(TYPE value)
+        //public async void PlayInterfaceKitSequence()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayInterfaceKitSequence) Enter", Common.LOG_CATEGORY);
+
+        //    Message = "Cool, you called PlayInterfaceKitSequence";
+        //    PublishStatusMessage(Message);
+
+        //    // TODO(crhodes)
+        //    // This has side effect of setting ActivePerformancePlayer.
+        //    // Think through whether this make sense.
+
+        //    PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+
+        //    foreach (InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
+        //    {
+        //        if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+
+        //        try
+        //        {
+        //            PerformanceSequence? nextPerformanceSequence = 
+        //                new PerformanceSequence
+        //                {
+        //                    SerialNumber = SelectedInterfaceKit.SerialNumber,
+        //                    Name = sequence.Name,
+        //                    SequenceType = "IK",
+        //                    SequenceLoops = sequence.SequenceLoops
+        //                };
+
+        //            // NOTE(crhodes)
+        //            // Run on another thread to keep UI active
+        //            await Task.Run(async () =>
+        //            {
+        //                if (LogPerformanceSequence) Log.Trace($"Executing sequence:{nextPerformanceSequence.Name}", Common.LOG_CATEGORY);
+
+        //                await ActivePerformanceSequencePlayer.ExecutePerformanceSequence(nextPerformanceSequence);
+        //            });
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error(ex, Common.LOG_CATEGORY);
+        //        }
+        //    }
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+        //    //      new PlayPerformanceEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Three - Put this in PrismEvents
+
+        //    // public class PlayPerformanceEvent : PubSubEvent { }
+
+        //    // End Cut Three
+
+        //    // Start Cut Four - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+        //    // End Cut Four
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayInterfaceKitSequence) Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //// If using CommandParameter, figure out TYPE and fix above
+        ////public bool PlayPerformanceCanExecute(TYPE value)
+        //public bool PlayInterfaceKitSequenceCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    if (SelectedInterfaceKitSequences?.Count > 0)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //#endregion
+
+        #region PlayDigitalOutputSequence Command
+
+        public DelegateCommand PlayDigitalOutputSequenceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
         //public TYPE PlaySequenceCommandParameter;
-        public string PlayInterfaceKitSequenceContent { get; set; } = "Play Sequence";
-        public string PlayInterfaceKitSequenceToolTip { get; set; } = "PlayInterfaceKitSequence ToolTip";
+        public string PlayDigitalOutputSequenceContent { get; set; } = "Play Sequence";
+        public string PlayDigitalOutputSequenceToolTip { get; set; } = "PlayDigitalOutputSequence ToolTip";
 
         // Can get fancy and use Resources
         //public string PlaySequenceContent { get; set; } = "ViewName_PlaySequenceContent";
@@ -2230,29 +2354,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE and fix above
         //public void PlaySequence(TYPE value)
-        public async void PlayInterfaceKitSequence()
+        public async void PlayDigitalOutputSequence()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayInterfaceKitSequence) Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayDigitalOutputSequence) Enter", Common.LOG_CATEGORY);
 
-            Message = "Cool, you called PlayInterfaceKitSequence";
+            Message = "Cool, you called PlayDigitalOutputSequence";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
-            // This has sideaffect of setting ActivePerformancePlayer.
+            // This has side effect of setting ActivePerformancePlayer.
             // Think through whether this make sense.
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            foreach (InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
+            foreach (DigitalOutputSequence sequence in SelectedDigitalOutputSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                 try
                 {
-                    PerformanceSequence? nextPerformanceSequence = 
+                    PerformanceSequence? nextPerformanceSequence =
                         new PerformanceSequence
                         {
-                            SerialNumber = SelectedInterfaceKit.SerialNumber,
+                            SerialNumber = SelectedDigitalOutput.SerialNumber,
                             Name = sequence.Name,
                             SequenceType = "IK",
                             SequenceLoops = sequence.SequenceLoops
@@ -2298,16 +2423,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayInterfaceKitSequence) Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayDigitalOutputSequence) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // If using CommandParameter, figure out TYPE and fix above
         //public bool PlayPerformanceCanExecute(TYPE value)
-        public bool PlayInterfaceKitSequenceCanExecute()
+        public bool PlayDigitalOutputSequenceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedInterfaceKitSequences?.Count > 0)
+            if (SelectedDigitalOutputSequences?.Count > 0)
             {
                 return true;
             }
@@ -2318,6 +2443,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
+
 
 
         #region PlayStepperSequence Command

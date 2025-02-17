@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 using Prism.Events;
 
@@ -13,12 +15,6 @@ using VNC.Phidget22.Players;
 
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
-using Phidget22;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Media;
-using System.Diagnostics;
 
 namespace VNC.Phidget22.Ex
 {
@@ -989,25 +985,9 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
         }
 
-  
-        //public event EventHandler PhidgetDeviceAttached;
-
-        //override protected void PhidgetDeviceIsAttached()
-        //{
-        //    OnPhidgetDeviceAttached(new EventArgs());
-        //}
-
-        //// NOTE(crhodes)
-        //// This tells the UI that we have an attached Phidget
-
-        //protected virtual void OnPhidgetDeviceAttached(EventArgs e)
-        //{
-        //    PhidgetDeviceAttached?.Invoke(this, e);
-        //}
-
         public async Task RunActionLoops(RCServoSequence rcServoSequence)
         {
-            long startTicks = 0;
+            Int64 startTicks = 0;
 
             try
             {
@@ -1127,7 +1107,7 @@ namespace VNC.Phidget22.Ex
                     Log.Trace($"End acceleration:{Acceleration}", Common.LOG_CATEGORY);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
@@ -1178,7 +1158,7 @@ namespace VNC.Phidget22.Ex
                     Log.Trace($"End velocityLimit:{VelocityLimit}", Common.LOG_CATEGORY);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
@@ -1237,7 +1217,7 @@ namespace VNC.Phidget22.Ex
                     Log.Trace($"End positionMin:{positionMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
@@ -1296,7 +1276,7 @@ namespace VNC.Phidget22.Ex
                     Log.Trace($"End positionMin:{positionStopMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
@@ -1348,7 +1328,7 @@ namespace VNC.Phidget22.Ex
                     Log.Trace($"End position:{position} servo.Position:{Position}", Common.LOG_CATEGORY);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
@@ -1479,92 +1459,10 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
-        // FIX(crhodes)
-        // Ugh, lots to fix
-
-        // TODO(crhodes)
-        // Do we really need this as all it does is SaveServoLimits
-
-        //private void SaveServoLimits()
-        //{
-        //    try
-        //    {
-        //        AdvancedServoServoCollection servos = AdvancedServo.servos;
-        //        AdvancedServoServo servo = null;
-
-        //        // Save the device position min/max before any changes are made
-
-        //        for (int index = 0; index < servos.Count; index++)
-        //        {
-        //            servo = servos[index];
-
-        //            //if (LogPhidgetEvents)
-        //            //{
-        //            //    Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged}", Common.LOG_CATEGORY);
-
-        //            //    //string currentPosition = servo.Engaged ? servo.Position.ToString() : "???";
-
-        //            //    //Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged} position:{currentPosition}", Common.LOG_CATEGORY);
-        //            //    //Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-        //            //    //Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-        //            //    //Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} positionMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-        //            //}
-
-        //            // NOTE(crhodes)
-        //            // Force the initial Servo Type to avoid opening something that has
-        //            // been set to an unexpected Type, e.g. RAW_us_MODE or 
-        //            // Which have crazy values
-
-        //            // NOTE(crhodes)
-        //            // What happens if we don't set type?
-
-        //            //if (servo.Type == ServoServo.ServoType.RAW_us_MODE)
-        //            //{
-        //            //servo.Type = ServoServo.ServoType.DEFAULT;
-        //            //}
-
-        //            SaveServoLimits(servo, index);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //}
-
-        //private void SaveServoLimits(AdvancedServoServo servo, Int32 index)
-        //{
-        //    if (LogPhidgetEvents)
-        //    {
-        //        Log.Trace($"servo:{index} type:{servo.Type} engaged:{servo.Engaged}" +
-        //            $" accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}" +
-        //            $" positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}" +
-        //            $" velocityMin:{servo.VelocityMin} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-        //        //Log.Trace($"servo:{index} accelerationMin:{servo.AccelerationMin} accelerationMax:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-        //        //Log.Trace($"servo:{index} positionMin:{servo.PositionMin} positionMax:{servo.PositionMax}", Common.LOG_CATEGORY);
-        //        //Log.Trace($"servo:{index} velocityMin:{servo.VelocityMin} velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-        //    }
-
-        //    // NOTE(crhodes)
-        //    // We do not need to save Acceleration Min,Max and Velocity Min,Max,
-        //    // they cannot change, but, useful to have available
-        //    // when setting Acceleration/VelocityLimit to Min/Max in PerformAction
-
-        //    InitialServoLimits[index].AccelerationMin = servo.AccelerationMin;
-        //    InitialServoLimits[index].AccelerationMax = servo.AccelerationMax;
-        //    InitialServoLimits[index].DevicePositionMin = servo.PositionMin;
-        //    //InitialServoLimits[i].PositionMin = servo.PositionMin; 
-        //    //InitialServoLimits[i].PositionMax = servo.PositionMax;
-        //    InitialServoLimits[index].DevicePositionMax = servo.PositionMax;
-        //    InitialServoLimits[index].VelocityMin = servo.VelocityMin + 1; // 0 won't move
-        //    InitialServoLimits[index].VelocityMax = servo.VelocityMax;
-        //}
-
         private async Task PerformAction(RCServoAction action)
         {
             Int64 startTicks = 0;
 
-            //Int32 index = action.ServoIndex;
             var channel = Channel;
 
             StringBuilder actionMessage = new StringBuilder();
@@ -1574,8 +1472,6 @@ namespace VNC.Phidget22.Ex
                 startTicks = Log.Trace($"Enter servo:{Channel}", Common.LOG_CATEGORY);
                 actionMessage.Append($"servo:{Channel}");
             }
-
-            //RCServo servo = AdvancedServo.servos[index];
 
             try
             {
@@ -1850,7 +1746,7 @@ namespace VNC.Phidget22.Ex
                     Thread.Sleep((Int32)action.Duration);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"servo:{Channel} source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
@@ -1940,7 +1836,7 @@ namespace VNC.Phidget22.Ex
                     Log.Trace($"Exit Position:{Position,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
                 }
             }
-            catch (PhidgetException pex)
+            catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
                 Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);

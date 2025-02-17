@@ -1321,6 +1321,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    // TODO(crhodes)
         //    // Do something amazing.
         //    Message = "Cool, you called RefreshAdvancedServo";
+        //PublishStatusMessage(Message);
 
         //    await Task.Run(() => RefreshAdvancedServoUIProperties());
         //    //RefreshAdvancedServoUIProperties();
@@ -1388,6 +1389,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    // TODO(crhodes)
         //    // Do something amazing.
         //    Message = $"Cool, you called SetAdvancedServoDefaults from servo {servoID}";
+        //PublishStatusMessage(Message);
 
         //    AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
         //    Phidget22.AdvancedServoServo servo = null;

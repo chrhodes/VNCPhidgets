@@ -9,7 +9,7 @@
 
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
 
-    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
 
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
@@ -89,7 +89,7 @@
         
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <controls:HostSelector DockPanel.Dock="Top" />
+        <controls:HostSelectorControl DockPanel.Dock="Top" />
 
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 

@@ -9,7 +9,7 @@
 
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     
-    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors" 
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
     xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
 
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
@@ -90,7 +90,7 @@
     <DockPanel Margin="5">
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <controls:HostSelector DockPanel.Dock="Top" />
+        <controls:HostSelectorControl DockPanel.Dock="Top" />
 
         <dxlc:LayoutGroup x:Name="lgInterfaceKits"  Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Top" >
 

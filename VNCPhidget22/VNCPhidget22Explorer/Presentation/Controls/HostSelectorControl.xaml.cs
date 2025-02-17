@@ -8,11 +8,11 @@ using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer.Presentation.Controls
 {
-    public partial class HostSelector : ViewBase, IHostSelector, IInstanceCountV
+    public partial class HostSelectorControl : ViewBase, IHostSelector, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public HostSelector()
+        public HostSelectorControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);

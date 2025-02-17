@@ -49,6 +49,7 @@
     <SolidColorBrush x:Key="HackAroundBackground" Color="#A0A0A0" />
     <SolidColorBrush x:Key="ManagePerformanceLibraryBackground" Color="#A0A0A0" />
     <SolidColorBrush x:Key="PhidgetDeviceLibraryBackground" Color="#A0A0A0" />
+    <SolidColorBrush x:Key="EventCoordinatorBackground" Color="#A0A0A0" />
 
     <SolidColorBrush x:Key="PhidgetBackground" Color="#A0A0FF" />
 

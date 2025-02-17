@@ -86,6 +86,12 @@ namespace VNCPhidget22Explorer
             // This calls the view's parameterized constructor
             containerRegistry.Register<IPhidgetDeviceLibraryViewModel, PhidgetDeviceLibraryViewModel>();
 
+            containerRegistry.Register<PhidgetDeviceLibrary>();
+            // This calls the view's parameterliess constructor
+            //containerRegistry.Register<EventCoordinatorViewModel>();
+            // This calls the view's parameterized constructor
+            containerRegistry.Register<IEventCoordinatorViewModel, EventCoordinatorViewModel>();
+
             // containerRegistry.Register<ICombinedMainViewModel, CombinedMainViewModel>();
             // containerRegistry.RegisterSingleton<ICombinedMain, CombinedMain>();
 
@@ -142,6 +148,7 @@ namespace VNCPhidget22Explorer
 
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
             _regionManager.RegisterViewWithRegion(RegionNames.ManagePerformanceLibraryRegion, typeof(ManagePerformanceLibrary));
+            _regionManager.RegisterViewWithRegion(RegionNames.EventCoordinatorRegion, typeof(EventCoordinator));
             _regionManager.RegisterViewWithRegion(RegionNames.PhidgetDeviceLibraryRegion, typeof(PhidgetDeviceLibrary));
 
             _regionManager.RegisterViewWithRegion(RegionNames.VNCLoggingConfigRegion, typeof(VNC.WPF.Presentation.Dx.Views.VNCLoggingConfig));

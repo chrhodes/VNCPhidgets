@@ -7,6 +7,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"
 
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+    
     xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"  
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
@@ -64,7 +73,7 @@
 
         <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
        
-        <Grid>
+        <!--<Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -76,8 +85,22 @@
                         Command="{Binding SayHelloCommand}" />
             </StackPanel>
 
-        </Grid>
-    
+        </Grid>-->
+
+        <!-- If using DevExpress -->
+        <!-- Also, use dxXMLNS to insert namespaces above -->
+
+         <dxlc:LayoutGroup Orientation="Vertical">
+
+            <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary}" >
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                    <dxg:GridColumn Binding="{Binding Value}" Header="Value" ReadOnly="True" />
+                </dxg:GridControl.Columns>
+            </dxg:GridControl>
+
+        </dxlc:LayoutGroup> 
+
     </DockPanel>
 
 </vncmvvm:ViewBase>

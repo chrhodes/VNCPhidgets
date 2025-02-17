@@ -60,6 +60,8 @@ namespace VNC.Phidget22.Players
         public RCServoEx ActiveRCServoHost { get; set; }
         public StepperEx ActiveStepperHost { get; set; }
 
+        public DigitalOutputEx ActiveDigitalOutputHost { get; set; }
+
         public bool LogPerformanceSequence { get; set; }
         public bool LogSequenceAction { get; set; }
         public bool LogActionVerification { get; set; }
@@ -138,6 +140,10 @@ namespace VNC.Phidget22.Players
                         {
                             case "AS":
                                 nextPerformanceSequence = await ExecuteAdvancedServoPerformanceSequence(nextPerformanceSequence);
+                                break;
+
+                            case "DO":
+                                nextPerformanceSequence = await ExecuteDigitalOutputPerformanceSequence(nextPerformanceSequence);
                                 break;
 
                             case "IK":
@@ -289,9 +295,6 @@ namespace VNC.Phidget22.Players
             Int64 startTicks = 0;
             PerformanceSequence nextPerformanceSequence = null;
 
-            // FIX(crhodes)
-            // 
-
             try
             {
                 RCServoEx phidgetHost = null;
@@ -375,6 +378,109 @@ namespace VNC.Phidget22.Players
                 else
                 {
                     Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
+                    nextPerformanceSequence = null;
+                }
+
+                if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            return nextPerformanceSequence;
+        }
+
+        private async Task<PerformanceSequence> ExecuteDigitalOutputPerformanceSequence(PerformanceSequence performanceSequence)
+        {
+            Int64 startTicks = 0;
+            PerformanceSequence nextPerformanceSequence = null;
+
+            // FIX(crhodes)
+            // 
+
+            try
+            {
+                DigitalOutputEx phidgetHost = null;
+
+                if (PerformanceLibrary.AvailableDigitalOutputSequences.ContainsKey(performanceSequence.Name))
+                {
+                    var digitalOutputSequence = PerformanceLibrary.AvailableDigitalOutputSequences[performanceSequence.Name];
+
+                    if (LogPerformanceSequence)
+                    {
+                        startTicks = Log.Trace($"Executing DO Performance Sequence" +
+                            $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+                            $" name:>{digitalOutputSequence?.Name}<" +
+                            $" sequenceLoops:>{digitalOutputSequence?.SequenceLoops}<" +
+                            $" beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            $" startActionLoopSequences:>{digitalOutputSequence?.StartActionLoopSequences?.Count()}<" +
+                            $" actionLoops:>{digitalOutputSequence?.ActionLoops}<" +
+                            $" executeActionsInParallel:>{digitalOutputSequence?.ExecuteActionsInParallel}<" +
+                            $" actionDuration:>{digitalOutputSequence?.ActionsDuration}<" +
+                            $" endActionLoopSequences:>{digitalOutputSequence?.EndActionLoopSequences?.Count()}<" +
+                            $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
+                            $" sequenceDuration:>{digitalOutputSequence?.SequenceDuration}<" +
+                            $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+                    }
+
+                    //if (digitalOutputSequence.SerialNumber is not null)
+                    //{
+                    //    phidgetHost = GetDigitalOutputHost((int)digitalOutputSequence.SerialNumber);
+                    //}
+                    //else if (ActiveDigitalOutputHost is not null)
+                    //{
+                    //    phidgetHost = ActiveDigitalOutputHost;
+                    //}
+                    //else
+                    //{
+                    //    Log.Error($"Cannot locate host to execute SerialNumber:{digitalOutputSequence.SerialNumber}", Common.LOG_CATEGORY);
+                    //    nextPerformanceSequence = null;
+                    //}
+
+                    phidgetHost = GetDigitalOutputHost((int)performanceSequence.SerialNumber, digitalOutputSequence.Channel);
+
+                    if (phidgetHost == null)
+                    {
+                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        nextPerformanceSequence = null;
+                    }
+
+                    if (phidgetHost is not null)
+                    {
+                        if (digitalOutputSequence.BeforeActionLoopSequences is not null)
+                        {
+                            foreach (PerformanceSequence sequence in digitalOutputSequence.BeforeActionLoopSequences)
+                            {
+                                ExecutePerformanceSequence(sequence);
+                            }
+                        }
+
+                        await phidgetHost.RunActionLoops(digitalOutputSequence);
+
+                        if (digitalOutputSequence.AfterActionLoopSequences is not null)
+                        {
+                            foreach (PerformanceSequence sequence in digitalOutputSequence.AfterActionLoopSequences)
+                            {
+                                ExecutePerformanceSequence(sequence);
+                            }
+                        }
+
+                        if (digitalOutputSequence.SequenceDuration is not null)
+                        {
+                            if (LogPerformanceSequence)
+                            {
+                                Log.Trace($"Zzzzz Sequence:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)digitalOutputSequence.SequenceDuration);
+                        }
+
+                        nextPerformanceSequence = digitalOutputSequence.NextSequence;
+                    }
+                }
+                else
+                {
+                    Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
                     nextPerformanceSequence = null;
                 }
 
@@ -706,6 +812,61 @@ namespace VNC.Phidget22.Players
 
         //    return interfaceKitHost;
         //}
+
+
+        private DigitalOutputEx GetDigitalOutputHost(int serialNumber, int channel)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
+
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+
+            DigitalOutputEx digitalOutputHost = PhidgetDeviceLibrary.DigitalOutputChannels[serialChannel];
+
+            digitalOutputHost.LogPhidgetEvents = LogPhidgetEvents;
+            digitalOutputHost.LogErrorEvents = LogErrorEvents;
+            digitalOutputHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //digitalOutputHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //digitalOutputHost.LogPositionChangeEvents = LogPositionChangeEvents;
+            //digitalOutputHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //digitalOutputHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            digitalOutputHost.LogPerformanceSequence = LogPerformanceSequence;
+            digitalOutputHost.LogSequenceAction = LogSequenceAction;
+            digitalOutputHost.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Maybe we just let the Action.Open do the open
+
+            //if (digitalOutputHost.Attached is false)
+            //{
+            // NOTE(crhodes)
+            // Things that work and things that don't
+            //
+            // This does work
+            //digitalOutputHost.Open(500);
+
+            // This does not work.
+            //digitalOutputHost.Open();
+
+            // This does work
+
+            //digitalOutputHost.Open();
+            //Thread.Sleep(500);
+
+            // This does not work.
+            //await Task.Run(() => digitalOutputHost.Open());
+
+            //}
+
+            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+
+            return digitalOutputHost;
+        }
 
         private RCServoEx GetRCServoHost(int serialNumber, int channel)
         {

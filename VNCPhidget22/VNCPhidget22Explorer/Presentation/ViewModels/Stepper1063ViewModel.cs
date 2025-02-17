@@ -88,7 +88,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             LoadUIConfig();
                
             Message = "Stepper1063ViewModel says hello";
-            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1406,6 +1405,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    // Do something amazing.
 
         //    Message = "Cool, you called Rotate";
+        //PublishStatusMessage(Message);
 
         //    PublishStatusMessage(Message);
 

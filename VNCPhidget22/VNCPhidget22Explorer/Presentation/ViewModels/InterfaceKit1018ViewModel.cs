@@ -1614,6 +1614,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
 
             Message = "ConfigFileName_DoubleClick";
+            PublishStatusMessage(Message);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1641,7 +1642,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called OpenInterfaceKit";
-
             PublishStatusMessage(Message);
 
             DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
@@ -1789,6 +1789,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called CloseInterfaceKit";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // 
@@ -1925,7 +1926,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called OpenDigitalInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -2112,7 +2112,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called CloseDigitalInput";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -2333,7 +2332,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called OpenDigitalOutput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -2534,7 +2532,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = "Cool, you called CloseDigitalOutput";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -2673,7 +2670,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called OpenVoltageInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -2878,7 +2874,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called RefreshVoltageInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -3050,7 +3045,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called CloseVoltageInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -3252,7 +3246,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called OpenVoltageRatioInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -3457,7 +3450,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called RefreshVoltageRatioInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
@@ -3626,7 +3618,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Do something amazing.
 
             Message = $"Cool, you called CloseVoltageRatioInput on Channel:{channelNumber}";
-
             PublishStatusMessage(Message);
 
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;

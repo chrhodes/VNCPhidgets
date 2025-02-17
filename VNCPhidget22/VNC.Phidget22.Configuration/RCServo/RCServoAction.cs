@@ -8,7 +8,7 @@ namespace VNC.Phidget22.Configuration
         ///// <summary>
         ///// Index of servo on board 
         ///// </summary>
-        //public int ServoIndex { get; set; }
+        //public int Channel { get; set; }
 
         #region Logging
 
@@ -99,7 +99,7 @@ namespace VNC.Phidget22.Configuration
         public bool? SpeedRampingState { get; set; }
 
         /// <summary>
-        /// Duration of step in ms (sleep time after step)
+        /// Duration of sleep in ms (sleep time after Action)
         /// </summary>
         public Int32? Duration { get; set; } // ms
     }

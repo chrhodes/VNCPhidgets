@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,10 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Players;
+
+using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -68,7 +73,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public ICommand SayHelloCommand { get; private set; }
 
         #endregion
 
@@ -84,7 +88,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Commands
 
+
         #region SayHello Command
+
+        public ICommand SayHelloCommand { get; private set; }
 
         private void SayHello()
         {

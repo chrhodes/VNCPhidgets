@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidget22Explorer.Presentation.Controls.HostSelector"
+    x:Class="VNCPhidget22Explorer.Presentation.Controls.HostSelectorControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
