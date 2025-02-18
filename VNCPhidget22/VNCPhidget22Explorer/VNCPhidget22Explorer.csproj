@@ -173,19 +173,7 @@
         <None Update="Resources\json\hostconfig.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_46049.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json">
+        <None Update="Resources\json\InterfaceKitSequences\InterfaceKitSequenceConfig_1.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\PerformanceConfig_2.json">
@@ -210,9 +198,6 @@
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_99415.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_99415.json.bak">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">

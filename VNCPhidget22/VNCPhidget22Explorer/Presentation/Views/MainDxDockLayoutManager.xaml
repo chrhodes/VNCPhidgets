@@ -119,7 +119,7 @@
 
                             <!--Set AutoHidden to False if should initially be open-->
                             
-                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="710">
+                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="750" ItemWidth="750">
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                             </dxdo:LayoutPanel>
 
@@ -131,7 +131,7 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}" />
                             </dxdo:LayoutPanel>
                             
-                            <dxdo:LayoutPanel Caption="PhidgetDeviceLibrary" AutoHidden="True" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
+                            <dxdo:LayoutPanel Caption="PhidgetDeviceLibrary" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PhidgetDeviceLibraryRegion}" />
                             </dxdo:LayoutPanel>
                             

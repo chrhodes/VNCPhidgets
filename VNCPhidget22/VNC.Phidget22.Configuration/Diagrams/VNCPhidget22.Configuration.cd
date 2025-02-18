@@ -24,19 +24,19 @@
   <Class Name="VNC.Phidget22.Configuration.AdvancedServoServoAction">
     <Position X="0.5" Y="26" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAQAkAAAIACAAAAAAABAQAAAAAAEAAQACAEAAAAAEA=</HashCode>
+      <HashCode>AAAQAkAAAIACAAAAAAABAQAAAAAAAAAQACAEAAAAAEA=</HashCode>
       <FileName>AdvancedServo\AdvancedServoServoAction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.Host">
-    <Position X="0.5" Y="6.5" Width="3.25" />
+    <Position X="8.5" Y="2.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAQAAAACAQACAAAAAAAAEACAAACAAA=</HashCode>
+      <HashCode>IQAAACAAAAAAAQAQAAAACAQAGAAAAAAAAEACAAACAAA=</HashCode>
       <FileName>Host\Host.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.HostConfig">
-    <Position X="0.5" Y="5" Width="2.25" />
+    <Position X="8.5" Y="0.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Host\HostConfig.cs</FileName>
@@ -73,7 +73,7 @@
   <Class Name="VNC.Phidget22.Configuration.Performance">
     <Position X="0.5" Y="14.75" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAiAAAAAAAAACQAAAAAACAAAAEAAAACABE=</HashCode>
+      <HashCode>BAAAAAAAAAAiAAAAAAAAACQAAAAAADAAAAEAAAACABE=</HashCode>
       <FileName>Performance\Performance.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -108,7 +108,7 @@
   <Class Name="VNC.Phidget22.Configuration.StepperAction">
     <Position X="7.75" Y="26" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAIACAAAAAAABAQAAAAAAAAAQACAEAAAAAAA=</HashCode>
+      <HashCode>AAAIAggAAIACAAAAAEAAAQAAAAAAIgIQAAAEAAAAAEA=</HashCode>
       <FileName>Stepper\StepperAction.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -126,17 +126,17 @@
       <FileName>Stepper\StepperSequenceConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.Phidget22SequenceBase">
+  <Class Name="VNC.Phidget22.Configuration.PhidgetSequenceBase">
     <Position X="2.75" Y="20" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AAAQAoAAAAAgAAAAAAAQAAQAAACAEEAAAEgAAAAAAgQ=</HashCode>
-      <FileName>Phidget22SequenceBase.cs</FileName>
+      <HashCode>AAAQAoAgAAAgAAAAAAAQAAQAAACAEEAAAEgAAAAAAgQ=</HashCode>
+      <FileName>PhidgetSequenceBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.PerformanceLibrary">
-    <Position X="0.5" Y="0.5" Width="6" />
+    <Position X="1" Y="0.5" Width="6" />
     <TypeIdentifier>
-      <HashCode>AAQAEAAAAEACDABAAAAAAAAAQAAgAAAIAJUAAAAQAAA=</HashCode>
+      <HashCode>AAQAFAAhCEACDABAAAACAAAAQAEgEAAJnJUCAAAwBAA=</HashCode>
       <FileName>PerformanceLibrary.cs</FileName>
     </TypeIdentifier>
   </Class>

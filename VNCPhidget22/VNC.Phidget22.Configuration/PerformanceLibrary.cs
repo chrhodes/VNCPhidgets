@@ -30,13 +30,15 @@ namespace VNC.Phidget22.Configuration
             LoadPerformances();
 
             LoadAdvancedServoSequences();
-            LoadDigitalInputSequences();
-            LoadDigitalOutputSequences();
+            //LoadDigitalInputSequences();
+            //LoadDigitalOutputSequences();
             LoadInterfaceKitSequences();
-            LoadRCServoSequences();
+            //LoadRCServoSequences();
+
             LoadStepperSequences();
-            LoadVoltageInputSequences();
-            LoadVoltageOutputSequences();
+
+            //LoadVoltageInputSequences();
+            //LoadVoltageOutputSequences();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -586,11 +588,11 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"InterfaceKitSequences\InterfaceKitSequenceConfig_46049.json",
-                @"InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json",
-                @"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json",
-                @"InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json",
-                @"InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json"
+                @"InterfaceKitSequences\InterfaceKitSequenceConfig_1.json",
+                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json",
+                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json",
+                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json",
+                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json"
             };
 
             return files;

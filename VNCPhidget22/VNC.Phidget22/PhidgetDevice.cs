@@ -6,6 +6,12 @@ using PhidgetsEvents = Phidget22.Events;
 namespace VNC.Phidget22
 {
 
+    /// <summary>
+    /// A physical Phidget Board of a specific DeviceClass
+    /// providing one or more DeviceChannels
+    /// A PhidgetDevice is hosted on some computer with an IPAddress
+    /// and is uniquely identified by a SerialNumber
+    /// </summary>
     public class PhidgetDevice
     {
         //public PhidgetDevice()
@@ -49,6 +55,8 @@ namespace VNC.Phidget22
 
         public int SerialNumber { get; set; } = 0;
 
+        // TODO(crhodes)
+        // How is this used?
         public PhidgetEx PhidgetEx {  get; set; }
     }
 }

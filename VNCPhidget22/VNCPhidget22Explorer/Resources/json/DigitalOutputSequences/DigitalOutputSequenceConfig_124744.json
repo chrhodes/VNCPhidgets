@@ -1,8 +1,8 @@
 {
   "DigitalOutSequences": [
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK 001122-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO 001122-250ms", 
       "Description": "Blink 0,1,2 every 250 ms", 
       "Actions": [
         { "Channel": 0, "DigitalOut": true, "Duration": 250 },
@@ -14,8 +14,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK 012012-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO 012012-250ms", 
       "Description": "Turn 0,1,2 on then off every 250 ms", 
       "Actions": [
         { "Channel": 0, "DigitalOut": true, "Duration": 250 },
@@ -27,8 +27,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK 012210-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO 012210-250ms", 
       "Description": "Turn 0,1,2 on then off every 250 ms", 
       "Actions": [
         { "Channel": 0, "DigitalOut": true, "Duration": 250 },
@@ -40,8 +40,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO0-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO0-500ms", 
       "Description": "Turn 0 on then off every 500 ms",
       "Actions": [
         { "Channel": 0, "DigitalOut": true, "Duration": 500 },
@@ -49,8 +49,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO1-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO1-500ms", 
       "Description": "Turn 1 on then off every 500 ms",
       "Actions": [
         { "Channel": 1, "DigitalOut": true, "Duration": 500 },
@@ -58,8 +58,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO2-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO2-500ms", 
       "Description": "Turn 2 on then off every 500 ms",
       "Actions": [
         { "Channel": 2, "DigitalOut": true, "Duration": 500 },
@@ -67,8 +67,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO3-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO3-500ms", 
       "Description": "Turn 3 on then off every 500 ms",
       "Actions": [
         { "Channel": 3, "DigitalOut": true, "Duration": 500 },
@@ -76,8 +76,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO4-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO4-500ms", 
       "Description": "Turn 4 on then off every 500 ms",
       "Actions": [
         { "Channel": 4, "DigitalOut": true, "Duration": 500 },
@@ -85,8 +85,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO5-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO5-500ms", 
       "Description": "Turn 5 on then off every 500 ms",
       "Actions": [
         { "Channel": 5, "DigitalOut": true, "Duration": 500 },
@@ -94,8 +94,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO6-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO6-500ms", 
       "Description": "Turn 6 on then off every 500 ms",
       "Actions": [
         { "Channel": 6, "DigitalOut": true, "Duration": 500 },
@@ -103,8 +103,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO7-500ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO7-500ms", 
       "Description": "Turn 7 on then off every 500 ms",
       "Actions": [
         { "Channel": 7, "DigitalOut": true, "Duration": 500 },
@@ -112,8 +112,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO0-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO0-250ms", 
       "Description": "Turn 0 on then off every 250 ms",
       "Actions": [
         { "Channel": 0, "DigitalOut": true, "Duration": 250 },
@@ -121,8 +121,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO1-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO1-250ms", 
       "Description": "Turn 1 on then off every 250 ms",
       "Actions": [
         { "Channel": 1, "DigitalOut": true, "Duration": 250 },
@@ -130,8 +130,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO2-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO2-250ms", 
       "Description": "Turn 2 on then off every 250 ms",
       "Actions": [
         { "Channel": 2, "DigitalOut": true, "Duration": 250 },
@@ -139,8 +139,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO3-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO3-250ms", 
       "Description": "Turn 3 on then off every 250 ms",
       "Actions": [
         { "Channel": 3, "DigitalOut": true, "Duration": 250 },
@@ -148,8 +148,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO4-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO4-250ms", 
       "Description": "Turn 4 on then off every 250 ms",
       "Actions": [
         { "Channel": 4, "DigitalOut": true, "Duration": 250 },
@@ -157,8 +157,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO5-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO5-250ms", 
       "Description": "Turn 5 on then off every 250 ms",
       "Actions": [
         { "Channel": 5, "DigitalOut": true, "Duration": 250 },
@@ -166,8 +166,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO6-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO6-250ms", 
       "Description": "Turn 6 on then off every 250 ms",
       "Actions": [
         { "Channel": 6, "DigitalOut": true, "Duration": 250 },
@@ -175,8 +175,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO7-250ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO7-250ms", 
       "Description": "Turn 7 on then off every 250 ms",
       "Actions": [
         { "Channel": 7, "DigitalOut": true, "Duration": 250 },
@@ -184,8 +184,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO0-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO0-125ms", 
       "Description": "Turn 0 on then off every 125 ms",
       "Actions": [
         { "Channel": 0, "DigitalOut": true, "Duration": 125 },
@@ -193,8 +193,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO1-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO1-125ms", 
       "Description": "Turn 1 on then off every 125 ms",
       "Actions": [
         { "Channel": 1, "DigitalOut": true, "Duration": 125 },
@@ -202,8 +202,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO2-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO2-125ms", 
       "Description": "Turn 2 on then off every 125 ms",
       "Actions": [
         { "Channel": 2, "DigitalOut": true, "Duration": 125 },
@@ -211,8 +211,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO3-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO3-125ms", 
       "Description": "Turn 3 on then off every 125 ms",
       "Actions": [
         { "Channel": 3, "DigitalOut": true, "Duration": 125 },
@@ -220,8 +220,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO4-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO4-125ms", 
       "Description": "Turn 4 on then off every 125 ms",
       "Actions": [
         { "Channel": 4, "DigitalOut": true, "Duration": 125 },
@@ -229,8 +229,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO5-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO5-125ms", 
       "Description": "Turn 5 on then off every 125 ms",
       "Actions": [
         { "Channel": 5, "DigitalOut": true, "Duration": 125 },
@@ -238,8 +238,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO6-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO6-125ms", 
       "Description": "Turn 6 on then off every 125 ms",
       "Actions": [
         { "Channel": 6, "DigitalOut": true, "Duration": 125 },
@@ -247,8 +247,8 @@
       ]
     },
     {
-      "SerialNumber": 124744,
-      "Name": "124744-IK DO7-125ms", 
+      //"SerialNumber": 124744,
+      "Name": "DO7-125ms", 
       "Description": "Turn 7 on then off every 125 ms",
       "Actions": [
         { "Channel": 7, "DigitalOut": true, "Duration": 125 },

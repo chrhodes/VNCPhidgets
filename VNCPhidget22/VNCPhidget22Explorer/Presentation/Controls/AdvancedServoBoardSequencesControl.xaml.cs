@@ -1,64 +1,86 @@
 ﻿using System;
 using System.Linq;
-
-using DevExpress.XtraRichEdit.Import.OpenXml;
+using System.Windows;
 
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidget22Explorer.Presentation.Views
+using VNCPhidget22Explorer.Presentation.ViewModels;
+
+namespace VNCPhidget22Explorer.Presentation.Controls
 {
-    public partial class PerformanceSelector : ViewBase, IInstanceCountV
+    public partial class AdvancedServoBoardSequencesControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
-        
-        public PerformanceSelector()
+
+        public AdvancedServoBoardSequencesControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
+
             InitializeComponent();
 
-            // Expose ViewModel
+            // Wire up ViewModel if needed
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IHostSelectorViewModel)DataContext;
+            // ViewModel = (IAdvancedServoBoardSequencesControlsViewModel)DataContext;
 
             // Can create directly
-            // ViewModel = HostSelectorViewModel();
+
+            // ViewModel = AdvancedServoBoardSequencesControlsViewModel();
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
 
             InitializeView();
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
-        }        
-        
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        //public AdvancedServoBoardSequencesControl(IAdvancedServoBoardSequencesControlsViewModel viewModel)
+        //{
+        //    Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+
+        //    InstanceCountVP++;
+
+        //    InitializeComponent();
+
+        //    ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
+
+        //    // For the rare case where the ViewModel needs to know about the View
+        //    // ViewModel.View = this;
+
+        //    InitializeView();
+
+        //    if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
         private void InitializeView()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
-            ViewType = this.GetType().ToString().Split('.').Last();
-
             // NOTE(crhodes)
             // Put things here that initialize the View
+            // Hook eventhandlers, etc.
 
-            //lgDigitalOutputSequences.IsCollapsed = true;
-
-            //lgRCServoSequences.IsCollapsed = true;
-
-            //lgStepperSequences.IsCollapsed = true;
+            ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
+
             spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         #endregion
 
         #region Enums (none)
+
 
 
         #endregion
@@ -66,9 +88,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Structures (none)
 
 
+
         #endregion
 
         #region Fields and Properties (none)
+
 
 
         #endregion
@@ -76,13 +100,17 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Event Handlers (none)
 
 
+
         #endregion
 
         #region Commands (none)
-         
+
+
+
         #endregion
 
         #region Public Methods (none)
+
 
 
         #endregion
@@ -90,13 +118,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Protected Methods (none)
 
 
+
         #endregion
 
         #region Private Methods (none)
 
 
-        #endregion   
-        
+
+        #endregion
+
         #region IInstanceCount
 
         private static int _instanceCountV;
@@ -116,5 +146,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
     }
 }
