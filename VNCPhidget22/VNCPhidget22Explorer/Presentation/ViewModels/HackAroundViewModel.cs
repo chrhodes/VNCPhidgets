@@ -1587,6 +1587,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayAdvancedServoSequence) Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called PlayAdvancedServoSequence";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // This has sideffect of setting ActivePerformancePlayer.
@@ -1594,7 +1595,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            foreach (VNCPhidgetConfig.AdvancedServoSequence sequence in SelectedAdvancedServoSequences)
+            foreach (DeviceClassSequence sequence in SelectedAdvancedServoSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
@@ -1605,7 +1606,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = "AS",
+                            SequenceType = sequence.DeviceClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -2442,6 +2443,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayStepperSequence) Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called PlayStepperSequence";
+            PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // This has sideffect of setting ActivePerformancePlayer.
@@ -2460,7 +2462,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedStepper.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = "ST",
+                            SequenceType = sequence.DeviceClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 

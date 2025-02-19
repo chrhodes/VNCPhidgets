@@ -15,6 +15,7 @@ using PhidgetsEvents = Phidget22.Events;
 using System.Windows.Navigation;
 using Phidget22;
 using System.Configuration;
+using System.Linq;
 
 namespace VNC.Phidget22.Ex
 {
@@ -986,88 +987,84 @@ namespace VNC.Phidget22.Ex
             TargetPosition = base.TargetPosition;
         }
 
-        public async Task RunActionLoops(AdvancedServoSequence advancedServoSequence)
+        public async Task RunActionLoops(StepperSequence stepperSequence)
         {
             long startTicks = 0;
 
             try
             {
-                //    if (LogPerformanceSequence)
-                //    {
-                //        startTicks = Log.Trace(
-                //            $"Running Action Loops" +
-                //            $" advancedServoSequence:>{advancedServoSequence.Name}<" +
-                //            $" startActionLoopSequences:>{advancedServoSequence.StartActionLoopSequences?.Count()}<" +
-                //            $" actionLoops:>{advancedServoSequence.ActionLoops}<" +
-                //            $" actions:>{advancedServoSequence.Actions?.Count()}<" +
-                //            $" actionsDuration:>{advancedServoSequence.ActionsDuration}<" +
-                //            $" endActionLoopSequences:>{advancedServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
-                //    }
+                if (LogPerformanceSequence)
+                {
+                    startTicks = Log.Trace(
+                        $"Running Action Loops" +
+                        $" stepperSequence:>{stepperSequence.Name}<" +
+                        $" startActionLoopSequences:>{stepperSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{stepperSequence.ActionLoops}<" +
+                        $" actions:>{stepperSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{stepperSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{stepperSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                }
 
-                //    if (advancedServoSequence.Actions is not null)
-                //    {
-                //        for (int actionLoop = 0; actionLoop < advancedServoSequence.ActionLoops; actionLoop++)
-                //        {
-                //            if (advancedServoSequence.StartActionLoopSequences is not null)
-                //            {
-                //                // TODO(crhodes)
-                //                // May want to create a new player instead of reaching for the property.
+                if (stepperSequence.Actions is not null)
+                {
+                    for (int actionLoop = 0; actionLoop < stepperSequence.ActionLoops; actionLoop++)
+                    {
+                        if (stepperSequence.StartActionLoopSequences is not null)
+                        {
+                            // TODO(crhodes)
+                            // May want to create a new player instead of reaching for the property.
 
-                //                PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
-                //                player.LogPerformanceSequence = LogPerformanceSequence;
-                //                player.LogSequenceAction = LogSequenceAction;
+                            PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogSequenceAction = LogSequenceAction;
 
-                //                foreach (PerformanceSequence sequence in advancedServoSequence.StartActionLoopSequences)
-                //                {
-                //                    await player.ExecutePerformanceSequence(sequence);
-                //                }
-                //            }
+                            foreach (PerformanceSequence sequence in stepperSequence.StartActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
 
-                //            if (advancedServoSequence.ExecuteActionsInParallel)
-                //            {
-                //                if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                        if (stepperSequence.ExecuteActionsInParallel)
+                        {
+                            if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                //                Parallel.ForEach(advancedServoSequence.Actions, async action =>
-                //                {
-                //                    // FIX(crhodes)
-                //                    // 
-                //                    //await PerformAction(action);
-                //                });
-                //            }
-                //            else
-                //            {
-                //                if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            Parallel.ForEach(stepperSequence.Actions, async action =>
+                            {
+                                 await PerformAction(action);
+                            });
+                        }
+                        else
+                        {
+                            if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                //                foreach (AdvancedServoServoAction action in advancedServoSequence.Actions)
-                //                {
-                //                    // FIX(crhodes)
-                //                    // 
-                //                    //await PerformAction(action);
-                //                }
-                //            }
+                            foreach (StepperAction action in stepperSequence.Actions)
+                            {
+                                await PerformAction(action);
+                            }
+                        }
 
-                //            if (advancedServoSequence.ActionsDuration is not null)
-                //            {
-                //                if (LogSequenceAction)
-                //                {
-                //                    Log.Trace($"Zzzzz Action:>{advancedServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
-                //                }
-                //                Thread.Sleep((int)advancedServoSequence.ActionsDuration);
-                //            }
+                        if (stepperSequence.ActionsDuration is not null)
+                        {
+                            if (LogSequenceAction)
+                            {
+                                Log.Trace($"Zzzzz Action:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((int)stepperSequence.ActionsDuration);
+                        }
 
-                //            if (advancedServoSequence.EndActionLoopSequences is not null)
-                //            {
-                //                PerformanceSequencePlayer player = new PerformanceSequencePlayer(EventAggregator);
-                //                player.LogPerformanceSequence = LogPerformanceSequence;
-                //                player.LogSequenceAction = LogSequenceAction;
+                        if (stepperSequence.EndActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogSequenceAction = LogSequenceAction;
 
-                //                foreach (PerformanceSequence sequence in advancedServoSequence.EndActionLoopSequences)
-                //                {
-                //                    await player.ExecutePerformanceSequence(sequence);
-                //                }
-                //            }
-                //        }
-                //    }
+                            foreach (PerformanceSequence sequence in stepperSequence.EndActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -1625,9 +1622,9 @@ namespace VNC.Phidget22.Ex
         {
             long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            var advancedServoSequence = args.AdvancedServoSequence;
+            var stepperSequence = args.StepperSequence;
 
-            await RunActionLoops(advancedServoSequence);
+            await RunActionLoops(stepperSequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
