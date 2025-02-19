@@ -6,13 +6,13 @@ using DevExpress.XtraRichEdit.Import.OpenXml;
 using VNC;
 using VNC.Core.Mvvm;
 
-namespace VNCPhidget22Explorer.Presentation.Views
+namespace VNCPhidget22Explorer.Presentation.Controls
 {
-    public partial class PerformanceSelector : ViewBase, IInstanceCountV
+    public partial class PerformanceSelectorControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
-        public PerformanceSelector()
+        public PerformanceSelectorControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);

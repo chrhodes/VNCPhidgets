@@ -1,0 +1,28 @@
+{
+  "VoltageOutputSequences": [
+    {
+      "Name": "VO0",
+      "Channel": 0,
+      "Description": "Do Something to VoltageOutput 0",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "VO1",
+      "Channel": 1,
+      "Description": "Do Something to VoltageOutput 1",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "VO2",
+      "Channel": 2,
+      "Description": "Do Something to VoltageOutput 2",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+  ]
+}

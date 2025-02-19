@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class InterfaceKitSequence : PhidgetSequenceBase
+    public class InterfaceKitSequence : DeviceClassSequence
     {
         /// <summary>
         /// Array of InterfaceKit actions in sequence

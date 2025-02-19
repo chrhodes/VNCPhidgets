@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class PhidgetSequenceBase
+    public class DeviceClassSequence
     {
         ///// <summary>
         ///// Host on which to run sequence (optional)

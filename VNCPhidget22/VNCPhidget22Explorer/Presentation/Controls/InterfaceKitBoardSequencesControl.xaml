@@ -54,6 +54,7 @@
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
         <!--<converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />-->
         <converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
+        <converters:SelectedItemsToListOfDeviceClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
         <!--<converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
         <!--<converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />-->
@@ -130,13 +131,13 @@
 
                 <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
-                                ItemsSource="{Binding InterfaceKitSequences}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedInterfaceKitSequence}"
-                                EditValue="{ Binding 
-                                    Path=SelectedInterfaceKitSequences,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfInterfaceKitSequenceConverter} }" >
+                        ItemsSource="{Binding InterfaceKitSequences}" DisplayMember="Name" 
+                        SelectedItem="{Binding SelectedInterfaceKitSequence}"
+                        EditValue="{ Binding 
+                            Path=SelectedInterfaceKitSequences,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:CheckedComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>
@@ -211,17 +212,15 @@
 
                 <dxlc:LayoutItem VerticalAlignment="Stretch">
                     <Button 
-		                        Command="{Binding PlayInterfaceKitSequenceCommand }"
-                                CommandParameter="false"
-		                        Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
-		                        ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
+		                Command="{Binding PlayInterfaceKitSequenceCommand }"
+                        CommandParameter="false"
+		                Content="{Binding PlayInterfaceKitSequenceContent, FallbackValue='PlaySequence' }"
+		                ToolTip="{Binding PlayInterfaceKitSequenceToolTip, FallbackValue='PlayInterfaceKitSequence ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>
-
-
 
     </DockPanel>
 

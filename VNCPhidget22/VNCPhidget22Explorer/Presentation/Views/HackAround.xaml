@@ -167,7 +167,7 @@
 
             </dxlc:LayoutGroup>
 
-            <views:PerformanceSelector />
+            <controls:PerformanceSelectorControl />
 
         </dxlc:LayoutGroup>
 

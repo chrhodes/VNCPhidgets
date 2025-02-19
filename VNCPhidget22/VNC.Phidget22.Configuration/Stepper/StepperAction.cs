@@ -4,10 +4,26 @@ namespace VNC.Phidget22.Configuration
 {
     public class StepperAction
     {
-        /// <summary>
-        /// Index of stepper on board (likely 1)
-        /// </summary>
-        public int StepperIndex { get; set; }
+        #region Logging
+
+        public bool? LogPhidgetEvents { get; set; }
+        public bool? LogErrorEvents { get; set; }
+        public bool? LogPropertyChangeEvents { get; set; }
+
+        public bool? LogPositionChangeEvents { get; set; }
+        public bool? LogVelocityChangeEvents { get; set; }
+        public bool? LogStoppedEvents { get; set; }
+
+        public bool? LogPerformanceSequence { get; set; }
+        public bool? LogSequenceAction { get; set; }
+        public bool? LogActionVerification { get; set; }
+
+        #endregion
+
+        ///// <summary>
+        ///// Index of stepper on board (likely 1)
+        ///// </summary>
+        //public int StepperIndex { get; set; }
 
         /// <summary>
         /// Degrees of rotation for one full step

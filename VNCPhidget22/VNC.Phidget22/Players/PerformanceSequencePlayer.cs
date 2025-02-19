@@ -138,23 +138,23 @@ namespace VNC.Phidget22.Players
                     {
                         switch (nextPerformanceSequence.SequenceType)
                         {
-                            case "AS":
-                                nextPerformanceSequence = await ExecuteAdvancedServoPerformanceSequence(nextPerformanceSequence);
-                                break;
+                            //case "AS":
+                            //    nextPerformanceSequence = await ExecuteAdvancedServoPerformanceSequence(nextPerformanceSequence);
+                            //    break;
 
-                            case "DO":
+                            case "DigitalOutput":
                                 nextPerformanceSequence = await ExecuteDigitalOutputPerformanceSequence(nextPerformanceSequence);
                                 break;
 
-                            case "IK":
-                                nextPerformanceSequence = await ExecuteInterfaceKitPerformanceSequence(nextPerformanceSequence);
-                                break;
+                            //case "IK":
+                            //    nextPerformanceSequence = await ExecuteInterfaceKitPerformanceSequence(nextPerformanceSequence);
+                            //    break;
 
-                            case "RCS":
+                            case "RCServo":
                                 nextPerformanceSequence = await ExecuteRCServoPerformanceSequence(nextPerformanceSequence);
                                 break;
 
-                            case "ST":
+                            case "Stepper":
                                 nextPerformanceSequence = await ExecuteStepperPerformanceSequence(nextPerformanceSequence);
                                 break;
 
@@ -494,108 +494,108 @@ namespace VNC.Phidget22.Players
             return nextPerformanceSequence;
         }
 
-        private async Task<PerformanceSequence> ExecuteInterfaceKitPerformanceSequence(PerformanceSequence performanceSequence)
-        {
-            Int64 startTicks = 0;
-            PerformanceSequence nextPerformanceSequence = null;
+        //private async Task<PerformanceSequence> ExecuteInterfaceKitPerformanceSequence(PerformanceSequence performanceSequence)
+        //{
+        //    Int64 startTicks = 0;
+        //    PerformanceSequence nextPerformanceSequence = null;
 
-            // TODO(crhodes)
-            // 
+        //    // FIX(crhodes)
+        //    // 
 
-            //try
-            //{
-            //    InterfaceKitEx phidgetHost = null;
+        //    try
+        //    {
+        //        InterfaceKitEx phidgetHost = null;
 
-            //    if (PerformanceLibrary.AvailableInterfaceKitSequences.ContainsKey(performanceSequence.Name))
-            //    {
-            //        var interfaceKitSequence = PerformanceLibrary.AvailableInterfaceKitSequences[performanceSequence.Name];
+        //        if (PerformanceLibrary.AvailableInterfaceKitSequences.ContainsKey(performanceSequence.Name))
+        //        {
+        //            var interfaceKitSequence = PerformanceLibrary.AvailableInterfaceKitSequences[performanceSequence.Name];
 
-            //        if (LogPerformanceSequence)
-            //        {
-            //            startTicks = Log.Trace($"Executing IK Performance Sequence" +
-            //                $" serialNumber:>{performanceSequence?.SerialNumber}<" +
-            //                $" name:>{interfaceKitSequence?.Name}<" +
-            //                $" sequenceLoops:>{interfaceKitSequence?.SequenceLoops}<" +
-            //                $" beforeActionLoopSequences:>{interfaceKitSequence?.BeforeActionLoopSequences?.Count()}<" +
-            //                $" startActionLoopSequences:>{interfaceKitSequence?.StartActionLoopSequences?.Count()}<" +
-            //                $" actionLoops:>{interfaceKitSequence?.ActionLoops}<" +
-            //                $" executeActionsInParallel:>{interfaceKitSequence?.ExecuteActionsInParallel}<" +
-            //                $" actionDuration:>{interfaceKitSequence?.ActionsDuration}<" +
-            //                $" endActionLoopSequences:>{interfaceKitSequence?.EndActionLoopSequences?.Count()}<" +
-            //                $" afterActionLoopSequences:>{interfaceKitSequence?.AfterActionLoopSequences?.Count()}<" +
-            //                $" sequenceDuration:>{interfaceKitSequence?.SequenceDuration}<" +
-            //                $" nextSequence:>{interfaceKitSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-            //        }
+        //            if (LogPerformanceSequence)
+        //            {
+        //                startTicks = Log.Trace($"Executing IK Performance Sequence" +
+        //                    $" serialNumber:>{performanceSequence?.SerialNumber}<" +
+        //                    $" name:>{interfaceKitSequence?.Name}<" +
+        //                    $" sequenceLoops:>{interfaceKitSequence?.SequenceLoops}<" +
+        //                    $" beforeActionLoopSequences:>{interfaceKitSequence?.BeforeActionLoopSequences?.Count()}<" +
+        //                    $" startActionLoopSequences:>{interfaceKitSequence?.StartActionLoopSequences?.Count()}<" +
+        //                    $" actionLoops:>{interfaceKitSequence?.ActionLoops}<" +
+        //                    $" executeActionsInParallel:>{interfaceKitSequence?.ExecuteActionsInParallel}<" +
+        //                    $" actionDuration:>{interfaceKitSequence?.ActionsDuration}<" +
+        //                    $" endActionLoopSequences:>{interfaceKitSequence?.EndActionLoopSequences?.Count()}<" +
+        //                    $" afterActionLoopSequences:>{interfaceKitSequence?.AfterActionLoopSequences?.Count()}<" +
+        //                    $" sequenceDuration:>{interfaceKitSequence?.SequenceDuration}<" +
+        //                    $" nextSequence:>{interfaceKitSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
+        //            }
 
-            //        //if (interfaceKitSequence.SerialNumber is not null)
-            //        //{
-            //        //    phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
-            //        //}
-            //        //else if (ActiveInterfaceKitHost is not null)
-            //        //{
-            //        //    phidgetHost = ActiveInterfaceKitHost;
-            //        //}
-            //        //else
-            //        //{
-            //        //    Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber}", Common.LOG_CATEGORY);
-            //        //    nextPerformanceSequence = null;
-            //        //}
+        //            //if (interfaceKitSequence.SerialNumber is not null)
+        //            //{
+        //            //    phidgetHost = GetInterfaceKitHost((int)interfaceKitSequence.SerialNumber);
+        //            //}
+        //            //else if (ActiveInterfaceKitHost is not null)
+        //            //{
+        //            //    phidgetHost = ActiveInterfaceKitHost;
+        //            //}
+        //            //else
+        //            //{
+        //            //    Log.Error($"Cannot locate host to execute SerialNumber:{interfaceKitSequence.SerialNumber}", Common.LOG_CATEGORY);
+        //            //    nextPerformanceSequence = null;
+        //            //}
 
-            //        phidgetHost = GetInterfaceKitHost((int)performanceSequence.SerialNumber);
+        //            phidgetHost = GetInterfaceKitHost((int)performanceSequence.SerialNumber);
 
-            //        if (phidgetHost == null)
-            //        {
-            //            Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
-            //            nextPerformanceSequence = null;
-            //        }
+        //            if (phidgetHost == null)
+        //            {
+        //                Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+        //                nextPerformanceSequence = null;
+        //            }
 
-            //        if (phidgetHost is not null)
-            //        {
-            //            if (interfaceKitSequence.BeforeActionLoopSequences is not null)
-            //            {
-            //                foreach (PerformanceSequence sequence in interfaceKitSequence.BeforeActionLoopSequences)
-            //                {
-            //                    ExecutePerformanceSequence(sequence);
-            //                }
-            //            }
+        //            if (phidgetHost is not null)
+        //            {
+        //                if (interfaceKitSequence.BeforeActionLoopSequences is not null)
+        //                {
+        //                    foreach (PerformanceSequence sequence in interfaceKitSequence.BeforeActionLoopSequences)
+        //                    {
+        //                        ExecutePerformanceSequence(sequence);
+        //                    }
+        //                }
 
-            //            await phidgetHost.RunActionLoops(interfaceKitSequence);
+        //                await phidgetHost.RunActionLoops(interfaceKitSequence);
 
-            //            if (interfaceKitSequence.AfterActionLoopSequences is not null)
-            //            {
-            //                foreach (PerformanceSequence sequence in interfaceKitSequence.AfterActionLoopSequences)
-            //                {
-            //                    ExecutePerformanceSequence(sequence);
-            //                }
-            //            }
+        //                if (interfaceKitSequence.AfterActionLoopSequences is not null)
+        //                {
+        //                    foreach (PerformanceSequence sequence in interfaceKitSequence.AfterActionLoopSequences)
+        //                    {
+        //                        ExecutePerformanceSequence(sequence);
+        //                    }
+        //                }
 
-            //            if (interfaceKitSequence.SequenceDuration is not null)
-            //            {
-            //                if (LogPerformanceSequence)
-            //                {
-            //                    Log.Trace($"Zzzzz Sequence:>{interfaceKitSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-            //                }
-            //                Thread.Sleep((Int32)interfaceKitSequence.SequenceDuration);
-            //            }
+        //                if (interfaceKitSequence.SequenceDuration is not null)
+        //                {
+        //                    if (LogPerformanceSequence)
+        //                    {
+        //                        Log.Trace($"Zzzzz Sequence:>{interfaceKitSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+        //                    }
+        //                    Thread.Sleep((Int32)interfaceKitSequence.SequenceDuration);
+        //                }
 
-            //            nextPerformanceSequence = interfaceKitSequence.NextSequence;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
-            //        nextPerformanceSequence = null;
-            //    }
+        //                nextPerformanceSequence = interfaceKitSequence.NextSequence;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Log.Trace($"Cannot find performanceSequence:{performanceSequence.Name}", Common.LOG_CATEGORY);
+        //            nextPerformanceSequence = null;
+        //        }
 
-            //    if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log.Error(ex, Common.LOG_CATEGORY);
-            //}
+        //        if (LogPerformanceSequence) Log.Trace($"Exit nextPerformanceSequence:{nextPerformanceSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
 
-            return nextPerformanceSequence;
-        }
+        //    return nextPerformanceSequence;
+        //}
 
         private async Task<PerformanceSequence> ExecuteStepperPerformanceSequence(PerformanceSequence performanceSequence)
         {
@@ -760,59 +760,61 @@ namespace VNC.Phidget22.Players
 
         //private InterfaceKitEx GetInterfaceKitHost(int serialNumber)
         //{
-        //    InterfaceKitEx interfaceKitHost = null;
+            // FIX(crhodes)
+            // 
 
-        //    PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidget22[serialNumber];
+            //InterfaceKitEx interfaceKitHost = null;
 
-        //    if (phidgetDevice?.PhidgetEx is not null)
-        //    {
-        //        interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
+            //PhidgetDevice phidgetDevice = PhidgetLibrary.AvailablePhidget22[serialNumber];
 
-        //        interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
+            //if (phidgetDevice?.PhidgetEx is not null)
+            //{
+            //    interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
-        //        interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-        //        interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-        //        interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+            //    interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
 
-        //        interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
-        //        interfaceKitHost.LogSequenceAction = LogSequenceAction;
-        //    }
-        //    else
-        //    {
-        //        phidgetDevice.PhidgetEx = new InterfaceKitEx(
-        //            phidgetDevice.IPAddress,
-        //            phidgetDevice.Port,
-        //            serialNumber,
-        //            true,
-        //            EventAggregator);
+            //    interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+            //    interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+            //    interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-        //        interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
+            //    interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
+            //    interfaceKitHost.LogSequenceAction = LogSequenceAction;
+            //}
+            //else
+            //{
+            //    phidgetDevice.PhidgetEx = new InterfaceKitEx(
+            //        phidgetDevice.IPAddress,
+            //        phidgetDevice.Port,
+            //        serialNumber,
+            //        true,
+            //        EventAggregator);
 
-        //        interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
+            //    interfaceKitHost = (InterfaceKitEx)phidgetDevice.PhidgetEx;
 
-        //        interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
-        //        interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
-        //        interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
+            //    interfaceKitHost.LogPhidgetEvents = LogPhidgetEvents;
 
-        //        interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
-        //        interfaceKitHost.LogSequenceAction = LogSequenceAction;
+            //    interfaceKitHost.LogInputChangeEvents = LogInputChangeEvents;
+            //    interfaceKitHost.LogOutputChangeEvents = LogOutputChangeEvents;
+            //    interfaceKitHost.LogSensorChangeEvents = LogSensorChangeEvents;
 
-        //        // TODO(crhodes)
-        //        // Should we do open somewhere else?
-        //        // If this times out we need to clear phidgetDevice
+            //    interfaceKitHost.LogPerformanceSequence = LogPerformanceSequence;
+            //    interfaceKitHost.LogSequenceAction = LogSequenceAction;
 
-        //        interfaceKitHost.Open(Common.PhidgetOpenTimeout);
-        //    }
+            //    // TODO(crhodes)
+            //    // Should we do open somewhere else?
+            //    // If this times out we need to clear phidgetDevice
 
-        //    // NOTE(crhodes)
-        //    // Save this so we can use it in other commands
-        //    // that don't specify a SerialNumber
+            //    interfaceKitHost.Open(Common.PhidgetOpenTimeout);
+            //}
 
-        //    ActiveInterfaceKitHost = interfaceKitHost;
+            //// NOTE(crhodes)
+            //// Save this so we can use it in other commands
+            //// that don't specify a SerialNumber
 
-        //    return interfaceKitHost;
+            //ActiveInterfaceKitHost = interfaceKitHost;
+
+            //return interfaceKitHost;
         //}
-
 
         private DigitalOutputEx GetDigitalOutputHost(int serialNumber, int channel)
         {

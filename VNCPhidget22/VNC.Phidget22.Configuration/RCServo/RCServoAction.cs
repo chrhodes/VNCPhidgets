@@ -5,11 +5,6 @@ namespace VNC.Phidget22.Configuration
 {
     public class RCServoAction
     {
-        ///// <summary>
-        ///// Index of servo on board 
-        ///// </summary>
-        //public int Channel { get; set; }
-
         #region Logging
 
         public bool? LogPhidgetEvents { get; set; }

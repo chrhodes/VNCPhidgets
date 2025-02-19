@@ -52,7 +52,8 @@
     <vncmvvm:ViewBase.Resources>
         <!--<converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
-        <converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />
+        <!--<converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />-->
+        <converters:SelectedItemsToListOfDeviceClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
         <!--<converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />
@@ -114,7 +115,6 @@
                                     SelectedIndex="0"/>
                 </dxlc:LayoutItem>
 
-
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
@@ -132,13 +132,13 @@
 
                 <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" LabelPosition="Left" >
                     <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
-                                    ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedAdvancedServoSequences}"
-                                    EditValue="{ Binding 
-                                        Path=SelectedAdvancedServoSequences,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource SelectedItemsToListOfAdvancedServoSequenceConverter} }" >
+                            ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedAdvancedServoSequence}"
+                            EditValue="{ Binding 
+                                Path=SelectedAdvancedServoSequences,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:CheckedComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>

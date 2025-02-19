@@ -1,0 +1,37 @@
+{
+  "DigitalOutputSequences": [
+    {
+      "Name": "DO0",
+      "Channel": 0,
+      "Description": "Do Something to DigitalOutput 0",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "DO1",
+      "Channel": 1,
+      "Description": "Do Something to DigitalOutput 1",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "DO2",
+      "Channel": 2,
+      "Description": "Do Something to DigitalOutput 2",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+  ]
+}

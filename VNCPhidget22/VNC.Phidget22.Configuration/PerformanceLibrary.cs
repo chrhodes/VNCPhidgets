@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
+using Prism.Regions.Behaviors;
+
 using VNC;
 
 namespace VNC.Phidget22.Configuration
@@ -25,20 +27,29 @@ namespace VNC.Phidget22.Configuration
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
-            LoadHostsConfig();
+            try
+            {
+                LoadHostsConfig();
 
-            LoadPerformances();
+                LoadPerformances();
 
-            LoadAdvancedServoSequences();
-            //LoadDigitalInputSequences();
-            //LoadDigitalOutputSequences();
-            LoadInterfaceKitSequences();
-            //LoadRCServoSequences();
+                //LoadAdvancedServoSequences();
 
-            LoadStepperSequences();
+                LoadRCServoSequences();
 
-            //LoadVoltageInputSequences();
-            //LoadVoltageOutputSequences();
+                //LoadInterfaceKitSequences();
+
+                LoadDigitalInputSequences();
+                LoadDigitalOutputSequences();
+                LoadVoltageInputSequences();
+                LoadVoltageOutputSequences();
+
+                LoadStepperSequences();
+            }
+            catch (Exception ex)
+            {
+                
+            }
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -62,8 +73,8 @@ namespace VNC.Phidget22.Configuration
         public static Dictionary<string, Performance> AvailablePerformances { get; set; } =
             new Dictionary<string, Performance>();
 
-        public static Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
-            new Dictionary<string, AdvancedServoSequence>();
+        //public static Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
+        //    new Dictionary<string, AdvancedServoSequence>();
 
         public static Dictionary<string, DigitalInputSequence> AvailableDigitalInputSequences { get; set; } =
              new Dictionary<string, DigitalInputSequence>();
@@ -149,6 +160,12 @@ namespace VNC.Phidget22.Configuration
         //    if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         //}
 
+        // TODO(crhodes)
+        // Clean this area up
+        // Looks like identical code
+        // Method that gets a list of files,
+        // Add to AvailableTYPE
+
         public void LoadPerformances()
         {
             Int64 startTicks = 0;
@@ -187,43 +204,43 @@ namespace VNC.Phidget22.Configuration
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadAdvancedServoSequences()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+        //public void LoadAdvancedServoSequences()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableAdvancedServoSequences.Clear();
+        //    AvailableAdvancedServoSequences.Clear();
 
-            foreach (string configFile in GetListOfAdvancedServoConfigFiles())
-            {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+        //    foreach (string configFile in GetListOfAdvancedServoConfigFiles())
+        //    {
+        //        if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
+        //        try
+        //        {
+        //            string jsonString = File.ReadAllText(configFile);
 
-                    AdvancedServoSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<AdvancedServoSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
+        //            AdvancedServoSequenceConfig? sequenceConfig
+        //                = JsonSerializer.Deserialize<AdvancedServoSequenceConfig>
+        //                (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.AdvancedServoSequences.ToDictionary(k => k.Name, v => v))
-                    {
-                        AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
-            }
+        //            foreach (var sequence in sequenceConfig.AdvancedServoSequences.ToDictionary(k => k.Name, v => v))
+        //            {
+        //                AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
+        //            }
+        //        }
+        //        catch (FileNotFoundException fnfex)
+        //        {
+        //            Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+        //            Log.Error($"{ex}", Common.LOG_CATEGORY);
+        //        }
+        //    }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         public void LoadDigitalInputSequences()
         {
@@ -290,43 +307,6 @@ namespace VNC.Phidget22.Configuration
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
-            }
-
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-        public void LoadInterfaceKitSequences()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
-
-            AvailableInterfaceKitSequences.Clear();
-
-            foreach (string configFile in GetListOfInterfaceKitConfigFiles())
-            {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    InterfaceKitSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<InterfaceKitSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    foreach (var sequence in sequenceConfig.InterfaceKitSequences.ToDictionary(k => k.Name, v => v))
-                    {
-                        AvailableInterfaceKitSequences.Add(sequence.Key, sequence.Value);
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfInterfaceKitConfigFiles()", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -523,31 +503,31 @@ namespace VNC.Phidget22.Configuration
             return files;
         }
 
-        private IEnumerable<string> GetListOfAdvancedServoConfigFiles()
-        {
-            // HACK(crhodes)
-            // Read a directory and return files, perhaps with RegEx name match
-            // for now just hard code
-            // Would be nice to control order
+        //private IEnumerable<string> GetListOfAdvancedServoConfigFiles()
+        //{
+        //    // HACK(crhodes)
+        //    // Read a directory and return files, perhaps with RegEx name match
+        //    // for now just hard code
+        //    // Would be nice to control order
 
-            List<string> files = new List<string>
-            {
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
-                @"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
+        //    List<string> files = new List<string>
+        //    {
+        //        @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
+        //        @"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
 
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
-                //// These may go away after stuff moves to Initialization
-                ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
-                ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
+        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
+        //        //// These may go away after stuff moves to Initialization
+        //        ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
+        //        ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
 
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
-            };
+        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
+        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
+        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
+        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
+        //    };
 
-            return files;
-        }
+        //    return files;
+        //}
 
         private IEnumerable<string> GetListOfDigitalInputConfigFiles()
         {
@@ -558,7 +538,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalInputSequences\DigitalInputSequenceConfig_124744.json"
+                @"DigitalInputSequences\DigitalInputSequenceConfig_1.json"
             };
 
             return files;
@@ -573,30 +553,30 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalOutputSequences\DigitalOutputSequenceConfig_124744.json"
+                @"DigitalOutputSequences\DigitalOutputSequenceConfig_1.json",
             };
 
             return files;
         }
 
-        private IEnumerable<string> GetListOfInterfaceKitConfigFiles()
-        {
-            // HACK(crhodes)
-            // Read a directory and return files, perhaps with RegEx name match
-            // for now just hard code
-            // Would be nice to control order
+        //private IEnumerable<string> GetListOfInterfaceKitConfigFiles()
+        //{
+        //    // HACK(crhodes)
+        //    // Read a directory and return files, perhaps with RegEx name match
+        //    // for now just hard code
+        //    // Would be nice to control order
 
-            List<string> files = new List<string>
-            {
-                @"InterfaceKitSequences\InterfaceKitSequenceConfig_1.json",
-                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json",
-                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json",
-                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json",
-                //@"InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json"
-            };
+        //    List<string> files = new List<string>
+        //    {
+        //        @"InterfaceKitSequences\InterfaceKitSequenceConfig_1.json",
+        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json",
+        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json",
+        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json",
+        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json"
+        //    };
 
-            return files;
-        }
+        //    return files;
+        //}
 
         private IEnumerable<string> GetListOfRCServoConfigFiles()
         {
@@ -607,7 +587,15 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"RCServoSequences\RCServoSequenceConfig_99415.json"
+                // TODO(crhodes)
+                // Review and fix these files.  Should be RCServoSequences
+                // The ServoIndex is wrong, should be Channel
+                // Probably more
+
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
+                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
+
+                @"RCServoSequences\RCServoSequenceConfig_1.json"
             };
 
             return files;
@@ -636,7 +624,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageInputSequences\VoltageInputSequenceConfig_124744.json"
+                @"VoltageInputSequences\VoltageInputSequenceConfig_1.json"
             };
 
             return files;
@@ -651,7 +639,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageOutputSequences\VoltageOutputSequenceConfig_XXXX.json"
+                @"VoltageOutputSequences\VoltageOutputSequenceConfig_1.json"
             };
 
             return files;

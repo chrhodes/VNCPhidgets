@@ -56,7 +56,8 @@
         <!--<converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
-        <converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />
+        <!--<converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />-->
+        <converters:SelectedItemsToListOfDeviceClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
         <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
          <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
          <DataTemplate x:Key="dataTemplateHostSelector"> 
@@ -115,28 +116,28 @@
 
                 <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                            <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
-                                <dxe:ComboBoxEdit Width="300"
-                                    ItemsSource="{Binding StepperSequenceConfigFiles}"
-                                    SelectedItem="{Binding StepperSequenceConfigFileName}" >
-                                </dxe:ComboBoxEdit>
-                            </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Sequence Config File" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300"
+                            ItemsSource="{Binding StepperSequenceConfigFiles}"
+                            SelectedItem="{Binding StepperSequenceConfigFileName}" >
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
 
-                            <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadStepperSequenceConfigFilesCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
+                            Command="{Binding ReloadStepperSequenceConfigFilesCommand}"
+                            ToolTip="Reload Config File" Width="20"/>
 
-                        </dxlc:LayoutGroup>-->
+                </dxlc:LayoutGroup>-->
 
                 <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
                     <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
-                                ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedStepperSequence}"
-                                EditValue="{ Binding 
-                                    Path=SelectedStepperSequences,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfStepperSequenceConverter} }" >
+                        ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
+                        SelectedItem="{Binding SelectedStepperSequence}"
+                        EditValue="{ Binding 
+                            Path=SelectedStepperSequences,
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged,
+                            Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:CheckedComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>
@@ -181,27 +182,27 @@
 
                 <!--<dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
 
-                            <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Name }" />
-                            </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Name }" />
+                    </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.IPAddress }" />
-                            </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.IPAddress }" />
+                    </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Port }" />
-                            </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.Host.Port }" />
+                    </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedStepperSequence.InterfaceKits[0].Name }" />
-                            </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.InterfaceKits[0].Name }" />
+                    </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedStepperSequence.InterfaceKits[0].SerialNumber }" />
-                            </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding SelectedStepperSequence.InterfaceKits[0].SerialNumber }" />
+                    </dxlc:LayoutItem>
 
-                        </dxlc:LayoutGroup>-->
+                </dxlc:LayoutGroup>-->
 
             </dxlc:LayoutGroup>
 

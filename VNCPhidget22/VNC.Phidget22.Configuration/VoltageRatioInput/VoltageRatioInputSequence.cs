@@ -2,16 +2,16 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class VoltageOutputSequence : DeviceClassSequence
+    public class VoltageRatioInputSequence : DeviceClassSequence
     {
         /// <summary>
         /// Phidet22.DeviceClass
         /// </summary>
-        public string DeviceClass { get; } = "VoltageOutput";
+        public string DeviceClass { get; } = "VoltageRatioInput";
 
         /// <summary>
         /// Array of VoltageOutput actions in sequence
         /// </summary>
-        public VoltageOutputAction[] Actions { get; set; }
+        public VoltageRatioInputAction[] Actions { get; set; }
     }
 }

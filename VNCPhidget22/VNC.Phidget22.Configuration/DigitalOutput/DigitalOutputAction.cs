@@ -4,27 +4,17 @@ namespace VNC.Phidget22.Configuration
 {
     public class DigitalOutputAction
     {
-        /// <summary>
-        /// Index of DigitalOutput on board 
-        /// </summary>
-        public int Channel { get; set; }
-
         #region Logging
 
         public bool? LogPhidgetEvents { get; set; }
         public bool? LogErrorEvents { get; set; }
         public bool? LogPropertyChangeEvents { get; set; }
 
-        public bool? LogPositionChangeEvents { get; set; }
-        public bool? LogVelocityChangeEvents { get; set; }
-        public bool? LogTargetPositionReachedEvents { get; set; }
-
         public bool? LogPerformanceSequence { get; set; }
         public bool? LogSequenceAction { get; set; }
         public bool? LogActionVerification { get; set; }
 
         #endregion
-
 
         /// <summary>
         /// Set DigitalOut value

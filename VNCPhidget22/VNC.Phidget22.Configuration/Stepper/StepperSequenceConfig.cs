@@ -6,11 +6,11 @@
         {
             new StepperSequence
             {
-                Name="SequenceStepper 1",
-
+                Name = "StepperSequence 0",
+                Channel = 0,
                 Actions = new[]
                 {
-                    new StepperAction { StepperIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true }
+                    new StepperAction { Acceleration = 5000, VelocityLimit = 200, Engaged = true }
                 }
             } 
         };

@@ -10,13 +10,13 @@ namespace VNC.Phidget22.Configuration
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
-        /// SerialNumber of Phidget that will run PerformanceSequence
+        /// SerialNumber of PhidgetDevice that will run PerformanceSequence
         /// </summary>
         public Int32 SerialNumber { get; set; }
 
         /// <summary>
-        /// Type of Sequence {AS, IK, RCS, ST}
-        /// Maybe make this enum
+        /// Type of DeviceClassSequence. 
+        /// Set to DeviceClass from DeviceClassSequence derviced types.
         /// </summary>
         public string SequenceType { get; set; }
 
