@@ -4,10 +4,9 @@ namespace VNC.Phidget22.Configuration
 {
     public class VoltageOutputSequence : DeviceClassSequence
     {
-        /// <summary>
-        /// Phidet22.DeviceClass
-        /// </summary>
-        public string DeviceClass { get; } = "VoltageOutput";
+        public VoltageOutputSequence() : base("VoltageOutput")
+        {
+        }
 
         /// <summary>
         /// Array of VoltageOutput actions in sequence

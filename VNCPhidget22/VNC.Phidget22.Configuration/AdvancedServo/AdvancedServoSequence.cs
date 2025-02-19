@@ -2,6 +2,9 @@
 {
     public class AdvancedServoSequence : DeviceClassSequence
     {
+        public AdvancedServoSequence() : base("RCServo")
+        {
+        }
         /// <summary>
         /// Array of AdvancedServoServo actions in sequence
         /// </summary>

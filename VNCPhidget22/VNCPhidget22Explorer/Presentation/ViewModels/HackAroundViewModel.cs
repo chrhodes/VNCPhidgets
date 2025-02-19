@@ -2228,7 +2228,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            foreach (InterfaceKitSequence sequence in SelectedInterfaceKitSequences)
+            foreach (DeviceClassSequence sequence in SelectedInterfaceKitSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
@@ -2239,7 +2239,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedInterfaceKit.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = "IK",
+                            SequenceType = sequence.DeviceClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 

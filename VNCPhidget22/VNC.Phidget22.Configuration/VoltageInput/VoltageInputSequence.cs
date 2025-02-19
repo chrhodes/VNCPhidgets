@@ -2,10 +2,9 @@
 {
     public class VoltageInputSequence : DeviceClassSequence
     {
-        /// <summary>
-        /// Phidet22.DeviceClass
-        /// </summary>
-        public string DeviceClass { get; } = "VoltageInput";
+        public VoltageInputSequence() : base("VoltageInput")
+        {
+        }
         /// <summary>
         /// Array of VoltageInput actions in sequence
         /// </summary>

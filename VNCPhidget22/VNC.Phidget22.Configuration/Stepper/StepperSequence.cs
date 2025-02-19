@@ -2,10 +2,10 @@
 {
     public class StepperSequence : DeviceClassSequence
     {
-        /// <summary>
-        /// Phidet22.DeviceClass
-        /// </summary>
-        public string DeviceClass { get; } = "Stepper";
+        public StepperSequence() : base("Stepper")
+        {
+        }
+        //public string DeviceClass { get; } = "Stepper";
         /// <summary>
         /// Array of Stepper actions in sequence
         /// </summary>

@@ -149,7 +149,15 @@
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedInterfaceKitequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
+                    <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Channel" HorizontalAlignment="Left" Background="Wheat" >
+                    <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Channel }" Width="300" TextWrapping="Wrap" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="DeviceClass" HorizontalAlignment="Left" Background="Wheat" >
+                    <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.DeviceClass, Mode=OneWay}" Width="300" TextWrapping="Wrap" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >

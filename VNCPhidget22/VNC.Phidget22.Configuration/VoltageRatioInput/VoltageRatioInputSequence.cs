@@ -4,10 +4,9 @@ namespace VNC.Phidget22.Configuration
 {
     public class VoltageRatioInputSequence : DeviceClassSequence
     {
-        /// <summary>
-        /// Phidet22.DeviceClass
-        /// </summary>
-        public string DeviceClass { get; } = "VoltageRatioInput";
+        public VoltageRatioInputSequence() : base("VoltageRatioInput")
+        {
+        }
 
         /// <summary>
         /// Array of VoltageOutput actions in sequence

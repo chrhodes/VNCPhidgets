@@ -136,7 +136,7 @@ namespace VNC.Phidget22.Players
 
                     do
                     {
-                        switch (nextPerformanceSequence.SequenceType)
+                        switch (nextPerformanceSequence.SequenceType)   // DeviceClass
                         {
                             //case "AS":
                             //    nextPerformanceSequence = await ExecuteAdvancedServoPerformanceSequence(nextPerformanceSequence);
@@ -850,7 +850,7 @@ namespace VNC.Phidget22.Players
             // Things that work and things that don't
             //
             // This does work
-            //digitalOutputHost.Open(500);
+            digitalOutputHost.Open(500);
 
             // This does not work.
             //digitalOutputHost.Open();

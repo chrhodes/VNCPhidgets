@@ -2,10 +2,13 @@
 {
     public class DigitalInputSequence : DeviceClassSequence
     {
+        public DigitalInputSequence() : base("DigitalInput")
+        {
+        }
         /// <summary>
         /// Phidet22.DeviceClass
         /// </summary>
-        public string DeviceClass { get; } = "DigitalInput";
+        //public string DeviceClass { get; } = "DigitalInput";
         /// <summary>
         /// Array of DigitalInput actions in sequence
         /// </summary>

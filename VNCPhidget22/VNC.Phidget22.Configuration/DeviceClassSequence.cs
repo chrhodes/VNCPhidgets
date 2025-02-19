@@ -4,6 +4,11 @@ namespace VNC.Phidget22.Configuration
 {
     public class DeviceClassSequence
     {
+        public DeviceClassSequence(string deviceClass)
+        {
+            DeviceClass = deviceClass;
+        }
+
         ///// <summary>
         ///// Host on which to run sequence (optional)
         ///// </summary>
@@ -19,6 +24,8 @@ namespace VNC.Phidget22.Configuration
         /// Name of sequence
         /// </summary>
         public string Name { get; set; } = "SEQUENCE NAME";
+
+        public string DeviceClass { get; } = "Generic";
 
         /// <summary>
         /// PhidgetChannel
