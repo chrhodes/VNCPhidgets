@@ -2343,9 +2343,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
 
         #region Commands (none)
 
+
+
         #endregion
 
         #region Public Methods (none)
+
 
 
         #endregion
@@ -2353,9 +2356,12 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         #region Protected Methods (none)
 
 
+
         #endregion
 
-        #region Private Methods
+        #region Private Methods (none)
+
+
 
         #endregion
 
@@ -2378,8 +2384,6 @@ namespace VNCPhidget22Explorer.Presentation.Controls
         }
 
         #endregion
-
-
     }
 }
 

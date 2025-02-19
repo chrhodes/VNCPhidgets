@@ -20,11 +20,6 @@ namespace VNC.Phidget22.Configuration
 
         #endregion
 
-        ///// <summary>
-        ///// Index of stepper on board (likely 1)
-        ///// </summary>
-        //public int StepperIndex { get; set; }
-
         /// <summary>
         /// Degrees of rotation for one full step
         /// which is 16 micro steps (1/16)
@@ -32,7 +27,22 @@ namespace VNC.Phidget22.Configuration
         public Double? StepAngle { get; set; }
 
         /// <summary>
-        /// Engage Servo (optional)
+        /// Makes it easier to control Stepper
+        /// </summary>
+        public Double? RescaleFactor { get; set; }
+
+        /// <summary>
+        /// Open RCServo (optional)
+        /// </summary>
+        public bool? Open { get; set; }
+
+        /// <summary>
+        /// Close RCServo (optional)
+        /// </summary>
+        public bool? Close { get; set; }
+
+        /// <summary>
+        /// Engage Stepper (optional)
         /// </summary>
         public bool? Engaged { get; set; }
 
@@ -75,7 +85,12 @@ namespace VNC.Phidget22.Configuration
         /// Position (+/-)  from current Position (optional)
         /// in 1/16 step Micro Steps
         /// </summary>
-        public Int64? RelativeTargetPosition { get; set; }
+        public Int64? RelativePosition { get; set; }
+
+        /// <summary>
+        /// AddPositionOffset() (optional)
+        /// </summary>
+        public Double? AddPositionOffset { get; set; }
 
         /// <summary>
         /// Position (+/-)  from current Position (optional)

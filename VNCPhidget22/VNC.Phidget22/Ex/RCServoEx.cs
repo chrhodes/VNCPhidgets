@@ -1633,13 +1633,6 @@ namespace VNC.Phidget22.Ex
                     //if ((Boolean)action.Engaged) VerifyServoEngaged(servo, index);
                 }
 
-                //if (action.Acceleration is not null)
-                //{
-                //    if (LogSequenceAction) actionMessage.Append($" acceleration:>{action.Acceleration}<");
-
-                //    SetAcceleration((Double)action.Acceleration, servo, index);
-                //}
-
                 if (action.RelativeAcceleration is not null)
                 {
                     var newAcceleration = Acceleration + (Double)action.RelativeAcceleration;
@@ -1647,13 +1640,6 @@ namespace VNC.Phidget22.Ex
 
                     SetAcceleration(newAcceleration);
                 }
-
-                //if (action.VelocityLimit is not null)
-                //{
-                //    if (LogSequenceAction) actionMessage.Append($" velocityLimit:>{action.VelocityLimit}<");
-
-                //    SetVelocityLimit((Double)action.VelocityLimit, servo, index);
-                //}
 
                 if (action.RelativeVelocityLimit is not null)
                 {
