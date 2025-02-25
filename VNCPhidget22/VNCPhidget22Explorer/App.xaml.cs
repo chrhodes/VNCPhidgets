@@ -124,10 +124,10 @@ namespace VNCPhidget22Explorer
             // Add the new UI elements
 
             // NOTE(crhodes)
-            // Most of what would typically appear here is in PAEF1Module
+            // Most of what would typically appear here is in VNCPhidgetsExploerModule
             //
             // Maybe the Ribbon, Main, StatusBar should be moved back here
-            // and the App Specific stuff left in PAEF1Module
+            // and the App Specific stuff left in VNCPhidgetsExploerModule
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

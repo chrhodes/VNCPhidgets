@@ -8,11 +8,11 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class AppVersionInfo : ViewBase, IInstanceCountV
+    public partial class About : ViewBase, IAbout, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
-        public AppVersionInfo()
+        public About()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -25,11 +25,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IAppVersionInfoViewModel)DataContext;
+            // ViewModel = (IAboutViewModel)DataContext;
 
             // Can create directly
 
-            // ViewModel = new AppVersionInfoViewModel();
+            // ViewModel = new AboutViewModel();
 
             // Can use ourselves for everything
 
@@ -40,10 +40,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public AppVersionInfo(IAppVersionInfoViewModel viewModel)
+        public About(IAboutViewModel viewModel)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
             InstanceCountVP++;
 
@@ -71,17 +70,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
             ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
-
-            // This gives us access to the ViewModelBase
-            // which contains the Assembly and Runtime Information we need
-            //
-            // NB. This steps on the ViewModel = viewModel above.
-            // Need to think through this if we put anything in AppVersionInfoViewModel
-
-            // TODO(crhodes)
-            // Maybe give a name to the control that contains everthing.
-
-            DataContext = Common.CurrentShell.ViewModel;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -146,6 +134,5 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

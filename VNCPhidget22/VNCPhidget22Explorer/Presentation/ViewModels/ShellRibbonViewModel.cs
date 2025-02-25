@@ -1,29 +1,22 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
 
 using VNC;
-using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Presentation;
-using VNC.Core.Services;
 using VNC.WPF.Presentation.Views;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class RibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
+    public class ShellRibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
-        public RibbonViewModel(
+        public ShellRibbonViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {
@@ -37,7 +30,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             InitializeViewModel();
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR($"Exit VM:{InstanceCountVM}", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeViewModel()
@@ -86,6 +79,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region About Command
 
         public static WindowHost _aboutHost = null;
+
         public DelegateCommand AboutCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
@@ -205,7 +199,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #endregion
 
         #region Public Methods (none)
@@ -223,7 +216,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCountVM
+        #region IInstanceCount
 
         private static int _instanceCountVM;
 

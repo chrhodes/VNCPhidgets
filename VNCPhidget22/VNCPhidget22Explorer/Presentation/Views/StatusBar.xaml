@@ -33,7 +33,7 @@
     
     SizeChanged="thisControl_SizeChanged"
 >
-    <!--xmlns:converters="clr-namespace:PAEF1.Presentation.Converters"-->
+    <!--xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"-->
     <d:DesignerProperties.DesignStyle>
         <Style TargetType="UserControl">
             <Setter Property="Background" Value="White" />

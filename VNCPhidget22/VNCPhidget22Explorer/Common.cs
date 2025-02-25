@@ -3,6 +3,7 @@ using System.Reflection;
 
 using Prism.Events;
 using Prism.Ioc;
+using Prism.Regions;
 
 using VNC.Phidget22;
 
@@ -10,7 +11,7 @@ using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer
 {
-    public class Common : VNC.Core.Common
+    public class Common : VNC.WPF.Presentation.Common //VNC.Core.Common
     {
         //private static string _fileVersion;
         //private static string _productName;
@@ -20,6 +21,8 @@ namespace VNCPhidget22Explorer
         public const string APPLICATION_NAME = "VNCPhidget22Explorer";
         public new const string LOG_CATEGORY = "VNCPhidget22Explorer";
 
+        public const string cCONFIG_FILE = @"C:\temp\VNCPhidget22Explorer_Config.xml";
+
         // NOTE(crhodes)
         // Add new VNC.Core.Information InformationXXX
         // for other Assemblies that should provide Info
@@ -28,10 +31,13 @@ namespace VNCPhidget22Explorer
 
         public static VNC.Core.Information? InformationVNCPhidget;
 
-        public const string cCONFIG_FILE = @"C:\temp\VNCPhidget22Explorer_Config.xml";
+        // HACK(crhodes)
+        // Decide if want to keep this.
+        // Put here to try to get in View and ViewModel can ask for in constructor
 
         public static IContainerProvider Container;
         public static IEventAggregator EventAggregator;
+        public static IRegionManager DefaultRegionManager;
 
         public static Shell? CurrentShell;
         public static RibbonShell? CurrentRibbonShell;
@@ -41,13 +47,12 @@ namespace VNCPhidget22Explorer
 
         public static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
 
-        // These values are added to the dimensions of a hosting window if the
-        // hosted User_Control specifies values for MinWidth/MinHeight.
-        // They have not been thought through but do seem to "work".
+        //// These values are added to the dimensions of a hosting window if the
+        //// hosted User_Control specifies values for MinWidth/MinHeight.
+        //// They have not been thought through but do seem to "work".
 
-        internal const int WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD = 30;
-        internal const int WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD = 75;
-
+        //internal const int WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD = 30;
+        //internal const int WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD = 75;
 
         public static event EventHandler AutoHideGroupSpeedChanged;
 

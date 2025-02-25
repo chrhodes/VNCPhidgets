@@ -10,9 +10,11 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
+    public partial class ShellRibbon : ViewBase, IRibbon, IInstanceCountV
     {
-        public Ribbon()
+        #region Constructors, Initialization, and Load
+
+        public ShellRibbon()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -40,7 +42,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Ribbon(ViewModels.IRibbonViewModel viewModel)
+        public ShellRibbon(ViewModels.IRibbonViewModel viewModel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
@@ -51,9 +53,12 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
 
+            // For the rare case where the ViewModel needs to know about the View
+            // ViewModel.View = this;
+
             InitializeView();
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void InitializeView()
@@ -61,38 +66,62 @@ namespace VNCPhidget22Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
-            ViewType = this.GetType().ToString().Split('.').Last();
-
             // NOTE(crhodes)
             // Put things here that initialize the View
+            // Hook eventhandlers, etc.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
-            
+
             spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #region Fields and Properties
+        #endregion
 
-        
-        public bool IsAdvancedMode
-        {
-            get => _isAdvancedMode;
-            set
-            {
-                if (_isAdvancedMode == value)
-                    return;
-                _isAdvancedMode = value;
-                OnPropertyChanged();
-            }
-        }
-        
+        #region Enums (none)
+
+
+        #endregion
+
+        #region Structures (none)
+
+
+        #endregion
+
+        #region Fields and Properties (none)
+
+
+        #endregion
+
+        #region Event Handlers (none)
+
+
+        #endregion
+
+        #region Commands (none)
+
+        #endregion
+
+        #region Public Methods (none)
+
+
+        #endregion
+
+        #region Protected Methods (none)
+
+
+        #endregion
+
+        #region Private Methods (none)
+
+
         #endregion
 
         #region IInstanceCount
 
-        private bool _isAdvancedMode;
         private static int _instanceCountV;
 
         public int InstanceCountV
@@ -110,6 +139,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
 
         #region Stuff from Code Behind.  Move to ViewModel
 

@@ -30,8 +30,9 @@
     <SolidColorBrush x:Key="ShellBackground" Color="#C0C0C0" />
     <SolidColorBrush x:Key="RibbonBackground" Color="#A0A0A0" />    
     <SolidColorBrush x:Key="MainBackground" Color="#E0E0E0" />
-    <SolidColorBrush x:Key="StatusBarBackground" Color="#8080F0" />    
+    <SolidColorBrush x:Key="StatusBarBackground" Color="#8080F0" />
 
+    <SolidColorBrush x:Key="AboutBackground" Color="#A0A0A0" />
     <SolidColorBrush x:Key="AppVersionInfoBackground" Color="#F0F0F0" />
 
     <SolidColorBrush x:Key="RedText" Color="Red" />

@@ -39,14 +39,19 @@ namespace VNCPhidget22Explorer
             if (Common.VNCLogging.ModuleInitialize) startTicks = Log.MODULE_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             // TODO(crhodes)
-            // This is where you pick the style of what gets loaded in the Shell.
+            // Maybe the Ribbon, Main, StatusBar should be move back to App.xaml.cs
+            // and the App Specific stuff left here
 
-            // If you are using the Ribbon Shell and the RibbonRegion
+            // TODO(crhodes)
+            // This is where you pick the style of what gets loaded in the Shell.
+            // The initial shell is chosen in App.xaml.cs CreateShell()
+
+            // If you are using the Shell and the RibbonRegion
 
             containerRegistry.RegisterSingleton<IRibbonViewModel, RibbonViewModel>();
             containerRegistry.RegisterSingleton<IRibbon, Ribbon>();
 
-            // If you are using the Shell and the RibbonRegion
+            // If you are using the RibbonShell and the RibbonRegion
 
             //containerRegistry.RegisterSingleton<IRibbonViewModel, ShellRibbonViewModel>();
             //containerRegistry.RegisterSingleton<IRibbon, ShellRibbon>();
