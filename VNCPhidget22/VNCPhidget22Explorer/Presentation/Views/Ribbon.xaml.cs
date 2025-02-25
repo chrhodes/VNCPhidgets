@@ -62,12 +62,13 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
             // Establish any additional DataContext(s), e.g. to things held in this View
-            
+
             spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);

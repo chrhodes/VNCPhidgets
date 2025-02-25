@@ -27,7 +27,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-
+            Title = "VNCLogViewer - MainDxLayoutControl";
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -46,19 +46,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCLogViewer - MainDxLayoutControl";
+        //private string _title = "VNCLogViewer - MainDxLayoutControl";
 
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                if (_title == value)
-                    return;
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string Title
+        //{
+        //    get => _title;
+        //    set
+        //    {
+        //        if (_title == value)
+        //            return;
+        //        _title = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 

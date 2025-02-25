@@ -72,6 +72,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Event Handlers (none)
 
 
+
         #endregion
 
         #region Commands

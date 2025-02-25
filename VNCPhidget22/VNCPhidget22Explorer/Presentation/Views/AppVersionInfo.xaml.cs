@@ -69,8 +69,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Hook eventhandlers, etc.
 
             ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel?.GetType().ToString().Split('.').Last();
 
             // Establish any additional DataContext(s), e.g. to things held in this View
+
+            spDeveloperInfo.DataContext = this;
 
             // This gives us access to the ViewModelBase
             // which contains the Assembly and Runtime Information we need
