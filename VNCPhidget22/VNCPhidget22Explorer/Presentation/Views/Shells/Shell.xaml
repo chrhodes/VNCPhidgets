@@ -6,19 +6,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     mc:Ignorable="d"
-
-    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
-    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  
+    
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors" 
+    
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
 
     xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
     
-    xmlns:vnccore="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-    xmlns:vncwpf="clr-namespace:VNC.WPF.Presentation;assembly=VNC.WPF.Presentation"
-    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation;assembly=VNC.WPF.Presentation"
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
 
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
@@ -32,6 +34,7 @@
     
     SizeChanged="thisControl_SizeChanged"
  >
+    <!--xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"-->    
      <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="Window"> -->
             <!-- <Setter Property="Background" Value="White" /> -->
@@ -41,7 +44,7 @@
     <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
 
     <DockPanel>
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
             Visibility="{Binding DeveloperUIMode,
                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >

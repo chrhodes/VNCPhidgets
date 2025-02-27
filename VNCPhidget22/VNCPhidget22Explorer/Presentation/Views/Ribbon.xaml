@@ -18,7 +18,7 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
 
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
+    
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
@@ -54,7 +54,7 @@
     </UserControl.Resources>
 
     <DockPanel>
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
         <Button DockPanel.Dock="Right"
             Command="{Binding AboutCommand }"

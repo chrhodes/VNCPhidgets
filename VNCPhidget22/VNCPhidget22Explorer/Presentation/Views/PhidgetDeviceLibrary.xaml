@@ -15,16 +15,18 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
-    
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
-    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"  
+     
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
-
+    
     xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core" 
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
 
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
@@ -71,7 +73,7 @@
 
     <DockPanel Margin="5">
 
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
        
         <!--<Grid>
             <Grid.RowDefinitions>

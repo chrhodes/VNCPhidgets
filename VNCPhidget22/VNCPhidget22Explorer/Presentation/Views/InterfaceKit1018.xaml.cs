@@ -64,6 +64,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             ViewType = this.GetType().ToString().Split('.').Last();
             ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
+            ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View

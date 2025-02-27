@@ -42,7 +42,7 @@ namespace VNCPhidget22Explorer
             VNC.Phidget22.Common.InitializeLogging(debugConfig: true);
 #else
             Common.InitializeLogging();
-            VNC.Phidget.Common.InitializeLogging();
+            VNC.Phidget22.Common.InitializeLogging();
 #endif
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }

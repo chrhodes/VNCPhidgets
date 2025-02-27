@@ -19,19 +19,18 @@
     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-          
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
+           
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
     
-    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
+    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
-    
-    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
     
     xmlns:prism="http://prismlibrary.com/"
     
@@ -88,9 +87,9 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel Margin="5">
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <controls:HostSelectorControl DockPanel.Dock="Top" />
+        <views:HostSelectorControl DockPanel.Dock="Top" />
 
         <dxlc:LayoutGroup x:Name="lgInterfaceKits"  Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Top" >
 
@@ -191,7 +190,7 @@
             <dxlc:LayoutGroup Name="lgPhidget22Status" Header="PhidgetDevice Status and Event Logging" Orientation="Vertical" View="GroupBox" 
                                   IsCollapsible="True" IsCollapsed="False"  >
 
-                <!--<controls:Phidget22Device x:Name="Phidget1" Margin="-5" 
+                <!--<views:Phidget22Device x:Name="Phidget1" Margin="-5" 
                                AttachedPhidgetDevice="{Binding Phidget22Device, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />-->
 
@@ -257,7 +256,7 @@
                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
                         <StackPanel Orientation="Horizontal">
 
-                            <controls:DigitalInputControl ControlTitle="Digital In 0" Margin="1"
+                            <views:DigitalInputControl ControlTitle="Digital In 0" Margin="1"
                                 ChannelNumber="0"
                                 IsAttached="{Binding DigitalInput0.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput0.State, Mode=OneWay}"
@@ -267,7 +266,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput0.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput0.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="Input 1" Margin="1"
+                            <views:DigitalInputControl ControlTitle="Input 1" Margin="1"
                                 ChannelNumber="1"
                                 IsAttached="{Binding DigitalInput1.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput1.State, Mode=OneWay}"
@@ -277,7 +276,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput1.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput1.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI 2" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI 2" Margin="1"
                                 ChannelNumber="2"
                                 IsAttached="{Binding DigitalInput2.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput2.State, Mode=OneWay}"
@@ -287,7 +286,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput2.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput2.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI3" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI3" Margin="1"
                                 ChannelNumber="3"
                                 IsAttached="{Binding DigitalInput3.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput3.State, Mode=OneWay}"
@@ -297,7 +296,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput3.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput3.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI4" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI4" Margin="1"
                                 ChannelNumber="4"
                                 IsAttached="{Binding DigitalInput4.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput4.State, Mode=OneWay}"
@@ -307,7 +306,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput4.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput4.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI5" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI5" Margin="1"
                                 ChannelNumber="5"
                                 IsAttached="{Binding DigitalInput5.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput5.State, Mode=OneWay}"
@@ -317,7 +316,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput5.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput5.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI6" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI6" Margin="1"
                                 ChannelNumber="6"
                                 IsAttached="{Binding DigitalInput6.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput6.State, Mode=OneWay}"
@@ -327,7 +326,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput6.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput6.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI7" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI7" Margin="1"
                                 ChannelNumber="7"
                                 IsAttached="{Binding DigitalInput7.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput7.State, Mode=OneWay}"
@@ -337,7 +336,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput7.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput7.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI8" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI8" Margin="1"
                                 ChannelNumber="8"
                                 IsAttached="{Binding DigitalInput8.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput8.State, Mode=OneWay}"
@@ -347,7 +346,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput8.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput8.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI9" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI9" Margin="1"
                                 ChannelNumber="9"
                                 IsAttached="{Binding DigitalInput9.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput9.State, Mode=OneWay}"
@@ -357,7 +356,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput9.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput9.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI10" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI10" Margin="1"
                                 ChannelNumber="10"
                                 IsAttached="{Binding DigitalInput10.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput10.State, Mode=OneWay}"
@@ -367,7 +366,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput10.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput10.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI 11" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI 11" Margin="1"
                                 ChannelNumber="11"
                                 IsAttached="{Binding DigitalInput11.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput11.State, Mode=OneWay}"
@@ -377,7 +376,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput11.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput11.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI 12" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI 12" Margin="1"
                                 ChannelNumber="12"
                                 IsAttached="{Binding DigitalInput12.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput12.State, Mode=OneWay}"
@@ -387,7 +386,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput12.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput12.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI 13" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI 13" Margin="1"
                                 ChannelNumber="13"
                                 IsAttached="{Binding DigitalInput13.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput13.State, Mode=OneWay}"
@@ -397,7 +396,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput13.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput13.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DI 14" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DI 14" Margin="1"
                                 ChannelNumber="14"
                                 IsAttached="{Binding DigitalInput14.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput14.State, Mode=OneWay}"
@@ -407,7 +406,7 @@
                                 LogStateChangeEvents="{Binding DigitalInput14.LogStateChangeEvents,Mode=TwoWay}"
                                 InputMode="{Binding DigitalInput14.InputMode,Mode=TwoWay}" />
 
-                            <controls:DigitalInputControl ControlTitle="DigitalIn 15" Margin="1"
+                            <views:DigitalInputControl ControlTitle="DigitalIn 15" Margin="1"
                                 ChannelNumber="15"
                                 IsAttached="{Binding DigitalInput15.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalInput15.State, Mode=OneWay}"
@@ -429,7 +428,7 @@
                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
                         <StackPanel Orientation="Horizontal">
 
-                            <controls:DigitalOutputControl ControlTitle="Digital Out 0" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="Digital Out 0" Margin="1"
                                 ChannelNumber="0"
                                 IsAttached="{Binding DigitalOutput0.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput0.State, Mode=TwoWay}"
@@ -440,7 +439,7 @@
                                 DutyCycle="{Binding DigitalOutput0.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput0.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="Output 1" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="Output 1" Margin="1"
                                 ChannelNumber="1"
                                 IsAttached="{Binding DigitalOutput1.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput1.State, Mode=TwoWay}"
@@ -451,7 +450,7 @@
                                 DutyCycle="{Binding DigitalOutput1.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput1.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO 2" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO 2" Margin="1"
                                 ChannelNumber="2"
                                 IsAttached="{Binding DigitalOutput2.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput2.State, Mode=TwoWay}"
@@ -462,7 +461,7 @@
                                 DutyCycle="{Binding DigitalOutput2.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput2.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO3" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO3" Margin="1"
                                 ChannelNumber="3"
                                 IsAttached="{Binding DigitalOutput3.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput3.State, Mode=TwoWay}"
@@ -473,7 +472,7 @@
                                 DutyCycle="{Binding DigitalOutput3.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput3.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO4" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO4" Margin="1"
                                 ChannelNumber="4"
                                 IsAttached="{Binding DigitalOutput4.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput4.State, Mode=TwoWay}"
@@ -484,7 +483,7 @@
                                 DutyCycle="{Binding DigitalOutput4.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput4.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO5" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO5" Margin="1"
                                 ChannelNumber="5"
                                 IsAttached="{Binding DigitalOutput5.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput5.State, Mode=TwoWay}"
@@ -495,7 +494,7 @@
                                 DutyCycle="{Binding DigitalOutput5.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput5.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO6" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO6" Margin="1"
                                 ChannelNumber="6"
                                 IsAttached="{Binding DigitalOutput6.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput6.State, Mode=TwoWay}"
@@ -506,7 +505,7 @@
                                 DutyCycle="{Binding DigitalOutput6.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput6.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO7" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO7" Margin="1"
                                 ChannelNumber="7"
                                 IsAttached="{Binding DigitalOutput7.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput7.State, Mode=TwoWay}"
@@ -517,7 +516,7 @@
                                 DutyCycle="{Binding DigitalOutput7.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput7.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO8" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO8" Margin="1"
                                 ChannelNumber="8"
                                 IsAttached="{Binding DigitalOutput8.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput8.State, Mode=TwoWay}"
@@ -528,7 +527,7 @@
                                 DutyCycle="{Binding DigitalOutput8.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput8.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO9" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO9" Margin="1"
                                 ChannelNumber="9"
                                 IsAttached="{Binding DigitalOutput9.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput9.State, Mode=TwoWay}"
@@ -539,7 +538,7 @@
                                 DutyCycle="{Binding DigitalOutput9.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput9.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO10" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO10" Margin="1"
                                 ChannelNumber="10"
                                 IsAttached="{Binding DigitalOutput10.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput10.State, Mode=TwoWay}"
@@ -550,7 +549,7 @@
                                 DutyCycle="{Binding DigitalOutput10.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput10.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO11" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO11" Margin="1"
                                 ChannelNumber="11"
                                 IsAttached="{Binding DigitalOutput11.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput11.State, Mode=TwoWay}"
@@ -561,7 +560,7 @@
                                 DutyCycle="{Binding DigitalOutput11.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput11.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO12" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO12" Margin="1"
                                 ChannelNumber="12"
                                 IsAttached="{Binding DigitalOutput12.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput12.State, Mode=TwoWay}"
@@ -572,7 +571,7 @@
                                 DutyCycle="{Binding DigitalOutput12.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput12.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO13" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO13" Margin="1"
                                 ChannelNumber="13"
                                 IsAttached="{Binding DigitalOutput13.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput13.State, Mode=TwoWay}"
@@ -583,7 +582,7 @@
                                 DutyCycle="{Binding DigitalOutput13.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput13.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO14" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO14" Margin="1"
                                 ChannelNumber="14"
                                 IsAttached="{Binding DigitalOutput14.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput14.State, Mode=TwoWay}"
@@ -594,7 +593,7 @@
                                 DutyCycle="{Binding DigitalOutput14.DutyCycle,Mode=TwoWay}"
                                 MaxDutyCycle="{Binding DigitalOutput14.MaxDutyCycle,Mode=TwoWay}" />
 
-                            <controls:DigitalOutputControl ControlTitle="DO15" Margin="1"
+                            <views:DigitalOutputControl ControlTitle="DO15" Margin="1"
                                 ChannelNumber="15"
                                 IsAttached="{Binding DigitalOutput15.IsAttached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput15.State, Mode=TwoWay}"
@@ -618,7 +617,7 @@
                     <ScrollViewer HorizontalScrollBarVisibility="Auto">
                         <StackPanel Orientation="Horizontal">
                    
-                            <controls:VoltageInputControl x:Name="vic0" ControlTitle="Voltage Input 0" Margin="1"
+                            <views:VoltageInputControl x:Name="vic0" ControlTitle="Voltage Input 0" Margin="1"
                                 ChannelNumber="0"
                                 IsAttached="{Binding VoltageInput0.IsAttached, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding VoltageInput0.LogPhidgetEvents,Mode=TwoWay}"
@@ -655,7 +654,7 @@
                                                                                
                                 PowerSupply="{Binding VoltageInput0.PowerSupply,Mode=TwoWay}" />
 
-                            <controls:VoltageRatioInputControl x:Name="vric0"  ControlTitle="VoltageRatio Input 0" Margin="1"
+                            <views:VoltageRatioInputControl x:Name="vric0"  ControlTitle="VoltageRatio Input 0" Margin="1"
                                  ChannelNumber="0"
                                  IsAttached="{Binding VoltageRatioInput0.IsAttached, Mode=TwoWay}"
                                  LogPhidgetEvents="{Binding VoltageRatioInput0.LogPhidgetEvents,Mode=TwoWay}"
@@ -690,7 +689,7 @@
                                  SensorValueChangeTrigger="{Binding VoltageRatioInput0.SensorValueChangeTrigger,Mode=TwoWay}"                              
                                  SensorValueOutOfRange="{Binding VoltageRatioInput0.SensorValueOutOfRange,Mode=OneWay}" />
 
-                            <controls:VoltageInputControl x:Name="vic1" ControlTitle="Voltage Input 1" Margin="1"
+                            <views:VoltageInputControl x:Name="vic1" ControlTitle="Voltage Input 1" Margin="1"
                                 ChannelNumber="1"
                                 IsAttached="{Binding VoltageInput1.IsAttached, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding VoltageInput1.LogPhidgetEvents,Mode=TwoWay}"
@@ -727,7 +726,7 @@
                                                                                
                                 PowerSupply="{Binding VoltageInput1.PowerSupply,Mode=TwoWay}" />
 
-                            <controls:VoltageRatioInputControl x:Name="vric1"  ControlTitle="VoltageRatio Input 1" Margin="1"
+                            <views:VoltageRatioInputControl x:Name="vric1"  ControlTitle="VoltageRatio Input 1" Margin="1"
                                  ChannelNumber="1"
                                  IsAttached="{Binding VoltageRatioInput1.IsAttached, Mode=TwoWay}"
                                  LogPhidgetEvents="{Binding VoltageRatioInput1.LogPhidgetEvents,Mode=TwoWay}"

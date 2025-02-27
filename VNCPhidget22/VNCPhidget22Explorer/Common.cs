@@ -26,7 +26,8 @@ namespace VNCPhidget22Explorer
         // NOTE(crhodes)
         // Add new VNC.Core.Information InformationXXX
         // for other Assemblies that should provide Info
-        // Initialize in App.xaml.cs ApplicationInitialize
+        // Initialize in App.xaml.cs GetAndSetInformation()
+        //
         // Extend Views\AppVersionInfo.xaml as needed
 
         public static VNC.Core.Information? InformationVNCPhidget;
@@ -47,13 +48,6 @@ namespace VNCPhidget22Explorer
 
         public static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
 
-        //// These values are added to the dimensions of a hosting window if the
-        //// hosted User_Control specifies values for MinWidth/MinHeight.
-        //// They have not been thought through but do seem to "work".
-
-        //internal const int WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD = 30;
-        //internal const int WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD = 75;
-
         public static event EventHandler AutoHideGroupSpeedChanged;
 
         private static int _AutoHideGroupSpeed = 250;
@@ -73,6 +67,5 @@ namespace VNCPhidget22Explorer
                 }
             }
         }
-
     }
 }

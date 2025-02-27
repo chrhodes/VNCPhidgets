@@ -11,9 +11,43 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged, IViewSize
+    // FIX(crhodes)
+    // Do not know why this doesn't work
+
+    //public partial class RibbonShell : WindowBase
+    public partial class RibbonShell : Window, IInstanceCountV, INotifyPropertyChanged
     {
         #region Contructors, Initialization, and Load
+
+        
+
+        public RibbonShell()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountV++;
+
+            InitializeComponent();
+
+            // Wire up ViewModel if needed
+
+            // If View First with ViewModel in Xaml
+
+            // ViewModel = (ICatViewModel)DataContext;
+
+            // Can create directly
+
+            // ViewModel = CatViewModel();
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
+
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
+        }
 
         public RibbonShell(RibbonShellViewModel viewModel)
         {
@@ -26,6 +60,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             InitializeView();
 
             ViewModel = viewModel;     // AppVersionInfo needs this.
+            DataContext = viewModel;
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
@@ -35,25 +70,29 @@ namespace VNCPhidget22Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            // Store information about the View, DataContext, and ViewModel 
+            // for the DeveloperInfo control. Useful for debugging binding issues
+            // Set the DataConext to us.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel?.GetType().ToString().Split('.').Last();
+            ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
+            spDeveloperInfo.DataContext = this;
+
             // NOTE(crhodes)
             // Put things here that initialize the View
             // Hook event handlers, etc.
-
-            ViewType = this.GetType().ToString().Split('.').Last();
-            ViewModelType = _viewModel.GetType().ToString().Split('.').Last();
 
             Common.CurrentRibbonShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
             
-            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
-
         #region Fields and Properties
 
         private string _viewType;
@@ -73,16 +112,32 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
-        private RibbonShellViewModel _viewModel;
+        private string _viewDataContextType;
 
-        public RibbonShellViewModel ViewModel
+        public string ViewDataContextType
         {
-            get { return _viewModel; }
-
+            get => _viewDataContextType;
             set
             {
+                if (_viewDataContextType == value)
+                {
+                    return;
+                }
+
+                _viewDataContextType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RibbonShellViewModel _viewModel;
+        public RibbonShellViewModel ViewModel
+        {
+            get => _viewModel; set
+            {
+                if (_viewModel == value)
+                    return;
                 _viewModel = value;
-                DataContext = _viewModel;
+                OnPropertyChanged();
             }
         }
 
@@ -99,19 +154,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 }
 
                 _viewModelType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Size _windowSize;
-        public Size WindowSize
-        {
-            get => _windowSize;
-            set
-            {
-                if (_windowSize == value)
-                    return;
-                _windowSize = value;
                 OnPropertyChanged();
             }
         }
@@ -137,8 +179,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             var newSize = e.NewSize;
             var previousSize = e.PreviousSize;
-            _viewModel.WindowSize = newSize;
-            spDeveloperInfo.WindowSize = newSize;
+            ViewModel.WindowSize = newSize;
         }
 
         #endregion
@@ -187,6 +228,5 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

@@ -1,0 +1,254 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidget22Explorer.Presentation.Views.VoltageInputControl"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"    
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+    
+    xmlns:phidgets="clr-namespace:Phidget22;assembly=Phidget22.NET" 
+    
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
+    xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
+    
+    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
+    
+    xmlns:prism="http://prismlibrary.com/"   
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource VoltageInputControlBackground}"
+    
+    d:DesignStyle="{StaticResource vncDesignStyleUC}" 
+>    
+    <!-- d:DesignWidth="800" d:DesignHeight="450" -->
+        
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <converters:SpinEditConverter x:Key="SpinEditConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+        <converters:InverseBooleanToColorConverter x:Key="InverseBooleanToColorConverter" />        
+        <converters:SelectedItemToEnumConverter x:Key="SelectedItemToEnumConverter" />
+        <vncconverters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
+        <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
+        <!-- <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToPositionControlWrapperConverter" /> -->
+        <!-- <DataTemplate x:Key="dataTemplatePositionControl"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding XPath=@Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+
+        <!-- <DataTemplate x:Key="dataTemplatePositionControlX"> -->
+        <!-- <StackPanel> -->
+        <!-- <Label Content="{Binding Name}" /> -->
+        <!-- </StackPanel> -->
+        <!-- </DataTemplate> -->
+    </vncmvvm:ViewBase.Resources>
+
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:PositionControlViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+
+    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
+
+        <!-- Logging -->
+        
+        <dxlc:LayoutGroup 
+            x:Name="lgLogging" View="GroupBox" Header="Event Logging" Orientation="Vertical" 
+            VerticalAlignment="Top" HorizontalAlignment="Stretch"
+            IsCollapsible="True" IsCollapsed="False"                                     
+            Padding="-10"
+            Background="{StaticResource LoggingBackground}"
+            MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
+            ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
+            <dxe:CheckEdit
+                Content="Phidget"
+                IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
+            <dxe:CheckEdit
+                Content="Error"
+                IsChecked="{Binding LogErrorEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
+            <dxe:CheckEdit
+                Content="PropertyChange"
+                IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
+            <dxe:CheckEdit
+                Content="SensorChange"
+                IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" 
+                HorizontalAlignment="Left"/>
+            <dxe:CheckEdit
+                Content="VoltageChange"
+                IsChecked="{Binding LogVoltageChangeEvents, Mode=TwoWay}"
+                HorizontalAlignment="Left"/>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            <dxlc:LayoutItem>
+                <Button x:Name="btnOpenVoltageInputCommand" 
+                        DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		            Command="{Binding OpenVoltageInputCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		                Content="{Binding OpenVoltageInputContent, FallbackValue='Open' }"
+      		                ToolTip="{Binding OpenVoltageInputToolTip, FallbackValue='OpenVoltageInput ToolTip' }" />   
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Padding="-5" VerticalAlignment="Center">
+                <Button x:Name="btnRefreshVoltageInputCommand" 
+                        DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		            Command="{Binding RefreshVoltageInputCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		                Content="{Binding RefreshVoltageInputContent, FallbackValue='Refresh' }"
+      		                ToolTip="{Binding RefreshVoltageInputToolTip, FallbackValue='RefreshVoltageInput ToolTip' }" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem>
+                <Button x:Name="btnCloseVoltageInputCommand" 
+                        DataContext="{Binding DataContext, 
+                                        RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		            Command="{Binding CloseVoltageInputCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		                Content="{Binding CloseVoltageInputContent, FallbackValue='Close' }"
+      		                ToolTip="{Binding CloseVoltageInputToolTip, FallbackValue='CloseVoltageInput ToolTip' }" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <!--<dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
+
+        </dxlc:LayoutItem>-->
+
+        <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+
+        <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
+            <dxe:ComboBoxEdit x:Name="cbeSensorType"
+                    ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageSensorType}}}"
+                    SelectedItem="{Binding SensorType}"
+                    EditValueChanged="SensorType_EditValueChanged" />
+        </dxlc:LayoutItem>
+
+        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+
+        <dxlc:LayoutGroup x:Name="lgVoltage" View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
+
+            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left" >
+                <dxe:TextEdit Text="{Binding MinVoltage, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="Voltage" LabelPosition="Top" HorizontalAlignment="Center">
+                <dxe:TextEdit Text="{Binding Voltage, Mode=OneWay}" IsReadOnly="True"
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"  />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
+                <dxe:TextEdit Text="{Binding MaxVoltage, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutGroup x:Name="lgSensor" View="Group" Orientation="Vertical"  HorizontalAlignment="Stretch">
+
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
+                              Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
+                </dxlc:LayoutItem>
+
+                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" 
+                                  HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text=" " Height="10" Width="10"
+                           Background="{Binding SensorValueOutOfRange, Mode=OneWay, 
+                                        Converter={StaticResource InverseBooleanToColorConverter}}"/>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
+        <views:DataIntervalAndRateControl VerticalAlignment="Top"/>
+
+        <dxlc:LayoutGroup x:Name="lgChangeTrigger" Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  VerticalAlignment="Top"
+                      IsCollapsible="True" IsCollapsed="False" Padding="-10"  >
+
+            <dxlc:LayoutGroup View="GroupBox" Header="Voltage Change" Orientation="Horizontal" HorizontalAlignment="Stretch"  >
+
+                <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
+                    <dxe:TextEdit Text="{Binding MinVoltageChangeTrigger, Mode=OneWay}" IsReadOnly="True" />
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Change" LabelPosition="Top" HorizontalAlignment="Center">
+                    <dxe:SpinEdit 
+                        Value="{Binding VoltageChangeTrigger, Mode=TwoWay}" 
+                        Increment=".005"    
+                        MinValue="{Binding MinVoltageChangeTrigger, Mode=OneWay}" 
+                        MaxValue="{Binding MaxVoltageChangeTrigger, Mode=OneWay}" 
+                        Mask="F3" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="True" 
+                        ToolTip="Change Trigger in Volts"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
+                    <dxe:TextEdit Text="{Binding MaxVoltageChangeTrigger, Mode=OneWay}" IsReadOnly="True" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup View="GroupBox" Header="Sensor Change" Orientation="Horizontal" HorizontalAlignment="Stretch"  >
+
+                <dxlc:LayoutItem Label="Change" LabelPosition="Top" HorizontalAlignment="Center">
+                    <dxe:SpinEdit 
+                        Value="{Binding SensorValueChangeTrigger, Mode=TwoWay}" 
+                        Increment=".005"    
+                        MinValue="{Binding MinVoltageChangeTrigger, Mode=OneWay}" 
+                        MaxValue="{Binding MaxVoltageChangeTrigger, Mode=OneWay}" 
+                        Mask="F3" MaskType="Numeric" MaskUseAsDisplayFormat="True"
+                        IsFloatValue="True" 
+                        ToolTip="Change Trigger in Volts"/>
+                </dxlc:LayoutItem>
+                
+            </dxlc:LayoutGroup>
+            
+        </dxlc:LayoutGroup>
+
+        <dxlc:LayoutItem Label="Power Supply" LabelPosition="Top" VerticalAlignment="Bottom">
+            <!--<dxe:TextEdit Name="teAIPS" Text="{Binding PowerSupply, Mode=OneWay}" />-->
+            <TextBox Text="{Binding PowerSupply,StringFormat={}{0} PowerSupply}"/>
+            <!--<dxe:ListBoxEdit 
+                    ItemsSource="{Binding Source={vncenum:EnumBindingSource 
+                        {x:Type phidgets:PowerSupply}}}"/>-->
+        </dxlc:LayoutItem>
+
+    </dxlc:LayoutGroup>
+
+</vncmvvm:ViewBase>

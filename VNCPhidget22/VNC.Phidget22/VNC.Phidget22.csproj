@@ -5,7 +5,7 @@
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
       <VersionSuffix>development-23</VersionSuffix>
-      <FileVersion>2025.02.17A</FileVersion>
+      <FileVersion>2025.02.27A</FileVersion>
       <Description>Layer on top of Phidget22 and Performance Players</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>      
@@ -52,6 +52,10 @@
         <PlatformTarget>AnyCPU</PlatformTarget>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\VNC.Phidget22.Configuration\VNC.Phidget22.Configuration.csproj" /> 
+    </ItemGroup>     
+        
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|AnyCPU'">
         <!-- Uncoment next line to switch to ProjectReference(s) -->
         <DefineConstants>$(DefineConstants);VNCPROJECTREF</DefineConstants>
@@ -59,8 +63,7 @@
 
     <Choose>
         <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'">
-            <ItemGroup>
-                <ProjectReference Include="..\VNC.Phidget22.Configuration\VNC.Phidget22.Configuration.csproj" />                
+            <ItemGroup>                              
                 <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" />
             </ItemGroup>
         </When>

@@ -11,7 +11,11 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged, IViewSize
+    // FIX(crhodes)
+    // Do not know why this doesn't work
+
+    //public partial class Shell : WindowBase
+    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged
     {
         #region Contructors, Initialization, and Load
 
@@ -21,6 +25,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
 
             InstanceCountV++;
+
             InitializeComponent();
 
             // Wire up ViewModel if needed
@@ -52,6 +57,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             InitializeComponent();
 
             ViewModel = viewModel;
+            DataContext = viewModel;
 
             // For the rare case where the ViewModel needs to know about the View
             // ViewModel.View = this;
@@ -66,24 +72,30 @@ namespace VNCPhidget22Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            // Store information about the View, DataContext, and ViewModel 
+            // for the DeveloperInfo control. Useful for debugging binding issues
+            // Set the DataConext to us.
+
+            ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel?.GetType().ToString().Split('.').Last();
+            ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
+            spDeveloperInfo.DataContext = this;
+
             // NOTE(crhodes)
             // Put things here that initialize the View
             // Hook event handlers, etc.
-
-            ViewType = this.GetType().ToString().Split('.').Last();
-            ViewModelType = _viewModel.GetType().ToString().Split('.').Last();
 
             Common.CurrentShell = this;
             DeveloperUIMode = Common.DeveloperUIMode;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
-            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
+
 
         #region Fields and Properties
 
@@ -104,16 +116,32 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
-        private ShellViewModel _viewModel;
+        private string _viewDataContextType;
 
-        public ShellViewModel ViewModel
+        public string ViewDataContextType
         {
-            get { return _viewModel; }
-
+            get => _viewDataContextType;
             set
             {
+                if (_viewDataContextType == value)
+                {
+                    return;
+                }
+
+                _viewDataContextType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ShellViewModel _viewModel;
+        public ShellViewModel ViewModel
+        {
+            get => _viewModel; set
+            {
+                if (_viewModel == value)
+                    return;
                 _viewModel = value;
-                DataContext = _viewModel;
+                OnPropertyChanged();
             }
         }
 
@@ -130,19 +158,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 }
 
                 _viewModelType = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Size _windowSize;
-        public Size WindowSize
-        {
-            get => _windowSize;
-            set
-            {
-                if (_windowSize == value)
-                    return;
-                _windowSize = value;
                 OnPropertyChanged();
             }
         }
@@ -168,8 +183,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             var newSize = e.NewSize;
             var previousSize = e.PreviousSize;
-            _viewModel.WindowSize = newSize;
-            spDeveloperInfo.WindowSize = newSize;
+            ViewModel.WindowSize = newSize;
         }
 
         #endregion

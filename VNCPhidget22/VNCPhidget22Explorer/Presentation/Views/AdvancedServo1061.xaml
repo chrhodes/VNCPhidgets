@@ -22,18 +22,17 @@
 
     xmlns:phidget="clr-namespace:Phidget22;assembly=Phidget22.NET"
 
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
-
-    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
-
+    
+    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-
-    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
 
     xmlns:prism="http://prismlibrary.com/"
 
@@ -87,9 +86,9 @@
 
     <DockPanel Margin="5">
         
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <controls:HostSelectorControl DockPanel.Dock="Top" />
+        <views:HostSelectorControl DockPanel.Dock="Top" />
 
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 
@@ -231,7 +230,7 @@
                               Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 
-                <!--<controls:PhidgetDevice x:Name="Phidget1" Margin="-5"
+                <!--<views:PhidgetDevice x:Name="Phidget1" Margin="-5"
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
                 
@@ -296,7 +295,7 @@
                               Padding="-10" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Horizontal">
-                        <controls:RCServoControl x:Name="rcServoControl0"  ControlTitle="Servo S0" HorizontalAlignment="Left"
+                        <views:RCServoControl x:Name="rcServoControl0"  ControlTitle="Servo S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo0.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo0.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo0.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -351,7 +350,7 @@
                             VelocityLimit="{Binding RCServo0.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo0.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S1" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S1" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo1.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo1.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo1.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -405,7 +404,7 @@
                             VelocityLimit="{Binding RCServo1.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo1.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S2" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S2" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo2.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo2.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo2.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -459,7 +458,7 @@
                             VelocityLimit="{Binding RCServo2.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo2.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S3" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S3" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo3.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo3.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo3.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -513,7 +512,7 @@
                             VelocityLimit="{Binding RCServo3.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo3.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S4" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S4" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo4.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo4.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo4.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -567,7 +566,7 @@
                             VelocityLimit="{Binding RCServo4.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo4.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S5" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S5" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo5.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo5.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo5.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -621,7 +620,7 @@
                             VelocityLimit="{Binding RCServo5.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo5.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S6" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S6" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo6.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo6.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo6.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -675,7 +674,7 @@
                             VelocityLimit="{Binding RCServo6.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo6.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S7" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S7" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo7.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo7.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo7.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -729,7 +728,7 @@
                             VelocityLimit="{Binding RCServo7.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo7.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S8" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S8" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[8].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[8].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[8].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -783,7 +782,7 @@
                             VelocityLimit="{Binding RCServos[8].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[8].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S9" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S9" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[9].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[9].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[9].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -837,7 +836,7 @@
                             VelocityLimit="{Binding RCServos[9].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[9].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S10" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S10" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[10].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[10].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[10].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -891,7 +890,7 @@
                             VelocityLimit="{Binding RCServos[10].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[10].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S11" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S11" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[11].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[11].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[11].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -945,7 +944,7 @@
                             VelocityLimit="{Binding RCServos[11].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[11].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S12" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S12" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[12].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[12].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[12].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -999,7 +998,7 @@
                             VelocityLimit="{Binding RCServos[12].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[12].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S13" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S13" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[13].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[13].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[13].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -1053,7 +1052,7 @@
                             VelocityLimit="{Binding RCServos[13].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[13].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S14" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S14" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[14].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[14].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[14].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -1107,7 +1106,7 @@
                             VelocityLimit="{Binding RCServos[14].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[14].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S15" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S15" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[15].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[15].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[15].LogPropertyChangeEvents,Mode=TwoWay}"
