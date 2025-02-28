@@ -304,7 +304,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo0.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                          
                             ServoNumber="0"
-                            IsAttached="{Binding RCServo0.IsAttached, Mode=TwoWay}"
+                            Attached="{Binding RCServo0.Attached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
                             RCServoAttached="{Binding RCServoAttached, Mode=TwoWay}"
                             
@@ -359,7 +359,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo1.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
                             ServoNumber="1"
-                            IsAttached="{Binding RCServo1.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo1.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo1.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo1.MinDataInterval,Mode=TwoWay}"
@@ -413,7 +413,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo2.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
                             ServoNumber="2"
-                            IsAttached="{Binding RCServo2.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo2.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo2.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo2.MinDataInterval,Mode=TwoWay}"
@@ -467,7 +467,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo3.LogTargetPositionReachedEvents,Mode=TwoWay}"
 
                             ServoNumber="3"                                         
-                            IsAttached="{Binding RCServo3.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo3.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo3.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo3.MinDataInterval,Mode=TwoWay}"
@@ -521,7 +521,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo4.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                    
                             ServoNumber="4"                                           
-                            IsAttached="{Binding RCServo4.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo4.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo4.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo4.MinDataInterval,Mode=TwoWay}"
@@ -575,7 +575,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo5.LogTargetPositionReachedEvents,Mode=TwoWay}"
                            
                             ServoNumber="5"                                           
-                            IsAttached="{Binding RCServo5.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo5.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo5.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo5.MinDataInterval,Mode=TwoWay}"
@@ -629,7 +629,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo6.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                   
                             ServoNumber="6"                                           
-                            IsAttached="{Binding RCServo6.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo6.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo6.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo6.MinDataInterval,Mode=TwoWay}"
@@ -683,7 +683,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo7.LogTargetPositionReachedEvents,Mode=TwoWay}"
                           
                             ServoNumber="7"                                           
-                            IsAttached="{Binding RCServo7.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo7.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo7.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo7.MinDataInterval,Mode=TwoWay}"
@@ -737,7 +737,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[8].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                
                             ServoNumber="8"                                           
-                            IsAttached="{Binding RCServos[8].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[8].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[8].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[8].MinDataInterval,Mode=TwoWay}"
@@ -791,7 +791,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[9].LogTargetPositionReachedEvents,Mode=TwoWay}"
                              
                             ServoNumber="9"                                           
-                            IsAttached="{Binding RCServos[9].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[9].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[9].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[9].MinDataInterval,Mode=TwoWay}"
@@ -845,7 +845,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[10].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                     
                             ServoNumber="10"  
-                            IsAttached="{Binding RCServos[10].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[10].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[10].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[10].MinDataInterval,Mode=TwoWay}"
@@ -899,7 +899,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[11].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                 
                             ServoNumber="11"  
-                            IsAttached="{Binding RCServos[11].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[11].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[11].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[11].MinDataInterval,Mode=TwoWay}"
@@ -953,7 +953,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[12].LogTargetPositionReachedEvents,Mode=TwoWay}"
                      
                             ServoNumber="12"  
-                            IsAttached="{Binding RCServos[12].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[12].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[12].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[12].MinDataInterval,Mode=TwoWay}"
@@ -1007,7 +1007,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[13].LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
                             ServoNumber="13"                                           
-                            IsAttached="{Binding RCServos[13].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[13].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[13].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[13].MinDataInterval,Mode=TwoWay}"
@@ -1061,7 +1061,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[14].LogTargetPositionReachedEvents,Mode=TwoWay}"
 
                             ServoNumber="14"          
-                            IsAttached="{Binding RCServos[14].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[14].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[14].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[14].MinDataInterval,Mode=TwoWay}"
@@ -1115,7 +1115,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[15].LogTargetPositionReachedEvents,Mode=TwoWay}"
 
                             ServoNumber="15"            
-                            IsAttached="{Binding RCServos[15].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[15].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[15].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[15].MinDataInterval,Mode=TwoWay}"

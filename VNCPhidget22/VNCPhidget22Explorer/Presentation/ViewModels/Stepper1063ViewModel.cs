@@ -1133,7 +1133,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (host.IsAttached)
+            if (host.Attached)
             {
                 return false;
             }
@@ -1348,7 +1348,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (host.IsAttached)
+            if (host.IsOpen)
             {
                 return true;
             }

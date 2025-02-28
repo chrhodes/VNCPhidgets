@@ -91,7 +91,7 @@ namespace VNC.Phidget22.Ex
         //    PhidgetDeviceAttached?.Invoke(this, e);
         //}
 
-        protected virtual void PhidgetDeviceIsAttached()
+        protected virtual void PhidgetDeviceAttached()
         {
             //Int32 a = 2;
         }
@@ -163,7 +163,7 @@ namespace VNC.Phidget22.Ex
 
                 PhysicalPhidget = ((Phidgets.Phidget)sender).Parent;
 
-                PhidgetDeviceIsAttached();
+                PhidgetDeviceAttached();
                 //OnPhidgetDeviceAttached(new EventArgs());
             }
         }

@@ -159,7 +159,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
                 DeveloperModeToolTip = "Turn on Developer Mode";
 
-                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
                 if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
 
                 // NOTE(crhodes)
@@ -186,7 +185,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 PublishStatusMessage("Cool, you turned on DeveloperMode.  Use your power for good!");
                 DeveloperModeToolTip = "Turn off Developer Mode";
 
-                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Visible;
                 if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Visible;
 
                 // NOTE(crhodes)

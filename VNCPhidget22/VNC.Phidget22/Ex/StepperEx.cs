@@ -186,15 +186,15 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _isAttached;
-        public bool IsAttached
+        private bool _attached;
+        public bool Attached
         {
-            get => _isAttached;
+            get => _attached;
             set
             {
-                if (_isAttached == value)
+                if (_attached == value)
                     return;
-                _isAttached = value;
+                _attached = value;
                 OnPropertyChanged();
             }
         }
@@ -751,10 +751,10 @@ namespace VNC.Phidget22.Ex
             // NOTE(crhodes)
             // Shockingly, this is not set until after Attach Event
 
-            //IsAttached = dOutput.Attached;
+            //Attached = dOutput.Attached;
 
             // Just set it so UI behaves well
-            IsAttached = true;
+            Attached = true;
 
             Engaged = stepper.Engaged;
 
@@ -897,7 +897,7 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            IsAttached = false;
+            Attached = false;
         }
 
         private void StepperEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
@@ -927,38 +927,43 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Open();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Close();
-            IsAttached = Attached;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void AddPositionOffset(Double offset)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY);
 
             base.AddPositionOffset(offset);
             // NOTE(crhodes)
@@ -966,7 +971,7 @@ namespace VNC.Phidget22.Ex
             // Go get new values;
             RefreshServoProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{IsAttached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         void RefreshServoProperties()

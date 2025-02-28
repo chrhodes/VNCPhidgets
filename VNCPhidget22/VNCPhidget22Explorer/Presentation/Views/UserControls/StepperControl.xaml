@@ -144,7 +144,7 @@
                 </dxlc:LayoutGroup>
 
                 <views:StepperStateControl
-                    IsAttached="{Binding IsAttached, Mode=OneWay}"
+                    Attached="{Binding Attached, Mode=OneWay}"
                     Engaged="{Binding Engaged, Mode=TwoWay}"
                     IsMoving="{Binding IsMoving, Mode=OneWay}"
                     Position="{Binding Position, Mode=OneWay}"
@@ -180,7 +180,7 @@
                 <views:StepperPositionControl
                  
                     StepperNumber="0"
-                    IsAttached="{Binding IsAttached, Mode=TwoWay}"
+                    Attached="{Binding Attached, Mode=TwoWay}"
                     Engaged="{Binding Engaged, Mode=TwoWay}"
                     StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  

@@ -32,7 +32,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Put things here that initialize the ViewModel
             // Initialize EventHandlers, Commands, etc.
 
-            DeveloperUIMode = Common.DeveloperUIMode;
+            //DeveloperUIMode = Common.DeveloperUIMode;
 
             InformationApplication = Common.InformationApplication;
             InformationVNCCore = Common.InformationVNCCore;
@@ -67,31 +67,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-        private System.Windows.Size _windowSize;
-        public System.Windows.Size WindowSize
-        {
-            get => _windowSize;
-            set
-            {
-                if (_windowSize == value)
-                    return;
-                _windowSize = value;
-                OnPropertyChanged();
-            }
-        }
 
-        private Visibility _developerUIMode = Visibility.Visible;
-        public Visibility DeveloperUIMode
-        {
-            get => _developerUIMode;
-            set
-            {
-                if (_developerUIMode == value)
-                    return;
-                _developerUIMode = value;
-                OnPropertyChanged();
-            }
-        }
+        //private System.Windows.Size _windowSize;
+        //public System.Windows.Size WindowSize
+        //{
+        //    get => _windowSize;
+        //    set
+        //    {
+        //        if (_windowSize == value)
+        //            return;
+        //        _windowSize = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private Visibility _developerUIMode = Visibility.Visible;
+        //public Visibility DeveloperUIMode
+        //{
+        //    get => _developerUIMode;
+        //    set
+        //    {
+        //        if (_developerUIMode == value)
+        //            return;
+        //        _developerUIMode = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public Information InformationApplication { get; set; }
         public Information InformationVNCCore { get; set; }

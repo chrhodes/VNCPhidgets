@@ -109,12 +109,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Common.DeveloperMode)
             {
-                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
                 if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
             }
             else
             {
-                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Visible;
                 if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Visible;
             }
 

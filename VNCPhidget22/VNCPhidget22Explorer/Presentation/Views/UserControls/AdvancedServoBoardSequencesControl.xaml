@@ -212,7 +212,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Sequence Host" View="GroupBox" Orientation="Horizontal" >
+                <!--<dxlc:LayoutGroup Header="Sequence Host" View="GroupBox" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                         <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.Name }" />
@@ -234,9 +234,9 @@
                         <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AdvancedServos[0].SerialNumber }" />
                     </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
 
-                <dxlc:LayoutGroup Header="Active Host" View="GroupBox" Orientation="Horizontal"
+                <!--<dxlc:LayoutGroup Header="Active Host" View="GroupBox" Orientation="Horizontal"
                                           HorizontalAlignment="Center">
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
@@ -259,7 +259,7 @@
                         <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.AdvancedServos[0].SerialNumber }" />
                     </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
 
             </dxlc:LayoutGroup>
 

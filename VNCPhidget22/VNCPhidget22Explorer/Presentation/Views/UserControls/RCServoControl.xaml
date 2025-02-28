@@ -166,7 +166,7 @@
         </dxlc:LayoutItem>
 
         <views:RCServoStateControl
-            IsAttached="{Binding IsAttached, Mode=OneWay}"
+            Attached="{Binding Attached, Mode=OneWay}"
             Engaged="{Binding Engaged, Mode=TwoWay}"
             SpeedRamping="{Binding SpeedRampingState, Mode=TwoWay}"
             IsMoving="{Binding IsMoving, Mode=OneWay}"

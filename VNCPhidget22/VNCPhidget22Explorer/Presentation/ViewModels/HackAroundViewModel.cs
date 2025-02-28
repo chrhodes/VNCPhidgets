@@ -207,57 +207,34 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPerformance = false;
-        public bool LogPerformance
+        private bool _logErrorEvents = true;    // Probably always want to see errors
+        public bool LogErrorEvents
         {
-            get => _logPerformance;
+            get => _logErrorEvents;
             set
             {
-                if (_logPerformance == value)
+                if (_logErrorEvents == value)
                     return;
-                _logPerformance = value;
+                _logErrorEvents = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logPerformanceSequence = false;
-        public bool LogPerformanceSequence
+        private bool _logPropertyChangeEvents = false;
+        public bool LogPropertyChangeEvents
         {
-            get => _logPerformanceSequence;
+            get => _logPropertyChangeEvents;
             set
             {
-                if (_logPerformanceSequence == value)
+                if (_logPropertyChangeEvents == value)
                     return;
-                _logPerformanceSequence = value;
+                _logPropertyChangeEvents = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logPerformanceAction = false;
-        public bool LogSequenceAction
-        {
-            get => _logPerformanceAction;
-            set
-            {
-                if (_logPerformanceAction == value)
-                    return;
-                _logPerformanceAction = value;
-                OnPropertyChanged();
-            }
-        }
 
-        private bool _logActionVerification = false;
-        public bool LogActionVerification
-        {
-            get => _logActionVerification;
-            set
-            {
-                if (_logActionVerification == value)
-                    return;
-                _logActionVerification = value;
-                OnPropertyChanged();
-            }
-        }
+        #region AdvancedServo
 
         private bool _logCurrentChangeEvents = false;
         public bool LogCurrentChangeEvents
@@ -311,44 +288,104 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logInputChangeEvents = false;
+        #endregion
+
+
+        #region InterfaceKit
+
+        private bool _displayInputChangeEvents = false;
 
         public bool LogInputChangeEvents
         {
-            get => _logInputChangeEvents;
+            get => _displayInputChangeEvents;
             set
             {
-                if (_logInputChangeEvents == value)
+                if (_displayInputChangeEvents == value)
                     return;
-                _logInputChangeEvents = value;
+                _displayInputChangeEvents = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logOutputChangeEvents = false;
+        private bool _displayOutputChangeEvents = false;
 
         public bool LogOutputChangeEvents
         {
-            get => _logOutputChangeEvents;
+            get => _displayOutputChangeEvents;
             set
             {
-                if (_logOutputChangeEvents == value)
+                if (_displayOutputChangeEvents == value)
                     return;
-                _logOutputChangeEvents = value;
+                _displayOutputChangeEvents = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logSensorChangeEvents = false;
+        private bool _sensorChangeEvents = false;
 
         public bool LogSensorChangeEvents
         {
-            get => _logSensorChangeEvents;
+            get => _sensorChangeEvents;
             set
             {
-                if (_logSensorChangeEvents == value)
+                if (_sensorChangeEvents == value)
                     return;
-                _logSensorChangeEvents = value;
+                _sensorChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
+        private bool _logPerformance = false;
+        public bool LogPerformance
+        {
+            get => _logPerformance;
+            set
+            {
+                if (_logPerformance == value)
+                    return;
+                _logPerformance = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPerformanceSequence = false;
+        public bool LogPerformanceSequence
+        {
+            get => _logPerformanceSequence;
+            set
+            {
+                if (_logPerformanceSequence == value)
+                    return;
+                _logPerformanceSequence = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logPerformanceAction = false;
+        public bool LogSequenceAction
+        {
+            get => _logPerformanceAction;
+            set
+            {
+                if (_logPerformanceAction == value)
+                    return;
+                _logPerformanceAction = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _logActionVerification = false;
+        public bool LogActionVerification
+        {
+            get => _logActionVerification;
+            set
+            {
+                if (_logActionVerification == value)
+                    return;
+                _logActionVerification = value;
                 OnPropertyChanged();
             }
         }

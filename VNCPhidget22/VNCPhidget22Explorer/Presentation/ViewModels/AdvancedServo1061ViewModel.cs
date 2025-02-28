@@ -640,28 +640,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private AdvancedServoEx _activeAdvancedServo;
-        public AdvancedServoEx ActiveAdvancedServo
-        {
-            get => _activeAdvancedServo;
-            set
-            {
-                if (_activeAdvancedServo == value)
-                    return;
-                _activeAdvancedServo = value;
+        //private AdvancedServoEx _activeAdvancedServo;
+        //public AdvancedServoEx ActiveAdvancedServo
+        //{
+        //    get => _activeAdvancedServo;
+        //    set
+        //    {
+        //        if (_activeAdvancedServo == value)
+        //            return;
+        //        _activeAdvancedServo = value;
 
-                //if (_activeAdvancedServo is not null)
-                //{
-                //    PhidgetDevice = _activeAdvancedServo.AdvancedServo;
-                //}
-                //else
-                //{
-                //    PhidgetDevice = null;
-                //}
+        //        //if (_activeAdvancedServo is not null)
+        //        //{
+        //        //    PhidgetDevice = _activeAdvancedServo.AdvancedServo;
+        //        //}
+        //        //else
+        //        //{
+        //        //    PhidgetDevice = null;
+        //        //}
 
-                OnPropertyChanged();
-            }
-        }
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private int? _servoCount;
         public int? ServoCount
@@ -1821,24 +1821,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool OpenRCServoCanExecute(string servoNumber)
+        public bool OpenRCServoCanExecute(string channelNumber)
         //public bool OpenRCServoCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             Int32 channel;
 
-            if (!Int32.TryParse(servoNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{servoNumber}");
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{channelNumber}");
 
             if (SelectedAdvancedServo is null) return false;
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
 
-            RCServoEx? rcServoHost;
+            RCServoEx? host;
 
-            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out rcServoHost)) return false;
+            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (rcServoHost.IsAttached)
+            if (host.Attached)
             {
                 return false;
             }
@@ -1992,26 +1992,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        public bool CloseRCServoCanExecute(string servoNumber)
+        public bool CloseRCServoCanExecute(string channelNumber)
         //public bool CloseRCServoCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
             Int32 channel;
 
-            if (!Int32.TryParse(servoNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{servoNumber}");
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{channelNumber}");
             
             if (SelectedAdvancedServo is null) return false;
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
 
-            RCServoEx? rcServoHost;
+            RCServoEx? host;
 
-            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out rcServoHost)) return false;
+            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (rcServoHost is null) return false;
-
-            if (rcServoHost.IsAttached)
+            if (host.IsOpen)
             {
                 return true;
             }

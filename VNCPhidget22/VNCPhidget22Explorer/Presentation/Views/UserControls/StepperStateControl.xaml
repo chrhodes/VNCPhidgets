@@ -73,7 +73,7 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             
             <!--<dxlc:LayoutItem Label="Engaged" LabelPosition="Left" Margin="-2" >-->
-                <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}" IsEnabled="{Binding IsAttached}"
+                <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}" IsEnabled="{Binding Attached}"
                                HorizontalAlignment="Left"
                          
                             Background="{Binding Engaged, Mode=OneWay, 
@@ -91,7 +91,7 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
 
             <!--<dxlc:LayoutItem Label="IsMoving" LabelPosition="Left" Margin="-2" HorizontalAlignment="Left"  VerticalAlignment="Center">-->
-            <dxe:CheckEdit Content="IsMoving" IsChecked="{Binding IsMoving, Mode=TwoWay}" IsEnabled="{Binding IsAttached}"
+            <dxe:CheckEdit Content="IsMoving" IsChecked="{Binding IsMoving, Mode=TwoWay}" IsEnabled="{Binding Attached}"
                            Background="{Binding IsMoving, Mode=OneWay, 
                                        Converter={StaticResource BooleanToColorConverter}}"/>
             <!--</dxlc:LayoutItem>-->

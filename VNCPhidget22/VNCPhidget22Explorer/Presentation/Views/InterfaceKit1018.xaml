@@ -258,7 +258,7 @@
 
                             <views:DigitalInputControl ControlTitle="Digital In 0" Margin="1"
                                 ChannelNumber="0"
-                                IsAttached="{Binding DigitalInput0.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput0.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput0.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput0.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput0.LogErrorEvents,Mode=TwoWay}"
@@ -268,7 +268,7 @@
 
                             <views:DigitalInputControl ControlTitle="Input 1" Margin="1"
                                 ChannelNumber="1"
-                                IsAttached="{Binding DigitalInput1.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput1.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput1.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput1.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput1.LogErrorEvents,Mode=TwoWay}"
@@ -278,7 +278,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI 2" Margin="1"
                                 ChannelNumber="2"
-                                IsAttached="{Binding DigitalInput2.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput2.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput2.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput2.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput2.LogErrorEvents,Mode=TwoWay}"
@@ -288,7 +288,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI3" Margin="1"
                                 ChannelNumber="3"
-                                IsAttached="{Binding DigitalInput3.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput3.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput3.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput3.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput3.LogErrorEvents,Mode=TwoWay}"
@@ -298,7 +298,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI4" Margin="1"
                                 ChannelNumber="4"
-                                IsAttached="{Binding DigitalInput4.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput4.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput4.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput4.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput4.LogErrorEvents,Mode=TwoWay}"
@@ -308,7 +308,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI5" Margin="1"
                                 ChannelNumber="5"
-                                IsAttached="{Binding DigitalInput5.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput5.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput5.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput5.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput5.LogErrorEvents,Mode=TwoWay}"
@@ -318,7 +318,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI6" Margin="1"
                                 ChannelNumber="6"
-                                IsAttached="{Binding DigitalInput6.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput6.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput6.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput6.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput6.LogErrorEvents,Mode=TwoWay}"
@@ -328,7 +328,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI7" Margin="1"
                                 ChannelNumber="7"
-                                IsAttached="{Binding DigitalInput7.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput7.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput7.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput7.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput7.LogErrorEvents,Mode=TwoWay}"
@@ -338,7 +338,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI8" Margin="1"
                                 ChannelNumber="8"
-                                IsAttached="{Binding DigitalInput8.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput8.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput8.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput8.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput8.LogErrorEvents,Mode=TwoWay}"
@@ -348,7 +348,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI9" Margin="1"
                                 ChannelNumber="9"
-                                IsAttached="{Binding DigitalInput9.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput9.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput9.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput9.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput9.LogErrorEvents,Mode=TwoWay}"
@@ -358,7 +358,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI10" Margin="1"
                                 ChannelNumber="10"
-                                IsAttached="{Binding DigitalInput10.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput10.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput10.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput10.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput10.LogErrorEvents,Mode=TwoWay}"
@@ -368,7 +368,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI 11" Margin="1"
                                 ChannelNumber="11"
-                                IsAttached="{Binding DigitalInput11.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput11.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput11.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput11.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput11.LogErrorEvents,Mode=TwoWay}"
@@ -378,7 +378,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI 12" Margin="1"
                                 ChannelNumber="12"
-                                IsAttached="{Binding DigitalInput12.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput12.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput12.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput12.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput12.LogErrorEvents,Mode=TwoWay}"
@@ -388,7 +388,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI 13" Margin="1"
                                 ChannelNumber="13"
-                                IsAttached="{Binding DigitalInput13.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput13.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput13.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput13.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput13.LogErrorEvents,Mode=TwoWay}"
@@ -398,7 +398,7 @@
 
                             <views:DigitalInputControl ControlTitle="DI 14" Margin="1"
                                 ChannelNumber="14"
-                                IsAttached="{Binding DigitalInput14.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput14.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput14.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput14.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput14.LogErrorEvents,Mode=TwoWay}"
@@ -408,7 +408,7 @@
 
                             <views:DigitalInputControl ControlTitle="DigitalIn 15" Margin="1"
                                 ChannelNumber="15"
-                                IsAttached="{Binding DigitalInput15.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalInput15.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalInput15.State, Mode=OneWay}"
                                 LogPhidgetEvents="{Binding DigitalInput15.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalInput15.LogErrorEvents,Mode=TwoWay}"
@@ -430,7 +430,7 @@
 
                             <views:DigitalOutputControl ControlTitle="Digital Out 0" Margin="1"
                                 ChannelNumber="0"
-                                IsAttached="{Binding DigitalOutput0.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput0.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput0.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput0.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput0.LogErrorEvents,Mode=TwoWay}"
@@ -441,7 +441,7 @@
 
                             <views:DigitalOutputControl ControlTitle="Output 1" Margin="1"
                                 ChannelNumber="1"
-                                IsAttached="{Binding DigitalOutput1.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput1.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput1.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput1.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput1.LogErrorEvents,Mode=TwoWay}"
@@ -452,7 +452,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO 2" Margin="1"
                                 ChannelNumber="2"
-                                IsAttached="{Binding DigitalOutput2.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput2.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput2.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput2.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput2.LogErrorEvents,Mode=TwoWay}"
@@ -463,7 +463,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO3" Margin="1"
                                 ChannelNumber="3"
-                                IsAttached="{Binding DigitalOutput3.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput3.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput3.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput3.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput3.LogErrorEvents,Mode=TwoWay}"
@@ -474,7 +474,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO4" Margin="1"
                                 ChannelNumber="4"
-                                IsAttached="{Binding DigitalOutput4.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput4.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput4.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput4.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput4.LogErrorEvents,Mode=TwoWay}"
@@ -485,7 +485,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO5" Margin="1"
                                 ChannelNumber="5"
-                                IsAttached="{Binding DigitalOutput5.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput5.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput5.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput5.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput5.LogErrorEvents,Mode=TwoWay}"
@@ -496,7 +496,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO6" Margin="1"
                                 ChannelNumber="6"
-                                IsAttached="{Binding DigitalOutput6.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput6.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput6.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput6.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput6.LogErrorEvents,Mode=TwoWay}"
@@ -507,7 +507,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO7" Margin="1"
                                 ChannelNumber="7"
-                                IsAttached="{Binding DigitalOutput7.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput7.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput7.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput7.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput7.LogErrorEvents,Mode=TwoWay}"
@@ -518,7 +518,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO8" Margin="1"
                                 ChannelNumber="8"
-                                IsAttached="{Binding DigitalOutput8.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput8.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput8.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput8.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput8.LogErrorEvents,Mode=TwoWay}"
@@ -529,7 +529,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO9" Margin="1"
                                 ChannelNumber="9"
-                                IsAttached="{Binding DigitalOutput9.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput9.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput9.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput9.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput9.LogErrorEvents,Mode=TwoWay}"
@@ -540,7 +540,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO10" Margin="1"
                                 ChannelNumber="10"
-                                IsAttached="{Binding DigitalOutput10.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput10.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput10.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput10.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput10.LogErrorEvents,Mode=TwoWay}"
@@ -551,7 +551,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO11" Margin="1"
                                 ChannelNumber="11"
-                                IsAttached="{Binding DigitalOutput11.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput11.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput11.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput11.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput11.LogErrorEvents,Mode=TwoWay}"
@@ -562,7 +562,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO12" Margin="1"
                                 ChannelNumber="12"
-                                IsAttached="{Binding DigitalOutput12.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput12.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput12.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput12.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput12.LogErrorEvents,Mode=TwoWay}"
@@ -573,7 +573,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO13" Margin="1"
                                 ChannelNumber="13"
-                                IsAttached="{Binding DigitalOutput13.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput13.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput13.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput13.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput13.LogErrorEvents,Mode=TwoWay}"
@@ -584,7 +584,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO14" Margin="1"
                                 ChannelNumber="14"
-                                IsAttached="{Binding DigitalOutput14.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput14.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput14.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput14.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput14.LogErrorEvents,Mode=TwoWay}"
@@ -595,7 +595,7 @@
 
                             <views:DigitalOutputControl ControlTitle="DO15" Margin="1"
                                 ChannelNumber="15"
-                                IsAttached="{Binding DigitalOutput15.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding DigitalOutput15.Attached, Mode=TwoWay}"
                                 State="{Binding DigitalOutput15.State, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding DigitalOutput15.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding DigitalOutput15.LogErrorEvents,Mode=TwoWay}"
@@ -619,7 +619,7 @@
                    
                             <views:VoltageInputControl x:Name="vic0" ControlTitle="Voltage Input 0" Margin="1"
                                 ChannelNumber="0"
-                                IsAttached="{Binding VoltageInput0.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding VoltageInput0.Attached, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding VoltageInput0.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding VoltageInput0.LogErrorEvents,Mode=TwoWay}"
                                 LogPropertyChangeEvents="{Binding VoltageInput0.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -656,7 +656,7 @@
 
                             <views:VoltageRatioInputControl x:Name="vric0"  ControlTitle="VoltageRatio Input 0" Margin="1"
                                  ChannelNumber="0"
-                                 IsAttached="{Binding VoltageRatioInput0.IsAttached, Mode=TwoWay}"
+                                 Attached="{Binding VoltageRatioInput0.Attached, Mode=TwoWay}"
                                  LogPhidgetEvents="{Binding VoltageRatioInput0.LogPhidgetEvents,Mode=TwoWay}"
                                  LogErrorEvents="{Binding VoltageRatioInput0.LogErrorEvents,Mode=TwoWay}"
                                  LogPropertyChangeEvents="{Binding VoltageRatioInput0.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -691,7 +691,7 @@
 
                             <views:VoltageInputControl x:Name="vic1" ControlTitle="Voltage Input 1" Margin="1"
                                 ChannelNumber="1"
-                                IsAttached="{Binding VoltageInput1.IsAttached, Mode=TwoWay}"
+                                Attached="{Binding VoltageInput1.Attached, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding VoltageInput1.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding VoltageInput1.LogErrorEvents,Mode=TwoWay}"
                                 LogPropertyChangeEvents="{Binding VoltageInput1.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -728,7 +728,7 @@
 
                             <views:VoltageRatioInputControl x:Name="vric1"  ControlTitle="VoltageRatio Input 1" Margin="1"
                                  ChannelNumber="1"
-                                 IsAttached="{Binding VoltageRatioInput1.IsAttached, Mode=TwoWay}"
+                                 Attached="{Binding VoltageRatioInput1.Attached, Mode=TwoWay}"
                                  LogPhidgetEvents="{Binding VoltageRatioInput1.LogPhidgetEvents,Mode=TwoWay}"
                                  LogErrorEvents="{Binding VoltageRatioInput1.LogErrorEvents,Mode=TwoWay}"
                                  LogPropertyChangeEvents="{Binding VoltageRatioInput1.LogPropertyChangeEvents,Mode=TwoWay}"

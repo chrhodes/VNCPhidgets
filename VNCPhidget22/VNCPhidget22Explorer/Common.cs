@@ -41,7 +41,6 @@ namespace VNCPhidget22Explorer
         public static IRegionManager DefaultRegionManager;
 
         public static Shell? CurrentShell;
-        public static RibbonShell? CurrentRibbonShell;
 
         //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
         public static int? PhidgetOpenTimeout { get; set; } = null; // ms

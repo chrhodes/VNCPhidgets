@@ -90,7 +90,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
-
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -175,6 +174,19 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
+        private Size _windowSize;
+        public Size WindowSize
+        {
+            get => _windowSize;
+            set
+            {
+                if (_windowSize == value)
+                    return;
+                _windowSize = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region EventHandlers
@@ -183,7 +195,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             var newSize = e.NewSize;
             var previousSize = e.PreviousSize;
-            ViewModel.WindowSize = newSize;
+            //ViewModel.WindowSize = newSize;
+            WindowSize = newSize;
         }
 
         #endregion

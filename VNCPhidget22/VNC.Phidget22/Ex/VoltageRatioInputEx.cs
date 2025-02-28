@@ -164,15 +164,15 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _isAttached;
-        public bool IsAttached
+        private bool _attached;
+        public bool Attached
         {
-            get => _isAttached;
+            get => _attached;
             set
             {
-                if (_isAttached == value)
+                if (_attached == value)
                     return;
-                _isAttached = value;
+                _attached = value;
                 OnPropertyChanged();
             }
         }
@@ -480,7 +480,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageRatioInputEx_Attach: sender:{sender} isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageRatioInputEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -493,10 +493,10 @@ namespace VNC.Phidget22.Ex
             // NOTE(crhodes)
             // Shockingly, this is not set until after Attach Event
 
-            //IsAttached = VoltageRatioInput.Attached;
+            //Attached = VoltageRatioInput.Attached;
 
             // Just set it so UI behaves well
-            IsAttached = true;
+            Attached = true;
 
             // FIX(crhodes)
             // This whole area is a mess.  Tried moving to RefreshProperties
@@ -570,7 +570,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Exit VoltageRatioInputEx_Attach: sender:{sender} isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Exit VoltageRatioInputEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -659,7 +659,7 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            IsAttached = false;
+            Attached = false;
         }
 
         private void VoltageRatioInputEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
@@ -699,17 +699,19 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Open();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen} timeout:{timeout}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen} timeout:{timeout}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
@@ -718,23 +720,25 @@ namespace VNC.Phidget22.Ex
             Thread.Sleep(timeout);
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Close();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
 
             try
             {
@@ -815,7 +819,7 @@ namespace VNC.Phidget22.Ex
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{IsAttached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)

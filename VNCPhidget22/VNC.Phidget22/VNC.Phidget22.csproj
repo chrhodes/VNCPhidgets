@@ -14,6 +14,8 @@
   <ItemGroup><!--<Compile Remove="InterfaceKitEx.cs" />-->
     <!--<Compile Remove="AdvancedServoEx.cs" />-->
     <!--<Compile Remove="StepperEx.cs" />-->  
+    <Compile Remove="Ex\AdvancedServoEx.cs" />  
+    <Compile Remove="Ex\InterfaceKitEx.cs" />  
     <Compile Remove="Ex\StepperEx-Old.cs" />
   </ItemGroup>
 

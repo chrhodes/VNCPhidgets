@@ -51,9 +51,9 @@ namespace VNC.Phidget22.Players
         public static PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
         // TODO(crhodes)
-        // 
-        public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
-        public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
+        //// 
+        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
+        //public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
 
         // TODO(crhodes)
         // This needs to be something fancier as we can have multiple RCServoHost per IP and multiple IP's

@@ -311,7 +311,7 @@
                             LogStoppedEvents="{Binding Stepper0.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
                             StepperNumber="0"
-                            IsAttached="{Binding Stepper0.IsAttached, Mode=TwoWay}"
+                            Attached="{Binding Stepper0.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper0.Engaged, Mode=TwoWay}"
                             StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  
@@ -363,7 +363,7 @@
                             LogStoppedEvents="{Binding Stepper1.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
                             StepperNumber="1"
-                            IsAttached="{Binding Stepper1.IsAttached, Mode=TwoWay}"
+                            Attached="{Binding Stepper1.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper1.Engaged, Mode=TwoWay}"
                             StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  

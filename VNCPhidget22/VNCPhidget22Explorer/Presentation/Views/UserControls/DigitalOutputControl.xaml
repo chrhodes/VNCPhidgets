@@ -124,7 +124,7 @@
         <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
             <dxe:CheckEdit 
                 Tag="0"  
-                IsEnabled="{Binding IsAttached}" 
+                IsEnabled="{Binding Attached}" 
                 IsChecked="{Binding State}"
                 Background="{Binding State, Mode=OneWay, 
                             Converter={StaticResource BooleanToColorConverter}}"/>

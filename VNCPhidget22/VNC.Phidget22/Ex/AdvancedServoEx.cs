@@ -366,7 +366,7 @@ namespace VNC.Phidget22.Ex
 
         public event EventHandler PhidgetDeviceAttached;
 
-        override protected void PhidgetDeviceIsAttached()
+        override protected void PhidgetDeviceAttached()
         {
             OnPhidgetDeviceAttached(new EventArgs());
         }

@@ -1665,12 +1665,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             for (int channel = 0; channel < deviceChannels.VoltageRatioInputCount; channel++)
             {
-                // TODO(crhodes)
-                // Learn what needs to be done to open VoltageRationInputs
-                // How to use Ratio CheckBox
-                // If Ratio CheckBox changes do we close and reopen?
-
-                //OpenVoltageRatioInput(channel.ToString());
+                OpenVoltageRatioInput(channel.ToString());
             }
 
             for (int channel = 0; channel < deviceChannels.VoltageOutputCount; channel++)
@@ -1791,44 +1786,39 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseInterfaceKit";
             PublishStatusMessage(Message);
 
-            // TODO(crhodes)
-            // 
-            //ActiveInterfaceKit.InterfaceKit.Attach -= ActiveInterfaceKit_Attach;
-            //ActiveInterfaceKit.InterfaceKit.Detach -= ActiveInterfaceKit_Detach;
+            DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.AvailablePhidgets[SelectedInterfaceKit.SerialNumber].DeviceChannels;
 
-            //ActiveInterfaceKit.Close();
+            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
 
-            //for (int i = 0; i < DigitalInputs.Count(); i++)
-            //{
-            //    DigitalInputs[i].Close();
-            //}
+            for (int channel = 0; channel < deviceChannels.DigitalInputCount; channel++)
+            {
+                CloseDigitalInput(channel.ToString());
+            }
 
-            //for (int i = 0; i < DigitalOutputs.Count(); i++)
-            //{
-            //    DigitalOutputs[i].Close();
-            //}
+            for (int channel = 0; channel < deviceChannels.DigitalOutputCount; channel++)
+            {
+                CloseDigitalOutput(channel.ToString());
+            }
 
-            //for (int i = 0; i < VoltageInputs.Count(); i++)
-            //{
-            //    VoltageInputs[i].Close();
-            //}
+            for (int channel = 0; channel < deviceChannels.VoltageInputCount; channel++)
+            {
+                CloseVoltageInput(channel.ToString());
+            }
 
-            //for (int i = 0; i < VoltageRatioInputs.Count(); i++)
-            //{
-            //    VoltageRatioInputs[i].Close();
-            //}
+            for (int channel = 0; channel < deviceChannels.VoltageRatioInputCount; channel++)
+            {
+                CloseVoltageRatioInput(channel.ToString());
+            }
 
-            //for (int i = 0; i < VoltageOutputs.Count(); i++)
-            //{
-            //    VoltageOutputs[i].Close();
-            //}
+            for (int channel = 0; channel < deviceChannels.VoltageOutputCount; channel++)
+            {
+                // TODO(crhodes)
+                // Implement
 
-            UpdateInterfaceKitProperties();
-            ActiveInterfaceKit = null;
-            ClearDigitalInputsAndOutputs();
+                //OpenVoltageOutput(channel.ToString());
+            }
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-
             CloseInterfaceKitCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
@@ -2070,7 +2060,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!PhidgetDeviceLibrary.DigitalInputChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (host.IsAttached)
+            if (host.Attached)
             {
                 return false;
             }
@@ -2490,7 +2480,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!PhidgetDeviceLibrary.DigitalOutputChannels.TryGetValue(serialChannel, out host)) return false;
 
-            if (host.IsAttached)
+            if (host.Attached)
             {
                 return false;
             }

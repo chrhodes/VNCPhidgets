@@ -434,48 +434,48 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IsAttached
+        #region Attached
 
-        public static readonly DependencyProperty IsAttachedProperty = DependencyProperty.Register(
-            "IsAttached",
+        public static readonly DependencyProperty AttachedProperty = DependencyProperty.Register(
+            "Attached",
             typeof(Boolean),
             typeof(VoltageRatioInputControl),
             new FrameworkPropertyMetadata(false,
-                new PropertyChangedCallback(OnIsAttachedChanged),
-                new CoerceValueCallback(OnCoerceIsAttached)
+                new PropertyChangedCallback(OnAttachedChanged),
+                new CoerceValueCallback(OnCoerceAttached)
                 )
             );
 
-        public Boolean IsAttached
+        public Boolean Attached
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Boolean)GetValue(IsAttachedProperty);
-            set => SetValue(IsAttachedProperty, value);
+            get => (Boolean)GetValue(AttachedProperty);
+            set => SetValue(AttachedProperty, value);
         }
 
-        private static object OnCoerceIsAttached(DependencyObject o, object value)
+        private static object OnCoerceAttached(DependencyObject o, object value)
         {
             VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
             if (VoltageRatioInputControl != null)
-                return VoltageRatioInputControl.OnCoerceIsAttached((Boolean)value);
+                return VoltageRatioInputControl.OnCoerceAttached((Boolean)value);
             else
                 return value;
         }
 
-        private static void OnIsAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
             if (VoltageRatioInputControl != null)
-                VoltageRatioInputControl.OnIsAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+                VoltageRatioInputControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
-        protected virtual Boolean OnCoerceIsAttached(Boolean value)
+        protected virtual Boolean OnCoerceAttached(Boolean value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnIsAttachedChanged(Boolean oldValue, Boolean newValue)
+        protected virtual void OnAttachedChanged(Boolean oldValue, Boolean newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }

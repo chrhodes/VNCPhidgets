@@ -188,7 +188,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
+                <!--<dxlc:LayoutGroup Header="Host" View="GroupBox" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                         <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.Host.Name }" />
@@ -210,7 +210,7 @@
                         <dxe:TextEdit Text="{Binding SelectedInterfaceKitSequence.InterfaceKits[0].SerialNumber }" />
                     </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
 
             </dxlc:LayoutGroup>
 
