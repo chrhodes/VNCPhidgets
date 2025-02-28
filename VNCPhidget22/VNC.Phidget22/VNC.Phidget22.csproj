@@ -5,19 +5,11 @@
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
       <VersionSuffix>development-23</VersionSuffix>
-      <FileVersion>2025.02.27A</FileVersion>
+      <FileVersion>2025.02.28A</FileVersion>
       <Description>Layer on top of Phidget22 and Performance Players</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>      
   </PropertyGroup>
-
-  <ItemGroup><!--<Compile Remove="InterfaceKitEx.cs" />-->
-    <!--<Compile Remove="AdvancedServoEx.cs" />-->
-    <!--<Compile Remove="StepperEx.cs" />-->  
-    <Compile Remove="Ex\AdvancedServoEx.cs" />  
-    <Compile Remove="Ex\InterfaceKitEx.cs" />  
-    <Compile Remove="Ex\StepperEx-Old.cs" />
-  </ItemGroup>
 
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
