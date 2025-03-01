@@ -265,7 +265,7 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" HorizontalAlignment="Right" >
 
-                <dxlc:LayoutItem>
+                <!--<dxlc:LayoutItem>
                     <Button 
                 		        Command="{Binding InitializeServosCommand }"
                 		        CommandParameter="{Binding InitializeServosCommandParameter}"
@@ -286,9 +286,9 @@
                 		        Command="{Binding ResetLimitsCommand }"
                 		        Content="Reset Limits"
                 		        ToolTip="Reset Position Limits to Device Min/Max" />
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
 
-                <dxlc:LayoutItem>
+                <!--<dxlc:LayoutItem>
                     <Button 
                         	        Command="{Binding SetMotionParametersCommand }"
                                     CommandParameter="Slow"
@@ -318,9 +318,9 @@
                                               ItemsSource="{Binding RelativeAccelerationAdjustment}">
                     </dxe:ComboBoxEdit>
 
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
 
-                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem>
                         <Button 
@@ -334,14 +334,14 @@
                                                 ItemsSource="{Binding RelativeVelocityLimitAdjustment}">
                     </dxe:ComboBoxEdit>
 
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
 
                 <dxlc:LayoutItem  VerticalAlignment="Stretch" >
                     <Button 
-		                            Command="{Binding PlayAdvancedServoSequenceCommand }"
-                                    CommandParameter="false"
-		                            Content="{Binding PlayAdvanceddServoSequenceContent, FallbackValue='PlaySequence' }"
-		                            ToolTip="{Binding PlayAdvanceddServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
+		                Command="{Binding PlayAdvancedServoSequenceCommand }"
+                        CommandParameter="false"
+		                Content="{Binding PlayAdvancedServoSequenceContent, FallbackValue='PlaySequence' }"
+		                ToolTip="{Binding PlayAdvancedServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>

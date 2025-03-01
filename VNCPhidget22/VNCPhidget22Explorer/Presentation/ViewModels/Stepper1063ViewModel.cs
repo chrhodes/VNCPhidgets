@@ -428,6 +428,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+
+        private bool _logStoppeddEvents = false;
+        public bool LogStoppedEvents
+        {
+            get => _logStoppeddEvents;
+            set
+            {
+                if (_logStoppeddEvents == value)
+                    return;
+                _logStoppeddEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
@@ -891,11 +905,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             stepper.LogErrorEvents = LogErrorEvents;
             stepper.LogPropertyChangeEvents = LogPropertyChangeEvents;
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
             stepper.LogPositionChangeEvents = LogPositionChangeEvents;
             stepper.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+            stepper.LogStoppedEvents = LogStoppedEvents;
 
             stepper.LogPerformanceSequence = LogPerformanceSequence;
             stepper.LogSequenceAction = LogSequenceAction;

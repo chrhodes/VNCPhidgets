@@ -286,6 +286,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        private bool _logVoltageRatioChangeEvents = false;
+        public bool LogVoltageRatioChangeEvents
+        {
+            get => _logVoltageRatioChangeEvents;
+            set
+            {
+                if (_logVoltageRatioChangeEvents == value)
+                    return;
+                _logVoltageRatioChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _logPerformanceSequence = false;
         public bool LogPerformanceSequence
         {

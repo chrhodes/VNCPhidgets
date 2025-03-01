@@ -203,7 +203,7 @@
                     <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
                         <Button
                             Command="{Binding InitializeAccelerationCommand }"
-                            CommandParameter="{Binding ElementName=cbeSelectAccelerationScale, Path=EditValue}"
+                            CommandParameter="{Binding ElementName=cbeAccelerationScale, Path=EditValue}"
                             Content="{Binding InitializeAccelerationContent, FallbackValue='Initialize Acceleration' }"
                             ToolTip="{Binding InitializeAccelerationToolTip, FallbackValue='Initialize Acceleration' }" />
                     </dxlc:LayoutItem>
@@ -306,7 +306,6 @@
                             ServoNumber="0"
                             Attached="{Binding RCServo0.Attached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
-                            RCServoAttached="{Binding RCServoAttached, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo0.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo0.DataInterval,Mode=TwoWay}"

@@ -103,8 +103,8 @@
                 IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}" 
                 HorizontalAlignment="Left"/>
             <dxe:CheckEdit
-                Content="VoltageChange"
-                IsChecked="{Binding LogVoltageChangeEvents, Mode=TwoWay}"
+                Content="VoltageRatioChange"
+                IsChecked="{Binding LogVoltageRatioChangeEvents, Mode=TwoWay}"
                 HorizontalAlignment="Left"/>
 
         </dxlc:LayoutGroup>

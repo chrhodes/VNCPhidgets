@@ -163,7 +163,7 @@
                         <dxe:CheckEdit Content="Log Error Events"
                                        IsChecked="{Binding LogErrorEvents, Mode=TwoWay}" />
                         <dxe:CheckEdit Content="Log PropertyChange Events"
-                                       IsChecked="{Binding LogPropertyChange, Mode=TwoWay}" />
+                                       IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}" />
                     </StackPanel>
                 </dxlc:LayoutItem>
 

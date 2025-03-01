@@ -231,13 +231,21 @@
                                   Background="{StaticResource LoggingBackground}">
 
                     <dxe:CheckEdit
-                            Content="Log InputChange Events"
-                            IsChecked="{Binding LogInputChangeEvents, Mode=TwoWay}"
+                            Content="Log VoltageChange Events"
+                            IsChecked="{Binding LogVoltageChangeEvents, Mode=TwoWay}"
                             HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                            Content="Log VoltageRatioChange Events"
+                            IsChecked="{Binding LogVoltageRatioChangeEvents, Mode=TwoWay}"
+                            HorizontalAlignment="Left"/>                    
                     <dxe:CheckEdit
                             Content="Log OutputChange Events"
                             IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" 
                             HorizontalAlignment="Left"/>
+                    <dxe:CheckEdit
+                            Content="Log StateChange Events"
+                            IsChecked="{Binding LogStateChangeEvents, Mode=TwoWay}" 
+                            HorizontalAlignment="Left"/>                    
                     <dxe:CheckEdit
                             Content="Log SensorChange Events"
                             IsChecked="{Binding LogSensorChangeEvents, Mode=TwoWay}"
