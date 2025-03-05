@@ -6,15 +6,15 @@
       "Name": "localhost", "IPAddress": "127.0.0.1", "Port": 5661, "Enable": true,
       "AdvancedServos": [
         //{ "Name": "AdvancedServo 99220", "SerialNumber": 99220, "Open": true },
-        //{ "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
+        { "Name": "AdvancedServo 99415", "SerialNumber": 99415, "Open": true },
         //{ "Name": "AdvancedServo 169501", "SerialNumber": 169501, "Open": true },        
         //{ "Name": "AdvancedServo 593480", "SerialNumber": 593480, "Open": true }
       ],
       "InterfaceKits": [
-        //{ "Name": "InterfaceKit-124744", "SerialNumber": 124744, "Open": true, "Embedded": false }
+        { "Name": "InterfaceKit-124744", "SerialNumber": 124744, "Open": true, "Embedded": false }
       ],
       "Steppers": [
-        //{ "Name": "Stepper 268213", "SerialNumber": 268213 },
+        { "Name": "Stepper 268213", "SerialNumber": 268213 },
         //{ "Name": "Stepper 270348", "SerialNumber": 270346 },
         //{ "Name": "Stepper 270348", "SerialNumber": 270348 },
         //{ "Name": "Stepper 270460", "SerialNumber": 270460 },

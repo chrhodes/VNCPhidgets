@@ -1619,7 +1619,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                RCServoEx rcServoHost = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
 
                 // NOTE(crhodes)
                 // If this is the first time the channel is open use the global Logging settings
@@ -1641,7 +1641,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         //RCServo0 = rcServoHost;
                         if (RCServo0 is null)
                         {
-                            RCServo0 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo0);
                         }
                         if (RCServo0.IsOpen is false)
@@ -1658,7 +1658,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 1:
                         if (RCServo1 is null)
                         {
-                            RCServo1 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo1);
                         }
                         if (RCServo1.IsOpen is false)
@@ -1674,7 +1674,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 2:
                         if (RCServo2 is null)
                         {
-                            RCServo2 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo2);
                         }
                         if (RCServo2.IsOpen is false)
@@ -1690,7 +1690,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 3:
                         if (RCServo3 is null)
                         {
-                            RCServo3 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo3);
                         }
                         if (RCServo3.IsOpen is false)
@@ -1706,7 +1706,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 4:
                         if (RCServo4 is null)
                         {
-                            RCServo4 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo4);
                         }
                         if (RCServo4.IsOpen is false)
@@ -1722,7 +1722,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 5:
                         if (RCServo5 is null)
                         {
-                            RCServo5 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo5);
                         }
                         if (RCServo5.IsOpen is false)
@@ -1738,7 +1738,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 6:
                         if (RCServo6 is null)
                         {
-                            RCServo6 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo6);
                         }
                         if (RCServo6.IsOpen is false)
@@ -1754,7 +1754,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 7:
                         if (RCServo7 is null)
                         {
-                            RCServo7 = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
                             ConfigureInitialLogging(RCServo7);
                         }
                         if (RCServo7.IsOpen is false)
@@ -1836,7 +1836,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             RCServoEx? host;
 
-            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
 
             if (host.Attached)
             {
@@ -1938,7 +1938,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                await Task.Run(() => PhidgetDeviceLibrary.RCServoChannels[serialChannel].Close());
+                await Task.Run(() => Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel].Close());
             }
             else
             {
@@ -2007,7 +2007,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             RCServoEx? host;
 
-            if (!PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
 
             if (host.IsOpen)
             {

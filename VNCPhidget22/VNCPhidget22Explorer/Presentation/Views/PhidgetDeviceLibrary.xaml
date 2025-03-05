@@ -92,9 +92,9 @@
         <!-- If using DevExpress -->
         <!-- Also, use dxXMLNS to insert namespaces above -->
 
-         <dxlc:LayoutGroup Orientation="Vertical">
+        <dxlc:LayoutGroup Orientation="Vertical">
 
-            <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary}" >
+            <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.DigitalInputChannels}" >
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
                     <dxg:GridColumn Binding="{Binding Value}" Header="Value" ReadOnly="True" />

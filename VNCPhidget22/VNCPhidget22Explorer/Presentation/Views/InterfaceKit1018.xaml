@@ -238,10 +238,10 @@
                             Content="Log VoltageRatioChange Events"
                             IsChecked="{Binding LogVoltageRatioChangeEvents, Mode=TwoWay}"
                             HorizontalAlignment="Left"/>                    
-                    <dxe:CheckEdit
+                    <!--<dxe:CheckEdit
                             Content="Log OutputChange Events"
-                            IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}" 
-                            HorizontalAlignment="Left"/>
+                            IsChecked="{Binding LogOutputChangeEvents, Mode=TwoWay}"--> 
+                            <!--HorizontalAlignment="Left"/>-->
                     <dxe:CheckEdit
                             Content="Log StateChange Events"
                             IsChecked="{Binding LogStateChangeEvents, Mode=TwoWay}" 

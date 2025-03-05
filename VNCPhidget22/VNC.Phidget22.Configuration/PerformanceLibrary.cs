@@ -102,9 +102,11 @@ namespace VNC.Phidget22.Configuration
         #region Event Handlers (none)
 
 
+
         #endregion
 
         #region Commands (none)
+
 
 
         #endregion
@@ -203,44 +205,6 @@ namespace VNC.Phidget22.Configuration
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-        //public void LoadAdvancedServoSequences()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
-
-        //    AvailableAdvancedServoSequences.Clear();
-
-        //    foreach (string configFile in GetListOfAdvancedServoConfigFiles())
-        //    {
-        //        if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-        //        try
-        //        {
-        //            string jsonString = File.ReadAllText(configFile);
-
-        //            AdvancedServoSequenceConfig? sequenceConfig
-        //                = JsonSerializer.Deserialize<AdvancedServoSequenceConfig>
-        //                (jsonString, GetJsonSerializerOptions());
-
-        //            foreach (var sequence in sequenceConfig.AdvancedServoSequences.ToDictionary(k => k.Name, v => v))
-        //            {
-        //                AvailableAdvancedServoSequences.Add(sequence.Key, sequence.Value);
-        //            }
-        //        }
-        //        catch (FileNotFoundException fnfex)
-        //        {
-        //            Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-        //            Log.Error($"{ex}", Common.LOG_CATEGORY);
-        //        }
-        //    }
-
-        //    if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
 
         public void LoadDigitalInputSequences()
         {
@@ -476,6 +440,7 @@ namespace VNC.Phidget22.Configuration
         #region Protected Methods (none)
 
 
+
         #endregion
 
         #region Private Methods
@@ -502,32 +467,6 @@ namespace VNC.Phidget22.Configuration
 
             return files;
         }
-
-        //private IEnumerable<string> GetListOfAdvancedServoConfigFiles()
-        //{
-        //    // HACK(crhodes)
-        //    // Read a directory and return files, perhaps with RegEx name match
-        //    // for now just hard code
-        //    // Would be nice to control order
-
-        //    List<string> files = new List<string>
-        //    {
-        //        @"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
-        //        @"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
-
-        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_99415.json",
-        //        //// These may go away after stuff moves to Initialization
-        //        ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_99220_Skulls.json",
-        //        ////@"AdvancedServoSequences\AdvancedServoSequenceConfig_169501_Skulls.json",
-
-        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A.json",
-        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test B.json",
-        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test C.json",
-        //        //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
-        //    };
-
-        //    return files;
-        //}
 
         private IEnumerable<string> GetListOfDigitalInputConfigFiles()
         {
@@ -558,25 +497,6 @@ namespace VNC.Phidget22.Configuration
 
             return files;
         }
-
-        //private IEnumerable<string> GetListOfInterfaceKitConfigFiles()
-        //{
-        //    // HACK(crhodes)
-        //    // Read a directory and return files, perhaps with RegEx name match
-        //    // for now just hard code
-        //    // Would be nice to control order
-
-        //    List<string> files = new List<string>
-        //    {
-        //        @"InterfaceKitSequences\InterfaceKitSequenceConfig_1.json",
-        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48284.json",
-        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_48301.json",
-        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_124744.json",
-        //        //@"InterfaceKitSequences\InterfaceKitSequenceConfig_251831.json"
-        //    };
-
-        //    return files;
-        //}
 
         private IEnumerable<string> GetListOfRCServoConfigFiles()
         {

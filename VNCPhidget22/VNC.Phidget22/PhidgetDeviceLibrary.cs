@@ -96,13 +96,227 @@ namespace VNC.Phidget22
             }
         }
 
-        public static Dictionary<SerialChannel, DigitalInputEx> DigitalInputChannels = new Dictionary<SerialChannel, DigitalInputEx>();
-        public static Dictionary<SerialChannel, DigitalOutputEx> DigitalOutputChannels = new Dictionary<SerialChannel, DigitalOutputEx>();
-        public static Dictionary<SerialChannel, RCServoEx> RCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
-        public static Dictionary<SerialChannel, StepperEx> StepperChannels = new Dictionary<SerialChannel, StepperEx>();
-        public static Dictionary<SerialChannel, VoltageInputEx> VoltageInputChannels = new Dictionary<SerialChannel, VoltageInputEx>();
-        public static Dictionary<SerialChannel, VoltageRatioInputEx> VoltageRatioInputChannels = new Dictionary<SerialChannel, VoltageRatioInputEx>();
-        public static Dictionary<SerialChannel, VoltageOutputEx> VoltageOutputChannels = new Dictionary<SerialChannel, VoltageOutputEx>();
+
+        private Dictionary<SerialChannel, AccelerometerEx> _accelerometerChannels = new Dictionary<SerialChannel, AccelerometerEx>();
+
+        public Dictionary<SerialChannel, AccelerometerEx> AccelerometerChannels
+        {
+            get => _accelerometerChannels;
+            set => _accelerometerChannels = value;
+        }
+
+        private Dictionary<SerialChannel, BLDCMotorEx> _bLDCMotorChannels = new Dictionary<SerialChannel, BLDCMotorEx>();
+
+        public Dictionary<SerialChannel, BLDCMotorEx> BLDCMotorChannels
+        {
+            get => _bLDCMotorChannels;
+            set => _bLDCMotorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, CapacitiveTouchEx> _capacitiveTouchChannels = new Dictionary<SerialChannel, CapacitiveTouchEx>();
+
+        public Dictionary<SerialChannel, CapacitiveTouchEx> CapacitiveTouchChannels
+        {
+            get => _capacitiveTouchChannels;
+            set => _capacitiveTouchChannels = value;
+        }
+
+        private Dictionary<SerialChannel, DCMotorEx> _dCMotorChannels = new Dictionary<SerialChannel, DCMotorEx>();
+        public Dictionary<SerialChannel, DCMotorEx> DCMotorChannels
+        {
+            get => _dCMotorChannels;
+            set => _dCMotorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, DigitalInputEx> _digitalInputChannels = new Dictionary<SerialChannel, DigitalInputEx>();
+        public Dictionary<SerialChannel, DigitalInputEx> DigitalInputChannels
+        {
+            get => _digitalInputChannels;
+            set => _digitalInputChannels = value;
+        }
+
+        private Dictionary<SerialChannel, DigitalOutputEx> _digitalOutputChannels = new Dictionary<SerialChannel, DigitalOutputEx>();
+
+        public Dictionary<SerialChannel, DigitalOutputEx> DigitalOutputChannels
+        {
+            get => _digitalOutputChannels;
+            set => _digitalOutputChannels = value;
+        }
+
+        private Dictionary<SerialChannel, DistanceSensorEx> _distanceSensorChannels = new Dictionary<SerialChannel, DistanceSensorEx>();
+
+        public Dictionary<SerialChannel, DistanceSensorEx> DistanceSensorChannels
+        {
+            get => _distanceSensorChannels;
+            set => _distanceSensorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, EncoderEx> _encoderChannels = new Dictionary<SerialChannel, EncoderEx>();
+        public Dictionary<SerialChannel, EncoderEx> EncoderChannels
+        {
+            get => _encoderChannels;
+            set => _encoderChannels = value;
+        }
+
+        private Dictionary<SerialChannel, FrequencyCounterEx> _frequencyCounterChannels = new Dictionary<SerialChannel, FrequencyCounterEx>();
+        public Dictionary<SerialChannel, FrequencyCounterEx> FrequencyCounterChannels
+        {
+            get => _frequencyCounterChannels;
+            set => _frequencyCounterChannels = value;
+        }
+
+        private Dictionary<SerialChannel, GPSEx> _gPSChannels = new Dictionary<SerialChannel, GPSEx>();
+        public Dictionary<SerialChannel, GPSEx> GPSChannels
+        {
+            get => _gPSChannels;
+            set => _gPSChannels = value;
+        }
+
+        private Dictionary<SerialChannel, GyroscopeEx> _gyroscopeChannels = new Dictionary<SerialChannel, GyroscopeEx>();
+        public Dictionary<SerialChannel, GyroscopeEx> GyroscopeChannels
+        {
+            get => _gyroscopeChannels;
+            set => _gyroscopeChannels = value;
+        }
+
+        private Dictionary<SerialChannel, HubEx> _hubChannels = new Dictionary<SerialChannel, HubEx>();
+        public Dictionary<SerialChannel, HubEx> HubChannels
+        {
+            get => _hubChannels;
+            set => _hubChannels = value;
+        }
+
+        private Dictionary<SerialChannel, HumiditySensorEx> _humiditySensorChannels = new Dictionary<SerialChannel, HumiditySensorEx>();
+        public Dictionary<SerialChannel, HumiditySensorEx> HumiditySensorChannels
+        {
+            get => _humiditySensorChannels;
+            set => _humiditySensorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, IREx> _iRChannels = new Dictionary<SerialChannel, IREx>();
+        public Dictionary<SerialChannel, IREx> IRChannels
+        {
+            get => _iRChannels;
+            set => _iRChannels = value;
+        }
+
+        private Dictionary<SerialChannel, LCDEx> _lCDChannels = new Dictionary<SerialChannel, LCDEx>();
+        public Dictionary<SerialChannel, LCDEx> LCDChannels
+        {
+            get => _lCDChannels;
+            set => _lCDChannels = value;
+        }
+
+        private Dictionary<SerialChannel, LightSensorEx> _lightSensorChannels = new Dictionary<SerialChannel, LightSensorEx>();
+        public Dictionary<SerialChannel, LightSensorEx> LightSensorChannels
+        {
+            get => _lightSensorChannels;
+            set => _lightSensorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, MagnetometerEx> _magnetometerChannels = new Dictionary<SerialChannel, MagnetometerEx>();
+        public Dictionary<SerialChannel, MagnetometerEx> MagnetometerChannels
+        {
+            get => _magnetometerChannels;
+            set => _magnetometerChannels = value;
+        }
+
+        private Dictionary<SerialChannel, MotorPositionControllerEx> _motorPositionControllerChannels = new Dictionary<SerialChannel, MotorPositionControllerEx>();
+        public Dictionary<SerialChannel, MotorPositionControllerEx> MotorPositionControllerChannels
+        {
+            get => _motorPositionControllerChannels;
+            set => _motorPositionControllerChannels = value;
+        }
+
+        //public static Dictionary<SerialChannel, PressureSensorEx> PressureSensorChannels = new Dictionary<SerialChannel, PressureSensorEx>();
+        //public static Dictionary<SerialChannel, RCServoEx> RCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
+        //public static Dictionary<SerialChannel, ResistanceInputEx> ResistanceInputChannels = new Dictionary<SerialChannel, ResistanceInputEx>();
+
+
+        private Dictionary<SerialChannel, PHSensorEx> _pHSensorChanels = new Dictionary<SerialChannel, PHSensorEx>();
+        public Dictionary<SerialChannel, PHSensorEx> PHSensorChanels
+        {
+            get => _pHSensorChanels;
+            set => _pHSensorChanels = value;
+        }
+
+        private Dictionary<SerialChannel, PowerGuardEx> _powerGuardChannels = new Dictionary<SerialChannel, PowerGuardEx>();
+        public Dictionary<SerialChannel, PowerGuardEx> PowerGuardChannels
+        {
+            get => _powerGuardChannels;
+            set => _powerGuardChannels = value;
+        }
+
+        private Dictionary<SerialChannel, RCServoEx> _rCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
+        public Dictionary<SerialChannel, RCServoEx> RCServoChannels
+        {
+            get => _rCServoChannels;
+            set => _rCServoChannels = value;
+        }
+
+        private Dictionary<SerialChannel, ResistanceInputEx> _resistanceInputChannels;
+        public Dictionary<SerialChannel, ResistanceInputEx> ResistanceInputChannels
+        {
+            get => _resistanceInputChannels;
+            set => _resistanceInputChannels = value;
+        }
+
+        private Dictionary<SerialChannel, RFIDEx> _rFIDChannels = new Dictionary<SerialChannel, RFIDEx>();
+        public Dictionary<SerialChannel, RFIDEx> RFIDChannels
+        {
+            get => _rFIDChannels;
+            set => _rFIDChannels = value;
+        }
+
+        private Dictionary<SerialChannel, SoundSensorEx> _soundSensorChannels = new Dictionary<SerialChannel, SoundSensorEx>();
+        public Dictionary<SerialChannel, SoundSensorEx> SoundSensorChannels
+        {
+            get => _soundSensorChannels;
+            set => _soundSensorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, SpatialEx> _spatialChannels = new Dictionary<SerialChannel, SpatialEx>();
+        public Dictionary<SerialChannel, SpatialEx> SpatialChannels
+        {
+            get => _spatialChannels;
+            set => _spatialChannels = value;
+        }
+
+        private Dictionary<SerialChannel, StepperEx> _stepperChannels = new Dictionary<SerialChannel, StepperEx>();
+        public Dictionary<SerialChannel, StepperEx> StepperChannels
+        {
+            get => _stepperChannels;
+            set => _stepperChannels = value;
+        }
+
+        private Dictionary<SerialChannel, TemperatureSensorEx> _temperatureSensorChannels = new Dictionary<SerialChannel, TemperatureSensorEx>();
+        public Dictionary<SerialChannel, TemperatureSensorEx> TemperatureSensorChannels
+        {
+            get => _temperatureSensorChannels;
+            set => _temperatureSensorChannels = value;
+        }
+
+        private Dictionary<SerialChannel, VoltageInputEx> _voltageInputChannels = new Dictionary<SerialChannel, VoltageInputEx>();
+        public Dictionary<SerialChannel, VoltageInputEx> VoltageInputChannels
+        {
+            get => _voltageInputChannels;
+            set => _voltageInputChannels = value;
+        }
+
+        private Dictionary<SerialChannel, VoltageRatioInputEx> _voltageRatioInputChannels = new Dictionary<SerialChannel, VoltageRatioInputEx>();
+        public Dictionary<SerialChannel, VoltageRatioInputEx> VoltageRatioInputChannels
+        {
+            get => _voltageRatioInputChannels;
+            set => _voltageRatioInputChannels = value;
+        }
+
+        private Dictionary<SerialChannel, VoltageOutputEx> _voltageOutputChannels = new Dictionary<SerialChannel, VoltageOutputEx>();
+        public Dictionary<SerialChannel, VoltageOutputEx> VoltageOutputChannels
+        {
+            get => _voltageOutputChannels;
+            set => _voltageOutputChannels = value;
+        }
+        
 
         // TODO(crhodes)
         // Populate this from ConfigFile
@@ -159,6 +373,11 @@ namespace VNC.Phidget22
                             if(Common.VNCLogging.ApplicationInitialize)
                             {
                                 Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+
+                                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
+                                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
+                                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+
                                 Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             }
                             break;
@@ -167,6 +386,11 @@ namespace VNC.Phidget22
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
                                 Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+
+                                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
+                                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
+                                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+
                                 Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             }
                             break;
@@ -175,6 +399,11 @@ namespace VNC.Phidget22
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
                                 Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+
+                                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
+                                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
+                                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+
                                 Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             }
                             break;
@@ -240,6 +469,7 @@ namespace VNC.Phidget22
                 case Phidgets.ChannelClass.DCMotor:
                     deviceChannels.DCMotorCount++;
                     break;
+
                 case Phidgets.ChannelClass.Dictionary:
                     deviceChannels.DictionaryCount++;
                     break;

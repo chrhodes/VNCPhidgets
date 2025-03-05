@@ -608,7 +608,7 @@ namespace VNC.Phidget22.Players
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-            DigitalOutputEx digitalOutputHost = PhidgetDeviceLibrary.DigitalOutputChannels[serialChannel];
+            DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialChannel];
 
             digitalOutputHost.LogPhidgetEvents = LogPhidgetEvents;
             digitalOutputHost.LogErrorEvents = LogErrorEvents;
@@ -662,7 +662,7 @@ namespace VNC.Phidget22.Players
 
             SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-            RCServoEx rcServoHost = PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+            RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
 
             rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
             rcServoHost.LogErrorEvents = LogErrorEvents;
@@ -719,7 +719,7 @@ namespace VNC.Phidget22.Players
             // TODO(crhodes)
             // This throws exception if serialChannel not found
 
-            StepperEx stepperHost = PhidgetDeviceLibrary.StepperChannels[serialChannel];
+            StepperEx stepperHost = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
 
             stepperHost.LogPhidgetEvents = LogPhidgetEvents;
             stepperHost.LogErrorEvents = LogErrorEvents;

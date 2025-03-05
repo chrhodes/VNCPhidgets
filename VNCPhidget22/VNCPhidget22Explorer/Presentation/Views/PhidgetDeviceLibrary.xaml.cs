@@ -30,7 +30,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Can create directly
 
-            // ViewModel = PhidgetDeviceLibraryViewModel();
+            // ViewModel = Common.PhidgetDeviceLibraryViewModel();
 
             // Can use ourselves for everything
 

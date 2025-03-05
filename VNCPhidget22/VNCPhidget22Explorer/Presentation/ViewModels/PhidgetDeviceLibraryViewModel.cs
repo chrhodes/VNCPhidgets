@@ -56,6 +56,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "PhidgetDeviceLibraryViewModel says hello";
             PublishStatusMessage(Message);
 
+            PhidgetDeviceLibrary = Common.PhidgetDeviceLibrary;
+
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -73,6 +75,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+        private VNC.Phidget22.PhidgetDeviceLibrary _phidgetDeviceLibrary;
+        
+        public VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary
+        {
+            get => _phidgetDeviceLibrary;
+            set
+            {
+                if (_phidgetDeviceLibrary == value)
+                    return;
+                _phidgetDeviceLibrary = value;
+                OnPropertyChanged();
+            }
+        }        
 
         #endregion
 

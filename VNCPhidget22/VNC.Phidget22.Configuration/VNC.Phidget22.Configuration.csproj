@@ -5,7 +5,7 @@
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
       <VersionSuffix>development-23</VersionSuffix>
-      <FileVersion>2025.02.28A</FileVersion>
+      <FileVersion>2025.03.05A</FileVersion>
       <Description>Phidget22 Explorer Configuration</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>
@@ -36,6 +36,10 @@
 
     <ItemGroup>
         <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Dictionary\" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
