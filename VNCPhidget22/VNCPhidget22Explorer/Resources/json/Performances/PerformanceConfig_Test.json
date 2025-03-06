@@ -6,7 +6,7 @@
     //
     //
     {
-      "Name": "Test Before and After Performance Sequences",
+      "Name": "Test Before, After, and Next Performance Sequences",
       "Description": "",
       "BeforePerformanceLoopPerformances": [
         {
@@ -30,7 +30,7 @@
           "Name": "Parallel Sequences 124744"
         }
       ],
-      "NextPerformance": null
+      "NextPerformance": { "Name": "Sequential Sequences Stepper 268213" }
     },
     //
     // Open/Close Servos 99415
@@ -144,6 +144,21 @@
         { "SequenceType": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO2" },
       ],
       "NextPerformance": null
-    },   
+    },  
+    //
+    // Sequential Sequences 263213
+    //
+    {
+      "Name": "Sequential Sequences Stepper 268213",
+      "Description": "Rotate Stepper",
+      "Loops": 1,
+      "PlaySequencesInParallel": false,
+      "PerformanceSequences": [
+        { "SequenceType": "Stepper", "SerialNumber": 268213,  "Name": "Initialize Stepper SA 3.75" },
+        { "SequenceType": "Stepper", "SerialNumber": 268213,  "Name": "Open and Engage Stepper" },
+        { "SequenceType": "Stepper", "SerialNumber": 268213,  "Name": "Rotate +/- 90" },
+      ],
+      "NextPerformance": null
+    },
   ]
 }

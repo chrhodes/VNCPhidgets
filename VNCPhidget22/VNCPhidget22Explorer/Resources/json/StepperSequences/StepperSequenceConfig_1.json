@@ -43,13 +43,13 @@
     // Engage Stepper
     //
     {
-      "Name": "Engage Stepper", 
+      "Name": "Open and Engage Stepper", 
       "Channel": 0,
-      "Description": "Engage Stepper",
+      "Description": "Open and Engage Stepper",
       "UsageNotes": "Engages Stepper",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged":  true },
+        { "Open": true, "Engaged":  true },
       ]
     },
     //
