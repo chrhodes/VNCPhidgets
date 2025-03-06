@@ -75,6 +75,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             //liConfigureServo.DataContext = this.Parent;
             lgMovementCharacteristics.IsCollapsed = true;
             lgConfigureServo.IsCollapsed = true;
+            lgLogging.IsCollapsed = true;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

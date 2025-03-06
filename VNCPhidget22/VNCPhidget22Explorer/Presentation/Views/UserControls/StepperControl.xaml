@@ -83,7 +83,7 @@
             <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
                               HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
 
-                <dxlc:LayoutGroup Header="Event Logging" View="GroupBox" Orientation="Vertical" 
+                <dxlc:LayoutGroup x:Name="lgLogging"  Header="Event Logging" View="GroupBox" Orientation="Vertical" 
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True" IsCollapsed="False"                                     
                     Padding="-10"

@@ -81,7 +81,7 @@
     -->
     <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
           
-        <dxlc:LayoutGroup Header="Performances" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
+        <dxlc:LayoutGroup x:Name="lgPerformances"  Header="Performances" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
                           IsCollapsible="True" IsCollapsed="False">
                
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
@@ -169,7 +169,7 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Header="PerformanceSequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
+        <dxlc:LayoutGroup x:Name="lgPerformanceSequences"  Header="PerformanceSequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
                           IsCollapsible="True" IsCollapsed="False">
 
             <views:HostSelectorControl VerticalAlignment="Top"/>

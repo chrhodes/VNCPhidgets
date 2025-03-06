@@ -74,6 +74,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             spDeveloperInfo.DataContext = this;
 
             lgMovement.IsCollapsed = true;
+            lgLogging.IsCollapsed = true;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

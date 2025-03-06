@@ -81,6 +81,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
             ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
             spDeveloperInfo.DataContext = this;
 
+            //WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Left = 0;
+            Top = 0;
+
             // NOTE(crhodes)
             // Put things here that initialize the View
             // Hook event handlers, etc.
@@ -94,7 +98,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
 
         #region Fields and Properties
 

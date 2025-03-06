@@ -88,7 +88,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Vertical"
+            <dxlc:LayoutGroup x:Name="lgLogging"  Header="Logging" View="GroupBox" Orientation="Vertical"
                         IsCollapsible="True" IsCollapsed="False" Padding="-5">
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top"

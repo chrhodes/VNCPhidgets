@@ -45,6 +45,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
+            lgPerformances.IsCollapsed = true;
+            lgPerformanceSequences.IsCollapsed = true;
+
             //lgDigitalOutputSequences.IsCollapsed = true;
 
             //lgRCServoSequences.IsCollapsed = true;
