@@ -54,6 +54,6 @@ namespace VNC.Phidget22.Configuration
         /// Performance to invoke at end of Loops of PerformanceSequences or Performances
         /// none or null to stop
         /// </summary>
-        public Performance? NextPerformance { get; set; }
+        public Performance? NextPerformance { get; set; } = null;
     }
 }

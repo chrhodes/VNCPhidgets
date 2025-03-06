@@ -3,6 +3,36 @@
   "Description": "Testing",
   "Performances": [
     //
+    //
+    //
+    {
+      "Name": "Test Before and After Performance Sequences",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        {
+          "Name": "Parallel Sequences 124744"
+        }
+      ],
+      "Loops": 1,
+      "PlaySequencesInParallel": true,
+      "PerformanceSequences": [
+        { "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
+        { "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
+        { "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
+        //{ "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
+        { "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
+        { "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
+        { "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
+        //{ "SequenceType": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+        {
+          "Name": "Parallel Sequences 124744"
+        }
+      ],
+      "NextPerformance": null
+    },
+    //
     // Open/Close Servos 99415
     //
     {
