@@ -1,6 +1,8 @@
-﻿namespace VNC.Phidget22.Configuration
+﻿using VNC.Phidget22.Configuration.Performance;
+
+namespace VNC.Phidget22.Configuration
 {
-    public class CurrentInputSequence : DeviceClassSequence
+    public class CurrentInputSequence : ChannelClassSequence
     {
         public CurrentInputSequence() : base("CurrentInput")
         {

@@ -56,7 +56,7 @@
         <!--<converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
         <!--<converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />-->
-        <converters:SelectedItemsToListOfDeviceClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
+        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
         <!--<converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />

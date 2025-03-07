@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VNC.Phidget22.Configuration
+namespace VNC.Phidget22.Configuration.Performance
 {
     public class Performance
     {

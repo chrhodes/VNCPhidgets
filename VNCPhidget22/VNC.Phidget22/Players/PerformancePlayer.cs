@@ -8,8 +8,8 @@ using System.Windows.Controls;
 using Prism.Events;
 
 using VNC.Core.Mvvm;
-
 using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22.Players
 {

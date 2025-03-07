@@ -69,6 +69,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             OpenVoltageInputCommand = new DelegateCommand<string>(OpenVoltageInput, OpenVoltageInputCanExecute);
             RefreshVoltageInputCommand = new DelegateCommand<string>(RefreshVoltageInput, RefreshVoltageInputCanExecute);
+            RaisePerformanceEventCommand = new DelegateCommand<string>(RaisePerformanceEvent, RaisePerformanceEventCanExecute);
             CloseVoltageInputCommand = new DelegateCommand<string>(CloseVoltageInput, CloseVoltageInputCanExecute);
 
             OpenVoltageRatioInputCommand = new DelegateCommand<string>(OpenVoltageRatioInput, OpenVoltageRatioInputCanExecute);
@@ -2774,6 +2775,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             OpenVoltageInputCommand.RaiseCanExecuteChanged();
             RefreshVoltageInputCommand.RaiseCanExecuteChanged();
+            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
             CloseVoltageInputCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
@@ -3018,6 +3020,190 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region RaisePerformanceEvent Command
+
+        public DelegateCommand<string> RaisePerformanceEventCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _RaisePerformanceEventHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE RaisePerformanceEventCommandParameter;
+
+        public string RaisePerformanceEventContent { get; set; } = "Raise Event";
+        public string RaisePerformanceEventToolTip { get; set; } = "Raise Performance Event";
+
+        // Can get fancy and use Resources
+        //public string RaisePerformanceEventContent { get; set; } = "ViewName_RaisePerformanceEventContent";
+        //public string RaisePerformanceEventToolTip { get; set; } = "ViewName_RaisePerformanceEventContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RaisePerformanceEventContent">RaisePerformanceEvent</system:String>
+        //    <system:String x:Key="ViewName_RaisePerformanceEventContentToolTip">RaisePerformanceEvent ToolTip</system:String>  
+
+        private async Task RaisePerformanceEvent(VoltageInputEx voltageInput)
+        {
+            if (voltageInput.IsOpen is true)
+            {
+                await Task.Run(() => voltageInput.RaisePlayPerformanceEvent());
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+            }
+        }
+
+        // If using CommandParameter, figure out TYPE here
+        public async void RaisePerformanceEvent(string channelNumber)
+        //public void RaisePerformanceEvent()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Do something amazing.
+
+            Message = $"Cool, you called RaisePerformanceEvent on Channel:{channelNumber}";
+            PublishStatusMessage(Message);
+
+            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 channel;
+
+            if (Int32.TryParse(channelNumber, out channel))
+            {
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+
+                //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialChannel];
+
+                switch (channel)
+                {
+                    case 0:
+                        await RaisePerformanceEvent(VoltageInput0);
+                        break;
+
+                    case 1:
+                        await RaisePerformanceEvent(VoltageInput1);
+                        break;
+
+                    case 2:
+                        await RaisePerformanceEvent(VoltageInput2);
+                        break;
+
+                    case 3:
+                        await RaisePerformanceEvent(VoltageInput3);
+                        break;
+
+                    case 4:
+                        await RaisePerformanceEvent(VoltageInput4);
+                        break;
+
+                    case 5:
+                        await RaisePerformanceEvent(VoltageInput5);
+                        break;
+
+                    case 6:
+                        await RaisePerformanceEvent(VoltageInput6);
+                        break;
+
+                    case 7:
+                        await RaisePerformanceEvent(VoltageInput7);
+                        break;
+
+                    case 8:
+                        await RaisePerformanceEvent(VoltageInput8);
+                        break;
+
+                    case 9:
+                        await RaisePerformanceEvent(VoltageInput9);
+                        break;
+
+                    case 10:
+                        await RaisePerformanceEvent(VoltageInput10);
+                        break;
+
+                    case 11:
+                        await RaisePerformanceEvent(VoltageInput11);
+                        break;
+
+                    case 12:
+                        await RaisePerformanceEvent(VoltageInput12);
+                        break;
+
+                    case 13:
+                        await RaisePerformanceEvent(VoltageInput13);
+                        break;
+
+                    case 14:
+                        await RaisePerformanceEvent(VoltageInput14);
+                        break;
+
+                    case 15:
+                        await RaisePerformanceEvent(VoltageInput15);
+                        break;
+                }
+            }
+            else
+            {
+
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RaisePerformanceEventEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RaisePerformanceEventEvent>().Publish(
+            //      new RaisePerformanceEventEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class RaisePerformanceEventEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RaisePerformanceEventEvent>().Subscribe(RaisePerformanceEvent);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public bool RaisePerformanceEventCanExecute(string channelNumber)
+        //public bool RaisePerformanceEventCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            Int32 channel;
+
+            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
+
+            if (SelectedInterfaceKit is null) return false;
+
+            SerialChannel serialChannel = new SerialChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+
+            VoltageInputEx? host;
+
+            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue(serialChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
         #region CloseVoltageInput Command
 
         public DelegateCommand<string> CloseVoltageInputCommand { get; set; }
@@ -3129,6 +3315,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             OpenVoltageInputCommand.RaiseCanExecuteChanged();
             RefreshVoltageInputCommand.RaiseCanExecuteChanged();
+            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
             CloseVoltageInputCommand.RaiseCanExecuteChanged();
 
             // If launching a UserControl

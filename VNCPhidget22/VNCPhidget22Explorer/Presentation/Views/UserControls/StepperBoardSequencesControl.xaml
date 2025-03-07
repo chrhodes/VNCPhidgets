@@ -57,7 +57,7 @@
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
         <!--<converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />-->
-        <converters:SelectedItemsToListOfDeviceClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
+        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
         <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
          <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
          <DataTemplate x:Key="dataTemplateHostSelector"> 

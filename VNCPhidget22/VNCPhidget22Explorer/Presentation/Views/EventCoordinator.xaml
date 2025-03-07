@@ -168,7 +168,7 @@
 
             </dxlc:LayoutGroup>
             
-            <dxlc:LayoutGroup Header="PerformanceSequnces" View="GroupBox" Orientation="Vertical" >
+            <dxlc:LayoutGroup Header="PerformanceSequences" View="GroupBox" Orientation="Vertical" >
             
             </dxlc:LayoutGroup>
 

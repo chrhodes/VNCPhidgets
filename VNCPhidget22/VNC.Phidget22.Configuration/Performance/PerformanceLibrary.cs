@@ -6,9 +6,7 @@ using System.Text.Json;
 
 using Prism.Regions.Behaviors;
 
-using VNC;
-
-namespace VNC.Phidget22.Configuration
+namespace VNC.Phidget22.Configuration.Performance
 {
     /// <summary>
     /// Maintains Library of Hosts, Performances,
@@ -24,8 +22,8 @@ namespace VNC.Phidget22.Configuration
 
         public PerformanceLibrary()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             try
             {
@@ -51,7 +49,7 @@ namespace VNC.Phidget22.Configuration
                 
             }
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -115,11 +113,11 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadHostsConfig()
         {
-            Int64 startTicks = 0;
+            long startTicks = 0;
 
             string configFile = "hostconfig.json";
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
@@ -138,7 +136,7 @@ namespace VNC.Phidget22.Configuration
                 Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         //void LoadNetworkHosts(List<Host> hosts)
@@ -170,14 +168,14 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadPerformances()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailablePerformances.Clear();
 
             foreach (string configFile in GetListOfPerformanceConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -203,19 +201,19 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadDigitalInputSequences()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableDigitalInputSequences.Clear();
 
             foreach (string configFile in GetListOfDigitalInputConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -241,19 +239,19 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadDigitalOutputSequences()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableDigitalOutputSequences.Clear();
 
             foreach (string configFile in GetListOfDigitalOutputConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -279,19 +277,19 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadRCServoSequences()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableRCServoSequences.Clear();
 
             foreach (string configFile in GetListOfRCServoConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -318,19 +316,19 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadStepperSequences()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableStepperSequences.Clear();
 
             foreach (string configFile in GetListOfStepperConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -356,19 +354,19 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadVoltageInputSequences()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableVoltageInputSequences.Clear();
 
             foreach (string configFile in GetListOfVoltageInputConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -394,19 +392,19 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public void LoadVoltageOutputSequences()
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             AvailableVoltageOutputSequences.Clear();
 
             foreach (string configFile in GetListOfVoltageOutputConfigFiles())
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -432,7 +430,7 @@ namespace VNC.Phidget22.Configuration
                 }
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

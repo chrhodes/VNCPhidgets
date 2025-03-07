@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Markup;
 
 using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNCPhidget22Explorer.Presentation.Converters
 {

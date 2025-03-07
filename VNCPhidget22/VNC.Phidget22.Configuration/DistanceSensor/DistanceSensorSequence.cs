@@ -1,6 +1,8 @@
-﻿namespace VNC.Phidget22.Configuration
+﻿using VNC.Phidget22.Configuration.Performance;
+
+namespace VNC.Phidget22.Configuration
 {
-    public class DistanceSensorSequence : DeviceClassSequence
+    public class DistanceSensorSequence : ChannelClassSequence
     {
         public DistanceSensorSequence() : base("DistanceSensor")
         {

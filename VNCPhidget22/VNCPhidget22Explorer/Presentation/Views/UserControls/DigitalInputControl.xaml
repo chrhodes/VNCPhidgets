@@ -105,22 +105,22 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             <dxlc:LayoutItem>
                 <Button x:Name="btnOpenDigitalInputCommand" 
-            DataContext="{Binding DataContext, 
+                    DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-      		    Command="{Binding OpenDigitalInputCommand }"
-            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
-      		    Content="{Binding OpenDigitalInputContent, FallbackValue='OpenDigitalInput' }"
-      		    ToolTip="{Binding OpenDigitalInputToolTip, FallbackValue='OpenDigitalInput ToolTip' }" />
+      		        Command="{Binding OpenDigitalInputCommand }"
+                    CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		        Content="{Binding OpenDigitalInputContent, FallbackValue='OpenDigitalInput' }"
+      		        ToolTip="{Binding OpenDigitalInputToolTip, FallbackValue='OpenDigitalInput ToolTip' }" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem>
                 <Button x:Name="btnCloseDigitalInputCommand" 
-            DataContext="{Binding DataContext, 
+                    DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
-      		    Command="{Binding CloseDigitalInputCommand }"
-            CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
-      		    Content="{Binding CloseDigitalInputContent, FallbackValue='CloseDigitalInput' }"
-      		    ToolTip="{Binding CloseDigitalInputToolTip, FallbackValue='CloseDigitalInput ToolTip' }" />
+      		        Command="{Binding CloseDigitalInputCommand }"
+                    CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		        Content="{Binding CloseDigitalInputContent, FallbackValue='CloseDigitalInput' }"
+      		        ToolTip="{Binding CloseDigitalInputToolTip, FallbackValue='CloseDigitalInput ToolTip' }" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>

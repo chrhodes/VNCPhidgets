@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNCPhidget22Explorer.Presentation.Converters
 {
@@ -12,7 +12,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>
-    public class SelectedItemsToListOfDeviceClassSequenceConverter : MarkupExtension, IValueConverter
+    public class SelectedItemsToListOfChannelClassSequenceConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
@@ -23,7 +23,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
         {
             if (value != null)
             {
-                return new List<object>((IEnumerable<DeviceClassSequence>)value);
+                return new List<object>((IEnumerable<ChannelClassSequence>)value);
             }
 
             return null;
@@ -53,14 +53,14 @@ namespace VNCPhidget22Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<DeviceClassSequence> result = new List<DeviceClassSequence>();
+            List<ChannelClassSequence> result = new List<ChannelClassSequence>();
             var enumerable = (List<object>)value;
 
             if (enumerable != null)
             {
                 foreach (object item in enumerable)
                 {
-                    result.Add((DeviceClassSequence)item);
+                    result.Add((ChannelClassSequence)item);
                 }
             }
 

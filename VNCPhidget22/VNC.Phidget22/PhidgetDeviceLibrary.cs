@@ -10,6 +10,7 @@ using VNC.Phidget22.Ex;
 
 using PhidgetEvents = Phidget22.Events;
 using Phidgets = Phidget22;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22
 {
@@ -54,7 +55,7 @@ namespace VNC.Phidget22
 
             // So, for now, depend on Host file listing the Computers (typically SBC) hosting Phidgets
 
-            foreach (VNCPhidgetConfig.Host host in VNCPhidgetConfig.PerformanceLibrary.Hosts)
+            foreach (VNCPhidgetConfig.Host host in PerformanceLibrary.Hosts)
             {
                 Phidgets.Net.AddServer(host.Name, host.IPAddress, host.Port, "", 0);
             }

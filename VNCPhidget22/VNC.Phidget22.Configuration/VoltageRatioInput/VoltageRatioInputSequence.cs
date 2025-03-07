@@ -1,8 +1,11 @@
 ﻿using Phidget22;
 
+using VNC.Phidget22.Configuration.Performance;
+
+
 namespace VNC.Phidget22.Configuration
 {
-    public class VoltageRatioInputSequence : DeviceClassSequence
+    public class VoltageRatioInputSequence : ChannelClassSequence
     {
         public VoltageRatioInputSequence() : base("VoltageRatioInput")
         {

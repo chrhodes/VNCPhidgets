@@ -1,6 +1,8 @@
-﻿namespace VNC.Phidget22.Configuration
+﻿using VNC.Phidget22.Configuration.Performance;
+
+namespace VNC.Phidget22.Configuration
 {
-    public class PowerGuardSequence : DeviceClassSequence
+    public class PowerGuardSequence : ChannelClassSequence
     {
         public PowerGuardSequence() : base("PowerGuard")
         {

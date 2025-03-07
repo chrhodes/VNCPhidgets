@@ -118,15 +118,29 @@
       		                ToolTip="{Binding OpenVoltageInputToolTip, FallbackValue='OpenVoltageInput ToolTip' }" />   
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Padding="-5" VerticalAlignment="Center">
-                <Button x:Name="btnRefreshVoltageInputCommand" 
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                
+                <dxlc:LayoutItem Padding="-5" VerticalAlignment="Center">
+                    <Button x:Name="btnRefreshVoltageInputCommand" 
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		            Command="{Binding RefreshVoltageInputCommand }"
                         CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
       		                Content="{Binding RefreshVoltageInputContent, FallbackValue='Refresh' }"
       		                ToolTip="{Binding RefreshVoltageInputToolTip, FallbackValue='RefreshVoltageInput ToolTip' }" />
-            </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Padding="-5" VerticalAlignment="Center">
+                    <Button x:Name="btnRaisePerformanceEventCommand" 
+                        DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		            Command="{Binding RaisePerformanceEventCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+      		                Content="{Binding RaisePerformanceEventContent, FallbackValue='Raise Event' }"
+      		                ToolTip="{Binding RaisePerformanceEventToolTip, FallbackValue='Raise Performance Event ToolTip' }" />
+                </dxlc:LayoutItem>
+                
+            </dxlc:LayoutGroup>
 
             <dxlc:LayoutItem>
                 <Button x:Name="btnCloseVoltageInputCommand" 

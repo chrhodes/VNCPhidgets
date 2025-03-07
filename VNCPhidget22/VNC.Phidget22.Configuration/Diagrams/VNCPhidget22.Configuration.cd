@@ -28,7 +28,7 @@
       <FileName>InterfaceKit\InterfaceKitSequenceConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.Performance">
+  <Class Name="VNC.Phidget22.Configuration.Performance.Performance">
     <Position X="0.5" Y="7" Width="4.25" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAiAAAAAAAAACQAAAAAADAAAAEAAAACABE=</HashCode>
@@ -45,7 +45,7 @@
   <Class Name="VNC.Phidget22.Configuration.PerformanceSequence">
     <Position X="0.5" Y="10.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAAAGAAAAEAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAQAAAGQAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Performance\PerformanceSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -57,14 +57,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.Stepper">
-    <Position X="23.5" Y="31.75" Width="2.25" />
+    <Position X="23.75" Y="32.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\Stepper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.StepperAction">
-    <Position X="23.5" Y="25.75" Width="3" />
+    <Position X="23.5" Y="26.25" Width="3" />
     <TypeIdentifier>
       <HashCode>ACA4CggAAIAiIAAAAoAAAQCAAAAAIgBQAAAUAACAgEA=</HashCode>
       <FileName>Stepper\StepperAction.cs</FileName>
@@ -82,13 +82,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\StepperSequenceConfig.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="VNC.Phidget22.Configuration.DeviceClassSequence">
-    <Position X="9.25" Y="18.5" Width="4.25" />
-    <TypeIdentifier>
-      <HashCode>AAAQAoAgAAAgAAAAAAAQAAQAAACQEEAAAEgAAAAAAgQ=</HashCode>
-      <FileName>DeviceClassSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.PerformanceLibrary">
@@ -155,7 +148,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.RCServo">
-    <Position X="19.5" Y="31.75" Width="2.25" />
+    <Position X="19.75" Y="32" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RCServo\RCServo.cs</FileName>
@@ -223,6 +216,13 @@
     <TypeIdentifier>
       <HashCode>QAAgCAAAAAAgIAAAAAAAAAAAAAAAAAFAAAAAAAAAgAA=</HashCode>
       <FileName>VoltageRatioInput\VoltageRatioInputAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.Performance.ChannelClassSequence">
+    <Position X="9.5" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAoAgAAAgAAAAAAAQAAQAAACAEEAAAEgAAAAAAhQ=</HashCode>
+      <FileName>ChannelClassSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

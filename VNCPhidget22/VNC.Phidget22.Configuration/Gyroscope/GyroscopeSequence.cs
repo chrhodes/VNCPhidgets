@@ -1,6 +1,8 @@
-﻿namespace VNC.Phidget22.Configuration
+﻿using VNC.Phidget22.Configuration.Performance;
+
+namespace VNC.Phidget22.Configuration
 {
-    public class GyroscopeSequence : DeviceClassSequence
+    public class GyroscopeSequence : ChannelClassSequence
     {
         public GyroscopeSequence() : base("Gyroscope")
         {

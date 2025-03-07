@@ -19,6 +19,7 @@ using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
 
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -438,8 +439,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
-        private IEnumerable<VNCPhidgetConfig.Performance> _performances;
-        public IEnumerable<VNCPhidgetConfig.Performance> Performances
+        private IEnumerable<Performance> _performances;
+        public IEnumerable<Performance> Performances
         {
             get => _performances;
             set
@@ -449,8 +450,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.Performance? _selectedPerformance;
-        public VNCPhidgetConfig.Performance? SelectedPerformance
+        private Performance? _selectedPerformance;
+        public Performance? SelectedPerformance
         {
             get => _selectedPerformance;
             set
@@ -473,8 +474,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private List<VNCPhidgetConfig.Performance> _selectedPerformances;
-        public List<VNCPhidgetConfig.Performance> SelectedPerformances
+        private List<Performance> _selectedPerformances;
+        public List<Performance> SelectedPerformances
         {
             get => _selectedPerformances;
             set
@@ -579,8 +580,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             1000
         };
 
-        private IEnumerable<VNCPhidgetConfig.DeviceClassSequence> _advancedServoSequences;
-        public IEnumerable<VNCPhidgetConfig.DeviceClassSequence> AdvancedServoSequences
+        private IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> _advancedServoSequences;
+        public IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> AdvancedServoSequences
         {
             get => _advancedServoSequences;
             set
@@ -590,8 +591,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.DeviceClassSequence? _selectedAdvancedServoSequence;
-        public VNCPhidgetConfig.DeviceClassSequence? SelectedAdvancedServoSequence
+        private VNCPhidgetConfig.Performance.ChannelClassSequence? _selectedAdvancedServoSequence;
+        public VNCPhidgetConfig.Performance.ChannelClassSequence? SelectedAdvancedServoSequence
         {
             get => _selectedAdvancedServoSequence;
             set
@@ -605,8 +606,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private List<VNCPhidgetConfig.DeviceClassSequence> _selectedAdvancedServoSequences;
-        public List<VNCPhidgetConfig.DeviceClassSequence> SelectedAdvancedServoSequences
+        private List<VNCPhidgetConfig.Performance.ChannelClassSequence> _selectedAdvancedServoSequences;
+        public List<VNCPhidgetConfig.Performance.ChannelClassSequence> SelectedAdvancedServoSequences
         {
             get => _selectedAdvancedServoSequences;
             set
@@ -741,8 +742,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<VNCPhidgetConfig.DeviceClassSequence> _digitalOutputSequences;
-        public IEnumerable<VNCPhidgetConfig.DeviceClassSequence> DigitalOutputSequences
+        private IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> _digitalOutputSequences;
+        public IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> DigitalOutputSequences
         {
             get => _digitalOutputSequences;
             set
@@ -752,8 +753,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.DeviceClassSequence? _selectedDigitalOutputSequence;
-        public VNCPhidgetConfig.DeviceClassSequence? SelectedDigitalOutputSequence
+        private VNCPhidgetConfig.Performance.ChannelClassSequence? _selectedDigitalOutputSequence;
+        public VNCPhidgetConfig.Performance.ChannelClassSequence? SelectedDigitalOutputSequence
         {
             get => _selectedDigitalOutputSequence;
             set
@@ -767,8 +768,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private List<VNCPhidgetConfig.DeviceClassSequence> _selectedDigitalOutputSequences;
-        public List<VNCPhidgetConfig.DeviceClassSequence> SelectedDigitalOutputSequences
+        private List<VNCPhidgetConfig.Performance.ChannelClassSequence> _selectedDigitalOutputSequences;
+        public List<VNCPhidgetConfig.Performance.ChannelClassSequence> SelectedDigitalOutputSequences
         {
             get => _selectedDigitalOutputSequences;
             set
@@ -932,8 +933,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
 
-        private IEnumerable<VNCPhidgetConfig.DeviceClassSequence> _interfaceKitSequences;
-        public IEnumerable<VNCPhidgetConfig.DeviceClassSequence> InterfaceKitSequences
+        private IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> _interfaceKitSequences;
+        public IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> InterfaceKitSequences
         {
             get => _interfaceKitSequences;
             set
@@ -943,8 +944,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.DeviceClassSequence? _selectedInterfaceKitSequence;
-        public VNCPhidgetConfig.DeviceClassSequence? SelectedInterfaceKitSequence
+        private VNCPhidgetConfig.Performance.ChannelClassSequence? _selectedInterfaceKitSequence;
+        public VNCPhidgetConfig.Performance.ChannelClassSequence? SelectedInterfaceKitSequence
         {
             get => _selectedInterfaceKitSequence;
             set
@@ -958,8 +959,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private List<VNCPhidgetConfig.DeviceClassSequence> _selectedInterfaceKitSequences;
-        public List<VNCPhidgetConfig.DeviceClassSequence> SelectedInterfaceKitSequences
+        private List<VNCPhidgetConfig.Performance.ChannelClassSequence> _selectedInterfaceKitSequences;
+        public List<VNCPhidgetConfig.Performance.ChannelClassSequence> SelectedInterfaceKitSequences
         {
             get => _selectedInterfaceKitSequences;
             set
@@ -1026,8 +1027,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<VNCPhidgetConfig.DeviceClassSequence> _stepperSequences;
-        public IEnumerable<VNCPhidgetConfig.DeviceClassSequence> StepperSequences
+        private IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> _stepperSequences;
+        public IEnumerable<VNCPhidgetConfig.Performance.ChannelClassSequence> StepperSequences
         {
             get => _stepperSequences;
             set
@@ -1037,8 +1038,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.DeviceClassSequence? _selectedStepperSequence;
-        public VNCPhidgetConfig.DeviceClassSequence? SelectedStepperSequence
+        private VNCPhidgetConfig.Performance.ChannelClassSequence? _selectedStepperSequence;
+        public VNCPhidgetConfig.Performance.ChannelClassSequence? SelectedStepperSequence
         {
             get => _selectedStepperSequence;
             set
@@ -1052,8 +1053,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, VNCPhidgetConfig.DeviceClassSequence> _availableStepperSequences;
-        public Dictionary<string, VNCPhidgetConfig.DeviceClassSequence> AvailableStepperSequences
+        private Dictionary<string, VNCPhidgetConfig.Performance.ChannelClassSequence> _availableStepperSequences;
+        public Dictionary<string, VNCPhidgetConfig.Performance.ChannelClassSequence> AvailableStepperSequences
         {
             get => _availableStepperSequences;
             set
@@ -1063,8 +1064,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private List<VNCPhidgetConfig.DeviceClassSequence> _selectedStepperSequences;
-        public List<VNCPhidgetConfig.DeviceClassSequence> SelectedStepperSequences
+        private List<VNCPhidgetConfig.Performance.ChannelClassSequence> _selectedStepperSequences;
+        public List<VNCPhidgetConfig.Performance.ChannelClassSequence> SelectedStepperSequences
         {
             get => _selectedStepperSequences;
             set
@@ -1490,7 +1491,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PerformancePlayer performancePlayer = GetPerformancePlayer();
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            foreach (VNCPhidgetConfig.Performance performance in SelectedPerformances)
+            foreach (Performance performance in SelectedPerformances)
             {
                 if (LogPerformance)
                 {
@@ -1502,7 +1503,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
                 }
 
-                VNCPhidgetConfig.Performance? nextPerformance = performance;
+                Performance? nextPerformance = performance;
 
                 // NOTE(crhodes)
                 // Why would we need to check given UI brought us here.
@@ -1632,7 +1633,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            foreach (DeviceClassSequence sequence in SelectedAdvancedServoSequences)
+            foreach (ChannelClassSequence sequence in SelectedAdvancedServoSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
@@ -1643,7 +1644,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = sequence.DeviceClass,
+                            DeviceClass = sequence.ChannelClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -1753,7 +1754,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedRCServo.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = "RCServo",
+                            DeviceClass = "RCServo",
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -2037,7 +2038,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = "Acceleration(5000) VelocityLimit(1000)",
-                            SequenceType = "AS"
+                            DeviceClass = "AS"
                         };
                     break;
 
@@ -2048,7 +2049,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = "Acceleration(500) VelocityLimit(100)",
-                            SequenceType = "AS"
+                            DeviceClass = "AS"
                         };
                     break;
             }
@@ -2266,7 +2267,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            foreach (DeviceClassSequence sequence in SelectedInterfaceKitSequences)
+            foreach (ChannelClassSequence sequence in SelectedInterfaceKitSequences)
             {
                 if (LogPerformanceSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
@@ -2277,7 +2278,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedInterfaceKit.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = sequence.DeviceClass,
+                            DeviceClass = sequence.ChannelClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -2499,7 +2500,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedStepper.SerialNumber,
                             Name = sequence.Name,
-                            SequenceType = sequence.DeviceClass,
+                            DeviceClass = sequence.ChannelClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 

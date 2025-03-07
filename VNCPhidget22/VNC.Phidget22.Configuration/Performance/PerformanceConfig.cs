@@ -12,20 +12,20 @@
         /// </summary>
         public string Description { get; set; } = "PerformanceConfig DESCRIPTION";
 
-        public Performance[] Performances { get; set; } = new[] // PerformanceSequence[0];
+        public Performance.Performance[] Performances { get; set; } = new[] // PerformanceSequence[0];
         {
-            new Performance
+            new Performance.Performance
             {
                 Name = "psbc21_AS Performance 1",
                 Description = "psbc21_AS Performance 1 Description",
 
                 PerformanceSequences = new[] // PerformanceSequence[0];
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0", SequenceType = "AS" },
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0P Configure and Engage", SequenceType = "AS" }
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0P Configure and Engage", DeviceClass = "AS" }
                 }
             },
-            new Performance
+            new Performance.Performance
             {
                 Name = "IK Performance 1",
                 Description = "psbc{21,22,23}_SequenceIK 1 in Parallel",
@@ -33,23 +33,23 @@
 
                 PerformanceSequences = new[]
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", SequenceType = "IK" },
-                    new PerformanceSequence { Name = "psbc22_SequenceIK 1", SequenceType = "IK" },
-                    new PerformanceSequence { Name = "psbc23_SequenceIK 1", SequenceType = "IK" }
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" },
+                    new PerformanceSequence { Name = "psbc22_SequenceIK 1", DeviceClass = "IK" },
+                    new PerformanceSequence { Name = "psbc23_SequenceIK 1", DeviceClass = "IK" }
                 }
             },
-            new Performance
+            new Performance.Performance
             {
                 Name = "AS and IK",
                 Description = "psbc21_{SequenceServo0,SequenceIK 1} in Sequence",
 
                 PerformanceSequences = new[]
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0", SequenceType = "AS" },
-                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", SequenceType = "IK" }
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
                 }
             },
-            new Performance
+            new Performance.Performance
             {
                 Name = "AS and IK Parallel",
                 Description = "psbc21_{SequenceServo0,SequenceIK 1} in Parallel",
@@ -57,8 +57,8 @@
 
                 PerformanceSequences = new[]
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0", SequenceType = "AS" },
-                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", SequenceType = "IK" }
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
                 }
             }
         };

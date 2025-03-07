@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 using VNC.Phidget22.Ex;
 
 namespace VNC.Phidget22.Players
@@ -120,7 +121,7 @@ namespace VNC.Phidget22.Players
                 {
                     startTicks = Log.Trace($"Executing Performance Sequence" +
                         $" name:>{performanceSequence?.Name}<" +
-                        $" type:>{performanceSequence?.SequenceType}<" +
+                        $" type:>{performanceSequence?.DeviceClass}<" +
                         $" loops:>{performanceSequence?.SequenceLoops}<" +
                         $" duration:>{performanceSequence?.Duration}<" +
                         $" closePhidget:>{performanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
@@ -136,7 +137,7 @@ namespace VNC.Phidget22.Players
 
                     do
                     {
-                        switch (nextPerformanceSequence.SequenceType)   // DeviceClass
+                        switch (nextPerformanceSequence.DeviceClass)   // DeviceClass
                         {
                              case "DigitalOutput":
                                 nextPerformanceSequence = await ExecuteDigitalOutputPerformanceSequence(nextPerformanceSequence);
@@ -151,7 +152,7 @@ namespace VNC.Phidget22.Players
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.SequenceType}<", Common.LOG_CATEGORY);
+                                Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.DeviceClass}<", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                                 break;
                         }

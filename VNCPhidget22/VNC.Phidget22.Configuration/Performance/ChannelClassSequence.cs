@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace VNC.Phidget22.Configuration
+namespace VNC.Phidget22.Configuration.Performance
 {
-    public class DeviceClassSequence
+    public class ChannelClassSequence
     {
-        public DeviceClassSequence(string deviceClass)
+        public ChannelClassSequence(string channelClass)
         {
-            DeviceClass = deviceClass;
+            ChannelClass = channelClass;
         }
 
         ///// <summary>
@@ -25,7 +25,7 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public string Name { get; set; } = "SEQUENCE NAME";
 
-        public string DeviceClass { get; } = "Generic";
+        public string ChannelClass { get; } = "Generic";
 
         /// <summary>
         /// PhidgetChannel
@@ -45,7 +45,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Number of loops of sequence to execute
         /// </summary>
-        public Int32 SequenceLoops { get; set; } = 1;
+        public int SequenceLoops { get; set; } = 1;
 
         /// <summary>
         /// PerformanceSequence[] to call before executing Actions
@@ -60,17 +60,17 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Number of loops of sequence Actions[] to execute
         /// </summary>
-        public Int32 ActionLoops { get; set; } = 1;
+        public int ActionLoops { get; set; } = 1;
 
         /// <summary>
         /// Play Actions[] in Parallel or Sequentially (false)
         /// </summary>
-        public Boolean ExecuteActionsInParallel { get; set; } = false;
+        public bool ExecuteActionsInParallel { get; set; } = false;
 
         /// <summary>
         /// Duration of Action[] in ms (sleep time after Actions completed)
         /// </summary>
-        public Int32? ActionsDuration { get; set; }
+        public int? ActionsDuration { get; set; }
 
         /// <summary>
         /// PerformanceSequence[] to call at start of each SequenceLoop
@@ -86,7 +86,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Duration of Action[] in ms (sleep time after Actions completed)
         /// </summary>
-        public Int32? SequenceDuration { get; set; }
+        public int? SequenceDuration { get; set; }
 
         /// <summary>
         /// PerformanceSequence to invoke at end of sequence loops (optional)

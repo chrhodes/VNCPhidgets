@@ -1,4 +1,4 @@
-using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22.Events
 {

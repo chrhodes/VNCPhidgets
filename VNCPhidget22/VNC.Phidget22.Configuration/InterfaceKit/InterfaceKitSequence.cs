@@ -1,6 +1,8 @@
-﻿namespace VNC.Phidget22.Configuration
+﻿using VNC.Phidget22.Configuration.Performance;
+
+namespace VNC.Phidget22.Configuration
 {
-    public class InterfaceKitSequence : DeviceClassSequence
+    public class InterfaceKitSequence : ChannelClassSequence
     {
         public InterfaceKitSequence() : base("InterfaceKit")
         {

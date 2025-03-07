@@ -11,6 +11,8 @@ using VNC.Phidget22.Events;
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
 
+using VNCPhidgetConfig = VNC.Phidget22.Configuration;
+
 namespace VNC.Phidget22.Ex
 {
     public class VoltageInputEx : Phidgets.VoltageInput, INotifyPropertyChanged
@@ -856,6 +858,22 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
+        public async void RaisePlayPerformanceEvent()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RaisePlayPerformanceEvent) Enter", Common.LOG_CATEGORY);
+
+            VNCPhidgetConfig.Performance.Performance performance = new VNCPhidgetConfig.Performance.Performance();
+            performance.Name = "Sequential Sequences InterfaceKit 124744";
+
+            _eventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+                new PerformanceEventArgs()
+                {
+                    Performance = performance
+                });
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RaisePlayPerformanceEvent) Exit", Common.LOG_CATEGORY, startTicks);
+        }
         // FIX(crhodes)
         // 
         //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)

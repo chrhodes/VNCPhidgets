@@ -14,7 +14,7 @@ using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 using VNC.Phidget22;
-using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 using VNCPhidget22Explorer.Presentation.Views;
 

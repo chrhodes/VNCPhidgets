@@ -38,7 +38,7 @@
             {
                 //SerialNumber = 48301,
                 Name="psbc21_SequenceIK 1",
-                NextSequence = new PerformanceSequence { Name = "psbc22_SequenceIK 1", SequenceType = "IK" },
+                NextSequence = new PerformanceSequence { Name = "psbc22_SequenceIK 1", DeviceClass = "IK" },
 
                 Actions = new[]
                 {
@@ -70,7 +70,7 @@
             {
                 //SerialNumber = 251831,
                 Name="psbc22_SequenceIK 1",
-                NextSequence = new PerformanceSequence { Name = "psbc23_SequenceIK 1", SequenceType = "IK" },
+                NextSequence = new PerformanceSequence { Name = "psbc23_SequenceIK 1", DeviceClass = "IK" },
 
                 Actions = new[]
                 {

@@ -13,7 +13,7 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
-using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
 
@@ -81,8 +81,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private IEnumerable<VNCPhidgetConfig.Performance> _performances;
-        public IEnumerable<VNCPhidgetConfig.Performance> Performances
+        private IEnumerable<Performance> _performances;
+        public IEnumerable<Performance> Performances
         {
             get => _performances;
             set
@@ -92,8 +92,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.Performance? _selectedPerformance;
-        public VNCPhidgetConfig.Performance? SelectedPerformance
+        private Performance? _selectedPerformance;
+        public Performance? SelectedPerformance
         {
             get => _selectedPerformance;
             set
@@ -113,39 +113,69 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.Performance? _playPerformanceEventPerformance;
-        public VNCPhidgetConfig.Performance? PlayPerformanceEventPerformance
+        private Performance? _eventPerformance;
+        public Performance? EventPerformance
         {
-            get => _playPerformanceEventPerformance;
+            get => _eventPerformance;
             set
             {
-                if (_playPerformanceEventPerformance == value)
+                if (_eventPerformance == value)
                 {
                     return;
                 }
 
-                _playPerformanceEventPerformance = value;
+                _eventPerformance = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private VNCPhidgetConfig.PerformanceSequence? _eventPerformanceSequence;
+        public VNCPhidgetConfig.PerformanceSequence? EventPerformanceSequence
+        {
+            get => _eventPerformanceSequence;
+            set
+            {
+                if (_eventPerformanceSequence == value)
+                {
+                    return;
+                }
+
+                _eventPerformanceSequence = value;
                 OnPropertyChanged();
             }
         }
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
+
         void PlayPerformance(PerformanceEventArgs eventArgs)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.Info($"Enter", Common.LOG_CATEGORY);
 
-            PlayPerformanceEventPerformance = eventArgs.Performance;
+            EventPerformance = eventArgs.Performance;
 
             PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator);
 
-            performancePlayer.PlayPerformance(PlayPerformanceEventPerformance);
+            performancePlayer.PlayPerformance(EventPerformance);
 
             if (Common.VNCLogging.EventHandler) Log.Info($"Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        void PlayPerformanceSequence(SequenceEventArgs eventArgs)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.Info($"Enter", Common.LOG_CATEGORY);
+
+            //EventPerformanceSequence = eventArgs.DigitalOutputSequence;
+
+            //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
+
+            //performanceSequencePlayer.ExecutePerformanceSequence(eventArgs.DigitalOutputSequence);
+
+            if (Common.VNCLogging.EventHandler) Log.Info($"Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         #endregion
 
