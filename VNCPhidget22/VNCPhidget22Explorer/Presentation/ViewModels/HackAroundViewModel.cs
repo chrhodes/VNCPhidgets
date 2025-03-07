@@ -1644,7 +1644,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = sequence.Name,
-                            DeviceClass = sequence.ChannelClass,
+                            ChannelClass = sequence.ChannelClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -1754,7 +1754,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedRCServo.SerialNumber,
                             Name = sequence.Name,
-                            DeviceClass = "RCServo",
+                            ChannelClass = "RCServo",
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -2038,7 +2038,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = "Acceleration(5000) VelocityLimit(1000)",
-                            DeviceClass = "AS"
+                            ChannelClass = "AS"
                         };
                     break;
 
@@ -2049,7 +2049,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = "Acceleration(500) VelocityLimit(100)",
-                            DeviceClass = "AS"
+                            ChannelClass = "AS"
                         };
                     break;
             }
@@ -2278,7 +2278,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedInterfaceKit.SerialNumber,
                             Name = sequence.Name,
-                            DeviceClass = sequence.ChannelClass,
+                            ChannelClass = sequence.ChannelClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 
@@ -2500,7 +2500,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         {
                             SerialNumber = SelectedStepper.SerialNumber,
                             Name = sequence.Name,
-                            DeviceClass = sequence.ChannelClass,
+                            ChannelClass = sequence.ChannelClass,
                             SequenceLoops = sequence.SequenceLoops
                         };
 

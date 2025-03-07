@@ -121,7 +121,7 @@ namespace VNC.Phidget22.Players
                 {
                     startTicks = Log.Trace($"Executing Performance Sequence" +
                         $" name:>{performanceSequence?.Name}<" +
-                        $" type:>{performanceSequence?.DeviceClass}<" +
+                        $" type:>{performanceSequence?.ChannelClass}<" +
                         $" loops:>{performanceSequence?.SequenceLoops}<" +
                         $" duration:>{performanceSequence?.Duration}<" +
                         $" closePhidget:>{performanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
@@ -137,7 +137,7 @@ namespace VNC.Phidget22.Players
 
                     do
                     {
-                        switch (nextPerformanceSequence.DeviceClass)   // DeviceClass
+                        switch (nextPerformanceSequence.ChannelClass)   // DeviceClass
                         {
                              case "DigitalOutput":
                                 nextPerformanceSequence = await ExecuteDigitalOutputPerformanceSequence(nextPerformanceSequence);
@@ -152,7 +152,7 @@ namespace VNC.Phidget22.Players
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.DeviceClass}<", Common.LOG_CATEGORY);
+                                Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.ChannelClass}<", Common.LOG_CATEGORY);
                                 nextPerformanceSequence = null;
                                 break;
                         }

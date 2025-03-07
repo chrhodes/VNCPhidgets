@@ -21,8 +21,8 @@
 
                 PerformanceSequences = new[] // PerformanceSequence[0];
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0P Configure and Engage", DeviceClass = "AS" }
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", ChannelClass = "AS" },
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0P Configure and Engage", ChannelClass = "AS" }
                 }
             },
             new Performance.Performance
@@ -33,9 +33,9 @@
 
                 PerformanceSequences = new[]
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" },
-                    new PerformanceSequence { Name = "psbc22_SequenceIK 1", DeviceClass = "IK" },
-                    new PerformanceSequence { Name = "psbc23_SequenceIK 1", DeviceClass = "IK" }
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", ChannelClass = "IK" },
+                    new PerformanceSequence { Name = "psbc22_SequenceIK 1", ChannelClass = "IK" },
+                    new PerformanceSequence { Name = "psbc23_SequenceIK 1", ChannelClass = "IK" }
                 }
             },
             new Performance.Performance
@@ -45,8 +45,8 @@
 
                 PerformanceSequences = new[]
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
-                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", ChannelClass = "AS" },
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", ChannelClass = "IK" }
                 }
             },
             new Performance.Performance
@@ -57,8 +57,8 @@
 
                 PerformanceSequences = new[]
                 {
-                    new PerformanceSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
-                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
+                    new PerformanceSequence { Name = "psbc21_SequenceServo0", ChannelClass = "AS" },
+                    new PerformanceSequence { Name = "psbc21_SequenceIK 1", ChannelClass = "IK" }
                 }
             }
         };

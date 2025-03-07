@@ -16,9 +16,9 @@ namespace VNC.Phidget22.Configuration
 
         /// <summary>
         /// Type of DeviceClassSequence. 
-        /// Set to DeviceClass from DeviceClassSequence derviced types.
+        /// Set to DeviceClass from DeviceClassSequence dervied types.
         /// </summary>
-        public string DeviceClass { get; set; }
+        public string ChannelClass { get; set; }
 
         /// <summary>
         /// Number of loops of Sequence
