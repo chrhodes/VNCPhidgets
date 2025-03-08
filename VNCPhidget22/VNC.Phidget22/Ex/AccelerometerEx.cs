@@ -437,8 +437,6 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
-        // FIX(crhodes)
-        // 
         private async Task PerformAction(AccelerometerAction action)
         {
             Int64 startTicks = 0;
@@ -469,6 +467,9 @@ namespace VNC.Phidget22.Ex
                 #endregion
 
                 #region Accelerometer Actions
+
+                // TODO(crhodes)
+                // Implement
 
                 #endregion
 

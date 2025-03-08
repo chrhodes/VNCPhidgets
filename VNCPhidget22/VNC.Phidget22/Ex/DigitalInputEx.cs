@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -422,7 +423,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
+        public async Task RunActionLoops(DigitalInputSequence digtialInputSequence)
         {
             try
             {
@@ -432,19 +433,19 @@ namespace VNC.Phidget22.Ex
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" interfaceKitSequence:>{interfaceKitSequence.Name}<" +
-                        $" startActionLoopSequences:>{interfaceKitSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{interfaceKitSequence.ActionLoops}<" +
-                        $" actions:>{interfaceKitSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{interfaceKitSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{interfaceKitSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" digtialInputSequence:>{digtialInputSequence.Name}<" +
+                        $" startActionLoopSequences:>{digtialInputSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{digtialInputSequence.ActionLoops}<" +
+                        $" actions:>{digtialInputSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{digtialInputSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{digtialInputSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
-                if (interfaceKitSequence.Actions is not null)
+                if (digtialInputSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
+                    for (int actionLoop = 0; actionLoop < digtialInputSequence.ActionLoops; actionLoop++)
                     {
-                        if (interfaceKitSequence.StartActionLoopSequences is not null)
+                        if (digtialInputSequence.StartActionLoopSequences is not null)
                         {
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
@@ -453,17 +454,17 @@ namespace VNC.Phidget22.Ex
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
+                            foreach (PerformanceSequence sequence in digtialInputSequence.StartActionLoopSequences)
                             {
                                 await player.ExecutePerformanceSequence(sequence);
                             }
                         }
 
-                        if (interfaceKitSequence.ExecuteActionsInParallel)
+                        if (digtialInputSequence.ExecuteActionsInParallel)
                         {
                             if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(interfaceKitSequence.Actions, async action =>
+                            Parallel.ForEach(digtialInputSequence.Actions, async action =>
                             {
                                 // TODO(crhodes)
                                 // Decide if want to close everything or pass in config to only open what we need
@@ -474,7 +475,7 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
+                            foreach (DigitalInputAction action in digtialInputSequence.Actions)
                             {
                                 // FIX(crhodes)
                                 // 
@@ -482,22 +483,22 @@ namespace VNC.Phidget22.Ex
                             }
                         }
 
-                        if (interfaceKitSequence.ActionsDuration is not null)
+                        if (digtialInputSequence.ActionsDuration is not null)
                         {
                             if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{digtialInputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((int)interfaceKitSequence.ActionsDuration);
+                            Thread.Sleep((int)digtialInputSequence.ActionsDuration);
                         }
 
-                        if (interfaceKitSequence.EndActionLoopSequences is not null)
+                        if (digtialInputSequence.EndActionLoopSequences is not null)
                         {
                             PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
+                            foreach (PerformanceSequence sequence in digtialInputSequence.EndActionLoopSequences)
                             {
                                 await player.ExecutePerformanceSequence(sequence);
                             }
@@ -523,66 +524,65 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
-        // FIX(crhodes)
-        // 
-        //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
-        //{
-        //    Int64 startTicks = 0;
+        private async Task PerformAction(DigitalInputAction action)
+        {
+            Int64 startTicks = 0;
 
-        //    StringBuilder actionMessage = new StringBuilder();
+            StringBuilder actionMessage = new StringBuilder();
 
-        //    if (LogSequenceAction)
-        //    {
-        //        startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
-        //        actionMessage.Append($"index:{index}");
-        //    }
+            if (LogSequenceAction)
+            {
+                startTicks = Log.Trace($"Enter digitalInputAction:{Channel}", Common.LOG_CATEGORY);
+                actionMessage.Append($"digitalInputAction:{Channel}");
+            }
 
-        //    try
-        //    {
-        // NOTE(crhodes)
-        // First make any logging changes
+            try
+            {
+                // NOTE(crhodes)
+                // First make any logging changes
 
-        //        #region Logging
+                #region Logging
 
-        //        if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean) action.LogPhidgetEvents;
-        //        if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean) action.LogErrorEvents;
-        //        if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean) action.LogPropertyChangeEvents;
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-        //        if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean) action.LogPositionChangeEvents;
-        //        if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean) action.LogVelocityChangeEvents;
-        //        if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean) action.LogTargetPositionReachedEvents;
+                //if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean)action.LogPositionChangeEvents;
+                //if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
+                //if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
 
-        //        if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean) action.LogPerformanceSequence;
-        //        if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean) action.LogSequenceAction;
-        //        if (action.LogActionVerification is not null) LogActionVerification = (Boolean) action.LogActionVerification;
+                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
-        //#endregion
-        //        if (action.DigitalOut is not null)
-        //        { 
-        //            if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+                #endregion
 
-        //            ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
-        //        }
+                #region DigitalInput Actions
 
-        //        if (action.Duration > 0)
-        //        {
-        //            if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+                // TODO(crhodes)
+                // Implement
 
-        //            Thread.Sleep((Int32)action.Duration);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //    finally
-        //    {
-        //        if (LogSequenceAction)
-        //        {
-        //            Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-        //        }
-        //    }
-        //}
+                #endregion
+
+                if (action.Duration > 0)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+        }
 
         #endregion
 

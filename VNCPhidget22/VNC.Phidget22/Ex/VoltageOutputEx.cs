@@ -1,12 +1,16 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
+using VNC.Phidget22.Players;
 
 using Phidgets = Phidget22;
 using PhidgetsEvents = Phidget22.Events;
@@ -436,90 +440,90 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
+        public async Task RunActionLoops(VoltageOutputSequence voltageOutputSequence)
         {
             try
             {
-                //        Int64 startTicks = 0;
+                Int64 startTicks = 0;
 
-                //        if (LogSequenceAction)
-                //        {
-                //            startTicks = Log.Trace(
-                //                $"Running Action Loops" +
-                //                $" interfaceKitSequence:>{interfaceKitSequence.Name}<" +
-                //                $" startActionLoopSequences:>{interfaceKitSequence.StartActionLoopSequences?.Count()}<" +
-                //                $" actionLoops:>{interfaceKitSequence.ActionLoops}<" +
-                //                $" actions:>{interfaceKitSequence.Actions.Count()}<" +
-                //                $" actionsDuration:>{interfaceKitSequence?.ActionsDuration}<" +
-                //                $" endActionLoopSequences:>{interfaceKitSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
-                //        }
+                if (LogSequenceAction)
+                {
+                    startTicks = Log.Trace(
+                        $"Running Action Loops" +
+                        $" voltageOutputSequence:>{voltageOutputSequence.Name}<" +
+                        $" startActionLoopSequences:>{voltageOutputSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{voltageOutputSequence.ActionLoops}<" +
+                        $" actions:>{voltageOutputSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{voltageOutputSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{voltageOutputSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                }
 
-                //        if (interfaceKitSequence.Actions is not null)
-                //        {
-                //            for (int actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
-                //            {
-                //                if (interfaceKitSequence.StartActionLoopSequences is not null)
-                //                {
-                //                    // TODO(crhodes)
-                //                    // May want to create a new player instead of reaching for the property.
+                if (voltageOutputSequence.Actions is not null)
+                {
+                    for (int actionLoop = 0; actionLoop < voltageOutputSequence.ActionLoops; actionLoop++)
+                    {
+                        if (voltageOutputSequence.StartActionLoopSequences is not null)
+                        {
+                            // TODO(crhodes)
+                            // May want to create a new player instead of reaching for the property.
 
-                //                    PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
-                //                    player.LogPerformanceSequence = LogPerformanceSequence;
-                //                    player.LogSequenceAction = LogSequenceAction;
+                            PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogSequenceAction = LogSequenceAction;
 
-                //                    foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
-                //                    {
-                //                        await player.ExecutePerformanceSequence(sequence);
-                //                    }
-                //                }
+                            foreach (PerformanceSequence sequence in voltageOutputSequence.StartActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
 
-                //                if (interfaceKitSequence.ExecuteActionsInParallel)
-                //                {
-                //                    if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                        if (voltageOutputSequence.ExecuteActionsInParallel)
+                        {
+                            if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                //                    Parallel.ForEach(interfaceKitSequence.Actions, async action =>
-                //                    {
-                //                        // TODO(crhodes)
-                //                        // Decide if want to close everything or pass in config to only open what we need
-                //                        //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
-                //                    });
-                //                }
-                //                else
-                //                {
-                //                    if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            Parallel.ForEach(voltageOutputSequence.Actions, async action =>
+                            {
+                                // TODO(crhodes)
+                                // Decide if want to close everything or pass in config to only open what we need
+                                //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                            });
+                        }
+                        else
+                        {
+                            if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                //                    foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
-                //                    {
-                //                        // FIX(crhodes)
-                //                        // 
-                //                        //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
-                //                    }
-                //                }
+                            foreach (VoltageOutputAction action in voltageOutputSequence.Actions)
+                            {
+                                // FIX(crhodes)
+                                // 
+                                //await PerformAction(InterfaceKit.outputs, action, action.DigitalOutIndex);
+                            }
+                        }
 
-                //                if (interfaceKitSequence.ActionsDuration is not null)
-                //                {
-                //                    if (LogSequenceAction)
-                //                    {
-                //                        Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
-                //                    }
-                //                    Thread.Sleep((Int32)interfaceKitSequence.ActionsDuration);
-                //                }
+                        if (voltageOutputSequence.ActionsDuration is not null)
+                        {
+                            if (LogSequenceAction)
+                            {
+                                Log.Trace($"Zzzzz Action:>{voltageOutputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                            }
+                            Thread.Sleep((Int32)voltageOutputSequence.ActionsDuration);
+                        }
 
-                //                if (interfaceKitSequence.EndActionLoopSequences is not null)
-                //                {
-                //                    PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
-                //                    player.LogPerformanceSequence = LogPerformanceSequence;
-                //                    player.LogSequenceAction = LogSequenceAction;
+                        if (voltageOutputSequence.EndActionLoopSequences is not null)
+                        {
+                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
+                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            player.LogSequenceAction = LogSequenceAction;
 
-                //                    foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
-                //                    {
-                //                        await player.ExecutePerformanceSequence(sequence);
-                //                    }
-                //                }
-                //            }
-                //        }
+                            foreach (PerformanceSequence sequence in voltageOutputSequence.EndActionLoopSequences)
+                            {
+                                await player.ExecutePerformanceSequence(sequence);
+                            }
+                        }
+                    }
+                }
 
-                //        if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -539,64 +543,65 @@ namespace VNC.Phidget22.Ex
 
         // FIX(crhodes)
         // 
-        //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
-        //{
-        //    Int64 startTicks = 0;
+        private async Task PerformAction(VoltageOutputAction action)
+        {
+            Int64 startTicks = 0;
 
-        //    StringBuilder actionMessage = new StringBuilder();
+            StringBuilder actionMessage = new StringBuilder();
 
-        //    if (LogSequenceAction)
-        //    {
-        //        startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
-        //        actionMessage.Append($"index:{index}");
-        //    }
+            if (LogSequenceAction)
+            {
+                startTicks = Log.Trace($"Enter voltageOutput:{Channel}", Common.LOG_CATEGORY);
+                actionMessage.Append($"voltageOutput:{Channel}");
+            }
 
-        //    try
-        //    {
-        // NOTE(crhodes)
-        // First make any logging changes
+            try
+            {
+                // NOTE(crhodes)
+                // First make any logging changes
 
-        //        #region Logging
+                #region Logging
 
-        //        if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean) action.LogPhidgetEvents;
-        //        if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean) action.LogErrorEvents;
-        //        if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean) action.LogPropertyChangeEvents;
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-        //        if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean) action.LogPositionChangeEvents;
-        //        if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean) action.LogVelocityChangeEvents;
-        //        if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean) action.LogTargetPositionReachedEvents;
+                //if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean)action.LogPositionChangeEvents;
+                //if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
+                //if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
 
-        //        if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean) action.LogPerformanceSequence;
-        //        if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean) action.LogSequenceAction;
-        //        if (action.LogActionVerification is not null) LogActionVerification = (Boolean) action.LogActionVerification;
+                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
-        //#endregion
-        //        if (action.DigitalOut is not null)
-        //        { 
-        //            if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+                #endregion
 
-        //            ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
-        //        }
+                #region VoltageOutput Actions
 
-        //        if (action.Duration > 0)
-        //        {
-        //            if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+                // TODO(crhodes)
+                // Implement
 
-        //            Thread.Sleep((Int32)action.Duration);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
-        //    }
-        //    finally
-        //    {
-        //        if (LogSequenceAction)
-        //        {
-        //            Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-        //        }
-        //    }
-        //}
+                #endregion
+
+                if (action.Duration > 0)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+        }
 
         #endregion
 

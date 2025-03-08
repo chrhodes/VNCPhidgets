@@ -470,6 +470,9 @@ namespace VNC.Phidget22.Ex
 
                 #region EncoderEx Actions
 
+                // TODO(crhodes)
+                // Implement
+
                 #endregion
 
                 if (action.Duration > 0)

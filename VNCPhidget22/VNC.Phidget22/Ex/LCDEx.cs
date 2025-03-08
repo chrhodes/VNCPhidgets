@@ -470,6 +470,9 @@ namespace VNC.Phidget22.Ex
 
                 #region LCDEx Actions
 
+                // TODO(crhodes)
+                // Implement
+
                 #endregion
 
                 if (action.Duration > 0)

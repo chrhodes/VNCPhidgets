@@ -470,6 +470,9 @@ namespace VNC.Phidget22.Ex
 
                 #region HumiditySensorEx Actions
 
+                // TODO(crhodes)
+                // Implement
+
                 #endregion
 
                 if (action.Duration > 0)

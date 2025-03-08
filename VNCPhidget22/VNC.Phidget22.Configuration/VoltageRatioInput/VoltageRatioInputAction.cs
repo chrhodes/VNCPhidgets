@@ -19,6 +19,9 @@ namespace VNC.Phidget22.Configuration
 
         #endregion
 
-
+        /// <summary>
+        /// Duration of step in ms (sleep time after step)
+        /// </summary>
+        public Int32? Duration { get; set; } // ms
     }
 }

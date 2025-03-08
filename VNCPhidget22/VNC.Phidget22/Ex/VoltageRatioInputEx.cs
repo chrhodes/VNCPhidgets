@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -822,7 +823,7 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
+        public async Task RunActionLoops(VoltageRatioInputSequence voltageRatioInputSequence)
         {
             try
             {
@@ -913,7 +914,7 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-                #endregion
+        #endregion
 
         #region Protected Methods (none)
 
@@ -923,70 +924,69 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
-                // FIX(crhodes)
-                // 
-                //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
-                //{
-                //    Int64 startTicks = 0;
+        private async Task PerformAction(VoltageRatioInputAction action)
+        {
+            Int64 startTicks = 0;
 
-                //    StringBuilder actionMessage = new StringBuilder();
+            StringBuilder actionMessage = new StringBuilder();
 
-                //    if (LogSequenceAction)
-                //    {
-                //        startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
-                //        actionMessage.Append($"index:{index}");
-                //    }
+            if (LogSequenceAction)
+            {
+                startTicks = Log.Trace($"Enter voltageRatioInput:{Channel}", Common.LOG_CATEGORY);
+                actionMessage.Append($"voltageRatioInput:{Channel}");
+            }
 
-                //    try
-                //    {
+            try
+            {
                 // NOTE(crhodes)
                 // First make any logging changes
 
-                //        #region Logging
+                #region Logging
 
-                //        if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean) action.LogPhidgetEvents;
-                //        if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean) action.LogErrorEvents;
-                //        if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean) action.LogPropertyChangeEvents;
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                //        if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean) action.LogPositionChangeEvents;
-                //        if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean) action.LogVelocityChangeEvents;
-                //        if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean) action.LogTargetPositionReachedEvents;
+                //if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean)action.LogPositionChangeEvents;
+                //if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
+                //if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
 
-                //        if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean) action.LogPerformanceSequence;
-                //        if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean) action.LogSequenceAction;
-                //        if (action.LogActionVerification is not null) LogActionVerification = (Boolean) action.LogActionVerification;
+                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
-                //#endregion
-                //        if (action.DigitalOut is not null)
-                //        { 
-                //            if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+                #endregion
 
-                //            ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
-                //        }
+                #region VoltageRatioInput Actions
 
-                //        if (action.Duration > 0)
-                //        {
-                //            if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+                // TODO(crhodes)
+                // Implement
 
-                //            Thread.Sleep((Int32)action.Duration);
-                //        }
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Log.Error(ex, Common.LOG_CATEGORY);
-                //    }
-                //    finally
-                //    {
-                //        if (LogSequenceAction)
-                //        {
-                //            Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-                //        }
-                //    }
-                //}
+                #endregion
 
-        #endregion
+                if (action.Duration > 0)
+                {
+                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
 
-        #region INotifyPropertyChanged
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogSequenceAction)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+        }
+
+            #endregion
+
+            #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
