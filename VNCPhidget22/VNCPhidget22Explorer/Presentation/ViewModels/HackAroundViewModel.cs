@@ -50,7 +50,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Button1Command = new DelegateCommand(Button1Execute);
             Button2Command = new DelegateCommand(Button2Execute);
             Button3Command = new DelegateCommand(Button3Execute);
-            Button4Command = new DelegateCommand(Button4Execute);
+            //Button4Command = new DelegateCommand(Button4Execute);
             Button5Command = new DelegateCommand(Button5Execute);
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
@@ -1350,35 +1350,35 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button3Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void Button4Execute()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button4Execute) Enter", Common.LOG_CATEGORY);
+        //private void Button4Execute()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button4Execute) Enter", Common.LOG_CATEGORY);
 
-            Message = "Button4 Clicked";
+        //    Message = "Button4 Clicked";
 
-            SequenceEventArgs sequenceEventArgs = new SequenceEventArgs();
+        //    SequenceEventArgs sequenceEventArgs = new SequenceEventArgs();
 
-            sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
-            {
-                //SerialNumber = 99415,
-                Name = "psbc21_SequenceServo0",
-                Actions = new[]
-                {
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
-                    new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
-                }
-            };
+        //    sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
+        //    {
+        //        //SerialNumber = 99415,
+        //        Name = "psbc21_SequenceServo0",
+        //        Actions = new[]
+        //        {
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
+        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
+        //        }
+        //    };
 
-            EventAggregator.GetEvent<VNC.Phidget22.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
+        //    EventAggregator.GetEvent<VNC.Phidget22.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button4Execute) Exit", Common.LOG_CATEGORY, startTicks);
-        }
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button4Execute) Exit", Common.LOG_CATEGORY, startTicks);
+        //}
 
         //#region Reload Config Files
 
@@ -1639,8 +1639,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 try
                 {
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
-                        new VNCPhidgetConfig.PerformanceSequence
+                    VNCPhidgetConfig.DeviceClassSequence? nextPerformanceSequence =
+                        new VNCPhidgetConfig.DeviceClassSequence
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = sequence.Name,
@@ -1749,8 +1749,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 try
                 {
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
-                        new VNCPhidgetConfig.PerformanceSequence
+                    VNCPhidgetConfig.DeviceClassSequence? nextPerformanceSequence =
+                        new VNCPhidgetConfig.DeviceClassSequence
                         {
                             SerialNumber = SelectedRCServo.SerialNumber,
                             Name = sequence.Name,
@@ -2027,14 +2027,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-            VNCPhidgetConfig.PerformanceSequence? advancedServoSequence = null;
+            VNCPhidgetConfig.DeviceClassSequence? advancedServoSequence = null;
 
             switch (speed)
             {
                 case "Fast":
 
                     advancedServoSequence =
-                        new VNCPhidgetConfig.PerformanceSequence
+                        new VNCPhidgetConfig.DeviceClassSequence
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = "Acceleration(5000) VelocityLimit(1000)",
@@ -2045,7 +2045,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 case "Slow":
 
                     advancedServoSequence =
-                        new VNCPhidgetConfig.PerformanceSequence
+                        new VNCPhidgetConfig.DeviceClassSequence
                         {
                             SerialNumber = SelectedAdvancedServo.SerialNumber,
                             Name = "Acceleration(500) VelocityLimit(100)",
@@ -2273,8 +2273,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 try
                 {
-                    PerformanceSequence? nextPerformanceSequence =
-                        new PerformanceSequence
+                    DeviceClassSequence? nextPerformanceSequence =
+                        new DeviceClassSequence
                         {
                             SerialNumber = SelectedInterfaceKit.SerialNumber,
                             Name = sequence.Name,
@@ -2495,8 +2495,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 try
                 {
-                    VNCPhidgetConfig.PerformanceSequence? nextPerformanceSequence =
-                        new VNCPhidgetConfig.PerformanceSequence
+                    VNCPhidgetConfig.DeviceClassSequence? nextPerformanceSequence =
+                        new VNCPhidgetConfig.DeviceClassSequence
                         {
                             SerialNumber = SelectedStepper.SerialNumber,
                             Name = sequence.Name,

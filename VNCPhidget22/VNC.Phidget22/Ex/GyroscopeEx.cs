@@ -370,7 +370,7 @@ namespace VNC.Phidget22.Ex
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PerformanceSequence sequence in GyroscopeSequence.StartActionLoopSequences)
+                            foreach (DeviceClassSequence sequence in GyroscopeSequence.StartActionLoopSequences)
                             {
                                 await player.ExecutePerformanceSequence(sequence);
                             }
@@ -411,7 +411,7 @@ namespace VNC.Phidget22.Ex
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PerformanceSequence sequence in GyroscopeSequence.EndActionLoopSequences)
+                            foreach (DeviceClassSequence sequence in GyroscopeSequence.EndActionLoopSequences)
                             {
                                 await player.ExecutePerformanceSequence(sequence);
                             }

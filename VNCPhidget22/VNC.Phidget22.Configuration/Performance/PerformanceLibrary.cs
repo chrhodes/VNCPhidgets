@@ -80,8 +80,8 @@ namespace VNC.Phidget22.Configuration.Performance
         public static Dictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences { get; set; } =
             new Dictionary<string, DigitalOutputSequence>();
 
-        public static Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; } =
-            new Dictionary<string, InterfaceKitSequence>();
+        //public static Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; } =
+        //    new Dictionary<string, InterfaceKitSequence>();
 
         public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
             new Dictionary<string, RCServoSequence>();

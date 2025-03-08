@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class PerformanceSequence
+    public class DeviceClassSequence
     {
         /// <summary>
         /// Name of Sequence
@@ -10,15 +10,17 @@ namespace VNC.Phidget22.Configuration
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
-        /// SerialNumber of PhidgetDevice that will run PerformanceSequence
+        /// SerialNumber of PhidgetDevice that will run sequencee
         /// </summary>
         public Int32 SerialNumber { get; set; }
 
+        // NOTE(crhodes)
+        // Not sure we need this as SerialNumber is unique to device
+        // and we likely look things up by Host,SerialNumber
         /// <summary>
-        /// Type of DeviceClassSequence. 
-        /// Set to DeviceClass from DeviceClassSequence dervied types.
+        /// Phidget DeviceClass
         /// </summary>
-        public string ChannelClass { get; set; }
+        public string DeviceClass { get; set; } = "Generic";
 
         /// <summary>
         /// Number of loops of Sequence

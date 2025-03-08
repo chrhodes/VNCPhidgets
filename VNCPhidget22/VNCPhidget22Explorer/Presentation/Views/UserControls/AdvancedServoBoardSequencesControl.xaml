@@ -113,17 +113,17 @@
                 <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
 
                     <dxe:ComboBoxEdit Width="150" 
-                                    ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedAdvancedServo}"
-                                    SelectedIndex="0"/>
+                        ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
+                        SelectedItem="{Binding SelectedAdvancedServo}"
+                        SelectedIndex="0"/>
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                                        ItemsSource="{Binding AdvancedServoSequenceConfigFiles}"
-                                        SelectedItem="{Binding AdvancedServoSequenceConfigFileName}" >
+                            ItemsSource="{Binding AdvancedServoSequenceConfigFiles}"
+                            SelectedItem="{Binding AdvancedServoSequenceConfigFileName}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 

@@ -18,7 +18,7 @@
                     new RCServoAction { TargetPosition = 90 },
                     new RCServoAction { Engaged = false },
                 },
-                NextSequence = new PerformanceSequence { Name = "SequenceServo1", ChannelClass = "RCS" }
+                NextSequence = new DeviceClassSequence { Name = "SequenceServo1", DeviceClass = "AS" }
             },
         };
     }

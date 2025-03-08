@@ -7,6 +7,7 @@ namespace VNC.Phidget22.Configuration
         public VoltageInputSequence() : base("VoltageInput")
         {
         }
+
         /// <summary>
         /// Array of VoltageInput actions in sequence
         /// </summary>

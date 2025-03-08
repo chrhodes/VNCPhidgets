@@ -370,7 +370,7 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        foreach (PerformanceSequence sequence in performance.PerformanceSequences)
+                        foreach (DeviceClassSequence sequence in performance.PerformanceSequences)
                         {
                             // TODO(crhodes)
                             // What is this loop doing?  Doesn't PerformanceSequencePlayer handle looping

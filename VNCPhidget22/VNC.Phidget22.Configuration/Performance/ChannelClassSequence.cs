@@ -50,12 +50,12 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// PerformanceSequence[] to call before executing Actions
         /// </summary>
-        public PerformanceSequence[]? BeforeActionLoopSequences { get; set; }
+        public DeviceClassSequence[]? BeforeActionLoopSequences { get; set; }
 
         /// <summary>
         /// PerformanceSequence[] to call at start of each SequenceLoop
         /// </summary>
-        public PerformanceSequence[]? StartActionLoopSequences { get; set; }
+        public DeviceClassSequence[]? StartActionLoopSequences { get; set; }
 
         /// <summary>
         /// Number of loops of sequence Actions[] to execute
@@ -75,13 +75,13 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// PerformanceSequence[] to call at start of each SequenceLoop
         /// </summary>
-        public PerformanceSequence[]? EndActionLoopSequences { get; set; }
+        public DeviceClassSequence[]? EndActionLoopSequences { get; set; }
 
         /// <summary>
         /// PerformanceSequence[] to call after executing Actions
         /// before calling NextSequence
         /// </summary>
-        public PerformanceSequence[]? AfterActionLoopSequences { get; set; }
+        public DeviceClassSequence[]? AfterActionLoopSequences { get; set; }
 
         /// <summary>
         /// Duration of Action[] in ms (sleep time after Actions completed)
@@ -92,6 +92,6 @@ namespace VNC.Phidget22.Configuration.Performance
         /// PerformanceSequence to invoke at end of sequence loops (optional)
         /// none or null to stop
         /// </summary>
-        public PerformanceSequence? NextSequence { get; set; }
+        public DeviceClassSequence? NextSequence { get; set; }
     }
 }
