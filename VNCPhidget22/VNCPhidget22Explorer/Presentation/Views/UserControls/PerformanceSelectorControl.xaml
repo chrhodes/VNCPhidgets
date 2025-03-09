@@ -50,8 +50,6 @@
      <vncmvvm:ViewBase.Resources>
         <converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />
-        <converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />
-        <converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />         
         <converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />
@@ -169,20 +167,20 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup x:Name="lgPerformanceSequences"  Header="PerformanceSequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
+        <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
                           IsCollapsible="True" IsCollapsed="False">
 
-            <views:HostSelectorControl VerticalAlignment="Top"/>
+            <!--<views:HostSelectorControl VerticalAlignment="Top"/>-->
 
             <!--<ScrollViewer>-->
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <views:AdvancedServoBoardSequencesControl />
+                    <views:DigitalOutputChannelSequencesControl />
 
-                    <views:InterfaceKitBoardSequencesControl />
+                    <views:RCServoChannelSequencesControl />
 
-                    <views:StepperBoardSequencesControl />                  
+                    <views:StepperChannelSequencesControl />                  
 
                 </dxlc:LayoutGroup>
 

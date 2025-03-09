@@ -9,11 +9,11 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class AdvancedServoBoardSequencesControl : ViewBase, IInstanceCountV
+    public partial class DigitalOutputChannelSequencesControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
-        public AdvancedServoBoardSequencesControl()
+        public DigitalOutputChannelSequencesControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -26,11 +26,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // If View First with ViewModel in Xaml
 
-            // ViewModel = (IAdvancedServoBoardSequencesControlsViewModel)DataContext;
+            // ViewModel = (IInterfaceKitBoardSequencesControlViewModel)DataContext;
 
             // Can create directly
 
-            // ViewModel = AdvancedServoBoardSequencesControlsViewModel();
+            // ViewModel = InterfaceKitBoardSequencesControlViewModel();
 
             // Can use ourselves for everything
 
@@ -41,7 +41,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //public AdvancedServoBoardSequencesControl(IAdvancedServoBoardSequencesControlsViewModel viewModel)
+        //public InterfaceKitBoardSequencesControl(IInterfaceKitBoardSequencesControlViewModel viewModel)
         //{
         //    Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
@@ -74,6 +74,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
+            lgSequences.IsCollapsed = true;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -147,6 +148,5 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

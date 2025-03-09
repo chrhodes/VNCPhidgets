@@ -9,11 +9,11 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class StepperBoardSequencesControl : ViewBase, IInstanceCountV
+    public partial class StepperChannelSequencesControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
-        public StepperBoardSequencesControl()
+        public StepperChannelSequencesControl()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -74,6 +74,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
+            lgSequences.IsCollapsed = true;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }

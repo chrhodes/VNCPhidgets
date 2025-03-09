@@ -64,8 +64,13 @@
     <SolidColorBrush x:Key="VelocityControlBackground" Color="#C0C0C0" />
 
     <SolidColorBrush x:Key="AdvancedServoBoardSequencesControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="RCServoChannelSequencesControlBackground" Color="#C0C0C0" />
+    
     <SolidColorBrush x:Key="InterfaceKitBoardSequencesControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="DigitalOutputChannelSequencesControlBackground" Color="#C0C0C0" />
+    
     <SolidColorBrush x:Key="StepperBoardSequencesControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="StepperChannelSequencesControlBackground" Color="#C0C0C0" />
 
     <SolidColorBrush x:Key="DigitalInputControlBackground" Color="#B0D0B0" />
     <SolidColorBrush x:Key="DigitalOutputControlBackground" Color="#C0C0C0" />

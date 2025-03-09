@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidget22Explorer.Presentation.Views.AdvancedServoBoardSequencesControl"
+    x:Class="VNCPhidget22Explorer.Presentation.Views.RCServoChannelSequencesControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -34,7 +34,7 @@
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Background="{StaticResource AdvancedServoBoardSequencesControlBackground}"
+    Background="{StaticResource RCServoChannelSequencesControlBackground}"
 
     d:DesignWidth="800" d:DesignHeight="450"
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
@@ -44,7 +44,7 @@
     <!--xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"-->
 
     <!-- Move this to Resources\Xaml\Display_StylesAndTemplates.xaml -->
-    <!-- <SolidColorBrush x:Key="AdvancedServoBoardSequencesControlsBackground" Color="#00FF00" /> -->
+    <!-- <SolidColorBrush x:Key="RCServoBoardSequencesControlsBackground" Color="#00FF00" /> -->
 
     <!-- <d:DesignerProperties.DesignStyle> -->
         <!-- <Style TargetType="UserControl"> -->
@@ -55,8 +55,8 @@
     <vncmvvm:ViewBase.Resources>
         <!--<converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
-        <!--<converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />-->
-        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
+        <!--<converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
+        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfChannelClassSequenceConverter" />
         <!--<converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />
@@ -78,7 +78,7 @@
 
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
-        <!-- <localvm:AdvancedServoBoardSequencesControlsViewModel /> -->
+        <!-- <localvm:RCServoBoardSequencesControlsViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
     <!-- Simple Layout using Grid -->
@@ -93,7 +93,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel>
-                <TextBlock Text="AdvancedServoBoardSequencesControls" />
+                <TextBlock Text="RCServoBoardSequencesControls" />
                 <TextBlock Text="{Binding Message}" />
                 <Button Content="Say Hello"
                         Command="{Binding SayHelloCommand}" />
@@ -104,17 +104,17 @@
         <!-- If using DevExpress -->
         <!-- Also, use dxXMLNS to insert namespaces above -->
 
-        <dxlc:LayoutGroup x:Name="lgAdvancedServoSequences" Header="AdvancedServo Board Sequences" View="GroupBox" 
+        <dxlc:LayoutGroup x:Name="lgSequences" Header="RCServo Channel Sequences" View="GroupBox" 
                                   Orientation="Horizontal" VerticalAlignment="Top"
                                   IsCollapsible="True" IsCollapsed="False" >
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
                                       VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
+                <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
 
                     <dxe:ComboBoxEdit Width="150" 
-                        ItemsSource="{Binding AdvancedServos}" DisplayMember="Name" 
-                        SelectedItem="{Binding SelectedAdvancedServo}"
+                        ItemsSource="{Binding RCServos}"
+                        SelectedItem="{Binding SelectedRCServo}"
                         SelectedIndex="0"/>
                 </dxlc:LayoutItem>
 
@@ -122,26 +122,26 @@
 
                     <dxlc:LayoutItem Label="Sequence Config Files" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                            ItemsSource="{Binding AdvancedServoSequenceConfigFiles}"
-                            SelectedItem="{Binding AdvancedServoSequenceConfigFileName}" >
+                            ItemsSource="{Binding RCServoSequenceConfigFiles}"
+                            SelectedItem="{Binding RCServoSequenceConfigFileName}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                        Command="{Binding ReloadAdvancedServoSequenceConfigFilesCommand}"
+                                        Command="{Binding ReloadRCServoSequenceConfigFilesCommand}"
                                         ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" LabelPosition="Left" >
                     <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
-                            ItemsSource="{Binding AdvancedServoSequences}" DisplayMember="Name" 
-                            SelectedItem="{Binding SelectedAdvancedServoSequence}"
+                            ItemsSource="{Binding RCServoSequences}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedRCServoSequence}"
                             EditValue="{ Binding 
-                                Path=SelectedAdvancedServoSequences,
+                                Path=SelectedRCServoSequences,
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
+                                Converter={StaticResource SelectedItemsToListOfChannelClassSequenceConverter} }" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:CheckedComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>
@@ -149,65 +149,65 @@
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Description }" Width="300" TextWrapping="Wrap" />
+                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Description }" Width="300" TextWrapping="Wrap" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
+                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.UsageNotes }" Width="300" TextWrapping="Wrap" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="BeforeActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.BeforeActionLoopSequences.Count, Mode=OneWay}" />
+                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.BeforeActionLoopSequences.Count, Mode=OneWay}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" Background="LawnGreen" Padding="5">
 
                     <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.StartActionLoopSequences.Count, Mode=OneWay}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                         <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionLoops.Count, Mode=OneWay}" />
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.ActionLoops.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Actions.Count, Mode=OneWay}" />
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Actions.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="PlayActions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ExecuteActionsInParallel }" />
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.ExecuteActionsInParallel }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.ActionDuration }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.ActionDuration }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.EndActionLoopSequences.Count, Mode=OneWay}" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.EndActionLoopSequences.Count, Mode=OneWay}" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem Label="AfterActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AfterActionLoopSequences.Count, Mode=OneWay}" />
+                    <dxe:TextEdit Text="{Binding SelectedRCServoSequence.AfterActionLoopSequences.Count, Mode=OneWay}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="NextSequence" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.NextSequence.Name }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.NextSequence.Name }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Type" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.NextSequence.SequenceType }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.NextSequence.SequenceType }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Loops" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.NextSequence.Loops }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.NextSequence.Loops }" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
@@ -215,23 +215,23 @@
                 <!--<dxlc:LayoutGroup Header="Sequence Host" View="GroupBox" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.Name }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Host.Name }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.IPAddress }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Host.IPAddress }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.Host.Port }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Host.Port }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AdvancedServos[0].Name }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.RCServos[0].Name }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding SelectedAdvancedServoSequence.AdvancedServos[0].SerialNumber }" />
+                        <dxe:TextEdit Text="{Binding SelectedRCServoSequence.RCServos[0].SerialNumber }" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>-->
@@ -240,23 +240,23 @@
                                           HorizontalAlignment="Center">
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.Name }" />
+                        <dxe:TextEdit Text="{Binding ActiveRCServoHost.Name }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="IP Address" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.Host.IPAddress }" />
+                        <dxe:TextEdit Text="{Binding ActiveRCServoHost.Host.IPAddress }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Port" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.Host.Port }" />
+                        <dxe:TextEdit Text="{Binding ActiveRCServoHost.Host.Port }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.AdvancedServos[0].Name }" />
+                        <dxe:TextEdit Text="{Binding ActiveRCServoHost.RCServos[0].Name }" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding ActiveAdvancedServoHost.AdvancedServos[0].SerialNumber }" />
+                        <dxe:TextEdit Text="{Binding ActiveRCServoHost.RCServos[0].SerialNumber }" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>-->
@@ -338,10 +338,10 @@
 
                 <dxlc:LayoutItem  VerticalAlignment="Stretch" >
                     <Button 
-		                Command="{Binding PlayAdvancedServoSequenceCommand }"
+		                Command="{Binding PlayRCServoSequenceCommand }"
                         CommandParameter="false"
-		                Content="{Binding PlayAdvancedServoSequenceContent, FallbackValue='PlaySequence' }"
-		                ToolTip="{Binding PlayAdvancedServoSequenceToolTip, FallbackValue='PlayAdvancedServoSequence ToolTip' }" />
+		                Content="{Binding PlayRCServoSequenceContent, FallbackValue='PlaySequence' }"
+		                ToolTip="{Binding PlayRCServoSequenceToolTip, FallbackValue='PlayRCServoSequence ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>

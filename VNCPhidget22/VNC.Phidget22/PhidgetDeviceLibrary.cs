@@ -366,46 +366,43 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach: {channel} {channel.DeviceClass} {channel.DeviceID}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach: deviceClass:>{channel.DeviceClass}< channelClass:>{channel.ChannelClass}< channel:>{channel}< deviceSerialNumber:>{channel.DeviceSerialNumber}< deviceID:>{channel.DeviceID}<", Common.LOG_CATEGORY);
 
                     switch (channel.DeviceClass)
                     {
                         case Phidgets.DeviceClass.Dictionary:
                             if(Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+                                Log.EVENT_HANDLER($"parent:>{channel.Parent}<", Common.LOG_CATEGORY);
 
                                 PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
                                 IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
                                 AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
-
-                                Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             }
                             break;
 
                         case Phidgets.DeviceClass.Hub:
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+                                Log.EVENT_HANDLER($"parent:>{channel.Parent}< hubPort:{channel.HubPort}", Common.LOG_CATEGORY);
 
-                                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
-                                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
-                                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+                                // FIX(crhodes)
+                                // Need to figure out how to handle Hub with Ports.  Channel is alwways 0
 
-                                Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
+                                //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
+                                //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
+                                //AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
                             }
                             break;
 
                         case Phidgets.DeviceClass.VINT:
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"Manager_Attach: {e} {e.Channel}", Common.LOG_CATEGORY);
+                                Log.EVENT_HANDLER($"parent:>{channel.Parent}", Common.LOG_CATEGORY);
 
                                 PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
                                 IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
                                 AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
-
-                                Log.EVENT_HANDLER($"{channel.DeviceClass} parent:{channel.Parent}", Common.LOG_CATEGORY);
                             }
                             break;
 
@@ -416,7 +413,13 @@ namespace VNC.Phidget22
                         // NOTE(crhodes)
                         // For everything else assume it is a Physical Phidget
                         default:
-                            AddPhidgetDevice(channel);
+                            if (Common.VNCLogging.ApplicationInitialize)
+                            {
+                                Log.EVENT_HANDLER($"parent:>{channel.Parent}<", Common.LOG_CATEGORY);
+                                //Log.EVENT_HANDLER($"Manager_Attach: deviceClass:{channel.DeviceClass}", Common.LOG_CATEGORY);
+
+                                AddPhidgetDevice(channel);
+                            }
                             break;
                     }
                 }

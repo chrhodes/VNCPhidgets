@@ -3241,76 +3241,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Int32.TryParse(channelNumber, out channel))
             {
-                switch (channel)
-                {
-                    case 0:
-                        VoltageInput0.Close();
-                        break;
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                    case 1:
-                        VoltageInput1.Close();
-                        break;
-
-                    case 2:
-                        VoltageInput2.Close();
-                        break;
-
-                    case 3:
-                        VoltageInput3.Close();
-                        break;
-
-                    case 4:
-                        VoltageInput4.Close();
-                        break;
-
-                    case 5:
-                        VoltageInput5.Close();
-                        break;
-
-                    case 6:
-                        VoltageInput6.Close();
-                        break;
-
-                    case 7:
-                        VoltageInput7.Close();
-                        break;
-
-                    case 8:
-                        VoltageInput8.Close();
-                        break;
-
-                    case 9:
-                        VoltageInput9.Close();
-                        break;
-
-                    case 10:
-                        VoltageInput10.Close();
-                        break;
-
-                    case 11:
-                        VoltageInput11.Close();
-                        break;
-
-                    case 12:
-                        VoltageInput12.Close();
-                        break;
-
-                    case 13:
-                        VoltageInput13.Close();
-                        break;
-
-                    case 14:
-                        VoltageInput14.Close();
-                        break;
-
-                    case 15:
-                        VoltageInput15.Close();
-                        break;
-                }
+                await Task.Run(() => Common.PhidgetDeviceLibrary.VoltageInputChannels[serialChannel].Close());
             }
             else
             {
-
+                Message = $"Cannot parse channelNumber:>{channelNumber}<";
+                Log.Error(Message, Common.LOG_CATEGORY);
             }
 
             OpenVoltageInputCommand.RaiseCanExecuteChanged();
@@ -3813,78 +3751,93 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
             Int32 channel;
 
+            // TODO(crhodes)
+            // Look at DigitalOutput and do the same.
+
+            //if (Int32.TryParse(channelNumber, out channel))
+            //{
+            //    switch (channel)
+            //    {
+            //        case 0:
+            //            VoltageRatioInput0?.Close();
+            //            break;
+
+            //        case 1:
+            //            VoltageRatioInput1?.Close();
+            //            break;
+
+            //        case 2:
+            //            VoltageRatioInput2?.Close();
+            //            break;
+
+            //        case 3:
+            //            VoltageRatioInput3?.Close();
+            //            break;
+
+            //        case 4:
+            //            VoltageRatioInput4?.Close();
+            //            break;
+
+            //        case 5:
+            //            VoltageRatioInput5?.Close();
+            //            break;
+
+            //        case 6:
+            //            VoltageRatioInput6?.Close();
+            //            break;
+
+            //        case 7:
+            //            VoltageRatioInput7?.Close();
+            //            break;
+
+            //        case 8:
+            //            VoltageRatioInput8?.Close();
+            //            break;
+
+            //        case 9:
+            //            VoltageRatioInput9?.Close();
+            //            break;
+
+            //        case 10:
+            //            VoltageRatioInput10?.Close();
+            //            break;
+
+            //        case 11:
+            //            VoltageRatioInput11?.Close();
+            //            break;
+
+            //        case 12:
+            //            VoltageRatioInput12?.Close();
+            //            break;
+
+            //        case 13:
+            //            VoltageRatioInput13?.Close();
+            //            break;
+
+            //        case 14:
+            //            VoltageRatioInput14?.Close();
+            //            break;
+
+            //        case 15:
+            //            VoltageRatioInput15?.Close();
+            //            break;
+            //    }
+            //}
+            //else
+            //{
+
+            //}
+
             if (Int32.TryParse(channelNumber, out channel))
             {
-                switch (channel)
-                {
-                    case 0:
-                        VoltageRatioInput0.Close();
-                        break;
+                SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                    case 1:
-                        VoltageRatioInput1.Close();
-                        break;
-
-                    case 2:
-                        VoltageRatioInput2.Close();
-                        break;
-
-                    case 3:
-                        VoltageRatioInput3.Close();
-                        break;
-
-                    case 4:
-                        VoltageRatioInput4.Close();
-                        break;
-
-                    case 5:
-                        VoltageRatioInput5.Close();
-                        break;
-
-                    case 6:
-                        VoltageRatioInput6.Close();
-                        break;
-
-                    case 7:
-                        VoltageRatioInput7.Close();
-                        break;
-
-                    case 8:
-                        VoltageRatioInput8.Close();
-                        break;
-
-                    case 9:
-                        VoltageRatioInput9.Close();
-                        break;
-
-                    case 10:
-                        VoltageRatioInput10.Close();
-                        break;
-
-                    case 11:
-                        VoltageRatioInput11.Close();
-                        break;
-
-                    case 12:
-                        VoltageRatioInput12.Close();
-                        break;
-
-                    case 13:
-                        VoltageRatioInput13.Close();
-                        break;
-
-                    case 14:
-                        VoltageRatioInput14.Close();
-                        break;
-
-                    case 15:
-                        VoltageRatioInput15.Close();
-                        break;
-                }
+                await Task.Run(() => Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialChannel].Close());
             }
             else
             {
-
+                Message = $"Cannot parse channelNumber:>{channelNumber}<";
+                Log.Error(Message, Common.LOG_CATEGORY);
             }
 
             OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();

@@ -1,4 +1,6 @@
 {
+  // This is leagacy.
+  // Decide how to do this in new approach.
   "AdvancedServoSequences": [
     //
     // Engage and Center Servos
