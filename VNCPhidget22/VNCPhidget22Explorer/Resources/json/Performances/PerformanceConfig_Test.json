@@ -9,26 +9,22 @@
       "Name": "Test Before, After, and Next Performance Sequences",
       "Description": "",
       "BeforePerformanceLoopPerformances": [
-        {
-          "Name": "Parallel Sequences InterfaceKit 124744"
-        }
+        { "Name": "Sequential Sequences InterfaceKit 124744" }
       ],
       "Loops": 1,
       "PlaySequencesInParallel": true,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
       ],
       "AfterPerformanceLoopPerformances": [
-        {
-          "Name": "Parallel Sequences InterfaceKit 124744"
-        }
+        { "Name": "Parallel Sequences InterfaceKit 124744" }
       ],
       "NextPerformance": { "Name": "Sequential Sequences Stepper 268213" }
     },
@@ -40,15 +36,15 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo1" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo2" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo3" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo3" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo4" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo5" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo6" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo7" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Open Servo7" },
       ],
       "NextPerformance": null
     },
@@ -57,15 +53,15 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo1" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo2" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo3" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo3" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo4" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo5" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo6" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo7" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Close Servo7" },
       ],
       "NextPerformance": null
     },
@@ -77,15 +73,15 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
       ],
       "NextPerformance": null
     },
@@ -97,15 +93,15 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": true,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
-        //{ "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },
       ],
       "NextPerformance": null
     },   
@@ -117,7 +113,7 @@
       "Description": "Blink Lights in Sequence",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO0" },
         { "ChannelClass": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO1" },
         { "ChannelClass": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO2" },
@@ -135,7 +131,7 @@
       "Description": "Blink Lights in Parallel",
       "Loops": 1,
       "PlaySequencesInParallel": true,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO0" },
         { "ChannelClass": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO1" },
         { "ChannelClass": "DigitalOutput", "SerialNumber": 124744,  "Name": "Blink DO2" },
@@ -153,7 +149,7 @@
       "Description": "Rotate Stepper",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "ChannelClass": "Stepper", "SerialNumber": 268213,  "Name": "Initialize Stepper SA 3.75" },
         { "ChannelClass": "Stepper", "SerialNumber": 268213,  "Name": "Open and Engage Stepper" },
         { "ChannelClass": "Stepper", "SerialNumber": 268213,  "Name": "Rotate +/- 90" },

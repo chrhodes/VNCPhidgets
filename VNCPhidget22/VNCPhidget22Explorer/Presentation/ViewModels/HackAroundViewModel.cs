@@ -1303,7 +1303,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
                         $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
                         $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                        $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
+                        $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
                         $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                         $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
                 }
@@ -1328,7 +1328,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
                             $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
                             $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                            $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
+                            $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
                             $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                             $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
                     }

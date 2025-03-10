@@ -1,0 +1,87 @@
+{
+  "RCServoSequences": [
+    //
+    // Initialize Servos
+    //
+    { 
+      "Name": "Initialize Servo0", 
+      "Channel": 0,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo1", 
+      "Channel": 1,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo2", 
+      "Channel": 2,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo3", 
+      "Channel": 3,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo4", 
+      "Channel": 4,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo5", 
+      "Channel": 5,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo6", 
+      "Channel": 6,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo7", 
+      "Channel": 7,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+  ]
+}

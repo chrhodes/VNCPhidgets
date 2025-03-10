@@ -211,20 +211,6 @@ namespace VNC.Phidget22.Players
                             $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
-                    //if (advancedServoSequence.SerialNumber is not null)
-                    //{
-                    //    phidgetHost = GetRCServoHost((int)advancedServoSequence.SerialNumber);
-                    //}
-                    //else if (ActiveRCServoHost is not null)
-                    //{
-                    //    phidgetHost = ActiveRCServoHost;
-                    //}
-                    //else
-                    //{
-                    //    Log.Error($"Cannot locate host to execute SerialNumber:{advancedServoSequence.SerialNumber}", Common.LOG_CATEGORY);
-                    //    nextPerformanceSequence = null;
-                    //}
-
                     phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber, rcServoSequence.Channel);
 
                     if (phidgetHost == null)

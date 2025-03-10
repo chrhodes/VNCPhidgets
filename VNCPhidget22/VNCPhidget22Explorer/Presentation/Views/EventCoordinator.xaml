@@ -168,7 +168,7 @@
 
             </dxlc:LayoutGroup>
             
-            <dxlc:LayoutGroup Header="PerformanceSequences" View="GroupBox" Orientation="Vertical" >
+            <dxlc:LayoutGroup Header="PhidgetDeviceClassSequences" View="GroupBox" Orientation="Vertical" >
             
             </dxlc:LayoutGroup>
 

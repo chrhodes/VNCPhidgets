@@ -257,18 +257,13 @@ namespace VNC.Phidget22.Players
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Executes a Performance by calling RunPerformanceLoops() and calls NextPerformance if any
+        /// </summary>
+        /// <param name="performance"></param>
+        /// <returns></returns>
         public async Task PlayPerformance(Performance performance)
         {
-        //    if (LogPerformance)
-        //    {
-        //        Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
-        //            $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-        //            $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-        //            $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
-        //            $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-        //            $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
-        //    }
-
             Performance? nextPerformance = performance;
 
             // NOTE(crhodes)
@@ -280,15 +275,6 @@ namespace VNC.Phidget22.Players
 
             //}
 
-            //await Task.Run(async () =>
-            //{
-            //    await RunPerformanceLoops(nextPerformance);
-            //});
-
-            ////await performancePlayer.RunPerformanceLoops(nextPerformance);
-
-            //nextPerformance = nextPerformance?.NextPerformance;
-
             while (nextPerformance is not null)
             {
                 if (LogPerformance)
@@ -296,7 +282,7 @@ namespace VNC.Phidget22.Players
                     Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
                         $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
                         $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                        $" performanceSequences:{performance.PerformanceSequences?.Count()}" +
+                        $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
                         $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                         $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
                 }
@@ -327,7 +313,7 @@ namespace VNC.Phidget22.Players
 
                 Log.Trace($"Running performance:{performance.Name} description:{performance.Description}" +
                     $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    $" performanceSequences:{performance.PerformanceSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                    $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
                     $" performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
                     $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                     $" loops:{performance.PerformanceLoops} duration:{performance.Duration}" +
@@ -339,46 +325,39 @@ namespace VNC.Phidget22.Players
 
             if (performance.BeforePerformanceLoopPerformances is not null)
             {
-                await ExecutePerformanceSequences(performance.BeforePerformanceLoopPerformances);
+                await ExecutePerfomanceSequences(performance.BeforePerformanceLoopPerformances);
             }
 
             // NOTE(crhodes)
-            // Then Execute PerformanceSequence loops
+            // Then Execute PhidgetDeviceClassSequences loops if any
 
-            if (performance.PerformanceSequences is not null)
+            if (performance.PhidgetDeviceClassSequences is not null)
             {
-                // TODO(crhodes)
-                // Maybe create a new PerformanceSequencePlayer
-                // instead of reaching for the Property.  If we do that have to initialize all the logging.
-
-                //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
-
-                PhidgetDeviceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
-
                 for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
                     if (performance.PlaySequencesInParallel)
                     {
                         if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        Parallel.ForEach(performance.PerformanceSequences, async sequence =>
+                        Parallel.ForEach(performance.PhidgetDeviceClassSequences, async sequence =>
                         {
-                            await performanceSequencePlayer.ExecutePhidgetDeviceSequence(sequence);
+                            // TODO(crhodes)
+                            // Maybe create a new PerformanceSequencePlayer
+                            // instead of reaching for the Property.  If we do that have to initialize all the logging.
+                            PhidgetDeviceSequencePlayer player = GetNewPerformanceSequencePlayer();
+
+                            await player.ExecutePhidgetDeviceSequence(sequence);
                         });
                     }
                     else
                     {
                         if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        foreach (PhidgetDeviceClassSequence sequence in performance.PerformanceSequences)
-                        {
-                            // TODO(crhodes)
-                            // What is this loop doing?  Doesn't PerformanceSequencePlayer handle looping
+                        PhidgetDeviceSequencePlayer player = GetPerformanceSequencePlayer();
 
-                            //for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
-                            //{
-                                await performanceSequencePlayer.ExecutePhidgetDeviceSequence(sequence);
-                            //}
+                        foreach (PhidgetDeviceClassSequence sequence in performance.PhidgetDeviceClassSequences)
+                        {
+                            await player.ExecutePhidgetDeviceSequence(sequence);
                         }
                     }
                 }
@@ -397,7 +376,7 @@ namespace VNC.Phidget22.Players
             }
 
             // NOTE(crhodes)
-            // Then Execute Performances loops
+            // Then Execute Performances loops if any
 
             if (performance.Performances is not null)
             {
@@ -467,13 +446,13 @@ namespace VNC.Phidget22.Players
 
             if (performance.AfterPerformanceLoopPerformances is not null)
             {
-                await ExecutePerformanceSequences(performance.AfterPerformanceLoopPerformances);
+                await ExecutePerfomanceSequences(performance.AfterPerformanceLoopPerformances);
             }
 
             if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task ExecutePerformanceSequences(Performance[] performanceSequences)
+        private async Task ExecutePerfomanceSequences(Performance[] performanceSequences)
         {
             Int64 startTicks = 0;
             if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:{performanceSequences.Count()}", Common.LOG_CATEGORY);
@@ -544,6 +523,34 @@ namespace VNC.Phidget22.Players
             if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
 
             return ActivePerformanceSequencePlayer;
+        }
+
+        private PhidgetDeviceSequencePlayer GetNewPerformanceSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(EventAggregator);
+
+            player.LogPerformanceSequence = LogPerformanceSequence;
+            player.LogSequenceAction = LogSequenceAction;
+            player.LogActionVerification = LogActionVerification;
+
+            player.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            player.LogPositionChangeEvents = LogPositionChangeEvents;
+            player.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            player.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            player.LogInputChangeEvents = LogInputChangeEvents;
+            player.LogOutputChangeEvents = LogOutputChangeEvents;
+
+            player.LogSensorChangeEvents = LogSensorChangeEvents;
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
         }
 
         #endregion

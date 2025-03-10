@@ -1,0 +1,151 @@
+{
+  "RCServoSequences": [
+    //
+    // Engage and Move Servos at different velocities
+    //
+    { 
+      "Name": "Engage and Move Servo0", 
+      "Channel": 0,
+      "Description": "Velocity: 50, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 50, "Acceleration": 1000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo1", 
+      "Channel": 1,
+      "Description": "Velocity: 150, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 150, "Acceleration": 1000, "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo2", 
+      "Channel": 2,
+      "Description": "Velocity: 300, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 300, "Acceleration": 1000, "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo3", 
+      "Channel": 3,
+      "Description": "Velocity: 5000, Acceleration: 5000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 5000, "Acceleration": 5000, "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo4", 
+      "Channel": 4,
+      "Description": "Velocity: 50, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 50, "Acceleration": 1000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo5", 
+      "Channel": 5,
+      "Description": "Velocity: 150, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 150, "Acceleration": 1000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo6", 
+      "Channel": 6,
+      "Description": "Velocity: 300, Acceleration: 1000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 300, "Acceleration": 1000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+    { 
+      "Name": "Engage and Move Servo7", 
+      "Channel": 7,
+      "Description": "Velocity: 5000, Acceleration: 5000", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "VelocityLimit": 5000, "Acceleration": 5000, "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "Engaged": false }
+      ]
+    },
+  ]
+}

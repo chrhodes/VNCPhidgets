@@ -11,7 +11,7 @@
       "Name": "Begin the Show",
       "Description": "Initialize servos and set Position Limits.  Does not Enage servos.",
       "Loops": 1, "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Initialize Skulls" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Initialize Skulls" },
       ]
@@ -20,7 +20,7 @@
       "Name": "Bring to Attention",
       "Description": "Engage and Center all servos",
       "Loops": 1, "PlaySequencesInParallel": true,
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Wake up Skulls" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Wake up Skulls" }
       ]
@@ -28,7 +28,7 @@
     { 
       "Name": "Disengage All Servos and Close Phidget22",
       "Description": "End the Show",
-      "PerformanceSequences": [
+      "PhidgetDeviceClassSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Sleep Skulls" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Sleep Skulls" }
       ]
