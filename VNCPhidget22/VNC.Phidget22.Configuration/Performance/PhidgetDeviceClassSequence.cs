@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class DeviceClassSequence
+    public class PhidgetDeviceClassSequence
     {
         /// <summary>
         /// Name of Sequence
@@ -21,6 +21,11 @@ namespace VNC.Phidget22.Configuration
         /// Phidget DeviceClass
         /// </summary>
         public string DeviceClass { get; set; } = "Generic";
+
+        /// <summary>
+        /// Phidget ChannelClass
+        /// </summary>
+        public string ChannelClass { get; set; } = "Generic";
 
         /// <summary>
         /// Number of loops of Sequence

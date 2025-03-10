@@ -30,7 +30,7 @@ namespace VNC.Phidget22.Configuration.Performance
         /// </summary>
         public Boolean PlaySequencesInParallel { get; set; } = false;
 
-        public DeviceClassSequence[]? PerformanceSequences { get; set; }
+        public PhidgetDeviceClassSequence[]? PerformanceSequences { get; set; }
 
         /// <summary>
         /// Play Performances in Parallel or Sequential (false)

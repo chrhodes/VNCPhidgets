@@ -16,13 +16,13 @@ namespace VNC.Phidget22.Players
     // Maybe as simple as creating one if needed 
     // in the get of ActivePerformanceSequencePlayer
 
-    public class PerformanceSequencePlayer
+    public class PhidgetDeviceSequencePlayer
     {
         #region Constructors, Initialization, and Load
 
         public IEventAggregator EventAggregator { get; set; }
 
-        public PerformanceSequencePlayer(IEventAggregator eventAggregator)
+        public PhidgetDeviceSequencePlayer(IEventAggregator eventAggregator)
         {
             
             Int64 startTicks = 0;
@@ -49,7 +49,7 @@ namespace VNC.Phidget22.Players
 
         #region Fields and Properties
 
-        public static PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        public static PhidgetDeviceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
         // TODO(crhodes)
         //// 
@@ -107,65 +107,66 @@ namespace VNC.Phidget22.Players
         /// while performanceSequence.NextPerformanceSequence
         /// is not null
         /// </summary>
-        /// <param name="performanceSequence"></param>
+        /// <param name="phidgetDeviceSequence"></param>
         /// <returns></returns>
-        public async Task ExecutePerformanceSequence(DeviceClassSequence performanceSequence)
+        public async Task ExecutePhidgetDeviceSequence(PhidgetDeviceClassSequence phidgetDeviceSequence)
         {
             Int64 startTicks = 0;
 
-            DeviceClassSequence nextPerformanceSequence = null;
+            PhidgetDeviceClassSequence nextPhidgetDeviceClassSequence = null;
 
             try
             {
                 if (LogPerformanceSequence)
                 {
-                    startTicks = Log.Trace($"Executing Performance Sequence" +
-                        $" name:>{performanceSequence?.Name}<" +
-                        $" type:>{performanceSequence?.DeviceClass}<" +
-                        $" loops:>{performanceSequence?.SequenceLoops}<" +
-                        $" duration:>{performanceSequence?.Duration}<" +
-                        $" closePhidget:>{performanceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                    startTicks = Log.Trace($"Executing PhidgetDevice Sequence" +
+                        $" name:>{phidgetDeviceSequence?.Name}<" +
+                        $" serialNumber{phidgetDeviceSequence?.SerialNumber}<" +
+                        $" channelClass:>{phidgetDeviceSequence?.ChannelClass}<" +
+                        $" loops:>{phidgetDeviceSequence?.SequenceLoops}<" +
+                        $" duration:>{phidgetDeviceSequence?.Duration}<" +
+                        $" closePhidget:>{phidgetDeviceSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
                 }
 
-                for (int sequenceLoop = 0; sequenceLoop < performanceSequence.SequenceLoops; sequenceLoop++)
+                for (int sequenceLoop = 0; sequenceLoop < phidgetDeviceSequence.SequenceLoops; sequenceLoop++)
                 {
-                    if (LogPerformanceSequence) Log.Trace($"Running PerformanceSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                    if (LogPerformanceSequence) Log.Trace($"Running PhidgetDeviceSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
 
                     // NOTE(crhodes)
                     // Each loop starts back at the initial sequence
-                    nextPerformanceSequence = performanceSequence;
+                    nextPhidgetDeviceClassSequence = phidgetDeviceSequence;
 
                     do
                     {
-                        switch (nextPerformanceSequence.DeviceClass)   // DeviceClass
+                        switch (nextPhidgetDeviceClassSequence.ChannelClass)   // DeviceClass
                         {
                              case "DigitalOutput":
-                                nextPerformanceSequence = await ExecuteDigitalOutputPerformanceSequence(nextPerformanceSequence);
+                                nextPhidgetDeviceClassSequence = await ExecuteDigitalOutputPerformanceSequence(nextPhidgetDeviceClassSequence);
                                 break;
 
                             case "RCServo":
-                                nextPerformanceSequence = await ExecuteRCServoPerformanceSequence(nextPerformanceSequence);
+                                nextPhidgetDeviceClassSequence = await ExecuteRCServoPerformanceSequence(nextPhidgetDeviceClassSequence);
                                 break;
 
                             case "Stepper":
-                                nextPerformanceSequence = await ExecuteStepperPerformanceSequence(nextPerformanceSequence);
+                                nextPhidgetDeviceClassSequence = await ExecuteStepperPerformanceSequence(nextPhidgetDeviceClassSequence);
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPerformanceSequence.DeviceClass}<", Common.LOG_CATEGORY);
-                                nextPerformanceSequence = null;
+                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceClassSequence.DeviceClass}<", Common.LOG_CATEGORY);
+                                nextPhidgetDeviceClassSequence = null;
                                 break;
                         }
-                    } while (nextPerformanceSequence is not null);
+                    } while (nextPhidgetDeviceClassSequence is not null);
                 }
 
-                if (performanceSequence.Duration is not null)
+                if (phidgetDeviceSequence.Duration is not null)
                 {
                     if (LogPerformanceSequence)
                     {
-                        Log.Trace($"Zzzzz Sleeping:>{performanceSequence.Duration}<", Common.LOG_CATEGORY);
+                        Log.Trace($"Zzzzz Sleeping:>{phidgetDeviceSequence.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((int)performanceSequence.Duration);
+                    Thread.Sleep((int)phidgetDeviceSequence.Duration);
                 }
             }
             catch (Exception ex)
@@ -179,10 +180,10 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private async Task<DeviceClassSequence> ExecuteRCServoPerformanceSequence(DeviceClassSequence performanceSequence)
+        private async Task<PhidgetDeviceClassSequence> ExecuteRCServoPerformanceSequence(PhidgetDeviceClassSequence performanceSequence)
         {
             Int64 startTicks = 0;
-            DeviceClassSequence nextPerformanceSequence = null;
+            PhidgetDeviceClassSequence nextPerformanceSequence = null;
 
             try
             {
@@ -236,9 +237,9 @@ namespace VNC.Phidget22.Players
                     {
                         if (rcServoSequence.BeforeActionLoopSequences is not null)
                         {
-                            foreach (DeviceClassSequence sequence in rcServoSequence.BeforeActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in rcServoSequence.BeforeActionLoopSequences)
                             {
-                                await ExecutePerformanceSequence(sequence);
+                                await ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 
@@ -246,9 +247,9 @@ namespace VNC.Phidget22.Players
 
                         if (rcServoSequence.AfterActionLoopSequences is not null)
                         {
-                            foreach (DeviceClassSequence sequence in rcServoSequence.AfterActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in rcServoSequence.AfterActionLoopSequences)
                             {
-                                await ExecutePerformanceSequence(sequence);
+                                await ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 
@@ -280,13 +281,10 @@ namespace VNC.Phidget22.Players
             return nextPerformanceSequence;
         }
 
-        private async Task<DeviceClassSequence> ExecuteDigitalOutputPerformanceSequence(DeviceClassSequence performanceSequence)
+        private async Task<PhidgetDeviceClassSequence> ExecuteDigitalOutputPerformanceSequence(PhidgetDeviceClassSequence performanceSequence)
         {
             Int64 startTicks = 0;
-            DeviceClassSequence nextPerformanceSequence = null;
-
-            // FIX(crhodes)
-            // 
+            PhidgetDeviceClassSequence nextPerformanceSequence = null;
 
             try
             {
@@ -313,20 +311,6 @@ namespace VNC.Phidget22.Players
                             $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
-                    //if (digitalOutputSequence.SerialNumber is not null)
-                    //{
-                    //    phidgetHost = GetDigitalOutputHost((int)digitalOutputSequence.SerialNumber);
-                    //}
-                    //else if (ActiveDigitalOutputHost is not null)
-                    //{
-                    //    phidgetHost = ActiveDigitalOutputHost;
-                    //}
-                    //else
-                    //{
-                    //    Log.Error($"Cannot locate host to execute SerialNumber:{digitalOutputSequence.SerialNumber}", Common.LOG_CATEGORY);
-                    //    nextPerformanceSequence = null;
-                    //}
-
                     phidgetHost = GetDigitalOutputHost((int)performanceSequence.SerialNumber, digitalOutputSequence.Channel);
 
                     if (phidgetHost == null)
@@ -339,9 +323,9 @@ namespace VNC.Phidget22.Players
                     {
                         if (digitalOutputSequence.BeforeActionLoopSequences is not null)
                         {
-                            foreach (DeviceClassSequence sequence in digitalOutputSequence.BeforeActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in digitalOutputSequence.BeforeActionLoopSequences)
                             {
-                                ExecutePerformanceSequence(sequence);
+                                ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 
@@ -349,9 +333,9 @@ namespace VNC.Phidget22.Players
 
                         if (digitalOutputSequence.AfterActionLoopSequences is not null)
                         {
-                            foreach (DeviceClassSequence sequence in digitalOutputSequence.AfterActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in digitalOutputSequence.AfterActionLoopSequences)
                             {
-                                ExecutePerformanceSequence(sequence);
+                                ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 
@@ -383,10 +367,10 @@ namespace VNC.Phidget22.Players
             return nextPerformanceSequence;
         }
 
-        private async Task<DeviceClassSequence> ExecuteStepperPerformanceSequence(DeviceClassSequence performanceSequence)
+        private async Task<PhidgetDeviceClassSequence> ExecuteStepperPerformanceSequence(PhidgetDeviceClassSequence performanceSequence)
         {
             Int64 startTicks = 0;
-            DeviceClassSequence nextPerformanceSequence = null;
+            PhidgetDeviceClassSequence nextPerformanceSequence = null;
 
             try
             {
@@ -439,9 +423,9 @@ namespace VNC.Phidget22.Players
                     {
                         if (stepperSequence.BeforeActionLoopSequences is not null)
                         {
-                            foreach (DeviceClassSequence sequence in stepperSequence.BeforeActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in stepperSequence.BeforeActionLoopSequences)
                             {
-                                ExecutePerformanceSequence(sequence);
+                                ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 
@@ -449,9 +433,9 @@ namespace VNC.Phidget22.Players
 
                         if (stepperSequence.AfterActionLoopSequences is not null)
                         {
-                            foreach (DeviceClassSequence sequence in stepperSequence.AfterActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in stepperSequence.AfterActionLoopSequences)
                             {
-                                ExecutePerformanceSequence(sequence);
+                                ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 

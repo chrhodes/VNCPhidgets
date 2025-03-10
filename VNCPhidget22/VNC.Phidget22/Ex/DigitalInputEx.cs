@@ -450,13 +450,13 @@ namespace VNC.Phidget22.Ex
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
+                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (DeviceClassSequence sequence in digtialInputSequence.StartActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in digtialInputSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePerformanceSequence(sequence);
+                                await player.ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
 
@@ -494,13 +494,13 @@ namespace VNC.Phidget22.Ex
 
                         if (digtialInputSequence.EndActionLoopSequences is not null)
                         {
-                            PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
+                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
                             player.LogPerformanceSequence = LogPerformanceSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (DeviceClassSequence sequence in digtialInputSequence.EndActionLoopSequences)
+                            foreach (PhidgetDeviceClassSequence sequence in digtialInputSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePerformanceSequence(sequence);
+                                await player.ExecutePhidgetDeviceSequence(sequence);
                             }
                         }
                     }

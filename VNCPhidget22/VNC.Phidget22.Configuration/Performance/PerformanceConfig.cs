@@ -21,8 +21,8 @@
 
                 PerformanceSequences = new[] // PerformanceSequence[0];
                 {
-                    new DeviceClassSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
-                    new DeviceClassSequence { Name = "psbc21_SequenceServo0P Configure and Engage", DeviceClass = "AS" }
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceServo0P Configure and Engage", DeviceClass = "AS" }
                 }
             },
             new Performance.Performance
@@ -33,9 +33,9 @@
 
                 PerformanceSequences = new[]
                 {
-                    new DeviceClassSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" },
-                    new DeviceClassSequence { Name = "psbc22_SequenceIK 1", DeviceClass = "IK" },
-                    new DeviceClassSequence { Name = "psbc23_SequenceIK 1", DeviceClass = "IK" }
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" },
+                    new PhidgetDeviceClassSequence { Name = "psbc22_SequenceIK 1", DeviceClass = "IK" },
+                    new PhidgetDeviceClassSequence { Name = "psbc23_SequenceIK 1", DeviceClass = "IK" }
                 }
             },
             new Performance.Performance
@@ -45,8 +45,8 @@
 
                 PerformanceSequences = new[]
                 {
-                    new DeviceClassSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
-                    new DeviceClassSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
                 }
             },
             new Performance.Performance
@@ -57,8 +57,8 @@
 
                 PerformanceSequences = new[]
                 {
-                    new DeviceClassSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
-                    new DeviceClassSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceServo0", DeviceClass = "AS" },
+                    new PhidgetDeviceClassSequence { Name = "psbc21_SequenceIK 1", DeviceClass = "IK" }
                 }
             }
         };

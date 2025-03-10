@@ -51,7 +51,7 @@ namespace VNC.Phidget22.Players
 
         #region Fields and Properties
 
-        public PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        public PhidgetDeviceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
         #region Logging
 
@@ -353,7 +353,7 @@ namespace VNC.Phidget22.Players
 
                 //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
 
-                PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+                PhidgetDeviceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
                 for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
@@ -363,21 +363,21 @@ namespace VNC.Phidget22.Players
 
                         Parallel.ForEach(performance.PerformanceSequences, async sequence =>
                         {
-                            await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                            await performanceSequencePlayer.ExecutePhidgetDeviceSequence(sequence);
                         });
                     }
                     else
                     {
                         if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        foreach (DeviceClassSequence sequence in performance.PerformanceSequences)
+                        foreach (PhidgetDeviceClassSequence sequence in performance.PerformanceSequences)
                         {
                             // TODO(crhodes)
                             // What is this loop doing?  Doesn't PerformanceSequencePlayer handle looping
 
                             //for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
                             //{
-                                await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                                await performanceSequencePlayer.ExecutePhidgetDeviceSequence(sequence);
                             //}
                         }
                     }
@@ -407,7 +407,7 @@ namespace VNC.Phidget22.Players
 
                 //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
 
-                PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+                PhidgetDeviceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
                 for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
@@ -515,14 +515,14 @@ namespace VNC.Phidget22.Players
 
         #region Private Methods
 
-        private PerformanceSequencePlayer GetPerformanceSequencePlayer()
+        private PhidgetDeviceSequencePlayer GetPerformanceSequencePlayer()
         {
             Int64 startTicks = 0;
             if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
             if (ActivePerformanceSequencePlayer == null)
             {
-                ActivePerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
+                ActivePerformanceSequencePlayer = new PhidgetDeviceSequencePlayer(EventAggregator);
             }
 
             ActivePerformanceSequencePlayer.LogPerformanceSequence = LogPerformanceSequence;
