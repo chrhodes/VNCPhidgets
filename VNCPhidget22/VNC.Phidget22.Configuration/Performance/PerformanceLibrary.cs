@@ -455,6 +455,7 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\PerformanceConfig_InitializationAndFinalization.json",
                 @"Performances\PerformanceConfig_Test.json",
                 @"Performances\PerformanceConfig_Test AS Replacement.json",
+                @"Performances\PerformanceConfig_Movement Studies.json",
 
                 @"Performances\PerformanceConfig_Skulls_1.json",
                 @"Performances\PerformanceConfig_Skulls_2.json",
@@ -516,7 +517,8 @@ namespace VNC.Phidget22.Configuration.Performance
 
                 @"RCServoSequences\RCServoSequenceConfig_OpenClose.json",
                 @"RCServoSequences\RCServoSequenceConfig_Initialize.json",
-                @"RCServoSequences\RCServoSequenceConfig_Move.json"
+                @"RCServoSequences\RCServoSequenceConfig_Move.json",
+                @"RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json"
             };
 
             return files;

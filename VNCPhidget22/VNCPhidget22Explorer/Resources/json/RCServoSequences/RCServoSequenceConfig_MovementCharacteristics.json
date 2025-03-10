@@ -1,86 +1,91 @@
 {
   "RCServoSequences": [
+
     //
-    // Initialize Servos
+    // VelocityLimit and Acceleration Studies Servo0
+    // Need some way of specifying a range of Servos
     //
     { 
-      "Name": "Initialize Servo0", 
+      "Name": "Move Servo0", 
       "Channel": 0,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Description": "", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": -1 },
+        { "TargetPosition": -2 },
+        { "TargetPosition": 90 },      ]
+    },
+    { 
+      "Name": "VelocityLimit (10) Acceleration(25) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (10) Acceleration(25) Servo0", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 10, "Acceleration": 25 }
       ]
     },
     { 
-      "Name": "Initialize Servo1", 
-      "Channel": 1,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (25) Acceleration(50) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (25) Acceleration(50) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 25, "Acceleration": 50 }
       ]
     },
     { 
-      "Name": "Initialize Servo2", 
-      "Channel": 2,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (50) Acceleration(100) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (50) Acceleration(100) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 50, "Acceleration": 100 }
       ]
     },
     { 
-      "Name": "Initialize Servo3", 
-      "Channel": 3,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (100) Acceleration(200) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (100) Acceleration(200) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 100, "Acceleration": 200 }
       ]
     },
     { 
-      "Name": "Initialize Servo4", 
-      "Channel": 4,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (250) Acceleration(500) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (250) Acceleration(500) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 250, "Acceleration": 500 }
       ]
     },
     { 
-      "Name": "Initialize Servo5", 
-      "Channel": 5,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (500) Acceleration(1000) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (500) Acceleration(1000) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 500, "Acceleration": 1000 }
       ]
     },
     { 
-      "Name": "Initialize Servo6", 
-      "Channel": 6,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (1000) Acceleration(2000) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (1000) Acceleration(2000) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 1000, "Acceleration": 2000 }
       ]
     },
     { 
-      "Name": "Initialize Servo7", 
-      "Channel": 7,
-      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000", 
+      "Name": "VelocityLimit (5000) Acceleration(10000) Servo0", 
+      "Channel": 0,
+      "Description": "VelocityLimit (5000) Acceleration(10000) Servo0", 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open":  true },
-        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+        { "VelocityLimit": 5000, "Acceleration": 10000 }
       ]
     },
   ]

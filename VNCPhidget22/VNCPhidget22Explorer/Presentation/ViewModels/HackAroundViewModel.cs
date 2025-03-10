@@ -1305,7 +1305,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                         $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
                         $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                        $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+                        $" nextPerformance:{performance.NextPerformance.Name}", Common.LOG_CATEGORY);
                 }
 
                 Performance? nextPerformance = performance;

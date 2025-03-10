@@ -284,7 +284,7 @@ namespace VNC.Phidget22.Players
                         $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                         $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
                         $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                        $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+                        $" nextPerformance:{performance.NextPerformance.Name}", Common.LOG_CATEGORY);
                 }
 
                 if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
@@ -317,7 +317,7 @@ namespace VNC.Phidget22.Players
                     $" performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
                     $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                     $" loops:{performance.PerformanceLoops} duration:{performance.Duration}" +
-                    $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+                    $" nextPerformance:{performance.NextPerformance.Name}", Common.LOG_CATEGORY);
             }
 
             // NOTE(crhodes)
@@ -476,7 +476,7 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    Log.Error($"Cannot find performance:>{nextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot find performance:>{callPerformance?.Name}<", Common.LOG_CATEGORY);
                     nextPerformance = null;
                 }
             }

@@ -182,6 +182,9 @@
         <None Update="Resources\json\Performances\PerformanceConfig_InitializationAndFinalization.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_Movement Studies.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Test AS Replacement.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -198,6 +201,9 @@
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Skulls_3.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_Initialize.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json">
