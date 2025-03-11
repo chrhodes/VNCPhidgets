@@ -4,7 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 
+using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+
 using Prism.Regions.Behaviors;
+
+using Unity.Interception.Utilities;
 
 namespace VNC.Phidget22.Configuration.Performance
 {
@@ -187,7 +191,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
                     {
-                        AvailablePerformances.Add(performance.Key, performance.Value);
+                        try
+                        {
+                            AvailablePerformances.Add(performance.Key, performance.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
+                        }
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -225,7 +236,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var sequence in sequenceConfig.DigitalInputSequences.ToDictionary(k => k.Name, v => v))
                     {
-                        AvailableDigitalInputSequences.Add(sequence.Key, sequence.Value);
+                        try
+                        {
+                            AvailableDigitalInputSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -263,7 +281,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var sequence in sequenceConfig.DigitalOutputSequences.ToDictionary(k => k.Name, v => v))
                     {
-                        AvailableDigitalOutputSequences.Add(sequence.Key, sequence.Value);
+                        try
+                        {
+                            AvailableDigitalOutputSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -301,8 +326,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var sequence in sequenceConfig.RCServoSequences.ToDictionary(k => k.Name, v => v))
                     {
-                        
-                        AvailableRCServoSequences.Add(sequence.Key, sequence.Value);
+                        try
+                        {
+                            AvailableRCServoSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -340,7 +371,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var sequence in sequenceConfig.StepperSequences.ToDictionary(k => k.Name, v => v))
                     {
-                        AvailableStepperSequences.Add(sequence.Key, sequence.Value);
+                        try
+                        {
+                            AvailableStepperSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -378,7 +416,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var sequence in sequenceConfig.VoltageInputSequences.ToDictionary(k => k.Name, v => v))
                     {
-                        AvailableVoltageInputSequences.Add(sequence.Key, sequence.Value);
+                        try
+                        {
+                            AvailableVoltageInputSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }                        
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -416,7 +461,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
                     foreach (var sequence in sequenceConfig.VoltageOutputSequences.ToDictionary(k => k.Name, v => v))
                     {
-                        AvailableVoltageOutputSequences.Add(sequence.Key, sequence.Value);
+                        try 
+                        {
+                            AvailableVoltageOutputSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }
                     }
                 }
                 catch (FileNotFoundException fnfex)

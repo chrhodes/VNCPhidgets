@@ -27,9 +27,9 @@
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "VelocityLimit (5000) Acceleration(10000) Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Move Servo0" },
       ],
-      //"AfterPerformanceLoopPerformances": [
-      //  { "Name": "Parallel Sequences InterfaceKit 124744" }
-      //],
+      "AfterPerformanceLoopPerformances": [
+        //{ "Name": "Parallel Sequences InterfaceKit 124744" }
+      ],
       "NextPerformance": { "Name": "Close Servos 99415" }
     },
   ]

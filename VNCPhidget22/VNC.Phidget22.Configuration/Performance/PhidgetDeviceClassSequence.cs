@@ -1,13 +1,24 @@
 ﻿using System;
 
+using VNC.Phidget22.Configuration.Performance;
+
 namespace VNC.Phidget22.Configuration
 {
     public class PhidgetDeviceClassSequence
     {
         /// <summary>
-        /// Name of Sequence
+        /// Name of Sequence.  If null, must specify a ChannelClassSequence
         /// </summary>
-        public string Name { get; set; } = "SEQUENCE NAME";
+        public string? Name { get; set; } = null;
+
+        // NOTE(crhodes)
+        // This did not work out
+        // Would have to have a derived type, e.g. RCServoClassSequence
+
+        ///// <summary>
+        ///// ChannelClassSequence.  If null, must specify a Name
+        ///// </summary>
+        //public ChannelClassSequence? ChannelClassSequence { get; set; } = null;
 
         /// <summary>
         /// SerialNumber of PhidgetDevice that will run sequencee
@@ -20,7 +31,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Phidget DeviceClass
         /// </summary>
-        public string DeviceClass { get; set; } = "Generic";
+        //public string DeviceClass { get; set; } = "Generic";
 
         /// <summary>
         /// Phidget ChannelClass

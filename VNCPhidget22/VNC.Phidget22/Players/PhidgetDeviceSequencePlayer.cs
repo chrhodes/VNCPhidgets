@@ -121,6 +121,8 @@ namespace VNC.Phidget22.Players
                 {
                     startTicks = Log.Trace($"Executing PhidgetDevice Sequence" +
                         $" name:>{phidgetDeviceSequence?.Name}<" +
+                        $" channelClassSequence.Name:{phidgetDeviceSequence?.ChannelClassSequence?.Name}<" +
+                        $" channelClassSequence.Channel:{phidgetDeviceSequence?.ChannelClassSequence?.Channel}<" +
                         $" serialNumber{phidgetDeviceSequence?.SerialNumber}<" +
                         $" channelClass:>{phidgetDeviceSequence?.ChannelClass}<" +
                         $" loops:>{phidgetDeviceSequence?.SequenceLoops}<" +
@@ -153,7 +155,7 @@ namespace VNC.Phidget22.Players
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceClassSequence.DeviceClass}<", Common.LOG_CATEGORY);
+                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceClassSequence.ChannelClass}<", Common.LOG_CATEGORY);
                                 nextPhidgetDeviceClassSequence = null;
                                 break;
                         }
@@ -180,7 +182,7 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private async Task<PhidgetDeviceClassSequence> ExecuteRCServoPerformanceSequence(PhidgetDeviceClassSequence performanceSequence)
+        private async Task<PhidgetDeviceClassSequence> ExecuteRCServoPerformanceSequence(PhidgetDeviceClassSequence phidgetDeviceClassSequence)
         {
             Int64 startTicks = 0;
             PhidgetDeviceClassSequence nextPerformanceSequence = null;
@@ -189,9 +191,11 @@ namespace VNC.Phidget22.Players
             {
                 RCServoEx phidgetHost = null;
 
-                if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(performanceSequence.Name ?? ""))
+                RCServoSequence rcServoSequence;
+
+                if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(phidgetDeviceClassSequence.Name ?? ""))
                 {
-                    var rcServoSequence = PerformanceLibrary.AvailableRCServoSequences[performanceSequence.Name];
+                    rcServoSequence = PerformanceLibrary.AvailableRCServoSequences[phidgetDeviceClassSequence.Name];
 
                     if (LogPerformanceSequence)
                     {
@@ -211,11 +215,11 @@ namespace VNC.Phidget22.Players
                             $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
-                    phidgetHost = GetRCServoHost((int)performanceSequence.SerialNumber, rcServoSequence.Channel);
+                    phidgetHost = GetRCServoHost((int)phidgetDeviceClassSequence.SerialNumber, rcServoSequence.Channel);
 
                     if (phidgetHost == null)
                     {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{performanceSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{phidgetDeviceClassSequence.SerialNumber}", Common.LOG_CATEGORY);
                         nextPerformanceSequence = null;
                     }
 
@@ -253,7 +257,7 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    Log.Error($"Cannot find performanceSequence:>{performanceSequence.Name}<", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot find performanceSequence:>{phidgetDeviceClassSequence.Name}<", Common.LOG_CATEGORY);
                     nextPerformanceSequence = null;
                 }
 

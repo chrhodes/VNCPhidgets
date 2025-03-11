@@ -18,7 +18,7 @@
                     new RCServoAction { TargetPosition = 90 },
                     new RCServoAction { Engaged = false },
                 },
-                NextSequence = new PhidgetDeviceClassSequence { Name = "SequenceServo1", DeviceClass = "AS" }
+                NextSequence = new PhidgetDeviceClassSequence { Name = "SequenceServo1" }
             },
         };
     }
