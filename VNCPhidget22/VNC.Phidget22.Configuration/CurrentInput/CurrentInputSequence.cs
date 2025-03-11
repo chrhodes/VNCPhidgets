@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class CurrentInputSequence : ChannelClassSequence
+    public class CurrentInputSequence : ChannelSequence
     {
         public CurrentInputSequence() : base("CurrentInput")
         {

@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class TemperatureSensorSequence : ChannelClassSequence
+    public class TemperatureSensorSequence : ChannelSequence
     {
         public TemperatureSensorSequence() : base("TemperatureSensor")
         {

@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class PressureSensorSequence : ChannelClassSequence
+    public class PressureSensorSequence : ChannelSequence
     {
         public PressureSensorSequence() : base("PressureSensor")
         {

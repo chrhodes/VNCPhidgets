@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class GPSSequence : ChannelClassSequence
+    public class GPSSequence : ChannelSequence
     {
         public GPSSequence() : base("GPS")
         {

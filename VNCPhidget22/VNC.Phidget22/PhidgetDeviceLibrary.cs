@@ -787,7 +787,7 @@ namespace VNC.Phidget22
 
         //    rcServoHost.LogTargetPositionReachedEvents = configuration.LogTargetPositionReachedEvents;
 
-        //    rcServoHost.LogPerformanceSequence = configuration.LogPerformanceSequence;
+        //    rcServoHost.LogDeviceChannelSequence = configuration.LogDeviceChannelSequence;
         //    rcServoHost.LogSequenceAction = configuration.LogSequenceAction;
         //    rcServoHost.LogActionVerification = configuration.LogActionVerification;
 

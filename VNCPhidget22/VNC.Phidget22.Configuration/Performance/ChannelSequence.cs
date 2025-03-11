@@ -2,9 +2,9 @@
 
 namespace VNC.Phidget22.Configuration.Performance
 {
-    public class ChannelClassSequence
+    public class ChannelSequence
     {
-        public ChannelClassSequence(string channelClass)
+        public ChannelSequence(string channelClass)
         {
             ChannelClass = channelClass;
         }
@@ -21,16 +21,19 @@ namespace VNC.Phidget22.Configuration.Performance
         //public Int32? SerialNumber { get; set; }
 
         /// <summary>
-        /// Name of sequence
+        /// Name of sequence.  Must be unique in ChannelClass
         /// </summary>
         public string Name { get; set; } = "SEQUENCE NAME";
 
+        /// <summary>
+        /// ChannelClass.  Set in constructor.
+        /// </summary>
         public string ChannelClass { get; } = "Generic";
 
         /// <summary>
-        /// PhidgetChannel
+        /// Channel on Phidget Device.
         /// </summary>
-        public int Channel { get; set; }
+        public Int32? Channel { get; set; } = null;
 
         /// <summary>
         /// Description of sequence (optional)
@@ -45,17 +48,17 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// Number of loops of sequence to execute
         /// </summary>
-        public int SequenceLoops { get; set; } = 1;
+        public Int32 SequenceLoops { get; set; } = 1;
 
         /// <summary>
         /// PerformanceSequence[] to call before executing Actions
         /// </summary>
-        public PhidgetDeviceClassSequence[]? BeforeActionLoopSequences { get; set; }
+        public DeviceChannelSequence[]? BeforeActionLoopSequences { get; set; }
 
         /// <summary>
         /// PerformanceSequence[] to call at start of each SequenceLoop
         /// </summary>
-        public PhidgetDeviceClassSequence[]? StartActionLoopSequences { get; set; }
+        public DeviceChannelSequence[]? StartActionLoopSequences { get; set; }
 
         /// <summary>
         /// Number of loops of sequence Actions[] to execute
@@ -70,28 +73,28 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// Duration of Action[] in ms (sleep time after Actions completed)
         /// </summary>
-        public int? ActionsDuration { get; set; }
+        public Int32? ActionsDuration { get; set; }
 
         /// <summary>
         /// PerformanceSequence[] to call at start of each SequenceLoop
         /// </summary>
-        public PhidgetDeviceClassSequence[]? EndActionLoopSequences { get; set; }
+        public DeviceChannelSequence[]? EndActionLoopSequences { get; set; }
 
         /// <summary>
         /// PerformanceSequence[] to call after executing Actions
         /// before calling NextSequence
         /// </summary>
-        public PhidgetDeviceClassSequence[]? AfterActionLoopSequences { get; set; }
+        public DeviceChannelSequence[]? AfterActionLoopSequences { get; set; }
 
         /// <summary>
         /// Duration of Action[] in ms (sleep time after Actions completed)
         /// </summary>
-        public int? SequenceDuration { get; set; }
+        public Int32? SequenceDuration { get; set; }
 
         /// <summary>
         /// PerformanceSequence to invoke at end of sequence loops (optional)
         /// none or null to stop
         /// </summary>
-        public PhidgetDeviceClassSequence? NextSequence { get; set; }
+        public DeviceChannelSequence? NextSequence { get; set; }
     }
 }

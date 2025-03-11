@@ -115,11 +115,11 @@ namespace VNC.Phidget22.Ex
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -339,48 +339,48 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(LightSensorSequence LightSensorSequence)
+        public async Task RunActionLoops(LightSensorSequence lightSensorSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" LightSensorSequence:>{LightSensorSequence.Name}<" +
-                        $" startActionLoopSequences:>{LightSensorSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{LightSensorSequence.ActionLoops}<" +
-                        $" actions:>{LightSensorSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{LightSensorSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{LightSensorSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" name:>{lightSensorSequence.Name}<" +
+                        $" startActionLoopSequences:>{lightSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{lightSensorSequence.ActionLoops}<" +
+                        $" actions:>{lightSensorSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{lightSensorSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{lightSensorSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
-                if (LightSensorSequence.Actions is not null)
+                if (lightSensorSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < LightSensorSequence.ActionLoops; actionLoop++)
+                    for (int actionLoop = 0; actionLoop < lightSensorSequence.ActionLoops; actionLoop++)
                     {
-                        if (LightSensorSequence.StartActionLoopSequences is not null)
+                        if (lightSensorSequence.StartActionLoopSequences is not null)
                         {
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in LightSensorSequence.StartActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in lightSensorSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
-                        if (LightSensorSequence.ExecuteActionsInParallel)
+                        if (lightSensorSequence.ExecuteActionsInParallel)
                         {
                             if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(LightSensorSequence.Actions, async action =>
+                            Parallel.ForEach(lightSensorSequence.Actions, async action =>
                             {
                                 await PerformAction(action);
                             });
@@ -389,31 +389,31 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (LightSensorAction action in LightSensorSequence.Actions)
+                            foreach (LightSensorAction action in lightSensorSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
                         }
 
-                        if (LightSensorSequence.ActionsDuration is not null)
+                        if (lightSensorSequence.ActionsDuration is not null)
                         {
                             if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{LightSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{lightSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
-                            Thread.Sleep((Int32)LightSensorSequence.ActionsDuration);
+                            Thread.Sleep((Int32)lightSensorSequence.ActionsDuration);
                         }
 
-                        if (LightSensorSequence.EndActionLoopSequences is not null)
+                        if (lightSensorSequence.EndActionLoopSequences is not null)
                         {
-                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in LightSensorSequence.EndActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in lightSensorSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
                     }
@@ -462,7 +462,7 @@ namespace VNC.Phidget22.Ex
                 if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 

@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class IRSequence : ChannelClassSequence
+    public class IRSequence : ChannelSequence
     {
         public IRSequence() : base("IR")
         {

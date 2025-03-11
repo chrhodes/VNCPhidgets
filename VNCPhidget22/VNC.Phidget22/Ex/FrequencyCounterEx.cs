@@ -115,11 +115,11 @@ namespace VNC.Phidget22.Ex
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -339,48 +339,48 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(FrequencyCounterSequence FrequencyCounterSequence)
+        public async Task RunActionLoops(FrequencyCounterSequence frequencyCounterSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" FrequencyCounterSequence:>{FrequencyCounterSequence.Name}<" +
-                        $" startActionLoopSequences:>{FrequencyCounterSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{FrequencyCounterSequence.ActionLoops}<" +
-                        $" actions:>{FrequencyCounterSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{FrequencyCounterSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{FrequencyCounterSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" name:>{frequencyCounterSequence.Name}<" +
+                        $" startActionLoopSequences:>{frequencyCounterSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{frequencyCounterSequence.ActionLoops}<" +
+                        $" actions:>{frequencyCounterSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{frequencyCounterSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{frequencyCounterSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
-                if (FrequencyCounterSequence.Actions is not null)
+                if (frequencyCounterSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < FrequencyCounterSequence.ActionLoops; actionLoop++)
+                    for (int actionLoop = 0; actionLoop < frequencyCounterSequence.ActionLoops; actionLoop++)
                     {
-                        if (FrequencyCounterSequence.StartActionLoopSequences is not null)
+                        if (frequencyCounterSequence.StartActionLoopSequences is not null)
                         {
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in FrequencyCounterSequence.StartActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in frequencyCounterSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
-                        if (FrequencyCounterSequence.ExecuteActionsInParallel)
+                        if (frequencyCounterSequence.ExecuteActionsInParallel)
                         {
                             if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(FrequencyCounterSequence.Actions, async action =>
+                            Parallel.ForEach(frequencyCounterSequence.Actions, async action =>
                             {
                                 await PerformAction(action);
                             });
@@ -389,31 +389,31 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (FrequencyCounterAction action in FrequencyCounterSequence.Actions)
+                            foreach (FrequencyCounterAction action in frequencyCounterSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
                         }
 
-                        if (FrequencyCounterSequence.ActionsDuration is not null)
+                        if (frequencyCounterSequence.ActionsDuration is not null)
                         {
                             if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{FrequencyCounterSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{frequencyCounterSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
-                            Thread.Sleep((Int32)FrequencyCounterSequence.ActionsDuration);
+                            Thread.Sleep((Int32)frequencyCounterSequence.ActionsDuration);
                         }
 
-                        if (FrequencyCounterSequence.EndActionLoopSequences is not null)
+                        if (frequencyCounterSequence.EndActionLoopSequences is not null)
                         {
-                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in FrequencyCounterSequence.EndActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in frequencyCounterSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
                     }
@@ -462,7 +462,7 @@ namespace VNC.Phidget22.Ex
                 if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 

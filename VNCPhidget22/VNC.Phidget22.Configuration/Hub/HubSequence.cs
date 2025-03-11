@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class HubSequence : ChannelClassSequence
+    public class HubSequence : ChannelSequence
     {
         public HubSequence() : base("Hub")
         {

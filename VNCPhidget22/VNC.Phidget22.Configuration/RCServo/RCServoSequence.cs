@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class RCServoSequence : ChannelClassSequence
+    public class RCServoSequence : ChannelSequence
     {
         public RCServoSequence() : base("RCServo")
         {

@@ -300,13 +300,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPerformanceSequence = false;
-        public bool LogPerformanceSequence
+        private bool _logDeviceChannelSequence = false;
+        public bool LogDeviceChannelSequence
         {
-            get => _logPerformanceSequence;
+            get => _logDeviceChannelSequence;
             set
             {
-                if (_logPerformanceSequence == value)
+                if (_logDeviceChannelSequence == value)
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
@@ -2218,7 +2218,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogPerformanceSequence = LogPerformanceSequence;
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
             phidgetEx.LogSequenceAction = LogSequenceAction;
             phidgetEx.LogActionVerification = LogActionVerification;
         }
@@ -2235,7 +2235,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogPerformanceSequence = LogPerformanceSequence;
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
             phidgetEx.LogSequenceAction = LogSequenceAction;
             phidgetEx.LogActionVerification = LogActionVerification;
         }
@@ -2252,7 +2252,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogPerformanceSequence = LogPerformanceSequence;
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
             phidgetEx.LogSequenceAction = LogSequenceAction;
             phidgetEx.LogActionVerification = LogActionVerification;
         }
@@ -2269,7 +2269,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogPerformanceSequence = LogPerformanceSequence;
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
             phidgetEx.LogSequenceAction = LogSequenceAction;
             phidgetEx.LogActionVerification = LogActionVerification;
         }
@@ -2286,7 +2286,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogPerformanceSequence = LogPerformanceSequence;
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
             phidgetEx.LogSequenceAction = LogSequenceAction;
             phidgetEx.LogActionVerification = LogActionVerification;
         }

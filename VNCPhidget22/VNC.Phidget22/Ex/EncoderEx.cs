@@ -115,11 +115,11 @@ namespace VNC.Phidget22.Ex
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -339,48 +339,48 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(EncoderSequence EncoderSequence)
+        public async Task RunActionLoops(EncoderSequence encoderSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" EncoderSequence:>{EncoderSequence.Name}<" +
-                        $" startActionLoopSequences:>{EncoderSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{EncoderSequence.ActionLoops}<" +
-                        $" actions:>{EncoderSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{EncoderSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{EncoderSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" name:>{encoderSequence.Name}<" +
+                        $" startActionLoopSequences:>{encoderSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{encoderSequence.ActionLoops}<" +
+                        $" actions:>{encoderSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{encoderSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{encoderSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
-                if (EncoderSequence.Actions is not null)
+                if (encoderSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < EncoderSequence.ActionLoops; actionLoop++)
+                    for (int actionLoop = 0; actionLoop < encoderSequence.ActionLoops; actionLoop++)
                     {
-                        if (EncoderSequence.StartActionLoopSequences is not null)
+                        if (encoderSequence.StartActionLoopSequences is not null)
                         {
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in EncoderSequence.StartActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in encoderSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
-                        if (EncoderSequence.ExecuteActionsInParallel)
+                        if (encoderSequence.ExecuteActionsInParallel)
                         {
                             if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(EncoderSequence.Actions, async action =>
+                            Parallel.ForEach(encoderSequence.Actions, async action =>
                             {
                                 await PerformAction(action);
                             });
@@ -389,31 +389,31 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (EncoderAction action in EncoderSequence.Actions)
+                            foreach (EncoderAction action in encoderSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
                         }
 
-                        if (EncoderSequence.ActionsDuration is not null)
+                        if (encoderSequence.ActionsDuration is not null)
                         {
                             if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{EncoderSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{encoderSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
-                            Thread.Sleep((Int32)EncoderSequence.ActionsDuration);
+                            Thread.Sleep((Int32)encoderSequence.ActionsDuration);
                         }
 
-                        if (EncoderSequence.EndActionLoopSequences is not null)
+                        if (encoderSequence.EndActionLoopSequences is not null)
                         {
-                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in EncoderSequence.EndActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in encoderSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
                     }
@@ -462,7 +462,7 @@ namespace VNC.Phidget22.Ex
                 if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 

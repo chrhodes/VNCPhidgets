@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class PHSensorSequence : ChannelClassSequence
+    public class PHSensorSequence : ChannelSequence
     {
         public PHSensorSequence() : base("PHSensor")
         {

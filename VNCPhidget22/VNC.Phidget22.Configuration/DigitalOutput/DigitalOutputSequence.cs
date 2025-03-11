@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class DigitalOutputSequence : ChannelClassSequence
+    public class DigitalOutputSequence : ChannelSequence
     {
         public DigitalOutputSequence() : base("DigitalOutput")
         {

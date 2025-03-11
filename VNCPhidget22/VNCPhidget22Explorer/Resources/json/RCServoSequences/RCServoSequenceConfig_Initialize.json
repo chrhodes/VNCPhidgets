@@ -3,6 +3,31 @@
     //
     // Initialize Servos
     //
+    // The Channel can be parameterized in DeviceChannelSequence.
+    // This eliminates the need to have unique sequences for each channel.
+    // They may still be useful.
+    { 
+      "Name": "Initialize Servo V100 A1000", 
+      "Channel": null,
+      "Description": "Open, Engage, TargetPosition, Velocity: 100, Acceleration: 1000",
+      "UsageNotes": "Must provide Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Initialize Servo V250 A1000", 
+      "Channel": null,
+      "Description": "Open, Engage, TargetPosition, Velocity: 250, Acceleration: 1000",
+      "UsageNotes": "Must provide Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open":  true },
+        { "Engaged": true, "VelocityLimit": 250, "Acceleration": 1000, "TargetPosition": 90 },
+      ]
+    },
     { 
       "Name": "Initialize Servo0", 
       "Channel": 0,

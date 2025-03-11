@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class LCDSequence : ChannelClassSequence
+    public class LCDSequence : ChannelSequence
     {
         public LCDSequence() : base("LCD")
         {

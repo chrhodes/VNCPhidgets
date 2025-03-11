@@ -50,6 +50,32 @@
       //"NextPerformance": { "Name": "Sequential Sequences Stepper 268213" }
     },
     //
+    // Initialize Servos 0123 4567 Inline
+    //
+    {
+      "Name": "Initialize Servos 0123 4567 use Channel",
+      "Description": "Sets Acceleration, Velocity, and TargetPosition",
+      "BeforePerformanceLoopPerformances": [
+        // { "Name": "Sequential Sequences InterfaceKit 124744" }
+      ],
+      "Loops": 1,
+      "PlaySequencesInParallel": true,
+      "PhidgetDeviceClassSequences": [
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 0, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 1, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 2, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 3, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 4, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 5, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 6, "Name": "Initialize Servo V100 A1000" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 7, "Name": "Initialize Servo V100 A1000" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+        // { "Name": "Parallel Sequences InterfaceKit 124744" }
+      ],
+      //"NextPerformance": { "Name": "Sequential Sequences Stepper 268213" }
+    },
+    //
     // Parallel Sequences Servo 99415 04 15 26 37
     //
     {

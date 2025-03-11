@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class FrequencyCounterSequence : ChannelClassSequence
+    public class FrequencyCounterSequence : ChannelSequence
     {
         public FrequencyCounterSequence() : base("FrequencyCounter")
         {

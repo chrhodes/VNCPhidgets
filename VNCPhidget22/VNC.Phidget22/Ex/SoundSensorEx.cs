@@ -115,11 +115,11 @@ namespace VNC.Phidget22.Ex
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -339,48 +339,48 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(SoundSensorSequence SoundSensorSequence)
+        public async Task RunActionLoops(SoundSensorSequence soundSensorSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" SoundSensorSequence:>{SoundSensorSequence.Name}<" +
-                        $" startActionLoopSequences:>{SoundSensorSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{SoundSensorSequence.ActionLoops}<" +
-                        $" actions:>{SoundSensorSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{SoundSensorSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{SoundSensorSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" name:>{soundSensorSequence.Name}<" +
+                        $" startActionLoopSequences:>{soundSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{soundSensorSequence.ActionLoops}<" +
+                        $" actions:>{soundSensorSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{soundSensorSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{soundSensorSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
-                if (SoundSensorSequence.Actions is not null)
+                if (soundSensorSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < SoundSensorSequence.ActionLoops; actionLoop++)
+                    for (int actionLoop = 0; actionLoop < soundSensorSequence.ActionLoops; actionLoop++)
                     {
-                        if (SoundSensorSequence.StartActionLoopSequences is not null)
+                        if (soundSensorSequence.StartActionLoopSequences is not null)
                         {
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in SoundSensorSequence.StartActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in soundSensorSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
-                        if (SoundSensorSequence.ExecuteActionsInParallel)
+                        if (soundSensorSequence.ExecuteActionsInParallel)
                         {
                             if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(SoundSensorSequence.Actions, async action =>
+                            Parallel.ForEach(soundSensorSequence.Actions, async action =>
                             {
                                 await PerformAction(action);
                             });
@@ -389,31 +389,31 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (SoundSensorAction action in SoundSensorSequence.Actions)
+                            foreach (SoundSensorAction action in soundSensorSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
                         }
 
-                        if (SoundSensorSequence.ActionsDuration is not null)
+                        if (soundSensorSequence.ActionsDuration is not null)
                         {
                             if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{SoundSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{soundSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
-                            Thread.Sleep((Int32)SoundSensorSequence.ActionsDuration);
+                            Thread.Sleep((Int32)soundSensorSequence.ActionsDuration);
                         }
 
-                        if (SoundSensorSequence.EndActionLoopSequences is not null)
+                        if (soundSensorSequence.EndActionLoopSequences is not null)
                         {
-                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in SoundSensorSequence.EndActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in soundSensorSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
                     }
@@ -462,7 +462,7 @@ namespace VNC.Phidget22.Ex
                 if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 

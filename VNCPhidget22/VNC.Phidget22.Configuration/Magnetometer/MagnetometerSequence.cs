@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class MagnetometerSequence : ChannelClassSequence
+    public class MagnetometerSequence : ChannelSequence
     {
         public MagnetometerSequence() : base("Magnetometer")
         {

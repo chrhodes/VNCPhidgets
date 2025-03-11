@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class PowerGuardSequence : ChannelClassSequence
+    public class PowerGuardSequence : ChannelSequence
     {
         public PowerGuardSequence() : base("PowerGuard")
         {

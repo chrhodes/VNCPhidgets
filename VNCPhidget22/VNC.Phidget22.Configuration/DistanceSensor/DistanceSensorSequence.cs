@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class DistanceSensorSequence : ChannelClassSequence
+    public class DistanceSensorSequence : ChannelSequence
     {
         public DistanceSensorSequence() : base("DistanceSensor")
         {

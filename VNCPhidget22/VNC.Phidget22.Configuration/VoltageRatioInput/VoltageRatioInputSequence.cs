@@ -5,7 +5,7 @@ using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22.Configuration
 {
-    public class VoltageRatioInputSequence : ChannelClassSequence
+    public class VoltageRatioInputSequence : ChannelSequence
     {
         public VoltageRatioInputSequence() : base("VoltageRatioInput")
         {

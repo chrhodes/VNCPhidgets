@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class SoundSensorSequence : ChannelClassSequence
+    public class SoundSensorSequence : ChannelSequence
     {
         public SoundSensorSequence() : base("SoundSensor")
         {

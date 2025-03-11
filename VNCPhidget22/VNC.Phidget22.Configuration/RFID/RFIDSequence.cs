@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class RFIDSequence : ChannelClassSequence
+    public class RFIDSequence : ChannelSequence
     {
         public RFIDSequence() : base("RFID")
         {

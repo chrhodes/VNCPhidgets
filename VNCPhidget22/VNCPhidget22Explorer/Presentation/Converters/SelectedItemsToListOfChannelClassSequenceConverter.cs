@@ -23,7 +23,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
         {
             if (value != null)
             {
-                return new List<object>((IEnumerable<ChannelClassSequence>)value);
+                return new List<object>((IEnumerable<ChannelSequence>)value);
             }
 
             return null;
@@ -53,14 +53,14 @@ namespace VNCPhidget22Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<ChannelClassSequence> result = new List<ChannelClassSequence>();
+            List<ChannelSequence> result = new List<ChannelSequence>();
             var enumerable = (List<object>)value;
 
             if (enumerable != null)
             {
                 foreach (object item in enumerable)
                 {
-                    result.Add((ChannelClassSequence)item);
+                    result.Add((ChannelSequence)item);
                 }
             }
 

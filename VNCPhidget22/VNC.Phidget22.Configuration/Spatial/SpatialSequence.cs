@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class SpatialSequence : ChannelClassSequence
+    public class SpatialSequence : ChannelSequence
     {
         public SpatialSequence() : base("Spatial")
         {

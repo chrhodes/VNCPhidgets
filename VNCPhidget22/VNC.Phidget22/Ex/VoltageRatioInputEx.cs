@@ -128,11 +128,11 @@ namespace VNC.Phidget22.Ex
             set { _logVoltageRatioChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -833,7 +833,7 @@ namespace VNC.Phidget22.Ex
                 //        {
                 //            startTicks = Log.Trace(
                 //                $"Running Action Loops" +
-                //                $" interfaceKitSequence:>{interfaceKitSequence.Name}<" +
+                //                $" name:>{interfaceKitSequence.Name}<" +
                 //                $" startActionLoopSequences:>{interfaceKitSequence.StartActionLoopSequences?.Count()}<" +
                 //                $" actionLoops:>{interfaceKitSequence.ActionLoops}<" +
                 //                $" actions:>{interfaceKitSequence.Actions.Count()}<" +
@@ -851,7 +851,7 @@ namespace VNC.Phidget22.Ex
                 //                    // May want to create a new player instead of reaching for the property.
 
                 //                    PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
-                //                    player.LogPerformanceSequence = LogPerformanceSequence;
+                //                    player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                 //                    player.LogSequenceAction = LogSequenceAction;
 
                 //                    foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
@@ -895,7 +895,7 @@ namespace VNC.Phidget22.Ex
                 //                if (interfaceKitSequence.EndActionLoopSequences is not null)
                 //                {
                 //                    PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
-                //                    player.LogPerformanceSequence = LogPerformanceSequence;
+                //                    player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                 //                    player.LogSequenceAction = LogSequenceAction;
 
                 //                    foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
@@ -951,7 +951,7 @@ namespace VNC.Phidget22.Ex
                 //if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
                 //if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
@@ -986,7 +986,7 @@ namespace VNC.Phidget22.Ex
 
             #endregion
 
-            #region INotifyPropertyChanged
+       #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

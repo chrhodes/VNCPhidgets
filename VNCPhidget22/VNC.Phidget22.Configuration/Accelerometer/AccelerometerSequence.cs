@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class AccelerometerSequence : ChannelClassSequence
+    public class AccelerometerSequence : ChannelSequence
     {
         public AccelerometerSequence() : base("Accelerometer")
         {

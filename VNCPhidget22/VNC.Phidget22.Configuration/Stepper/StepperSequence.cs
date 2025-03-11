@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class StepperSequence : ChannelClassSequence
+    public class StepperSequence : ChannelSequence
     {
         public StepperSequence() : base("Stepper")
         {

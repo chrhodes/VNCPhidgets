@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class ResistanceInputSequence : ChannelClassSequence
+    public class ResistanceInputSequence : ChannelSequence
     {
         public ResistanceInputSequence() : base("ResistanceInput")
         {

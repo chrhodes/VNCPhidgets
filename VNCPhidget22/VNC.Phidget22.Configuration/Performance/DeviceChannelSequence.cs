@@ -4,34 +4,28 @@ using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22.Configuration
 {
-    public class PhidgetDeviceClassSequence
+    public class DeviceChannelSequence
     {
         /// <summary>
-        /// Name of Sequence.  If null, must specify a ChannelClassSequence
+        /// Name of Sequence.
         /// </summary>
         public string? Name { get; set; } = null;
-
-        // NOTE(crhodes)
-        // This did not work out
-        // Would have to have a derived type, e.g. RCServoClassSequence
-
-        ///// <summary>
-        ///// ChannelClassSequence.  If null, must specify a Name
-        ///// </summary>
-        //public ChannelClassSequence? ChannelClassSequence { get; set; } = null;
 
         /// <summary>
         /// SerialNumber of PhidgetDevice that will run sequencee
         /// </summary>
         public Int32 SerialNumber { get; set; }
 
-        // NOTE(crhodes)
-        // Not sure we need this as SerialNumber is unique to device
-        // and we likely look things up by Host,SerialNumber
         /// <summary>
-        /// Phidget DeviceClass
+        /// Channel of PhidgetDevice that will run sequencee
+        /// If null, Name is used to lookup sequence 
+        /// which must specify a channel
         /// </summary>
-        //public string DeviceClass { get; set; } = "Generic";
+        public Int32? Channel { get; set; } = null;
+
+        // NOTE(crhodes)
+        // May want to bring more parameters up here, e.g. Logging
+        // DataRate DataInterval, etc.
 
         /// <summary>
         /// Phidget ChannelClass

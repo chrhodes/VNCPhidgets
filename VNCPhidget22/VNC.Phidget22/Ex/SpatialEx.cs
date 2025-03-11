@@ -115,11 +115,11 @@ namespace VNC.Phidget22.Ex
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -339,48 +339,48 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(SpatialSequence SpatialSequence)
+        public async Task RunActionLoops(SpatialSequence spatialSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                if (LogPerformanceSequence)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" SpatialSequence:>{SpatialSequence.Name}<" +
-                        $" startActionLoopSequences:>{SpatialSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{SpatialSequence.ActionLoops}<" +
-                        $" actions:>{SpatialSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{SpatialSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{SpatialSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" name:>{spatialSequence.Name}<" +
+                        $" startActionLoopSequences:>{spatialSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{spatialSequence.ActionLoops}<" +
+                        $" actions:>{spatialSequence.Actions.Count()}<" +
+                        $" actionsDuration:>{spatialSequence?.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{spatialSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
-                if (SpatialSequence.Actions is not null)
+                if (spatialSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < SpatialSequence.ActionLoops; actionLoop++)
+                    for (int actionLoop = 0; actionLoop < spatialSequence.ActionLoops; actionLoop++)
                     {
-                        if (SpatialSequence.StartActionLoopSequences is not null)
+                        if (spatialSequence.StartActionLoopSequences is not null)
                         {
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in SpatialSequence.StartActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in spatialSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
-                        if (SpatialSequence.ExecuteActionsInParallel)
+                        if (spatialSequence.ExecuteActionsInParallel)
                         {
                             if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(SpatialSequence.Actions, async action =>
+                            Parallel.ForEach(spatialSequence.Actions, async action =>
                             {
                                 await PerformAction(action);
                             });
@@ -389,31 +389,31 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
-                            foreach (SpatialAction action in SpatialSequence.Actions)
+                            foreach (SpatialAction action in spatialSequence.Actions)
                             {
                                 await PerformAction(action);
                             }
                         }
 
-                        if (SpatialSequence.ActionsDuration is not null)
+                        if (spatialSequence.ActionsDuration is not null)
                         {
                             if (LogSequenceAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{SpatialSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzzz Action:>{spatialSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
-                            Thread.Sleep((Int32)SpatialSequence.ActionsDuration);
+                            Thread.Sleep((Int32)spatialSequence.ActionsDuration);
                         }
 
-                        if (SpatialSequence.EndActionLoopSequences is not null)
+                        if (spatialSequence.EndActionLoopSequences is not null)
                         {
-                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in SpatialSequence.EndActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in spatialSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
                     }
@@ -462,7 +462,7 @@ namespace VNC.Phidget22.Ex
                 if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 

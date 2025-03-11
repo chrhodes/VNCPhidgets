@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class HumiditySensorSequence : ChannelClassSequence
+    public class HumiditySensorSequence : ChannelSequence
     {
         public HumiditySensorSequence() : base("HumiditySensor")
         {

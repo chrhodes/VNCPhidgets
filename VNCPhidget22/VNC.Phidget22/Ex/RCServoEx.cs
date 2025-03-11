@@ -71,7 +71,7 @@ namespace VNC.Phidget22.Ex
             LogVelocityChangeEvents = configuration.LogVelocityChangeEvents;
             LogTargetPositionReachedEvents = configuration.LogTargetPositionReachedEvents;
 
-            LogPerformanceSequence = configuration.LogPerformanceSequence;
+            LogDeviceChannelSequence = configuration.LogDeviceChannelSequence;
             LogSequenceAction = configuration.LogSequenceAction;
             LogActionVerification = configuration.LogActionVerification;
 
@@ -148,11 +148,11 @@ namespace VNC.Phidget22.Ex
             set { _logTargetPositionReachedEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        bool _logDeviceChannelSequence;
+        public bool LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
         bool _logSequenceAction;
@@ -996,11 +996,11 @@ namespace VNC.Phidget22.Ex
 
             try
             {
-                if (LogPerformanceSequence)
+                if (LogSequenceAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
-                        $" rcServoSequence:>{rcServoSequence.Name}<" +
+                        $" name:>{rcServoSequence.Name}<" +
                         $" startActionLoopSequences:>{rcServoSequence.StartActionLoopSequences?.Count()}<" +
                         $" actionLoops:>{rcServoSequence.ActionLoops}<" +
                         $" actions:>{rcServoSequence.Actions?.Count()}<" +
@@ -1017,13 +1017,13 @@ namespace VNC.Phidget22.Ex
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            PhidgetDeviceSequencePlayer player = PhidgetDeviceSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in rcServoSequence.StartActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in rcServoSequence.StartActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
@@ -1057,13 +1057,13 @@ namespace VNC.Phidget22.Ex
 
                         if (rcServoSequence.EndActionLoopSequences is not null)
                         {
-                            PhidgetDeviceSequencePlayer player = new PhidgetDeviceSequencePlayer(_eventAggregator);
-                            player.LogPerformanceSequence = LogPerformanceSequence;
+                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
                             player.LogSequenceAction = LogSequenceAction;
 
-                            foreach (PhidgetDeviceClassSequence sequence in rcServoSequence.EndActionLoopSequences)
+                            foreach (DeviceChannelSequence sequence in rcServoSequence.EndActionLoopSequences)
                             {
-                                await player.ExecutePhidgetDeviceSequence(sequence);
+                                await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
                     }
@@ -1493,7 +1493,7 @@ namespace VNC.Phidget22.Ex
                 if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
                 if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
 
-                if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean)action.LogPerformanceSequence;
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 

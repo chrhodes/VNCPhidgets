@@ -10,7 +10,7 @@ namespace VNC.Phidget22.Configuration
         public bool? LogErrorEvents { get; set; }
         public bool? LogPropertyChangeEvents { get; set; }
 
-        public bool? LogPerformanceSequence { get; set; }
+        public bool? LogDeviceChannelSequence { get; set; }
         public bool? LogSequenceAction { get; set; }
         public bool? LogActionVerification { get; set; }
 

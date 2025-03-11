@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class CapacitiveTouchSequence : ChannelClassSequence
+    public class CapacitiveTouchSequence : ChannelSequence
     {
         public CapacitiveTouchSequence() : base("CapacitiveTouch")
         {

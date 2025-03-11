@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class BLDCMotorSequence : ChannelClassSequence
+    public class BLDCMotorSequence : ChannelSequence
     {
         public BLDCMotorSequence() : base("BLDCMotor")
         {

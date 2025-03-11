@@ -238,13 +238,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPerformanceSequence = false;
-        public bool LogPerformanceSequence
+        private bool _logDeviceChannelSequence = false;
+        public bool LogDeviceChannelSequence
         {
-            get => _logPerformanceSequence;
+            get => _logDeviceChannelSequence;
             set
             {
-                if (_logPerformanceSequence == value)
+                if (_logDeviceChannelSequence == value)
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
@@ -1596,7 +1596,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             rcServo.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            rcServo.LogPerformanceSequence = LogPerformanceSequence;
+            rcServo.LogDeviceChannelSequence = LogDeviceChannelSequence;
             rcServo.LogSequenceAction = LogSequenceAction;
             rcServo.LogActionVerification = LogActionVerification;
         }
@@ -1867,7 +1867,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //        LogTargetPositionReachedEvents = RCServos[channel].LogTargetPositionReachedEvents,
 
-        //        LogPerformanceSequence = RCServos[channel].LogPerformanceSequence,
+        //        LogDeviceChannelSequence = RCServos[channel].LogDeviceChannelSequence,
         //        LogSequenceAction = RCServos[channel].LogSequenceAction,
         //        LogActionVerification = RCServos[channel].LogActionVerification
         //    };
@@ -1888,7 +1888,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //    //rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-        //    //rcServoHost.LogPerformanceSequence = LogPerformanceSequence;
+        //    //rcServoHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
         //    //rcServoHost.LogSequenceAction = LogSequenceAction;
         //    //rcServoHost.LogActionVerification = LogActionVerification;
 

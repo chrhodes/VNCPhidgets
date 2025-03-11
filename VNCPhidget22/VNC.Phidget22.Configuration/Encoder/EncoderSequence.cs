@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class EncoderSequence : ChannelClassSequence
+    public class EncoderSequence : ChannelSequence
     {
         public EncoderSequence() : base("Encoder")
         {

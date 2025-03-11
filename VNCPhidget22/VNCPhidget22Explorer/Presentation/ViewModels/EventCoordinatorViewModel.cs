@@ -129,8 +129,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.PhidgetDeviceClassSequence? _eventPerformanceSequence;
-        public VNCPhidgetConfig.PhidgetDeviceClassSequence? EventPerformanceSequence
+        private VNCPhidgetConfig.DeviceChannelSequence? _eventPerformanceSequence;
+        public VNCPhidgetConfig.DeviceChannelSequence? EventPerformanceSequence
         {
             get => _eventPerformanceSequence;
             set

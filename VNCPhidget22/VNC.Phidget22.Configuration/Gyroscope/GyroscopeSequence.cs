@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class GyroscopeSequence : ChannelClassSequence
+    public class GyroscopeSequence : ChannelSequence
     {
         public GyroscopeSequence() : base("Gyroscope")
         {
