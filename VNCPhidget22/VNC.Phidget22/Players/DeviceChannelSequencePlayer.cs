@@ -99,7 +99,7 @@ namespace VNC.Phidget22.Players
 
         /// <summary>
         /// Dispatches deviceChannelSequence
-        /// to Execution<TYPE>PerformanceSequence
+        /// to Execute<ChannelClass>ChannelSequence
         /// while deviceChannelSequence.NextPerformanceSequence
         /// is not null
         /// </summary>
@@ -134,7 +134,7 @@ namespace VNC.Phidget22.Players
 
                     do
                     {
-                        switch (nextPhidgetDeviceClassSequence.ChannelClass)   // DeviceClass
+                        switch (nextPhidgetDeviceClassSequence.ChannelClass)
                         {
                              case "DigitalOutput":
                                 nextPhidgetDeviceClassSequence = await ExecuteDigitalOutputChannelSequence(nextPhidgetDeviceClassSequence);
