@@ -9,17 +9,6 @@ namespace VNC.Phidget22.Configuration.Performance
             ChannelClass = channelClass;
         }
 
-        ///// <summary>
-        ///// Host on which to run sequence (optional)
-        ///// </summary>
-        //public Host? Host { get; set; }
-
-        /// <summary>
-        /// Phidget on which to run sequence (optional)
-        /// Use current Phidget if null
-        /// </summary>
-        //public Int32? SerialNumber { get; set; }
-
         /// <summary>
         /// Name of sequence.  Must be unique in ChannelClass
         /// </summary>

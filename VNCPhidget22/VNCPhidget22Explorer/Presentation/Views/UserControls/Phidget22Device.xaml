@@ -188,7 +188,7 @@
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem HorizontalAlignment="Left" >
-                <dxe:CheckEdit Content="Log Sequence Actions" IsChecked="{Binding LogSequenceAction, Mode=TwoWay}" />
+                <dxe:CheckEdit Content="Log Sequence Actions" IsChecked="{Binding LogChannelAction, Mode=TwoWay}" />
             </dxlc:LayoutItem>
         </dxlc:LayoutGroup>
 

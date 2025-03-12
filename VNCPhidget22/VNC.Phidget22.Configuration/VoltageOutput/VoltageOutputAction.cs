@@ -12,7 +12,7 @@ namespace VNC.Phidget22.Configuration
 
 
         public bool? LogDeviceChannelSequence { get; set; }
-        public bool? LogSequenceAction { get; set; }
+        public bool? LogChannelAction { get; set; }
         public bool? LogActionVerification { get; set; }
 
         #endregion

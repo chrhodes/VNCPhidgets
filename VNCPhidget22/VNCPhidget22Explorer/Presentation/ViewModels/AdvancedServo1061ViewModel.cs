@@ -251,13 +251,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logSequenceAction = false;
-        public bool LogSequenceAction
+        private bool _logChannelAction = false;
+        public bool LogChannelAction
         {
-            get => _logSequenceAction;
+            get => _logChannelAction;
             set
             {
-                if (_logSequenceAction == value)
+                if (_logChannelAction == value)
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
@@ -1597,7 +1597,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             rcServo.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
             rcServo.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            rcServo.LogSequenceAction = LogSequenceAction;
+            rcServo.LogChannelAction = LogChannelAction;
             rcServo.LogActionVerification = LogActionVerification;
         }
 
@@ -1868,7 +1868,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //        LogTargetPositionReachedEvents = RCServos[channel].LogTargetPositionReachedEvents,
 
         //        LogDeviceChannelSequence = RCServos[channel].LogDeviceChannelSequence,
-        //        LogSequenceAction = RCServos[channel].LogSequenceAction,
+        //        LogChannelAction = RCServos[channel].LogChannelAction,
         //        LogActionVerification = RCServos[channel].LogActionVerification
         //    };
 
@@ -1889,7 +1889,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    //rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
         //    //rcServoHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
-        //    //rcServoHost.LogSequenceAction = LogSequenceAction;
+        //    //rcServoHost.LogChannelAction = LogChannelAction;
         //    //rcServoHost.LogActionVerification = LogActionVerification;
 
         //    if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);

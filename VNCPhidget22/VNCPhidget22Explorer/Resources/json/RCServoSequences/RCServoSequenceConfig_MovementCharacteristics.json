@@ -2,13 +2,13 @@
   "RCServoSequences": [
 
     //
-    // VelocityLimit and Acceleration Studies Servo0
+    // VelocityLimit and Acceleration Studies
     // Need some way of specifying a range of Servos
     //
     { 
-      "Name": "Move Servo0", 
-      "Channel": 0,
-      "Description": "", 
+      "Name": "Move Servo Min/Max", 
+      "Channel": null,
+      "Description": "Centers Servo then Moves Min/Max then back to Center", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "TargetPosition": 90 },
@@ -17,72 +17,72 @@
         { "TargetPosition": 90 },      ]
     },
     { 
-      "Name": "VelocityLimit (10) Acceleration(25) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (10) Acceleration(25) Servo0", 
+      "Name": "VelocityLimit (10) Acceleration(25)", 
+      "Channel": null,
+      "Description": "VelocityLimit (10) Acceleration(25)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 10, "Acceleration": 25 }
       ]
     },
     { 
-      "Name": "VelocityLimit (25) Acceleration(50) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (25) Acceleration(50) Servo0", 
+      "Name": "VelocityLimit (25) Acceleration(50)", 
+      "Channel": null,
+      "Description": "VelocityLimit (25) Acceleration(50)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 25, "Acceleration": 50 }
       ]
     },
     { 
-      "Name": "VelocityLimit (50) Acceleration(100) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (50) Acceleration(100) Servo0", 
+      "Name": "VelocityLimit (50) Acceleration(100)", 
+      "Channel": null,
+      "Description": "VelocityLimit (50) Acceleration(100)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 50, "Acceleration": 100 }
       ]
     },
     { 
-      "Name": "VelocityLimit (100) Acceleration(200) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (100) Acceleration(200) Servo0", 
+      "Name": "VelocityLimit (100) Acceleration(200)", 
+      "Channel": null,
+      "Description": "VelocityLimit (100) Acceleration(200)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 100, "Acceleration": 200 }
       ]
     },
     { 
-      "Name": "VelocityLimit (250) Acceleration(500) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (250) Acceleration(500) Servo0", 
+      "Name": "VelocityLimit (250) Acceleration(500)", 
+      "Channel": null,
+      "Description": "VelocityLimit (250) Acceleration(500)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 250, "Acceleration": 500 }
       ]
     },
     { 
-      "Name": "VelocityLimit (500) Acceleration(1000) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (500) Acceleration(1000) Servo0", 
+      "Name": "VelocityLimit (500) Acceleration(1000)", 
+      "Channel": null,
+      "Description": "VelocityLimit (500) Acceleration(1000)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 500, "Acceleration": 1000 }
       ]
     },
     { 
-      "Name": "VelocityLimit (1000) Acceleration(2000) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (1000) Acceleration(2000) Servo0", 
+      "Name": "VelocityLimit (1000) Acceleration(2000)", 
+      "Channel": null,
+      "Description": "VelocityLimit (1000) Acceleration(2000)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 1000, "Acceleration": 2000 }
       ]
     },
     { 
-      "Name": "VelocityLimit (5000) Acceleration(10000) Servo0", 
-      "Channel": 0,
-      "Description": "VelocityLimit (5000) Acceleration(10000) Servo0", 
+      "Name": "VelocityLimit (5000) Acceleration(10000)", 
+      "Channel": null,
+      "Description": "VelocityLimit (5000) Acceleration(10000)", 
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 5000, "Acceleration": 10000 }

@@ -408,15 +408,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPerformanceAction = false;
-        public bool LogSequenceAction
+        private bool _logChannelAction = false;
+        public bool LogChannelAction
         {
-            get => _logPerformanceAction;
+            get => _logChannelAction;
             set
             {
-                if (_logPerformanceAction == value)
+                if (_logChannelAction == value)
                     return;
-                _logPerformanceAction = value;
+                _logChannelAction = value;
                 OnPropertyChanged();
             }
         }
@@ -435,86 +435,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
-
-        //#region Hosts
-
-        //private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
-        //public IEnumerable<VNCPhidgetConfig.Host> Hosts
-        //{
-        //    get => _Hosts;
-        //    set
-        //    {
-        //        _Hosts = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private VNCPhidgetConfig.Host _selectedHost;
-        //public VNCPhidgetConfig.Host SelectedHost
-        //{
-        //    get => _selectedHost;
-        //    set
-        //    {
-        //        if (_selectedHost == value)
-        //            return;
-        //        _selectedHost = value;
-        //        OnPropertyChanged();
-
-        //        //DigitalInputs = _selectedHost.DigitalInputs?.ToList<VNCPhidgetConfig.DigitalInput>();
-
-        //        DigitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
-        //            .Keys
-        //            .DistinctBy(x => x.SerialNumber)
-        //            .Select(x => x.SerialNumber)
-        //            .ToList();
-
-        //        //DigitalOutputs = _selectedHost.DigitalOutputs?.ToList<VNCPhidgetConfig.DigitalOutput>();
-
-        //        //var keys = Common.PhidgetDeviceLibrary.DigitalOutputChannels.Keys;
-        //        //var serialChannels = keys.DistinctBy(x => x.SerialNumber).ToList();
-        //        //var serialNumbers = serialChannels.Select(x => x.SerialNumber).ToList();
-
-        //        DigitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
-        //            .Keys
-        //            .DistinctBy(x => x.SerialNumber)
-        //            .Select(x => x.SerialNumber)
-        //            .ToList();
-
-        //        //DigitalOutputs = serialNumbers;
-        //        //DigitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels.Keys.ToList();
-
-        //        RCServos = Common.PhidgetDeviceLibrary.RCServoChannels
-        //             .Keys
-        //             .DistinctBy(x => x.SerialNumber)
-        //             .Select(x => x.SerialNumber)
-        //             .ToList();
-
-        //        Steppers = Common.PhidgetDeviceLibrary.StepperChannels
-        //             .Keys
-        //             .DistinctBy(x => x.SerialNumber)
-        //             .Select(x => x.SerialNumber)
-        //             .ToList();
-
-        //        //Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
-
-        //        //VoltageInputs = _selectedHost.VoltageInputs?.ToList<VNCPhidgetConfig.VoltageInput>();
-        //        //VoltageOutputs = _selectedHost.VoltageOutputs?.ToList<VNCPhidgetConfig.VoltageOutput>();
-
-        //        VoltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
-        //             .Keys
-        //             .DistinctBy(x => x.SerialNumber)
-        //             .Select(x => x.SerialNumber)
-        //             .ToList();
-
-        //        VoltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
-        //             .Keys
-        //             .DistinctBy(x => x.SerialNumber)
-        //             .Select(x => x.SerialNumber)
-        //             .ToList();
-        //    }
-        //}
-
-        //#endregion
 
         #region Performances
 
@@ -1294,19 +1214,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Think through whether this make sense.
 
             PerformancePlayer performancePlayer = GetPerformancePlayer();
-            //PhidgetDeviceSequencePlayer performanceSequencePlayer = GetPhidgetDeviceSequencePlayer();
 
             foreach (Performance performance in SelectedPerformances)
             {
-                if (LogPerformance)
-                {
-                    Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
-                        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                        $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
-                        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                        $" nextPerformance:{performance.NextPerformance?.Name}", Common.LOG_CATEGORY);
-                }
+                //if (LogPerformance)
+                //{
+                //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
+                //        $"\nbeforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
+                //        $"\nperformanceSequences:{performance.DeviceClassSequences?.Count()}" +
+                //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                //        $"\nafterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
+                //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                //}
 
                 Performance? nextPerformance = performance;
 
@@ -1323,15 +1242,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 while (nextPerformance is not null)
                 {
-                    if (LogPerformance)
-                    {
-                        Log.Trace($"Playing performance:{performance.Name} description:{performance.Description}" +
-                            $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                            $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                            $" performanceSequences:{performance.PhidgetDeviceClassSequences?.Count()}" +
-                            $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                            $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
-                    }
+                    //if (LogPerformance)
+                    //{
+                    //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
+                    //        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
+                    //        $" deviceClassSequences:{performance.DeviceClassSequences?.Count()}" +
+                    //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                    //        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
+                    //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    //}
 
                     if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
                     {
@@ -1949,7 +1868,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             ActivePerformancePlayer.LogPerformance = LogPerformance;
             ActivePerformancePlayer.LogPhidgetEvents = LogPhidgetEvents;
             ActivePerformancePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActivePerformancePlayer.LogSequenceAction = LogDeviceChannelSequence;
+            ActivePerformancePlayer.LogChannelAction = LogChannelAction;
             ActivePerformancePlayer.LogActionVerification = LogActionVerification;
 
             return ActivePerformancePlayer;
@@ -1963,7 +1882,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
 
             ActivePerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActivePerformanceSequencePlayer.LogSequenceAction = LogSequenceAction;
+            ActivePerformanceSequencePlayer.LogChannelAction = LogChannelAction;
             ActivePerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
             ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;

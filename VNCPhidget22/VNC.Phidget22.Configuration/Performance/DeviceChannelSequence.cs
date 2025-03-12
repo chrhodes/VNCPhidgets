@@ -42,6 +42,9 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public Int32? Duration { get; set; }
 
+        // TODO(crhodes)
+        // Do we really need this here?
+
         /// <summary>
         /// Close Phidget at end of sequence loops
         /// </summary>

@@ -4,6 +4,22 @@
     // Open Servos
     //
     { 
+      "Name": "Open Servo", 
+      "Description": "", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true }
+      ]
+    },
+    { 
+      "Name": "Open and Engage Servo", 
+      "Description": "", 
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },
+    { 
       "Name": "Open Servo0", 
       "Channel": 0,
       "Description": "", 

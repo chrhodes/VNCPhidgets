@@ -97,11 +97,11 @@
                     <dxe:CheckEdit Content="Log Performance" 
                                         IsChecked="{Binding LogPerformance}" HorizontalAlignment="Left" />
 
-                    <dxe:CheckEdit Content="Log Performance Sequence" 
+                    <dxe:CheckEdit Content="Log DeviceChannel Sequence" 
                                         IsChecked="{Binding LogDeviceChannelSequence}" HorizontalAlignment="Left" />
 
-                    <dxe:CheckEdit Content="Log Sequence Action" 
-                                        IsChecked="{Binding LogSequenceAction}" HorizontalAlignment="Right"/>
+                    <dxe:CheckEdit Content="Log Channel Action" 
+                                        IsChecked="{Binding LogChannelAction}" HorizontalAlignment="Right"/>
 
                     <dxe:CheckEdit Content="Log Action Verification" 
                                         IsChecked="{Binding LogActionVerification}" HorizontalAlignment="Right"/>

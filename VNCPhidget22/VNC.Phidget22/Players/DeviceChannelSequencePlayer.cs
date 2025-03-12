@@ -60,7 +60,7 @@ namespace VNC.Phidget22.Players
         public DigitalOutputEx ActiveDigitalOutputHost { get; set; }
 
         public bool LogDeviceChannelSequence { get; set; }
-        public bool LogSequenceAction { get; set; }
+        public bool LogChannelAction { get; set; }
         public bool LogActionVerification { get; set; }
 
         // Phidget Events
@@ -115,19 +115,18 @@ namespace VNC.Phidget22.Players
             {
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Executing PhidgetDevice Sequence" +
-                        $" name:>{deviceChannelSequence?.Name}<" +
-                        $" channel{deviceChannelSequence?.Channel}<" +
-                        $" serialNumber{deviceChannelSequence?.SerialNumber}<" +
-                        $" channelClass:>{deviceChannelSequence?.ChannelClass}<" +
-                        $" loops:>{deviceChannelSequence?.SequenceLoops}<" +
+                    startTicks = Log.Trace($"Executing DeviceChannel Sequence:>{deviceChannelSequence?.Name}" +
+                        $"\r channelClass:>{deviceChannelSequence?.ChannelClass}<" +
+                        $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                        $" channel:>{deviceChannelSequence?.Channel}<" +
+                        $"\r loops:>{deviceChannelSequence?.SequenceLoops}<" +
                         $" duration:>{deviceChannelSequence?.Duration}<" +
-                        $" closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                        $"\r closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
                 }
 
                 for (int sequenceLoop = 0; sequenceLoop < deviceChannelSequence.SequenceLoops; sequenceLoop++)
                 {
-                    if (LogDeviceChannelSequence) Log.Trace($"Running PhidgetDeviceSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
+                    if (LogDeviceChannelSequence) Log.Trace($"Running DeviceChannelSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
 
                     // NOTE(crhodes)
                     // Each loop starts back at the initial sequence
@@ -207,18 +206,18 @@ namespace VNC.Phidget22.Players
 
                     if (LogDeviceChannelSequence)
                     {
-                        startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence" +
-                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" name:>{digitalOutputSequence?.Name}< channel:>{digitalOutputSequence.Channel}< deviceChannel:>{deviceChannelSequence.Channel}<" +
-                            //$" sequenceLoops:>{digitalOutputSequence?.SequenceLoops}<" +
-                            $" beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{digitalOutputSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{digitalOutputSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{digitalOutputSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{digitalOutputSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{digitalOutputSequence?.EndActionLoopSequences?.Count()}<" +
+                        startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
+                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{digitalOutputSequence.Channel}< " +
+                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                            $"\r beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
                             $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{digitalOutputSequence?.SequenceDuration}<" +
+                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
                             $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
@@ -304,11 +303,11 @@ namespace VNC.Phidget22.Players
 
                     if (LogDeviceChannelSequence)
                     {
-                        startTicks = Log.Trace($"Executing RCServo Channel Sequence" +
-                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" name:>{rcServoSequence?.Name}< channel:>{rcServoSequence.Channel}< deviceChannel:>{deviceChannelSequence.Channel}<" +
+                        startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
+                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{rcServoSequence.Channel}< " +
                             //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $" beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            $"\r beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
                             //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
                             //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
                             //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
@@ -399,18 +398,18 @@ namespace VNC.Phidget22.Players
 
                     if (LogDeviceChannelSequence)
                     {
-                        startTicks = Log.Trace($"Executing Stepper Channel Sequence" +
-                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" name:>{stepperSequence?.Name}< channel:>{stepperSequence.Channel}< deviceChannel:>{deviceChannelSequence.Channel}<" +
-                            //$" sequenceLoops:>{stepperSequence?.SequenceLoops}<" +
-                            $" beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{stepperSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{stepperSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{stepperSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{stepperSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{stepperSequence?.EndActionLoopSequences?.Count()}<" +
+                        startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
+                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence.Channel}< " +
+                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                            $"\r beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
                             $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{stepperSequence?.SequenceDuration}<" +
+                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
                             $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
@@ -505,7 +504,7 @@ namespace VNC.Phidget22.Players
             //digitalOutputHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
             digitalOutputHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            digitalOutputHost.LogSequenceAction = LogSequenceAction;
+            digitalOutputHost.LogChannelAction = LogChannelAction;
             digitalOutputHost.LogActionVerification = LogActionVerification;
 
             // TODO(crhodes)
@@ -559,7 +558,7 @@ namespace VNC.Phidget22.Players
             rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
             rcServoHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            rcServoHost.LogSequenceAction = LogSequenceAction;
+            rcServoHost.LogChannelAction = LogChannelAction;
             rcServoHost.LogActionVerification = LogActionVerification;
 
             // TODO(crhodes)
@@ -614,7 +613,7 @@ namespace VNC.Phidget22.Players
             stepperHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
             stepperHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            stepperHost.LogSequenceAction = LogSequenceAction;
+            stepperHost.LogChannelAction = LogChannelAction;
             stepperHost.LogActionVerification = LogActionVerification;
 
             // TODO(crhodes)

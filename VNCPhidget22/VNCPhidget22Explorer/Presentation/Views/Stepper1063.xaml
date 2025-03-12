@@ -262,7 +262,7 @@
                         HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Log SequenceAction"
-                        IsChecked="{Binding LogSequenceAction, Mode=TwoWay}"
+                        IsChecked="{Binding LogChannelAction, Mode=TwoWay}"
                         HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Log ActionVerification"

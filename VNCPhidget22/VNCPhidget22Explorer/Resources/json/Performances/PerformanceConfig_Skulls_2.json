@@ -12,7 +12,7 @@
     "Description": "Centers all three skulls",
     "Loops": 1,
     "PlaySequencesInParallel": true,
-    "PhidgetDeviceClassSequences": [
+    "DeviceClassSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
@@ -23,7 +23,7 @@
   //  "Description": "",
   //  "Loops": 1,
   //  "PlaySequencesInParallel": true,
-  //  "PhidgetDeviceClassSequences": [
+  //  "DeviceClassSequences": [
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
   //    { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
@@ -32,7 +32,7 @@
   //    //{
   //    //   "Name": "Disengage All Servos and Close Phidget",
   //    //   "Description": "",
-  //    //   "PhidgetDeviceClassSequences": [
+  //    //   "DeviceClassSequences": [
   //    //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
   //    //   ]
   //    // }
@@ -45,7 +45,7 @@
       { "Name": "Center Skulls" }
     ],
     "PlaySequencesInParallel": true,
-    "PhidgetDeviceClassSequences": [
+    "DeviceClassSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Up Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Up Right" },
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-012 Look Up Right" },
@@ -57,7 +57,7 @@
     //  "Description": "",
     //  "Loops": 1,
     //  "PlaySequencesInParallel": true,
-    //  "PhidgetDeviceClassSequences": [
+    //  "DeviceClassSequences": [
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
@@ -66,7 +66,7 @@
     //   //{
     //   //   "Name": "Disengage All Servos and Close Phidget",
     //   //   "Description": "",
-    //   //   "PhidgetDeviceClassSequences": [
+    //   //   "DeviceClassSequences": [
     //   //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
     //   //   ]
     //   // }
@@ -79,7 +79,7 @@
       ],
       "Loops": 1,
       "PlaySequencesInParallel": true,
-      "PhidgetDeviceClassSequences": [
+      "DeviceClassSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Down Left" },
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Down Left" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-012 Look Down Left" },
@@ -91,7 +91,7 @@
     //  "Description": "",
     //  "Loops": 1,
     //  "PlaySequencesInParallel": true,
-    //  "PhidgetDeviceClassSequences": [
+    //  "DeviceClassSequences": [
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
@@ -100,7 +100,7 @@
     //   //{
     //   //   "Name": "Disengage All Servos and Close Phidget",
     //   //   "Description": "",
-    //   //   "PhidgetDeviceClassSequences": [
+    //   //   "DeviceClassSequences": [
     //   //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
     //   //   ]
     //   // }
@@ -113,7 +113,7 @@
       ],
       "Loops": 1,
       "PlaySequencesInParallel": true,
-      "PhidgetDeviceClassSequences": [
+      "DeviceClassSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Up Left" },
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Up Left" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-012 Look Up Left" },
@@ -125,7 +125,7 @@
     //  "Description": "",
     //  "Loops": 1,
     //  "PlaySequencesInParallel": true,
-    //  "PhidgetDeviceClassSequences": [
+    //  "DeviceClassSequences": [
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
@@ -134,7 +134,7 @@
     //   //{
     //   //   "Name": "Disengage All Servos and Close Phidget",
     //   //   "Description": "",
-    //   //   "PhidgetDeviceClassSequences": [
+    //   //   "DeviceClassSequences": [
     //   //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
     //   //   ]
     //   // }
@@ -147,7 +147,7 @@
     ],
     "Loops": 1,
     "PlaySequencesInParallel": true,
-    "PhidgetDeviceClassSequences": [
+    "DeviceClassSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Down Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Down Right" },
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-012 Look Down Right" },
@@ -159,7 +159,7 @@
   //  "Description": "",
   //  "Loops": 1,
   //  "PlaySequencesInParallel": true,
-  //  "PhidgetDeviceClassSequences": [
+  //  "DeviceClassSequences": [
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
   //    { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
@@ -168,7 +168,7 @@
   //    //{
   //    //   "Name": "Disengage All Servos and Close Phidget",
   //    //   "Description": "",
-  //    //   "PhidgetDeviceClassSequences": [
+  //    //   "DeviceClassSequences": [
   //    //       { "Name": "99415-DisEngage All Servos", "ClosePhidget": true }
   //    //   ]
   //    // }

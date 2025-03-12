@@ -122,11 +122,11 @@ namespace VNC.Phidget22.Ex
             set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
-        bool _logSequenceAction;
-        public bool LogSequenceAction
+        bool _logChannelAction;
+        public bool LogChannelAction
         {
-            get { return _logSequenceAction; }
-            set { _logSequenceAction = value; OnPropertyChanged(); }
+            get { return _logChannelAction; }
+            set { _logChannelAction = value; OnPropertyChanged(); }
         }
 
         bool _logActionVerification;
@@ -569,7 +569,7 @@ namespace VNC.Phidget22.Ex
             {
                 Int64 startTicks = 0;
 
-                if (LogSequenceAction)
+                if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
                         $"Running Action Loops" +
@@ -592,7 +592,7 @@ namespace VNC.Phidget22.Ex
 
                             DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
                             player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogSequenceAction = LogSequenceAction;
+                            player.LogChannelAction = LogChannelAction;
 
                             foreach (DeviceChannelSequence sequence in digitalOutputSequence.StartActionLoopSequences)
                             {
@@ -602,7 +602,7 @@ namespace VNC.Phidget22.Ex
 
                         if (digitalOutputSequence.ExecuteActionsInParallel)
                         {
-                            if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(digitalOutputSequence.Actions, async action =>
                             {
@@ -611,7 +611,7 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
                             foreach (DigitalOutputAction action in digitalOutputSequence.Actions)
                             {
@@ -621,7 +621,7 @@ namespace VNC.Phidget22.Ex
 
                         if (digitalOutputSequence.ActionsDuration is not null)
                         {
-                            if (LogSequenceAction)
+                            if (LogChannelAction)
                             {
                                 Log.Trace($"Zzzzz Action:>{digitalOutputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
@@ -633,7 +633,7 @@ namespace VNC.Phidget22.Ex
                         {
                             DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
                             player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogSequenceAction = LogSequenceAction;
+                            player.LogChannelAction = LogChannelAction;
 
                             foreach (DeviceChannelSequence sequence in digitalOutputSequence.EndActionLoopSequences)
                             {
@@ -643,7 +643,7 @@ namespace VNC.Phidget22.Ex
                     }
                 }
 
-                if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                if (LogChannelAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -669,7 +669,7 @@ namespace VNC.Phidget22.Ex
 
             StringBuilder actionMessage = new StringBuilder();
 
-            if (LogSequenceAction)
+            if (LogChannelAction)
             {
                 startTicks = Log.Trace($"Enter digitalOutput:{Channel}", Common.LOG_CATEGORY);
                 actionMessage.Append($"digitalOutput:{Channel}");
@@ -687,21 +687,21 @@ namespace VNC.Phidget22.Ex
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
                 if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
-                if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean)action.LogSequenceAction;
+                if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
                 #endregion
                
                 if (action.DigitalOut is not null)
                 {
-                    if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
+                    if (LogChannelAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
 
                     State = (Boolean)action.DigitalOut;
                 }
 
                 if (action.Duration > 0)
                 {
-                    if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -712,7 +712,7 @@ namespace VNC.Phidget22.Ex
             }
             finally
             {
-                if (LogSequenceAction)
+                if (LogChannelAction)
                 {
                     Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
                 }

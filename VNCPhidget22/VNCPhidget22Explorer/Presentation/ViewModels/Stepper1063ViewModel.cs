@@ -258,13 +258,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logSequenceAction = false;
-        public bool LogSequenceAction
+        private bool _logChannelAction = false;
+        public bool LogChannelAction
         {
-            get => _logSequenceAction;
+            get => _logChannelAction;
             set
             {
-                if (_logSequenceAction == value)
+                if (_logChannelAction == value)
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
@@ -911,7 +911,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             stepper.LogStoppedEvents = LogStoppedEvents;
 
             stepper.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            stepper.LogSequenceAction = LogSequenceAction;
+            stepper.LogChannelAction = LogChannelAction;
             stepper.LogActionVerification = LogActionVerification;
         }
 
