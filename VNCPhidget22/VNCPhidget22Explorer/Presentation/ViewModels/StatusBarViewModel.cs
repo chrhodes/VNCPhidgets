@@ -72,11 +72,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void UpdateStatusMessage(string message)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandlerLow) startTicks = Log.EVENT_HANDLER_LOW("Enter", Common.LOG_CATEGORY);
 
             Message = message;
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandlerLow) Log.EVENT_HANDLER_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
