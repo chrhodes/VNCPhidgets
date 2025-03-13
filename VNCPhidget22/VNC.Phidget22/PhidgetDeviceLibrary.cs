@@ -11,6 +11,7 @@ using VNC.Phidget22.Ex;
 using PhidgetEvents = Phidget22.Events;
 using Phidgets = Phidget22;
 using VNC.Phidget22.Configuration.Performance;
+using Prism.Regions.Behaviors;
 
 namespace VNC.Phidget22
 {
@@ -229,11 +230,6 @@ namespace VNC.Phidget22
             set => _motorPositionControllerChannels = value;
         }
 
-        //public static Dictionary<SerialChannel, PressureSensorEx> PressureSensorChannels = new Dictionary<SerialChannel, PressureSensorEx>();
-        //public static Dictionary<SerialChannel, RCServoEx> RCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
-        //public static Dictionary<SerialChannel, ResistanceInputEx> ResistanceInputChannels = new Dictionary<SerialChannel, ResistanceInputEx>();
-
-
         private Dictionary<SerialChannel, PHSensorEx> _pHSensorChanels = new Dictionary<SerialChannel, PHSensorEx>();
         public Dictionary<SerialChannel, PHSensorEx> PHSensorChanels
         {
@@ -248,6 +244,13 @@ namespace VNC.Phidget22
             set => _powerGuardChannels = value;
         }
 
+        private Dictionary<SerialChannel, PressureSensorEx> _pressureSensorChannels = new Dictionary<SerialChannel, PressureSensorEx>();
+        public Dictionary<SerialChannel, PressureSensorEx> PressureSensorChannels
+        {
+            get => _pressureSensorChannels;
+            set => _pressureSensorChannels = value;
+        }
+
         private Dictionary<SerialChannel, RCServoEx> _rCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
         public Dictionary<SerialChannel, RCServoEx> RCServoChannels
         {
@@ -255,7 +258,7 @@ namespace VNC.Phidget22
             set => _rCServoChannels = value;
         }
 
-        private Dictionary<SerialChannel, ResistanceInputEx> _resistanceInputChannels;
+        private Dictionary<SerialChannel, ResistanceInputEx> _resistanceInputChannels = new Dictionary<SerialChannel, ResistanceInputEx>();
         public Dictionary<SerialChannel, ResistanceInputEx> ResistanceInputChannels
         {
             get => _resistanceInputChannels;
@@ -360,34 +363,34 @@ namespace VNC.Phidget22
         private void Manager_Attach(object sender, PhidgetEvents.ManagerAttachEventArgs e)
         {
             var maea = e;
-            var channel = e.Channel;
+            var phidget = e.Channel;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach: deviceClass:>{channel.DeviceClass}< channelClass:>{channel.ChannelClass}< channel:>{channel}< deviceSerialNumber:>{channel.DeviceSerialNumber}< deviceID:>{channel.DeviceID}<", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach: |parent:>{phidget.Parent}<" +
+                        $"|serverPeerName:>{phidget.ServerPeerName}<" +
+                        $"|deviceClass:>{phidget.DeviceClass}< |deviceID:>{phidget.DeviceID}<" +
+                        $"|deviceSerialNumber:>{phidget.DeviceSerialNumber}< |channelClass:>{phidget.ChannelClass}< " +
+                        $"|isHubPortDevice:>{phidget.IsHubPortDevice}< |hubPort:>{phidget.HubPort}<  |isChannel:>{phidget.IsChannel}< |channel:>{phidget.Channel}<", Common.LOG_CATEGORY);
 
-                    switch (channel.DeviceClass)
+                    switch (phidget.DeviceClass)
                     {
                         case Phidgets.DeviceClass.Dictionary:
                             if(Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"parent:>{channel.Parent}<", Common.LOG_CATEGORY);
-
-                                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
-                                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
-                                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+                                PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
+                                IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
+                                AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
                             }
                             break;
 
                         case Phidgets.DeviceClass.Hub:
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"parent:>{channel.Parent}< hubPort:{channel.HubPort}", Common.LOG_CATEGORY);
-
                                 // FIX(crhodes)
-                                // Need to figure out how to handle Hub with Ports.  Channel is alwways 0
+                                // Need to figure out how to handle Hub with Ports.  Channel is always 0
 
                                 //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
                                 //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
@@ -398,27 +401,21 @@ namespace VNC.Phidget22
                         case Phidgets.DeviceClass.VINT:
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"parent:>{channel.Parent}", Common.LOG_CATEGORY);
+                                // FIX(crhodes)
+                                // Need to figure out how to handle VINT with Ports.  Channel is always 0
 
-                                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
-                                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
-                                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+                                //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
+                                //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
+                                //AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
                             }
                             break;
-
-                        //case DeviceClass.InterfaceKit:
-                        //    DisplayChannelInfo(channel);
-                        //    break;
 
                         // NOTE(crhodes)
                         // For everything else assume it is a Physical Phidget
                         default:
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
-                                Log.EVENT_HANDLER($"parent:>{channel.Parent}<", Common.LOG_CATEGORY);
-                                //Log.EVENT_HANDLER($"Manager_Attach: deviceClass:{channel.DeviceClass}", Common.LOG_CATEGORY);
-
-                                AddPhidgetDevice(channel);
+                                AddPhidgetDevice(phidget);
                             }
                             break;
                     }
@@ -430,24 +427,26 @@ namespace VNC.Phidget22
             }
         }
 
-        private void AddPhidgetDevice(Phidgets.Phidget channel)
+        private void AddPhidgetDevice(Phidgets.Phidget phidget)
         { 
-            if (AvailablePhidgets.ContainsKey(channel.DeviceSerialNumber) == false)
+            if (AvailablePhidgets.ContainsKey(phidget.DeviceSerialNumber) == false)
             {
-                PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
+                PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
 
-                phidgetDevice.ChannelCount = channel.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
+                phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
 
-                IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
+                IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
 
-                AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+                AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
             }
             else
             {
-                IncrementDeviceChannelCount(AvailablePhidgets[channel.DeviceSerialNumber], channel.ChannelClass);               
+                IncrementDeviceChannelCount(AvailablePhidgets[phidget.DeviceSerialNumber], phidget.ChannelClass);               
             }
         }
 
+        // NOTE(crhodes)
+        // Maybe this returns
         void IncrementDeviceChannelCount(PhidgetDevice phidgetDevice, Phidgets.ChannelClass channelClass)
         {
             var deviceChannels = phidgetDevice.DeviceChannels;

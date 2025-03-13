@@ -5,7 +5,7 @@
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
       <VersionSuffix>development-23</VersionSuffix>
-      <FileVersion>2025.03.11A</FileVersion>
+      <FileVersion>2025.03.12A</FileVersion>
       <Description>Layer on top of Phidget22 and Performance Players</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>      

@@ -128,10 +128,10 @@
         <Point X="7.673" Y="24.167" Type="JumpEnd" />
         <Point X="13.917" Y="24.167" Type="JumpStart" />
         <Point X="14.083" Y="24.167" Type="JumpEnd" />
-        <Point X="15.503" Y="24.167" Type="JumpStart" />
-        <Point X="15.669" Y="24.167" Type="JumpEnd" />
-        <Point X="23.917" Y="24.167" Type="JumpStart" />
-        <Point X="24.083" Y="24.167" Type="JumpEnd" />
+        <Point X="14.823" Y="24.167" Type="JumpStart" />
+        <Point X="14.99" Y="24.167" Type="JumpEnd" />
+        <Point X="15.049" Y="24.167" Type="JumpStart" />
+        <Point X="15.216" Y="24.167" Type="JumpEnd" />
         <Point X="28.75" Y="24.167" />
       </Path>
     </InheritanceLine>
@@ -162,7 +162,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.Log">
-    <Position X="1" Y="65.25" Width="4" />
+    <Position X="1" Y="66.25" Width="4" />
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.Magnetometer">
@@ -170,7 +170,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.Manager">
-    <Position X="1.5" Y="70.25" Width="2.75" />
+    <Position X="1.25" Y="72" Width="2.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.MotorPositionController">
@@ -182,11 +182,11 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.Net">
-    <Position X="6.5" Y="70" Width="5.5" />
+    <Position X="5.5" Y="72" Width="5.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.Pconf">
-    <Position X="13.5" Y="70" Width="4.5" />
+    <Position X="12.75" Y="72" Width="4.5" />
     <NestedTypes>
       <Class Name="Phidget22.Pconf.PconfType" Collapsed="true">
         <TypeIdentifier />
@@ -199,7 +199,7 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.PhidgetException">
-    <Position X="18.75" Y="70" Width="3.5" />
+    <Position X="19.75" Y="72" Width="3.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Phidget22.PHSensor">

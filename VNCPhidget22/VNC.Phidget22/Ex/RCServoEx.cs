@@ -54,7 +54,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(RCServoConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
             Channel = configuration.Channel;
@@ -84,7 +84,7 @@ namespace VNC.Phidget22.Ex
             TargetPositionReached += RCServoEx_TargetPositionReached;
             VelocityChange += RCServoEx_VelocityChange;
 
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

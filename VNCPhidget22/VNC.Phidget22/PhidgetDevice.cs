@@ -49,15 +49,17 @@ namespace VNC.Phidget22
 
         public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
 
+        // TODO(crhodes)
+        // Hos is this used.  Only place I see is in AddPhidgetDevice()
         public Int32 ChannelCount { get; set; }
 
         public DeviceChannels DeviceChannels { get; set; } = new DeviceChannels();
 
         public int SerialNumber { get; set; } = 0;
 
-        // TODO(crhodes)
-        // How is this used?
-        public PhidgetEx PhidgetEx {  get; set; }
+        //// TODO(crhodes)
+        //// How is this used?
+        //public PhidgetEx PhidgetEx {  get; set; }
     }
 }
 

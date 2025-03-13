@@ -1,9 +1,9 @@
 ﻿namespace VNC.Phidget22
 {
-    public struct SerialChannel
+    public class SerialChannel
     {
-        public int SerialNumber;
-        public int Channel;
+        public int SerialNumber { get; set; }
+        public int Channel { get; set; }
     }
 }
 

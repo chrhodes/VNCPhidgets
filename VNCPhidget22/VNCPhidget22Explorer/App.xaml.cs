@@ -463,6 +463,5 @@ namespace VNCPhidget22Explorer
 
 
         #endregion
-
     }
 }

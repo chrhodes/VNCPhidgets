@@ -110,8 +110,7 @@
                 <dxlc:LayoutItem Label="DigitalOutput Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
                     <dxe:ComboBoxEdit Width="150" 
                         ItemsSource="{Binding DigitalOutputs}"
-                        SelectedItem="{Binding SelectedDigitalOutput}"
-                        SelectedIndex="0"/>
+                        SelectedItem="{Binding SelectedDigitalOutput}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >

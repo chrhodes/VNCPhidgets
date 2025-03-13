@@ -72,6 +72,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
             ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
             ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
 
+            lgHubs.IsCollapsed = true;
+            lgDigitalInputs.IsCollapsed = true;
+            lgDigitalOutputs.IsCollapsed = true;
+            lgRCServos.IsCollapsed = true;
+            lgSteppers.IsCollapsed = true;
+            lgVoltageInputs.IsCollapsed = true;
+            lgVoltageRatioInputs.IsCollapsed = true;
+            lgVoltageOutputs.IsCollapsed = true;
+
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
@@ -139,6 +148,5 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
     }
 }

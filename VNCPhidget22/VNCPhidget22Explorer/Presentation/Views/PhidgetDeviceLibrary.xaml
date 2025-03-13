@@ -92,16 +92,177 @@
         <!-- If using DevExpress -->
         <!-- Also, use dxXMLNS to insert namespaces above -->
 
-        <dxlc:LayoutGroup Orientation="Vertical">
+        <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-            <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.DigitalInputChannels}" >
-                <dxg:GridControl.Columns>
-                    <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
-                    <dxg:GridColumn Binding="{Binding Value}" Header="Value" ReadOnly="True" />
-                </dxg:GridControl.Columns>
-            </dxg:GridControl>
+            <dxlc:LayoutGroup x:Name="lgHubs" View="GroupBox" Header="Hubs" Orientation="Vertical"
+                              IsCollapsible="True" IsCollapsed="False">
 
-        </dxlc:LayoutGroup> 
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.HubChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgDigitalInputs" View="GroupBox" Header="DigitalInputs" Orientation="Vertical"
+                              IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.DigitalInputChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgDigitalOutputs" View="GroupBox" Header="DigitalOuputs" Orientation="Vertical"
+                              IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.DigitalOutputChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgRCServos" View="GroupBox" Header="RCServos" Orientation="Vertical"
+                          IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.RCServoChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgSteppers" View="GroupBox" Header="Steppers" Orientation="Vertical"
+                          IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.StepperChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgVoltageInputs" View="GroupBox" Header="VoltageInputs" Orientation="Vertical"
+                          IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.VoltageInputChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgVoltageRatioInputs" View="GroupBox" Header="VoltageRatioInputs" Orientation="Vertical"
+                          IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.VoltageRatioInputChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgVoltageOutputs" View="GroupBox" Header="VoltageOutputs" Orientation="Vertical"
+                          IsCollapsible="True" IsCollapsed="False">
+
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.VoltageOutputChannels}" >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.ServerName}" Header="ServerName" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Port}" Header="Port" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
 
     </DockPanel>
 
