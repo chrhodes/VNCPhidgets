@@ -21,7 +21,6 @@ namespace VNC.Phidget22.Ex
     {
         #region Constructors, Initialization, and Load
 
-        private readonly CurrentInputConfiguration _CurrentInputConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -30,16 +29,15 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="CurrentInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public CurrentInputEx(int serialNumber, CurrentInputConfiguration CurrentInputConfiguration, IEventAggregator eventAggregator)
+        public CurrentInputEx(int serialNumber, CurrentInputConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _CurrentInputConfiguration = CurrentInputConfiguration;
             _eventAggregator = eventAggregator;
 
-            InitializePhidget();
+            InitializePhidget(configuration);
 
             _eventAggregator.GetEvent<CurrentInputSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -55,13 +53,15 @@ namespace VNC.Phidget22.Ex
         /// Configures CurrentInputEx using CurrentInputConfiguration
         /// and establishes event handlers
         /// </summary>
-        private void InitializePhidget()
+        private void InitializePhidget(CurrentInputConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
+            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
-            Channel = _CurrentInputConfiguration.Channel;
+            Channel = configuration.Channel;
+
             IsRemote = true;
 
             Attach += CurrentInputExEx_Attach;
@@ -69,7 +69,7 @@ namespace VNC.Phidget22.Ex
             Error += CurrentInputExEx_Error;
             PropertyChange += CurrentInputExEx_PropertyChange;
 
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -137,6 +137,17 @@ namespace VNC.Phidget22.Ex
         }
 
         #endregion
+
+        private string _hostComputer;
+        public string HostComputer
+        {
+            get => _hostComputer;
+            set
+            {
+                _hostComputer = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int _serialNumber;
         public int SerialNumber

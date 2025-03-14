@@ -21,7 +21,6 @@ namespace VNC.Phidget22.Ex
     {
         #region Constructors, Initialization, and Load
 
-        private readonly IRConfiguration _IRConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -30,16 +29,15 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="IRConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public IREx(int serialNumber, IRConfiguration IRConfiguration, IEventAggregator eventAggregator)
+        public IREx(int serialNumber, IRConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _IRConfiguration = IRConfiguration;
             _eventAggregator = eventAggregator;
 
-            InitializePhidget();
+            InitializePhidget(configuration);
 
             _eventAggregator.GetEvent<IRSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -55,13 +53,15 @@ namespace VNC.Phidget22.Ex
         /// Configures IREx using IRConfiguration
         /// and establishes event handlers
         /// </summary>
-        private void InitializePhidget()
+        private void InitializePhidget(IRConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
+            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
-            Channel = _IRConfiguration.Channel;
+            Channel = configuration.Channel;
+
             IsRemote = true;
 
             Attach += IRExEx_Attach;
@@ -69,7 +69,7 @@ namespace VNC.Phidget22.Ex
             Error += IRExEx_Error;
             PropertyChange += IRExEx_PropertyChange;
 
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -137,6 +137,17 @@ namespace VNC.Phidget22.Ex
         }
 
         #endregion
+
+        private string _hostComputer;
+        public string HostComputer
+        {
+            get => _hostComputer;
+            set
+            {
+                _hostComputer = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int _serialNumber;
         public int SerialNumber

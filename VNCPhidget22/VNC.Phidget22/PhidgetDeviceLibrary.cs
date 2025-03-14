@@ -12,6 +12,7 @@ using PhidgetEvents = Phidget22.Events;
 using Phidgets = Phidget22;
 using VNC.Phidget22.Configuration.Performance;
 using Prism.Regions.Behaviors;
+using Phidget22;
 
 namespace VNC.Phidget22
 {
@@ -44,6 +45,12 @@ namespace VNC.Phidget22
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // This is for Excel use.  It needs to match what is in Manager_Attach()
+            if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach:|Parent" +
+                $"|ServerPeerName|DeviceClass|DeviceID|DeviceSerialNumber|ChannelClass" +
+                $"|IsHubPortDevice|HubPort|IsChannel|Channel", Common.LOG_CATEGORY);
 
             //_availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
 
@@ -369,20 +376,23 @@ namespace VNC.Phidget22
             {
                 try
                 {
-                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach: |parent:>{phidget.Parent}<" +
-                        $"|serverPeerName:>{phidget.ServerPeerName}<" +
-                        $"|deviceClass:>{phidget.DeviceClass}< |deviceID:>{phidget.DeviceID}<" +
-                        $"|deviceSerialNumber:>{phidget.DeviceSerialNumber}< |channelClass:>{phidget.ChannelClass}< " +
-                        $"|isHubPortDevice:>{phidget.IsHubPortDevice}< |hubPort:>{phidget.HubPort}<  |isChannel:>{phidget.IsChannel}< |channel:>{phidget.Channel}<", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach:|{phidget.Parent}" +
+                        $"|{phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceID}|{phidget.DeviceSerialNumber}|{phidget.ChannelClass}" +
+                        $"|{phidget.IsHubPortDevice}|{phidget.HubPort}|{phidget.IsChannel}|{phidget.Channel}", Common.LOG_CATEGORY);
 
                     switch (phidget.DeviceClass)
                     {
                         case Phidgets.DeviceClass.Dictionary:
                             if(Common.VNCLogging.ApplicationInitialize)
                             {
-                                PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
-                                IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
-                                AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
+                                // FIX(crhodes)
+                                // Looks like each SBC has a Dictionary.
+                                // If want to use/save, need to use ServerName or ServerPeerName as Key
+                                // Currently AvailablePhidgets expects an Int32 as the key
+
+                                //PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
+                                //IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
+                                //AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
                             }
                             break;
 
@@ -390,11 +400,13 @@ namespace VNC.Phidget22
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
                                 // FIX(crhodes)
-                                // Need to figure out how to handle Hub with Ports.  Channel is always 0
+                                // Looks like each (new) SBC has a built in Hub, DeviceID:PN_HUB0004
 
                                 //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
                                 //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
                                 //AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+
+                                AddPhidgetDevice(phidget);
                             }
                             break;
 
@@ -411,7 +423,7 @@ namespace VNC.Phidget22
                             break;
 
                         // NOTE(crhodes)
-                        // For everything else assume it is a Physical Phidget
+                        // For everything else assume it is a Physical Phidget with a SerialNumber
                         default:
                             if (Common.VNCLogging.ApplicationInitialize)
                             {
@@ -478,7 +490,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.DigitalInput:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new DigitalInput" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new DigitalInput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalInputCount}", Common.LOG_CATEGORY);
 
                     DigitalInputChannels.Add(
@@ -490,6 +502,7 @@ namespace VNC.Phidget22
                         new DigitalInputEx(phidgetDevice.SerialNumber,
                             new DigitalInputConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.DigitalInputCount
                             },
                             _eventAggregator
@@ -499,7 +512,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.DigitalOutput:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new DigitalOutput" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new DigitalOutput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalOutputCount}", Common.LOG_CATEGORY);
 
                     DigitalOutputChannels.Add(
@@ -511,6 +524,7 @@ namespace VNC.Phidget22
                         new DigitalOutputEx(phidgetDevice.SerialNumber,
                             new DigitalOutputConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.DigitalOutputCount
                             },
                             _eventAggregator
@@ -548,6 +562,25 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.Hub:
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new Hub" +
+                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.HubCount}", Common.LOG_CATEGORY);
+
+                    HubChannels.Add(
+                        new SerialChannel()
+                        {
+                            SerialNumber = phidgetDevice.SerialNumber,
+                            Channel = deviceChannels.HubCount
+                        },
+                        new HubEx(phidgetDevice.SerialNumber,
+                            new HubConfiguration()
+                            {
+                                HostComputer = phidgetDevice.HostComputer,
+                                Channel = deviceChannels.HubCount
+                            },
+                            _eventAggregator
+                        )
+                    );
+
                     deviceChannels.HubCount++;
                     break;
 
@@ -587,7 +620,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new RCServoChannel" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new RCServoChannel" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
 
                     RCServoChannels.Add(
@@ -599,6 +632,7 @@ namespace VNC.Phidget22
                         new RCServoEx(phidgetDevice.SerialNumber,
                             new RCServoConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.RCServoCount
                             },
                             _eventAggregator
@@ -635,6 +669,7 @@ namespace VNC.Phidget22
                         new StepperEx(phidgetDevice.SerialNumber,
                             new StepperConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.StepperCount
                             },
                             _eventAggregator
@@ -659,6 +694,7 @@ namespace VNC.Phidget22
                         new VoltageInputEx(phidgetDevice.SerialNumber,
                             new VoltageInputConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.VoltageInputCount
                             },
                             _eventAggregator
@@ -679,6 +715,7 @@ namespace VNC.Phidget22
                         new VoltageRatioInputEx(phidgetDevice.SerialNumber,
                             new VoltageRatioInputConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.VoltageRatioInputCount
                             },
                             _eventAggregator
@@ -699,6 +736,7 @@ namespace VNC.Phidget22
                         new VoltageOutputEx(phidgetDevice.SerialNumber,
                             new VoltageOutputConfiguration()
                             {
+                                HostComputer = phidgetDevice.HostComputer,
                                 Channel = deviceChannels.VoltageOutputCount
                             },
                             _eventAggregator

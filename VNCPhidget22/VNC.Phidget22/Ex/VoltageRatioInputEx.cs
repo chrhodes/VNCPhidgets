@@ -19,7 +19,6 @@ namespace VNC.Phidget22.Ex
     {
         #region Constructors, Initialization, and Load
 
-        private readonly VoltageRatioInputConfiguration _voltageRatioInputConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -28,16 +27,15 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="voltageRatioInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public VoltageRatioInputEx(int serialNumber, VoltageRatioInputConfiguration voltageRatioInputConfiguration, IEventAggregator eventAggregator)
+        public VoltageRatioInputEx(int serialNumber, VoltageRatioInputConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _voltageRatioInputConfiguration = voltageRatioInputConfiguration;
             _eventAggregator = eventAggregator;
 
-            InitializePhidget();
+            InitializePhidget(configuration);
 
             _eventAggregator.GetEvent<VoltageRatioInputSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -53,13 +51,15 @@ namespace VNC.Phidget22.Ex
         /// Configures VoltageRatioInput using VoltageRatioInputConfiguration
         /// and establishes event handlers
         /// </summary>
-        private void InitializePhidget()
+        private void InitializePhidget(VoltageRatioInputConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY); ;
 
+            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
-            Channel = _voltageRatioInputConfiguration.Channel;
+            Channel = configuration.Channel;
+
             IsRemote = true;
 
             Attach += VoltageRatioInputEx_Attach;
@@ -70,7 +70,7 @@ namespace VNC.Phidget22.Ex
             SensorChange += VoltageRatioInputEx_SensorChange;
             VoltageRatioChange += VoltageRatioInputEx_VoltageRatioChange;
 
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -150,6 +150,17 @@ namespace VNC.Phidget22.Ex
         }
 
         #endregion
+
+        private string _hostComputer;
+        public string HostComputer
+        {
+            get => _hostComputer;
+            set
+            {
+                _hostComputer = value;
+                OnPropertyChanged();
+            }
+        }
 
         private int _serialNumber;
         public int SerialNumber

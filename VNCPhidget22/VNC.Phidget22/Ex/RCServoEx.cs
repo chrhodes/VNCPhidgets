@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -22,7 +23,6 @@ namespace VNC.Phidget22.Ex
     {
         #region Constructors, Initialization, and Load
 
-        private readonly Configuration.RCServoConfiguration _rcServoConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -31,16 +31,15 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="rcServoConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public RCServoEx(int serialNumber, Configuration.RCServoConfiguration rcServoConfiguration, IEventAggregator eventAggregator)
+        public RCServoEx(int serialNumber, Configuration.RCServoConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _rcServoConfiguration = rcServoConfiguration; // Probaly don't need to save
             _eventAggregator = eventAggregator;
 
-            InitializePhidget(rcServoConfiguration);
+            InitializePhidget(configuration);
 
             _eventAggregator.GetEvent<RCServoSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -56,8 +55,10 @@ namespace VNC.Phidget22.Ex
             long startTicks = 0;
             if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
+            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
             Channel = configuration.Channel;
+
             IsRemote = true;
 
             // NOTE(crhodes)
@@ -171,6 +172,17 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
+        private string _hostComputer;
+        public string HostComputer
+        {
+            get => _hostComputer;
+            set
+            {
+                _hostComputer = value;
+                OnPropertyChanged();
+            }
+
+        }
         private int _serialNumber;
         public int SerialNumber
         {

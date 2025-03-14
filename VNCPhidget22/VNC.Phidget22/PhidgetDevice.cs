@@ -18,17 +18,17 @@ namespace VNC.Phidget22
         //{
         //}
 
-        public PhidgetDevice(string ipAddress, int port, Phidgets.DeviceClass deviceClass, int serialNumber)
+        public PhidgetDevice(string ipAddress, int hostPort, Phidgets.DeviceClass deviceClass, int serialNumber)
         {
             IPAddress = ipAddress;
-            Port = port;
+            HostPort = hostPort;
             DeviceClass = deviceClass;
             SerialNumber = serialNumber;
         }
 
         public PhidgetDevice(string serverPeerName, Phidgets.DeviceClass deviceClass, int serialNumber)
         {
-            ServerPeerName = serverPeerName;
+            HostComputer = serverPeerName;
             // TODO(crhodes)
             // See if we can switch to serverPeerName or need to keep IPAddress and Port
             //IPAddress = ipAddress;
@@ -41,11 +41,11 @@ namespace VNC.Phidget22
         // How is this used?
         public SerialHost SerialHostKey { get; set; }
 
-        public string ServerPeerName { get; set; }
+        public string HostComputer { get; set; }
 
         public string IPAddress { get; set; } = "127.0.0.1";
 
-        public int Port { get; set; } = 5661;
+        public int HostPort { get; set; } = 5661;
 
         public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
 

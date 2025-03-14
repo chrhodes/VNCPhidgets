@@ -5,8 +5,7 @@ namespace VNC.Phidget22.Configuration
 {
     public class RCServoConfiguration
     {
-        // TODO(crhodes)
-        // How is this used?
+        public string HostComputer { get; set; }
         public short Channel { get; set; }
 
         // TODO(crhodes)

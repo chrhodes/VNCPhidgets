@@ -5,7 +5,7 @@ namespace VNC.Phidget22.Configuration
 {
     public class VoltageOutputConfiguration
     {
-
+        public string HostComputer { get; set; }
         public short Channel { get; set; }
         //public bool IsRemote { get; set; } = true;
         //public bool IsLocal { get; set; } = false;
