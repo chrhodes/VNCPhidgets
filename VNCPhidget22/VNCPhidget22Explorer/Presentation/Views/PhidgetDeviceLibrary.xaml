@@ -47,6 +47,11 @@
         <!-- </Style> -->
     <!-- </d:DesignerProperties.DesignStyle> -->
 
+    <vncmvvm:ViewBase.Resources>
+        <converters:SerialHubPortChannelToSerialNumberConverter x:Key="SerialHubPortChannelToSerialNumberConverter" />
+        <converters:SerialHubPortChannelToHubPortConverter x:Key="SerialHubPortChannelToHubPortConverter" />
+        <converters:SerialHubPortChannelToChannelConverter x:Key="SerialHubPortChannelToChannelConverter" />
+    </vncmvvm:ViewBase.Resources>
     <!-- <vncmvvm:ViewBase.Resources> -->
         <!-- <localc:SelectedItemsToListOfStringConverter x:Key="SelectedItemsToListOfStringConverter" /> -->
         <!-- <localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> -->
@@ -94,43 +99,37 @@
 
         <dxlc:LayoutGroup View="Group" Orientation="Vertical">
 
-            <dxlc:LayoutGroup x:Name="lgPhidgets" View="GroupBox" Header="Hubs" Orientation="Vertical"
+            <dxlc:LayoutGroup x:Name="lgPhidgets" View="GroupBox" Header="Phidget Manager Attached Phidgets" Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 
-                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.AvailablePhidgets}"  >
+                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices}"  >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />-->
+                        <dxg:GridColumn Binding="{Binding HostComputer}" Header="HostComputer" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Parent}" Header="Parent" ReadOnly="True" Width="500" />
+                        <dxg:GridColumn Binding="{Binding SerialNumber}" Header="SerialNumber" ReadOnly="True" Width="100" />
+                        <dxg:GridColumn Binding="{Binding DeviceClass}" Header="DeviceClass" ReadOnly="True" Width="100"/>
+                        <dxg:GridColumn Binding="{Binding HubPort}" Header="Port" ReadOnly="True" Width="50"/>
+                        <dxg:GridColumn Binding="{Binding ChannelClass}" Header="ChannelClass" ReadOnly="True" Width="120" />
+                        <dxg:GridColumn Binding="{Binding Channel}" Header="Channel" ReadOnly="True" Width="75" />
                     </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup x:Name="lgHubs" View="GroupBox" Header="Hubs" Orientation="Vertical"
+            <dxlc:LayoutGroup x:Name="lgChannels" View="GroupBox" Header="Channels" Orientation="Vertical"
+                              IsCollapsible="True" IsCollapsed="False" >
+
+                <dxlc:LayoutGroup x:Name="lgHubs" View="GroupBox" Header="Hubs" Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
                
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.HubChannels}"  >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
+                        <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                        <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                        <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
                         <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
                     </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
@@ -141,18 +140,13 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.DigitalInputChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
@@ -162,18 +156,13 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.DigitalOutputChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
@@ -183,18 +172,13 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.RCServoChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
@@ -204,18 +188,13 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.StepperChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
@@ -225,18 +204,13 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.VoltageInputChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
@@ -246,19 +220,13 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.VoltageRatioInputChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="ServerPerName" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
 
             </dxlc:LayoutGroup>
@@ -268,19 +236,16 @@
 
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.VoltageOutputChannels}" >
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Binding="{Binding Value.HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Parent}" Header="Parent" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Key.SerialNumber}" Header="Key" ReadOnly="True" />
-                        <!--<dxg:GridColumn Binding="{Binding Value.Engaged}" Header="Engaged" ReadOnly="True" />-->
-                        <dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Attached}" Header="Attached" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.HubPort}" Header="Port" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.Channel}" Header="Channel" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogErrorEvents}" Header="LogErrorEvents" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Value.LogPhidgetEvents}" Header="LogPhidgetEvents" ReadOnly="True" />
-                    </dxg:GridControl.Columns>
+                            <!--<dxg:GridColumn Binding="{Binding Value.ServerPeerName}" Header="HostComputer" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToSerialNumberConverter}}" Header="SerialNumber" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToHubPortConverter}}" Header="HubPort" ReadOnly="True" />
+                            <dxg:GridColumn Binding="{Binding Key, Converter={StaticResource SerialHubPortChannelToChannelConverter}}" Header="Channel" ReadOnly="True" />
+                            <!--<dxg:GridColumn Binding="{Binding Value.DeviceClass}" Header="DeviceClass" ReadOnly="True" />-->
+                            <dxg:GridColumn Binding="{Binding Value.ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                        </dxg:GridControl.Columns>
                 </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
 

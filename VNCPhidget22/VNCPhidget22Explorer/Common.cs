@@ -42,16 +42,16 @@ namespace VNCPhidget22Explorer
 
         public static Shell? CurrentShell;
 
-        //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
-        public static int? PhidgetOpenTimeout { get; set; } = null; // ms
+        //public static Int32 PhidgetOpenTimeout { get; set; } = 60000; // ms
+        public static Int32? PhidgetOpenTimeout { get; set; } = null; // ms
 
         public static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
 
         public static event EventHandler AutoHideGroupSpeedChanged;
 
-        private static int _AutoHideGroupSpeed = 250;
+        private static Int32 _AutoHideGroupSpeed = 250;
 
-        public static int AutoHideGroupSpeed
+        public static Int32 AutoHideGroupSpeed
         {
             get { return _AutoHideGroupSpeed; }
             set

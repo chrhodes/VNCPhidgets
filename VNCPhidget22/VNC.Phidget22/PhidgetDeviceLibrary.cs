@@ -13,6 +13,7 @@ using Phidgets = Phidget22;
 using VNC.Phidget22.Configuration.Performance;
 using Prism.Regions.Behaviors;
 using Phidget22;
+using System.Diagnostics.CodeAnalysis;
 
 namespace VNC.Phidget22
 {
@@ -88,241 +89,243 @@ namespace VNC.Phidget22
 
         //public static Dictionary<Int32, PhidgetDevice> AvailablePhidget22 = new Dictionary<Int32, PhidgetDevice>();
 
-        public Dictionary<Int32, PhidgetDevice> _availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
-        public Dictionary<Int32, PhidgetDevice> AvailablePhidgets
-        {
-            get
-            {
-                //if (_availablePhidgets is null)
-                //{
-                //    BuildPhidgetDeviceDictionary();
-                //}
-                return _availablePhidgets;
-            }
-            set
-            {
+        //public Dictionary<SerialHubChannel, PhidgetDevice> _managerAttachedPhidgetDevices = new Dictionary<SerialHubChannel, PhidgetDevice>();
+        //public Dictionary<SerialHubChannel, PhidgetDevice> ManagerAttachedPhidgetDevices
+        //{
+        //    get => _managerAttachedPhidgetDevices;
+        //}
 
-            }
+        public List<PhidgetDevice> _managerAttachedPhidgetDevices = new List<PhidgetDevice>();
+        public List<PhidgetDevice> ManagerAttachedPhidgetDevices
+        {
+            get => _managerAttachedPhidgetDevices;
         }
 
+        private Dictionary<SerialHubPortChannel, AccelerometerEx> _accelerometerChannels = new Dictionary<SerialHubPortChannel, AccelerometerEx>();
 
-        private Dictionary<SerialChannel, AccelerometerEx> _accelerometerChannels = new Dictionary<SerialChannel, AccelerometerEx>();
-
-        public Dictionary<SerialChannel, AccelerometerEx> AccelerometerChannels
+        public Dictionary<SerialHubPortChannel, AccelerometerEx> AccelerometerChannels
         {
             get => _accelerometerChannels;
             set => _accelerometerChannels = value;
         }
 
-        private Dictionary<SerialChannel, BLDCMotorEx> _bLDCMotorChannels = new Dictionary<SerialChannel, BLDCMotorEx>();
+        private Dictionary<SerialHubPortChannel, BLDCMotorEx> _bLDCMotorChannels = new Dictionary<SerialHubPortChannel, BLDCMotorEx>();
 
-        public Dictionary<SerialChannel, BLDCMotorEx> BLDCMotorChannels
+        public Dictionary<SerialHubPortChannel, BLDCMotorEx> BLDCMotorChannels
         {
             get => _bLDCMotorChannels;
             set => _bLDCMotorChannels = value;
         }
 
-        private Dictionary<SerialChannel, CapacitiveTouchEx> _capacitiveTouchChannels = new Dictionary<SerialChannel, CapacitiveTouchEx>();
+        private Dictionary<SerialHubPortChannel, CapacitiveTouchEx> _capacitiveTouchChannels = new Dictionary<SerialHubPortChannel, CapacitiveTouchEx>();
 
-        public Dictionary<SerialChannel, CapacitiveTouchEx> CapacitiveTouchChannels
+        public Dictionary<SerialHubPortChannel, CapacitiveTouchEx> CapacitiveTouchChannels
         {
             get => _capacitiveTouchChannels;
             set => _capacitiveTouchChannels = value;
         }
 
-        private Dictionary<SerialChannel, DCMotorEx> _dCMotorChannels = new Dictionary<SerialChannel, DCMotorEx>();
-        public Dictionary<SerialChannel, DCMotorEx> DCMotorChannels
+        private Dictionary<SerialHubPortChannel, CurrentInputEx> _currentInputChannels = new Dictionary<SerialHubPortChannel, CurrentInputEx>();
+
+        public Dictionary<SerialHubPortChannel, CurrentInputEx> CurrentInputChannels
+        {
+            get => _currentInputChannels;
+            set => _currentInputChannels = value;
+        }
+
+        private Dictionary<SerialHubPortChannel, DCMotorEx> _dCMotorChannels = new Dictionary<SerialHubPortChannel, DCMotorEx>();
+        public Dictionary<SerialHubPortChannel, DCMotorEx> DCMotorChannels
         {
             get => _dCMotorChannels;
             set => _dCMotorChannels = value;
         }
 
-        private Dictionary<SerialChannel, DigitalInputEx> _digitalInputChannels = new Dictionary<SerialChannel, DigitalInputEx>();
-        public Dictionary<SerialChannel, DigitalInputEx> DigitalInputChannels
+        private Dictionary<SerialHubPortChannel, DigitalInputEx> _digitalInputChannels = new Dictionary<SerialHubPortChannel, DigitalInputEx>();
+        public Dictionary<SerialHubPortChannel, DigitalInputEx> DigitalInputChannels
         {
             get => _digitalInputChannels;
             set => _digitalInputChannels = value;
         }
 
-        private Dictionary<SerialChannel, DigitalOutputEx> _digitalOutputChannels = new Dictionary<SerialChannel, DigitalOutputEx>();
+        private Dictionary<SerialHubPortChannel, DigitalOutputEx> _digitalOutputChannels = new Dictionary<SerialHubPortChannel, DigitalOutputEx>();
 
-        public Dictionary<SerialChannel, DigitalOutputEx> DigitalOutputChannels
+        public Dictionary<SerialHubPortChannel, DigitalOutputEx> DigitalOutputChannels
         {
             get => _digitalOutputChannels;
             set => _digitalOutputChannels = value;
         }
 
-        private Dictionary<SerialChannel, DistanceSensorEx> _distanceSensorChannels = new Dictionary<SerialChannel, DistanceSensorEx>();
+        private Dictionary<SerialHubPortChannel, DistanceSensorEx> _distanceSensorChannels = new Dictionary<SerialHubPortChannel, DistanceSensorEx>();
 
-        public Dictionary<SerialChannel, DistanceSensorEx> DistanceSensorChannels
+        public Dictionary<SerialHubPortChannel, DistanceSensorEx> DistanceSensorChannels
         {
             get => _distanceSensorChannels;
             set => _distanceSensorChannels = value;
         }
 
-        private Dictionary<SerialChannel, EncoderEx> _encoderChannels = new Dictionary<SerialChannel, EncoderEx>();
-        public Dictionary<SerialChannel, EncoderEx> EncoderChannels
+        private Dictionary<SerialHubPortChannel, EncoderEx> _encoderChannels = new Dictionary<SerialHubPortChannel, EncoderEx>();
+        public Dictionary<SerialHubPortChannel, EncoderEx> EncoderChannels
         {
             get => _encoderChannels;
             set => _encoderChannels = value;
         }
 
-        private Dictionary<SerialChannel, FrequencyCounterEx> _frequencyCounterChannels = new Dictionary<SerialChannel, FrequencyCounterEx>();
-        public Dictionary<SerialChannel, FrequencyCounterEx> FrequencyCounterChannels
+        private Dictionary<SerialHubPortChannel, FrequencyCounterEx> _frequencyCounterChannels = new Dictionary<SerialHubPortChannel, FrequencyCounterEx>();
+        public Dictionary<SerialHubPortChannel, FrequencyCounterEx> FrequencyCounterChannels
         {
             get => _frequencyCounterChannels;
             set => _frequencyCounterChannels = value;
         }
 
-        private Dictionary<SerialChannel, GPSEx> _gPSChannels = new Dictionary<SerialChannel, GPSEx>();
-        public Dictionary<SerialChannel, GPSEx> GPSChannels
+        private Dictionary<SerialHubPortChannel, GPSEx> _gPSChannels = new Dictionary<SerialHubPortChannel, GPSEx>();
+        public Dictionary<SerialHubPortChannel, GPSEx> GPSChannels
         {
             get => _gPSChannels;
             set => _gPSChannels = value;
         }
 
-        private Dictionary<SerialChannel, GyroscopeEx> _gyroscopeChannels = new Dictionary<SerialChannel, GyroscopeEx>();
-        public Dictionary<SerialChannel, GyroscopeEx> GyroscopeChannels
+        private Dictionary<SerialHubPortChannel, GyroscopeEx> _gyroscopeChannels = new Dictionary<SerialHubPortChannel, GyroscopeEx>();
+        public Dictionary<SerialHubPortChannel, GyroscopeEx> GyroscopeChannels
         {
             get => _gyroscopeChannels;
             set => _gyroscopeChannels = value;
         }
 
-        private Dictionary<SerialChannel, HubEx> _hubChannels = new Dictionary<SerialChannel, HubEx>();
-        public Dictionary<SerialChannel, HubEx> HubChannels
+        private Dictionary<SerialHubPortChannel, HubEx> _hubChannels = new Dictionary<SerialHubPortChannel, HubEx>();
+        public Dictionary<SerialHubPortChannel, HubEx> HubChannels
         {
             get => _hubChannels;
             set => _hubChannels = value;
         }
 
-        private Dictionary<SerialChannel, HumiditySensorEx> _humiditySensorChannels = new Dictionary<SerialChannel, HumiditySensorEx>();
-        public Dictionary<SerialChannel, HumiditySensorEx> HumiditySensorChannels
+        private Dictionary<SerialHubPortChannel, HumiditySensorEx> _humiditySensorChannels = new Dictionary<SerialHubPortChannel, HumiditySensorEx>();
+        public Dictionary<SerialHubPortChannel, HumiditySensorEx> HumiditySensorChannels
         {
             get => _humiditySensorChannels;
             set => _humiditySensorChannels = value;
         }
 
-        private Dictionary<SerialChannel, IREx> _iRChannels = new Dictionary<SerialChannel, IREx>();
-        public Dictionary<SerialChannel, IREx> IRChannels
+        private Dictionary<SerialHubPortChannel, IREx> _iRChannels = new Dictionary<SerialHubPortChannel, IREx>();
+        public Dictionary<SerialHubPortChannel, IREx> IRChannels
         {
             get => _iRChannels;
             set => _iRChannels = value;
         }
 
-        private Dictionary<SerialChannel, LCDEx> _lCDChannels = new Dictionary<SerialChannel, LCDEx>();
-        public Dictionary<SerialChannel, LCDEx> LCDChannels
+        private Dictionary<SerialHubPortChannel, LCDEx> _lCDChannels = new Dictionary<SerialHubPortChannel, LCDEx>();
+        public Dictionary<SerialHubPortChannel, LCDEx> LCDChannels
         {
             get => _lCDChannels;
             set => _lCDChannels = value;
         }
 
-        private Dictionary<SerialChannel, LightSensorEx> _lightSensorChannels = new Dictionary<SerialChannel, LightSensorEx>();
-        public Dictionary<SerialChannel, LightSensorEx> LightSensorChannels
+        private Dictionary<SerialHubPortChannel, LightSensorEx> _lightSensorChannels = new Dictionary<SerialHubPortChannel, LightSensorEx>();
+        public Dictionary<SerialHubPortChannel, LightSensorEx> LightSensorChannels
         {
             get => _lightSensorChannels;
             set => _lightSensorChannels = value;
         }
 
-        private Dictionary<SerialChannel, MagnetometerEx> _magnetometerChannels = new Dictionary<SerialChannel, MagnetometerEx>();
-        public Dictionary<SerialChannel, MagnetometerEx> MagnetometerChannels
+        private Dictionary<SerialHubPortChannel, MagnetometerEx> _magnetometerChannels = new Dictionary<SerialHubPortChannel, MagnetometerEx>();
+        public Dictionary<SerialHubPortChannel, MagnetometerEx> MagnetometerChannels
         {
             get => _magnetometerChannels;
             set => _magnetometerChannels = value;
         }
 
-        private Dictionary<SerialChannel, MotorPositionControllerEx> _motorPositionControllerChannels = new Dictionary<SerialChannel, MotorPositionControllerEx>();
-        public Dictionary<SerialChannel, MotorPositionControllerEx> MotorPositionControllerChannels
+        private Dictionary<SerialHubPortChannel, MotorPositionControllerEx> _motorPositionControllerChannels = new Dictionary<SerialHubPortChannel, MotorPositionControllerEx>();
+        public Dictionary<SerialHubPortChannel, MotorPositionControllerEx> MotorPositionControllerChannels
         {
             get => _motorPositionControllerChannels;
             set => _motorPositionControllerChannels = value;
         }
 
-        private Dictionary<SerialChannel, PHSensorEx> _pHSensorChanels = new Dictionary<SerialChannel, PHSensorEx>();
-        public Dictionary<SerialChannel, PHSensorEx> PHSensorChanels
+        private Dictionary<SerialHubPortChannel, PHSensorEx> _pHSensorChanels = new Dictionary<SerialHubPortChannel, PHSensorEx>();
+        public Dictionary<SerialHubPortChannel, PHSensorEx> PHSensorChanels
         {
             get => _pHSensorChanels;
             set => _pHSensorChanels = value;
         }
 
-        private Dictionary<SerialChannel, PowerGuardEx> _powerGuardChannels = new Dictionary<SerialChannel, PowerGuardEx>();
-        public Dictionary<SerialChannel, PowerGuardEx> PowerGuardChannels
+        private Dictionary<SerialHubPortChannel, PowerGuardEx> _powerGuardChannels = new Dictionary<SerialHubPortChannel, PowerGuardEx>();
+        public Dictionary<SerialHubPortChannel, PowerGuardEx> PowerGuardChannels
         {
             get => _powerGuardChannels;
             set => _powerGuardChannels = value;
         }
 
-        private Dictionary<SerialChannel, PressureSensorEx> _pressureSensorChannels = new Dictionary<SerialChannel, PressureSensorEx>();
-        public Dictionary<SerialChannel, PressureSensorEx> PressureSensorChannels
+        private Dictionary<SerialHubPortChannel, PressureSensorEx> _pressureSensorChannels = new Dictionary<SerialHubPortChannel, PressureSensorEx>();
+        public Dictionary<SerialHubPortChannel, PressureSensorEx> PressureSensorChannels
         {
             get => _pressureSensorChannels;
             set => _pressureSensorChannels = value;
         }
 
-        private Dictionary<SerialChannel, RCServoEx> _rCServoChannels = new Dictionary<SerialChannel, RCServoEx>();
-        public Dictionary<SerialChannel, RCServoEx> RCServoChannels
+        private Dictionary<SerialHubPortChannel, RCServoEx> _rCServoChannels = new Dictionary<SerialHubPortChannel, RCServoEx>();
+        public Dictionary<SerialHubPortChannel, RCServoEx> RCServoChannels
         {
             get => _rCServoChannels;
             set => _rCServoChannels = value;
         }
 
-        private Dictionary<SerialChannel, ResistanceInputEx> _resistanceInputChannels = new Dictionary<SerialChannel, ResistanceInputEx>();
-        public Dictionary<SerialChannel, ResistanceInputEx> ResistanceInputChannels
+        private Dictionary<SerialHubPortChannel, ResistanceInputEx> _resistanceInputChannels = new Dictionary<SerialHubPortChannel, ResistanceInputEx>();
+        public Dictionary<SerialHubPortChannel, ResistanceInputEx> ResistanceInputChannels
         {
             get => _resistanceInputChannels;
             set => _resistanceInputChannels = value;
         }
 
-        private Dictionary<SerialChannel, RFIDEx> _rFIDChannels = new Dictionary<SerialChannel, RFIDEx>();
-        public Dictionary<SerialChannel, RFIDEx> RFIDChannels
+        private Dictionary<SerialHubPortChannel, RFIDEx> _rFIDChannels = new Dictionary<SerialHubPortChannel, RFIDEx>();
+        public Dictionary<SerialHubPortChannel, RFIDEx> RFIDChannels
         {
             get => _rFIDChannels;
             set => _rFIDChannels = value;
         }
 
-        private Dictionary<SerialChannel, SoundSensorEx> _soundSensorChannels = new Dictionary<SerialChannel, SoundSensorEx>();
-        public Dictionary<SerialChannel, SoundSensorEx> SoundSensorChannels
+        private Dictionary<SerialHubPortChannel, SoundSensorEx> _soundSensorChannels = new Dictionary<SerialHubPortChannel, SoundSensorEx>();
+        public Dictionary<SerialHubPortChannel, SoundSensorEx> SoundSensorChannels
         {
             get => _soundSensorChannels;
             set => _soundSensorChannels = value;
         }
 
-        private Dictionary<SerialChannel, SpatialEx> _spatialChannels = new Dictionary<SerialChannel, SpatialEx>();
-        public Dictionary<SerialChannel, SpatialEx> SpatialChannels
+        private Dictionary<SerialHubPortChannel, SpatialEx> _spatialChannels = new Dictionary<SerialHubPortChannel, SpatialEx>();
+        public Dictionary<SerialHubPortChannel, SpatialEx> SpatialChannels
         {
             get => _spatialChannels;
             set => _spatialChannels = value;
         }
 
-        private Dictionary<SerialChannel, StepperEx> _stepperChannels = new Dictionary<SerialChannel, StepperEx>();
-        public Dictionary<SerialChannel, StepperEx> StepperChannels
+        private Dictionary<SerialHubPortChannel, StepperEx> _stepperChannels = new Dictionary<SerialHubPortChannel, StepperEx>();
+        public Dictionary<SerialHubPortChannel, StepperEx> StepperChannels
         {
             get => _stepperChannels;
             set => _stepperChannels = value;
         }
 
-        private Dictionary<SerialChannel, TemperatureSensorEx> _temperatureSensorChannels = new Dictionary<SerialChannel, TemperatureSensorEx>();
-        public Dictionary<SerialChannel, TemperatureSensorEx> TemperatureSensorChannels
+        private Dictionary<SerialHubPortChannel, TemperatureSensorEx> _temperatureSensorChannels = new Dictionary<SerialHubPortChannel, TemperatureSensorEx>();
+        public Dictionary<SerialHubPortChannel, TemperatureSensorEx> TemperatureSensorChannels
         {
             get => _temperatureSensorChannels;
             set => _temperatureSensorChannels = value;
         }
 
-        private Dictionary<SerialChannel, VoltageInputEx> _voltageInputChannels = new Dictionary<SerialChannel, VoltageInputEx>();
-        public Dictionary<SerialChannel, VoltageInputEx> VoltageInputChannels
+        private Dictionary<SerialHubPortChannel, VoltageInputEx> _voltageInputChannels = new Dictionary<SerialHubPortChannel, VoltageInputEx>();
+        public Dictionary<SerialHubPortChannel, VoltageInputEx> VoltageInputChannels
         {
             get => _voltageInputChannels;
             set => _voltageInputChannels = value;
         }
 
-        private Dictionary<SerialChannel, VoltageRatioInputEx> _voltageRatioInputChannels = new Dictionary<SerialChannel, VoltageRatioInputEx>();
-        public Dictionary<SerialChannel, VoltageRatioInputEx> VoltageRatioInputChannels
+        private Dictionary<SerialHubPortChannel, VoltageRatioInputEx> _voltageRatioInputChannels = new Dictionary<SerialHubPortChannel, VoltageRatioInputEx>();
+        public Dictionary<SerialHubPortChannel, VoltageRatioInputEx> VoltageRatioInputChannels
         {
             get => _voltageRatioInputChannels;
             set => _voltageRatioInputChannels = value;
         }
 
-        private Dictionary<SerialChannel, VoltageOutputEx> _voltageOutputChannels = new Dictionary<SerialChannel, VoltageOutputEx>();
-        public Dictionary<SerialChannel, VoltageOutputEx> VoltageOutputChannels
+        private Dictionary<SerialHubPortChannel, VoltageOutputEx> _voltageOutputChannels = new Dictionary<SerialHubPortChannel, VoltageOutputEx>();
+        public Dictionary<SerialHubPortChannel, VoltageOutputEx> VoltageOutputChannels
         {
             get => _voltageOutputChannels;
             set => _voltageOutputChannels = value;
@@ -360,7 +363,7 @@ namespace VNC.Phidget22
             }
         };
 
-        public bool LogPhidgetEvents { get; set; } = true;
+        public Boolean LogPhidgetEvents { get; set; } = true;
 
         #endregion
 
@@ -371,390 +374,720 @@ namespace VNC.Phidget22
             var maea = e;
             var phidget = e.Channel;
 
-            if (LogPhidgetEvents)
+            try
             {
-                try
+                if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach:|{phidget.Parent}" +
+                    $"|{phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceID}|{phidget.DeviceSerialNumber}|{phidget.ChannelClass}" +
+                    $"|{phidget.IsHubPortDevice}|{phidget.HubPort}|{phidget.IsChannel}|{phidget.Channel}", Common.LOG_CATEGORY);
+
+                switch (phidget.DeviceClass)
                 {
-                    if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach:|{phidget.Parent}" +
-                        $"|{phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceID}|{phidget.DeviceSerialNumber}|{phidget.ChannelClass}" +
-                        $"|{phidget.IsHubPortDevice}|{phidget.HubPort}|{phidget.IsChannel}|{phidget.Channel}", Common.LOG_CATEGORY);
+                    case Phidgets.DeviceClass.Dictionary:
+                        if (Common.VNCLogging.ApplicationInitialize)
+                        {
+                        }
+                        // FIX(crhodes)
+                        // Looks like each SBC has a Dictionary.
+                        // If want to use/save, need to use ServerName or ServerPeerName as Key
+                        // Currently AvailablePhidgets expects an Int32 as the key
 
-                    switch (phidget.DeviceClass)
-                    {
-                        case Phidgets.DeviceClass.Dictionary:
-                            if(Common.VNCLogging.ApplicationInitialize)
-                            {
-                                // FIX(crhodes)
-                                // Looks like each SBC has a Dictionary.
-                                // If want to use/save, need to use ServerName or ServerPeerName as Key
-                                // Currently AvailablePhidgets expects an Int32 as the key
+                        //PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
+                        //IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
+                        //AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
+                        break;
 
-                                //PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
-                                //IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
-                                //AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
-                            }
-                            break;
+                    case Phidgets.DeviceClass.Hub:
+                        // NOTE(crhodes)
+                        // 
+                        // Looks like each (new) SBC has a built in Hub, DeviceID:PN_HUB0004
+                        // In addition, independent Hubs have a DeviceSerialNumber like a Phidget Board
+                        // and are attached to a SBC
 
-                        case Phidgets.DeviceClass.Hub:
-                            if (Common.VNCLogging.ApplicationInitialize)
-                            {
-                                // FIX(crhodes)
-                                // Looks like each (new) SBC has a built in Hub, DeviceID:PN_HUB0004
+                        // Treat as a Phidget
 
-                                //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
-                                //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
-                                //AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+                        AddPhidgetDevice(phidget);                            
+                        break;
 
-                                AddPhidgetDevice(phidget);
-                            }
-                            break;
+                    case Phidgets.DeviceClass.VINT:
+                        // NOTE(crhodes)
+                        // 
+                        // VINT's are just versital Phidgets that behave like PhidgetBoards
+                        AddPhidgetDevice(phidget);
+                        break;
 
-                        case Phidgets.DeviceClass.VINT:
-                            if (Common.VNCLogging.ApplicationInitialize)
-                            {
-                                // FIX(crhodes)
-                                // Need to figure out how to handle VINT with Ports.  Channel is always 0
-
-                                //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
-                                //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
-                                //AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
-                                AddPhidgetDevice(phidget);
-                            }
-                            break;
-
+                    default:
                         // NOTE(crhodes)
                         // For everything else assume it is a Physical Phidget with a SerialNumber
-                        default:
-                            if (Common.VNCLogging.ApplicationInitialize)
-                            {
-                                AddPhidgetDevice(phidget);
-                            }
-                            break;
-                    }
+
+                        AddPhidgetDevice(phidget);
+                        break;
                 }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
 
         private void AddPhidgetDevice(Phidgets.Phidget phidget)
         { 
-            if (AvailablePhidgets.ContainsKey(phidget.DeviceSerialNumber) == false)
-            {
-                PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
+            PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
 
-                phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
-                phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
-                phidgetDevice.Channel = phidget.Channel;
-                phidgetDevice.Parent = phidget.Parent.ToString();
+            phidgetDevice.Parent = phidget.Parent.ToString();
+            phidgetDevice.HubPort = phidget.HubPort;
+            //phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
+            phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+            phidgetDevice.Channel = phidget.Channel;
 
-                IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
+            // NOTE(crhodes)
+            // Switch from Dictionary to List
+            // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
 
-                AvailablePhidgets.Add(phidget.DeviceSerialNumber, phidgetDevice);
-            }
-            else
-            {
-                IncrementDeviceChannelCount(AvailablePhidgets[phidget.DeviceSerialNumber], phidget.ChannelClass);               
-            }
+            //ManagerAttachedPhidgetDevices.Add(serialHubChannel, phidgetDevice);
+
+            if (Common.VNCLogging.ApplicationInitializeLow) Log.EVENT_HANDLER($"Adding AttachedPhidget {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+            ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+
+
+            // NOTE(crhodes)
+            // Now add the Phidget to ChannelClass specific Dictionaries
+            // that are used to find the right Phidget to use
+
+            AddDeviceChannel(phidget);
+
+            //if (ManagerAttachedPhidgetDevices.ContainsKey(phidget.DeviceSerialNumber) == false)
+            //{
+            //    PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
+
+            //    phidgetDevice.Parent = phidget.Parent.ToString();
+            //    phidgetDevice.HubPort = phidget.HubPort;
+            //    phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
+            //    phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+            //    phidgetDevice.Channel = phidget.Channel;
+            //    phidgetDevice.Parent = phidget.Parent.ToString();
+
+            //    IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
+
+            //    ManagerAttachedPhidgetDevices.Add(phidget.DeviceSerialNumber, phidgetDevice);
+            //}
+            //else
+            //{
+            //    IncrementDeviceChannelCount(ManagerAttachedPhidgetDevices[phidget.DeviceSerialNumber], phidget.ChannelClass);               
+            //}
         }
-
-        // NOTE(crhodes)
-        // Maybe this returns
-        void IncrementDeviceChannelCount(PhidgetDevice phidgetDevice, Phidgets.ChannelClass channelClass)
+        void AddDeviceChannel(Phidgets.Phidget phidget)
         {
-            var deviceChannels = phidgetDevice.DeviceChannels;
+            SerialHubPortChannel serialHubChannel = new SerialHubPortChannel()
+            {
+                SerialNumber = phidget.DeviceSerialNumber,
+                HubPort = phidget.HubPort,
+                Channel = phidget.Channel
+            };
 
-            switch (channelClass)
+            var channelClass = phidget.ChannelClass;
+
+            switch (phidget.ChannelClass)
             {
                 case Phidgets.ChannelClass.Accelerometer:
-                    deviceChannels.AccelerometerCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.BLDCMotor:
-                    deviceChannels.BLDCMotorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CapacitiveTouch:
-                    deviceChannels.CapacitiveTouchCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CurrentInput:
-                    deviceChannels.CurrentInputCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    
+                    CurrentInputChannels.Add(
+                        serialHubChannel,
+                        new CurrentInputEx(
+                            phidget.DeviceSerialNumber,
+                            new CurrentInputConfiguration()
+                            {
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
+                            },
+                            _eventAggregator
+                        )
+                    );
                     break;
 
                 case Phidgets.ChannelClass.DCMotor:
-                    deviceChannels.DCMotorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Dictionary:
-                    deviceChannels.DictionaryCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.DigitalInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new DigitalInput" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalInputCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     DigitalInputChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.DigitalInputCount
-                        },
-                        new DigitalInputEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new DigitalInputEx(
+                            phidget.DeviceSerialNumber,
                             new DigitalInputConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.DigitalInputCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.DigitalInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.DigitalOutput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new DigitalOutput" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalOutputCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     DigitalOutputChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.DigitalOutputCount
-                        },
-                        new DigitalOutputEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new DigitalOutputEx(
+                            phidget.DeviceSerialNumber,
                             new DigitalOutputConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.DigitalOutputCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.DigitalOutputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.DistanceSensor:
-                    deviceChannels.DistanceSensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Encoder:
-                    deviceChannels.EncoderCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FirmwareUpgrade:
-                    deviceChannels.FirmwareUpgradeCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FrequencyCounter:
-                    deviceChannels.FrequencyCounterCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Generic:
-                    deviceChannels.GenericCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                       $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.GPS:
-                    deviceChannels.GPSCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Gyroscope:
-                    deviceChannels.GyroscopeCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Hub:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new Hub" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.HubCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     HubChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.HubCount
-                        },
-                        new HubEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new HubEx(
+                            phidget.DeviceSerialNumber,
                             new HubConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.HubCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
 
-                    deviceChannels.HubCount++;
                     break;
 
                 case Phidgets.ChannelClass.HumiditySensor:
-                    deviceChannels.HumiditySensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.IR:
-                    deviceChannels.IRCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LCD:
-                    deviceChannels.LCDCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LightSensor:
-                    deviceChannels.LightSensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Magnetometer:
-                    deviceChannels.MagnetometerCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                      $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
+
                 case Phidgets.ChannelClass.None:
-                    deviceChannels.None++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PHSensor:
-                    deviceChannels.PHSensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PowerGuard:
-                    deviceChannels.PowerGuardCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PressureSensor:
-                    deviceChannels.PressureSensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new RCServoChannel" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     RCServoChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.RCServoCount
-                        },
-                        new RCServoEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new RCServoEx(
+                            phidget.DeviceSerialNumber,
                             new RCServoConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.RCServoCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.RCServoCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.ResistanceInput:
-                    deviceChannels.ResistanceInputCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RFID:
-                    deviceChannels.RFIDCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.SoundSensor:
-                    deviceChannels.SoundSensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Spatial:
-                    deviceChannels.SpatialCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Stepper:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new Stepper" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.StepperCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    
                     StepperChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.StepperCount
-                        },
-                        new StepperEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new StepperEx(
+                            phidget.DeviceSerialNumber,
                             new StepperConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.StepperCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.StepperCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.TemperatureSensor:
-                    deviceChannels.TemperatureSensorCount++;
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.VoltageInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageInput" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageInputCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    
                     VoltageInputChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.VoltageInputCount
-                        },
-                        new VoltageInputEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new VoltageInputEx(
+                            phidget.DeviceSerialNumber,
                             new VoltageInputConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.VoltageInputCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.VoltageInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.VoltageRatioInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageRatioInput" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageRatioInputCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    
                     VoltageRatioInputChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.VoltageRatioInputCount
-                        },
-                        new VoltageRatioInputEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new VoltageRatioInputEx(
+                            phidget.DeviceSerialNumber,
                             new VoltageRatioInputConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.VoltageRatioInputCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.VoltageRatioInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.VoltageOutput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageOutput" +
-                        $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageOutputCount}", Common.LOG_CATEGORY);
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    
                     VoltageOutputChannels.Add(
-                        new SerialChannel()
-                        {
-                            SerialNumber = phidgetDevice.SerialNumber,
-                            Channel = deviceChannels.VoltageOutputCount
-                        },
-                        new VoltageOutputEx(phidgetDevice.SerialNumber,
+                        serialHubChannel,
+                        new VoltageOutputEx(
+                            phidget.DeviceSerialNumber,
                             new VoltageOutputConfiguration()
                             {
-                                HostComputer = phidgetDevice.HostComputer,
-                                Channel = deviceChannels.VoltageOutputCount
+                                HubPort = phidget.HubPort,
+                                Channel = phidget.Channel
                             },
                             _eventAggregator
                         )
                     );
-                    deviceChannels.VoltageOutputCount++;
+
                     break;
 
                 default:
-                    Log.Error($"Unexpected ChannelClass:{channelClass}", Common.LOG_CATEGORY);
+                    Log.Error($"Unexpected ChannelClass:>{channelClass}<", Common.LOG_CATEGORY);
                     break;
             }
-
-            phidgetDevice.DeviceChannels = deviceChannels;
         }
+
+        //void IncrementDeviceChannelCount(PhidgetDevice phidgetDevice, Phidgets.ChannelClass channelClass)
+        //{
+        //    var deviceChannels = phidgetDevice.DeviceChannels;
+
+        //    switch (channelClass)
+        //    {
+        //        case Phidgets.ChannelClass.Accelerometer:
+        //            deviceChannels.AccelerometerCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.BLDCMotor:
+        //            deviceChannels.BLDCMotorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.CapacitiveTouch:
+        //            deviceChannels.CapacitiveTouchCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.CurrentInput:
+        //            deviceChannels.CurrentInputCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.DCMotor:
+        //            deviceChannels.DCMotorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Dictionary:
+        //            deviceChannels.DictionaryCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.DigitalInput:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new DigitalInput" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalInputCount}", Common.LOG_CATEGORY);
+
+        //            DigitalInputChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.DigitalInputCount
+        //                },
+        //                new DigitalInputEx(phidgetDevice.SerialNumber,
+        //                    new DigitalInputConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.DigitalInputCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.DigitalInputCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.DigitalOutput:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new DigitalOutput" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.DigitalOutputCount}", Common.LOG_CATEGORY);
+
+        //            DigitalOutputChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.DigitalOutputCount
+        //                },
+        //                new DigitalOutputEx(phidgetDevice.SerialNumber,
+        //                    new DigitalOutputConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.DigitalOutputCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.DigitalOutputCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.DistanceSensor:
+        //            deviceChannels.DistanceSensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Encoder:
+        //            deviceChannels.EncoderCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.FirmwareUpgrade:
+        //            deviceChannels.FirmwareUpgradeCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.FrequencyCounter:
+        //            deviceChannels.FrequencyCounterCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Generic:
+        //            deviceChannels.GenericCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.GPS:
+        //            deviceChannels.GPSCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Gyroscope:
+        //            deviceChannels.GyroscopeCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Hub:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new Hub" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.HubCount}", Common.LOG_CATEGORY);
+
+        //            HubChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.HubCount
+        //                },
+        //                new HubEx(phidgetDevice.SerialNumber,
+        //                    new HubConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.HubCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+
+        //            deviceChannels.HubCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.HumiditySensor:
+        //            deviceChannels.HumiditySensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.IR:
+        //            deviceChannels.IRCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.LCD:
+        //            deviceChannels.LCDCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.LightSensor:
+        //            deviceChannels.LightSensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Magnetometer:
+        //            deviceChannels.MagnetometerCount++;
+        //            break;
+        //        case Phidgets.ChannelClass.None:
+        //            deviceChannels.None++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.PHSensor:
+        //            deviceChannels.PHSensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.PowerGuard:
+        //            deviceChannels.PowerGuardCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.PressureSensor:
+        //            deviceChannels.PressureSensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.RCServo:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new RCServoChannel" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.RCServoCount}", Common.LOG_CATEGORY);
+
+        //            RCServoChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.RCServoCount
+        //                },
+        //                new RCServoEx(phidgetDevice.SerialNumber,
+        //                    new RCServoConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.RCServoCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.RCServoCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.ResistanceInput:
+        //            deviceChannels.ResistanceInputCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.RFID:
+        //            deviceChannels.RFIDCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.SoundSensor:
+        //            deviceChannels.SoundSensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Spatial:
+        //            deviceChannels.SpatialCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.Stepper:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new Stepper" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.StepperCount}", Common.LOG_CATEGORY);
+        //            StepperChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.StepperCount
+        //                },
+        //                new StepperEx(phidgetDevice.SerialNumber,
+        //                    new StepperConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.StepperCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.StepperCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.TemperatureSensor:
+        //            deviceChannels.TemperatureSensorCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.VoltageInput:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageInput" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageInputCount}", Common.LOG_CATEGORY);
+        //            VoltageInputChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.VoltageInputCount
+        //                },
+        //                new VoltageInputEx(phidgetDevice.SerialNumber,
+        //                    new VoltageInputConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.VoltageInputCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.VoltageInputCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.VoltageRatioInput:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageRatioInput" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageRatioInputCount}", Common.LOG_CATEGORY);
+        //            VoltageRatioInputChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.VoltageRatioInputCount
+        //                },
+        //                new VoltageRatioInputEx(phidgetDevice.SerialNumber,
+        //                    new VoltageRatioInputConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.VoltageRatioInputCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.VoltageRatioInputCount++;
+        //            break;
+
+        //        case Phidgets.ChannelClass.VoltageOutput:
+        //            if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageOutput" +
+        //                $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageOutputCount}", Common.LOG_CATEGORY);
+        //            VoltageOutputChannels.Add(
+        //                new SerialHubChannel()
+        //                {
+        //                    SerialNumber = phidgetDevice.SerialNumber,
+        //                    Channel = deviceChannels.VoltageOutputCount
+        //                },
+        //                new VoltageOutputEx(phidgetDevice.SerialNumber,
+        //                    new VoltageOutputConfiguration()
+        //                    {
+        //                        HostComputer = phidgetDevice.HostComputer,
+        //                        Channel = deviceChannels.VoltageOutputCount
+        //                    },
+        //                    _eventAggregator
+        //                )
+        //            );
+        //            deviceChannels.VoltageOutputCount++;
+        //            break;
+
+        //        default:
+        //            Log.Error($"Unexpected ChannelClass:{channelClass}", Common.LOG_CATEGORY);
+        //            break;
+        //    }
+
+        //    phidgetDevice.DeviceChannels = deviceChannels;
+        //}
 
         private void Manager_Detach(object sender, PhidgetEvents.ManagerDetachEventArgs e)
         {
@@ -790,7 +1123,7 @@ namespace VNC.Phidget22
         /// <param name="configuration"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        //public RCServoEx OpenRCServoHost(int serialNumber, int channel, RCServoConfiguration configuration)
+        //public RCServoEx OpenRCServoHost(Int32 serialNumber, Int32 channel, RCServoConfiguration configuration)
         //{
         //    Int64 startTicks = 0;
         //    if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);

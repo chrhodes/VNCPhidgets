@@ -31,7 +31,7 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="stepperConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public StepperEx(int serialNumber, StepperConfiguration configuration, IEventAggregator eventAggregator)
+        public StepperEx(Int32 serialNumber, StepperConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
@@ -55,8 +55,8 @@ namespace VNC.Phidget22.Ex
             long startTicks = 0;
             if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
-            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
+            HubPort = configuration.HubPort;
             Channel = configuration.Channel;
 
             IsRemote = true;
@@ -108,64 +108,64 @@ namespace VNC.Phidget22.Ex
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
 
-        bool _logPhidgetEvents;
-        public bool LogPhidgetEvents
+        Boolean _logPhidgetEvents;
+        public Boolean LogPhidgetEvents
         {
             get { return _logPhidgetEvents; }
             set { _logPhidgetEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logErrorEvents = true;    // probably always want to see Errors
-        public bool LogErrorEvents
+        Boolean _logErrorEvents = true;    // probably always want to see Errors
+        public Boolean LogErrorEvents
         {
             get { return _logErrorEvents; }
             set { _logErrorEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPropertyChangeEvents;
-        public bool LogPropertyChangeEvents
+        Boolean _logPropertyChangeEvents;
+        public Boolean LogPropertyChangeEvents
         {
             get { return _logPropertyChangeEvents; }
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPositionChangeEvents;
-        public bool LogPositionChangeEvents
+        Boolean _logPositionChangeEvents;
+        public Boolean LogPositionChangeEvents
         {
             get { return _logPositionChangeEvents; }
             set { _logPositionChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logVelocityChangeEvents;
-        public bool LogVelocityChangeEvents
+        Boolean _logVelocityChangeEvents;
+        public Boolean LogVelocityChangeEvents
         {
             get { return _logVelocityChangeEvents; }
             set { _logVelocityChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logStoppedEvents;
-        public bool LogStoppedEvents
+        Boolean _logStoppedEvents;
+        public Boolean LogStoppedEvents
         {
             get { return _logStoppedEvents; }
             set { _logStoppedEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logDeviceChannelSequence;
-        public bool LogDeviceChannelSequence
+        Boolean _logDeviceChannelSequence;
+        public Boolean LogDeviceChannelSequence
         {
             get { return _logDeviceChannelSequence; }
             set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
-        bool _logChannelAction;
-        public bool LogChannelAction
+        Boolean _logChannelAction;
+        public Boolean LogChannelAction
         {
             get { return _logChannelAction; }
             set { _logChannelAction = value; OnPropertyChanged(); }
         }
 
-        bool _logActionVerification;
-        public bool LogActionVerification
+        Boolean _logActionVerification;
+        public Boolean LogActionVerification
         {
             get { return _logActionVerification; }
             set { _logActionVerification = value; OnPropertyChanged(); }
@@ -173,19 +173,8 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
-        private string _hostComputer;
-        public string HostComputer
-        {
-            get => _hostComputer;
-            set
-            {
-                _hostComputer = value;
-                OnPropertyChanged();
-            }
-
-        }
-        private int _serialNumber;
-        public int SerialNumber
+        private Int32 _serialNumber;
+        public Int32 SerialNumber
         {
             get => _serialNumber;
             set
@@ -198,8 +187,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _attached;
-        public bool Attached
+        private Boolean _attached;
+        public Boolean Attached
         {
             get => _attached;
             set
@@ -211,8 +200,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _engaged;
-        public new bool Engaged
+        private Boolean _engaged;
+        public new Boolean Engaged
         {
             get => _engaged;
             set
@@ -317,8 +306,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int _minDataInterval;
-        public new int MinDataInterval
+        private Int32 _minDataInterval;
+        public new Int32 MinDataInterval
         {
             get => _minDataInterval;
             set
@@ -330,8 +319,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int _DataInterval;
-        public new int DataInterval
+        private Int32 _DataInterval;
+        public new Int32 DataInterval
         {
             get => _DataInterval;
             set
@@ -349,8 +338,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int _maxDataInterval;
-        public new int MaxDataInterval
+        private Int32 _maxDataInterval;
+        public new Int32 MaxDataInterval
         {
             get => _maxDataInterval;
             set
@@ -452,8 +441,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _isMoving;
-        public new bool IsMoving
+        private Boolean _isMoving;
+        public new Boolean IsMoving
         {
             get => _isMoving;
             set
@@ -1023,7 +1012,7 @@ namespace VNC.Phidget22.Ex
 
                 if (stepperSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < stepperSequence.ActionLoops; actionLoop++)
+                    for (Int32 actionLoop = 0; actionLoop < stepperSequence.ActionLoops; actionLoop++)
                     {
                         if (stepperSequence.StartActionLoopSequences is not null)
                         {
@@ -1065,7 +1054,7 @@ namespace VNC.Phidget22.Ex
                             {
                                 Log.Trace($"Zzzzz Action:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
-                            Thread.Sleep((int)stepperSequence.ActionsDuration);
+                            Thread.Sleep((Int32)stepperSequence.ActionsDuration);
                         }
 
                         if (stepperSequence.EndActionLoopSequences is not null)

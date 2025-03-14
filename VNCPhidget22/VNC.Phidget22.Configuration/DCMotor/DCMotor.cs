@@ -6,7 +6,7 @@ namespace VNC.Phidget22.Configuration
     {
         public string Name { get; set; } = "DCMotor NAME";
         public Int32 SerialNumber { get; set; } = 0;
-        public bool Open { get; set; } = false;
-        public bool Embedded { get; set; } = false;
+        public Boolean Open { get; set; } = false;
+        public Boolean Embedded { get; set; } = false;
     }
 }

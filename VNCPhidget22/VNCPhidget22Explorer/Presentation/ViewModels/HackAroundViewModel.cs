@@ -208,8 +208,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private int _repeats = 1;
-        public int Repeats
+        private Int32 _repeats = 1;
+        public Int32 Repeats
         {
             get => _repeats;
             set
@@ -237,9 +237,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Logging
 
-        private bool _logPhidgetEvents = false;
+        private Boolean _logPhidgetEvents = false;
 
-        public bool LogPhidgetEvents
+        public Boolean LogPhidgetEvents
         {
             get => _logPhidgetEvents;
             set
@@ -251,8 +251,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logErrorEvents = true;    // Probably always want to see errors
-        public bool LogErrorEvents
+        private Boolean _logErrorEvents = true;    // Probably always want to see errors
+        public Boolean LogErrorEvents
         {
             get => _logErrorEvents;
             set
@@ -264,8 +264,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPropertyChangeEvents = false;
-        public bool LogPropertyChangeEvents
+        private Boolean _logPropertyChangeEvents = false;
+        public Boolean LogPropertyChangeEvents
         {
             get => _logPropertyChangeEvents;
             set
@@ -280,8 +280,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region AdvancedServo
 
-        private bool _logCurrentChangeEvents = false;
-        public bool LogCurrentChangeEvents
+        private Boolean _logCurrentChangeEvents = false;
+        public Boolean LogCurrentChangeEvents
         {
             get => _logCurrentChangeEvents;
             set
@@ -293,8 +293,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logPositionChangeEvents = false;
-        public bool LogPositionChangeEvents
+        private Boolean _logPositionChangeEvents = false;
+        public Boolean LogPositionChangeEvents
         {
             get => _logPositionChangeEvents;
             set
@@ -306,8 +306,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logVelocityChangeEvents = false;
-        public bool LogVelocityChangeEvents
+        private Boolean _logVelocityChangeEvents = false;
+        public Boolean LogVelocityChangeEvents
         {
             get => _logVelocityChangeEvents;
             set
@@ -319,8 +319,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logTargetPositionReachedEvents = false;
-        public bool LogTargetPositionReachedEvents
+        private Boolean _logTargetPositionReachedEvents = false;
+        public Boolean LogTargetPositionReachedEvents
         {
             get => _logTargetPositionReachedEvents;
             set
@@ -337,9 +337,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region InterfaceKit
 
-        private bool _displayInputChangeEvents = false;
+        private Boolean _displayInputChangeEvents = false;
 
-        public bool LogInputChangeEvents
+        public Boolean LogInputChangeEvents
         {
             get => _displayInputChangeEvents;
             set
@@ -351,9 +351,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _displayOutputChangeEvents = false;
+        private Boolean _displayOutputChangeEvents = false;
 
-        public bool LogOutputChangeEvents
+        public Boolean LogOutputChangeEvents
         {
             get => _displayOutputChangeEvents;
             set
@@ -365,9 +365,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _sensorChangeEvents = false;
+        private Boolean _sensorChangeEvents = false;
 
-        public bool LogSensorChangeEvents
+        public Boolean LogSensorChangeEvents
         {
             get => _sensorChangeEvents;
             set
@@ -382,8 +382,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
 
-        private bool _logPerformance = false;
-        public bool LogPerformance
+        private Boolean _logPerformance = false;
+        public Boolean LogPerformance
         {
             get => _logPerformance;
             set
@@ -395,8 +395,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logDeviceChannelSequence = false;
-        public bool LogDeviceChannelSequence
+        private Boolean _logDeviceChannelSequence = false;
+        public Boolean LogDeviceChannelSequence
         {
             get => _logDeviceChannelSequence;
             set
@@ -408,8 +408,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logChannelAction = false;
-        public bool LogChannelAction
+        private Boolean _logChannelAction = false;
+        public Boolean LogChannelAction
         {
             get => _logChannelAction;
             set
@@ -421,8 +421,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private bool _logActionVerification = false;
-        public bool LogActionVerification
+        private Boolean _logActionVerification = false;
+        public Boolean LogActionVerification
         {
             get => _logActionVerification;
             set
@@ -501,6 +501,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region ChannelClass Sequences
+
+        private Int32 _selectedHubPort;
+        public Int32 SelectedHubPort
+        {
+            get => _selectedHubPort;
+            set
+            {
+                _selectedHubPort = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _selectedChannel;
+        public Int32 SelectedChannel
+        {
+            get => _selectedChannel;
+            set
+            {
+                _selectedChannel = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region DigitalInput
 
@@ -1058,7 +1080,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //{
             //    InterfaceKitDigitalOutputCollection ifkdoc = ifkEx21.InterfaceKit.outputs;
 
-            //    for (int i = 0; i < 5; i++)
+            //    for (Int32 i = 0; i < 5; i++)
             //    {
             //        ifkdoc[0] = true;
             //        Thread.Sleep(500);
@@ -1298,7 +1320,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayPerformance) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool PlayPerformanceCanExecute()
+        public Boolean PlayPerformanceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -1362,6 +1384,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                             SequenceLoops = sequence.SequenceLoops
                         };
 
+                    if (nextPhidgetDeviceSequence.HubPort is null)
+                    {
+                        nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                    }
+
+                    if (nextPhidgetDeviceSequence.Channel is null)
+                    {
+                        nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                    }
+
                     // NOTE(crhodes)
                     // Run on another thread to keep UI active
                     await Task.Run(async () =>
@@ -1406,8 +1438,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool PlayPerformanceCanExecute(TYPE value)
-        public bool PlayRCServoSequenceCanExecute()
+        //public Boolean PlayPerformanceCanExecute(TYPE value)
+        public Boolean PlayRCServoSequenceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -1500,8 +1532,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         ////}
 
         ////// If using CommandParameter, figure out TYPE and fix above
-        //////public bool InitializeServosCanExecute(TYPE value)
-        ////public bool InitializeServosCanExecute()
+        //////public Boolean InitializeServosCanExecute(TYPE value)
+        ////public Boolean InitializeServosCanExecute()
         ////{
         ////    // TODO(crhodes)
         ////    // Add any before button is enabled logic.
@@ -1594,8 +1626,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         ////}
 
         ////// If using CommandParameter, figure out TYPE and fix above
-        //////public bool EngageAndCenterCanExecute(TYPE value)
-        ////public bool EngageAndCenterCanExecute()
+        //////public Boolean EngageAndCenterCanExecute(TYPE value)
+        ////public Boolean EngageAndCenterCanExecute()
         ////{
         ////    // TODO(crhodes)
         ////    // Add any before button is enabled logic.
@@ -1707,8 +1739,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool PlayPerformanceCanExecute(TYPE value)
-        public bool PlayDigitalOutputSequenceCanExecute()
+        //public Boolean PlayPerformanceCanExecute(TYPE value)
+        public Boolean PlayDigitalOutputSequenceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -1816,8 +1848,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool PlayPerformanceCanExecute(TYPE value)
-        public bool PlayStepperSequenceCanExecute()
+        //public Boolean PlayPerformanceCanExecute(TYPE value)
+        public Boolean PlayStepperSequenceCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -1973,7 +2005,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //        //InterfaceKitDigitalOutputCollection ifkDigitalOut = ifkEx.InterfaceKit.outputs;
 
-        //        //for (int i = 0; i < loops; i++)
+        //        //for (Int32 i = 0; i < loops; i++)
         //        //{
         //        //    ifkDigitalOut[0] = true;
         //        //    Thread.Sleep(sleep);
@@ -2036,9 +2068,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region IInstanceCount
 
-        private static int _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        public int InstanceCountVM
+        public Int32 InstanceCountVM
         {
             get => _instanceCountVM;
             set => _instanceCountVM = value;

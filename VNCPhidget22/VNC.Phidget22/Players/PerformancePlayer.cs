@@ -60,8 +60,8 @@ namespace VNC.Phidget22.Players
         // NOTE(crhodes)
         // Don't think we need INPC on these
 
-        private bool _logPerformance = false;
-        public bool LogPerformance
+        private Boolean _logPerformance = false;
+        public Boolean LogPerformance
         {
             get => _logPerformance;
             set
@@ -73,8 +73,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logDeviceChannelSequence = false;
-        public bool LogDeviceChannelSequence
+        private Boolean _logDeviceChannelSequence = false;
+        public Boolean LogDeviceChannelSequence
         {
             get => _logDeviceChannelSequence;
             set
@@ -86,8 +86,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logChannelAction = false;
-        public bool LogChannelAction
+        private Boolean _logChannelAction = false;
+        public Boolean LogChannelAction
         {
             get => _logChannelAction;
             set
@@ -99,8 +99,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logActionVerification = false;
-        public bool LogActionVerification
+        private Boolean _logActionVerification = false;
+        public Boolean LogActionVerification
         {
             get => _logActionVerification;
             set
@@ -116,9 +116,9 @@ namespace VNC.Phidget22.Players
 
         #region Phidget Device Logging
 
-        private bool _logPhidgetEvents = false;
+        private Boolean _logPhidgetEvents = false;
 
-        public bool LogPhidgetEvents
+        public Boolean LogPhidgetEvents
         {
             get => _logPhidgetEvents;
             set
@@ -132,8 +132,8 @@ namespace VNC.Phidget22.Players
 
         #region AdvancedServo
 
-        private bool _logCurrentChangeEvents = false;
-        public bool LogCurrentChangeEvents
+        private Boolean _logCurrentChangeEvents = false;
+        public Boolean LogCurrentChangeEvents
         {
             get => _logCurrentChangeEvents;
             set
@@ -145,8 +145,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logPositionChangeEvents = false;
-        public bool LogPositionChangeEvents
+        private Boolean _logPositionChangeEvents = false;
+        public Boolean LogPositionChangeEvents
         {
             get => _logPositionChangeEvents;
             set
@@ -158,8 +158,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logVelocityChangeEvents = false;
-        public bool LogVelocityChangeEvents
+        private Boolean _logVelocityChangeEvents = false;
+        public Boolean LogVelocityChangeEvents
         {
             get => _logVelocityChangeEvents;
             set
@@ -171,8 +171,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logTargetPositionReachedEvents = false;
-        public bool LogTargetPositionReachedEvents
+        private Boolean _logTargetPositionReachedEvents = false;
+        public Boolean LogTargetPositionReachedEvents
         {
             get => _logTargetPositionReachedEvents;
             set
@@ -188,9 +188,9 @@ namespace VNC.Phidget22.Players
 
         #region InterfaceKit
 
-        private bool _displayInputChangeEvents = false;
+        private Boolean _displayInputChangeEvents = false;
 
-        public bool LogInputChangeEvents
+        public Boolean LogInputChangeEvents
         {
             get => _displayInputChangeEvents;
             set
@@ -202,9 +202,9 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _displayOutputChangeEvents = false;
+        private Boolean _displayOutputChangeEvents = false;
 
-        public bool LogOutputChangeEvents
+        public Boolean LogOutputChangeEvents
         {
             get => _displayOutputChangeEvents;
             set
@@ -216,9 +216,9 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _sensorChangeEvents = false;
+        private Boolean _sensorChangeEvents = false;
 
-        public bool LogSensorChangeEvents
+        public Boolean LogSensorChangeEvents
         {
             get => _sensorChangeEvents;
             set
@@ -334,7 +334,7 @@ namespace VNC.Phidget22.Players
 
             if (performance.DeviceClassSequences is not null)
             {
-                for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
                     if (performance.PlaySequencesInParallel)
                     {
@@ -372,7 +372,7 @@ namespace VNC.Phidget22.Players
                     {
                         Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((int)performance.Duration);
+                    Thread.Sleep((Int32)performance.Duration);
                 }
             }
 
@@ -389,7 +389,7 @@ namespace VNC.Phidget22.Players
 
                 DeviceChannelSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-                for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
                     if (performance.PlayPerformancesInParallel)
                     {
@@ -438,7 +438,7 @@ namespace VNC.Phidget22.Players
                     {
                         Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((int)performance.Duration);
+                    Thread.Sleep((Int32)performance.Duration);
                 }
             }
 

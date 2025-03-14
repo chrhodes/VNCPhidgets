@@ -7,17 +7,17 @@ namespace VNC.Phidget22.Configuration
     {
         #region Logging
 
-        public bool? LogPhidgetEvents { get; set; }
-        public bool? LogErrorEvents { get; set; }
-        public bool? LogPropertyChangeEvents { get; set; }
+        public Boolean? LogPhidgetEvents { get; set; }
+        public Boolean? LogErrorEvents { get; set; }
+        public Boolean? LogPropertyChangeEvents { get; set; }
 
-        public bool? LogPositionChangeEvents { get; set; }
-        public bool? LogVelocityChangeEvents { get; set; }
-        public bool? LogTargetPositionReachedEvents { get; set; }
+        public Boolean? LogPositionChangeEvents { get; set; }
+        public Boolean? LogVelocityChangeEvents { get; set; }
+        public Boolean? LogTargetPositionReachedEvents { get; set; }
 
-        public bool? LogDeviceChannelSequence { get; set; }
-        public bool? LogChannelAction { get; set; }
-        public bool? LogActionVerification { get; set; }
+        public Boolean? LogDeviceChannelSequence { get; set; }
+        public Boolean? LogChannelAction { get; set; }
+        public Boolean? LogActionVerification { get; set; }
 
         #endregion
 
@@ -29,17 +29,17 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Open RCServo (optional)
         /// </summary>
-        public bool? Open { get; set; }
+        public Boolean? Open { get; set; }
 
         /// <summary>
         /// Close RCServo (optional)
         /// </summary>
-        public bool? Close { get; set; }
+        public Boolean? Close { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)
         /// </summary>
-        public bool? Engaged { get; set; }
+        public Boolean? Engaged { get; set; }
 
         /// <summary>
         /// Servo Acceleration (optional)
@@ -91,7 +91,7 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public Double? PositionScaleMax { get; set; }
 
-        public bool? SpeedRampingState { get; set; }
+        public Boolean? SpeedRampingState { get; set; }
 
         /// <summary>
         /// Duration of sleep in ms (sleep time after Action)

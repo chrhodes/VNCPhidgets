@@ -147,8 +147,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool DeveloperModeCanExecute(TYPE value)
-        public bool DeveloperModeCanExecute()
+        //public Boolean DeveloperModeCanExecute(TYPE value)
+        public Boolean DeveloperModeCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -176,9 +176,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region IInstanceCount
 
-        private static int _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        public int InstanceCountVM
+        public Int32 InstanceCountVM
         {
             get => _instanceCountVM;
             set => _instanceCountVM = value;

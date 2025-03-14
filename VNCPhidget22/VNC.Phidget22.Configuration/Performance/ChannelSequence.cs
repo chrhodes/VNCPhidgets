@@ -20,6 +20,11 @@ namespace VNC.Phidget22.Configuration.Performance
         public string ChannelClass { get; } = "Generic";
 
         /// <summary>
+        /// HubPort on Phidget Device.
+        /// </summary>
+        public Int32? HubPort { get; set; } = null;
+
+        /// <summary>
         /// Channel on Phidget Device.
         /// </summary>
         public Int32? Channel { get; set; } = null;
@@ -52,12 +57,12 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// Number of loops of sequence Actions[] to execute
         /// </summary>
-        public int ActionLoops { get; set; } = 1;
+        public Int32 ActionLoops { get; set; } = 1;
 
         /// <summary>
         /// Play Actions[] in Parallel or Sequentially (false)
         /// </summary>
-        public bool ExecuteActionsInParallel { get; set; } = false;
+        public Boolean ExecuteActionsInParallel { get; set; } = false;
 
         /// <summary>
         /// Duration of Action[] in ms (sleep time after Actions completed)

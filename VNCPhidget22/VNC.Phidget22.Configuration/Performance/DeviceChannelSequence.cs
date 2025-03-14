@@ -17,6 +17,13 @@ namespace VNC.Phidget22.Configuration
         public Int32 SerialNumber { get; set; }
 
         /// <summary>
+        /// HubPort of PhidgetDevice that will run sequencee
+        /// If null, Name is used to lookup sequence 
+        /// which must specify a channel
+        /// </summary>
+        public Int32? HubPort { get; set; } = null;
+
+        /// <summary>
         /// Channel of PhidgetDevice that will run sequencee
         /// If null, Name is used to lookup sequence 
         /// which must specify a channel

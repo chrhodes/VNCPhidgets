@@ -148,6 +148,32 @@
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
 
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    
+                    <dxlc:LayoutItem Label="HubPort#" HorizontalAlignment="Left" LabelPosition="Left" >
+                        <dxe:ComboBoxEdit SelectedItem="{Binding SelectedHubPort}" >
+                            <dxe:ComboBoxEditItem Content="0" />
+                            <dxe:ComboBoxEditItem Content="1" />
+                            <dxe:ComboBoxEditItem Content="2" />
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Channe#" HorizontalAlignment="Left" LabelPosition="Left" >
+                        <dxe:ComboBoxEdit SelectedItem="{Binding SelectedChannel}" >
+                            <dxe:ComboBoxEditItem Content="0" />
+                            <dxe:ComboBoxEditItem Content="1" />
+                            <dxe:ComboBoxEditItem Content="2" />
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+                
                 <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
                     <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Description }" Width="300" TextWrapping="Wrap" />
                 </dxlc:LayoutItem>

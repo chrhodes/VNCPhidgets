@@ -31,7 +31,7 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="digitalOutputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public DigitalOutputEx(int serialNumber, DigitalOutputConfiguration configuration, IEventAggregator eventAggregator)
+        public DigitalOutputEx(Int32 serialNumber, DigitalOutputConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
@@ -59,8 +59,8 @@ namespace VNC.Phidget22.Ex
             long startTicks = 0;
             if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
-            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
+            HubPort = configuration.HubPort;
             Channel = configuration.Channel;
 
             IsRemote = true;
@@ -95,43 +95,43 @@ namespace VNC.Phidget22.Ex
 
         #region Logging
 
-        bool _logPhidgetEvents;
-        public bool LogPhidgetEvents
+        Boolean _logPhidgetEvents;
+        public Boolean LogPhidgetEvents
         {
             get { return _logPhidgetEvents; }
             set { _logPhidgetEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logErrorEvents = true;    // probably always want to see Errors
-        public bool LogErrorEvents
+        Boolean _logErrorEvents = true;    // probably always want to see Errors
+        public Boolean LogErrorEvents
         {
             get { return _logErrorEvents; }
             set { _logErrorEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPropertyChangeEvents;
-        public bool LogPropertyChangeEvents
+        Boolean _logPropertyChangeEvents;
+        public Boolean LogPropertyChangeEvents
         {
             get { return _logPropertyChangeEvents; }
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logDeviceChannelSequence;
-        public bool LogDeviceChannelSequence
+        Boolean _logDeviceChannelSequence;
+        public Boolean LogDeviceChannelSequence
         {
             get { return _logDeviceChannelSequence; }
             set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
-        bool _logChannelAction;
-        public bool LogChannelAction
+        Boolean _logChannelAction;
+        public Boolean LogChannelAction
         {
             get { return _logChannelAction; }
             set { _logChannelAction = value; OnPropertyChanged(); }
         }
 
-        bool _logActionVerification;
-        public bool LogActionVerification
+        Boolean _logActionVerification;
+        public Boolean LogActionVerification
         {
             get { return _logActionVerification; }
             set { _logActionVerification = value; OnPropertyChanged(); }
@@ -139,19 +139,8 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
-        private string _hostComputer;
-        public string HostComputer
-        {
-            get => _hostComputer;
-            set
-            {
-                _hostComputer = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _serialNumber;
-        public int SerialNumber
+        private Int32 _serialNumber;
+        public Int32 SerialNumber
         {
             get => _serialNumber;
             set
@@ -164,8 +153,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _attached;
-        public bool Attached
+        private Boolean _attached;
+        public Boolean Attached
         {
             get => _attached;
             set
@@ -286,8 +275,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int _minFailsafeTime;
-        public new int MinFailsafeTime
+        private Int32 _minFailsafeTime;
+        public new Int32 MinFailsafeTime
         {
             get => _minFailsafeTime;
             set
@@ -299,8 +288,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private int _maxFailsafeTime;
-        public new int MaxFailsafeTime
+        private Int32 _maxFailsafeTime;
+        public new Int32 MaxFailsafeTime
         {
             get => _maxFailsafeTime;
             set
@@ -357,8 +346,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _state;
-        public new bool State
+        private Boolean _state;
+        public new Boolean State
         {
             get => _state;
             set
@@ -369,7 +358,7 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.State = (bool)value;
+                    base.State = (Boolean)value;
                 }
 
                 OnPropertyChanged();
@@ -594,7 +583,7 @@ namespace VNC.Phidget22.Ex
 
                 if (digitalOutputSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < digitalOutputSequence.ActionLoops; actionLoop++)
+                    for (Int32 actionLoop = 0; actionLoop < digitalOutputSequence.ActionLoops; actionLoop++)
                     {
                         if (digitalOutputSequence.StartActionLoopSequences is not null)
                         {

@@ -151,8 +151,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool LoggingConfigurationCanExecute(TYPE value)
-        public bool LoggingConfigurationCanExecute()
+        //public Boolean LoggingConfigurationCanExecute(TYPE value)
+        public Boolean LoggingConfigurationCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -180,9 +180,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region IInstanceCount
 
-        private static int _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        public int InstanceCountVM
+        public Int32 InstanceCountVM
         {
             get => _instanceCountVM;
             set => _instanceCountVM = value;

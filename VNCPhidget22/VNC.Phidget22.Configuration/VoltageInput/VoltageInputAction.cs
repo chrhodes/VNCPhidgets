@@ -6,16 +6,16 @@ namespace VNC.Phidget22.Configuration
     {
         #region Logging
 
-        public bool? LogPhidgetEvents { get; set; }
-        public bool? LogErrorEvents { get; set; }
-        public bool? LogPropertyChangeEvents { get; set; }
+        public Boolean? LogPhidgetEvents { get; set; }
+        public Boolean? LogErrorEvents { get; set; }
+        public Boolean? LogPropertyChangeEvents { get; set; }
 
-        public bool? LogSensorChangeEvents { get; set; }
-        public bool? LogVoltageChangeEvents { get; set; }
+        public Boolean? LogSensorChangeEvents { get; set; }
+        public Boolean? LogVoltageChangeEvents { get; set; }
 
-        public bool? LogDeviceChannelSequence { get; set; }
-        public bool? LogChannelAction { get; set; }
-        public bool? LogActionVerification { get; set; }
+        public Boolean? LogDeviceChannelSequence { get; set; }
+        public Boolean? LogChannelAction { get; set; }
+        public Boolean? LogActionVerification { get; set; }
 
         #endregion
 

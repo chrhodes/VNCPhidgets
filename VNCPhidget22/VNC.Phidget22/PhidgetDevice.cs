@@ -18,15 +18,15 @@ namespace VNC.Phidget22
         //{
         //}
 
-        public PhidgetDevice(string ipAddress, int hostPort, Phidgets.DeviceClass deviceClass, int serialNumber)
-        {
-            IPAddress = ipAddress;
-            HostPort = hostPort;
-            DeviceClass = deviceClass.ToString();
-            SerialNumber = serialNumber;
-        }
+        //public PhidgetDevice(string ipAddress, Int32 hostPort, Phidgets.DeviceClass deviceClass, Int32 serialNumber)
+        //{
+        //    IPAddress = ipAddress;
+        //    HostPort = hostPort;
+        //    DeviceClass = deviceClass.ToString();
+        //    SerialNumber = serialNumber;
+        //}
 
-        public PhidgetDevice(string serverPeerName, Phidgets.DeviceClass deviceClass, int serialNumber)
+        public PhidgetDevice(string serverPeerName, Phidgets.DeviceClass deviceClass, Int32 serialNumber)
         {
             HostComputer = serverPeerName;
             // TODO(crhodes)
@@ -40,39 +40,30 @@ namespace VNC.Phidget22
         // TODO(crhodes)
         // How is this used?
         public SerialHost SerialHostKey { get; set; }
-
-        string _parent;
-        public string Parent
-        {
-            get
-            {
-                return _parent;
-            }
-            set
-            {
-                _parent = value;
-            }
-        }
+        public string Parent { get; set; }
         public string HostComputer { get; set; }
 
         public string IPAddress { get; set; } = "127.0.0.1";
 
-        public int HostPort { get; set; } = 5661;
+        public Int32 HostPort { get; set; } = 5661;
+
+        public Int32 SerialNumber { get; set; } = 0;
 
         //public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
         public string DeviceClass { get; set; }
+
+        public Int32 HubPort { get; set; }
+
         public string ChannelClass { get; set; }
         public Int32 Channel { get; set; }
 
-        public Int32 HubPort { get; set; }
+
 
         // TODO(crhodes)
         // Hos is this used.  Only place I see is in AddPhidgetDevice()
         public Int32 ChannelCount { get; set; }
 
         public DeviceChannels DeviceChannels { get; set; } = new DeviceChannels();
-
-        public int SerialNumber { get; set; } = 0;
 
         //// TODO(crhodes)
         //// How is this used?

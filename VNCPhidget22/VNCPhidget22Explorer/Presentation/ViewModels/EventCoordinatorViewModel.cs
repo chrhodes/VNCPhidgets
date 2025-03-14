@@ -226,7 +226,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RaisePlayPerformanceEvent) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public bool RaisePlayPerformanceEventCanExecute()
+        public Boolean RaisePlayPerformanceEventCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -256,7 +256,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private bool SayHelloCanExecute()
+        private Boolean SayHelloCanExecute()
         {
             return true;
         }
@@ -279,9 +279,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region IInstanceCount
 
-        private static int _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        public int InstanceCountVM
+        public Int32 InstanceCountVM
         {
             get => _instanceCountVM;
             set => _instanceCountVM = value;

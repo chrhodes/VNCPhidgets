@@ -51,7 +51,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    set; 
         //}
 
-        public int ServoIndex { get; set; }
+        public Int32 ServoIndex { get; set; }
 
         // FIX(crhodes)
         // No more ServoType, ugh
@@ -95,14 +95,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //}
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogChannelAction { get; set; }
+        public Boolean LogPhidgetEvents { get; set; }
+        public Boolean LogChannelAction { get; set; }
 
         #region ServoState
 
-        //private bool? _engaged;
+        //private Boolean? _engaged;
 
-        //public bool? Engaged
+        //public Boolean? Engaged
         //{
         //    get => _engaged;
         //    set
@@ -115,9 +115,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //}
 
-        //private bool? _stopped;
+        //private Boolean? _stopped;
 
-        //public bool? Stopped
+        //public Boolean? Stopped
         //{
         //    get => _stopped;
         //    set
@@ -281,9 +281,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //}
 
-        //private int _positionRange = 10;
+        //private Int32 _positionRange = 10;
 
-        //public int PositionRange
+        //public Int32 PositionRange
         //{
         //    get => _positionRange;
         //    set
@@ -345,9 +345,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Movement Control
 
-        //private bool? _speedRamping;
+        //private Boolean? _speedRamping;
 
-        //public bool? SpeedRamping
+        //public Boolean? SpeedRamping
         //{
         //    get => _speedRamping;
         //    set

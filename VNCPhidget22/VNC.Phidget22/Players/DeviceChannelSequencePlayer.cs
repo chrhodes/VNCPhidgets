@@ -59,28 +59,28 @@ namespace VNC.Phidget22.Players
 
         public DigitalOutputEx ActiveDigitalOutputHost { get; set; }
 
-        public bool LogDeviceChannelSequence { get; set; }
-        public bool LogChannelAction { get; set; }
-        public bool LogActionVerification { get; set; }
+        public Boolean LogDeviceChannelSequence { get; set; }
+        public Boolean LogChannelAction { get; set; }
+        public Boolean LogActionVerification { get; set; }
 
         // Phidget Events
 
-        public bool LogPhidgetEvents { get; set; }
-        public bool LogErrorEvents { get; set; } = true;    // Probably always want to see errors
-        public bool LogPropertyChangeEvents { get; set; }
+        public Boolean LogPhidgetEvents { get; set; }
+        public Boolean LogErrorEvents { get; set; } = true;    // Probably always want to see errors
+        public Boolean LogPropertyChangeEvents { get; set; }
 
         // AdvancedServo and RCServo events
 
-        public bool LogCurrentChangeEvents { get; set; }
-        public bool LogPositionChangeEvents { get; set; }
-        public bool LogVelocityChangeEvents { get; set; }
-        public bool LogTargetPositionReachedEvents { get; set; }
+        public Boolean LogCurrentChangeEvents { get; set; }
+        public Boolean LogPositionChangeEvents { get; set; }
+        public Boolean LogVelocityChangeEvents { get; set; }
+        public Boolean LogTargetPositionReachedEvents { get; set; }
 
         // InterfaceKit events
 
-        public bool LogInputChangeEvents { get; set; }
-        public bool LogOutputChangeEvents { get; set; }
-        public bool LogSensorChangeEvents { get; set; }
+        public Boolean LogInputChangeEvents { get; set; }
+        public Boolean LogOutputChangeEvents { get; set; }
+        public Boolean LogSensorChangeEvents { get; set; }
 
         //
 
@@ -124,7 +124,7 @@ namespace VNC.Phidget22.Players
                         $"\r closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
                 }
 
-                for (int sequenceLoop = 0; sequenceLoop < deviceChannelSequence.SequenceLoops; sequenceLoop++)
+                for (Int32 sequenceLoop = 0; sequenceLoop < deviceChannelSequence.SequenceLoops; sequenceLoop++)
                 {
                     if (LogDeviceChannelSequence) Log.Trace($"Running DeviceChannelSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
 
@@ -162,7 +162,7 @@ namespace VNC.Phidget22.Players
                     {
                         Log.Trace($"Zzzzz Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((int)deviceChannelSequence.Duration);
+                    Thread.Sleep((Int32)deviceChannelSequence.Duration);
                 }
             }
             catch (Exception ex)
@@ -230,7 +230,7 @@ namespace VNC.Phidget22.Players
                         digitalOutputSequence.Channel = deviceChannelSequence.Channel;
                     }
 
-                    phidgetHost = GetDigitalOutputHost((int)deviceChannelSequence.SerialNumber, (Int32)digitalOutputSequence.Channel);
+                    phidgetHost = GetDigitalOutputHost((Int32)deviceChannelSequence.SerialNumber, (Int32)digitalOutputSequence.Channel);
 
                     if (phidgetHost == null)
                     {
@@ -327,7 +327,7 @@ namespace VNC.Phidget22.Players
                         rcServoSequence.Channel = deviceChannelSequence.Channel;
                     }
 
-                    phidgetHost = GetRCServoHost((int)deviceChannelSequence.SerialNumber, (Int32)rcServoSequence.Channel);
+                    phidgetHost = GetRCServoHost((Int32)deviceChannelSequence.SerialNumber, (Int32)rcServoSequence.Channel);
 
                     if (phidgetHost == null)
                     {
@@ -422,7 +422,7 @@ namespace VNC.Phidget22.Players
                         stepperSequence.Channel = deviceChannelSequence.Channel;
                     }
 
-                    phidgetHost = GetStepperHost((int)deviceChannelSequence.SerialNumber, (Int32)stepperSequence.Channel);
+                    phidgetHost = GetStepperHost((Int32)deviceChannelSequence.SerialNumber, (Int32)stepperSequence.Channel);
 
                     if (phidgetHost == null)
                     {
@@ -482,14 +482,14 @@ namespace VNC.Phidget22.Players
 
         #region Get<Channel>Host
 
-        private DigitalOutputEx GetDigitalOutputHost(int serialNumber, int channel)
+        private DigitalOutputEx GetDigitalOutputHost(Int32 serialNumber, Int32 channel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
             //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
-            SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
             DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialChannel];
 
@@ -536,14 +536,14 @@ namespace VNC.Phidget22.Players
             return digitalOutputHost;
         }
 
-        private RCServoEx GetRCServoHost(int serialNumber, int channel)
+        private RCServoEx GetRCServoHost(Int32 serialNumber, Int32 channel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
             //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
-            SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
             RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
 
@@ -590,14 +590,14 @@ namespace VNC.Phidget22.Players
             return rcServoHost;
         }
 
-        private StepperEx GetStepperHost(int serialNumber, int channel)
+        private StepperEx GetStepperHost(Int32 serialNumber, Int32 channel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
             //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
 
-            SerialChannel serialChannel = new SerialChannel() { SerialNumber = serialNumber, Channel = channel };
+            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
             // TODO(crhodes)
             // This throws exception if serialChannel not found

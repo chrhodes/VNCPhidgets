@@ -29,7 +29,7 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="CurrentInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public CurrentInputEx(int serialNumber, CurrentInputConfiguration configuration, IEventAggregator eventAggregator)
+        public CurrentInputEx(Int32 serialNumber, CurrentInputConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
@@ -58,8 +58,8 @@ namespace VNC.Phidget22.Ex
             long startTicks = 0;
             if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
-            HostComputer = configuration.HostComputer;
             DeviceSerialNumber = SerialNumber;
+            HubPort = configuration.HubPort;
             Channel = configuration.Channel;
 
             IsRemote = true;
@@ -94,43 +94,43 @@ namespace VNC.Phidget22.Ex
 
         #region Logging
 
-        bool _logPhidgetEvents;
-        public bool LogPhidgetEvents
+        Boolean _logPhidgetEvents;
+        public Boolean LogPhidgetEvents
         {
             get { return _logPhidgetEvents; }
             set { _logPhidgetEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logErrorEvents = true;    // probably always want to see Errors
-        public bool LogErrorEvents
+        Boolean _logErrorEvents = true;    // probably always want to see Errors
+        public Boolean LogErrorEvents
         {
             get { return _logErrorEvents; }
             set { _logErrorEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPropertyChangeEvents;
-        public bool LogPropertyChangeEvents
+        Boolean _logPropertyChangeEvents;
+        public Boolean LogPropertyChangeEvents
         {
             get { return _logPropertyChangeEvents; }
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logDeviceChannelSequence;
-        public bool LogDeviceChannelSequence
+        Boolean _logDeviceChannelSequence;
+        public Boolean LogDeviceChannelSequence
         {
             get { return _logDeviceChannelSequence; }
             set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
-        bool _logChannelAction;
-        public bool LogChannelAction
+        Boolean _logChannelAction;
+        public Boolean LogChannelAction
         {
             get { return _logChannelAction; }
             set { _logChannelAction = value; OnPropertyChanged(); }
         }
 
-        bool _logActionVerification;
-        public bool LogActionVerification
+        Boolean _logActionVerification;
+        public Boolean LogActionVerification
         {
             get { return _logActionVerification; }
             set { _logActionVerification = value; OnPropertyChanged(); }
@@ -138,19 +138,8 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
-        private string _hostComputer;
-        public string HostComputer
-        {
-            get => _hostComputer;
-            set
-            {
-                _hostComputer = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _serialNumber;
-        public int SerialNumber
+        private Int32 _serialNumber;
+        public Int32 SerialNumber
         {
             get => _serialNumber;
             set
@@ -163,8 +152,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _attached;
-        public bool Attached
+        private Boolean _attached;
+        public Boolean Attached
         {
             get => _attached;
             set
@@ -370,7 +359,7 @@ namespace VNC.Phidget22.Ex
 
                 if (currentInputSequence.Actions is not null)
                 {
-                    for (int actionLoop = 0; actionLoop < currentInputSequence.ActionLoops; actionLoop++)
+                    for (Int32 actionLoop = 0; actionLoop < currentInputSequence.ActionLoops; actionLoop++)
                     {
                         if (currentInputSequence.StartActionLoopSequences is not null)
                         {

@@ -142,17 +142,17 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region IInstanceCount
 
-        private static int _instanceCountV;
+        private static Int32 _instanceCountV;
 
-        public int InstanceCountV
+        public Int32 InstanceCountV
         {
             get => _instanceCountV;
             set => _instanceCountV = value;
         }
 
-        private static int _instanceCountVP;
+        private static Int32 _instanceCountVP;
 
-        public int InstanceCountVP
+        public Int32 InstanceCountVP
         {
             get => _instanceCountVP;
             set => _instanceCountVP = value;
