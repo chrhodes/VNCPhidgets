@@ -328,7 +328,6 @@ namespace VNC.Phidget22
             set => _voltageOutputChannels = value;
         }
         
-
         // TODO(crhodes)
         // Populate this from ConfigFile
         // Also used info that came from Phidgets.  It is in OneNote
@@ -419,6 +418,7 @@ namespace VNC.Phidget22
                                 //PhidgetDevice phidgetDevice = new PhidgetDevice(channel.ServerPeerName, channel.DeviceClass, channel.DeviceSerialNumber);
                                 //IncrementDeviceChannelCount(phidgetDevice, channel.ChannelClass);
                                 //AvailablePhidgets.Add(channel.DeviceSerialNumber, phidgetDevice);
+                                AddPhidgetDevice(phidget);
                             }
                             break;
 
@@ -446,6 +446,9 @@ namespace VNC.Phidget22
                 PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
 
                 phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
+                phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+                phidgetDevice.Channel = phidget.Channel;
+                phidgetDevice.Parent = phidget.Parent.ToString();
 
                 IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
 
@@ -658,7 +661,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.Stepper:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new Stepper" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new Stepper" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.StepperCount}", Common.LOG_CATEGORY);
                     StepperChannels.Add(
                         new SerialChannel()
@@ -683,7 +686,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.VoltageInput:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new VoltageInput" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageInput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageInputCount}", Common.LOG_CATEGORY);
                     VoltageInputChannels.Add(
                         new SerialChannel()
@@ -704,7 +707,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.VoltageRatioInput:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new VoltageRatioInput" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageRatioInput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageRatioInputCount}", Common.LOG_CATEGORY);
                     VoltageRatioInputChannels.Add(
                         new SerialChannel()
@@ -725,7 +728,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.VoltageOutput:
-                    if (Common.VNCLogging.ApplicationInitialize) Log.Trace($"Adding new VoltageOutput" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new VoltageOutput" +
                         $" SerialNumber:{phidgetDevice.SerialNumber} Channel:{deviceChannels.VoltageOutputCount}", Common.LOG_CATEGORY);
                     VoltageOutputChannels.Add(
                         new SerialChannel()

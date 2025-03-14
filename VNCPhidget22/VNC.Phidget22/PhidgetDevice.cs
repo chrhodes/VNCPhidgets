@@ -22,7 +22,7 @@ namespace VNC.Phidget22
         {
             IPAddress = ipAddress;
             HostPort = hostPort;
-            DeviceClass = deviceClass;
+            DeviceClass = deviceClass.ToString();
             SerialNumber = serialNumber;
         }
 
@@ -33,7 +33,7 @@ namespace VNC.Phidget22
             // See if we can switch to serverPeerName or need to keep IPAddress and Port
             //IPAddress = ipAddress;
             //Port = port;
-            DeviceClass = deviceClass;
+            DeviceClass = deviceClass.ToString();
             SerialNumber = serialNumber;
         }
 
@@ -41,13 +41,30 @@ namespace VNC.Phidget22
         // How is this used?
         public SerialHost SerialHostKey { get; set; }
 
+        string _parent;
+        public string Parent
+        {
+            get
+            {
+                return _parent;
+            }
+            set
+            {
+                _parent = value;
+            }
+        }
         public string HostComputer { get; set; }
 
         public string IPAddress { get; set; } = "127.0.0.1";
 
         public int HostPort { get; set; } = 5661;
 
-        public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
+        //public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
+        public string DeviceClass { get; set; }
+        public string ChannelClass { get; set; }
+        public Int32 Channel { get; set; }
+
+        public Int32 HubPort { get; set; }
 
         // TODO(crhodes)
         // Hos is this used.  Only place I see is in AddPhidgetDevice()
