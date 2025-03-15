@@ -487,19 +487,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenSteppersCommand.RaiseCanExecuteChanged();
                 OpenStepperCommand.RaiseCanExecuteChanged();
 
-                // Set to null when host changes
-                if (value is not null)
-                {
-                    // FIX(crhodes)
-                    // 
-                    //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
+                SteppersVisibility = Visibility.Visible;
 
-                    //SteppersVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-                }
-                else
-                {
-                    SteppersVisibility = Visibility.Collapsed;
-                }
+                // Set to null when host changes
+                //if (value is not null)
+                //{
+                //    // FIX(crhodes)
+                //    // 
+                //    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
+
+                //    SteppersVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                //}
+                //else
+                //{
+                //    SteppersVisibility = Visibility.Collapsed;
+                //}
 
                 OnPropertyChanged();
             }
@@ -935,9 +937,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Int32.TryParse(stepperNumber, out channel))
             {
-                SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                StepperEx stepperHost = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                StepperEx stepperHost = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
 
                 switch (channel)
                 {
@@ -948,7 +950,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                             // NOTE(crhodes)
                             // Connect the UI to the Control so the UI is bound to the information
 
-                            Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                            Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
 
                             // NOTE(crhodes)
                             // If this is the first time the channel is open use the global Logging settings
@@ -970,7 +972,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 1:
                         if (Stepper1 is null)
                         {
-                            Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                            Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                             ConfigureInitialLogging(Stepper1);
                         }
                         if (Stepper1.IsOpen is false)
@@ -986,7 +988,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 2:
                         if (Stepper2 is null)
                         {
-                            Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                            Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                             ConfigureInitialLogging(Stepper2);
                         }
                         if (Stepper2.IsOpen is false)
@@ -1002,7 +1004,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 3:
                         if (Stepper3 is null)
                         {
-                            Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                            Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                             ConfigureInitialLogging(Stepper3);
                         }
                         if (Stepper3.IsOpen is false)
@@ -1018,7 +1020,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //case 4:
                     //    if (Stepper4 is null)
                     //    {
-                    //        Stepper4 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                    //        Stepper4 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                     //        ConfigureInitialLogging(Stepper4);
                     //    }
                     //    if (Stepper4.IsOpen is false)
@@ -1034,7 +1036,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //case 5:
                     //    if (Stepper5 is null)
                     //    {
-                    //        Stepper5 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                    //        Stepper5 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                     //        ConfigureInitialLogging(Stepper5);
                     //    }
                     //    if (Stepper5.IsOpen is false)
@@ -1050,7 +1052,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //case 6:
                     //    if (Stepper6 is null)
                     //    {
-                    //        Stepper6 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                    //        Stepper6 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                     //        ConfigureInitialLogging(Stepper6);
                     //    }
                     //    if (Stepper6.IsOpen is false)
@@ -1066,7 +1068,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //case 7:
                     //    if (Stepper7 is null)
                     //    {
-                    //        Stepper7 = Common.PhidgetDeviceLibrary.StepperChannels[serialChannel];
+                    //        Stepper7 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
                     //        ConfigureInitialLogging(Stepper7);
                     //    }
                     //    if (Stepper7.IsOpen is false)
@@ -1144,11 +1146,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (SelectedStepper is null) return false;
 
-            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
 
             StepperEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialHubPortChannel, out host)) return false;
 
             if (host.Attached)
             {
@@ -1294,9 +1296,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Int32.TryParse(servoNumber, out channel))
             {
-                SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[serialChannel].Close());
+                await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel].Close());
             }
             else
             {
@@ -1361,11 +1363,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (SelectedStepper is null) return false;
 
-            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
 
             StepperEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {

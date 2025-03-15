@@ -777,13 +777,13 @@ namespace VNC.Phidget22.Ex
                 VelocityLimit = rcServo.VelocityLimit;
                 MaxVelocityLimit = rcServo.MaxVelocityLimit;
 
-                MinDataInterval = rcServo.MinDataInterval;
-                DataInterval = rcServo.DataInterval;
-                MaxDataInterval = rcServo.MaxDataInterval;
+                //MinDataInterval = rcServo.MinDataInterval;
+                //DataInterval = rcServo.DataInterval;
+                //MaxDataInterval = rcServo.MaxDataInterval;
 
-                MinDataRate = rcServo.MinDataRate;
-                DataRate = rcServo.DataRate;
-                MaxDataRate = rcServo.MaxDataRate;
+                //MinDataRate = rcServo.MinDataRate;
+                //DataRate = rcServo.DataRate;
+                //MaxDataRate = rcServo.MaxDataRate;
 
                 // MinPosition can be set.  Save initial limit
                 MinPositionServo = MinPosition = MinPositionStop = rcServo.MinPosition;
@@ -963,6 +963,7 @@ namespace VNC.Phidget22.Ex
             base.Open();
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
@@ -970,11 +971,12 @@ namespace VNC.Phidget22.Ex
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter(timeout:{timeout}) isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
@@ -989,6 +991,39 @@ namespace VNC.Phidget22.Ex
             Attached = base.Attached;
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+
+            try
+            {
+                // NOTE(crhodes)
+                // These are not supported by the 16x RC Servo Phidget
+                // Going to remove for all
+
+                //MinDataInterval = base.MinDataInterval;
+                //DataInterval = base.DataInterval;
+                ////DataInterval = 100; // 100ms (10Hz)
+                //MaxDataInterval = base.MaxDataInterval;
+
+                //MinDataRate = base.MinDataRate;
+                //DataRate = base.DataRate;
+                ////DataRate = 10; // 10 Hz (100ms)
+                //MaxDataRate = base.MaxDataRate;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(RCServoSequence rcServoSequence)
@@ -1029,7 +1064,7 @@ namespace VNC.Phidget22.Ex
 
                         if (rcServoSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}< actions:{rcServoSequence.Actions.Count()}", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(rcServoSequence.Actions, async action =>
                             {
@@ -1038,7 +1073,7 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}< actions:{rcServoSequence.Actions.Count()}", Common.LOG_CATEGORY);
 
                             foreach (RCServoAction action in rcServoSequence.Actions)
                             {
@@ -1474,8 +1509,8 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter servo:{Channel}", Common.LOG_CATEGORY);
-                actionMessage.Append($"servo:{Channel}");
+                startTicks = Log.Trace($"Enter hubPort:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+                //actionMessage.Append($"servo:{Channel}");
             }
 
             try
@@ -1735,6 +1770,11 @@ namespace VNC.Phidget22.Ex
                     if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
+                }
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
                 }
             }
             catch (Phidgets.PhidgetException pex)

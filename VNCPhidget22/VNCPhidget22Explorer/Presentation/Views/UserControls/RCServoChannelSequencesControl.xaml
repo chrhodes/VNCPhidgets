@@ -114,8 +114,7 @@
 
                     <dxe:ComboBoxEdit Width="150" 
                         ItemsSource="{Binding RCServos}"
-                        SelectedItem="{Binding SelectedRCServo}"
-                        SelectedIndex="0"/>
+                        SelectedItem="{Binding SelectedRCServo}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
@@ -151,24 +150,22 @@
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                     
                     <dxlc:LayoutItem Label="HubPort#" HorizontalAlignment="Left" LabelPosition="Left" >
-                        <dxe:ComboBoxEdit SelectedItem="{Binding SelectedHubPort}" >
-                            <dxe:ComboBoxEditItem Content="0" />
-                            <dxe:ComboBoxEditItem Content="1" />
-                            <dxe:ComboBoxEditItem Content="2" />
-                            <dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:ComboBoxEdit
+                            ItemsSource="{Binding HubPorts}"
+                            SelectedItem="{Binding SelectedHubPort}" >
+                            <!--<dxe:ComboBoxEdit.StyleSettings>
                                 <dxe:CheckedComboBoxStyleSettings />
-                            </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit.StyleSettings>-->
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="Channe#" HorizontalAlignment="Left" LabelPosition="Left" >
-                        <dxe:ComboBoxEdit SelectedItem="{Binding SelectedChannel}" >
-                            <dxe:ComboBoxEditItem Content="0" />
-                            <dxe:ComboBoxEditItem Content="1" />
-                            <dxe:ComboBoxEditItem Content="2" />
-                            <dxe:ComboBoxEdit.StyleSettings>
+                        <dxe:ComboBoxEdit
+                            ItemsSource="{Binding Channels}"
+                            SelectedItem="{Binding SelectedChannel}" >
+                            <!--<dxe:ComboBoxEdit.StyleSettings>
                                 <dxe:CheckedComboBoxStyleSettings />
-                            </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit.StyleSettings>-->
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
                     

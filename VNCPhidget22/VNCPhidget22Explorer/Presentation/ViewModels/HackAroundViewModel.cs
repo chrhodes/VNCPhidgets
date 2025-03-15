@@ -194,6 +194,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
+
         private string _message = "Initial Message";
 
         public string Message
@@ -502,6 +503,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region ChannelClass Sequences
 
+        private List<Int32> _hubPorts = new List<Int32>()
+            { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+        public List<Int32> HubPorts
+        {
+            get => _hubPorts;
+            set
+            {
+                if (_hubPorts == value)
+                    return;
+                _hubPorts = value;
+                OnPropertyChanged();
+            }
+        }
+        
         private Int32 _selectedHubPort;
         public Int32 SelectedHubPort
         {
@@ -509,6 +524,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             set
             {
                 _selectedHubPort = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<Int32> _channels = new List<Int32>()
+            { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+        public List<Int32> Channels
+        {
+            get => _channels;
+            set
+            {
+                if (_hubPorts == value)
+                    return;
+                _channels = value;
                 OnPropertyChanged();
             }
         }

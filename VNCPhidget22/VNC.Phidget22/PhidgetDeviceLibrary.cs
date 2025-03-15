@@ -436,6 +436,8 @@ namespace VNC.Phidget22
             phidgetDevice.Parent = phidget.Parent.ToString();
             phidgetDevice.HubPort = phidget.HubPort;
             //phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
+            phidgetDevice.DeviceID = phidget.DeviceID.ToString();
+            phidgetDevice.DeviceVINTID = phidget.DeviceVINTID.ToString();
             phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
             phidgetDevice.Channel = phidget.Channel;
 
@@ -454,29 +456,9 @@ namespace VNC.Phidget22
             // Now add the Phidget to ChannelClass specific Dictionaries
             // that are used to find the right Phidget to use
 
-            AddDeviceChannel(phidget);
-
-            //if (ManagerAttachedPhidgetDevices.ContainsKey(phidget.DeviceSerialNumber) == false)
-            //{
-            //    PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
-
-            //    phidgetDevice.Parent = phidget.Parent.ToString();
-            //    phidgetDevice.HubPort = phidget.HubPort;
-            //    phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
-            //    phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
-            //    phidgetDevice.Channel = phidget.Channel;
-            //    phidgetDevice.Parent = phidget.Parent.ToString();
-
-            //    IncrementDeviceChannelCount(phidgetDevice, phidget.ChannelClass);
-
-            //    ManagerAttachedPhidgetDevices.Add(phidget.DeviceSerialNumber, phidgetDevice);
-            //}
-            //else
-            //{
-            //    IncrementDeviceChannelCount(ManagerAttachedPhidgetDevices[phidget.DeviceSerialNumber], phidget.ChannelClass);               
-            //}
+            AddDeviceChannel(phidget, phidgetDevice);
         }
-        void AddDeviceChannel(Phidgets.Phidget phidget)
+        void AddDeviceChannel(Phidgets.Phidget phidget, PhidgetDevice phidgetDevice)
         {
             SerialHubPortChannel serialHubChannel = new SerialHubPortChannel()
             {
@@ -520,6 +502,9 @@ namespace VNC.Phidget22
                             _eventAggregator
                         )
                     );
+
+                    phidgetDevice.DeviceChannels.CurrentInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.DCMotor:
@@ -724,6 +709,8 @@ namespace VNC.Phidget22
                             _eventAggregator
                         )
                     );
+
+                    phidgetDevice.DeviceChannels.StepperCount++;
 
                     break;
 
@@ -1131,7 +1118,7 @@ namespace VNC.Phidget22
 
         //    //PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
 
-        //    SerialChannel serialChannel = 
+        //    SerialChannel serialHubPortChannel = 
         //        new SerialChannel() 
         //            { 
         //                SerialNumber = serialNumber, 
@@ -1141,7 +1128,7 @@ namespace VNC.Phidget22
         //    // TODO(crhodes)
         //    // Is this where we do this?
 
-        //    RCServoEx rcServoHost = RCServoChannels[serialChannel];
+        //    RCServoEx rcServoHost = RCServoChannels[serialHubPortChannel];
 
         //    //RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.OpenRCServoHost(serialNumber, channel, rcServoConfiguration);
 

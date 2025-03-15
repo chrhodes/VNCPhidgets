@@ -52,6 +52,10 @@ namespace VNC.Phidget22
         //public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
         public string DeviceClass { get; set; }
 
+        public string DeviceID { get; set; }
+
+        public string DeviceVINTID { get; set; }
+
         public Int32 HubPort { get; set; }
 
         public string ChannelClass { get; set; }
@@ -62,6 +66,10 @@ namespace VNC.Phidget22
         // TODO(crhodes)
         // Hos is this used.  Only place I see is in AddPhidgetDevice()
         public Int32 ChannelCount { get; set; }
+
+        // FIX(crhodes)
+        // UI Would be better if kept track of Channels present on each PhidgetDevice
+        // Figure out how to put this back in
 
         public DeviceChannels DeviceChannels { get; set; } = new DeviceChannels();
 

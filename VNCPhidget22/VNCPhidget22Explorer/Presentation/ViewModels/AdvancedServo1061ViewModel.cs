@@ -620,23 +620,26 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedAdvancedServo = value;
 
                 OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+                CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+
                 OpenRCServoCommand.RaiseCanExecuteChanged();
                 //PlayPerformanceCommand.RaiseCanExecuteChanged();
                 //PlaySequenceCommand.RaiseCanExecuteChanged();
 
+                RCServosVisibility = Visibility.Visible;
                 // Set to null when host changes
-                if (value is not null)
-                {
-                    // FIX(crhodes)
-                    // 
-                    //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
+                //if (value is not null)
+                //{
+                //    // FIX(crhodes)
+                //    // 
+                //    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
 
-                    //RCServosVisibility = deviceChannels.RCServoCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-                }
-                else
-                {
-                    RCServosVisibility = Visibility.Collapsed;
-                }
+                //    RCServosVisibility = deviceChannels.RCServoCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+                //}
+                //else
+                //{
+                //    RCServosVisibility = Visibility.Collapsed;
+                //}
 
                 OnPropertyChanged();
             }
@@ -1623,9 +1626,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Int32.TryParse(servoNumber, out channel))
             {
-                SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
 
                 // NOTE(crhodes)
                 // If this is the first time the channel is open use the global Logging settings
@@ -1647,7 +1650,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         //RCServo0 = rcServoHost;
                         if (RCServo0 is null)
                         {
-                            RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo0);
                         }
                         if (RCServo0.IsOpen is false)
@@ -1664,7 +1667,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 1:
                         if (RCServo1 is null)
                         {
-                            RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo1);
                         }
                         if (RCServo1.IsOpen is false)
@@ -1680,7 +1683,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 2:
                         if (RCServo2 is null)
                         {
-                            RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo2);
                         }
                         if (RCServo2.IsOpen is false)
@@ -1696,7 +1699,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 3:
                         if (RCServo3 is null)
                         {
-                            RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo3);
                         }
                         if (RCServo3.IsOpen is false)
@@ -1712,7 +1715,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 4:
                         if (RCServo4 is null)
                         {
-                            RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo4);
                         }
                         if (RCServo4.IsOpen is false)
@@ -1728,7 +1731,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 5:
                         if (RCServo5 is null)
                         {
-                            RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo5);
                         }
                         if (RCServo5.IsOpen is false)
@@ -1744,7 +1747,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 6:
                         if (RCServo6 is null)
                         {
-                            RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo6);
                         }
                         if (RCServo6.IsOpen is false)
@@ -1760,7 +1763,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 7:
                         if (RCServo7 is null)
                         {
-                            RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel];
+                            RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
                             ConfigureInitialLogging(RCServo7);
                         }
                         if (RCServo7.IsOpen is false)
@@ -1838,11 +1841,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (SelectedAdvancedServo is null) return false;
 
-            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
 
             RCServoEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialHubPortChannel, out host)) return false;
 
             if (host.Attached)
             {
@@ -1942,9 +1945,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Int32.TryParse(servoNumber, out channel))
             {
-                SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                await Task.Run(() => Common.PhidgetDeviceLibrary.RCServoChannels[serialChannel].Close());
+                await Task.Run(() => Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel].Close());
             }
             else
             {
@@ -2009,11 +2012,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             
             if (SelectedAdvancedServo is null) return false;
 
-            SerialHubPortChannel serialChannel = new SerialHubPortChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
 
             RCServoEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.RCServoChannels.TryGetValue(serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
