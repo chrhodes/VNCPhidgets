@@ -347,7 +347,7 @@ namespace VNC.Phidget22.Players
                             // instead of reaching for the Property.  If we do that have to initialize all the logging.
                             DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
-                            await player.ExecuteDeviceChannelSequence(sequence);
+                            await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
                         });
                     }
                     else
@@ -358,7 +358,7 @@ namespace VNC.Phidget22.Players
 
                         foreach (DeviceChannelSequence sequence in performance.DeviceClassSequences)
                         {
-                            await player.ExecuteDeviceChannelSequence(sequence);
+                            await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
                         }
                     }
                 }

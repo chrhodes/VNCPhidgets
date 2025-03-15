@@ -136,7 +136,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
 
-            RCServos = Common.PhidgetDeviceLibrary.RCServoChannels
+            RCServoPhidgets = Common.PhidgetDeviceLibrary.RCServoChannels
                  .Keys
                  .DistinctBy(x => x.SerialNumber)
                  .Select(x => x.SerialNumber)
@@ -193,7 +193,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
 
         private string _message = "Initial Message";
 
@@ -707,28 +706,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RCServo
 
-        private IEnumerable<Int32> _RCServos;
-        public IEnumerable<Int32> RCServos
+        private IEnumerable<Int32> _RCServoPhidgets;
+        public IEnumerable<Int32> RCServoPhidgets
         {
             get
             {
-                return _RCServos;
+                return _RCServoPhidgets;
             }
 
             set
             {
-                _RCServos = value;
+                _RCServoPhidgets = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32 _selectedRCServo;
-        public Int32 SelectedRCServo
+        private Int32 _selectedRCServoPhidget;
+        public Int32 SelectedRCServoPhidget
         {
-            get => _selectedRCServo;
+            get => _selectedRCServoPhidget;
             set
             {
-                _selectedRCServo = value;
+                _selectedRCServoPhidget = value;
                 OnPropertyChanged();
 
                 PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
@@ -1407,7 +1406,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     DeviceChannelSequence? nextPhidgetDeviceSequence =
                         new DeviceChannelSequence
                         {
-                            SerialNumber = SelectedRCServo,
+                            SerialNumber = SelectedRCServoPhidget,
                             Name = sequence.Name,
                             ChannelClass = "RCServo",
                             SequenceLoops = sequence.SequenceLoops

@@ -88,7 +88,7 @@
         
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <views:HostSelectorControl DockPanel.Dock="Top" />
+        <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
 
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
 
@@ -96,17 +96,30 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
+                    <!--<dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
                         <dxe:ComboBoxEdit Width="150"
-                        ItemsSource="{Binding AdvancedServos}" DisplayMember="Name"
-                        SelectedItem="{Binding SelectedAdvancedServo}"
-                        SelectedIndex="0"/>
+                            ItemsSource="{Binding AdvancedServos}" DisplayMember="Name"
+                            SelectedItem="{Binding SelectedAdvancedServo}"
+                            SelectedIndex="0"/>
                     </dxlc:LayoutItem>
+                    
 
                     <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
                         <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True"
                                   Background="White"
                                   Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}"/>
+                    </dxlc:LayoutItem>-->
+
+                    <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
+
+                        <!--<dxe:ComboBoxEdit Width="150" 
+                           ItemsSource="{Binding RCServos}"
+                           SelectedItem="{Binding SelectedRCServo}" />-->
+
+                        <dxe:ComboBoxEdit Width="150" 
+                            ItemsSource="{Binding RCServoPhidgets}"
+                            SelectedItem="{Binding SelectedRCServoPhidget}" NullText="Select Host" />
+
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>

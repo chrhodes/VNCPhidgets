@@ -100,6 +100,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Hosts = hostConfig.Hosts.ToList();
 
+            RCServoPhidgets = Common.PhidgetDeviceLibrary.RCServoChannels
+                .Keys
+                .DistinctBy(x => x.SerialNumber)
+                .Select(x => x.SerialNumber)
+                .ToList();
+
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -315,18 +321,51 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // TODO(crhodes)
         // I think we have moved away from array to have individual object6s to bind to.
 
-        RCServoEx[] _rcServos = new RCServoEx[16];
+        //RCServoEx[] _rcServos = new RCServoEx[16];
 
-        public RCServoEx[] RCServos
+        //public RCServoEx[] RCServos
+        //{
+        //    get
+        //    {
+        //        return _rcServos;
+        //    }
+        //    set
+        //    {
+        //        _rcServos = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private IEnumerable<Int32> _RCServoPhidgets;
+        public IEnumerable<Int32> RCServoPhidgets
         {
             get
             {
-                return _rcServos;
+                return _RCServoPhidgets;
             }
+
             set
             {
-                _rcServos = value;
+                _RCServoPhidgets = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private Int32 _selectedRCServoPhidget;
+        public Int32 SelectedRCServoPhidget
+        {
+            get => _selectedRCServoPhidget;
+            set
+            {
+                _selectedRCServoPhidget = value;
+                OnPropertyChanged();
+
+                OpenAdvancedServoCommand.RaiseCanExecuteChanged();
+                CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+
+                OpenRCServoCommand.RaiseCanExecuteChanged();
+
+                RCServosVisibility = Visibility.Visible;
             }
         }
 
@@ -895,12 +934,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // 
             //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[SelectedAdvancedServo.SerialNumber].DeviceChannels;
 
-            //Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+            var rcServoCount = Common.PhidgetDeviceLibrary.RCServoChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedRCServoPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.RCServoCount; channel++)
-            //{
-            //    OpenRCServo(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < rcServoCount; channel++)
+            {
+                OpenRCServo(channel.ToString());
+            }
 
             DeviceAttached = true;  // To enable Close button
 
@@ -943,11 +985,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             //return true;
-            if (SelectedAdvancedServo is not null)
+            if (SelectedRCServoPhidget > 0)
             {
-                if (DeviceAttached is not null)
-                    return !(Boolean)DeviceAttached;
-                else
+                //if (DeviceAttached is not null)
+                //    return !(Boolean)DeviceAttached;
+                //else
                     return true;
             }
             else
@@ -1499,10 +1541,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // 
             //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[SelectedAdvancedServo.SerialNumber].DeviceChannels;
 
-            //for (Int32 channel = 0; channel < deviceChannels.RCServoCount; channel++)
-            //{
-            //    CloseRCServo(channel.ToString());
-            //}
+            var rcServoCount = Common.PhidgetDeviceLibrary.RCServoChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedRCServoPhidget)
+                 .Select(x => x.SerialNumber).Count();
+
+            for (Int32 channel = 0; channel < rcServoCount; channel++)
+            {
+                CloseRCServo(channel.ToString());
+            }
 
             DeviceAttached = false; // To enable Open button
 
@@ -1564,7 +1611,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
 
-            if (SelectedAdvancedServo is not null && DeviceAttached is not null)
+            if (SelectedRCServoPhidget > 0 && DeviceAttached is not null)
                 return true;
             else
                 return false;
@@ -1621,7 +1668,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called OpenRCServo";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+            //Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+            Int32 serialNumber = SelectedRCServoPhidget;
             Int32 channel;
 
             if (Int32.TryParse(servoNumber, out channel))
@@ -1839,9 +1887,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{channelNumber}");
 
-            if (SelectedAdvancedServo is null) return false;
+            if (SelectedRCServoPhidget == 0) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedRCServoPhidget, Channel = channel };
 
             RCServoEx? host;
 
@@ -1940,7 +1988,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseRCServo";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedAdvancedServo.SerialNumber;
+            Int32 serialNumber = SelectedRCServoPhidget;
             Int32 channel;
 
             if (Int32.TryParse(servoNumber, out channel))
@@ -2010,9 +2058,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse servoNumber:{channelNumber}");
             
-            if (SelectedAdvancedServo is null) return false;
+            if (SelectedRCServoPhidget == 0) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedAdvancedServo.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedRCServoPhidget, Channel = channel };
 
             RCServoEx? host;
 

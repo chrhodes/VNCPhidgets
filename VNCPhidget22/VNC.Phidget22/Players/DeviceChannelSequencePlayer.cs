@@ -105,7 +105,7 @@ namespace VNC.Phidget22.Players
         /// </summary>
         /// <param name="deviceChannelSequence"></param>
         /// <returns></returns>
-        public async Task ExecuteDeviceChannelSequence(DeviceChannelSequence deviceChannelSequence)
+        public async Task ExecuteDeviceChannelSequence(DeviceChannelSequence deviceChannelSequence, Int32? performanceSerialNumber = null)
         {
             Int64 startTicks = 0;
 
@@ -117,7 +117,7 @@ namespace VNC.Phidget22.Players
                 {
                     startTicks = Log.Trace($"Executing DeviceChannel Sequence:>{deviceChannelSequence?.Name}" +
                         $"\r channelClass:>{deviceChannelSequence?.ChannelClass}<" +
-                        $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                        $" performanceSerialNumber:>{performanceSerialNumber}< serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" hubPort:>{deviceChannelSequence?.HubPort}< channel:>{deviceChannelSequence?.Channel}<" +
                         $"\r loops:>{deviceChannelSequence?.SequenceLoops}<" +
                         $" duration:>{deviceChannelSequence?.Duration}<" +
@@ -131,6 +131,14 @@ namespace VNC.Phidget22.Players
                     // NOTE(crhodes)
                     // Each loop starts back at the initial sequence
                     nextPhidgetDeviceClassSequence = deviceChannelSequence;
+
+                    // NOTE(crhodes)
+                    // This allows reuse of a DeviceChannelSequence that only varies by SerialNumber
+
+                    if (performanceSerialNumber is not null)
+                    {
+                        nextPhidgetDeviceClassSequence.SerialNumber = (Int32)performanceSerialNumber;
+                    }
 
                     do
                     {
@@ -244,7 +252,10 @@ namespace VNC.Phidget22.Players
                         {
                             foreach (DeviceChannelSequence sequence in digitalOutputSequence.BeforeActionLoopSequences)
                             {
-                                ExecuteDeviceChannelSequence(sequence);
+                                // NOTE(crhodes)
+                                // We do not pass in a SerialNumber override
+
+                                await ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
@@ -254,7 +265,10 @@ namespace VNC.Phidget22.Players
                         {
                             foreach (DeviceChannelSequence sequence in digitalOutputSequence.AfterActionLoopSequences)
                             {
-                                ExecuteDeviceChannelSequence(sequence);
+                                // NOTE(crhodes)
+                                // We do not pass in a SerialNumber override
+
+                                await ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
@@ -347,6 +361,9 @@ namespace VNC.Phidget22.Players
                         {
                             foreach (DeviceChannelSequence sequence in rcServoSequence.BeforeActionLoopSequences)
                             {
+                                // NOTE(crhodes)
+                                // We do not pass in a SerialNumber override
+
                                 await ExecuteDeviceChannelSequence(sequence);
                             }
                         }
@@ -357,6 +374,9 @@ namespace VNC.Phidget22.Players
                         {
                             foreach (DeviceChannelSequence sequence in rcServoSequence.AfterActionLoopSequences)
                             {
+                                // NOTE(crhodes)
+                                // We do not pass in a SerialNumber override
+
                                 await ExecuteDeviceChannelSequence(sequence);
                             }
                         }
@@ -442,7 +462,10 @@ namespace VNC.Phidget22.Players
                         {
                             foreach (DeviceChannelSequence sequence in stepperSequence.BeforeActionLoopSequences)
                             {
-                                ExecuteDeviceChannelSequence(sequence);
+                                // NOTE(crhodes)
+                                // We do not pass in a SerialNumber override
+
+                                await ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
@@ -452,7 +475,9 @@ namespace VNC.Phidget22.Players
                         {
                             foreach (DeviceChannelSequence sequence in stepperSequence.AfterActionLoopSequences)
                             {
-                                ExecuteDeviceChannelSequence(sequence);
+                                // NOTE(crhodes)
+                                // We do not pass in a SerialNumber override
+                                await ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 

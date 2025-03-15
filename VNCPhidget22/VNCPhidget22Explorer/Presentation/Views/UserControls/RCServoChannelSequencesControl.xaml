@@ -113,8 +113,8 @@
                 <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
 
                     <dxe:ComboBoxEdit Width="150" 
-                        ItemsSource="{Binding RCServos}"
-                        SelectedItem="{Binding SelectedRCServo}" />
+                        ItemsSource="{Binding RCServoPhidgets}"
+                        SelectedItem="{Binding SelectedRCServoPhidget}" />
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
