@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-23</VersionSuffix>
-        <FileVersion>2025.03.14A</FileVersion>
+        <FileVersion>2025.03.15A</FileVersion>
         <Description>Phidget22 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>    
@@ -116,7 +116,7 @@
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|AnyCPU'">
         <!-- Uncoment next line to switch to ProjectReference(s) -->
-         <DefineConstants>$(DefineConstants);VNCPROJECTREF</DefineConstants> 
+         <!--<DefineConstants>$(DefineConstants);VNCPROJECTREF</DefineConstants>--> 
     </PropertyGroup>
 
     <Choose>
@@ -129,7 +129,7 @@
         </When>
         <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
-                <PackageReference Include="VNC.Core" Version="3.0.0" />
+                <PackageReference Include="VNC.Core" Version="3.1.0" />
                 <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.0.0" />
             </ItemGroup>
         </When>
