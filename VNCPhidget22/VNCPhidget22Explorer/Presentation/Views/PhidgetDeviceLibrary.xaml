@@ -105,14 +105,26 @@
                 <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices}"  >
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Binding="{Binding HostComputer}" Header="HostComputer" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding Parent}" Header="Parent" ReadOnly="True" Width="500" />
-                        <dxg:GridColumn Binding="{Binding SerialNumber}" Header="SerialNumber" ReadOnly="True" Width="100" />
-                        <dxg:GridColumn Binding="{Binding DeviceClass}" Header="DeviceClass" ReadOnly="True" Width="100"/>
-                        <dxg:GridColumn Binding="{Binding DeviceID}" Header="DeviceID" ReadOnly="True" />
+                        <dxg:GridColumn Binding="{Binding DeviceSerialNumber}" Header="SerialNumber" ReadOnly="True" Width="100" />                                                
+                        <dxg:GridColumn Binding="{Binding IsLocal}" Header="IsLocal" ReadOnly="True" Width="100" />
+                        <dxg:GridColumn Binding="{Binding IsRemote}" Header="IsRemote" ReadOnly="True" Width="100" />
+                        <dxg:GridColumn Binding="{Binding GrandParent}" Header="GrandParent" ReadOnly="True" Width="400" />
+                        <dxg:GridColumn Binding="{Binding Parent}" Header="Parent" ReadOnly="True" Width="600" />
+                        
+                        <dxg:GridColumn Binding="{Binding IsHubPortDevice}" Header="IsHubPortDevice" ReadOnly="True" Width="100" />
+                        <dxg:GridColumn Binding="{Binding HubPort}" Header="HubPort" ReadOnly="True" Width="60" />
+                        
+                        <dxg:GridColumn Binding="{Binding DeviceClass}" Header="DeviceClass" ReadOnly="True" Width="100" />
+                        <dxg:GridColumn Binding="{Binding DeviceName}" Header="DeviceName" ReadOnly="True" Width="200" />
+                        <dxg:GridColumn Binding="{Binding DeviceID}" Header="DeviceID" ReadOnly="True" Width="150" />
                         <dxg:GridColumn Binding="{Binding DeviceVINTID}" Header="DeviceVINTID" ReadOnly="True" />
-                        <dxg:GridColumn Binding="{Binding HubPort}" Header="Port" ReadOnly="True" Width="50"/>
-                        <dxg:GridColumn Binding="{Binding ChannelClass}" Header="ChannelClass" ReadOnly="True" Width="120" />
+                        <dxg:GridColumn Binding="{Binding DeviceVersion}" Header="DeviceVersion" ReadOnly="True" Width="100"/>
+
+                        <dxg:GridColumn Binding="{Binding IsChannel}" Header="IsChannel" ReadOnly="True" Width="120" />
                         <dxg:GridColumn Binding="{Binding Channel}" Header="Channel" ReadOnly="True" Width="75" />
+                        <dxg:GridColumn Binding="{Binding ChannelClass}" Header="ChannelClass" ReadOnly="True" Width="120" />
+                        <dxg:GridColumn Binding="{Binding ChannelName}" Header="ChannelName" ReadOnly="True" Width="160" />
+                        <dxg:GridColumn Binding="{Binding ChannelSubclass}" Header="ChannelSubClass" ReadOnly="True" Width="200" />
                     </dxg:GridControl.Columns>
                 </dxg:GridControl>
 

@@ -49,9 +49,22 @@ namespace VNC.Phidget22
 
             // NOTE(crhodes)
             // This is for Excel use.  It needs to match what is in Manager_Attach()
-            if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach:|Parent" +
-                $"|ServerPeerName|DeviceClass|DeviceID|DeviceSerialNumber|ChannelClass" +
-                $"|IsHubPortDevice|HubPort|IsChannel|Channel", Common.LOG_CATEGORY);
+            // See Manager_Attach for column choice comments
+            if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"|ServerPeerName" +
+                //$"|ServerHostName" +
+                $"|DeviceSerialNumber" +
+                $"|IsLocal|IsRemote|GrandParent|Parent" +
+                $"|IsHubPortDevice|HubPort" +
+                //$"|HubPortCount" +
+                //$"|DeviceClassName" +
+                $"|DeviceClass|DeviceName" +
+                //$"|DeviceSKU" +
+                $"|DeviceID|DeviceVINTID|DeviceVersion" +
+                $"|IsChannel|Channel|ChannelClass" +
+                //$"|ChannelClassName" +
+                $"|ChannelName|ChannelSubClass", Common.LOG_CATEGORY);
+                //$"|DeviceFirmwareUpgradeString"
+
 
             //_availablePhidgets = new Dictionary<Int32, PhidgetDevice>();
 
@@ -376,9 +389,20 @@ namespace VNC.Phidget22
 
             try
             {
-                if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"Manager_Attach:|{phidget.Parent}" +
-                    $"|{phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceID}|{phidget.DeviceSerialNumber}|{phidget.ChannelClass}" +
-                    $"|{phidget.IsHubPortDevice}|{phidget.HubPort}|{phidget.IsChannel}|{phidget.Channel}", Common.LOG_CATEGORY);
+                if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"|{phidget.ServerPeerName}" + // IPAddress,Port
+                    //$"|{phidget.ServerHostname}" + // IPAddress
+                    $"|{phidget.DeviceSerialNumber}" +
+                    $"|{phidget.IsLocal}|{phidget.IsRemote}|{phidget.Parent?.Parent}|{phidget.Parent}" +
+                    $"|{phidget.IsHubPortDevice}|{phidget.HubPort}" +
+                    //$"|{phidget.HubPortCount}" +      // Throws exception if not Hub
+                    $"|{phidget.DeviceClass}|{phidget.DeviceName}" +//
+                    //$"|{phidget.DeviceClassName}" + // Just adds "Phidget" to DeviceClass, e.g. InterfaceKit -> PhidgetInterfaceKit
+                    //$"|{phidget.DeviceSKU}" +  // Similar to DeviceID
+                    $"|{phidget.DeviceID}|{phidget.DeviceVINTID}|{phidget.DeviceVersion}" +
+                    $"|{phidget.IsChannel}|{phidget.Channel}|{phidget.ChannelClass}" +
+                    //$"|{phidget.ChannelClassName}" +  // Just adds "Phidget" to ChannelClass, e.g. RCServo -> PhidgetRCServo
+                    $"|{phidget.ChannelName}|{phidget.ChannelSubclass}", Common.LOG_CATEGORY);
+                    //$"|{phidget.DeviceFirmwareUpgradeString}" // Looks like DeviceSKU
 
                 switch (phidget.DeviceClass)
                 {
@@ -431,15 +455,28 @@ namespace VNC.Phidget22
 
         private void AddPhidgetDevice(Phidgets.Phidget phidget)
         { 
-            PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceClass, phidget.DeviceSerialNumber);
+            PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
 
+            phidgetDevice.IsLocal = phidget.IsLocal;
+            phidgetDevice.IsRemote = phidget.IsRemote;
+            phidgetDevice.GrandParent = phidget.Parent?.Parent?.ToString();
             phidgetDevice.Parent = phidget.Parent.ToString();
+
+            phidgetDevice.IsHubPortDevice = phidget.IsHubPortDevice;
             phidgetDevice.HubPort = phidget.HubPort;
-            //phidgetDevice.ChannelCount = phidget.Parent.GetDeviceChannelCount(Phidgets.ChannelClass.None);
+
+            phidgetDevice.DeviceClass = phidget.DeviceClass.ToString();
+            phidgetDevice.DeviceName = phidget.DeviceName;
             phidgetDevice.DeviceID = phidget.DeviceID.ToString();
             phidgetDevice.DeviceVINTID = phidget.DeviceVINTID.ToString();
-            phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+            phidgetDevice.DeviceVersion = phidget.DeviceVersion.ToString();
+
+            phidgetDevice.IsChannel = phidget.IsChannel;
             phidgetDevice.Channel = phidget.Channel;
+            phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+            phidgetDevice.ChannelName = phidget.ChannelName.ToString();
+            phidgetDevice.ChannelSubclass = phidget.ChannelSubclass.ToString();
+
 
             // NOTE(crhodes)
             // Switch from Dictionary to List

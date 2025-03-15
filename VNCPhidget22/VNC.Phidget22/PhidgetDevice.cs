@@ -26,41 +26,49 @@ namespace VNC.Phidget22
         //    SerialNumber = serialNumber;
         //}
 
-        public PhidgetDevice(string serverPeerName, Phidgets.DeviceClass deviceClass, Int32 serialNumber)
+        public PhidgetDevice(string serverPeerName, Int32 deviceSerialNumber)
         {
             HostComputer = serverPeerName;
-            // TODO(crhodes)
-            // See if we can switch to serverPeerName or need to keep IPAddress and Port
-            //IPAddress = ipAddress;
-            //Port = port;
-            DeviceClass = deviceClass.ToString();
-            SerialNumber = serialNumber;
+            DeviceSerialNumber = deviceSerialNumber;
         }
 
-        // TODO(crhodes)
-        // How is this used?
-        public SerialHost SerialHostKey { get; set; }
-        public string Parent { get; set; }
+        //// TODO(crhodes)
+        //// How is this used?
+        //public SerialHost SerialHostKey { get; set; }
+
+
         public string HostComputer { get; set; }
+
 
         public string IPAddress { get; set; } = "127.0.0.1";
 
         public Int32 HostPort { get; set; } = 5661;
 
-        public Int32 SerialNumber { get; set; } = 0;
+        public Int32 DeviceSerialNumber { get; set; } = 0;
 
-        //public Phidgets.DeviceClass DeviceClass { get; set; } = Phidgets.DeviceClass.None;
-        public string DeviceClass { get; set; }
+        public Boolean IsLocal { get; set; }
+        public Boolean IsRemote { get; set; }
 
-        public string DeviceID { get; set; }
+        public string GrandParent { get; set; }
+        public string Parent { get; set; }
 
-        public string DeviceVINTID { get; set; }
-
+        public bool IsHubPortDevice { get; set; }
         public Int32 HubPort { get; set; }
 
-        public string ChannelClass { get; set; }
-        public Int32 Channel { get; set; }
+        public string DeviceClass { get; set; }
+        public string DeviceClassName { get; set; }
+        public string DeviceName { get; set; }
+        public string DeviceSKU { get; set; }
 
+        public string DeviceID { get; set; }
+        public string DeviceVINTID { get; set; }
+        public string DeviceVersion { get; set; }
+
+        public bool IsChannel { get; set; }
+        public Int32 Channel { get; set; }
+        public string ChannelClass { get; set; }
+        public string ChannelName { get; set; }
+        public string ChannelSubclass { get; set; }
 
 
         // TODO(crhodes)
