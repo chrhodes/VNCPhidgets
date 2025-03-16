@@ -87,40 +87,25 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel Margin="5">
+        
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <views:HostSelectorControl DockPanel.Dock="Top" />
+        <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
 
-        <dxlc:LayoutGroup x:Name="lgInterfaceKits"  Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Top" >
+        <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" DockPanel.Dock="Top" >
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                <dxlc:LayoutItem Label="InterfaceKits" LabelPosition="Left" HorizontalAlignment="Left">
-                    <dxe:ComboBoxEdit Width="150" 
-                                    ItemsSource="{Binding InterfaceKits}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedInterfaceKit}"
-                                    SelectedIndex="0"/>
-                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="InterfaceKit Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
 
-                <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                    <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.SerialNumber}" IsReadOnly="True" 
-                                Background="White" 
-                                Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}"/>
+                    <dxe:ComboBoxEdit Width="150" 
+                        ItemsSource="{Binding InterfaceKitPhidgets}"
+                        SelectedItem="{Binding SelectedInterfaceKitPhidget}" 
+                        NullText="Select InterfaceKit" />
+
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem Label="Embedded" HorizontalAlignment="Left" >
-                <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Embedded}" IsReadOnly="True"
-                                    Background="White"                                       
-                                    Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}"/>
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Enable" HorizontalAlignment="Left" >
-                <dxe:TextEdit EditValue="{Binding SelectedInterfaceKit.Enable}" IsReadOnly="True"
-                                    Background="White"                                       
-                                    Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}"/>
-            </dxlc:LayoutItem>
 
             <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                 <Button 

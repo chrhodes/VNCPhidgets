@@ -90,35 +90,18 @@
 
         <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
 
-        <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+        <dxlc:LayoutControl Orientation="Vertical" Padding="0" >
 
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <!--<dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
-                        <dxe:ComboBoxEdit Width="150"
-                            ItemsSource="{Binding AdvancedServos}" DisplayMember="Name"
-                            SelectedItem="{Binding SelectedAdvancedServo}"
-                            SelectedIndex="0"/>
-                    </dxlc:LayoutItem>
-                    
-
-                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                        <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True"
-                                  Background="White"
-                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource BooleanToColorConverter}}"/>
-                    </dxlc:LayoutItem>-->
-
-                    <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
-
-                        <!--<dxe:ComboBoxEdit Width="150" 
-                           ItemsSource="{Binding RCServos}"
-                           SelectedItem="{Binding SelectedRCServo}" />-->
+                    <dxlc:LayoutItem Label="AdvancedServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
 
                         <dxe:ComboBoxEdit Width="150" 
-                            ItemsSource="{Binding RCServoPhidgets}"
-                            SelectedItem="{Binding SelectedRCServoPhidget}" NullText="Select Host" />
+                            ItemsSource="{Binding AdvancedServoPhidgets}"
+                            SelectedItem="{Binding SelectedAdvancedServoPhidget}"
+                            NullText="Select AdvancedServo" />
 
                     </dxlc:LayoutItem>
 
@@ -152,7 +135,7 @@
                                 <!--<dxe:RadioComboBoxStyleSettings/>-->
                                 <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
                                 <!--<dxe:TokenComboBoxStyleSettings/>-->
-                            </dxe:ComboBoxEdit.StyleSettings>
+                                </dxe:ComboBoxEdit.StyleSettings>
                             <dxe:ComboBoxEditItem Content="Min" />
                             <dxe:ComboBoxEditItem Content="01%" />
                             <dxe:ComboBoxEditItem Content="02%" />

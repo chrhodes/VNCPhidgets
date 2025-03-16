@@ -56,8 +56,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
 
-            OpenSteppersCommand = new DelegateCommand(OpenSteppers, OpenSteppersCanExecute);
-            CloseSteppersCommand = new DelegateCommand(CloseSteppers, CloseSteppersCanExecute);
+            OpenSteppersCommand = new DelegateCommand(OpenStepper, OpenStepperCanExecute);
+            CloseSteppersCommand = new DelegateCommand(CloseStepper, CloseSteppersCanExecute);
 
             OpenStepperCommand = new DelegateCommand<string>(OpenStepper, OpenStepperCanExecute);
             CloseStepperCommand = new DelegateCommand<string>(CloseStepper, CloseStepperCanExecute);
@@ -103,7 +103,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
                 (jsonString, GetJsonSerializerOptions());
 
-            Hosts = hostConfig.Hosts.ToList();
+            //Hosts = hostConfig.Hosts.ToList();
+
+            // TODO(crhodes)
+            // Make this smarter about going after the board not the channel
+            // For now, cheat, and use StepperChannels
+
+            StepperPhidgets = Common.PhidgetDeviceLibrary.StepperChannels
+                .Keys
+                .DistinctBy(x => x.SerialNumber)
+                .Select(x => x.SerialNumber)
+                .ToList();
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -162,32 +172,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+        //public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
-        public IEnumerable<VNCPhidgetConfig.Host> Hosts
-        {
-            get => _Hosts;
-            set
-            {
-                _Hosts = value;
-                OnPropertyChanged();
-            }
-        }
+        //private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
+        //public IEnumerable<VNCPhidgetConfig.Host> Hosts
+        //{
+        //    get => _Hosts;
+        //    set
+        //    {
+        //        _Hosts = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private VNCPhidgetConfig.Host _selectedHost;
-        public VNCPhidgetConfig.Host SelectedHost
-        {
-            get => _selectedHost;
-            set
-            {
-                if (_selectedHost == value)
-                    return;
-                _selectedHost = value;
-                Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
-                OnPropertyChanged();
-            }
-        }
+        //private VNCPhidgetConfig.Host _selectedHost;
+        //public VNCPhidgetConfig.Host SelectedHost
+        //{
+        //    get => _selectedHost;
+        //    set
+        //    {
+        //        if (_selectedHost == value)
+        //            return;
+        //        _selectedHost = value;
+        //        Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -314,6 +324,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Stepper
 
+
+        private IEnumerable<Int32> _SteperPhidgets;
+        public IEnumerable<Int32> StepperPhidgets
+        {
+            get
+            {
+                return _SteperPhidgets;
+            }
+
+            set
+            {
+                _SteperPhidgets = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _selectedSteperPhidgets = null;
+        public Int32? SelectedStepperPhidget
+        {
+            get => _selectedSteperPhidgets;
+            set
+            {
+                _selectedSteperPhidgets = value;
+                OnPropertyChanged();
+
+                OpenSteppersCommand.RaiseCanExecuteChanged();
+                OpenStepperCommand.RaiseCanExecuteChanged();
+
+                SteppersVisibility = Visibility.Visible;
+            }
+        }
         #region Steppers
 
         private StepperEx _stepper0;
@@ -444,68 +485,68 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
-        public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
-        {
-            get
-            {
-                if (null == _Steppers)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
+        //private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
+        //public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
+        //{
+        //    get
+        //    {
+        //        if (null == _Steppers)
+        //        {
+        //            // TODO(crhodes)
+        //            // Load this like the sensors.xml for now
 
-                    //_InterfaceKits =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
-                    //    select new InterfaceKit(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        Boolean.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
+        //            //_InterfaceKits =
+        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+        //            //    select new InterfaceKit(
+        //            //        item.Attribute("Name").Value,
+        //            //        item.Attribute("IPAddress").Value,
+        //            //        item.Attribute("Port").Value,
+        //            //        Boolean.Parse(item.Attribute("Enable").Value)
+        //            //        );
+        //        }
 
-                return _Steppers;
-            }
+        //        return _Steppers;
+        //    }
 
-            set
-            {
-                _Steppers = value;
-                OnPropertyChanged();
-            }
-        }
+        //    set
+        //    {
+        //        _Steppers = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private VNCPhidgetConfig.Stepper _selectedStepper;
-        public VNCPhidgetConfig.Stepper SelectedStepper
-        {
-            get => _selectedStepper;
-            set
-            {
-                if (_selectedStepper == value)
-                    return;
-                _selectedStepper = value;
+        //private VNCPhidgetConfig.Stepper _selectedStepper;
+        //public VNCPhidgetConfig.Stepper SelectedStepper
+        //{
+        //    get => _selectedStepper;
+        //    set
+        //    {
+        //        if (_selectedStepper == value)
+        //            return;
+        //        _selectedStepper = value;
 
-                OpenSteppersCommand.RaiseCanExecuteChanged();
-                OpenStepperCommand.RaiseCanExecuteChanged();
+        //        OpenSteppersCommand.RaiseCanExecuteChanged();
+        //        OpenStepperCommand.RaiseCanExecuteChanged();
 
-                SteppersVisibility = Visibility.Visible;
+        //        SteppersVisibility = Visibility.Visible;
 
-                // Set to null when host changes
-                //if (value is not null)
-                //{
-                //    // FIX(crhodes)
-                //    // 
-                //    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
+        //        // Set to null when host changes
+        //        //if (value is not null)
+        //        //{
+        //        //    // FIX(crhodes)
+        //        //    // 
+        //        //    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
 
-                //    SteppersVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-                //}
-                //else
-                //{
-                //    SteppersVisibility = Visibility.Collapsed;
-                //}
+        //        //    SteppersVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
+        //        //}
+        //        //else
+        //        //{
+        //        //    SteppersVisibility = Visibility.Collapsed;
+        //        //}
 
-                OnPropertyChanged();
-            }
-        }
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         //private StepperEx _activeStepper;
         //public StepperEx ActiveStepper
@@ -774,7 +815,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
         //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
 
-        public async void OpenSteppers()
+        public async void OpenStepper()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenSteppers) Enter", Common.LOG_CATEGORY);
@@ -783,16 +824,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called OpenStepper";
             PublishStatusMessage(Message);
 
-            // FIX(crhodes)
-            // 
-            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[SelectedStepper.SerialNumber].DeviceChannels;
+            var stepperCount = Common.PhidgetDeviceLibrary.StepperChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedStepperPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //Int32 serialNumber = SelectedStepper.SerialNumber;
-
-            //for (Int32 channel = 0; channel < deviceChannels.StepperCount; channel++)
-            //{
-            //    OpenStepper(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < stepperCount; channel++)
+            {
+                OpenStepper(channel.ToString());
+            }
 
             DeviceAttached = true;  // To enable Close button
 
@@ -805,7 +845,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ActiveStepper = new StepperEx(
             //    SelectedHost.IPAddress,
             //    SelectedHost.Port,
-            //    SelectedStepper.SerialNumber,
+            //    SelectedStepperPhidget,
             //    EventAggregator);
 
             //ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
@@ -864,17 +904,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenSteppers) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean OpenSteppersCanExecute()
+        public Boolean OpenStepperCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            //return true;
-            if (SelectedStepper is not null)
+
+            if (SelectedStepperPhidget > 0 && DeviceAttached is not null)
             {
-                if (DeviceAttached is not null)
-                    return !(Boolean)DeviceAttached;
-                else
-                    return true;
+                return true;
             }
             else
             {
@@ -932,7 +969,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called OpenStepper";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedStepper.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedStepperPhidget;
             Int32 channel;
 
             if (Int32.TryParse(stepperNumber, out channel))
@@ -1144,9 +1181,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedStepper is null) return false;
+            if (SelectedStepperPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedStepperPhidget, Channel = channel };
 
             StepperEx? host;
 
@@ -1178,7 +1215,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseStepperContent">CloseStepper</system:String>
         //    <system:String x:Key="ViewName_CloseStepperContentToolTip">CloseStepper ToolTip</system:String>  
 
-        public async void CloseSteppers()
+        public async void CloseStepper()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
@@ -1187,14 +1224,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseSteppers";
             PublishStatusMessage(Message);
 
-            // FIX(crhodes)
-            // 
-            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[SelectedStepper.SerialNumber].DeviceChannels;
+            var stepperCount = Common.PhidgetDeviceLibrary.RCServoChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedStepperPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.RCServoCount; channel++)
-            //{
-            //    CloseStepper(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < stepperCount; channel++)
+            {
+                CloseStepper(channel.ToString());
+            }
 
             DeviceAttached = false; // To enable Open button
 
@@ -1250,11 +1288,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
+
+            if (SelectedStepperPhidget > 0 && DeviceAttached is not null)
+            {
+                return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         #endregion
@@ -1291,7 +1333,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseStepper";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedStepper.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedStepperPhidget;
             Int32 channel;
 
             if (Int32.TryParse(servoNumber, out channel))
@@ -1361,9 +1403,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedStepper is null) return false;
+            if (SelectedStepperPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedStepper.SerialNumber, Channel = channel };
+            // FIX(crhodes)
+            // Figure out how to handle non zero HubPort
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedStepperPhidget, Channel = channel };
 
             StepperEx? host;
 

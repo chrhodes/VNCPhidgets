@@ -34,6 +34,7 @@ namespace VNC.Phidget22.Ex
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
+            _serialNumber = serialNumber;
             _eventAggregator = eventAggregator;
 
             InitializePhidget(configuration);

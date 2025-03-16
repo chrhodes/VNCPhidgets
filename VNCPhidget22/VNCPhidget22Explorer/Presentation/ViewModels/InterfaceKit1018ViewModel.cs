@@ -103,8 +103,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 JsonSerializer.Deserialize< VNCPhidgetConfig.HostConfig >
                 (jsonString, GetJsonSerializerOptions());
 
-            Hosts = hostConfig.Hosts.ToList();
-            
+            // TODO(crhodes)
+            // Make this smarter about going after the board not the channel
+            // For now, cheat, and use DigitalOutputChannels
+
+            InterfaceKitPhidgets = Common.PhidgetDeviceLibrary.DigitalOutputChannels
+                .Keys
+                .DistinctBy(x => x.SerialNumber)
+                .Select(x => x.SerialNumber)
+                .ToList();
+
+            //Hosts = hostConfig.Hosts.ToList();
+
             //Sensors2 = hostConfig.Sensors.ToList();
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -176,36 +186,36 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VNCPhidgetConfig.Host _selectedHost;
-        public VNCPhidgetConfig.Host SelectedHost
-        {
-            get => _selectedHost;
-            set
-            {
-                if (_selectedHost == value)
-                    return;
-                _selectedHost = value;
-                InterfaceKits = _selectedHost.InterfaceKits.ToList<VNCPhidgetConfig.InterfaceKit>();
-                OnPropertyChanged();
-            }
-        }
+        //private VNCPhidgetConfig.Host _selectedHost;
+        //public VNCPhidgetConfig.Host SelectedHost
+        //{
+        //    get => _selectedHost;
+        //    set
+        //    {
+        //        if (_selectedHost == value)
+        //            return;
+        //        _selectedHost = value;
+        //        InterfaceKits = _selectedHost.InterfaceKits.ToList<VNCPhidgetConfig.InterfaceKit>();
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
         #region Phidget
 
-        private Phidgets.Phidget _phidget22Device;
-        public Phidgets.Phidget Phidget22Device
-        {
-            get => _phidget22Device;
-            set
-            {
-                if (_phidget22Device == value)
-                    return;
-                _phidget22Device = value;
-                OnPropertyChanged();
-            }
-        }
+        //private Phidgets.Phidget _phidget22Device;
+        //public Phidgets.Phidget Phidget22Device
+        //{
+        //    get => _phidget22Device;
+        //    set
+        //    {
+        //        if (_phidget22Device == value)
+        //            return;
+        //        _phidget22Device = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Boolean _logPhidgetEvents = true;
         public Boolean LogPhidgetEvents
@@ -217,8 +227,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null) ActiveInterfaceKit.LogPhidgetEvents = value;
             }
         }
 
@@ -358,15 +366,53 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _deviceAttached = value;
                 OnPropertyChanged();
-
-                OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-                CloseInterfaceKitCommand.RaiseCanExecuteChanged();
             }
         }
 
         #endregion
 
         #region InterfaceKit
+
+        private IEnumerable<Int32> _InterfaceKitPhidgets;
+        public IEnumerable<Int32> InterfaceKitPhidgets
+        {
+            get
+            {
+                return _InterfaceKitPhidgets;
+            }
+
+            set
+            {
+                _InterfaceKitPhidgets = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32? _selectedInterfaceKitPhidget = null;
+        public Int32? SelectedInterfaceKitPhidget
+        {
+            get => _selectedInterfaceKitPhidget;
+            set
+            {
+                _selectedInterfaceKitPhidget = value;
+                OnPropertyChanged();
+
+                OpenInterfaceKitCommand.RaiseCanExecuteChanged();
+                CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+
+                OpenDigitalInputCommand.RaiseCanExecuteChanged();
+                OpenDigitalOutputCommand.RaiseCanExecuteChanged();
+
+                OpenVoltageInputCommand.RaiseCanExecuteChanged();
+                OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
+                //OpenVoltageOutputCommand.RaiseCanExecuteChanged();
+
+                DigitalInputsVisibility = Visibility.Visible;
+                DigitalOutputsVisibility = Visibility.Visible;
+                VoltageInputsVisibility = Visibility.Visible;
+                VoltageOutputsVisibility = Visibility.Visible;
+            }
+        }
 
         #region DigitalInput
 
@@ -1444,35 +1490,35 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
-        public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
-        {
-            get
-            {
-                if (null == _InterfaceKits)
-                {
-                    // TODO(crhodes)
-                    // Load this like the sensors.xml for now
+        //private IEnumerable<VNCPhidgetConfig.InterfaceKit> _InterfaceKits;
+        //public IEnumerable<VNCPhidgetConfig.InterfaceKit> InterfaceKits
+        //{
+        //    get
+        //    {
+        //        if (null == _InterfaceKits)
+        //        {
+        //            // TODO(crhodes)
+        //            // Load this like the sensors.xml for now
 
-                    //_InterfaceKits =
-                    //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
-                    //    select new InterfaceKit(
-                    //        item.Attribute("Name").Value,
-                    //        item.Attribute("IPAddress").Value,
-                    //        item.Attribute("Port").Value,
-                    //        Boolean.Parse(item.Attribute("Enable").Value)
-                    //        );
-                }
+        //            //_InterfaceKits =
+        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
+        //            //    select new InterfaceKit(
+        //            //        item.Attribute("Name").Value,
+        //            //        item.Attribute("IPAddress").Value,
+        //            //        item.Attribute("Port").Value,
+        //            //        Boolean.Parse(item.Attribute("Enable").Value)
+        //            //        );
+        //        }
 
-                return _InterfaceKits;
-            }
+        //        return _InterfaceKits;
+        //    }
 
-            set
-            {
-                _InterfaceKits = value;
-                OnPropertyChanged();
-            }
-        }
+        //    set
+        //    {
+        //        _InterfaceKits = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Visibility _digitalInputsVisibility = Visibility.Collapsed;
         public Visibility DigitalInputsVisibility
@@ -1664,39 +1710,58 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called OpenInterfaceKit";
             PublishStatusMessage(Message);
 
-            // FIX(crhodes)
-            // 
-            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[SelectedInterfaceKit.SerialNumber].DeviceChannels;
+            var digitalInputCount = Common.PhidgetDeviceLibrary.DigitalInputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            var digitalOutputCount = Common.PhidgetDeviceLibrary.DigitalOutputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.DigitalInputCount; channel++)
-            //{
-            //    OpenDigitalInput(channel.ToString());
-            //}
+            var voltageInputCount = Common.PhidgetDeviceLibrary.VoltageInputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.DigitalOutputCount; channel++)
-            //{
-            //    OpenDigitalOutput(channel.ToString());
-            //}
+            var voltageRatioInputCount = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.VoltageInputCount; channel++)
-            //{
-            //    OpenVoltageInput(channel.ToString());
-            //}
+            var voltageOutputCount = Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.VoltageRatioInputCount; channel++)
-            //{
-            //    OpenVoltageRatioInput(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < digitalInputCount; channel++)
+            {
+                OpenDigitalInput(channel.ToString());
+            }
 
-            //for (Int32 channel = 0; channel < deviceChannels.VoltageOutputCount; channel++)
-            //{
-            //    // TODO(crhodes)
-            //    // Implement
+            for (Int32 channel = 0; channel < digitalOutputCount; channel++)
+            {
+                OpenDigitalOutput(channel.ToString());
+            }
 
-            //    //OpenVoltageOutput(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < voltageInputCount; channel++)
+            {
+                OpenVoltageInput(channel.ToString());
+            }
+
+            for (Int32 channel = 0; channel < voltageRatioInputCount; channel++)
+            {
+                OpenVoltageRatioInput(channel.ToString());
+            }
+
+            for (Int32 channel = 0; channel < voltageOutputCount; channel++)
+            {
+                // TODO(crhodes)
+                // Implement
+
+                //OpenVoltageOutput(channel.ToString());
+            }
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
             CloseInterfaceKitCommand.RaiseCanExecuteChanged();
@@ -1732,36 +1797,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // TODO(crhodes)
-        // Maybe this is where we use ChannelCounts and some type of Configuration Request
-        // to only do this for some.  This is called in Open to set the SerialNumber
-
-
-
-
-        //private void ActiveInterfaceKit_PhidgetDeviceAttached(object? sender, EventArgs e)
-        //{
-        //    Phidget22Device = ActiveInterfaceKit.PhysicalPhidget;
-
-        //    DeviceAttached = Phidget22Device.Attached;
-
-        //    // NOTE(crhodes)
-        //    // This won't work as Phidget22Device won't be set until Phidget_Attach event fires
-
-        //    //DeviceAttached = Phidget22Device.Attached;
-
-        //    // NOTE(crhodes)
-        //    // I don't think these are gonna fire given how we populate PhysicalPhidget
-
-        //    //ActiveInterfaceKit.PhysicalPhidget.Attach += ActiveInterfaceKit_Attach;
-        //    //ActiveInterfaceKit.PhysicalPhidget.Detach += ActiveInterfaceKit_Detach;
-
-        //    // FIX(crhodes)
-        //    // This is a problem.  We have to wait until all DI, DO, VI, VO devices that were openned
-        //    // attach.  Looks like we are going to have to go to separate event handlers for each channel. Ugh
-        //    UpdateInterfaceKitProperties();
-        //}
-
         public Boolean OpenInterfaceKitCanExecute()
         {
             // TODO(crhodes)
@@ -1772,7 +1807,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // We really don't care if anything is already Open or Closed
             // once InterfactKit is selected
 
-            if (SelectedInterfaceKit is not null)
+            if (SelectedInterfaceKitPhidget > 0)
             {
                 return true;
             }
@@ -1808,39 +1843,58 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseInterfaceKit";
             PublishStatusMessage(Message);
 
-            // FIX(crhodes)
-            // 
-            //DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[SelectedInterfaceKit.SerialNumber].DeviceChannels;
+            var digitalInputCount = Common.PhidgetDeviceLibrary.DigitalInputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            var digitalOutputCount = Common.PhidgetDeviceLibrary.DigitalOutputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.DigitalInputCount; channel++)
-            //{
-            //    CloseDigitalInput(channel.ToString());
-            //}
+            var voltageInputCount = Common.PhidgetDeviceLibrary.VoltageInputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.DigitalOutputCount; channel++)
-            //{
-            //    CloseDigitalOutput(channel.ToString());
-            //}
+            var voltageRatioInputCount = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.VoltageInputCount; channel++)
-            //{
-            //    CloseVoltageInput(channel.ToString());
-            //}
+            var voltageOutputCount = Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                 .Keys
+                 .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
+                 .Select(x => x.SerialNumber).Count();
 
-            //for (Int32 channel = 0; channel < deviceChannels.VoltageRatioInputCount; channel++)
-            //{
-            //    CloseVoltageRatioInput(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < digitalInputCount; channel++)
+            {
+                CloseDigitalInput(channel.ToString());
+            }
 
-            //for (Int32 channel = 0; channel < deviceChannels.VoltageOutputCount; channel++)
-            //{
-            //    // TODO(crhodes)
-            //    // Implement
+            for (Int32 channel = 0; channel < digitalOutputCount; channel++)
+            {
+                CloseDigitalOutput(channel.ToString());
+            }
 
-            //    //OpenVoltageOutput(channel.ToString());
-            //}
+            for (Int32 channel = 0; channel < voltageInputCount; channel++)
+            {
+                CloseVoltageInput(channel.ToString());
+            }
+
+            for (Int32 channel = 0; channel < voltageRatioInputCount; channel++)
+            {
+                CloseVoltageRatioInput(channel.ToString());
+            }
+
+            for (Int32 channel = 0; channel < voltageOutputCount; channel++)
+            {
+                // TODO(crhodes)
+                // Implement
+
+                //CloseVoltageOutput(channel.ToString());
+            }
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
             CloseInterfaceKitCommand.RaiseCanExecuteChanged();
@@ -1883,14 +1937,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // We really don't care if anything is already Open or Closed
             // once InterfactKit is selected
 
-            if (SelectedInterfaceKit is not null)
+            if (SelectedInterfaceKitPhidget > 0 && DeviceAttached is not null)
             {
                 return true;
-            }                
+            }
             else
             {
                 return false;
-            }                
+            }
         }
 
         #endregion
@@ -1942,7 +1996,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called OpenDigitalInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -2076,9 +2130,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             DigitalInputEx? host;
 
@@ -2128,7 +2182,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseDigitalInput";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 number;
 
             //if (Int32.TryParse(channelNumber, out number))
@@ -2196,9 +2250,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             DigitalInputEx? host;
 
@@ -2348,14 +2402,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called OpenDigitalOutput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
             {
                 SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
+                //DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
 
                 switch (channel)
                 {
@@ -2496,9 +2550,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             DigitalOutputEx? host;
 
@@ -2548,7 +2602,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseDigitalOutput";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -2618,9 +2672,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             DigitalOutputEx? host;
 
@@ -2686,7 +2740,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called OpenVoltageInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -2826,9 +2880,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageInputEx? host;
 
@@ -2891,7 +2945,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called RefreshVoltageInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -3010,9 +3064,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageInputEx? host;
 
@@ -3075,7 +3129,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called RaisePerformanceEvent on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -3194,9 +3248,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageInputEx? host;
 
@@ -3246,7 +3300,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called CloseVoltageInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -3318,9 +3372,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageInputEx? host;
 
@@ -3386,7 +3440,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called OpenVoltageRatioInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -3525,9 +3579,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            // FIX(crhodes)
+            // Figure out how to handle non zero HubPort
+
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageRatioInputEx? host;
 
@@ -3590,7 +3647,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called RefreshVoltageRatioInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             if (Int32.TryParse(channelNumber, out channel))
@@ -3709,9 +3766,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageRatioInputEx? host;
 
@@ -3758,7 +3815,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called CloseVoltageRatioInput on Channel:{channelNumber}";
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = SelectedInterfaceKit.SerialNumber;
+            Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             Int32 channel;
 
             // TODO(crhodes)
@@ -3906,9 +3963,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
 
-            if (SelectedInterfaceKit is null) return false;
+            if (SelectedInterfaceKitPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = SelectedInterfaceKit.SerialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
 
             VoltageRatioInputEx? host;
 
@@ -3947,7 +4004,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             for (Int16 i = 0; i < channelCount; i++)
             {
                 //DigitalInputs[i] = new DigitalOutputEx(
-                //    SelectedInterfaceKit.SerialNumber,
+                //    SelectedInterfaceKitPhidget,
                 //    new DigitalOutputConfiguration() { Channel = i },
                 //    EventAggregator);
 
@@ -3967,7 +4024,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             for (Int16 i = 0; i < channelCount; i++)
             {
                 //DigitalOutputs[i] = new DigitalOutputEx(
-                //    SelectedInterfaceKit.SerialNumber,
+                //    SelectedInterfaceKitPhidget,
                 //    new DigitalOutputConfiguration() { Channel = i },
                 //    EventAggregator);
 
@@ -3987,7 +4044,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             for (Int16 i = 0; i < channelCount; i++)
             {
                 //VoltageInputs[i] = new VoltageInputEx(
-                //    SelectedInterfaceKit.SerialNumber,
+                //    SelectedInterfaceKitPhidget,
                 //    new VoltageInputConfiguration() { Channel = i },
                 //    EventAggregator);
 
@@ -4007,7 +4064,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             for (Int16 i = 0; i < channelCount; i++)
             {
                 //VoltageRatioInputs[i] = new VoltageRatioInputEx(
-                //    SelectedInterfaceKit.SerialNumber,
+                //    SelectedInterfaceKitPhidget,
                 //    new VoltageRatioInputConfiguration() { Channel = i },
                 //    EventAggregator);
 
@@ -4027,7 +4084,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             for (Int16 i = 0; i < channelCount; i++)
             {
                 //VoltageOutputs[i] = new VoltageOutputEx(
-                //    SelectedInterfaceKit.SerialNumber,
+                //    SelectedInterfaceKitPhidget,
                 //    new VoltageOutputConfiguration() { Channel = i },
                 //    EventAggregator);
 
