@@ -4,10 +4,21 @@ namespace VNC.Phidget22.Configuration
 {
     public class StepperAction
     {
-        /// <summary>
-        /// Index of stepper on board (likely 1)
-        /// </summary>
-        public int StepperIndex { get; set; }
+        #region Logging
+
+        public Boolean? LogPhidgetEvents { get; set; }
+        public Boolean? LogErrorEvents { get; set; }
+        public Boolean? LogPropertyChangeEvents { get; set; }
+
+        public Boolean? LogPositionChangeEvents { get; set; }
+        public Boolean? LogVelocityChangeEvents { get; set; }
+        public Boolean? LogStoppedEvents { get; set; }
+
+        public Boolean? LogDeviceChannelSequence { get; set; }
+        public Boolean? LogChannelAction { get; set; }
+        public Boolean? LogActionVerification { get; set; }
+
+        #endregion
 
         /// <summary>
         /// Degrees of rotation for one full step
@@ -16,9 +27,24 @@ namespace VNC.Phidget22.Configuration
         public Double? StepAngle { get; set; }
 
         /// <summary>
-        /// Engage Servo (optional)
+        /// Makes it easier to control Stepper
         /// </summary>
-        public bool? Engaged { get; set; }
+        public Double? RescaleFactor { get; set; }
+
+        /// <summary>
+        /// Open RCServo (optional)
+        /// </summary>
+        public Boolean? Open { get; set; }
+
+        /// <summary>
+        /// Close RCServo (optional)
+        /// </summary>
+        public Boolean? Close { get; set; }
+
+        /// <summary>
+        /// Engage Stepper (optional)
+        /// </summary>
+        public Boolean? Engaged { get; set; }
 
         /// <summary>
         /// Servo Acceleration (optional)
@@ -59,7 +85,12 @@ namespace VNC.Phidget22.Configuration
         /// Position (+/-)  from current Position (optional)
         /// in 1/16 step Micro Steps
         /// </summary>
-        public Int64? RelativeTargetPosition { get; set; }
+        public Int64? RelativePosition { get; set; }
+
+        /// <summary>
+        /// AddPositionOffset() (optional)
+        /// </summary>
+        public Double? AddPositionOffset { get; set; }
 
         /// <summary>
         /// Position (+/-)  from current Position (optional)

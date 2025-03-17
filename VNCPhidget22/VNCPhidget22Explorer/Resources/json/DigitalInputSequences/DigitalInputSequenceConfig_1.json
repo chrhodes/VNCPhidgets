@@ -1,0 +1,28 @@
+{
+  "DigitalInputSequences": [
+    {
+      "Name": "DI0",
+      "Channel": 0,
+      "Description": "Do Something to DigitalInput 0",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "DI1",
+      "Channel": 1,
+      "Description": "Do Something to DigitalInput 1",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "DI2",
+      "Channel": 2,
+      "Description": "Do Something to DigitalInput 2",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+  ]
+}

@@ -15,8 +15,7 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
-       
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
+    
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
@@ -24,7 +23,10 @@
     xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core" 
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
     
     xmlns:prism="http://prismlibrary.com/"   
     prism:ViewModelLocator.AutoWireViewModel="False"
@@ -124,30 +126,13 @@
     <!-- Simple Layout using DevExpress LayoutControl
          May need to add dxXMLNS -->
     
-     <DockPanel Margin="5"> 
-         <!--This is useful for debugging V VM constructor issues-->
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
-        <!--<DockPanel DockPanel.Dock="Bottom" > 
+    <DockPanel Margin="5" VerticalAlignment="Top"> 
 
-             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" Margin="5"> 
-                 <Label Content="Message:" /> 
-                 <Label Content="{Binding Message}" /> 
-             </StackPanel> 
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> 
-                 <Label Content="V:" /> 
-                 <Label Content="{Binding ElementName=thisControl, Path=InstanceCountV}" /> 
-             </StackPanel> 
-             <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" Margin="5"> 
-                 <Label Content="VM:" /> 
-                 <Label Content="{Binding InstanceCountVM}" /> 
-             </StackPanel> 
+        <dxlc:LayoutControl Orientation="Vertical" >
 
-         </DockPanel>--> 
-
-         <dxlc:LayoutControl Orientation="Vertical" >
-
-             <dxlc:LayoutGroup Header="Config Files" View="GroupBox" Orientation="Vertical" >
+            <dxlc:LayoutGroup Header="Config Files" View="GroupBox" Orientation="Vertical" >
              
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 

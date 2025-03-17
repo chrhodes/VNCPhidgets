@@ -17,20 +17,22 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
     
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
-    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"  
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
-
+    
     xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
     
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
-    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"    
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"   
 
     xmlns:prism="http://prismlibrary.com/"
     prism:ViewModelLocator.AutoWireViewModel="False"
     
-    Background="{StaticResource MainBackground}"
+    Background="{StaticResource HackAroundBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
     
@@ -50,14 +52,14 @@
     </UserControl.Resources>
 
     <DockPanel Margin="5">
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         
         <TextBlock DockPanel.Dock="Top"
             Text="{Binding Message}"
             HorizontalAlignment="Center" VerticalAlignment="Center"
             FontSize="24" />
        
-        <!--<controls:HostSelector DockPanel.Dock="Top" />-->
+        <!--<views:HostSelector DockPanel.Dock="Top" />-->
 
         <dxlc:LayoutGroup Orientation="Vertical">
 
@@ -86,7 +88,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Header="Logging" View="GroupBox" Orientation="Vertical"
+            <dxlc:LayoutGroup x:Name="lgLogging"  Header="Logging" View="GroupBox" Orientation="Vertical"
                         IsCollapsible="True" IsCollapsed="False" Padding="-5">
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" VerticalAlignment="Top"
@@ -95,11 +97,11 @@
                     <dxe:CheckEdit Content="Log Performance" 
                                         IsChecked="{Binding LogPerformance}" HorizontalAlignment="Left" />
 
-                    <dxe:CheckEdit Content="Log Performance Sequence" 
-                                        IsChecked="{Binding LogPerformanceSequence}" HorizontalAlignment="Left" />
+                    <dxe:CheckEdit Content="Log DeviceChannel Sequence" 
+                                        IsChecked="{Binding LogDeviceChannelSequence}" HorizontalAlignment="Left" />
 
-                    <dxe:CheckEdit Content="Log Sequence Action" 
-                                        IsChecked="{Binding LogSequenceAction}" HorizontalAlignment="Right"/>
+                    <dxe:CheckEdit Content="Log Channel Action" 
+                                        IsChecked="{Binding LogChannelAction}" HorizontalAlignment="Right"/>
 
                     <dxe:CheckEdit Content="Log Action Verification" 
                                         IsChecked="{Binding LogActionVerification}" HorizontalAlignment="Right"/>
@@ -152,7 +154,6 @@
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
-
                 
                 <dxlc:LayoutItem >
                     <StackPanel Orientation="Horizontal">
@@ -162,13 +163,13 @@
                         <dxe:CheckEdit Content="Log Error Events"
                                        IsChecked="{Binding LogErrorEvents, Mode=TwoWay}" />
                         <dxe:CheckEdit Content="Log PropertyChange Events"
-                                       IsChecked="{Binding LogPropertyChyange, Mode=TwoWay}" />
+                                       IsChecked="{Binding LogPropertyChangeEvents, Mode=TwoWay}" />
                     </StackPanel>
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
 
-            <views:PerformanceSelector />
+            <views:PerformanceSelectorControl />
 
         </dxlc:LayoutGroup>
 

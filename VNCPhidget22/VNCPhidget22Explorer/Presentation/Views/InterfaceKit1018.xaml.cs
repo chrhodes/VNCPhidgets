@@ -63,15 +63,20 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
+            ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
+            // TODO(crhodes)
+            // Figure out how to local handle lgInterfaceKits disabled/hidden until host selected
+            //this.lgInterfaceKits.IsEnabled = true;
             this.lgPhidget22Status.IsCollapsed = true;
 
-            //lgDigitalInputs.Visibility = Visibility.Collapsed;
-            //lgDigitalOutputs.Visibility = Visibility.Collapsed;
-            //lgAnalogInputs.Visibility = Visibility.Collapsed;
+            lgDigitalInputs.IsCollapsed = true;
+            lgDigitalOutputs.IsCollapsed = true;
+            lgVoltageInputs.IsCollapsed = true;
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
@@ -178,17 +183,17 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region IInstanceCount
 
-        private static int _instanceCountV;
+        private static Int32 _instanceCountV;
 
-        public int InstanceCountV
+        public Int32 InstanceCountV
         {
             get => _instanceCountV;
             set => _instanceCountV = value;
         }
 
-        private static int _instanceCountVP;
+        private static Int32 _instanceCountVP;
 
-        public int InstanceCountVP
+        public Int32 InstanceCountVP
         {
             get => _instanceCountVP;
             set => _instanceCountVP = value;

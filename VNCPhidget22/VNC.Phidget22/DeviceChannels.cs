@@ -2,7 +2,7 @@
 
 namespace VNC.Phidget22
 {
-        public struct DeviceChannels
+        public class DeviceChannels
         {
             public Int16 AccelerometerCount;
             public Int16 BLDCMotorCount;

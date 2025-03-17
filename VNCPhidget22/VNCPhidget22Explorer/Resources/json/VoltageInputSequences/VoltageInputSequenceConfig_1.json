@@ -1,0 +1,28 @@
+{
+  "VoltageInputSequences": [
+    {
+      "Name": "VI0",
+      "Channel": 0,
+      "Description": "Do Something to VoltageInput 0",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "VI1",
+      "Channel": 1,
+      "Description": "Do Something to VoltageInput 1",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "VI2",
+      "Channel": 2,
+      "Description": "Do Something to VoltageInput 2",
+      "Actions": [
+        { "Duration": 500 },
+      ]
+    },
+  ]
+}

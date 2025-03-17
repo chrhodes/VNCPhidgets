@@ -4,40 +4,20 @@ namespace VNC.Phidget22.Configuration
 {
     public class VoltageInputAction
     {
-        /// <summary>
-        /// Index of DigitalOutput on board 
-        /// </summary>
-        public int Channel { get; set; }
-   
-        /// <summary>
-        /// Set DigitalOut value
-        /// </summary>
-        public bool? DigitalOut { get; set; }
+        #region Logging
 
-        ///// <summary>
-        ///// Servo Acceleration (optional)
-        ///// </summary>
-        //public Double? Acceleration { get; set; }
+        public Boolean? LogPhidgetEvents { get; set; }
+        public Boolean? LogErrorEvents { get; set; }
+        public Boolean? LogPropertyChangeEvents { get; set; }
 
-        ///// <summary>
-        ///// Servo Velocity (optional)
-        ///// </summary>
-        //public Double? VelocityLimit { get; set; }
+        public Boolean? LogSensorChangeEvents { get; set; }
+        public Boolean? LogVoltageChangeEvents { get; set; }
 
-        ///// <summary>
-        ///// TargetPosition (optional)
-        ///// </summary>
-        //public Double? PositionMin { get; set; }
+        public Boolean? LogDeviceChannelSequence { get; set; }
+        public Boolean? LogChannelAction { get; set; }
+        public Boolean? LogActionVerification { get; set; }
 
-        ///// <summary>
-        ///// TargetPosition (optional)
-        ///// </summary>
-        //public Double? TargetPosition { get; set; }
-
-        ///// <summary>
-        ///// TargetPosition (optional)
-        ///// </summary>
-        //public Double? PositionMax { get; set; }
+        #endregion
 
         /// <summary>
         /// Duration of step in ms (sleep time after step)

@@ -1,4 +1,6 @@
 {
+  // This is leagacy.
+  // Decide how to do this in new approach.
   //
   // This file should only contain general routines 
   // that do not depend on specific TargetPosition(s)

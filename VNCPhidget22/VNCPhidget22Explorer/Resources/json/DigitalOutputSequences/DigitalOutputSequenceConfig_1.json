@@ -1,0 +1,61 @@
+{
+  "DigitalOutputSequences": [
+    {
+      "Name": "Open DO0",
+      "Channel": 0,
+      "Description": "Open DigitalOutput 0",
+      "Actions": [
+        { "Open":  true },
+      ]
+    },
+    {
+      "Name": "Blink DO0",
+      "Channel": 0,
+      "Description": "Blink DigitalOutput 0",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "Open DO1",
+      "Channel": 1,
+      "Description": "Open DigitalOutput 1",
+      "Actions": [
+        { "Open":  true },
+      ]
+    },
+    {
+      "Name": "Blink DO1",
+      "Channel": 1,
+      "Description": "Blink DigitalOutput 1",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "Open DO2",
+      "Channel": 2,
+      "Description": "Open DigitalOutput 2",
+      "Actions": [
+        { "Open":  true },
+      ]
+    },
+    {
+      "Name": "Blink DO2",
+      "Channel": 2,
+      "Description": "Blink DigitalOutput 2",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+  ]
+}

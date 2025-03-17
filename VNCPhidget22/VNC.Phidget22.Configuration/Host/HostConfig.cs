@@ -2,71 +2,68 @@
 {
     public class HostConfig
     {
-        // NOTE(crhodes)
-        // This class now needs to reflect where Phidget22 are actually connected
-
         public Host[] Hosts { get; set; } = new[]
         {
             new Host
             {
                 Name = "localhost", IPAddress = "127.0.0.1", Port = 5661, Enable = true,
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit { Name = "InterfaceKit 1", SerialNumber = 124744, Embedded = false, Open = true }
-                },
-                AdvancedServos = new[]
-                {
-                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
-                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
-                }
+                //InterfaceKits = new[]
+                //{
+                //    new InterfaceKit { Name = "InterfaceKit 1", SerialNumber = 124744, Embedded = false, Open = true }
+                //},
+                //AdvancedServos = new[]
+                //{
+                //    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                //    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
+                //}
             },
             new Host
             {
                 Name = "psbc11", IPAddress = "192.168.150.11", Port = 5661, Enable = true,
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit { Name = "psbc11 InterfaceKit", SerialNumber = 46049, Embedded = true, Open = true }
-                },
-                AdvancedServos = new[]
-                {
-                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
-                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
-                }
+                //InterfaceKits = new[]
+                //{
+                //    new InterfaceKit { Name = "psbc11 InterfaceKit", SerialNumber = 46049, Embedded = true, Open = true }
+                //},
+                //AdvancedServos = new[]
+                //{
+                //    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                //    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
+                //}
             },
             new Host
             {
                 Name = "psbc21", IPAddress = "192.168.150.21", Port = 5661, Enable = true,
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit { Name = "psbc21 InterfaceKit", SerialNumber = 48301, Embedded = true, Open = true }
-                },
-                AdvancedServos = new[]
-                {
-                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
-                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
-                }
+                //InterfaceKits = new[]
+                //{
+                //    new InterfaceKit { Name = "psbc21 InterfaceKit", SerialNumber = 48301, Embedded = true, Open = true }
+                //},
+                //AdvancedServos = new[]
+                //{
+                //    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                //    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
+                //}
             },
             new Host
             {
                 Name = "psbc22", IPAddress = "192.168.150.22", Port = 5661, Enable = true,
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit { Name = "psbc22 InterfaceKit", SerialNumber = 251831, Embedded = true, Open = true },
-                },
-                AdvancedServos = new[]
-                {
-                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
-                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
-                }
+                //InterfaceKits = new[]
+                //{
+                //    new InterfaceKit { Name = "psbc22 InterfaceKit", SerialNumber = 251831, Embedded = true, Open = true },
+                //},
+                //AdvancedServos = new[]
+                //{
+                //    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                //    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
+                //}
             },
             new Host
             {
                 Name = "psbc23", IPAddress = "192.168.150.23", Port = 5661, Enable = true,
-                AdvancedServos = new[]
-                {
-                    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
-                    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
-                },
+                //AdvancedServos = new[]
+                //{
+                //    new AdvancedServo { Name = "AdvancedServo 99415", SerialNumber = 99415, Open = true },
+                //    new AdvancedServo { Name = "AdvancedServo 593480", SerialNumber = 593480, Open = true }
+                //},
                 DigitalInputs = new[]
                 {
                     new DigitalInput { Name = "DigitalInput 124744", SerialNumber = 124744, Open = true },
@@ -75,10 +72,10 @@
                 {
                     new DigitalOutput { Name = "DigitalOutput 124744", SerialNumber = 124744, Open = true },
                 },
-                InterfaceKits = new[]
-                {
-                    new InterfaceKit { Name = "psbc23 InterfaceKit 48284", SerialNumber = 48284, Embedded = true, Open = true }
-                },
+                //InterfaceKits = new[]
+                //{
+                //    new InterfaceKit { Name = "psbc23 InterfaceKit 48284", SerialNumber = 48284, Embedded = true, Open = true }
+                //},
                 RCServos = new[]
                 {
                     new RCServo { Name = "RCServo 99415", SerialNumber = 99415, Open = true },
@@ -94,10 +91,6 @@
             }
 
         };
-
-        // NOTE(crhodes)
-        // Since InterfaceKits have to be connected to some Host
-        // Just declare above
 
 
         // NOTE(crhodes)

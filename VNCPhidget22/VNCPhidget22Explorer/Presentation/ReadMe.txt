@@ -1,4 +1,5 @@
 ﻿VNCPhidget22Explorer\Presentation\
+VNCPhidget22Explorer\Presentation\Controls\
 VNCPhidget22Explorer\Presentation\Converters\
 VNCPhidget22Explorer\Presentation\ModelWrappers\
 VNCPhidget22Explorer\Presentation\ViewModels\

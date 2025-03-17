@@ -1,10 +1,12 @@
-﻿using VNC.Core.DomainServices;
+﻿using System;
+
+using VNC.Core.DomainServices;
 
 namespace VNC.Phidget22.Lookups
 {
-    public class LookupHost : ILookupItem<int>
+    public class LookupHost : ILookupItem<Int32>
     {
-        public int Id { get; set; }
+        public Int32 Id { get; set; }
         public string DisplayMember { get; set; }
     }
 }

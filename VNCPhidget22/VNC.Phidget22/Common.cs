@@ -1,4 +1,6 @@
-﻿namespace VNC.Phidget22
+﻿using System;
+
+namespace VNC.Phidget22
 {
     public class Common : VNC.Core.Common
     {
@@ -7,7 +9,7 @@
 
         public static PhidgetDeviceLibrary PhidgetDeviceLibrary;
 
-        //public static int PhidgetOpenTimeout { get; set; } = 60000; // ms
-        public static int? PhidgetOpenTimeout { get; set; } = null; // ms
+        //public static Int32 PhidgetOpenTimeout { get; set; } = 60000; // ms
+        public static Int32? PhidgetOpenTimeout { get; set; } = null; // ms
     }
 }

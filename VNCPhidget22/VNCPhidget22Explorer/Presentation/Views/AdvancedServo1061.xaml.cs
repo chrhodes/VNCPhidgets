@@ -60,6 +60,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
+            ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
@@ -140,24 +142,22 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region IInstanceCount
 
-        private static int _instanceCountV;
+        private static Int32 _instanceCountV;
 
-        public int InstanceCountV
+        public Int32 InstanceCountV
         {
             get => _instanceCountV;
             set => _instanceCountV = value;
         }
 
-        private static int _instanceCountVP;
+        private static Int32 _instanceCountVP;
 
-        public int InstanceCountVP
+        public Int32 InstanceCountVP
         {
             get => _instanceCountVP;
             set => _instanceCountVP = value;
         }
 
         #endregion
-
-
     }
 }

@@ -8,8 +8,8 @@ using System.Windows.Controls;
 using Prism.Events;
 
 using VNC.Core.Mvvm;
-
 using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22.Players
 {
@@ -28,8 +28,8 @@ namespace VNC.Phidget22.Players
 
             //PerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
             //PerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
-            //PerformanceSequencePlayer.LogPerformanceSequence = LogPerformanceSequence;
-            //PerformanceSequencePlayer.LogSequenceAction = LogSequenceAction;
+            //PerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            //PerformanceSequencePlayer.LogChannelAction = LogChannelAction;
             //PerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
@@ -40,22 +40,28 @@ namespace VNC.Phidget22.Players
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
 
         #region Fields and Properties
 
-        public PerformanceSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        public DeviceChannelSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+
+        #region Logging
+
+        #region Performance Logging
 
         // NOTE(crhodes)
         // Don't think we need INPC on these
 
-        private bool _logPerformance = false;
-        public bool LogPerformance
+        private Boolean _logPerformance = false;
+        public Boolean LogPerformance
         {
             get => _logPerformance;
             set
@@ -67,34 +73,34 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logPerformanceSequence = false;
-        public bool LogPerformanceSequence
+        private Boolean _logDeviceChannelSequence = false;
+        public Boolean LogDeviceChannelSequence
         {
-            get => _logPerformanceSequence;
+            get => _logDeviceChannelSequence;
             set
             {
-                if (_logPerformanceSequence == value)
+                if (_logDeviceChannelSequence == value)
                     return;
-                _logPerformanceSequence = value;
+                _logDeviceChannelSequence = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logSequenceAction = false;
-        public bool LogSequenceAction
+        private Boolean _logChannelAction = false;
+        public Boolean LogChannelAction
         {
-            get => _logSequenceAction;
+            get => _logChannelAction;
             set
             {
-                if (_logSequenceAction == value)
+                if (_logChannelAction == value)
                     return;
-                _logSequenceAction = value;
+                _logChannelAction = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool _logActionVerification = false;
-        public bool LogActionVerification
+        private Boolean _logActionVerification = false;
+        public Boolean LogActionVerification
         {
             get => _logActionVerification;
             set
@@ -106,11 +112,13 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        #region Phidget Device Logging Events
+        #endregion
 
-        private bool _logPhidgetEvents = false;
+        #region Phidget Device Logging
 
-        public bool LogPhidgetEvents
+        private Boolean _logPhidgetEvents = false;
+
+        public Boolean LogPhidgetEvents
         {
             get => _logPhidgetEvents;
             set
@@ -124,8 +132,8 @@ namespace VNC.Phidget22.Players
 
         #region AdvancedServo
 
-        private bool _logCurrentChangeEvents = false;
-        public bool LogCurrentChangeEvents
+        private Boolean _logCurrentChangeEvents = false;
+        public Boolean LogCurrentChangeEvents
         {
             get => _logCurrentChangeEvents;
             set
@@ -137,8 +145,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logPositionChangeEvents = false;
-        public bool LogPositionChangeEvents
+        private Boolean _logPositionChangeEvents = false;
+        public Boolean LogPositionChangeEvents
         {
             get => _logPositionChangeEvents;
             set
@@ -150,8 +158,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logVelocityChangeEvents = false;
-        public bool LogVelocityChangeEvents
+        private Boolean _logVelocityChangeEvents = false;
+        public Boolean LogVelocityChangeEvents
         {
             get => _logVelocityChangeEvents;
             set
@@ -163,8 +171,8 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _logTargetPositionReachedEvents = false;
-        public bool LogTargetPositionReachedEvents
+        private Boolean _logTargetPositionReachedEvents = false;
+        public Boolean LogTargetPositionReachedEvents
         {
             get => _logTargetPositionReachedEvents;
             set
@@ -180,9 +188,9 @@ namespace VNC.Phidget22.Players
 
         #region InterfaceKit
 
-        private bool _displayInputChangeEvents = false;
+        private Boolean _displayInputChangeEvents = false;
 
-        public bool LogInputChangeEvents
+        public Boolean LogInputChangeEvents
         {
             get => _displayInputChangeEvents;
             set
@@ -194,9 +202,9 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _displayOutputChangeEvents = false;
+        private Boolean _displayOutputChangeEvents = false;
 
-        public bool LogOutputChangeEvents
+        public Boolean LogOutputChangeEvents
         {
             get => _displayOutputChangeEvents;
             set
@@ -208,9 +216,9 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        private bool _sensorChangeEvents = false;
+        private Boolean _sensorChangeEvents = false;
 
-        public bool LogSensorChangeEvents
+        public Boolean LogSensorChangeEvents
         {
             get => _sensorChangeEvents;
             set
@@ -234,16 +242,67 @@ namespace VNC.Phidget22.Players
 
         #endregion
 
+        #endregion
+
         #region Event Handlers (none)
+
 
 
         #endregion
 
         #region Commands (none)
 
+
+
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Executes a Performance by calling RunPerformanceLoops() and calls NextPerformance if any
+        /// </summary>
+        /// <param name="performance"></param>
+        /// <returns></returns>
+        public async Task PlayPerformance(Performance performance)
+        {
+            Performance? nextPerformance = performance;
+
+            // NOTE(crhodes)
+            // Why would we need to check given UI brought us here.
+            // Might be useful generally
+
+            //if (AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+            //{ 
+
+            //}
+
+            while (nextPerformance is not null)
+            {
+                if (LogPerformance)
+                {
+                    Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
+                        $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
+                        $"\r deviceClassSequences:{performance.DeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                        $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
+                        $"\r loops:{performance.PerformanceLoops}" +
+                        $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
+                        $"\r nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                }
+
+                if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                {
+                    nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+
+                    await RunPerformanceLoops(nextPerformance);
+
+                    nextPerformance = nextPerformance?.NextPerformance;
+                }
+                else
+                {
+                    Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                    nextPerformance = null;
+                }
+            }
+        }
 
         public async Task RunPerformanceLoops(Performance performance)
         {
@@ -253,13 +312,13 @@ namespace VNC.Phidget22.Players
             {
                 startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-                Log.Trace($"Running performance:{performance.Name} description:{performance.Description}" +
-                    $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    $" performanceSequences:{performance.PerformanceSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                    $" performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
-                    $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                    $" loops:{performance.PerformanceLoops} duration:{performance.Duration}" +
-                    $" nextPerformance:{performance.NextPerformance}", Common.LOG_CATEGORY);
+                Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
+                    $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
+                    $"\r deviceClassSequences:{performance.DeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                    $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
+                    $"\r loops:{performance.PerformanceLoops}" +
+                    $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
+                    $"\r nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
             }
 
             // NOTE(crhodes)
@@ -267,46 +326,39 @@ namespace VNC.Phidget22.Players
 
             if (performance.BeforePerformanceLoopPerformances is not null)
             {
-                await ExecutePerformanceSequences(performance.BeforePerformanceLoopPerformances);
+                await ExecutePerfomanceSequences(performance.BeforePerformanceLoopPerformances);
             }
 
             // NOTE(crhodes)
-            // Then Execute PerformanceSequence loops
+            // Then Execute DeviceClassSequences loops if any
 
-            if (performance.PerformanceSequences is not null)
+            if (performance.DeviceClassSequences is not null)
             {
-                // TODO(crhodes)
-                // Maybe create a new PerformanceSequencePlayer
-                // instead of reaching for the Property.  If we do that have to initialize all the logging.
-
-                //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
-
-                PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
-
-                for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
                     if (performance.PlaySequencesInParallel)
                     {
                         if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        Parallel.ForEach(performance.PerformanceSequences, async sequence =>
+                        Parallel.ForEach(performance.DeviceClassSequences, async sequence =>
                         {
-                            await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
+                            // TODO(crhodes)
+                            // Maybe create a new DeviceChannelSequencePlayer
+                            // instead of reaching for the Property.  If we do that have to initialize all the logging.
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+
+                            await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
                         });
                     }
                     else
                     {
                         if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        foreach (PerformanceSequence sequence in performance.PerformanceSequences)
-                        {
-                            // TODO(crhodes)
-                            // What is this loop doing?  Doesn't PerformanceSequencePlayer handle looping
+                        DeviceChannelSequencePlayer player = GetPerformanceSequencePlayer();
 
-                            //for (int sequenceLoop = 0; sequenceLoop < sequence.SequenceLoops; sequenceLoop++)
-                            //{
-                                await performanceSequencePlayer.ExecutePerformanceSequence(sequence);
-                            //}
+                        foreach (DeviceChannelSequence sequence in performance.DeviceClassSequences)
+                        {
+                            await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
                         }
                     }
                 }
@@ -320,12 +372,12 @@ namespace VNC.Phidget22.Players
                     {
                         Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((int)performance.Duration);
+                    Thread.Sleep((Int32)performance.Duration);
                 }
             }
 
             // NOTE(crhodes)
-            // Then Execute Performances loops
+            // Then Execute Performances loops if any
 
             if (performance.Performances is not null)
             {
@@ -335,9 +387,9 @@ namespace VNC.Phidget22.Players
 
                 //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
 
-                PerformanceSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
+                DeviceChannelSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
 
-                for (int performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
                     if (performance.PlayPerformancesInParallel)
                     {
@@ -386,7 +438,7 @@ namespace VNC.Phidget22.Players
                     {
                         Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                     }
-                    Thread.Sleep((int)performance.Duration);
+                    Thread.Sleep((Int32)performance.Duration);
                 }
             }
 
@@ -395,13 +447,13 @@ namespace VNC.Phidget22.Players
 
             if (performance.AfterPerformanceLoopPerformances is not null)
             {
-                await ExecutePerformanceSequences(performance.AfterPerformanceLoopPerformances);
+                await ExecutePerfomanceSequences(performance.AfterPerformanceLoopPerformances);
             }
 
             if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task ExecutePerformanceSequences(Performance[] performanceSequences)
+        private async Task ExecutePerfomanceSequences(Performance[] performanceSequences)
         {
             Int64 startTicks = 0;
             if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:{performanceSequences.Count()}", Common.LOG_CATEGORY);
@@ -425,7 +477,7 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    Log.Error($"Cannot find performance:>{nextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot find performance:>{callPerformance?.Name}<", Common.LOG_CATEGORY);
                     nextPerformance = null;
                 }
             }
@@ -443,18 +495,18 @@ namespace VNC.Phidget22.Players
 
         #region Private Methods
 
-        private PerformanceSequencePlayer GetPerformanceSequencePlayer()
+        private DeviceChannelSequencePlayer GetPerformanceSequencePlayer()
         {
             Int64 startTicks = 0;
             if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
             if (ActivePerformanceSequencePlayer == null)
             {
-                ActivePerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
+                ActivePerformanceSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
             }
 
-            ActivePerformanceSequencePlayer.LogPerformanceSequence = LogPerformanceSequence;
-            ActivePerformanceSequencePlayer.LogSequenceAction = LogSequenceAction;
+            ActivePerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            ActivePerformanceSequencePlayer.LogChannelAction = LogChannelAction;
             ActivePerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
             ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
@@ -472,6 +524,34 @@ namespace VNC.Phidget22.Players
             if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
 
             return ActivePerformanceSequencePlayer;
+        }
+
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(EventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            player.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            player.LogPositionChangeEvents = LogPositionChangeEvents;
+            player.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            player.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            player.LogInputChangeEvents = LogInputChangeEvents;
+            player.LogOutputChangeEvents = LogOutputChangeEvents;
+
+            player.LogSensorChangeEvents = LogSensorChangeEvents;
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
         }
 
         #endregion

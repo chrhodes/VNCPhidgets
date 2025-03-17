@@ -103,17 +103,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called DeveloperMode";
+            PublishStatusMessage(Message);
 
             EventAggregator.GetEvent<StatusMessageEvent>().Publish(Message);
 
             if (Common.DeveloperMode)
             {
-                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
                 if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Collapsed;
             }
             else
             {
-                if (Common.CurrentRibbonShell is not null) Common.CurrentRibbonShell.DeveloperUIMode = System.Windows.Visibility.Visible;
                 if (Common.CurrentShell is not null) Common.CurrentShell.DeveloperUIMode = System.Windows.Visibility.Visible;
             }
 
@@ -148,8 +147,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool DeveloperModeCanExecute(TYPE value)
-        public bool DeveloperModeCanExecute()
+        //public Boolean DeveloperModeCanExecute(TYPE value)
+        public Boolean DeveloperModeCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -177,9 +176,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region IInstanceCount
 
-        private static int _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        public int InstanceCountVM
+        public Int32 InstanceCountVM
         {
             get => _instanceCountVM;
             set => _instanceCountVM = value;

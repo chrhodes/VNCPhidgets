@@ -1,9 +1,11 @@
-﻿namespace VNC.Phidget22.Configuration
+﻿using System;
+
+namespace VNC.Phidget22.Configuration
 {
     public class Stepper
     {
         public string Name { get; set; } = "STEPPER NAME";
-        public int SerialNumber { get; set; }
-        public bool Open { get; set; } = true;
+        public Int32 SerialNumber { get; set; }
+        public Boolean Open { get; set; } = true;
     }
 }

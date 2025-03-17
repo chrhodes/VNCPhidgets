@@ -4,15 +4,24 @@ namespace VNC.Phidget22.Configuration
 {
     public class VoltageOutputAction
     {
-        /// <summary>
-        /// Index of VoltageOutput on board 
-        /// </summary>
-        public int Channel { get; set; }
-   
-        /// <summary>
-        /// Set DigitalOut value
-        /// </summary>
-        public bool? VoltageOut { get; set; }
+        #region Logging
+
+        public Boolean? LogPhidgetEvents { get; set; }
+        public Boolean? LogErrorEvents { get; set; }
+        public Boolean? LogPropertyChangeEvents { get; set; }
+
+
+        public Boolean? LogDeviceChannelSequence { get; set; }
+        public Boolean? LogChannelAction { get; set; }
+        public Boolean? LogActionVerification { get; set; }
+
+        #endregion
+
+
+        ///// <summary>
+        ///// Set DigitalOut value
+        ///// </summary>
+        //public Boolean? VoltageOut { get; set; }
 
 
         /// <summary>

@@ -1,0 +1,235 @@
+{
+  "InterfaceKitSequences": [
+    {
+      "Name": "001122-250ms", 
+      "Description": "Blink 0,1,2 every 250 ms", 
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "012012-250ms", 
+      "Description": "Turn 0,1,2 on then off every 250 ms", 
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "012210-250ms", 
+      "Description": "Turn 0,1,2 on then off every 250 ms", 
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 250 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO0-500ms", 
+      "Description": "Turn 0 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO1-500ms", 
+      "Description": "Turn 1 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO2-500ms", 
+      "Description": "Turn 2 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+
+      "Name": "DO3-500ms", 
+      "Description": "Turn 3 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 3, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 3, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO4-500ms", 
+      "Description": "Turn 4 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 4, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 4, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO5-500ms", 
+      "Description": "Turn 5 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 5, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 5, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO6-500ms", 
+      "Description": "Turn 6 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 6, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 6, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO7-500ms", 
+      "Description": "Turn 7 on then off every 500 ms",
+      "Actions": [
+        { "DigitalOutIndex": 7, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOutIndex": 7, "DigitalOut": false, "Duration": 500 }
+      ]
+    },
+    {
+      "Name": "DO0-250ms", 
+      "Description": "Turn 0 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO1-250ms", 
+      "Description": "Turn 1 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO2-250ms", 
+      "Description": "Turn 2 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO3-250ms", 
+      "Description": "Turn 3 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 3, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 3, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO4-250ms", 
+      "Description": "Turn 4 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 4, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 4, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO5-250ms", 
+      "Description": "Turn 5 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 5, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 5, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+      "Name": "DO6-250ms", 
+      "Description": "Turn 6 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 6, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 6, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+
+      "Name": "DO7-250ms", 
+      "Description": "Turn 7 on then off every 250 ms",
+      "Actions": [
+        { "DigitalOutIndex": 7, "DigitalOut": true, "Duration": 250 },
+        { "DigitalOutIndex": 7, "DigitalOut": false, "Duration": 250 }
+      ]
+    },
+    {
+
+      "Name": "DO0-125ms", 
+      "Description": "Turn 0 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 0, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 0, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO1-125ms", 
+      "Description": "Turn 1 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 1, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 1, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO2-125ms", 
+      "Description": "Turn 2 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 2, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 2, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO3-125ms", 
+      "Description": "Turn 3 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 3, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 3, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO4-125ms", 
+      "Description": "Turn 4 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 4, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 4, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO5-125ms", 
+      "Description": "Turn 5 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 5, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 5, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO6-125ms", 
+      "Description": "Turn 6 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 6, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 6, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+    {
+      "Name": "DO7-125ms", 
+      "Description": "Turn 7 on then off every 125 ms",
+      "Actions": [
+        { "DigitalOutIndex": 7, "DigitalOut": true, "Duration": 125 },
+        { "DigitalOutIndex": 7, "DigitalOut": false, "Duration": 125 }
+      ]
+    },
+  ]
+}

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Phidget22;
@@ -17,7 +19,6 @@ namespace VNC.Phidget22.Ex
     {
         #region Constructors, Initialization, and Load
 
-        private readonly VoltageRatioInputConfiguration _voltageRatioInputConfiguration;
         private readonly IEventAggregator _eventAggregator;
 
         /// <summary>
@@ -26,16 +27,15 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="voltageRatioInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public VoltageRatioInputEx(int serialNumber, VoltageRatioInputConfiguration voltageRatioInputConfiguration, IEventAggregator eventAggregator)
+        public VoltageRatioInputEx(Int32 serialNumber, VoltageRatioInputConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
 
             _serialNumber = serialNumber;
-            _voltageRatioInputConfiguration = voltageRatioInputConfiguration;
             _eventAggregator = eventAggregator;
 
-            InitializePhidget();
+            InitializePhidget(configuration);
 
             _eventAggregator.GetEvent<VoltageRatioInputSequenceEvent>().Subscribe(TriggerSequence);
 
@@ -51,13 +51,15 @@ namespace VNC.Phidget22.Ex
         /// Configures VoltageRatioInput using VoltageRatioInputConfiguration
         /// and establishes event handlers
         /// </summary>
-        private void InitializePhidget()
+        private void InitializePhidget(VoltageRatioInputConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY); ;
 
             DeviceSerialNumber = SerialNumber;
-            Channel = _voltageRatioInputConfiguration.Channel;
+            HubPort = configuration.HubPort;
+            Channel = configuration.Channel;
+
             IsRemote = true;
 
             Attach += VoltageRatioInputEx_Attach;
@@ -68,7 +70,7 @@ namespace VNC.Phidget22.Ex
             SensorChange += VoltageRatioInputEx_SensorChange;
             VoltageRatioChange += VoltageRatioInputEx_VoltageRatioChange;
 
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -87,65 +89,70 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
 
-        bool _logPhidgetEvents;
-        public bool LogPhidgetEvents
+        #region Logging
+
+        Boolean _logPhidgetEvents;
+        public Boolean LogPhidgetEvents
         {
             get { return _logPhidgetEvents; }
             set { _logPhidgetEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logErrorEvents = true;    // probably always want to see Errors
-        public bool LogErrorEvents
+        Boolean _logErrorEvents = true;    // probably always want to see Errors
+        public Boolean LogErrorEvents
         {
             get { return _logErrorEvents; }
             set { _logErrorEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPropertyChangeEvents;
-        public bool LogPropertyChangeEvents
+        Boolean _logPropertyChangeEvents;
+        public Boolean LogPropertyChangeEvents
         {
             get { return _logPropertyChangeEvents; }
             set { _logPropertyChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logSensorChangeEvents;
-        public bool LogSensorChangeEvents 
-        { 
-            get { return _logSensorChangeEvents; } 
-            set { _logSensorChangeEvents = value; OnPropertyChanged(); } 
+        Boolean _logSensorChangeEvents;
+        public Boolean LogSensorChangeEvents
+        {
+            get { return _logSensorChangeEvents; }
+            set { _logSensorChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logVoltageRatioChangeEvents;
-        public bool LogVoltageRatioChangeEvents
-        { 
-            get { return _logVoltageRatioChangeEvents; } 
+        Boolean _logVoltageRatioChangeEvents;
+        public Boolean LogVoltageRatioChangeEvents
+        {
+            get { return _logVoltageRatioChangeEvents; }
             set { _logVoltageRatioChangeEvents = value; OnPropertyChanged(); }
         }
 
-        bool _logPerformanceSequence;
-        public bool LogPerformanceSequence
+        Boolean _logDeviceChannelSequence;
+        public Boolean LogDeviceChannelSequence
         {
-            get { return _logPerformanceSequence; }
-            set { _logPerformanceSequence = value; OnPropertyChanged(); }
+            get { return _logDeviceChannelSequence; }
+            set { _logDeviceChannelSequence = value; OnPropertyChanged(); }
         }
 
-        bool _logSequenceAction;
-        public bool LogSequenceAction
+        Boolean _logChannelAction;
+        public Boolean LogChannelAction
         {
-            get { return _logSequenceAction; }
-            set { _logSequenceAction = value; OnPropertyChanged(); }
+            get { return _logChannelAction; }
+            set { _logChannelAction = value; OnPropertyChanged(); }
         }
 
-        bool _logActionVerification;
-        public bool LogActionVerification
+        Boolean _logActionVerification;
+        public Boolean LogActionVerification
         {
             get { return _logActionVerification; }
             set { _logActionVerification = value; OnPropertyChanged(); }
         }
 
-        private int _serialNumber;
-        public int SerialNumber
+        #endregion
+
+        private Int32 _serialNumber;
+        public Int32 SerialNumber
         {
             get => _serialNumber;
             set
@@ -158,21 +165,28 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private bool _isAttached;
-        public bool IsAttached
+        private Boolean _attached;
+        public Boolean Attached
         {
-            get => _isAttached;
+            get => _attached;
             set
             {
-                if (_isAttached == value)
+                if (_attached == value)
                     return;
-                _isAttached = value;
+                _attached = value;
                 OnPropertyChanged();
             }
         }
 
-        private VoltageRatioSensorType _sensorType;
-        public new VoltageRatioSensorType SensorType
+        // TODO(crhodes)
+        // 
+        // There are two more properties that are not available on InterfaceKit1018
+        // Implement when we get a board that supports them
+        // BridgeEnabled
+        // BridgeGain
+
+        private VoltageRatioSensorType? _sensorType;
+        public new VoltageRatioSensorType? SensorType
         {
             get => _sensorType;
             set
@@ -183,73 +197,69 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.SensorType = value;
+                    base.SensorType = (VoltageRatioSensorType)value;
+
+                    // Update values, SensorType changed
+
+                    SensorUnit_Unit = base.SensorUnit.Unit;
+                    //SensorUnit_Name = base.SensorUnit.Name;
+                    SensorUnit_Symbol = base.SensorUnit.Symbol;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private UnitInfo _sensorUnit;
-        public new UnitInfo SensorUnit
+        private Unit _sensorUnit_Unit;
+        public Unit SensorUnit_Unit
         {
-            get => _sensorUnit;
+            get => _sensorUnit_Unit;
             set
             {
-                if (_sensorUnit.Unit == value.Unit)
-                    return;
-                _sensorUnit = value;
+                _sensorUnit_Unit = value;
                 OnPropertyChanged();
             }
         }
 
-        private Double _sensorValueChangeTrigger;
-        public new Double SensorValueChangeTrigger
+        //private string _sensorUnit_Name;
+        //public string SensorUnit_Name
+        //{
+        //    get => _sensorUnit_Name;
+        //    set
+        //    {
+        //        _sensorUnit_Name = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private string _sensorUnit_Symbol;
+        public string SensorUnit_Symbol
         {
-            get => _sensorValueChangeTrigger;
+            get => _sensorUnit_Symbol;
             set
             {
-                if (_sensorValueChangeTrigger == value)
-                    return;
-                _sensorValueChangeTrigger = value;
-
-                if (Attached)
-                {
-                    base.SensorValueChangeTrigger = (Double)value;
-                }
-
+                _sensorUnit_Symbol = value;
                 OnPropertyChanged();
             }
         }
 
-        private Double _sensorValue;
-        public new Double SensorValue
-        {
-            get => _sensorValue;
-            set
-            {
-                if (_sensorValue == value)
-                    return;
-                _sensorValue = value;
-                OnPropertyChanged();
-            }
-        }
 
-        private int _minDataInterval;
-        public new int MinDataInterval
+
+        private Int32? _minDataInterval;
+        public new Int32? MinDataInterval
         {
             get => _minDataInterval;
             set
             {
-                if (_minDataInterval == value)
-                    return;
+                //if (_minDataInterval == value)
+                //    return;
                 _minDataInterval = value;
                 OnPropertyChanged();
             }
         }
 
-        private int? _DataInterval;
-        public new int? DataInterval
+        private Int32? _DataInterval;
+        public new Int32? DataInterval
         {
             get => _DataInterval;
             set
@@ -260,34 +270,34 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.DataInterval = (int)value;
+                    base.DataInterval = (Int32)value;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private int _maxDataInterval;
-        public new int MaxDataInterval
+        private Int32? _maxDataInterval;
+        public new Int32? MaxDataInterval
         {
             get => _maxDataInterval;
             set
             {
-                if (_maxDataInterval == value)
-                    return;
-                _maxDataRate = value;
+                //if (_maxDataInterval == value)
+                //    return;
+                _maxDataInterval = value;
                 OnPropertyChanged();
             }
         }
 
-        private Double _minDataRate;
-        public new Double MinDataRate
+        private Double? _minDataRate;
+        public new Double? MinDataRate
         {
             get => _minDataRate;
             set
             {
-                if (_minDataRate == value)
-                    return;
+                //if (_minDataRate == value)
+                //    return;
                 _minDataRate = value;
                 OnPropertyChanged();
             }
@@ -305,34 +315,34 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    base.DataRate = (int)value;
+                    base.DataRate = (Int32)value;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private Double _maxDataRate;
-        public new Double MaxDataRate
+        private Double? _maxDataRate;
+        public new Double? MaxDataRate
         {
             get => _maxDataRate;
             set
             {
-                if (_maxDataRate == value)
-                    return;
+                //if (_maxDataRate == value)
+                //    return;
                 _maxDataRate = value;
                 OnPropertyChanged();
             }
         }
 
-        private Double _minVoltageRatio;
-        public new Double MinVoltageRatio
+        private Double? _minVoltageRatio;
+        public new Double? MinVoltageRatio
         {
             get => _minVoltageRatio;
             set
             {
-                if (_minVoltageRatio == value)
-                    return;
+                //if (_minVoltageRatio == value)
+                //    return;
                 _minVoltageRatio = value;
                 OnPropertyChanged();
             }
@@ -351,34 +361,34 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double _maxVoltageRatio;
-        public new Double MaxVoltageRatio
+        private Double? _maxVoltageRatio;
+        public new Double? MaxVoltageRatio
         {
             get => _maxVoltageRatio;
             set
             {
-                if (_maxVoltageRatio == value)
-                    return;
+                //if (_maxVoltageRatio == value)
+                //    return;
                 _maxVoltageRatio = value;
                 OnPropertyChanged();
             }
         }
 
-        private Double _minVoltageRatioChangeTrigger;
-        public new Double MinVoltageRatioChangeTrigger
+        private Double? _minVoltageRatioChangeTrigger;
+        public new Double? MinVoltageRatioChangeTrigger
         {
             get => _minVoltageRatioChangeTrigger;
             set
             {
-                if (_minVoltageRatioChangeTrigger == value)
-                    return;
+                //if (_minVoltageRatioChangeTrigger == value)
+                //    return;
                 _minVoltageRatioChangeTrigger = value;
                 OnPropertyChanged();
             }
         }
 
-        private Double _voltageRatioChangeTrigger;
-        public new Double VoltageRatioChangeTrigger
+        private Double? _voltageRatioChangeTrigger;
+        public new Double? VoltageRatioChangeTrigger
         {
             get => _voltageRatioChangeTrigger;
             set
@@ -396,18 +406,68 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double _maxVoltageRatioChangeTrigger;
-        public new Double MaxVoltageRatioChangeTrigger
+        private Double? _maxVoltageRatioChangeTrigger;
+        public new Double? MaxVoltageRatioChangeTrigger
         {
             get => _maxVoltageRatioChangeTrigger;
             set
             {
-                if (_maxVoltageRatioChangeTrigger == value)
-                    return;
+                //if (_maxVoltageRatioChangeTrigger == value)
+                //    return;
                 _maxVoltageRatioChangeTrigger = value;
                 OnPropertyChanged();
             }
         }
+
+        private Double? _sensorValue;
+        public new Double? SensorValue
+        {
+            get => _sensorValue;
+            set
+            {
+                if (_sensorValue == value)
+                    return;
+                _sensorValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double? _sensorValueChangeTrigger;
+        public new Double? SensorValueChangeTrigger
+        {
+            get => _sensorValueChangeTrigger;
+            set
+            {
+                if (_sensorValueChangeTrigger == value)
+                    return;
+                _sensorValueChangeTrigger = value;
+
+                if (Attached)
+                {
+                    base.SensorValueChangeTrigger = (Double)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        // NOTE(crhodes)
+        // Flag OutOfRange Errors
+        // Detected in Error Event
+        // Cleared in SensorValueChanged Event
+
+        private Boolean _sensorValueOutOfRange;
+        public Boolean SensorValueOutOfRange
+        {
+            get => _sensorValueOutOfRange;
+            set
+            {
+                if (_sensorValueOutOfRange == value)
+                    return;
+                _sensorValueOutOfRange = value;
+                OnPropertyChanged();
+            }
+        }        
 
         #endregion
 
@@ -421,7 +481,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageRatioInputEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageRatioInputEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -434,34 +494,62 @@ namespace VNC.Phidget22.Ex
             // NOTE(crhodes)
             // Shockingly, this is not set until after Attach Event
 
-            //IsAttached = VoltageRatioInput.Attached;
+            //Attached = VoltageRatioInput.Attached;
 
             // Just set it so UI behaves well
-            IsAttached = true;
+            Attached = true;
 
-            SensorType = voltageRatioInput.SensorType;
-            SensorValue = voltageRatioInput.SensorValue;
-            SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
+            // FIX(crhodes)
+            // This whole area is a mess.  Tried moving to RefreshProperties
+            // Not everything is available when Attach fires.
+            // If in SensorMode and SensorValue OutOfRange other stuff not available.
+            // Sigh
+
+            // For now just set attach and figure out rest in RefreshProperties
 
             // TODO(crhodes)
-            // Need to set before being read
-            //SensorUnit = voltageRatioInput.SensorUnit;
+            // 
+            // SensorType needs to be set before SensorUnit and SensorValue can be read
+            //SensorType = VoltageSensorType.Voltage;
+            //SensorUnit = voltageInput.SensorUnit;
+            //SensorValue = voltageInput.SensorValue;
 
-            MinDataInterval = voltageRatioInput.MinDataInterval;
-            DataInterval = voltageRatioInput.DataInterval;
-            MaxDataInterval = voltageRatioInput.MaxDataInterval;
+            try
+            {
+                //SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
 
-            MinDataRate = voltageRatioInput.MinDataRate;
-            DataRate = voltageRatioInput.DataRate;
-            MaxDataRate = voltageRatioInput.MaxDataRate;
+                //MinDataInterval = voltageRatioInput.MinDataInterval;
+                //DataInterval = voltageRatioInput.DataInterval;
+                ////DataInterval = 100; // 100ms (10Hz)
+                //MaxDataInterval = voltageRatioInput.MaxDataInterval;
 
-            MinVoltageRatio = voltageRatioInput.MinVoltageRatio;
-            VoltageRatio = voltageRatioInput.VoltageRatio;
-            MaxVoltageRatio = voltageRatioInput.MaxVoltageRatio;
+                //MinDataRate = voltageRatioInput.MinDataRate;
+                //DataRate = voltageRatioInput.DataRate;
+                ////DataRate = 10; // 10 Hz (100ms)
+                //MaxDataRate = voltageRatioInput.MaxDataRate;
 
-            MinVoltageRatioChangeTrigger = voltageRatioInput.MinVoltageRatioChangeTrigger;
-            VoltageRatioChangeTrigger = voltageRatioInput.VoltageRatioChangeTrigger;
-            MaxVoltageRatioChangeTrigger = voltageRatioInput.MaxVoltageRatioChangeTrigger;
+                //MinVoltageRatio = voltageRatioInput.MinVoltageRatio;
+                //VoltageRatio = voltageRatioInput.VoltageRatio;
+                //SensorValue = voltageRatioInput.SensorValue;
+                //MaxVoltageRatio = voltageRatioInput.MaxVoltageRatio;
+
+                //MinVoltageRatioChangeTrigger = voltageRatioInput.MinVoltageRatioChangeTrigger;
+                //VoltageRatioChangeTrigger = voltageRatioInput.VoltageRatioChangeTrigger;
+                //MaxVoltageRatioChangeTrigger = voltageRatioInput.MaxVoltageRatioChangeTrigger;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // Not all VoltageRatioInput support all properties
             // Maybe just ignore or protect behind an if or switch
@@ -478,6 +566,18 @@ namespace VNC.Phidget22.Ex
             //        throw ex;
             //    }
             //}
+
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit VoltageRatioInputEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void VoltageRatioInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -492,6 +592,21 @@ namespace VNC.Phidget22.Ex
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (e.PropertyName)
+            {
+                case "DataRate":
+                    DataRate = base.DataRate;
+                    break;
+
+                case "DataInterval":
+                    DataInterval = base.DataInterval;
+                    break;
+
+                default:
+                    Log.EVENT_HANDLER($"DigitalOutputEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    break;
             }
         }
 
@@ -508,6 +623,10 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            SensorValue = e.SensorValue;
+
+            if (SensorValueOutOfRange) SensorValueOutOfRange = false;
         }
 
         private void VoltageRatioInputEx_VoltageRatioChange(object sender, PhidgetsEvents.VoltageRatioInputVoltageRatioChangeEventArgs e)
@@ -523,6 +642,8 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            VoltageRatio = e.VoltageRatio;
         }
 
         private void VoltageRatioInputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
@@ -539,7 +660,7 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            IsAttached = false;
+            Attached = false;
         }
 
         private void VoltageRatioInputEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
@@ -555,6 +676,16 @@ namespace VNC.Phidget22.Ex
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
+
+            switch (e.Code)
+            {
+                case Phidgets.ErrorEventCode.OutOfRange:
+                    SensorValueOutOfRange = true;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         #endregion
@@ -566,47 +697,143 @@ namespace VNC.Phidget22.Ex
 
         #region Public Methods
 
-        private new void Open()
+        public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Open();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Open(Int32 timeout)
+        public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen} timeout:{timeout}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            // TODO(crhodes)
+            // Maybe we call RefreshProperties() here instead of trying to get stuff in Attach
+            Thread.Sleep(timeout);
+            RefreshProperties();
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
-        private new void Close()
+        public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Close();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
-        public async Task RunActionLoops(InterfaceKitSequence interfaceKitSequence)
+        public new void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+
+            try
+            {
+                //SensorType = base.SensorType;
+
+                MinDataInterval = base.MinDataInterval;
+                DataInterval = base.DataInterval;
+                //DataInterval = 100; // 100ms (10Hz)
+                MaxDataInterval = base.MaxDataInterval;
+
+                MinDataRate = base.MinDataRate;
+                DataRate = base.DataRate;
+                //DataRate = 10; // 10 Hz (100ms)
+                MaxDataRate = base.MaxDataRate;
+
+                MinVoltageRatio = base.MinVoltageRatio;
+                VoltageRatio = base.VoltageRatio;
+                //SensorValue = base.SensorValue;
+                MaxVoltageRatio = base.MaxVoltageRatio;
+
+                //MinVoltageRatioChangeTrigger = base.MinVoltageRatioChangeTrigger;
+                //VoltageRatioChangeTrigger = base.VoltageRatioChangeTrigger;
+                //SensorValueChangeTrigger = base.SensorValueChangeTrigger;
+                //MaxVoltageRatioChangeTrigger = base.MaxVoltageRatioChangeTrigger;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            try
+            {
+                SensorType = base.SensorType;
+
+                //MinDataInterval = base.MinDataInterval;
+                //DataInterval = base.DataInterval;
+                ////DataInterval = 100; // 100ms (10Hz)
+                //MaxDataInterval = base.MaxDataInterval;
+
+                //MinDataRate = base.MinDataRate;
+                //DataRate = base.DataRate;
+                ////DataRate = 10; // 10 Hz (100ms)
+                //MaxDataRate = base.MaxDataRate;
+
+                //MinVoltageRatio = base.MinVoltageRatio;
+                //VoltageRatio = base.VoltageRatio;
+                ////SensorValue = base.SensorValue;
+                //MaxVoltageRatio = base.MaxVoltageRatio;
+
+                MinVoltageRatioChangeTrigger = base.MinVoltageRatioChangeTrigger;
+                VoltageRatioChangeTrigger = base.VoltageRatioChangeTrigger;
+                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
+                MaxVoltageRatioChangeTrigger = base.MaxVoltageRatioChangeTrigger;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            try
+            {
+                SensorValue = base.SensorValue;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public async Task RunActionLoops(VoltageRatioInputSequence voltageRatioInputSequence)
         {
             try
             {
                 Int64 startTicks = 0;
 
-                //        if (LogSequenceAction)
+                //        if (LogChannelAction)
                 //        {
                 //            startTicks = Log.Trace(
                 //                $"Running Action Loops" +
-                //                $" interfaceKitSequence:>{interfaceKitSequence.Name}<" +
+                //                $" name:>{interfaceKitSequence.Name}<" +
                 //                $" startActionLoopSequences:>{interfaceKitSequence.StartActionLoopSequences?.Count()}<" +
                 //                $" actionLoops:>{interfaceKitSequence.ActionLoops}<" +
                 //                $" actions:>{interfaceKitSequence.Actions.Count()}<" +
@@ -616,7 +843,7 @@ namespace VNC.Phidget22.Ex
 
                 //        if (interfaceKitSequence.Actions is not null)
                 //        {
-                //            for (int actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
+                //            for (Int32 actionLoop = 0; actionLoop < interfaceKitSequence.ActionLoops; actionLoop++)
                 //            {
                 //                if (interfaceKitSequence.StartActionLoopSequences is not null)
                 //                {
@@ -624,8 +851,8 @@ namespace VNC.Phidget22.Ex
                 //                    // May want to create a new player instead of reaching for the property.
 
                 //                    PerformanceSequencePlayer player = PerformanceSequencePlayer.ActivePerformanceSequencePlayer;
-                //                    player.LogPerformanceSequence = LogPerformanceSequence;
-                //                    player.LogSequenceAction = LogSequenceAction;
+                //                    player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+                //                    player.LogChannelAction = LogChannelAction;
 
                 //                    foreach (PerformanceSequence sequence in interfaceKitSequence.StartActionLoopSequences)
                 //                    {
@@ -635,7 +862,7 @@ namespace VNC.Phidget22.Ex
 
                 //                if (interfaceKitSequence.ExecuteActionsInParallel)
                 //                {
-                //                    if (LogSequenceAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                //                    if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
                 //                    Parallel.ForEach(interfaceKitSequence.Actions, async action =>
                 //                    {
@@ -646,7 +873,7 @@ namespace VNC.Phidget22.Ex
                 //                }
                 //                else
                 //                {
-                //                    if (LogSequenceAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                //                    if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
 
                 //                    foreach (InterfaceKitAction action in interfaceKitSequence.Actions)
                 //                    {
@@ -658,7 +885,7 @@ namespace VNC.Phidget22.Ex
 
                 //                if (interfaceKitSequence.ActionsDuration is not null)
                 //                {
-                //                    if (LogSequenceAction)
+                //                    if (LogChannelAction)
                 //                    {
                 //                        Log.Trace($"Zzzzz Action:>{interfaceKitSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                 //                    }
@@ -668,8 +895,8 @@ namespace VNC.Phidget22.Ex
                 //                if (interfaceKitSequence.EndActionLoopSequences is not null)
                 //                {
                 //                    PerformanceSequencePlayer player = new PerformanceSequencePlayer(_eventAggregator);
-                //                    player.LogPerformanceSequence = LogPerformanceSequence;
-                //                    player.LogSequenceAction = LogSequenceAction;
+                //                    player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+                //                    player.LogChannelAction = LogChannelAction;
 
                 //                    foreach (PerformanceSequence sequence in interfaceKitSequence.EndActionLoopSequences)
                 //                    {
@@ -679,7 +906,7 @@ namespace VNC.Phidget22.Ex
                 //            }
                 //        }
 
-                //        if (LogSequenceAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                //        if (LogChannelAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -687,80 +914,79 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-                #endregion
+        #endregion
 
-                #region Protected Methods (none)
+        #region Protected Methods (none)
 
 
 
-                #endregion
+        #endregion
 
-                #region Private Methods
+        #region Private Methods
 
-                // FIX(crhodes)
-                // 
-                //private async Task PerformAction(InterfaceKitDigitalOutputCollection ifkDigitalOutputs, InterfaceKitAction action, Int32 index)
-                //{
-                //    Int64 startTicks = 0;
+        private async Task PerformAction(VoltageRatioInputAction action)
+        {
+            Int64 startTicks = 0;
 
-                //    StringBuilder actionMessage = new StringBuilder();
+            StringBuilder actionMessage = new StringBuilder();
 
-                //    if (LogSequenceAction)
-                //    {
-                //        startTicks = Log.Trace($"Enter index:{index}", Common.LOG_CATEGORY);
-                //        actionMessage.Append($"index:{index}");
-                //    }
+            if (LogChannelAction)
+            {
+                startTicks = Log.Trace($"Enter voltageRatioInput:{Channel}", Common.LOG_CATEGORY);
+                actionMessage.Append($"voltageRatioInput:{Channel}");
+            }
 
-                //    try
-                //    {
+            try
+            {
                 // NOTE(crhodes)
                 // First make any logging changes
 
-                //        #region Logging
+                #region Logging
 
-                //        if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean) action.LogPhidgetEvents;
-                //        if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean) action.LogErrorEvents;
-                //        if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean) action.LogPropertyChangeEvents;
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
-                //        if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean) action.LogPositionChangeEvents;
-                //        if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean) action.LogVelocityChangeEvents;
-                //        if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean) action.LogTargetPositionReachedEvents;
+                //if (action.LogPositionChangeEvents is not null) LogPositionChangeEvents = (Boolean)action.LogPositionChangeEvents;
+                //if (action.LogVelocityChangeEvents is not null) LogVelocityChangeEvents = (Boolean)action.LogVelocityChangeEvents;
+                //if (action.LogTargetPositionReachedEvents is not null) LogTargetPositionReachedEvents = (Boolean)action.LogTargetPositionReachedEvents;
 
-                //        if (action.LogPerformanceSequence is not null) LogPerformanceSequence = (Boolean) action.LogPerformanceSequence;
-                //        if (action.LogSequenceAction is not null) LogSequenceAction = (Boolean) action.LogSequenceAction;
-                //        if (action.LogActionVerification is not null) LogActionVerification = (Boolean) action.LogActionVerification;
-
-                //#endregion
-                //        if (action.DigitalOut is not null)
-                //        { 
-                //            if (LogSequenceAction) actionMessage.Append($" digitalOut:{action.DigitalOut}");
-
-                //            ifkDigitalOutputs[index] = (Boolean)action.DigitalOut; 
-                //        }
-
-                //        if (action.Duration > 0)
-                //        {
-                //            if (LogSequenceAction) actionMessage.Append($" duration:>{action.Duration}<");
-
-                //            Thread.Sleep((Int32)action.Duration);
-                //        }
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        Log.Error(ex, Common.LOG_CATEGORY);
-                //    }
-                //    finally
-                //    {
-                //        if (LogSequenceAction)
-                //        {
-                //            Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-                //        }
-                //    }
-                //}
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
+                if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
                 #endregion
 
-                #region INotifyPropertyChanged
+                #region VoltageRatioInput Actions
+
+                // TODO(crhodes)
+                // Implement
+
+                #endregion
+
+                if (action.Duration > 0)
+                {
+                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogChannelAction)
+                {
+                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+        }
+
+            #endregion
+
+        #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -1,5 +1,7 @@
 ﻿//using Phidget22;
 
+using System;
+
 namespace VNC.Phidget22.Configuration
 {
     /// <summary>
@@ -11,8 +13,11 @@ namespace VNC.Phidget22.Configuration
     {
         public string Name { get; set; } = "HOST NAME";
         public string IPAddress { get; set; } = "127.0.0.1";
-        public int Port { get; set; } = 5661;
-        public bool Enable { get; set; } = true;
+        public Int32 Port { get; set; } = 5661;
+        public Boolean Enable { get; set; } = true;
+
+        // FIX(crhodes)
+        // Don't think we needs this anymore now that Manager_Attach is all tuned up
 
         public AdvancedServo[]? AdvancedServos { get; set; }
 

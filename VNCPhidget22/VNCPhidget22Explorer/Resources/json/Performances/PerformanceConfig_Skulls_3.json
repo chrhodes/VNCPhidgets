@@ -29,7 +29,7 @@
     "Description": "",
     "Loops": 1,
     "PlaySequencesInParallel": false,
-    "PerformanceSequences": [
+    "DeviceClassSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center"},
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Up Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center"},
@@ -47,7 +47,7 @@
     "Description": "",
     "Loops": 1,
     "PlaySequencesInParallel": false,
-    "PerformanceSequences": [
+    "DeviceClassSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center"},
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Up Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center"},
@@ -65,7 +65,7 @@
     "Description": "",
     "Loops": 1,
     "PlaySequencesInParallel": false,
-    "PerformanceSequences": [
+    "DeviceClassSequences": [
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center"},
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-012 Look Up Right" },
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center"},
@@ -83,7 +83,7 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "PerformanceSequences": [
+      "DeviceClassSequences": [
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-456 Center", },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-456 Look Up Right" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-456 Center"},

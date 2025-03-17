@@ -9,7 +9,7 @@
 
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
 
-    xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:i2="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
 
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
@@ -22,18 +22,17 @@
 
     xmlns:phidget="clr-namespace:Phidget22;assembly=Phidget22.NET"
 
-    xmlns:controls="clr-namespace:VNCPhidget22Explorer.Presentation.Controls"
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
-
-    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation"
-
+    
+    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    
     xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
     xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
     xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
-
-    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
 
     xmlns:prism="http://prismlibrary.com/"
 
@@ -56,7 +55,7 @@
     <!-- </d:DesignerProperties.DesignStyle> -->
 
     <vncmvvm:ViewBase.Resources>
-        <converters:ForegroundColorConverter x:Key="RedGreenConverter" />
+        <converters:BooleanToColorConverter x:Key="BooleanToColorConverter" />
         <XmlDataProvider x:Key="SensorList" Source="/Resources/SensorList.xml" XPath="Sensors/Sensor" />
         <XmlDataProvider x:Key="HostList" Source="/Resources/HostList.xml" XPath="Hosts/Host" />
         <XmlDataProvider x:Key="AdvancedServoList" Source="/Resources/AdvancedServoList.xml" XPath="AdvancedServos/AdvancedServo" />
@@ -87,27 +86,23 @@
 
     <DockPanel Margin="5">
         
-        <controls:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <controls:HostSelector DockPanel.Dock="Top" />
+        <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
 
-        <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+        <dxlc:LayoutControl Orientation="Vertical" Padding="0" >
 
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <dxlc:LayoutItem Label="AdvancedServos" LabelPosition="Left" HorizontalAlignment="Left">
-                        <dxe:ComboBoxEdit Width="150"
-                        ItemsSource="{Binding AdvancedServos}" DisplayMember="Name"
-                        SelectedItem="{Binding SelectedAdvancedServo}"
-                        SelectedIndex="0"/>
-                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="AdvancedServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
 
-                    <dxlc:LayoutItem Label="Serial #" HorizontalAlignment="Left" >
-                        <dxe:TextEdit EditValue="{Binding SelectedAdvancedServo.SerialNumber}" IsReadOnly="True"
-                                  Background="White"
-                                  Foreground="{Binding DeviceAttached, Mode=OneWay, Converter={StaticResource RedGreenConverter}}"/>
+                        <dxe:ComboBoxEdit Width="150" 
+                            ItemsSource="{Binding AdvancedServoPhidgets}"
+                            SelectedItem="{Binding SelectedAdvancedServoPhidget}"
+                            NullText="Select AdvancedServo" />
+
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
@@ -140,7 +135,7 @@
                                 <!--<dxe:RadioComboBoxStyleSettings/>-->
                                 <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
                                 <!--<dxe:TokenComboBoxStyleSettings/>-->
-                            </dxe:ComboBoxEdit.StyleSettings>
+                                </dxe:ComboBoxEdit.StyleSettings>
                             <dxe:ComboBoxEditItem Content="Min" />
                             <dxe:ComboBoxEditItem Content="01%" />
                             <dxe:ComboBoxEditItem Content="02%" />
@@ -204,7 +199,7 @@
                     <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
                         <Button
                             Command="{Binding InitializeAccelerationCommand }"
-                            CommandParameter="{Binding ElementName=cbeSelectAccelerationScale, Path=EditValue}"
+                            CommandParameter="{Binding ElementName=cbeAccelerationScale, Path=EditValue}"
                             Content="{Binding InitializeAccelerationContent, FallbackValue='Initialize Acceleration' }"
                             ToolTip="{Binding InitializeAccelerationToolTip, FallbackValue='Initialize Acceleration' }" />
                     </dxlc:LayoutItem>
@@ -231,7 +226,7 @@
                               Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 
-                <!--<controls:PhidgetDevice x:Name="Phidget1" Margin="-5"
+                <!--<views:PhidgetDevice x:Name="Phidget1" Margin="-5"
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
                 
@@ -256,7 +251,7 @@
                         HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Log SequenceAction"
-                        IsChecked="{Binding LogSequenceAction, Mode=TwoWay}"
+                        IsChecked="{Binding LogChannelAction, Mode=TwoWay}"
                         HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Log ActionVerification"
@@ -296,7 +291,7 @@
                               Padding="-10" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Horizontal">
-                        <controls:RCServoControl x:Name="rcServoControl0"  ControlTitle="Servo S0" HorizontalAlignment="Left"
+                        <views:RCServoControl x:Name="rcServoControl0"  ControlTitle="Servo S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo0.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo0.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo0.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -305,9 +300,8 @@
                             LogTargetPositionReachedEvents="{Binding RCServo0.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                          
                             ServoNumber="0"
-                            IsAttached="{Binding RCServo0.IsAttached, Mode=TwoWay}"
+                            Attached="{Binding RCServo0.Attached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
-                            RCServoAttached="{Binding RCServoAttached, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo0.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo0.DataInterval,Mode=TwoWay}"
@@ -351,7 +345,7 @@
                             VelocityLimit="{Binding RCServo0.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo0.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S1" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S1" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo1.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo1.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo1.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -360,7 +354,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo1.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
                             ServoNumber="1"
-                            IsAttached="{Binding RCServo1.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo1.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo1.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo1.MinDataInterval,Mode=TwoWay}"
@@ -405,7 +399,7 @@
                             VelocityLimit="{Binding RCServo1.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo1.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S2" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S2" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo2.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo2.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo2.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -414,7 +408,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo2.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
                             ServoNumber="2"
-                            IsAttached="{Binding RCServo2.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo2.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo2.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo2.MinDataInterval,Mode=TwoWay}"
@@ -459,7 +453,7 @@
                             VelocityLimit="{Binding RCServo2.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo2.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S3" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S3" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo3.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo3.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo3.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -468,7 +462,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo3.LogTargetPositionReachedEvents,Mode=TwoWay}"
 
                             ServoNumber="3"                                         
-                            IsAttached="{Binding RCServo3.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo3.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo3.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo3.MinDataInterval,Mode=TwoWay}"
@@ -513,7 +507,7 @@
                             VelocityLimit="{Binding RCServo3.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo3.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S4" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S4" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo4.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo4.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo4.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -522,7 +516,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo4.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                    
                             ServoNumber="4"                                           
-                            IsAttached="{Binding RCServo4.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo4.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo4.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo4.MinDataInterval,Mode=TwoWay}"
@@ -567,7 +561,7 @@
                             VelocityLimit="{Binding RCServo4.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo4.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S5" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S5" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo5.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo5.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo5.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -576,7 +570,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo5.LogTargetPositionReachedEvents,Mode=TwoWay}"
                            
                             ServoNumber="5"                                           
-                            IsAttached="{Binding RCServo5.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo5.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo5.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo5.MinDataInterval,Mode=TwoWay}"
@@ -621,7 +615,7 @@
                             VelocityLimit="{Binding RCServo5.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo5.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S6" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S6" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo6.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo6.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo6.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -630,7 +624,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo6.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                   
                             ServoNumber="6"                                           
-                            IsAttached="{Binding RCServo6.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo6.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo6.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo6.MinDataInterval,Mode=TwoWay}"
@@ -675,7 +669,7 @@
                             VelocityLimit="{Binding RCServo6.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo6.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S7" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S7" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServo7.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServo7.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServo7.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -684,7 +678,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServo7.LogTargetPositionReachedEvents,Mode=TwoWay}"
                           
                             ServoNumber="7"                                           
-                            IsAttached="{Binding RCServo7.IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServo7.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo7.Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo7.MinDataInterval,Mode=TwoWay}"
@@ -729,7 +723,7 @@
                             VelocityLimit="{Binding RCServo7.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServo7.MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S8" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S8" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[8].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[8].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[8].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -738,7 +732,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[8].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                
                             ServoNumber="8"                                           
-                            IsAttached="{Binding RCServos[8].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[8].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[8].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[8].MinDataInterval,Mode=TwoWay}"
@@ -783,7 +777,7 @@
                             VelocityLimit="{Binding RCServos[8].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[8].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S9" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S9" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[9].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[9].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[9].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -792,7 +786,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[9].LogTargetPositionReachedEvents,Mode=TwoWay}"
                              
                             ServoNumber="9"                                           
-                            IsAttached="{Binding RCServos[9].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[9].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[9].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[9].MinDataInterval,Mode=TwoWay}"
@@ -837,7 +831,7 @@
                             VelocityLimit="{Binding RCServos[9].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[9].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S10" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S10" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[10].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[10].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[10].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -846,7 +840,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[10].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                     
                             ServoNumber="10"  
-                            IsAttached="{Binding RCServos[10].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[10].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[10].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[10].MinDataInterval,Mode=TwoWay}"
@@ -891,7 +885,7 @@
                             VelocityLimit="{Binding RCServos[10].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[10].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S11" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S11" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[11].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[11].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[11].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -900,7 +894,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[11].LogTargetPositionReachedEvents,Mode=TwoWay}"
                                 
                             ServoNumber="11"  
-                            IsAttached="{Binding RCServos[11].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[11].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[11].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[11].MinDataInterval,Mode=TwoWay}"
@@ -945,7 +939,7 @@
                             VelocityLimit="{Binding RCServos[11].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[11].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S12" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S12" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[12].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[12].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[12].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -954,7 +948,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[12].LogTargetPositionReachedEvents,Mode=TwoWay}"
                      
                             ServoNumber="12"  
-                            IsAttached="{Binding RCServos[12].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[12].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[12].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[12].MinDataInterval,Mode=TwoWay}"
@@ -999,7 +993,7 @@
                             VelocityLimit="{Binding RCServos[12].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[12].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S13" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S13" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[13].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[13].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[13].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -1008,7 +1002,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[13].LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
                             ServoNumber="13"                                           
-                            IsAttached="{Binding RCServos[13].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[13].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[13].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[13].MinDataInterval,Mode=TwoWay}"
@@ -1053,7 +1047,7 @@
                             VelocityLimit="{Binding RCServos[13].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[13].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S14" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S14" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[14].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[14].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[14].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -1062,7 +1056,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[14].LogTargetPositionReachedEvents,Mode=TwoWay}"
 
                             ServoNumber="14"          
-                            IsAttached="{Binding RCServos[14].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[14].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[14].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[14].MinDataInterval,Mode=TwoWay}"
@@ -1107,7 +1101,7 @@
                             VelocityLimit="{Binding RCServos[14].VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding RCServos[14].MaxVelocityLimit,Mode=TwoWay}" />
 
-                        <controls:RCServoControl ControlTitle="Servo S15" HorizontalAlignment="Left"
+                        <views:RCServoControl ControlTitle="Servo S15" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding RCServos[15].LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding RCServos[15].LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding RCServos[15].LogPropertyChangeEvents,Mode=TwoWay}"
@@ -1116,7 +1110,7 @@
                             LogTargetPositionReachedEvents="{Binding RCServos[15].LogTargetPositionReachedEvents,Mode=TwoWay}"
 
                             ServoNumber="15"            
-                            IsAttached="{Binding RCServos[15].IsAttached, Mode=TwoWay}"                                         
+                            Attached="{Binding RCServos[15].Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServos[15].Engaged, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServos[15].MinDataInterval,Mode=TwoWay}"

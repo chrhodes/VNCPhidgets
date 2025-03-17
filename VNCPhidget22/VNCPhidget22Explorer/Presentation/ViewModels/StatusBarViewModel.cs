@@ -69,15 +69,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Event Handlers
-
         private void UpdateStatusMessage(string message)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandlerLow) startTicks = Log.EVENT_HANDLER_LOW("Enter", Common.LOG_CATEGORY);
 
             Message = message;
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandlerLow) Log.EVENT_HANDLER_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -108,6 +107,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
             Message = "Cool, you called LoggingConfiguration";
+            PublishStatusMessage(Message);
 
             if (_loggingConfigurationHost is null) _loggingConfigurationHost = new WindowHost(EventAggregator);
 
@@ -151,8 +151,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // If using CommandParameter, figure out TYPE and fix above
-        //public bool LoggingConfigurationCanExecute(TYPE value)
-        public bool LoggingConfigurationCanExecute()
+        //public Boolean LoggingConfigurationCanExecute(TYPE value)
+        public Boolean LoggingConfigurationCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -180,9 +180,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region IInstanceCount
 
-        private static int _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        public int InstanceCountVM
+        public Int32 InstanceCountVM
         {
             get => _instanceCountVM;
             set => _instanceCountVM = value;

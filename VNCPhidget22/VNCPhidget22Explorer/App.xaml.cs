@@ -14,7 +14,7 @@ using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 using VNC.Phidget22;
-using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
 
 using VNCPhidget22Explorer.Presentation.Views;
 
@@ -29,7 +29,7 @@ namespace VNCPhidget22Explorer
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
-            // HACK(crhodes)
+            // NOTE(crhodes)
             // If don't delay a bit here, the SignalR logging infrastructure does not initialize quickly enough
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
@@ -42,7 +42,7 @@ namespace VNCPhidget22Explorer
             VNC.Phidget22.Common.InitializeLogging(debugConfig: true);
 #else
             Common.InitializeLogging();
-            VNC.Phidget.Common.InitializeLogging();
+            VNC.Phidget22.Common.InitializeLogging();
 #endif
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
@@ -124,10 +124,10 @@ namespace VNCPhidget22Explorer
             // Add the new UI elements
 
             // NOTE(crhodes)
-            // Most of what would typically appear here is in PAEF1Module
+            // Most of what would typically appear here is in VNCPhidgetsExploerModule
             //
             // Maybe the Ribbon, Main, StatusBar should be moved back here
-            // and the App Specific stuff left in PAEF1Module
+            // and the App Specific stuff left in VNCPhidgetsExploerModule
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -262,19 +262,14 @@ namespace VNCPhidget22Explorer
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            // HACK(crhodes)
-            // This is a way to get Phidget22.Net.AddServer called.
-            // Revisit.
-
+            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
 
             // NOTE(crhodes)
             // This will read hostconfig to know what servers we have
+            // This uses a Phidget Manager to determine what Phidgets are attached.
 
-            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
+            Common.PhidgetDeviceLibrary = new VNC.Phidget22.PhidgetDeviceLibrary(Common.EventAggregator);
 
-            // This will use a Phidget Manager to determine what Phidgets are attached.
-
-            Common.PhidgetDeviceLibrary = new PhidgetDeviceLibrary(Common.EventAggregator);
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -463,6 +458,5 @@ namespace VNCPhidget22Explorer
 
 
         #endregion
-
     }
 }

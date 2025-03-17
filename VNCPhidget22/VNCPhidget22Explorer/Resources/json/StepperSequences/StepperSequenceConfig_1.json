@@ -1,45 +1,72 @@
 {
   "StepperSequences": [
-    //These need to be updated to reflect what can be done with a Stepper motor
-    //This is from AdvancedServo
     //
     // Initialize Stepper
     //
     {
-      "Name": "Initialize Stepper", 
-      "Description": "Initialize Stepper",
+      "Name": "Initialize Stepper StepAngle 0.9", 
+      "Channel": 0,
+      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 0.9",
       "UsageNotes": "Does not Engage Stepper",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "StepperIndex": 0, "Acceleration": 5000, "VelocityLimit": 720 },
-      ],
+        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 0.9 },
+      ]
+    },
+    //
+    // Initialize Stepper
+    //
+    {
+      "Name": "Initialize Stepper SA 1.8", 
+      "Channel": 0,
+      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 1.8",
+      "UsageNotes": "Does not Engage Stepper",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 1.8 },
+      ]
+    },
+    //
+    // Initialize Stepper
+    //
+    {
+      "Name": "Initialize Stepper SA 3.75", 
+      "Channel": 0,
+      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 3.75",
+      "UsageNotes": "Does not Engage Stepper",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 3.75 },
+      ]
     },
     //
     // Engage Stepper
     //
     {
-      "Name": "Engage Stepper", 
-      "Description": "Engage Stepper",
+      "Name": "Open and Engage Stepper", 
+      "Channel": 0,
+      "Description": "Open and Engage Stepper",
       "UsageNotes": "Engages Stepper",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "StepperIndex": 0, "Engaged":  true },
-      ],
+        { "Open": true, "Engaged":  true },
+      ]
     },
     //
     // Rotate +/- 90
     //
     {
       "Name": "Rotate +/- 90", 
+      "Channel": 0,
       "Description": "Rotate +/- 90",
       "UsageNotes": "Rotate +/- 90",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  90 },
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  -90 },
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  -90 },
-        { "StepperIndex": 0, "StepAngle": 0.9, "RelativeTargetDegrees":  90 },
-      ],
+        { "RelativeTargetDegrees":  90, "Duration": 1000 },
+        { "RelativeTargetDegrees":  -90, "Duration": 1000 },
+        { "RelativeTargetDegrees":  -90, "Duration": 1000 },
+        { "RelativeTargetDegrees":  90, "Duration": 1000 },
+      ]
     },
   ]
 }

@@ -12,6 +12,33 @@ namespace VNCPhidget22Explorer.Presentation.Views
 {
     public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
     {
+        public Ribbon()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountV++;
+
+            InitializeComponent();
+
+            // Wire up ViewModel if needed
+
+            // If View First with ViewModel in Xaml
+
+            // ViewModel = (IRibbonViewModel)DataContext;
+
+            // Can create directly
+
+            // ViewModel = new RibbonViewModel();
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
+
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         public Ribbon(ViewModels.IRibbonViewModel viewModel)
         {
@@ -19,6 +46,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
 
             InstanceCountVP++;
+
             InitializeComponent();
 
             ViewModel = viewModel;  // ViewBase sets the DataContext to ViewModel
@@ -34,12 +62,14 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
             ViewType = this.GetType().ToString().Split('.').Last();
+            ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
+            ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
             // Establish any additional DataContext(s), e.g. to things held in this View
-            
+
             spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -48,7 +78,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Fields and Properties
 
         
-        public bool IsAdvancedMode
+        public Boolean IsAdvancedMode
         {
             get => _isAdvancedMode;
             set
@@ -64,18 +94,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region IInstanceCount
 
-        private bool _isAdvancedMode;
-        private static int _instanceCountV;
+        private Boolean _isAdvancedMode;
+        private static Int32 _instanceCountV;
 
-        public int InstanceCountV
+        public Int32 InstanceCountV
         {
             get => _instanceCountV;
             set => _instanceCountV = value;
         }
 
-        private static int _instanceCountVP;
+        private static Int32 _instanceCountVP;
 
-        public int InstanceCountVP
+        public Int32 InstanceCountVP
         {
             get => _instanceCountVP;
             set => _instanceCountVP = value;
@@ -174,14 +204,14 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             //if (snd.IsChecked == true)
             //{
-            //    Common.UserMode.CurrentMode = (int)ViewMode.Mode.Administrator;
+            //    Common.UserMode.CurrentMode = (Int32)ViewMode.Mode.Administrator;
             //    Common.AllowEditing = true;
             //    lc_Root.Background = new SolidColorBrush(Color.FromArgb(0x7E, 0xFF, 0x01, 0x01));
             //}
             //else
             //{
             //    // TODO(crhodes): Decide if this is correct or if we need to use the Common.UserMode at all.
-            //    Common.UserMode.CurrentMode = (int)ViewMode.Mode.Basic;
+            //    Common.UserMode.CurrentMode = (Int32)ViewMode.Mode.Basic;
             //    Common.AllowEditing = false;
             //    lc_Root.Background = Brushes.Transparent;
             //}
@@ -195,11 +225,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             //if (snd.IsChecked == true)
             //{
-            //    Common.UserMode.CurrentMode = (int)ViewMode.Mode.Beta;
+            //    Common.UserMode.CurrentMode = (Int32)ViewMode.Mode.Beta;
             //}
             //else
             //{
-            //    Common.UserMode.CurrentMode = (int)ViewMode.Mode.Basic;
+            //    Common.UserMode.CurrentMode = (Int32)ViewMode.Mode.Basic;
             //}
 
             //// This saves the current mode back to the app.config file.
@@ -277,13 +307,13 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             //if (snd.IsChecked == true)
             //{
-            //    Common.UserMode.CurrentMode = (int)ViewMode.Mode.Advanced;
+            //    Common.UserMode.CurrentMode = (Int32)ViewMode.Mode.Advanced;
             //    IsAdvancedMode = true;
 
             //}
             //else
             //{
-            //    Common.UserMode.CurrentMode = (int)ViewMode.Mode.Basic;
+            //    Common.UserMode.CurrentMode = (Int32)ViewMode.Mode.Basic;
             //    IsAdvancedMode = false;
             //}
 
@@ -473,7 +503,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             dlg.DefaultExt = ".xls";
             dlg.Filter = "CSV Documents (*.csv)|*.csv";
 
-            Nullable<bool> result = dlg.ShowDialog();
+            Nullable<Boolean> result = dlg.ShowDialog();
 
             if (result == true)
             {
@@ -488,7 +518,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             dlg.DefaultExt = ".xls";
             dlg.Filter = "XLS Documents (*.xls)|*.xls";
 
-            Nullable<bool> result = dlg.ShowDialog();
+            Nullable<Boolean> result = dlg.ShowDialog();
 
             if (result == true)
             {
@@ -503,7 +533,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             dlg.DefaultExt = ".xlsx";
             dlg.Filter = "XLSX Documents (*.xlsx)|*.xlsx";
 
-            Nullable<bool> result = dlg.ShowDialog();
+            Nullable<Boolean> result = dlg.ShowDialog();
 
             if (result == true)
             {

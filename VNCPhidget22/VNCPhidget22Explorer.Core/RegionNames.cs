@@ -27,6 +27,10 @@ namespace VNCPhidget22Explorer.Core
         public static string Stepper1063Region3 = "Stepper1063Region3";
 
         public static string HackAroundRegion = "HackAroundRegion";
+        public static string ManagePerformanceLibraryRegion = "ManagePerformanceLibraryRegion";
+        public static string PhidgetDeviceLibraryRegion = "PhidgetDeviceLibraryRegion";
+        public static string EventCoordinatorRegion = "EventCoordinatorRegion";
+
 
         // public static string CombinedMainRegion = "CombinedMainRegion";
         // public static string CombinedNavigationRegion = "CombinedNavigationRegion";

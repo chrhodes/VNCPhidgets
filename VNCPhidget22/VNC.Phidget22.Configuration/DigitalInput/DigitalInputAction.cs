@@ -4,6 +4,18 @@ namespace VNC.Phidget22.Configuration
 {
     public class DigitalInputAction
     {
+        #region Logging
+
+        public Boolean? LogPhidgetEvents { get; set; }
+        public Boolean? LogErrorEvents { get; set; }
+        public Boolean? LogPropertyChangeEvents { get; set; }
+
+        public Boolean? LogDeviceChannelSequence { get; set; }
+        public Boolean? LogChannelAction { get; set; }
+        public Boolean? LogActionVerification { get; set; }
+
+        #endregion
+
         /// <summary>
         /// Duration of step in ms (sleep time after step)
         /// </summary>

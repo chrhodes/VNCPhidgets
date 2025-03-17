@@ -22,7 +22,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
         {
             if (value != null)
             {
-                return new List<object>((IEnumerable<PerformanceSequence>)value);
+                return new List<object>((IEnumerable<DeviceChannelSequence>)value);
             }
 
             return null;
@@ -30,14 +30,14 @@ namespace VNCPhidget22Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<PerformanceSequence> result = new List<PerformanceSequence>();
+            List<DeviceChannelSequence> result = new List<DeviceChannelSequence>();
             var enumerable = (List<object>)value;
 
             if (enumerable != null)
             {
                 foreach (object item in enumerable)
                 {
-                    result.Add((PerformanceSequence)item);
+                    result.Add((DeviceChannelSequence)item);
                 }
             }
 

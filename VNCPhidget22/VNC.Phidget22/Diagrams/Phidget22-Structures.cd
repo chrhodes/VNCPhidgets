@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="VNC.Phidget22.ExploreStructures">
+    <Position X="0.5" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAgBAAAKAEFAAAAAEgQAAICAAAAAAJAAQAAIgAA=</HashCode>
+      <FileName>ExploreStructures.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Phidget22.DistanceSensorSonarReflections">
+    <Position X="4.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPGGA">
+    <Position X="4.25" Y="2.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPGSA">
+    <Position X="4.25" Y="4.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPRMC">
+    <Position X="4.25" Y="7" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPSDate">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPSTime">
+    <Position X="7" Y="2.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.GPVTG">
+    <Position X="4.25" Y="9.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.IRCode">
+    <Position X="7" Y="4.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.IRCodeInfo">
+    <Position X="7" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.IRLearnedCode">
+    <Position X="7" Y="9.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.LCDFontSize">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.UnitInfo">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.SpatialQuaternion">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.LogRotating">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.NMEAData">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PhidgetClientVersion">
+    <Position X="9.5" Y="5.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PhidgetServer">
+    <Position X="9.5" Y="7" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.PhidgetServerVersion">
+    <Position X="9.5" Y="9.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.SpatialEulerAngles">
+    <Position X="11.5" Y="2" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Phidget22.RFIDTag">
+    <Position X="11.5" Y="0.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
