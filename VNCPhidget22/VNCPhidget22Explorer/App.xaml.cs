@@ -29,7 +29,7 @@ namespace VNCPhidget22Explorer
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Initialize SignalR", Common.LOG_CATEGORY);
 
-            // HACK(crhodes)
+            // NOTE(crhodes)
             // If don't delay a bit here, the SignalR logging infrastructure does not initialize quickly enough
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
@@ -262,19 +262,14 @@ namespace VNCPhidget22Explorer
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            // HACK(crhodes)
-            // This is a way to get Phidget22.Net.AddServer called.
-            // Revisit.
-
+            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
 
             // NOTE(crhodes)
             // This will read hostconfig to know what servers we have
-
-            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
-
-            // This will use a Phidget Manager to determine what Phidgets are attached.
+            // This uses a Phidget Manager to determine what Phidgets are attached.
 
             Common.PhidgetDeviceLibrary = new VNC.Phidget22.PhidgetDeviceLibrary(Common.EventAggregator);
+
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 

@@ -35,11 +35,7 @@ namespace VNC.Phidget22.Configuration.Performance
 
                 LoadPerformances();
 
-                //LoadAdvancedServoSequences();
-
                 LoadRCServoSequences();
-
-                //LoadInterfaceKitSequences();
 
                 LoadDigitalInputSequences();
                 LoadDigitalOutputSequences();

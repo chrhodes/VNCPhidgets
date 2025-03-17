@@ -34,7 +34,8 @@ namespace VNCPhidget22Explorer
 
         // HACK(crhodes)
         // Decide if want to keep this.
-        // Put here to try to get in View and ViewModel can ask for in constructor
+        // Put here to try to get in View and ViewModel that don't have it passed in.
+        // Can also ask for in constructor, which is what is mostly done
 
         public static IContainerProvider Container;
         public static IEventAggregator EventAggregator;

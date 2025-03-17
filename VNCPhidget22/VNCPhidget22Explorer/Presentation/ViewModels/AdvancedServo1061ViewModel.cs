@@ -78,7 +78,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // See HackAroundViewModel.InitializeViewModel()
             // Or maybe a method on something else in VNCPhidget22.Configuration
 
-            HostConfigFileName = "hostconfig.json";
+            //HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
 
             Message = "AdvancedServo1061ViewModel says hello";
@@ -92,11 +92,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            string jsonString = File.ReadAllText(HostConfigFileName);
+            //string jsonString = File.ReadAllText(HostConfigFileName);
 
-            VNCPhidgetConfig.HostConfig? hostConfig =
-                JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
-                (jsonString, GetJsonSerializerOptions());
+            //VNCPhidgetConfig.HostConfig? hostConfig =
+            //    JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
+            //    (jsonString, GetJsonSerializerOptions());
 
             //Hosts = hostConfig.Hosts.ToList();
 
@@ -153,30 +153,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Host
 
-        private string _hostConfigFileName;
-        public string HostConfigFileName
-        {
-            get => _hostConfigFileName;
-            set
-            {
-                if (_hostConfigFileName == value) return;
-                _hostConfigFileName = value;
-                OnPropertyChanged();
-            }
-        }
+        //private string _hostConfigFileName;
+        //public string HostConfigFileName
+        //{
+        //    get => _hostConfigFileName;
+        //    set
+        //    {
+        //        if (_hostConfigFileName == value) return;
+        //        _hostConfigFileName = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+        //public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
-        public IEnumerable<VNCPhidgetConfig.Host> Hosts
-        {
-            get => _Hosts;
-            set
-            {
-                _Hosts = value;
-                OnPropertyChanged();
-            }
-        }
+        //private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
+        //public IEnumerable<VNCPhidgetConfig.Host> Hosts
+        //{
+        //    get => _Hosts;
+        //    set
+        //    {
+        //        _Hosts = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         //private VNCPhidgetConfig.Host _selectedHost;
         //public VNCPhidgetConfig.Host SelectedHost

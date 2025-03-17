@@ -443,7 +443,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private PerformancePlayer ActivePerformancePlayer { get; set; }
         //private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
 
-        private DeviceChannelSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
 
         private IEnumerable<Performance> _performances;
         public IEnumerable<Performance> Performances
@@ -1936,27 +1936,27 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private DeviceChannelSequencePlayer GetPhidgetDeviceSequencePlayer()
         {
-            if (ActivePerformanceSequencePlayer == null)
+            if (ActiveDeviceChannelSequencePlayer == null)
             {
-                ActivePerformanceSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
+                ActiveDeviceChannelSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
             }
 
-            ActivePerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActivePerformanceSequencePlayer.LogChannelAction = LogChannelAction;
-            ActivePerformanceSequencePlayer.LogActionVerification = LogActionVerification;
+            ActiveDeviceChannelSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            ActiveDeviceChannelSequencePlayer.LogChannelAction = LogChannelAction;
+            ActiveDeviceChannelSequencePlayer.LogActionVerification = LogActionVerification;
 
-            ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            ActivePerformanceSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
-            ActivePerformanceSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
-            ActivePerformanceSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+            ActiveDeviceChannelSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            ActiveDeviceChannelSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
+            ActiveDeviceChannelSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            ActiveDeviceChannelSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            ActivePerformanceSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
-            ActivePerformanceSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
-            ActivePerformanceSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
+            ActiveDeviceChannelSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
+            ActiveDeviceChannelSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
+            ActiveDeviceChannelSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            ActivePerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
+            ActiveDeviceChannelSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
 
-            return ActivePerformanceSequencePlayer;
+            return ActiveDeviceChannelSequencePlayer;
         }
 
         //private async Task PlayParty()
