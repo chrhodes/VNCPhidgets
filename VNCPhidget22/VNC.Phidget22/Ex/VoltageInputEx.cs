@@ -725,13 +725,20 @@ namespace VNC.Phidget22.Ex
 
             Attached = base.Attached;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}" +
+                $"s#:{DeviceSerialNumber}hp:{HubPort}c:{Channel}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached} timeout:{timeout}" +
+                $"s#:{DeviceSerialNumber}hp:{HubPort}c:{Channel}", Common.LOG_CATEGORY);
+
+            //var spn = ServerPeerName;
+            var sn = SerialNumber;
+            var hp = HubPort;
+            var c = Channel;
 
             base.Open(timeout);
 

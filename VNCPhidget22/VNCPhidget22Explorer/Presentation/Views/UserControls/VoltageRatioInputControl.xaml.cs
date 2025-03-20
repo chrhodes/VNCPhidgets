@@ -385,6 +385,153 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
+        #region SerialNumber
+
+        public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+            "SerialNumber",
+            typeof(Int32),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnSerialNumberChanged),
+                new CoerceValueCallback(OnCoerceSerialNumber)
+                )
+            );
+
+        public Int32 SerialNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(SerialNumberProperty);
+            set => SetValue(SerialNumberProperty, value);
+        }
+
+        private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceSerialNumber((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Channel
+
+        public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+            "Channel",
+            typeof(Int32),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnChannelChanged),
+                new CoerceValueCallback(OnCoerceChannel)
+                )
+            );
+
+        public Int32 Channel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(ChannelProperty);
+            set => SetValue(ChannelProperty, value);
+        }
+
+        private static object OnCoerceChannel(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceChannel((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceChannel(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region HubPort
+
+        public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+            "HubPort",
+            typeof(Int32),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnHubPortChanged),
+                new CoerceValueCallback(OnCoerceHubPort)
+                )
+            );
+
+        public Int32 HubPort
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(HubPortProperty);
+            set => SetValue(HubPortProperty, value);
+        }
+
+        private static object OnCoerceHubPort(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceHubPort((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceHubPort(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #region ChannelNumber
 
         public static readonly DependencyProperty ChannelNumberProperty = DependencyProperty.Register(

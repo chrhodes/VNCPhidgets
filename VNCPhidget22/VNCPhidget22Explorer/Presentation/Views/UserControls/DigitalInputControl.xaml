@@ -108,7 +108,7 @@
                     DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		        Command="{Binding OpenDigitalInputCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                    CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		        Content="{Binding OpenDigitalInputContent, FallbackValue='OpenDigitalInput' }"
       		        ToolTip="{Binding OpenDigitalInputToolTip, FallbackValue='OpenDigitalInput ToolTip' }" />
             </dxlc:LayoutItem>
@@ -118,20 +118,37 @@
                     DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		        Command="{Binding CloseDigitalInputCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                    CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		        Content="{Binding CloseDigitalInputContent, FallbackValue='CloseDigitalInput' }"
       		        ToolTip="{Binding CloseDigitalInputToolTip, FallbackValue='CloseDigitalInput ToolTip' }" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
-            <dxe:CheckEdit Tag="0"  
+        <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+            <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
+                <dxe:CheckEdit Tag="0"  
                 IsEnabled="{Binding Attached}" 
                 IsChecked="{Binding State}"
                 Background="{Binding State, Mode=OneWay, 
                             Converter={StaticResource BooleanToColorConverter}}"/>
-        </dxlc:LayoutItem>
+            </dxlc:LayoutItem>
+
+            <views:SerialHubPortControl />
+            <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="SerialNumber" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding SerialNumber}" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="HubPort" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding HubPort}" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Center" Label="Channel" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding Channel}" />
+            </dxlc:LayoutItem>-->
+
+        </dxlc:LayoutGroup>
 
         <!-- NOTE(crhodes)
             Need a ValueConverter for this enum
