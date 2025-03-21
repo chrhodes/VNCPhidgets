@@ -102,6 +102,8 @@
 
         </dxlc:LayoutGroup>
 
+        <!--Open/Close-->
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             <dxlc:LayoutItem>
                 <Button x:Name="btnOpenDigitalInputCommand" 

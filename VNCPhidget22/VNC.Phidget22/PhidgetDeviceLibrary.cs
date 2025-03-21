@@ -564,6 +564,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new DigitalInputConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -583,6 +584,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new DigitalOutputConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -637,6 +639,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new HubConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -701,6 +704,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new RCServoConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -740,6 +744,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new StepperConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -766,6 +771,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new VoltageInputConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -785,6 +791,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new VoltageRatioInputConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },
@@ -804,6 +811,7 @@ namespace VNC.Phidget22
                             phidget.DeviceSerialNumber,
                             new VoltageOutputConfiguration()
                             {
+                                HubPortDevice = phidget.IsHubPortDevice,
                                 HubPort = phidget.HubPort,
                                 Channel = phidget.Channel
                             },

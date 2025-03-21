@@ -80,8 +80,6 @@
                                         Converter={StaticResource BooleanToColorConverter}}"/>
             <!--</dxlc:LayoutItem>-->
 
- 
-
             <dxlc:LayoutItem Label="Current" LabelPosition="Left" Width="100" HorizontalAlignment="Left">
                 <dxe:TextEdit Text="{Binding Current, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>

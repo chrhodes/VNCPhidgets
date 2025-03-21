@@ -298,6 +298,7 @@
                               Padding="-10" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Horizontal">
+                        
                         <views:StepperControl ControlTitle="Stepper S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding Stepper0.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding Stepper0.LogErrorEvents,Mode=TwoWay}"
@@ -306,7 +307,9 @@
                             LogVelocityChangeEvents="{Binding Stepper0.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogStoppedEvents="{Binding Stepper0.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
-                            StepperNumber="0"
+                            SerialNumber ="{Binding Stepper0.SerialNumber, Mode=TwoWay}"                                                       
+                            HubPort ="{Binding Stepper0.HubPort, Mode=TwoWay}"
+                            Channel ="{Binding Stepper0.Channel, Mode=TwoWay}"  
                             Attached="{Binding Stepper0.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper0.Engaged, Mode=TwoWay}"
                             StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
@@ -349,8 +352,8 @@
                             ControlMode="{Binding Stepper0.ControlMode,Mode=TwoWay}"                                                 
                             RescaleFactor="{Binding Stepper0.RescaleFactor,Mode=TwoWay}" 
                             StepAngle="{Binding Stepper0.StepAngle,Mode=TwoWay}" />
-
-                        <!--<views:StepperControl ControlTitle="Stepper S1" HorizontalAlignment="Left"
+                        
+                        <views:StepperControl ControlTitle="Stepper S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding Stepper1.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding Stepper1.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding Stepper1.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -358,7 +361,9 @@
                             LogVelocityChangeEvents="{Binding Stepper1.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogStoppedEvents="{Binding Stepper1.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
-                            StepperNumber="1"
+                            SerialNumber ="{Binding Stepper1.SerialNumber, Mode=TwoWay}"                                                       
+                            HubPort ="{Binding Stepper1.HubPort, Mode=TwoWay}"
+                            Channel ="{Binding Stepper1.Channel, Mode=TwoWay}"  
                             Attached="{Binding Stepper1.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper1.Engaged, Mode=TwoWay}"
                             StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
@@ -398,7 +403,10 @@
                             VelocityLimit="{Binding Stepper1.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding Stepper1.MaxVelocityLimit,Mode=TwoWay}" 
                               
-                            RescaleFactor="{Binding Stepper1.RescaleFactor,Mode=TwoWay}" />-->
+                            ControlMode="{Binding Stepper1.ControlMode,Mode=TwoWay}"                                                 
+                            RescaleFactor="{Binding Stepper1.RescaleFactor,Mode=TwoWay}" 
+                            StepAngle="{Binding Stepper1.StepAngle,Mode=TwoWay}" />
+
 
                     </StackPanel>
                     

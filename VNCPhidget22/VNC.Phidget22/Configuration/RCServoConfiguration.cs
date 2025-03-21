@@ -12,6 +12,7 @@ namespace VNC.Phidget22.Configuration
         // We should probably add ServoType and maybe Acceleration/Velocity stuff
 
         public Boolean LogPositionChangeEvents { get; set; }
+
         public Boolean LogVelocityChangeEvents { get; set; }
 
         public Boolean LogTargetPositionReachedEvents { get; set; }

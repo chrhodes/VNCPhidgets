@@ -83,6 +83,8 @@
             <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
                               HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
 
+                <!--Logging-->
+                
                 <dxlc:LayoutGroup x:Name="lgLogging"  Header="Event Logging" View="GroupBox" Orientation="Vertical" 
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True" IsCollapsed="False"                                     
@@ -126,7 +128,7 @@
                             DataContext="{Binding DataContext, 
                                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		            Command="{Binding OpenStepperCommand }"
-                            CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
+                            CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		            Content="{Binding OpenStepperContent, FallbackValue='OpenStepper' }"
         		            ToolTip="{Binding OpenStepperToolTip, FallbackValue='OpenStepper ToolTip' }" />
                     </dxlc:LayoutItem>
@@ -136,7 +138,7 @@
                         DataContext="{Binding DataContext, 
                                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		        Command="{Binding CloseStepperCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
+                        CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		        Content="{Binding CloseStepperContent, FallbackValue='CloseStepper' }"
         		        ToolTip="{Binding CloseStepperToolTip, FallbackValue='CloseStepperoolTip' }" />
                     </dxlc:LayoutItem>

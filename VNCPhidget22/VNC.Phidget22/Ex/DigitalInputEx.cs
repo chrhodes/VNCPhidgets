@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
@@ -59,10 +61,22 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = SerialNumber;
+            IsHubPortDevice = configuration.HubPortDevice;
             HubPort = configuration.HubPort;
             Channel = configuration.Channel;
 
             IsRemote = true;
+
+            // NOTE(crhodes)
+            // Having these passed in is handy for Performance stuff where there is no UI
+
+            LogPhidgetEvents = configuration.LogPhidgetEvents;
+            LogErrorEvents = configuration.LogErrorEvents;
+            LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            LogDeviceChannelSequence = configuration.LogDeviceChannelSequence;
+            LogChannelAction = configuration.LogChannelAction;
+            LogActionVerification = configuration.LogActionVerification;
 
             Attach += DigitalInputEx_Attach;
             Detach += DigitalInputEx_Detach;
@@ -252,11 +266,11 @@ namespace VNC.Phidget22.Ex
             //Attached = digitalInput.Attached;
 
             // Just set it so UI behaves well
-            Attached = true;
+            //Attached = true;
 
             try
             {
-                State = digitalInput.State;
+                //State = digitalInput.State;
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -392,11 +406,12 @@ namespace VNC.Phidget22.Ex
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
-                $"s#:{DeviceSerialNumber}hp:{HubPort}c:{Channel}", Common.LOG_CATEGORY);
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
@@ -405,7 +420,7 @@ namespace VNC.Phidget22.Ex
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached} timeout:{timeout}" +
-                $"s#:{DeviceSerialNumber}hp:{HubPort}c:{Channel}", Common.LOG_CATEGORY);
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             //var spn = ServerPeerName;
             var sn = SerialNumber;
@@ -415,8 +430,43 @@ namespace VNC.Phidget22.Ex
             base.Open(timeout);
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+
+            try
+            {
+                State = base.State;
+                // NOTE(crhodes)
+                // These are not supported by the 16x RC Servo Phidget
+                // Going to remove for all
+
+                //MinDataInterval = base.MinDataInterval;
+                //DataInterval = base.DataInterval;
+                ////DataInterval = 100; // 100ms (10Hz)
+                //MaxDataInterval = base.MaxDataInterval;
+
+                //MinDataRate = base.MinDataRate;
+                //DataRate = base.DataRate;
+                ////DataRate = 10; // 10 Hz (100ms)
+                //MaxDataRate = base.MaxDataRate;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()

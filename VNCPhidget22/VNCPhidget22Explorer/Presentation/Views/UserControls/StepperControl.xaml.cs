@@ -8,6 +8,7 @@ using DevExpress.Xpf.LayoutControl;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget22;
 using VNC.Phidget22.Ex;
 
 using Phidgets = Phidget22;
@@ -136,6 +137,202 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         protected virtual void OnControlTitleChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                StepperControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialNumber
+
+        public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+            "SerialNumber",
+            typeof(Int32),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnSerialNumberChanged),
+                new CoerceValueCallback(OnCoerceSerialNumber)
+                )
+            );
+
+        public Int32 SerialNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(SerialNumberProperty);
+            set => SetValue(SerialNumberProperty, value);
+        }
+
+        private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceSerialNumber((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                StepperControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region HubPort
+
+        public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+            "HubPort",
+            typeof(Int32),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnHubPortChanged),
+                new CoerceValueCallback(OnCoerceHubPort)
+                )
+            );
+
+        public Int32 HubPort
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(HubPortProperty);
+            set => SetValue(HubPortProperty, value);
+        }
+
+        private static object OnCoerceHubPort(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceHubPort((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                StepperControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceHubPort(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Channel
+
+        public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+            "Channel",
+            typeof(Int32),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnChannelChanged),
+                new CoerceValueCallback(OnCoerceChannel)
+                )
+            );
+
+        public Int32 Channel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(ChannelProperty);
+            set => SetValue(ChannelProperty, value);
+        }
+
+        private static object OnCoerceChannel(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceChannel((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = o as StepperControl;
+            if (StepperControl != null)
+                StepperControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceChannel(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }

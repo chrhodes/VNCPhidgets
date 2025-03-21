@@ -77,6 +77,8 @@
     <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
                       HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
 
+        <!--Logging-->
+        
         <dxlc:LayoutGroup x:Name="lgLogging" Header="Event Logging" View="GroupBox" Orientation="Vertical" 
             VerticalAlignment="Top" HorizontalAlignment="Stretch"
             IsCollapsible="True" IsCollapsed="False"                                     
@@ -120,39 +122,21 @@
                     DataContext="{Binding DataContext, 
                                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		    Command="{Binding OpenRCServoCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=ServoNumber}"                
+                    CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		    Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }"
         		    ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" />
             </dxlc:LayoutItem>
-            <!-- <dxlc:LayoutItem> -->
-            <!-- <Button -->
-            <!-- Command="{Binding OpenRCServoCommand}" -->
-            <!-- CommandParameter="{Binding OpenRCServoCommandParameter}" -->
-            <!-- Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }" -->
-            <!-- ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" /> -->
-            <!-- <Button.Background> -->
-            <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
-            <!-- </Button.Background> -->
-            <!-- </dxlc:LayoutItem> -->
+
             <dxlc:LayoutItem>
                 <Button x:Name="btnCloseRCServoCommand" 
                     DataContext="{Binding DataContext, 
                                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		    Command="{Binding CloseRCServoCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=ServoNumber}"                
+                    CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		    Content="{Binding CloseRCServoContent, FallbackValue='CloseRCServo' }"
         		    ToolTip="{Binding CloseRCServoToolTip, FallbackValue='CloseRCServo ToolTip' }" />
             </dxlc:LayoutItem>
-            <!-- <dxlc:LayoutItem> -->
-            <!-- <Button -->
-            <!-- Command="{Binding OpenRCServoCommand}" -->
-            <!-- CommandParameter="{Binding OpenRCServoCommandParameter}" -->
-            <!-- Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }" -->
-            <!-- ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" /> -->
-            <!-- <Button.Background> -->
-            <!-- <ImageBrush ImageSource="\Resources\Images\VNCDeveloperMotivation.png"  /> -->
-            <!-- </Button.Background> -->
-            <!-- </dxlc:LayoutItem> -->
+
         </dxlc:LayoutGroup>
 
         <dxlc:LayoutItem Label="Type" LabelPosition="Top">
@@ -186,9 +170,9 @@
             PositionStopRange="{Binding PositionStopRange}" />
 
         <dxlc:LayoutGroup x:Name="lgMovementCharacteristics" Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
-                        VerticalAlignment="Top"
-                        IsCollapsible="True" IsCollapsed="False" 
-                        Padding="-5" Background="AliceBlue">
+            VerticalAlignment="Top"
+            IsCollapsible="True" IsCollapsed="False" 
+            Padding="-5" Background="AliceBlue">
 
             <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
             <dxe:CheckEdit IsChecked="{Binding SpeedRampingState}" Content="Speed Ramping"
@@ -196,18 +180,8 @@
                             Converter={StaticResource BooleanToColorConverter}}"/>
             <!--</dxlc:LayoutItem>-->
 
-            <!--<views:VelocityLimitControl
-                MinVelocityLimit="{Binding MinVelocityLimit, Mode=OneWay}"
-                VelocityLimit="{Binding VelocityLimit, Mode=TwoWay}"
-                MaxVelocityLimit="{Binding MaxVelocityLimit, Mode=OneWay}"/>-->
-
             <views:VelocityLimitControl />
             
-                <!--<views:AccelerationControl
-                MinAcceleration="{Binding MinAcceleration, Mode=OneWay}"
-                Acceleration="{Binding Acceleration, Mode=TwoWay}"
-                MaxAcceleration="{Binding MaxAcceleration, Mode=OneWay}"/>-->
-
             <views:AccelerationControl />
 
             </dxlc:LayoutGroup>

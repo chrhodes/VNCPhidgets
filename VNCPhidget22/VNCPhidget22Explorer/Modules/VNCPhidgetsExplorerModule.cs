@@ -65,14 +65,17 @@ namespace VNCPhidget22Explorer
             containerRegistry.RegisterSingleton<IStatusBarViewModel, StatusBarViewModel>();
             containerRegistry.RegisterSingleton<StatusBar, StatusBar>();
 
-            containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
-            containerRegistry.Register<IInterfaceKitViewModel, InterfaceKit1018ViewModel>();
-
             containerRegistry.Register<IAdvancedServo1061, AdvancedServo1061>();
             containerRegistry.Register<IAdvancedServo1061ViewModel, AdvancedServo1061ViewModel>();
 
+            containerRegistry.Register<IInterfaceKit, InterfaceKit1018>();
+            containerRegistry.Register<IInterfaceKitViewModel, InterfaceKit1018ViewModel>();
+
             containerRegistry.Register<IStepper1063, Stepper1063>();
             containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
+
+            containerRegistry.Register<IVINTHub, VINTHub>();
+            containerRegistry.Register<IVINTHubViewModel, VINTHubViewModel>();
 
             // FIX(crhodes)
             // This works because the parameterless constructor does not exist in HackAround
@@ -139,17 +142,21 @@ namespace VNCPhidget22Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(IMain));
             _regionManager.RegisterViewWithRegion(RegionNames.StatusBarRegion, typeof(StatusBar));
 
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region1, typeof(InterfaceKit1018));
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region2, typeof(InterfaceKit1018));
-            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region3, typeof(InterfaceKit1018));
-
             _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region1, typeof(AdvancedServo1061));
             _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region2, typeof(AdvancedServo1061));
             _regionManager.RegisterViewWithRegion(RegionNames.AdvancedServo1061Region3, typeof(AdvancedServo1061));
 
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region1, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region2, typeof(InterfaceKit1018));
+            _regionManager.RegisterViewWithRegion(RegionNames.InterfaceKit1018Region3, typeof(InterfaceKit1018));
+
             _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region1, typeof(Stepper1063));
             _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region2, typeof(Stepper1063));
             _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
+
+            _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion1, typeof(VINTHub));
+            _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion2, typeof(VINTHub));
+            _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion3, typeof(VINTHub));
 
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));
             _regionManager.RegisterViewWithRegion(RegionNames.ManagePerformanceLibraryRegion, typeof(ManagePerformanceLibrary));
