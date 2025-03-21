@@ -80,7 +80,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             AdvancedServoPhidgets = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices
-                .Where(x => x.DeviceClass == "AdvancedServo")
+                .Where(x => x.ChannelClass == "RCServo")
                 .DistinctBy(x => x.DeviceSerialNumber)
                 .Select(x => x.DeviceSerialNumber);
 
@@ -1498,10 +1498,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (SelectedAdvancedServoPhidget is null) return false;
 
+            if (serialHubPortChannel is null) return false;
+
             RCServoEx? host;
 
             if (!Common.PhidgetDeviceLibrary.RCServoChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            {
+                return true;
+            }
 
             if (host.Attached)
             {
@@ -1609,7 +1614,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             RCServoEx? host;
 
             if (!Common.PhidgetDeviceLibrary.RCServoChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            { 
+                return false; 
+            }
 
             if (host.IsOpen)
             {
@@ -1618,7 +1626,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             else
             {
                 return false;
-            }
+            }        
         }
 
         #endregion

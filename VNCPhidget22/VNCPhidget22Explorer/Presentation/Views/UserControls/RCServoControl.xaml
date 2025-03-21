@@ -139,14 +139,16 @@
 
         </dxlc:LayoutGroup>
 
+        <views:SerialHubPortControl />
+
         <dxlc:LayoutItem Label="Type" LabelPosition="Top">
-                <dxe:ComboBoxEdit 
-                    ItemsSource="{Binding Source={vncenum:EnumBindingSource 
-                        {x:Type vncPhidgetConfiguration:RCServoType}}}"
-                    SelectedIndex="0"
-                    EditValue="{ Binding Path=RCServoType,Mode=TwoWay,
-                        UpdateSourceTrigger=PropertyChanged,
-                        Converter={StaticResource SelectedItemToEnumConverter} }" />
+            <dxe:ComboBoxEdit 
+                ItemsSource="{Binding Source={vncenum:EnumBindingSource 
+                    {x:Type vncPhidgetConfiguration:RCServoType}}}"
+                SelectedIndex="0"
+                EditValue="{ Binding Path=RCServoType,Mode=TwoWay,
+                    UpdateSourceTrigger=PropertyChanged,
+                    Converter={StaticResource SelectedItemToEnumConverter} }" />
         </dxlc:LayoutItem>
 
         <views:RCServoStateControl

@@ -134,9 +134,9 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
                             </dxdo:LayoutPanel>
 
-                            <!--<dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="480" >
+                            <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="False" ShowCloseButton="False" MinWidth="480" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
-                            </dxdo:LayoutPanel>-->
+                            </dxdo:LayoutPanel>
 
                             <dxdo:LayoutPanel Caption="VINTHub-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.VINTHubRegion1}"/>
@@ -154,9 +154,9 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PhidgetDeviceLibraryRegion}" />
                             </dxdo:LayoutPanel>                       
 
-                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region2}"/>
-                            </dxdo:LayoutPanel>-->
+                            </dxdo:LayoutPanel>
 
                             <dxdo:LayoutPanel Caption="InterfaceKit888-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region2}"/>
@@ -170,9 +170,9 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.VINTHubRegion2}"/>
                             </dxdo:LayoutPanel>
                             
-                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-3" AutoHidden="True" ShowCloseButton="False" MinWidth="480" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-3" AutoHidden="True" ShowCloseButton="False" MinWidth="480" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region3}"/>
-                            </dxdo:LayoutPanel>-->
+                            </dxdo:LayoutPanel>
 
                             <dxdo:LayoutPanel Caption="InterfaceKit888-3" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region3}"/>

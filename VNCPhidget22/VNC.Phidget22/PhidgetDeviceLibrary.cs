@@ -477,7 +477,6 @@ namespace VNC.Phidget22
             phidgetDevice.ChannelName = phidget.ChannelName.ToString();
             phidgetDevice.ChannelSubclass = phidget.ChannelSubclass.ToString();
 
-
             // NOTE(crhodes)
             // Switch from Dictionary to List
             // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel

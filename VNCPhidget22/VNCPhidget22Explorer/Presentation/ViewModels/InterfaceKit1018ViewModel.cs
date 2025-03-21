@@ -2250,7 +2250,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             DigitalInputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.DigitalInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.DigitalInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            { 
+                return false; 
+            }
 
             if (host.IsOpen)
             {
@@ -2259,8 +2262,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             else
             {
                 return false;
-            }
-        }
+            }        }
 
         #endregion
 
@@ -2821,7 +2823,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             DigitalOutputEx? host;
 
             if (!Common.PhidgetDeviceLibrary.DigitalOutputChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            { 
+                return false; 
+            }
 
             if (host.IsOpen)
             {
@@ -2830,8 +2835,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             else
             {
                 return false;
-            }
-        }
+            }        }
 
         #endregion
 
