@@ -307,9 +307,8 @@
                             LogVelocityChangeEvents="{Binding Stepper0.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogStoppedEvents="{Binding Stepper0.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
-                            SerialNumber ="{Binding Stepper0.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding Stepper0.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding Stepper0.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding Stepper0.SerialHubPortChannel, Mode=TwoWay}"
+
                             Attached="{Binding Stepper0.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper0.Engaged, Mode=TwoWay}"
                             StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
@@ -361,9 +360,8 @@
                             LogVelocityChangeEvents="{Binding Stepper1.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogStoppedEvents="{Binding Stepper1.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
-                            SerialNumber ="{Binding Stepper1.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding Stepper1.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding Stepper1.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding Stepper1.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding Stepper1.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper1.Engaged, Mode=TwoWay}"
                             StepperAttached="{Binding StepperAttached, Mode=TwoWay}"

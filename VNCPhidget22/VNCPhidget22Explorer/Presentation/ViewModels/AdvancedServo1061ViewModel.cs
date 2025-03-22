@@ -87,6 +87,86 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        void LoadPhidgets()
+        {
+            var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedAdvancedServoPhidget);
+
+            // NOTE(crhodes)
+            // May be able to go back to RCServo[]
+
+            foreach (var rcServo in rcServos)
+            {
+                switch (rcServo.Key.Channel)
+                {
+                    case 0:
+                        RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 1:
+                        RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 2:
+                        RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 3:
+                        RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 4:
+                        RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 5:
+                        RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 6:
+                        RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 7:
+                        RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 8:
+                        RCServo8 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 9:
+                        RCServo9 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 10:
+                        RCServo10 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 11:
+                        RCServo11 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 12:
+                        RCServo12 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 13:
+                        RCServo13 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 14:
+                        RCServo14 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                    case 15:
+                        RCServo15 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+                        break;
+
+                }
+            }
+        }
+
         #endregion
 
         #region Enums (none)
@@ -224,6 +304,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 _selectedAdvancedServoPhidget = value;
                 OnPropertyChanged();
+
+                LoadPhidgets();
 
                 OpenAdvancedServoCommand.RaiseCanExecuteChanged();
                 CloseAdvancedServoCommand.RaiseCanExecuteChanged();
@@ -781,7 +863,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedAdvancedServoPhidget);
-
 
             foreach (var rcServo in rcServos)
             {
@@ -1363,82 +1444,82 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             switch (shpc.Channel)
             {
                 case 0:
-                    if (RCServo0 is null) RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo0 is null) RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo0);
                     break;
 
                 case 1:
-                    if (RCServo1 is null) RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo1 is null) RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo1);
                     break;
 
                 case 2:
-                    if (RCServo2 is null) RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo2 is null) RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo2);
                     break;
 
                 case 3:
-                    if (RCServo3 is null) RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo3 is null) RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo3);
                     break;
 
                 case 4:
-                    if (RCServo4 is null) RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo4 is null) RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo4);
                     break;
 
                 case 5:
-                    if (RCServo5 is null) RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo5 is null) RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo5);
                     break;
 
                 case 6:
-                    if (RCServo6 is null) RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo6 is null) RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo6);
                     break;
 
                 case 7:
-                    if (RCServo7 is null) RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo7 is null) RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo7);
                     break;
 
                 case 8:
-                    if (RCServo8 is null) RCServo8 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo8 is null) RCServo8 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo8);
                     break;
 
                 case 9:
-                    if (RCServo9 is null) RCServo9 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo9 is null) RCServo9 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo9);
                     break;
 
                 case 10:
-                    if (RCServo10 is null) RCServo10 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo10 is null) RCServo10 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo10);
                     break;
 
                 case 11:
-                    if (RCServo11 is null) RCServo11 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo11 is null) RCServo11 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo11);
                     break;
 
                 case 12:
-                    if (RCServo12 is null) RCServo12 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo12 is null) RCServo12 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo12);
                     break;
 
                 case 13:
-                    if (RCServo13 is null) RCServo13 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo13 is null) RCServo13 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo13);
                     break;
 
                 case 14:
-                    if (RCServo14 is null) RCServo14 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo14 is null) RCServo14 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo14);
                     break;
 
                 case 15:
-                    if (RCServo15 is null) RCServo15 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+                    //if (RCServo15 is null) RCServo15 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo15);
                     break;
 

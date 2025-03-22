@@ -72,7 +72,9 @@
     <!-- </UserControl.DataContext> -->
 
     <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
-    
+
+        <Label Content="{Binding SerialHubPortChannel}" />
+        
         <!--Logging-->
         
         <dxlc:LayoutGroup 
@@ -137,7 +139,7 @@
                             Converter={StaticResource BooleanToColorConverter}}"/>
             </dxlc:LayoutItem>
 
-            <views:SerialHubPortControl />
+            <!--<views:SerialHubPortControl />-->
             <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="SerialNumber" LabelPosition="Top">
                 <dxe:TextEdit Text="{Binding SerialNumber}" />
             </dxlc:LayoutItem>

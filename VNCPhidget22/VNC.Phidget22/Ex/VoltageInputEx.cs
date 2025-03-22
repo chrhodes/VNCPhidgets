@@ -33,12 +33,11 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="voltageInputConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public VoltageInputEx(Int32 serialNumber, VoltageInputConfiguration configuration, IEventAggregator eventAggregator)
+        public VoltageInputEx(VoltageInputConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter:", Common.LOG_CATEGORY);
 
-            _serialNumber = serialNumber;
             _eventAggregator = eventAggregator;
 
             InitializePhidget(configuration);
@@ -60,12 +59,20 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(VoltageInputConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+                $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
-            DeviceSerialNumber = SerialNumber;
+            DeviceSerialNumber = configuration.DeviceSerialNumber;
             IsHubPortDevice = configuration.HubPortDevice;
             HubPort = configuration.HubPort;
             Channel = configuration.Channel;
+
+            SerialHubPortChannel = new SerialHubPortChannel
+            {
+                SerialNumber = DeviceSerialNumber,
+                HubPort = HubPort,
+                Channel = Channel
+            };
 
             IsRemote = true;
 
@@ -158,16 +165,16 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
-        private Int32 _serialNumber;
-        public Int32 SerialNumber
+        private SerialHubPortChannel _serialHubPortChannel;
+        public SerialHubPortChannel SerialHubPortChannel
         {
-            get => _serialNumber;
+            get => _serialHubPortChannel;
             set
             {
-                if (_serialNumber == value)
-                    return;
-                _serialNumber = value;
-                DeviceSerialNumber = value;
+                //if (_serialHubPortChannel.Equals(value)) return;
+                //if (_serialHubPortChannel == value)
+                //    return;
+                _serialHubPortChannel = value;
                 OnPropertyChanged();
             }
         }
@@ -735,11 +742,6 @@ namespace VNC.Phidget22.Ex
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached} timeout:{timeout}" +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
-
-            //var spn = ServerPeerName;
-            var sn = SerialNumber;
-            var hp = HubPort;
-            var c = Channel;
 
             base.Open(timeout);
 

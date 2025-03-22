@@ -91,6 +91,399 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void LoadPhidgets()
+        {
+            var digitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
+
+            LoadDigitalInputs(digitalInputs);
+
+            var digitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
+
+            LoadDigitalOutputs(digitalOutputs);
+
+            var voltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
+
+            LoadVoltageInputs(voltageInputs);
+
+            var voltageRatioInputs = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
+
+            LoadVoltageRatioInputs(voltageRatioInputs);
+
+            var voltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
+
+            LoadVoltageOutputs(voltageOutputs);
+        }
+
+        void LoadDigitalInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, DigitalInputEx>> digitalInputs)
+        {
+            foreach (var digitalInput in digitalInputs)
+            {
+                switch (digitalInput.Key.Channel)
+                {
+                    case 0:
+                        DigitalInput0 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 1:
+                        DigitalInput1 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 2:
+                        DigitalInput2 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 3:
+                        DigitalInput3 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 4:
+                        DigitalInput4 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 5:
+                        DigitalInput5 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 6:
+                        DigitalInput6 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 7:
+                        DigitalInput7 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 8:
+                        DigitalInput8 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 9:
+                        DigitalInput9 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 10:
+                        DigitalInput10 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 11:
+                        DigitalInput11 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 12:
+                        DigitalInput12 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 13:
+                        DigitalInput13 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 14:
+                        DigitalInput14 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+
+                    case 15:
+                        DigitalInput15 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
+                        break;
+                }
+            }
+        }
+
+        void LoadDigitalOutputs(IEnumerable<KeyValuePair<SerialHubPortChannel, DigitalOutputEx>> digitalOutputs)
+        {
+            foreach (var digitalOutput in digitalOutputs)
+            {
+                switch (digitalOutput.Key.Channel)
+                {
+                    case 0:
+                        DigitalOutput0 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 1:
+                        DigitalOutput1 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 2:
+                        DigitalOutput2 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 3:
+                        DigitalOutput3 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 4:
+                        DigitalOutput4 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 5:
+                        DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 6:
+                        DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 7:
+                        DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 8:
+                        DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 9:
+                        DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 10:
+                        DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 11:
+                        DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 12:
+                        DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 13:
+                        DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 14:
+                        DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+
+                    case 15:
+                        DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
+                        break;
+                }
+            }
+        }
+
+        void LoadVoltageInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageInputEx>> voltageInputs)
+        {
+            foreach (var voltageInput in voltageInputs)
+            {
+                switch (voltageInput.Key.Channel)
+                {
+                    case 0:
+                        VoltageInput0 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 1:
+                        VoltageInput1 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 2:
+                        VoltageInput2 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 3:
+                        VoltageInput3 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 4:
+                        VoltageInput4 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 5:
+                        VoltageInput5 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 6:
+                        VoltageInput6 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 7:
+                        VoltageInput7 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 8:
+                        VoltageInput8 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 9:
+                        VoltageInput9 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 10:
+                        VoltageInput10 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 11:
+                        VoltageInput11 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 12:
+                        VoltageInput12 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 13:
+                        VoltageInput13 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 14:
+                        VoltageInput14 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+
+                    case 15:
+                        VoltageInput15 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
+                        break;
+                }
+            }
+        }
+
+        void LoadVoltageRatioInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageRatioInputEx>> voltageRatioInputs)
+        {
+            foreach (var voltageRatioInput in voltageRatioInputs)
+            {
+                switch (voltageRatioInput.Key.Channel)
+                {
+                    case 0:
+                        VoltageRatioInput0 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 1:
+                        VoltageRatioInput1 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 2:
+                        VoltageRatioInput2 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 3:
+                        VoltageRatioInput3 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 4:
+                        VoltageRatioInput4 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 5:
+                        VoltageRatioInput5 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 6:
+                        VoltageRatioInput6 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 7:
+                        VoltageRatioInput7 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 8:
+                        VoltageRatioInput8 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 9:
+                        VoltageRatioInput9 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 10:
+                        VoltageRatioInput10 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 11:
+                        VoltageRatioInput11 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 12:
+                        VoltageRatioInput12 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 13:
+                        VoltageRatioInput13 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 14:
+                        VoltageRatioInput14 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+
+                    case 15:
+                        VoltageRatioInput15 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
+                        break;
+                }
+            }
+        }
+
+        void LoadVoltageOutputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageOutputEx>> voltageOutputs)
+        {
+            foreach (var voltageOutput in voltageOutputs)
+            {
+                switch (voltageOutput.Key.Channel)
+                {
+                    case 0:
+                        VoltageOutput0 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 1:
+                        VoltageOutput1 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 2:
+                        VoltageOutput2 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 3:
+                        VoltageOutput3 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 4:
+                        VoltageOutput4 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 5:
+                        VoltageOutput5 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 6:
+                        VoltageOutput6 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 7:
+                        VoltageOutput7 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 8:
+                        VoltageOutput8 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 9:
+                        VoltageOutput9 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 10:
+                        VoltageOutput10 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 11:
+                        VoltageOutput11 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 12:
+                        VoltageOutput12 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 13:
+                        VoltageOutput13 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 14:
+                        VoltageOutput14 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+
+                    case 15:
+                        VoltageOutput15 = Common.PhidgetDeviceLibrary.VoltageOutputChannels[voltageOutput.Key];
+                        break;
+                }
+            }
+        }
+
         #endregion
 
         #region Enums (none)
@@ -282,6 +675,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 _selectedInterfaceKitPhidget = value;
                 OnPropertyChanged();
+
+                LoadPhidgets();
 
                 OpenInterfaceKitCommand.RaiseCanExecuteChanged();
                 CloseInterfaceKitCommand.RaiseCanExecuteChanged();
@@ -1542,7 +1937,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             var voltageRatioInputs = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
 
-
             foreach (var voltageRatioInput in voltageRatioInputs)
             {
                 if (voltageRatioInput.Value.IsHubPortDevice)
@@ -1558,7 +1952,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             var voltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
-
 
             foreach (var voltageOutput in voltageOutputs)
             {

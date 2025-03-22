@@ -10,6 +10,7 @@ using EnumsNET;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget22;
 
 using Phidgets = Phidget22;
 
@@ -379,6 +380,55 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         protected virtual void OnControlTitleChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }

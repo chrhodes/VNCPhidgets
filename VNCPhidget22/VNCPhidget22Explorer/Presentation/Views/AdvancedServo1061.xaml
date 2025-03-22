@@ -296,9 +296,8 @@
                             LogVelocityChangeEvents="{Binding RCServo0.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo0.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                          
-                            SerialNumber ="{Binding RCServo0.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo0.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo0.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding RCServo0.SerialHubPortChannel, Mode=TwoWay}"
+
                             Attached="{Binding RCServo0.Attached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
                             
@@ -352,9 +351,8 @@
                             LogVelocityChangeEvents="{Binding RCServo1.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo1.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
-                            SerialNumber ="{Binding RCServo1.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo1.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo1.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding RCServo1.SerialHubPortChannel, Mode=TwoWay}"
+
                             Attached="{Binding RCServo1.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo1.Engaged, Mode=TwoWay}"
                             
@@ -408,9 +406,8 @@
                             LogVelocityChangeEvents="{Binding RCServo2.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo2.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
-                            SerialNumber ="{Binding RCServo2.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo2.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo2.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding RCServo2.SerialHubPortChannel, Mode=TwoWay}"
+
                             Attached="{Binding RCServo2.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo2.Engaged, Mode=TwoWay}"
                             
@@ -464,9 +461,8 @@
                             LogVelocityChangeEvents="{Binding RCServo3.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo3.LogTargetPositionReachedEvents,Mode=TwoWay}"
 
-                            SerialNumber ="{Binding RCServo3.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo3.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo3.Channel, Mode=TwoWay}"                                        
+                            SerialHubPortChannel="{Binding RCServo3.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo3.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo3.Engaged, Mode=TwoWay}"
                             
@@ -520,9 +516,8 @@
                             LogVelocityChangeEvents="{Binding RCServo4.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo4.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                    
-                            SerialNumber ="{Binding RCServo4.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo4.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo4.Channel, Mode=TwoWay}"                                        
+                            SerialHubPortChannel="{Binding RCServo4.SerialHubPortChannel, Mode=TwoWay}"
+                                     
                             Attached="{Binding RCServo4.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo4.Engaged, Mode=TwoWay}"
                             
@@ -576,9 +571,8 @@
                             LogVelocityChangeEvents="{Binding RCServo5.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo5.LogTargetPositionReachedEvents,Mode=TwoWay}"
                            
-                            SerialNumber ="{Binding RCServo5.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo5.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo5.Channel, Mode=TwoWay}"                                         
+                            SerialHubPortChannel="{Binding RCServo5.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo5.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo5.Engaged, Mode=TwoWay}"
                             
@@ -632,9 +626,8 @@
                             LogVelocityChangeEvents="{Binding RCServo6.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo6.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                   
-                            SerialNumber ="{Binding RCServo6.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo6.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo6.Channel, Mode=TwoWay}"                                          
+                            SerialHubPortChannel="{Binding RCServo6.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo6.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo6.Engaged, Mode=TwoWay}"
                             
@@ -688,9 +681,8 @@
                             LogVelocityChangeEvents="{Binding RCServo7.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo7.LogTargetPositionReachedEvents,Mode=TwoWay}"
                           
-                            SerialNumber ="{Binding RCServo7.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo7.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo7.Channel, Mode=TwoWay}"                                        
+                            SerialHubPortChannel="{Binding RCServo7.SerialHubPortChannel, Mode=TwoWay}"   
+                                              
                             Attached="{Binding RCServo7.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo7.Engaged, Mode=TwoWay}"
                             
@@ -744,9 +736,8 @@
                             LogVelocityChangeEvents="{Binding RCServo8.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo8.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                
-                            SerialNumber ="{Binding RCServo8.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo8.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo8.Channel, Mode=TwoWay}"                                           
+                            SerialHubPortChannel="{Binding RCServo8.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo8.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo8.Engaged, Mode=TwoWay}"
                             
@@ -800,9 +791,8 @@
                             LogVelocityChangeEvents="{Binding RCServo9.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo9.LogTargetPositionReachedEvents,Mode=TwoWay}"
                              
-                            SerialNumber ="{Binding RCServo9.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo9.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo9.Channel, Mode=TwoWay}"                                          
+                            SerialHubPortChannel="{Binding RCServo9.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo9.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo9.Engaged, Mode=TwoWay}"
                             
@@ -856,9 +846,8 @@
                             LogVelocityChangeEvents="{Binding RCServo10.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo10.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                     
-                            SerialNumber ="{Binding RCServo10.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo10.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo10.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding RCServo10.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo10.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo10.Engaged, Mode=TwoWay}"
                             
@@ -912,9 +901,8 @@
                             LogVelocityChangeEvents="{Binding RCServo11.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo11.LogTargetPositionReachedEvents,Mode=TwoWay}"
                                 
-                            SerialNumber ="{Binding RCServo11.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo11.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo11.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding RCServo11.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo11.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo11.Engaged, Mode=TwoWay}"
                             
@@ -968,9 +956,8 @@
                             LogVelocityChangeEvents="{Binding RCServo12.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo12.LogTargetPositionReachedEvents,Mode=TwoWay}"
                      
-                            SerialNumber ="{Binding RCServo12.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo12.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo12.Channel, Mode=TwoWay}"  
+                            SerialHubPortChannel="{Binding RCServo12.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo12.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo12.Engaged, Mode=TwoWay}"
                             
@@ -1024,9 +1011,8 @@
                             LogVelocityChangeEvents="{Binding RCServo13.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo13.LogTargetPositionReachedEvents,Mode=TwoWay}"
                     
-                            SerialNumber ="{Binding RCServo13.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo13.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo13.Channel, Mode=TwoWay}"                                        
+                            SerialHubPortChannel="{Binding RCServo13.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo13.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo13.Engaged, Mode=TwoWay}"
                             
@@ -1080,9 +1066,8 @@
                             LogVelocityChangeEvents="{Binding RCServo14.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo14.LogTargetPositionReachedEvents,Mode=TwoWay}"
 
-                            SerialNumber ="{Binding RCServo14.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo14.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo14.Channel, Mode=TwoWay}"          
+                            SerialHubPortChannel="{Binding RCServo14.SerialHubPortChannel, Mode=TwoWay}"   
+                                              
                             Attached="{Binding RCServo14.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo14.Engaged, Mode=TwoWay}"
                             
@@ -1136,9 +1121,8 @@
                             LogVelocityChangeEvents="{Binding RCServo15.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogTargetPositionReachedEvents="{Binding RCServo15.LogTargetPositionReachedEvents,Mode=TwoWay}"
 
-                            SerialNumber ="{Binding RCServo15.SerialNumber, Mode=TwoWay}"                                                       
-                            HubPort ="{Binding RCServo15.HubPort, Mode=TwoWay}"
-                            Channel ="{Binding RCServo15.Channel, Mode=TwoWay}"           
+                            SerialHubPortChannel="{Binding RCServo15.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding RCServo15.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo15.Engaged, Mode=TwoWay}"
                             

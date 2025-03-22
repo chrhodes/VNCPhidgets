@@ -7,6 +7,11 @@ namespace VNC.Phidget22
         public Int32 SerialNumber;
         public Int32 HubPort;
         public Int32 Channel;
+
+        public override string ToString()
+        {
+            return $"S#:{SerialNumber} HP:{HubPort} C:{Channel}";
+        }
     }
 
     // NOTE(crhodes)

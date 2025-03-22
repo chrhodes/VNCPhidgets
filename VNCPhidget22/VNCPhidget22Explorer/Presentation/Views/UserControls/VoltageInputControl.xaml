@@ -74,6 +74,8 @@
 
     <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
 
+        <Label Content="{Binding SerialHubPortChannel}" />
+        
         <!-- Logging -->
         
         <dxlc:LayoutGroup 
@@ -107,6 +109,8 @@
 
         </dxlc:LayoutGroup>
 
+        <!--Open/Close-->
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             <dxlc:LayoutItem Padding="-2" VerticalAlignment="Stretch">
                 <Button x:Name="btnOpenVoltageInputCommand" 
@@ -162,7 +166,7 @@
 
             <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
 
-            <views:SerialHubPortControl />
+            <!--<views:SerialHubPortControl />-->
             
             <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="SerialNumber" LabelPosition="Top">
                 <dxe:TextEdit Text="{Binding SerialNumber}" />

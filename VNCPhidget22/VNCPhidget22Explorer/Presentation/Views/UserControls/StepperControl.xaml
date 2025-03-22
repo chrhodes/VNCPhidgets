@@ -83,6 +83,8 @@
             <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
                               HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
 
+                <Label Content="{Binding SerialHubPortChannel}" />
+                
                 <!--Logging-->
                 
                 <dxlc:LayoutGroup x:Name="lgLogging"  Header="Event Logging" View="GroupBox" Orientation="Vertical" 

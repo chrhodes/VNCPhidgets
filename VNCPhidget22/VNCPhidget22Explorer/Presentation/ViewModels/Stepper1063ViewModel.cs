@@ -84,6 +84,40 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        void LoadPhidgets()
+        {
+            var steppers = Common.PhidgetDeviceLibrary.StepperChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedStepperPhidget);
+
+            // NOTE(crhodes)
+            // May be able to go back to Stepper[]
+
+            foreach (var stepper in steppers)
+            {
+                switch (stepper.Key.Channel)
+                {
+                    case 0:
+                        Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                        break;
+
+                    case 1:
+                        Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                        break;
+
+                    case 2:
+                         Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                         break;
+
+                    case 3:
+                         Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                         break;
+
+                        // TODO(crhodes)
+                        // Add more cases if a board supports more channels
+                }
+            }
+        }
+
         #endregion
 
         #region Enums (none)
@@ -290,6 +324,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 _selectedSteperPhidgets = value;
                 OnPropertyChanged();
+
+                LoadPhidgets();
 
                 OpenSteppersCommand.RaiseCanExecuteChanged();
                 OpenStepperCommand.RaiseCanExecuteChanged();
@@ -830,7 +866,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             StepperEx? host;
 
             if (!Common.PhidgetDeviceLibrary.StepperChannels
-                    .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+                    .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            { 
+                return true; 
+            }
 
             if (host.Attached)
             {
