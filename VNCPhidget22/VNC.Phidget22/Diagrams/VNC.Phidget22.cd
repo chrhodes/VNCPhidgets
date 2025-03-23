@@ -3,7 +3,7 @@
   <Class Name="VNC.Phidget22.PhidgetDevice">
     <Position X="7" Y="0.5" Width="5.5" />
     <TypeIdentifier>
-      <HashCode>AACABAAAgAAAAAEAAAAAAAAACAEQAAAAAAAAAAAiAAA=</HashCode>
+      <HashCode>AECAALAgkAAAAQAggFAAQAAAAhAQgAAAAAAIEACCABA=</HashCode>
       <FileName>PhidgetDevice.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -94,23 +94,16 @@
   <Class Name="VNC.Phidget22.PhidgetDeviceLibrary">
     <Position X="0.5" Y="0.5" Width="6.25" />
     <TypeIdentifier>
-      <HashCode>xANEiHSDgEgoAoIEhA6QJIgLBAIIAQxAlkABgQfIAQw=</HashCode>
+      <HashCode>xANMinSzgEgoAoIEhA6QIIgLBAIAAQwAlkABgQfIAWw=</HashCode>
       <FileName>PhidgetDeviceLibrary.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Players.DeviceChannelSequencePlayer">
     <Position X="23" Y="0.75" Width="7.75" />
     <TypeIdentifier>
-      <HashCode>ACAgDAAgIAAgICAIIAAAQAgCQAAAAEFAAAIQBCEAIAE=</HashCode>
+      <HashCode>ACAgDAAgIAAgICAAIAAAQAgAQAAAAEFAAAAQBCEAIAE=</HashCode>
       <FileName>Players\DeviceChannelSequencePlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Struct Name="VNC.Phidget22.DeviceChannels">
-    <Position X="14" Y="0.75" Width="2.5" />
-    <TypeIdentifier>
-      <HashCode>CBAUACAACQAAGCAIAAGQAAgQkAAIAxABECAgABEGAMA=</HashCode>
-      <FileName>DeviceChannels.cs</FileName>
-    </TypeIdentifier>
-  </Struct>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

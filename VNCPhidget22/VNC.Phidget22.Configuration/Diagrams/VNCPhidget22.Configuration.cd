@@ -3,7 +3,7 @@
   <Class Name="VNC.Phidget22.Configuration.Host">
     <Position X="8.5" Y="2.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>IQAAACAAAAAAAQAQAAAACAQAGAAAAAAAAEACAAACAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAQACAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>Host\Host.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -35,13 +35,6 @@
       <FileName>Sensor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.Stepper">
-    <Position X="23.75" Y="32.25" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Stepper\Stepper.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="VNC.Phidget22.Configuration.StepperAction">
     <Position X="23.5" Y="26.25" Width="3" />
     <TypeIdentifier>
@@ -61,13 +54,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Stepper\StepperSequenceConfig.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="VNC.Phidget22.Configuration.DigitalInput">
-    <Position X="0.5" Y="28.75" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAABAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DigitalInput\DigitalInput.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.DigitalInputAction">
@@ -98,13 +84,6 @@
       <FileName>DigitalOutput\DigitalOutputAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.DigitalOutput">
-    <Position X="4" Y="29" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAABAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>DigitalOutput\DigitalOutput.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="VNC.Phidget22.Configuration.RCServoSequence">
     <Position X="19.5" Y="24.25" Width="2.75" />
     <TypeIdentifier>
@@ -117,13 +96,6 @@
     <TypeIdentifier>
       <HashCode>ACAwDkAAAIAiIAAAIAAAA4AAAAABACBQAAEUAACAAEA=</HashCode>
       <FileName>RCServo\RCServoAction.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="VNC.Phidget22.Configuration.RCServo">
-    <Position X="19.75" Y="32" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RCServo\RCServo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageInputSequence">
@@ -140,13 +112,6 @@
       <FileName>VoltageInput\VoltageInputAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.VoltageInput">
-    <Position X="8.25" Y="29" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAABAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>VoltageInput\VoltageInput.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageOutputSequence">
     <Position X="15.75" Y="24.25" Width="3" />
     <TypeIdentifier>
@@ -161,26 +126,11 @@
       <FileName>VoltageOutput\VoltageOutputAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.VoltageRatioInput">
-    <Position X="12" Y="28.75" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAABAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>VoltageRatioInput\VoltageRatioInput.cs</FileName>
-      <NewMemberFileName>VoltageOutput\VoltageInput.cs</NewMemberFileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputSequence">
     <Position X="12" Y="24.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VoltageRatioInput\VoltageRatioInputSequence.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="VNC.Phidget22.Configuration.VoltageOutput">
-    <Position X="15.75" Y="28.75" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAABAAAAAAQAAAEAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>VoltageOutput\VoltageOutput.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputAction">
@@ -200,14 +150,14 @@
   <Class Name="VNC.Phidget22.Configuration.DeviceChannelSequence">
     <Position X="2.75" Y="13.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAgAAACAAAAAAAAAAQAAAGAAAAEAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAgAAACAAAAAAAAAAQAABGAAAAEAAAAAAAAABA=</HashCode>
       <FileName>Performance\DeviceChannelSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.Performance.ChannelSequence">
     <Position X="9.5" Y="18.75" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAoAgAAAgAAAAAAAQAAQAAACAEEAAAEgAAAAAAhQ=</HashCode>
+      <HashCode>AAAQAoAgAAAgAAAAAAAQAAQAABCAEEAAAEgAAAAAAhQ=</HashCode>
       <FileName>Performance\ChannelSequence.cs</FileName>
     </TypeIdentifier>
   </Class>

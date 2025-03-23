@@ -370,20 +370,6 @@ namespace VNCPhidget22Explorer
             Common.DeveloperUIMode = Visibility.Collapsed;  // No space reserved
 #endif
 
-            //// HACK(crhodes)
-            //// This is a way to get Phidget22.Net.AddServer called.
-            //// Revisit.
-
-
-            //// NOTE(crhodes)
-            //// This will read hostconfig to know what servers we have
-
-            //PerformanceLibrary performanceLibrary = new PerformanceLibrary();
-
-            //// This will use a Phidget Manager to determine what Phidgets are attached.
-
-            //Common.PhidgetDeviceLibrary = new PhidgetDeviceLibrary();
-
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
