@@ -75,6 +75,7 @@ namespace VNCPhidget22Explorer
             containerRegistry.Register<IStepper1063ViewModel, Stepper1063ViewModel>();
 
             containerRegistry.Register<IVINTHub, VINTHub>();
+            containerRegistry.Register<IVINTHub, VINTHubHorizontal>();
             containerRegistry.Register<IVINTHubViewModel, VINTHubViewModel>();
 
             // FIX(crhodes)
@@ -155,7 +156,7 @@ namespace VNCPhidget22Explorer
             _regionManager.RegisterViewWithRegion(RegionNames.Stepper1063Region3, typeof(Stepper1063));
 
             _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion1, typeof(VINTHub));
-            _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion2, typeof(VINTHub));
+            _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion2, typeof(VINTHubHorizontal));
             _regionManager.RegisterViewWithRegion(RegionNames.VINTHubRegion3, typeof(VINTHub));
 
             _regionManager.RegisterViewWithRegion(RegionNames.HackAroundRegion, typeof(HackAround));

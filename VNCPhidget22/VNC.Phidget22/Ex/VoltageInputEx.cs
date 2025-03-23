@@ -732,6 +732,7 @@ namespace VNC.Phidget22.Ex
             base.Open();
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}" +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
@@ -746,6 +747,7 @@ namespace VNC.Phidget22.Ex
             base.Open(timeout);
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }

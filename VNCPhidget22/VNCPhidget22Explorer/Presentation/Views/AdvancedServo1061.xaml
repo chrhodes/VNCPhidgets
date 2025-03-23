@@ -84,7 +84,7 @@
         <!-- <localvm:AdvancedServo1061ViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <DockPanel Margin="5">
+    <DockPanel Margin="5" VerticalAlignment="Top">
         
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
@@ -96,11 +96,11 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <dxlc:LayoutItem Label="AdvancedServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
+                    <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
 
                         <dxe:ComboBoxEdit Width="150" 
-                            ItemsSource="{Binding AdvancedServoPhidgets}"
-                            SelectedItem="{Binding SelectedAdvancedServoPhidget}"
+                            ItemsSource="{Binding RCServoPhidgets}"
+                            SelectedItem="{Binding SelectedRCServoPhidget}"
                             NullText="Select AdvancedServo" />
 
                     </dxlc:LayoutItem>
@@ -109,115 +109,16 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                     <Button
-                            Command="{Binding OpenAdvancedServoCommand }"
-                            Content="{Binding OpenAdvancedServoContent, FallbackValue='Open' }"
-                            ToolTip="{Binding OpenAdvancedServoToolTip, FallbackValue='Open ToolTip' }" />
+                            Command="{Binding OpenAllRCServosCommand }"
+                            Content="{Binding OpenAllRCServosContent, FallbackValue='Open' }"
+                            ToolTip="{Binding OpenAllRCServosToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
-
-                <!--Velocity-->
-                
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
-                              Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                    <dxlc:LayoutItem Label="Select Velocity"
-                        LabelPosition="Left">
-                        <!--<dxe:ComboBoxEdit
-                            EditValue="{Binding
-                                Path=SelectedFileFormats,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
-                        <dxe:ComboBoxEdit x:Name="cbeVelocityScale">
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:ComboBoxStyleSettings />
-                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:TokenComboBoxStyleSettings/>-->
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            <dxe:ComboBoxEditItem Content="Min" />
-                            <dxe:ComboBoxEditItem Content="01%" />
-                            <dxe:ComboBoxEditItem Content="02%" />
-                            <dxe:ComboBoxEditItem Content="03%" />
-                            <dxe:ComboBoxEditItem Content="04%" />
-                            <dxe:ComboBoxEditItem Content="05%" />
-                            <dxe:ComboBoxEditItem Content="10%" />
-                            <dxe:ComboBoxEditItem Content="15%" />
-                            <dxe:ComboBoxEditItem Content="20%" />
-                            <dxe:ComboBoxEditItem Content="25%" />
-                            <dxe:ComboBoxEditItem Content="35%" />
-                            <dxe:ComboBoxEditItem Content="50%" />
-                            <dxe:ComboBoxEditItem Content="75%" />
-                            <dxe:ComboBoxEditItem Content="Max" />
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
-                        <Button
-                            Command="{Binding InitializeVelocityCommand }"
-                            CommandParameter="{Binding ElementName=cbeVelocityScale, Path=EditValue}"
-                            Content="{Binding InitializeVelocityContent, FallbackValue='Initialize Velocity' }"
-                            ToolTip="{Binding InitializeVelocityToolTip, FallbackValue='Initialize Velocity' }" />
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-                <!--Acceleration-->
-                
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
-                                  Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                    <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
-
-                        <dxe:ComboBoxEdit x:Name="cbeAccelerationScale">
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:ComboBoxStyleSettings />
-                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:TokenComboBoxStyleSettings/>-->
-                            </dxe:ComboBoxEdit.StyleSettings>
-                            <dxe:ComboBoxEditItem Content="Min" />
-                            <dxe:ComboBoxEditItem Content="01%" />
-                            <dxe:ComboBoxEditItem Content="02%" />
-                            <dxe:ComboBoxEditItem Content="03%" />
-                            <dxe:ComboBoxEditItem Content="04%" />
-                            <dxe:ComboBoxEditItem Content="05%" />
-                            <dxe:ComboBoxEditItem Content="10%" />
-                            <dxe:ComboBoxEditItem Content="15%" />
-                            <dxe:ComboBoxEditItem Content="20%" />
-                            <dxe:ComboBoxEditItem Content="25%" />
-                            <dxe:ComboBoxEditItem Content="35%" />
-                            <dxe:ComboBoxEditItem Content="50%" />
-                            <dxe:ComboBoxEditItem Content="75%" />
-                            <dxe:ComboBoxEditItem Content="Max" />
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
-                        <Button
-                            Command="{Binding InitializeAccelerationCommand }"
-                            CommandParameter="{Binding ElementName=cbeAccelerationScale, Path=EditValue}"
-                            Content="{Binding InitializeAccelerationContent, FallbackValue='Initialize Acceleration' }"
-                            ToolTip="{Binding InitializeAccelerationToolTip, FallbackValue='Initialize Acceleration' }" />
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-                <!--<dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                    <Button
-                        Command="{Binding RefreshAdvancedServoCommand }"
-                        Content="{Binding RefreshAdvancedServoContent, FallbackValue='Refresh' }"
-                        ToolTip="{Binding RefreshAdvancedServoToolTip, FallbackValue='Refresh ToolTip' }" />
-                </dxlc:LayoutItem>-->
 
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button
-                            Command="{Binding CloseAdvancedServoCommand }"
-                            Content="{Binding CloseAdvancedServoContent, FallbackValue='Close' }"
-                            ToolTip="{Binding CloseAdvancedServoToolTip, FallbackValue='Close ToolTip' }" />
+                            Command="{Binding CloseAllRCServosCommand }"
+                            Content="{Binding CloseAllRCServosContent, FallbackValue='Close' }"
+                            ToolTip="{Binding CloseAllRCServosToolTip, FallbackValue='Close ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>

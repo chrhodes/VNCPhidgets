@@ -80,8 +80,8 @@
         <DockPanel>
             <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
             
-            <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
-                              HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
+            <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" 
+                              HorizontalAlignment="Left" ScrollBars="Auto" >
 
                 <Label Content="{Binding SerialHubPortChannel}" />
                 

@@ -71,7 +71,8 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
+    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top">
 
         <Label Content="{Binding SerialHubPortChannel}" />
         

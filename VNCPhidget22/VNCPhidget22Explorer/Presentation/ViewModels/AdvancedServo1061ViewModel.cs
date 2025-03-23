@@ -52,14 +52,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            OpenAdvancedServoCommand = new DelegateCommand(OpenAdvancedServo, OpenAdvancedServoCanExecute);
-            CloseAdvancedServoCommand = new DelegateCommand(CloseAdvancedServo, CloseAdvancedServoCanExecute);
+            OpenAllRCServosCommand = new DelegateCommand(OpenAllRCServos, OpenAllRCServosCanExecute);
+            CloseAllRCServosCommand = new DelegateCommand(CloseAllRCServos, CloseAllRCServosCanExecute);
 
-            //InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
-            //InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
-
-            //ConfigureServoCommand = new DelegateCommand(ConfigureServo, ConfigureServoCanExecute);
-
+            // TODO(crhodes)
+            // What is this for?
             ConfigureServo2Command = new DelegateCommand<string>(ConfigureServo2, ConfigureServo2CanExecute);
 
             SetPositionRangeCommand = new DelegateCommand<string>(SetPositionRange, SetPositionRangeCanExecute);
@@ -79,7 +76,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            AdvancedServoPhidgets = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices
+            // NOTE(crhodes)
+            // We use ChannelClass here because same UI can be used for
+            // AdvancedServo boards and 16xRCServo boards through VINT Hub
+
+            RCServoPhidgets = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices
                 .Where(x => x.ChannelClass == "RCServo")
                 .DistinctBy(x => x.DeviceSerialNumber)
                 .Select(x => x.DeviceSerialNumber);
@@ -87,13 +88,23 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        void LoadPhidgets()
+        private void LoadPhidgets()
         {
             var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedAdvancedServoPhidget);
+                .Where(kv => kv.Key.SerialNumber == SelectedRCServoPhidget);
 
+            LoadRCServos(rcServos);
+
+            // TODO(crhodes)
+            // Figure out what else is available on phidget
+            // like Digital I/O and Current
+        }
+
+        private void LoadRCServos(IEnumerable<KeyValuePair<SerialHubPortChannel, RCServoEx>> rcServos)
+        {
             // NOTE(crhodes)
             // May be able to go back to RCServo[]
+            // Check if INPC get's messed up
 
             foreach (var rcServo in rcServos)
             {
@@ -183,20 +194,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
-
         #region Logging
 
         private Boolean _logPhidgetEvents = true;
@@ -237,6 +234,64 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #region AdvancedServo Events
+
+        private Boolean _logCurrentChangeEvents = false;
+        public Boolean LogCurrentChangeEvents
+        {
+            get => _logCurrentChangeEvents;
+            set
+            {
+                if (_logCurrentChangeEvents == value)
+                    return;
+                _logCurrentChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logPositionChangeEvents = false;
+        public Boolean LogPositionChangeEvents
+        {
+            get => _logPositionChangeEvents;
+            set
+            {
+                if (_logPositionChangeEvents == value)
+                    return;
+                _logPositionChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logVelocityChangeEvents = false;
+        public Boolean LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value)
+                    return;
+                _logVelocityChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logTargetPositionReachedEvents = false;
+        public Boolean LogTargetPositionReachedEvents
+        {
+            get => _logTargetPositionReachedEvents;
+            set
+            {
+                if (_logTargetPositionReachedEvents == value)
+                    return;
+                _logTargetPositionReachedEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Performance Events
 
         private Boolean _logDeviceChannelSequence = false;
         public Boolean LogDeviceChannelSequence
@@ -279,36 +334,38 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
+        #endregion
+
         #region AdvancedServo
 
-        private IEnumerable<Int32> _AdvancedServoPhidgets;
-        public IEnumerable<Int32> AdvancedServoPhidgets
+        private IEnumerable<Int32> _rcServoPhidgets;
+        public IEnumerable<Int32> RCServoPhidgets
         {
             get
             {
-                return _AdvancedServoPhidgets;
+                return _rcServoPhidgets;
             }
 
             set
             {
-                _AdvancedServoPhidgets = value;
+                _rcServoPhidgets = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32? _selectedAdvancedServoPhidget = null;
-        public Int32? SelectedAdvancedServoPhidget
+        private Int32? _selectedRCServoPhidget = null;
+        public Int32? SelectedRCServoPhidget
         {
-            get => _selectedAdvancedServoPhidget;
+            get => _selectedRCServoPhidget;
             set
             {
-                _selectedAdvancedServoPhidget = value;
+                _selectedRCServoPhidget = value;
                 OnPropertyChanged();
 
                 LoadPhidgets();
 
-                OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-                CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+                OpenAllRCServosCommand.RaiseCanExecuteChanged();
+                CloseAllRCServosCommand.RaiseCanExecuteChanged();
 
                 OpenRCServoCommand.RaiseCanExecuteChanged();
 
@@ -317,6 +374,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #region RCServos
+
+        // TODO(crhodes)
+        // I think we can go back to RCServoEX[16]
+        // Besure doesn't break UI with INPC
 
         RCServoEx _rcServo0;
         public RCServoEx RCServo0
@@ -557,258 +618,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        #endregion
-
-        #region AdvancedServo Events
-
-        private Boolean _logCurrentChangeEvents = false;
-        public Boolean LogCurrentChangeEvents
-        {
-            get => _logCurrentChangeEvents;
-            set
-            {
-                if (_logCurrentChangeEvents == value)
-                    return;
-                _logCurrentChangeEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogCurrentChangeEvents = _logCurrentChangeEvents;
-                //}
-            }
-        }
-
-        private Boolean _logPositionChangeEvents = false;
-        public Boolean LogPositionChangeEvents
-        {
-            get => _logPositionChangeEvents;
-            set
-            {
-                if (_logPositionChangeEvents == value)
-                    return;
-                _logPositionChangeEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogPositionChangeEvents = _logPositionChangeEvents;
-                //}
-            }
-        }
-
-        private Boolean _logVelocityChangeEvents = false;
-        public Boolean LogVelocityChangeEvents
-        {
-            get => _logVelocityChangeEvents;
-            set
-            {
-                if (_logVelocityChangeEvents == value)
-                    return;
-                _logVelocityChangeEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogVelocityChangeEvents = _logVelocityChangeEvents;
-                //}
-            }
-        }
-
-        private Boolean _logTargetPositionReachedEvents = false;
-        public Boolean LogTargetPositionReachedEvents
-        {
-            get => _logTargetPositionReachedEvents;
-            set
-            {
-                if (_logTargetPositionReachedEvents == value)
-                    return;
-                _logTargetPositionReachedEvents = value;
-                OnPropertyChanged();
-
-                //if (ActiveAdvancedServo is not null)
-                //{
-                //    ActiveAdvancedServo.LogTargetPositionReachedEvents = _logTargetPositionReachedEvents;
-                //}
-            }
-        }
+        #endregion 
 
         #endregion
-
-        //private IEnumerable<VNCPhidgetConfig.AdvancedServo> _AdvancedServos;
-        //public IEnumerable<VNCPhidgetConfig.AdvancedServo> AdvancedServos
-        //{
-        //    get
-        //    {
-        //        if (null == _AdvancedServos)
-        //        {
-        //            // TODO(crhodes)
-        //            // Load this like the sensors.xml for now
-
-        //            //_InterfaceKits =
-        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
-        //            //    select new InterfaceKit(
-        //            //        item.Attribute("Name").Value,
-        //            //        item.Attribute("IPAddress").Value,
-        //            //        item.Attribute("Port").Value,
-        //            //        Boolean.Parse(item.Attribute("Enable").Value)
-        //            //        );
-        //        }
-
-        //        return _AdvancedServos;
-        //    }
-
-        //    set
-        //    {
-        //        _AdvancedServos = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private IEnumerable<VNCPhidgetConfig.AdvancedServo> _AdvancedServoTypes;
-        //public IEnumerable<VNCPhidgetConfig.AdvancedServo> AdvancedServoTypes
-        //{
-        //    get
-        //    {
-        //        if (null == _AdvancedServoTypes)
-        //        {
-        //            // TODO(crhodes)
-        //            // Load this like the sensors.xml for now
-
-        //            //_InterfaceKits =
-        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
-        //            //    select new InterfaceKit(
-        //            //        item.Attribute("Name").Value,
-        //            //        item.Attribute("IPAddress").Value,
-        //            //        item.Attribute("Port").Value,
-        //            //        Boolean.Parse(item.Attribute("Enable").Value)
-        //            //        );
-        //        }
-
-        //        return _AdvancedServoTypes;
-        //    }
-
-        //    set
-        //    {
-        //        _AdvancedServoTypes = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private ServoServo.ServoType _servoTypeEnum;
-        //public ServoServo.ServoType ServoTypeEnum
-        //{
-        //    get => _servoTypeEnum;
-        //    set
-        //    {
-        //        if (_servoTypeEnum == value)
-        //        {
-        //            return;
-        //        }
-
-        //        _servoTypeEnum = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private VNCPhidgetConfig.AdvancedServo _selectedAdvancedServo;
-        //public VNCPhidgetConfig.AdvancedServo SelectedAdvancedServo
-        //{
-        //    get => _selectedAdvancedServo;
-        //    set
-        //    {
-        //        if (_selectedAdvancedServo == value)
-        //            return;
-        //        _selectedAdvancedServo = value;
-
-        //        OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-        //        CloseAdvancedServoCommand.RaiseCanExecuteChanged();
-
-        //        OpenRCServoCommand.RaiseCanExecuteChanged();
-        //        //PlayPerformanceCommand.RaiseCanExecuteChanged();
-        //        //PlaySequenceCommand.RaiseCanExecuteChanged();
-
-        //        RCServosVisibility = Visibility.Visible;
-        //        // Set to null when host changes
-        //        //if (value is not null)
-        //        //{
-        //        //    // FIX(crhodes)
-        //        //    // 
-        //        //    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
-
-        //        //    RCServosVisibility = deviceChannels.RCServoCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-        //        //}
-        //        //else
-        //        //{
-        //        //    RCServosVisibility = Visibility.Collapsed;
-        //        //}
-
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private AdvancedServoEx _activeAdvancedServo;
-        //public AdvancedServoEx ActiveAdvancedServo
-        //{
-        //    get => _activeAdvancedServo;
-        //    set
-        //    {
-        //        if (_activeAdvancedServo == value)
-        //            return;
-        //        _activeAdvancedServo = value;
-
-        //        //if (_activeAdvancedServo is not null)
-        //        //{
-        //        //    PhidgetDevice = _activeAdvancedServo.AdvancedServo;
-        //        //}
-        //        //else
-        //        //{
-        //        //    PhidgetDevice = null;
-        //        //}
-
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private Int32? _servoCount;
-        //public Int32? ServoCount
-        //{
-        //    get => _servoCount;
-        //    set
-        //    {
-        //        if (_servoCount == value)
-        //            return;
-        //        _servoCount = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        // TODO(crhodes)
-        // Need to drive this off _deviceChannels.RCServoCount
-
-        //private ServoProperties[] _advancedServoProperties = new ServoProperties[8]
-        //{
-        //    new ServoProperties() { ServoIndex = 0 },
-        //    new ServoProperties() { ServoIndex = 1 },
-        //    new ServoProperties() { ServoIndex = 2 },
-        //    new ServoProperties() { ServoIndex = 3 },
-        //    new ServoProperties() { ServoIndex = 4 },
-        //    new ServoProperties() { ServoIndex = 5 },
-        //    new ServoProperties() { ServoIndex = 6 },
-        //    new ServoProperties() { ServoIndex = 7 },
-        //};
-
-        //public ServoProperties[] AdvancedServoProperties
-        //{
-        //    get => _advancedServoProperties;
-        //    set
-        //    {
-        //        if (_advancedServoProperties == value)
-        //            return;
-        //        _advancedServoProperties = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         #region RCServos
 
@@ -828,8 +640,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #endregion
-
         #region Event Handlers (none)
 
 
@@ -840,7 +650,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenAdvancedServo Command
 
-        public DelegateCommand OpenAdvancedServoCommand { get; set; }
+        public DelegateCommand OpenAllRCServosCommand { get; set; }
         public string OpenAdvancedServoContent { get; set; } = "Open";
         public string OpenAdvancedServoToolTip { get; set; } = "OpenAdvancedServo ToolTip";
 
@@ -852,7 +662,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenAdvancedServoContent">OpenAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_OpenAdvancedServoContentToolTip">OpenAdvancedServo ToolTip</system:String>  
 
-        public async void OpenAdvancedServo()
+        public async void OpenAllRCServos()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenAdvancedServo) Enter", Common.LOG_CATEGORY);
@@ -862,24 +672,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PublishStatusMessage(Message);
 
             var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedAdvancedServoPhidget);
+                .Where(kv => kv.Key.SerialNumber == SelectedRCServoPhidget);
 
             foreach (var rcServo in rcServos)
             {
-                if (rcServo.Value.IsHubPortDevice)
-                {
-                    // TODO(crhodes)
-                    // 
-                    //OpenRCServoHubPort(rcServo.Key);
-                }
-                else
-                {
-                    OpenRCServo(rcServo.Key);
-                }                    
+                OpenRCServo(rcServo.Key);        
             }
 
-            OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+            OpenAllRCServosCommand.RaiseCanExecuteChanged();
+            CloseAllRCServosCommand.RaiseCanExecuteChanged();
 
             //InitializeVelocityCommand.RaiseCanExecuteChanged();
             //InitializeAccelerationCommand.RaiseCanExecuteChanged();
@@ -912,12 +713,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenAdvancedServo) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean OpenAdvancedServoCanExecute()
+        public Boolean OpenAllRCServosCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            //return true;
-            if (SelectedAdvancedServoPhidget > 0)
+
+            if (SelectedRCServoPhidget > 0)
             {
                 return true;
             }
@@ -929,352 +730,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        //#region InitializeVelocityCommand
-
-        ////public DelegateCommand InitializeVelocityCommand { get; set; }
-        //public DelegateCommand<string> InitializeVelocityCommand { get; set; }
-        //public string InitializeVelocityContent { get; set; } = "Initilize Velocity";
-        //public string InitializeVelocityToolTip { get; set; } = "Initialize Velocity using Velocity Scale";
-
-        //// Can get fancy and use Resources
-        ////public string InitializeSlowAdvancedServoContent { get; set; } = "ViewName_InitializeSlowAdvancedServoContent";
-        ////public string InitializeSlowAdvancedServoToolTip { get; set; } = "ViewName_InitializeSlowAdvancedServoContentToolTip";
-
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContent">InitializeSlowAdvancedServo</system:String>
-        ////    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContentToolTip">InitializeSlowAdvancedServo ToolTip</system:String>  
-
-        ////public void InitializeSlowAdvancedServo()
-
-        //public void InitializeVelocity(string speed)
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeVelocity) Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-        //    Message = "Cool, you called InitializeSlowAdvancedServo";
-        //    PublishStatusMessage(Message);
-
-        //    if ((Boolean)DeviceAttached)
-        //    {
-        //        // FIX(crhodes)
-        //        // 
-        //        //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-
-        //        //try
-        //        //{
-        //        //    for (Int32 i = 0; i < servos.Count; i++)
-        //        //    {
-        //        //        AdvancedServoProperties[i].InitializeVelocity(ConvertStringToInitializeMotion(speed));
-        //        //    }
-        //        //}
-        //        //catch (Exception ex)
-        //        //{
-        //        //    Log.Error(ex, Common.LOG_CATEGORY);
-        //        //}
-        //    }
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish(
-        //    //      new InitializeSlowAdvancedServoEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Three - Put this in PrismEvents
-
-        //    // public class InitializeSlowAdvancedServoEvent : PubSubEvent { }
-
-        //    // End Cut Three
-
-        //    // Start Cut Four - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Subscribe(InitializeSlowAdvancedServo);
-
-        //    // End Cut Four
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeVelocity) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-
-        ////public Boolean InitializeSlowAdvancedServoCanExecute()
-        //public Boolean InitializeVelocityCanExecute(string speed)
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    //return true;
-        //    if (DeviceAttached is not null)
-        //        return (Boolean)DeviceAttached;
-        //    else
-        //        return false;
-        //}
-
-        //#endregion
-
-        //#region InitializeAccelerationCommand
-
-        ////public DelegateCommand InitializeVelocityCommand { get; set; }
-        //public DelegateCommand<string> InitializeAccelerationCommand { get; set; }
-        //public string InitializeAccelerationContent { get; set; } = "Initilize Acceleration";
-        //public string InitializeAccelerationToolTip { get; set; } = "Initialize Acceleration using Acceleration Scale";
-
-        //// Can get fancy and use Resources
-        ////public string InitializeSlowAdvancedServoContent { get; set; } = "ViewName_InitializeSlowAdvancedServoContent";
-        ////public string InitializeSlowAdvancedServoToolTip { get; set; } = "ViewName_InitializeSlowAdvancedServoContentToolTip";
-
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContent">InitializeSlowAdvancedServo</system:String>
-        ////    <system:String x:Key="ViewName_InitializeSlowAdvancedServoContentToolTip">InitializeSlowAdvancedServo ToolTip</system:String>  
-
-        ////public void InitializeSlowAdvancedServo()
-
-        //public void InitializeAcceleration(string speed)
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeAcceleration) Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-        //    Message = "Cool, you called InitializeAcceleration";
-        //    PublishStatusMessage(Message);
-
-        //    if ((Boolean)DeviceAttached)
-        //    {
-        //        // FIX(crhodes)
-        //        // 
-        //        //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-
-        //        //try
-        //        //{
-        //        //    for (Int32 i = 0; i < servos.Count; i++)
-        //        //    {
-        //        //        AdvancedServoProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
-        //        //    }
-        //        //}
-        //        //catch (Exception ex)
-        //        //{
-        //        //    Log.Error(ex, Common.LOG_CATEGORY);
-        //        //}
-        //    }
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Publish(
-        //    //      new InitializeSlowAdvancedServoEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Three - Put this in PrismEvents
-
-        //    // public class InitializeSlowAdvancedServoEvent : PubSubEvent { }
-
-        //    // End Cut Three
-
-        //    // Start Cut Four - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<InitializeSlowAdvancedServoEvent>().Subscribe(InitializeSlowAdvancedServo);
-
-        //    // End Cut Four
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeAcceleration) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-
-        ////public Boolean InitializeSlowAdvancedServoCanExecute()
-        //public Boolean InitializeAccelerationCanExecute(string speed)
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    //return true;
-        //    if (DeviceAttached is not null)
-        //        return (Boolean)DeviceAttached;
-        //    else
-        //        return false;
-        //}
-
-        //#endregion
-
-        //#region InitializeMediumAdvancedServo Command
-
-        //public DelegateCommand InitializeMediumAdvancedServoCommand { get; set; }
-        //public string InitializeMediumAdvancedServoContent { get; set; } = "Medium";
-        //public string InitializeMediumAdvancedServoToolTip { get; set; } = "Initialize Medium Speed and Center Position";
-
-        //// Can get fancy and use Resources
-        ////public string InitializeMediumAdvancedServoContent { get; set; } = "ViewName_InitializeMediumAdvancedServoContent";
-        ////public string InitializeMediumAdvancedServoToolTip { get; set; } = "ViewName_InitializeMediumAdvancedServoContentToolTip";
-
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_InitializeMediumAdvancedServoContent">InitializeMediumAdvancedServo</system:String>
-        ////    <system:String x:Key="ViewName_InitializeMediumAdvancedServoContentToolTip">InitializeMediumAdvancedServo ToolTip</system:String>  
-
-        //public void InitializeMediumAdvancedServo()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeMediumAdvancedServo) Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-        //    Message = "Cool, you called InitializeMediumAdvancedServo";
-        //    PublishStatusMessage(Message);
-
-        //    if ((Boolean)DeviceAttached)
-        //    {
-        //        // FIX(crhodes)
-        //        // 
-        //        //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-
-        //        //try
-        //        //{
-        //        //    for (Int32 i = 0; i < servos.Count; i++)
-        //        //    {
-        //        //        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Percent50);
-        //        //    }
-        //        //}
-        //        //catch (Exception ex)
-        //        //{
-        //        //    Log.Error(ex, Common.LOG_CATEGORY);
-        //        //}
-        //    }
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<InitializeMediumAdvancedServoEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<InitializeMediumAdvancedServoEvent>().Publish(
-        //    //      new InitializeMediumAdvancedServoEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Three - Put this in PrismEvents
-
-        //    // public class InitializeMediumAdvancedServoEvent : PubSubEvent { }
-
-        //    // End Cut Three
-
-        //    // Start Cut Four - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<InitializeMediumAdvancedServoEvent>().Subscribe(InitializeMediumAdvancedServo);
-
-        //    // End Cut Four
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeMediumAdvancedServo) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-
-        //public Boolean InitializeMediumAdvancedServoCanExecute()
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    //return true;
-        //    if (DeviceAttached is not null)
-        //        return (Boolean)DeviceAttached;
-        //    else
-        //        return false;
-        //}
-
-        //#endregion
-
-        //#region InitializeFastAdvancedServo Command
-
-        //public DelegateCommand InitializeFastAdvancedServoCommand { get; set; }
-        //public string InitializeFastAdvancedServoContent { get; set; } = "Fast";
-        //public string InitializeFastAdvancedServoToolTip { get; set; } = "Initialize Fast Speed and Center Position";
-
-        //// Can get fancy and use Resources
-        ////public string OpenAdvancedServoContent { get; set; } = "ViewName_OpenAdvancedServoContent";
-        ////public string OpenAdvancedServoToolTip { get; set; } = "ViewName_OpenAdvancedServoContentToolTip";
-
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_OpenAdvancedServoContent">OpenAdvancedServo</system:String>
-        ////    <system:String x:Key="ViewName_OpenAdvancedServoContentToolTip">OpenAdvancedServo ToolTip</system:String>  
-
-        //public void InitializeFastAdvancedServo()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeFastAdvancedServo) Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-        //    Message = "Cool, you calledInitializeFastAdvancedServo";
-        //    PublishStatusMessage(Message);
-
-        //    if ((Boolean)DeviceAttached)
-        //    {
-        //        // FIX(crhodes)
-        //        // 
-        //        //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
-
-        //        //try
-        //        //{
-        //        //    for (Int32 i = 0; i < servos.Count; i++)
-        //        //    {
-        //        //        AdvancedServoProperties[i].InitializeVelocity(ServoProperties.MotionScale.Max);
-        //        //    }
-        //        //}
-        //        //catch (Exception ex)
-        //        //{
-        //        //    Log.Error(ex, Common.LOG_CATEGORY);
-        //        //}
-        //    }
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<OpenAdvancedServoEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<OpenAdvancedServoEvent>().Publish(
-        //    //      new OpenAdvancedServoEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Three - Put this in PrismEvents
-
-        //    // public class OpenAdvancedServoEvent : PubSubEvent { }
-
-        //    // End Cut Three
-
-        //    // Start Cut Four - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<OpenAdvancedServoEvent>().Subscribe(OpenAdvancedServo);
-
-        //    // End Cut Four
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeFastAdvancedServo) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //public Boolean InitializeFastAdvancedServoCanExecute()
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    //return true;
-        //    if (DeviceAttached is not null)
-        //        return (Boolean)DeviceAttached;
-        //    else
-        //        return false;
-        //}
-
-        //#endregion
-
         #region CloseAdvancedServo Command
 
-        public DelegateCommand CloseAdvancedServoCommand { get; set; }
+        public DelegateCommand CloseAllRCServosCommand { get; set; }
         public string CloseAdvancedServoContent { get; set; } = "Close";
         public string CloseAdvancedServoToolTip { get; set; } = "CloseAdvancedServo ToolTip";
 
@@ -1285,7 +743,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // Put these in Resource File
         //    <system:String x:Key="ViewName_CloseAdvancedServoContent">CloseAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_CloseAdvancedServoContentToolTip">CloseAdvancedServo ToolTip</system:String>
-        public async void CloseAdvancedServo()
+        public async void CloseAllRCServos()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseAdvancedServo) Enter", Common.LOG_CATEGORY);
@@ -1295,36 +753,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PublishStatusMessage(Message);
 
             var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedAdvancedServoPhidget);
+                .Where(kv => kv.Key.SerialNumber == SelectedRCServoPhidget);
 
             foreach (var rcServo in rcServos)
             {
-                if (rcServo.Value.IsHubPortDevice)
-                {
-                    // TODO(crhodes)
-                    // 
-                    //OpenRCServoHubPort(rcServo.Key);
-                }
-                else
-                {
-                    CloseRCServo(rcServo.Key);
-                }
+                CloseRCServo(rcServo.Key);
             }
 
-            OpenAdvancedServoCommand.RaiseCanExecuteChanged();
-            CloseAdvancedServoCommand.RaiseCanExecuteChanged();
+            OpenAllRCServosCommand.RaiseCanExecuteChanged();
+            CloseAllRCServosCommand.RaiseCanExecuteChanged();
 
-            //InitializeVelocityCommand.RaiseCanExecuteChanged();
-            //InitializeAccelerationCommand.RaiseCanExecuteChanged();
-
-            //InitializeMediumAdvancedServoCommand.RaiseCanExecuteChanged();
-            //InitializeFastAdvancedServoCommand.RaiseCanExecuteChanged();
-
-            //SetAdvancedServoDefaultsCommand.RaiseCanExecuteChanged();
             SetPositionRangeCommand.RaiseCanExecuteChanged();
-
-            //PlayPerformanceCommand.RaiseCanExecuteChanged();
-            //PlaySequenceCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1354,12 +793,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(CloseAdvancedServo) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean CloseAdvancedServoCanExecute()
+        public Boolean CloseAllRCServosCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
 
-            if (SelectedAdvancedServoPhidget > 0)
+            if (SelectedRCServoPhidget > 0)
             {
                 return true;
             }                
@@ -1393,36 +832,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE here
 
-        private async Task OpenRCServo(RCServoEx rcServo)
-        {
-            ConfigureInitialLogging(rcServo);
 
-            if (rcServo.IsOpen is false)
-            {
-                await Task.Run(() => rcServo.Open(10000));
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{rcServo} already open", Common.LOG_CATEGORY);
-            }
-        }
-
-        void ConfigureInitialLogging(RCServoEx rcServo)
-        {
-            rcServo.LogPhidgetEvents = LogPhidgetEvents;
-            rcServo.LogErrorEvents = LogErrorEvents;
-            rcServo.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            rcServo.LogPositionChangeEvents = LogPositionChangeEvents;
-            rcServo.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            rcServo.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-            rcServo.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            rcServo.LogChannelAction = LogChannelAction;
-            rcServo.LogActionVerification = LogActionVerification;
-        }
 
         public async void OpenRCServo(SerialHubPortChannel? serialHubPortChannel)
         //public void OpenRCServo()
@@ -1444,82 +854,66 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             switch (shpc.Channel)
             {
                 case 0:
-                    //if (RCServo0 is null) RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo0);
                     break;
 
                 case 1:
-                    //if (RCServo1 is null) RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo1);
                     break;
 
                 case 2:
-                    //if (RCServo2 is null) RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo2);
                     break;
 
                 case 3:
-                    //if (RCServo3 is null) RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo3);
                     break;
 
                 case 4:
-                    //if (RCServo4 is null) RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo4);
                     break;
 
                 case 5:
-                    //if (RCServo5 is null) RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo5);
                     break;
 
                 case 6:
-                    //if (RCServo6 is null) RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo6);
                     break;
 
                 case 7:
-                    //if (RCServo7 is null) RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo7);
                     break;
 
                 case 8:
-                    //if (RCServo8 is null) RCServo8 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo8);
                     break;
 
                 case 9:
-                    //if (RCServo9 is null) RCServo9 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo9);
                     break;
 
                 case 10:
-                    //if (RCServo10 is null) RCServo10 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo10);
                     break;
 
                 case 11:
-                    //if (RCServo11 is null) RCServo11 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo11);
                     break;
 
                 case 12:
-                    //if (RCServo12 is null) RCServo12 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo12);
                     break;
 
                 case 13:
-                    //if (RCServo13 is null) RCServo13 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo13);
                     break;
 
                 case 14:
-                    //if (RCServo14 is null) RCServo14 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo14);
                     break;
 
                 case 15:
-                    //if (RCServo15 is null) RCServo15 = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
                     await OpenRCServo(RCServo15);
                     break;
 
@@ -1570,6 +964,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private async Task OpenRCServo(RCServoEx rcServo)
+        {
+            ConfigureInitialLogging(rcServo);
+
+            if (rcServo.IsOpen is false)
+            {
+                await Task.Run(() => rcServo.Open(10000));
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{rcServo} already open", Common.LOG_CATEGORY);
+            }
+        }
+
+        void ConfigureInitialLogging(RCServoEx rcServo)
+        {
+            rcServo.LogPhidgetEvents = LogPhidgetEvents;
+            rcServo.LogErrorEvents = LogErrorEvents;
+            rcServo.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            rcServo.LogPositionChangeEvents = LogPositionChangeEvents;
+            rcServo.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            rcServo.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            rcServo.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            rcServo.LogChannelAction = LogChannelAction;
+            rcServo.LogActionVerification = LogActionVerification;
+        }
+
         // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenRCServoCanExecute(SerialHubPortChannel? serialHubPortChannel)
         //public Boolean OpenRCServoCanExecute()
@@ -1577,7 +1002,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
 
-            if (SelectedAdvancedServoPhidget is null) return false;
+            if (SelectedRCServoPhidget is null) return false;
 
             if (serialHubPortChannel is null) return false;
 
@@ -1708,66 +1133,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 return false;
             }        
-        }
-
-        #endregion
-
-        #region ConfigureServo Command
-
-        public DelegateCommand ConfigureServoCommand { get; set; }
-        public string ConfigureServoContent { get; set; } = "ConfigureServo";
-        public string ConfigureServoToolTip { get; set; } = "ConfigureServo ToolTip";
-
-        // Can get fancy and use Resources
-        //public string ConfigureServoContent { get; set; } = "ViewName_ConfigureServoContent";
-        //public string ConfigureServoToolTip { get; set; } = "ViewName_ConfigureServoContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_ConfigureServoContent">ConfigureServo</system:String>
-        //    <system:String x:Key="ViewName_ConfigureServoContentToolTip">ConfigureServo ToolTip</system:String>  
-
-        public void ConfigureServo()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigureServo) Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called ConfigureServo";
-            PublishStatusMessage(Message);
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<ConfigureServoEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<ConfigureServoEvent>().Publish(
-            //      new ConfigureServoEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class ConfigureServoEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<ConfigureServoEvent>().Subscribe(ConfigureServo);
-
-            // End Cut Four
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigureServo) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public Boolean ConfigureServoCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            return true;
         }
 
         #endregion
@@ -2035,76 +1400,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Public Methods (none)
 
 
+
         #endregion
 
         #region Protected Methods (none)
+
 
 
         #endregion
 
         #region Private Methods
 
-        //private void ConfigureCurrentInputs(short channelCount, Int32 serialNumber)
-        //{
-        //    for (Int16 i = 0; i < channelCount; i++)
-        //    {
-        //        //RCServos[i].SerialNumber = serialNumber;
-        //    }
-        //}
 
-        //private ServoProperties.MotionScale ConvertStringToInitializeMotion(string speed)
-        //{
-        //    ServoProperties.MotionScale result = ServoProperties.MotionScale.Percent05;
-
-        //    switch (speed)
-        //    {
-        //        case "Min":
-        //            result = ServoProperties.MotionScale.Min;
-        //            break;
-
-        //        case "05%":
-        //            result = ServoProperties.MotionScale.Percent05;
-        //            break;
-
-        //        case "10%":
-        //            result = ServoProperties.MotionScale.Percent10;
-        //            break;
-
-        //        case "15%":
-        //            result = ServoProperties.MotionScale.Percent15;
-        //            break;
-
-        //        case "20%":
-        //            result = ServoProperties.MotionScale.Percent20;
-        //            break;
-
-        //        case "25%":
-        //            result = ServoProperties.MotionScale.Percent25;
-        //            break;
-
-        //        case "35%":
-        //            result = ServoProperties.MotionScale.Percent35;
-        //            break;
-
-        //        case "50%":
-        //            result = ServoProperties.MotionScale.Percent50;
-        //            break;
-
-        //        case "75%":
-        //            result = ServoProperties.MotionScale.Percent75;
-        //            break;
-
-        //        case "Max":
-        //            result = ServoProperties.MotionScale.Max;
-        //            break;
-
-        //        default:
-        //            Log.Error($"Unexpected speed:{speed}", Common.LOG_CATEGORY);
-        //            break;
-        //    }
-
-        //    return result;
-        //}
 
         #endregion
 

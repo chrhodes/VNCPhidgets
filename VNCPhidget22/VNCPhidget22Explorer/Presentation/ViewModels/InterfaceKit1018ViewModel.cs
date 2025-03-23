@@ -63,13 +63,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             CloseDigitalOutputCommand = new DelegateCommand<SerialHubPortChannel?>(CloseDigitalOutput, CloseDigitalOutputCanExecute);
 
             OpenVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(OpenVoltageInput, OpenVoltageInputCanExecute);
-            RefreshVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(RefreshVoltageInput, RefreshVoltageInputCanExecute);
-            RaisePerformanceEventCommand = new DelegateCommand<SerialHubPortChannel?>(RaisePerformanceEvent, RaisePerformanceEventCanExecute);
+            RefreshVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(RefreshVoltageInput, RefreshVoltageInputCanExecute);        
             CloseVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(CloseVoltageInput, CloseVoltageInputCanExecute);
 
             OpenVoltageRatioInputCommand = new DelegateCommand<SerialHubPortChannel?>(OpenVoltageRatioInput, OpenVoltageRatioInputCanExecute);
             RefreshVoltageRatioInputCommand = new DelegateCommand<SerialHubPortChannel?>(RefreshVoltageRatioInput, RefreshVoltageRatioInputCanExecute);
             CloseVoltageRatioInputCommand = new DelegateCommand<SerialHubPortChannel?>(CloseVoltageRatioInput, CloseVoltageRatioInputCanExecute);
+
+            OpenVoltageOutputCommand = new DelegateCommand<SerialHubPortChannel?>(OpenVoltageOutput, OpenVoltageOutputCanExecute);
+            CloseVoltageOutputCommand = new DelegateCommand<SerialHubPortChannel?>(CloseVoltageOutput, CloseVoltageOutputCanExecute);
+
+            RaisePerformanceEventCommand = new DelegateCommand<SerialHubPortChannel?>(RaisePerformanceEvent, RaisePerformanceEventCanExecute);
 
             LoadUIConfig();
 
@@ -119,7 +123,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             LoadVoltageOutputs(voltageOutputs);
         }
 
-        void LoadDigitalInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, DigitalInputEx>> digitalInputs)
+        private void LoadDigitalInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, DigitalInputEx>> digitalInputs)
         {
             foreach (var digitalInput in digitalInputs)
             {
@@ -192,7 +196,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void LoadDigitalOutputs(IEnumerable<KeyValuePair<SerialHubPortChannel, DigitalOutputEx>> digitalOutputs)
+        private void LoadDigitalOutputs(IEnumerable<KeyValuePair<SerialHubPortChannel, DigitalOutputEx>> digitalOutputs)
         {
             foreach (var digitalOutput in digitalOutputs)
             {
@@ -265,7 +269,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void LoadVoltageInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageInputEx>> voltageInputs)
+        private void LoadVoltageInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageInputEx>> voltageInputs)
         {
             foreach (var voltageInput in voltageInputs)
             {
@@ -338,7 +342,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void LoadVoltageRatioInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageRatioInputEx>> voltageRatioInputs)
+        private void LoadVoltageRatioInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageRatioInputEx>> voltageRatioInputs)
         {
             foreach (var voltageRatioInput in voltageRatioInputs)
             {
@@ -411,7 +415,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void LoadVoltageOutputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageOutputEx>> voltageOutputs)
+        private void LoadVoltageOutputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageOutputEx>> voltageOutputs)
         {
             foreach (var voltageOutput in voltageOutputs)
             {
@@ -489,27 +493,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
 
 
+
         #endregion
 
         #region Fields and Properties
-
-        private string _message;
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
 
         #region Logging
 
@@ -551,6 +544,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #region I/O Events
 
         private Boolean _logStateChangeEvents = false;
         public Boolean LogStateChangeEvents
@@ -604,6 +599,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        #endregion
+
+        #region Performance Events
+
         private Boolean _logDeviceChannelSequence = false;
         public Boolean LogDeviceChannelSequence
         {
@@ -627,11 +626,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 _logPhidgetEvents = value;
                 OnPropertyChanged();
-
-                if (ActiveInterfaceKit is not null)
-                {
-                    ActiveInterfaceKit.LogChannelAction = value;
-                }
             }
         }
 
@@ -647,6 +641,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        #endregion
 
         #endregion
 
@@ -686,7 +682,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 OpenVoltageInputCommand.RaiseCanExecuteChanged();
                 OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
-                //OpenVoltageOutputCommand.RaiseCanExecuteChanged();
+                OpenVoltageOutputCommand.RaiseCanExecuteChanged();
 
                 DigitalInputsVisibility = Visibility.Visible;
                 DigitalOutputsVisibility = Visibility.Visible;
@@ -695,7 +691,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        #region DigitalInput
+        #region DigitalInputs
+
+        private Visibility _digitalInputsVisibility = Visibility.Collapsed;
+        public Visibility DigitalInputsVisibility
+        {
+            get => _digitalInputsVisibility;
+            set
+            {
+                if (_digitalInputsVisibility == value)
+                    return;
+                _digitalInputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // I think we can go back to DigitalInputEx[16]
+        // Besure doesn't break UI with INPC
 
         private DigitalInputEx _digitalInput0;
         public DigitalInputEx DigitalInput0
@@ -907,7 +920,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region DigitalOutput
+        #region DigitalOutputs
+
+        private Visibility _digitalOutputsVisibility = Visibility.Collapsed;
+        public Visibility DigitalOutputsVisibility
+        {
+            get => _digitalOutputsVisibility;
+            set
+            {
+                if (_digitalOutputsVisibility == value)
+                    return;
+                _digitalOutputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // I think we can go back to DigitalOutputEx[16]
+        // Besure doesn't break UI with INPC
 
         private DigitalOutputEx _digitalOutput0;
         public DigitalOutputEx DigitalOutput0
@@ -1119,7 +1149,27 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region VoltageInput
+        #region VoltageInputs
+
+        // NOTE(crhodes)
+        // Also controls VoltageRatioInputs visibility
+
+        private Visibility _voltageInputsVisibility = Visibility.Collapsed;
+        public Visibility VoltageInputsVisibility
+        {
+            get => _voltageInputsVisibility;
+            set
+            {
+                if (_voltageInputsVisibility == value)
+                    return;
+                _voltageInputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // I think we can go back to VoltageInputEx[16]
+        // Besure doesn't break UI with INPC
 
         private VoltageInputEx _voltageInput0;
         public VoltageInputEx VoltageInput0
@@ -1331,7 +1381,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region VoltageRatioInput
+        #region VoltageRatioInputs
+
+        // TODO(crhodes)
+        // I think we can go back to VoltageRatioInputEx[16]
+        // Besure doesn't break UI with INPC
 
         private VoltageRatioInputEx _voltageRatioInput0;
         public VoltageRatioInputEx VoltageRatioInput0
@@ -1543,7 +1597,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region VoltageOutput
+        #region VoltageOutputs
+
+        private Visibility _voltageOutputsVisibility = Visibility.Collapsed;
+        public Visibility VoltageOutputsVisibility
+        {
+            get => _voltageOutputsVisibility;
+            set
+            {
+                if (_voltageOutputsVisibility == value)
+                    return;
+                _voltageOutputsVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // I think we can go back to VoltageOutputEx[16]
+        // Besure doesn't break UI with INPC
 
         private VoltageOutputEx _voltageOutput0;
         public VoltageOutputEx VoltageOutput0
@@ -1754,105 +1825,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
-
-        private Visibility _digitalInputsVisibility = Visibility.Collapsed;
-        public Visibility DigitalInputsVisibility
-        {
-            get => _digitalInputsVisibility;
-            set
-            {
-                if (_digitalInputsVisibility == value)
-                    return;
-                _digitalInputsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Visibility _digitalOutputsVisibility = Visibility.Collapsed;
-        public Visibility DigitalOutputsVisibility
-        {
-            get => _digitalOutputsVisibility;
-            set
-            {
-                if (_digitalOutputsVisibility == value)
-                    return;
-                _digitalOutputsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Visibility _voltageInputsVisibility = Visibility.Collapsed;
-        public Visibility VoltageInputsVisibility
-        {
-            get => _voltageInputsVisibility;
-            set
-            {
-                if (_voltageInputsVisibility == value)
-                    return;
-                _voltageInputsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Visibility _voltageOutputsVisibility = Visibility.Collapsed;
-        public Visibility VoltageOutputsVisibility
-        {
-            get => _voltageOutputsVisibility;
-            set
-            {
-                if (_voltageOutputsVisibility == value)
-                    return;
-                _voltageOutputsVisibility = value;
-                OnPropertyChanged();
-            }
-        }
         
-        private VNCPhidgetConfig.InterfaceKit _selectedInterfaceKit;
-        public VNCPhidgetConfig.InterfaceKit SelectedInterfaceKit
-        {
-            get => _selectedInterfaceKit;
-            set
-            {
-                if (_selectedInterfaceKit == value)
-                    return;
-                _selectedInterfaceKit = value;
-
-                OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-                CloseInterfaceKitCommand.RaiseCanExecuteChanged();
-
-                OpenDigitalInputCommand.RaiseCanExecuteChanged();
-                OpenDigitalOutputCommand.RaiseCanExecuteChanged();
-
-                OpenVoltageInputCommand.RaiseCanExecuteChanged();
-                OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
-                //OpenVoltageOutputCommand.RaiseCanExecuteChanged();
-
-                DigitalInputsVisibility = Visibility.Visible;
-                DigitalOutputsVisibility = Visibility.Visible;
-                VoltageInputsVisibility = Visibility.Visible;
-                VoltageOutputsVisibility = Visibility.Visible;
-
-                OnPropertyChanged();
-            }
-        }
-
-        // TODO(crhodes)
-        // May want to make this just a Phidget22.InterfaceKit
-        // to avoid all the ActiveInterfaceKit.InterfaceKit stuff
-
-        private DigitalOutputEx _activeInterfaceKit;
-        public DigitalOutputEx ActiveInterfaceKit
-        {
-            get => _activeInterfaceKit;
-            set
-            {
-                if (_activeInterfaceKit == value)
-                    return;
-                _activeInterfaceKit = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #endregion
@@ -1893,14 +1866,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             foreach (var digitalInput in digitalInputs)
             {
-                //if (digitalInput.Value.IsHubPortDevice)
-                //{
-                //    OpenDigitalInputHubPort(digitalInput.Key);
-                //}
-                //else
-                //{
-                    OpenDigitalInput(digitalInput.Key);
-                //}                    
+                OpenDigitalInput(digitalInput.Key);              
             }
 
             var digitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
@@ -1909,14 +1875,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             foreach (var digitalOutput in digitalOutputs)
             {
-                //if (digitalOutput.Value.IsHubPortDevice)
-                //{
-                //    OpenDigitalOutputHubPort(digitalOutput.Key);
-                //}
-                //else
-                //{
-                    OpenDigitalOutput(digitalOutput.Key);
-                //}                
+                OpenDigitalOutput(digitalOutput.Key);              
             }
 
             var voltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
@@ -1924,14 +1883,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             foreach (var voltageInput in voltageInputs)
             {
-                //if (voltageInput.Value.IsHubPortDevice)
-                //{
-                //    OpenVoltageInputHubPort(voltageInput.Key);
-                //}
-                //else
-                //{
-                    OpenVoltageInput(voltageInput.Key);
-                //}                
+                OpenVoltageInput(voltageInput.Key);             
             }
 
             var voltageRatioInputs = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
@@ -1939,14 +1891,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             foreach (var voltageRatioInput in voltageRatioInputs)
             {
-                //if (voltageRatioInput.Value.IsHubPortDevice)
-                //{
-                //    OpenVoltageRatioInput(voltageRatioInput.Key);
-                //}
-                //else
-                //{
-                    OpenVoltageRatioInput(voltageRatioInput.Key);
-                //}                
+                OpenVoltageRatioInput(voltageRatioInput.Key);               
             }
 
             var voltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
@@ -1954,9 +1899,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             foreach (var voltageOutput in voltageOutputs)
             {
-                // TODO(crhodes)
-                // Implement
-                //OpenVoltageOutput(voltageOutput.Key);
+                OpenVoltageOutput(voltageOutput.Key);
             }
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
@@ -2039,99 +1982,44 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called CloseInterfaceKit";
             PublishStatusMessage(Message);
 
-            //var digitalInputCount = Common.PhidgetDeviceLibrary.DigitalInputChannels
-            //     .Keys
-            //     .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
-            //     .Select(x => x.SerialNumber).Count();
-
             var digitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
-
-            //var digitalOutputCount = Common.PhidgetDeviceLibrary.DigitalOutputChannels
-            //     .Keys
-            //     .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
-            //     .Select(x => x.SerialNumber).Count();
-
-            var digitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
-
-            //var voltageInputCount = Common.PhidgetDeviceLibrary.VoltageInputChannels
-            //     .Keys
-            //     .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
-            //     .Select(x => x.SerialNumber).Count();
-
-            var voltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
-
-            //var voltageRatioInputCount = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
-            //     .Keys
-            //     .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
-            //     .Select(x => x.SerialNumber).Count();
-
-            var voltageRatioInputs = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
-
-            //var voltageOutputCount = Common.PhidgetDeviceLibrary.VoltageOutputChannels
-            //     .Keys
-            //     .Where(x => (Int32)x.SerialNumber == SelectedInterfaceKitPhidget)
-            //     .Select(x => x.SerialNumber).Count();
-
-            var voltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
-                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
-
-            //for (Int32 channel = 0; channel < digitalInputCount; channel++)
-            //{
-            //    CloseDigitalInput(channel);
-            //}
 
             foreach (var digitalInput in digitalInputs)
             {
                 CloseDigitalInput(digitalInput.Key);
             }
 
-            //for (Int32 channel = 0; channel < digitalOutputCount; channel++)
-            //{
-            //    CloseDigitalOutput(channel);
-            //}
+            var digitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
 
             foreach (var digitalOutput in digitalOutputs)
             {
                 CloseDigitalOutput(digitalOutput.Key);
             }
 
-            //for (Int32 channel = 0; channel < voltageInputCount; channel++)
-            //{
-            //    CloseVoltageInput(channel);
-            //}
+            var voltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
 
             foreach (var voltageInput in voltageInputs)
             {
                 CloseVoltageInput(voltageInput.Key);
             }
 
-            //for (Int32 channel = 0; channel < voltageRatioInputCount; channel++)
-            //{
-            //    CloseVoltageRatioInput(channel);
-            //}
+            var voltageRatioInputs = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
 
             foreach (var voltageRatioInput in voltageRatioInputs)
             {
                 CloseVoltageRatioInput(voltageRatioInput.Key);
             }
 
-            //for (Int32 channel = 0; channel < voltageOutputCount; channel++)
-            //{
-            //    // TODO(crhodes)
-            //    // Implement
-
-            //    //CloseVoltageOutput(channel.ToString());
-            //}
+            var voltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedInterfaceKitPhidget);
 
             foreach (var voltageOutput in voltageOutputs)
             {
-                // TODO(crhodes)
-                // Implement
-                //CloseVoltageOutput(voltageOutput.Key);
+                CloseVoltageOutput(voltageOutput.Key);
             }
 
             OpenInterfaceKitCommand.RaiseCanExecuteChanged();
@@ -2187,6 +2075,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region DigitalInputs
+
         #region OpenDigitalInput Command
 
         public DelegateCommand<SerialHubPortChannel?> OpenDigitalInputCommand { get; set; }
@@ -2206,165 +2096,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // Put these in Resource File
         //    <system:String x:Key="ViewName_OpenDigitalInputContent">OpenDigitalInput</system:String>
         //    <system:String x:Key="ViewName_OpenDigitalInputContentToolTip">OpenDigitalInput ToolTip</system:String>  
-
-        private async Task OpenDigitalInput(DigitalInputEx digitalInput)
-        {
-            ConfigureInitialLogging(digitalInput);
-
-            if (digitalInput.IsOpen is false)
-            {
-                await Task.Run(() => digitalInput.Open(10000));
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalInput} already open", Common.LOG_CATEGORY);
-            }
-        }
-
-        //public async void OpenDigitalInputHubPort(SerialHubPortChannel? serialHubPortChannel)
-        ////public void OpenDigitalInput()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-
-        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
-        //    Message = $"Cool, you called OpenDigitalInputHubPort on " +
-        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
-        //        $":{shpc.HubPort}:{shpc.Channel}";
-        //    PublishStatusMessage(Message);
-
-        //    DigitalInputEx digitalInputHost = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-
-        //    // FIX(crhodes)
-        //    // This works for an InterfaceKit but not a Hub.
-        //    // Think we need to switch on HubPort
-
-        //    //if (digitalInputHost.IsHubPortDevice)
-        //    //{
-
-        //    //}
-        //    //else
-        //    //{
-
-        //    //}
-
-        //    switch (shpc.HubPort)
-        //    {
-        //        case 0:
-        //            if (DigitalInput0 is null) DigitalInput0 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput0);
-        //            break;
-
-        //        case 1:
-        //            if (DigitalInput1 is null) DigitalInput1 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput1);
-        //            break;
-
-        //        case 2:
-        //            if (DigitalInput2 is null) DigitalInput2 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput2);
-        //            break;
-
-        //        case 3:
-        //            if (DigitalInput3 is null) DigitalInput3 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput3);
-        //            break;
-
-        //        case 4:
-        //            if (DigitalInput4 is null) DigitalInput4 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput4);
-        //            break;
-
-        //        case 5:
-        //            if (DigitalInput5 is null) DigitalInput5 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput5);
-        //            break;
-
-        //        case 6:
-        //            if (DigitalInput6 is null) DigitalInput6 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput6);
-        //            break;
-
-        //        case 7:
-        //            if (DigitalInput7 is null) DigitalInput7 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput7);
-        //            break;
-
-        //        case 8:
-        //            if (DigitalInput8 is null) DigitalInput8 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput8);
-        //            break;
-
-        //        case 9:
-        //            if (DigitalInput9 is null) DigitalInput9 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput9);
-        //            break;
-
-        //        case 10:
-        //            if (DigitalInput10 is null) DigitalInput10 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput10);
-        //            break;
-
-        //        case 11:
-        //            if (DigitalInput11 is null) DigitalInput11 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput11);
-        //            break;
-
-        //        case 12:
-        //            if (DigitalInput12 is null) DigitalInput12 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput12);
-        //            break;
-
-        //        case 13:
-        //            if (DigitalInput13 is null) DigitalInput13 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput13);
-        //            break;
-
-        //        case 14:
-        //            if (DigitalInput14 is null) DigitalInput14 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput14);
-        //            break;
-
-        //        case 15:
-        //            if (DigitalInput15 is null) DigitalInput15 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-        //            await OpenDigitalInput(DigitalInput15);
-        //            break;
-        //    }
-
-        //    OpenDigitalInputCommand.RaiseCanExecuteChanged();
-        //    CloseDigitalInputCommand.RaiseCanExecuteChanged();
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<OpenDigitalInputEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<OpenDigitalInputEvent>().Publish(
-        //    //      new OpenDigitalInputEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Four - Put this in PrismEvents
-
-        //    // public class OpenDigitalInputEvent : PubSubEvent { }
-
-        //    // End Cut Four
-
-        //    // Start Cut Five - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<OpenDigitalInputEvent>().Subscribe(OpenDigitalInput);
-
-        //    // End Cut Five
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
 
         // If using CommandParameter, figure out TYPE here
         public async void OpenDigitalInput(SerialHubPortChannel? serialHubPortChannel)
@@ -2388,82 +2119,66 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             switch (shpc.Channel)
             {
                 case 0:
-                    if (DigitalInput0 is null) DigitalInput0 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput0);
                     break;
 
                 case 1:
-                    if (DigitalInput1 is null) DigitalInput1 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput1);
                     break;
 
                 case 2:
-                    if (DigitalInput2 is null) DigitalInput2 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput2);
                     break;
 
                 case 3:
-                    if (DigitalInput3 is null) DigitalInput3 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput3);
                     break;
 
                 case 4:
-                    if (DigitalInput4 is null) DigitalInput4 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput4);
                     break;
 
                 case 5:
-                    if (DigitalInput5 is null) DigitalInput5 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput5);
                     break;
 
                 case 6:
-                    if (DigitalInput6 is null) DigitalInput6 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput6);
                     break;
 
                 case 7:
-                    if (DigitalInput7 is null) DigitalInput7 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput7);
                     break;
 
                 case 8:
-                    if (DigitalInput8 is null) DigitalInput8 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput8);
                     break;
 
                 case 9:
-                    if (DigitalInput9 is null) DigitalInput9 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput9);
                     break;
 
                 case 10:
-                    if (DigitalInput10 is null) DigitalInput10 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput10);
                     break;
 
                 case 11:
-                    if (DigitalInput11 is null) DigitalInput11 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput11);
                     break;
 
                 case 12:
-                    if (DigitalInput12 is null) DigitalInput12 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput12);
                     break;
 
                 case 13:
-                    if (DigitalInput13 is null) DigitalInput13 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput13);
                     break;
 
                 case 14:
-                    if (DigitalInput14 is null) DigitalInput14 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput14);
                     break;
 
                 case 15:
-                    if (DigitalInput15 is null) DigitalInput15 = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
                     await OpenDigitalInput(DigitalInput15);
                     break;
             }
@@ -2497,6 +2212,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // End Cut Five
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async Task OpenDigitalInput(DigitalInputEx digitalInput)
+        {
+            ConfigureInitialLogging(digitalInput);
+
+            if (digitalInput.IsOpen is false)
+            {
+                await Task.Run(() => digitalInput.Open(10000));
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalInput} already open", Common.LOG_CATEGORY);
+            }
+        }
+
+        void ConfigureInitialLogging(DigitalInputEx phidgetEx)
+        {
+            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
+            phidgetEx.LogErrorEvents = LogErrorEvents;
+            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
+            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            phidgetEx.LogChannelAction = LogChannelAction;
+            phidgetEx.LogActionVerification = LogActionVerification;
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -2641,75 +2387,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        void ConfigureInitialLogging(DigitalInputEx phidgetEx)
-        {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+        #endregion
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
-        }
-
-
-
-        void ConfigureInitialLogging(VoltageInputEx phidgetEx)
-        {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
-        }
-
-        void ConfigureInitialLogging(VoltageRatioInputEx phidgetEx)
-        {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
-        }
-
-        void ConfigureInitialLogging(VoltageOutputEx phidgetEx)
-        {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
-        }
+        #region DigitalOutputs
 
         #region OpenDigitalOutput Command
 
@@ -2724,37 +2404,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         public string OpenDigitalOutputContent { get; set; } = "Open";
         public string OpenDigitalOutputToolTip { get; set; } = "Open DigitalOutput";
 
-        void ConfigureInitialLogging(DigitalOutputEx phidgetEx)
-        {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
-        }
-
-        private async Task OpenDigitalOutput(DigitalOutputEx digitalOutput)
-        {
-            ConfigureInitialLogging(digitalOutput);
-
-            if (digitalOutput.IsOpen is false)
-            {
-                await Task.Run(() => digitalOutput.Open(10000));
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalOutput} already open", Common.LOG_CATEGORY);
-            }
-        }
-
         // Can get fancy and use Resources
         //public string OpenDigitalOutputContent { get; set; } = "ViewName_OpenDigitalOutputContent";
         //public string OpenDigitalOutputToolTip { get; set; } = "ViewName_OpenDigitalOutputContentToolTip";
@@ -2762,151 +2411,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // Put these in Resource File
         //    <system:String x:Key="ViewName_OpenDigitalOutputContent">OpenDigitalOutput</system:String>
         //    <system:String x:Key="ViewName_OpenDigitalOutputContentToolTip">OpenDigitalOutput ToolTip</system:String>  
-
-        //public async void OpenDigitalOutputHubPort(SerialHubPortChannel? serialHubPortChannel)
-        ////public async void OpenDigitalOutput(Int32? channelNumber)
-        ////public void OpenDigitalOutput()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-
-        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
-        //    Message = $"Cool, you called OpenDigitalOutput on " +
-        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
-        //        $":{shpc.HubPort}:{shpc.Channel}";
-        //    PublishStatusMessage(Message);
-
-        //    switch (shpc.HubPort)
-        //    {
-        //        case 0:
-        //            if (DigitalOutput0 is null) DigitalOutput0 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput0);
-        //            break;
-
-        //        case 1:
-        //            if (DigitalOutput1 is null) DigitalOutput1 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput1);
-        //            break;
-
-        //        case 2:
-        //            if (DigitalOutput2 is null) DigitalOutput2 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput2);
-        //            break;
-
-        //        case 3:
-        //            if (DigitalOutput3 is null) DigitalOutput3 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput3);
-        //            break;
-
-        //        case 4:
-        //            if (DigitalOutput4 is null) DigitalOutput4 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput4);
-        //            break;
-
-        //        case 5:
-        //            if (DigitalOutput5 is null) DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput5);
-        //            break;
-
-        //        case 6:
-        //            if (DigitalOutput6 is null) DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput6);
-        //            break;
-
-        //        case 7:
-        //            if (DigitalOutput7 is null) DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput7);
-        //            break;
-
-        //        case 8:
-        //            if (DigitalOutput8 is null) DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput8);
-        //            break;
-
-        //        case 9:
-        //            if (DigitalOutput9 is null) DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput9);
-        //            break;
-
-        //        case 10:
-        //            if (DigitalOutput10 is null) DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput10);
-        //            break;
-
-        //        case 11:
-        //            if (DigitalOutput11 is null) DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput11);
-        //            break;
-
-        //        case 12:
-        //            if (DigitalOutput12 is null) DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput12);
-        //            break;
-
-        //        case 13:
-        //            if (DigitalOutput13 is null) DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput13);
-        //            break;
-
-        //        case 14:
-        //            if (DigitalOutput14 is null) DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput14);
-        //            break;
-
-        //        case 15:
-        //            if (DigitalOutput15 is null) DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-        //            await OpenDigitalOutput(DigitalOutput15);
-        //            break;
-        //    }
-
-        //    OpenDigitalOutputCommand.RaiseCanExecuteChanged();
-        //    CloseDigitalOutputCommand.RaiseCanExecuteChanged();
-
-        //    // If launching a UserControl
-
-        //    // if (_OpenDigitalOutputHost is null) _OpenDigitalOutputHost = new WindowHost();
-        //    // var userControl = new USERCONTROL();
-
-        //    // _loggingConfigurationHost.DisplayUserControlInHost(
-        //    //     "TITLE GOES HERE",
-        //    //     //Common.DEFAULT_WINDOW_WIDTH,
-        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
-        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
-        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
-        //    //     ShowWindowMode.Modeless_Show,
-        //    //     userControl);
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<OpenDigitalOutputEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<OpenDigitalOutputEvent>().Publish(
-        //    //      new OpenDigitalOutputEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Four - Put this in PrismEvents
-
-        //    // public class OpenDigitalOutputEvent : PubSubEvent { }
-
-        //    // End Cut Four
-
-        //    // Start Cut Five - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<OpenDigitalOutputEvent>().Subscribe(OpenDigitalOutput);
-
-        //    // End Cut Five
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
 
         // If using CommandParameter, figure out TYPE here
         public async void OpenDigitalOutput(SerialHubPortChannel? serialHubPortChannel)
@@ -2925,98 +2429,98 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 $"serialHubPortChannel:{shpc.SerialNumber}" +
                 $":{shpc.HubPort}:{shpc.Channel}";
             PublishStatusMessage(Message);
- 
+
             //Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
             //Int32 channel = (Int32)channelNumber;
 
             //if (Int32.TryParse(channelNumber, out channel))
             //{
-                //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                //DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
+            //DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
 
-                switch (shpc.Channel)
-                {
-                    case 0:
-                        if (DigitalOutput0 is null) DigitalOutput0 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput0);
-                        break;
+            switch (shpc.Channel)
+            {
+                case 0:
+                    if (DigitalOutput0 is null) DigitalOutput0 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput0);
+                    break;
 
-                    case 1:
-                        if (DigitalOutput1 is null) DigitalOutput1 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput1);
-                        break;
+                case 1:
+                    if (DigitalOutput1 is null) DigitalOutput1 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput1);
+                    break;
 
-                    case 2:
-                        if (DigitalOutput2 is null) DigitalOutput2 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput2);
-                        break;
+                case 2:
+                    if (DigitalOutput2 is null) DigitalOutput2 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput2);
+                    break;
 
-                    case 3:
-                        if (DigitalOutput3 is null) DigitalOutput3 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput3);
-                        break;
+                case 3:
+                    if (DigitalOutput3 is null) DigitalOutput3 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput3);
+                    break;
 
-                    case 4:
-                        if (DigitalOutput4 is null) DigitalOutput4 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput4);
-                        break;
+                case 4:
+                    if (DigitalOutput4 is null) DigitalOutput4 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput4);
+                    break;
 
-                    case 5:
-                        if (DigitalOutput5 is null) DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput5);
-                        break;
+                case 5:
+                    if (DigitalOutput5 is null) DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput5);
+                    break;
 
-                    case 6:
-                        if (DigitalOutput6 is null) DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput6);
-                        break;
+                case 6:
+                    if (DigitalOutput6 is null) DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput6);
+                    break;
 
-                    case 7:
-                        if (DigitalOutput7 is null) DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput7);
-                        break;
+                case 7:
+                    if (DigitalOutput7 is null) DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput7);
+                    break;
 
-                    case 8:
-                        if (DigitalOutput8 is null) DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput8);
-                        break;
+                case 8:
+                    if (DigitalOutput8 is null) DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput8);
+                    break;
 
-                    case 9:
-                        if (DigitalOutput9 is null) DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput9);
-                        break;
+                case 9:
+                    if (DigitalOutput9 is null) DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput9);
+                    break;
 
-                    case 10:
-                        if (DigitalOutput10 is null) DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput10);
-                        break;
+                case 10:
+                    if (DigitalOutput10 is null) DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput10);
+                    break;
 
-                    case 11:
-                        if (DigitalOutput11 is null) DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput11);
-                        break;
+                case 11:
+                    if (DigitalOutput11 is null) DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput11);
+                    break;
 
-                    case 12:
-                        if (DigitalOutput12 is null) DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput12);
-                        break;
+                case 12:
+                    if (DigitalOutput12 is null) DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput12);
+                    break;
 
-                    case 13:
-                        if (DigitalOutput13 is null) DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput13);
-                        break;
+                case 13:
+                    if (DigitalOutput13 is null) DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput13);
+                    break;
 
-                    case 14:
-                        if (DigitalOutput14 is null) DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput14);
-                        break;
+                case 14:
+                    if (DigitalOutput14 is null) DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput14);
+                    break;
 
-                    case 15:
-                        if (DigitalOutput15 is null) DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                        await OpenDigitalOutput(DigitalOutput15);
-                        break;
-                }
+                case 15:
+                    if (DigitalOutput15 is null) DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
+                    await OpenDigitalOutput(DigitalOutput15);
+                    break;
+            }
             //}
 
             OpenDigitalOutputCommand.RaiseCanExecuteChanged();
@@ -3062,6 +2566,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // End Cut Five
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async Task OpenDigitalOutput(DigitalOutputEx digitalOutput)
+        {
+            ConfigureInitialLogging(digitalOutput);
+
+            if (digitalOutput.IsOpen is false)
+            {
+                await Task.Run(() => digitalOutput.Open(10000));
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalOutput} already open", Common.LOG_CATEGORY);
+            }
+        }
+
+        void ConfigureInitialLogging(DigitalOutputEx phidgetEx)
+        {
+            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
+            phidgetEx.LogErrorEvents = LogErrorEvents;
+            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
+            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            phidgetEx.LogChannelAction = LogChannelAction;
+            phidgetEx.LogActionVerification = LogActionVerification;
         }
 
         // If using CommandParameter, figure out TYPE and fix above
@@ -3189,8 +2724,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Common.PhidgetDeviceLibrary.DigitalOutputChannels
                 .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
-            { 
-                return false; 
+            {
+                return false;
             }
 
             if (host.IsOpen)
@@ -3200,9 +2735,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             else
             {
                 return false;
-            }        }
+            }
+        }
 
         #endregion
+
+        #endregion
+
+        #region VoltageInputs
 
         #region OpenVoltageInput Command
 
@@ -3224,159 +2764,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageInputContent">OpenVoltageInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageInputContentToolTip">OpenVoltageInput ToolTip</system:String>  
 
-        private async Task OpenVoltageInput(VoltageInputEx voltageInput)
-        {
-            ConfigureInitialLogging(voltageInput);
-
-            if (voltageInput.IsOpen is false)
-            {
-                //await Task.Run(() => voltageInput.Open(5000));    // Wait 5 seconds to attach
-                await Task.Run(() => voltageInput.Open(10000));  // Block until attached
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} already open", Common.LOG_CATEGORY);
-            }
-        }
-
-        //public async void OpenVoltageInputHubPort(SerialHubPortChannel? serialHubPortChannel)
-        ////public void OpenVoltageInput()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-
-        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
-        //    Message = $"Cool, you called OpenVoltageInputHubPort on " +
-        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
-        //        $":{shpc.HubPort}:{shpc.Channel}";
-        //    PublishStatusMessage(Message);
-
-        //    //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
-
-        //    switch (shpc.HubPort)
-        //    {
-        //        case 0:
-        //            if (VoltageInput0 is null) VoltageInput0 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput0);
-        //            break;
-
-        //        case 1:
-        //            if (VoltageInput1 is null) VoltageInput1 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput1);
-        //            break;
-
-        //        case 2:
-        //            if (VoltageInput2 is null) VoltageInput2 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput2);
-        //            break;
-
-        //        case 3:
-        //            if (VoltageInput3 is null) VoltageInput3 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput3);
-        //            break;
-
-        //        case 4:
-        //            if (VoltageInput4 is null) VoltageInput4 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput4);
-        //            break;
-
-        //        case 5:
-        //            if (VoltageInput5 is null) VoltageInput5 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput5);
-        //            break;
-
-        //        case 6:
-        //            if (VoltageInput6 is null) VoltageInput6 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput6);
-        //            break;
-
-        //        case 7:
-        //            if (VoltageInput7 is null) VoltageInput7 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput7);
-        //            break;
-
-        //        case 8:
-        //            if (VoltageInput8 is null) VoltageInput8 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput8);
-        //            break;
-
-        //        case 9:
-        //            if (VoltageInput9 is null) VoltageInput9 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput9);
-        //            break;
-
-        //        case 10:
-        //            if (VoltageInput10 is null) VoltageInput10 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput10);
-        //            break;
-
-        //        case 11:
-        //            if (VoltageInput11 is null) VoltageInput11 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput11);
-        //            break;
-
-        //        case 12:
-        //            if (VoltageInput12 is null) VoltageInput12 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput12);
-        //            break;
-
-        //        case 13:
-        //            if (VoltageInput13 is null) VoltageInput13 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput13);
-        //            break;
-
-        //        case 14:
-        //            if (VoltageInput14 is null) VoltageInput14 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput14);
-        //            break;
-
-        //        case 15:
-        //            if (VoltageInput15 is null) VoltageInput15 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-        //            await OpenVoltageInput(VoltageInput15);
-        //            break;
-        //    }
-        //    //}
-        //    //else
-        //    //{
-
-        //    //}
-
-        //    OpenVoltageInputCommand.RaiseCanExecuteChanged();
-        //    RefreshVoltageInputCommand.RaiseCanExecuteChanged();
-        //    RaisePerformanceEventCommand.RaiseCanExecuteChanged();
-        //    CloseVoltageInputCommand.RaiseCanExecuteChanged();
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<OpenVoltageInputEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<OpenVoltageInputEvent>().Publish(
-        //    //      new OpenVoltageInputEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Four - Put this in PrismEvents
-
-        //    // public class OpenVoltageInputEvent : PubSubEvent { }
-
-        //    // End Cut Four
-
-        //    // Start Cut Five - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<OpenVoltageInputEvent>().Subscribe(OpenVoltageInput);
-
-        //    // End Cut Five
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
         // If using CommandParameter, figure out TYPE here
         public async void OpenVoltageInput(SerialHubPortChannel? serialHubPortChannel)
         //public void OpenVoltageInput()
@@ -3394,90 +2781,72 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 $":{shpc.HubPort}:{shpc.Channel}";
             PublishStatusMessage(Message);
 
-            //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
-
             switch (shpc.Channel)
             {
-                    case 0:
-                        if (VoltageInput0 is null) VoltageInput0 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput0);
-                        break;
+                case 0:
+                    await OpenVoltageInput(VoltageInput0);
+                    break;
 
-                    case 1:
-                        if (VoltageInput1 is null) VoltageInput1 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput1);
-                        break;
+                case 1:
+                    await OpenVoltageInput(VoltageInput1);
+                    break;
 
-                    case 2:
-                        if (VoltageInput2 is null) VoltageInput2 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput2);
-                        break;
+                case 2:
+                    await OpenVoltageInput(VoltageInput2);
+                    break;
 
-                    case 3:
-                        if (VoltageInput3 is null) VoltageInput3 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput3);
-                        break;
+                case 3:
+                    await OpenVoltageInput(VoltageInput3);
+                    break;
 
-                    case 4:
-                        if (VoltageInput4 is null) VoltageInput4 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput4);
-                        break;
+                case 4:
+                    await OpenVoltageInput(VoltageInput4);
+                    break;
 
-                    case 5:
-                        if (VoltageInput5 is null) VoltageInput5 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput5);
-                        break;
+                case 5:
+                    await OpenVoltageInput(VoltageInput5);
+                    break;
 
-                    case 6:
-                        if (VoltageInput6 is null) VoltageInput6 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput6);
-                        break;
+                case 6:
+                    await OpenVoltageInput(VoltageInput6);
+                    break;
 
-                    case 7:
-                        if (VoltageInput7 is null) VoltageInput7 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput7);
-                        break;
+                case 7:
+                    await OpenVoltageInput(VoltageInput7);
+                    break;
 
-                    case 8:
-                        if (VoltageInput8 is null) VoltageInput8 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput8);
-                        break;
+                case 8:
+                    await OpenVoltageInput(VoltageInput8);
+                    break;
 
-                    case 9:
-                        if (VoltageInput9 is null) VoltageInput9 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput9);
-                        break;
+                case 9:
+                    await OpenVoltageInput(VoltageInput9);
+                    break;
 
-                    case 10:
-                        if (VoltageInput10 is null) VoltageInput10 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput10);
-                        break;
+                case 10:
+                    await OpenVoltageInput(VoltageInput10);
+                    break;
 
-                    case 11:
-                        if (VoltageInput11 is null) VoltageInput11 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput11);
-                        break;
+                case 11:
+                    await OpenVoltageInput(VoltageInput11);
+                    break;
 
-                    case 12:
-                        if (VoltageInput12 is null) VoltageInput12 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput12);
-                        break;
+                case 12:
+                    await OpenVoltageInput(VoltageInput12);
+                    break;
 
-                    case 13:
-                        if (VoltageInput13 is null) VoltageInput13 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput13);
-                        break;
+                case 13:
+                    await OpenVoltageInput(VoltageInput13);
+                    break;
 
-                    case 14:
-                        if (VoltageInput14 is null) VoltageInput14 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput14);
-                        break;
+                case 14:
+                    await OpenVoltageInput(VoltageInput14);
+                    break;
 
-                    case 15:
-                        if (VoltageInput15 is null) VoltageInput15 = Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc];
-                        await OpenVoltageInput(VoltageInput15);
-                        break;
-                }
+                case 15:
+                    await OpenVoltageInput(VoltageInput15);
+                    break;
+            }
             //}
             //else
             //{
@@ -3517,6 +2886,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private async Task OpenVoltageInput(VoltageInputEx voltageInput)
+        {
+            ConfigureInitialLogging(voltageInput);
+
+            if (voltageInput.IsOpen is false)
+            {
+                //await Task.Run(() => voltageInput.Open(5000));    // Wait 5 seconds to attach
+                await Task.Run(() => voltageInput.Open(10000));  // Block until attached
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} already open", Common.LOG_CATEGORY);
+            }
+        }
+
+        void ConfigureInitialLogging(VoltageInputEx phidgetEx)
+        {
+            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
+            phidgetEx.LogErrorEvents = LogErrorEvents;
+            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
+            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            phidgetEx.LogChannelAction = LogChannelAction;
+            phidgetEx.LogActionVerification = LogActionVerification;
+        }
         // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
         //public Boolean OpenVoltageInputCanExecute()
@@ -3575,18 +2975,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RefreshVoltageInputContent">RefreshVoltageInput</system:String>
         //    <system:String x:Key="ViewName_RefreshVoltageInputContentToolTip">RefreshVoltageInput ToolTip</system:String>  
 
-        private async Task RefreshVoltageInput(VoltageInputEx voltageInput)
-        {
-            if (voltageInput.IsOpen is true)
-            {
-                await Task.Run(() => voltageInput.RefreshProperties());
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
-            }
-        }
-
         // If using CommandParameter, figure out TYPE here
         public async void RefreshVoltageInput(SerialHubPortChannel? serialHubPortChannel)
         //public void RefreshVoltageInput()
@@ -3608,74 +2996,74 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //{
             //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
 
-                //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
+            //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
 
-                switch (shpc.Channel)
-                {
-                    case 0:
-                        await RefreshVoltageInput(VoltageInput0);
-                        break;
+            switch (shpc.Channel)
+            {
+                case 0:
+                    await RefreshVoltageInput(VoltageInput0);
+                    break;
 
-                    case 1:
-                        await RefreshVoltageInput(VoltageInput1);
-                        break;
+                case 1:
+                    await RefreshVoltageInput(VoltageInput1);
+                    break;
 
-                    case 2:
-                        await RefreshVoltageInput(VoltageInput2);
-                        break;
+                case 2:
+                    await RefreshVoltageInput(VoltageInput2);
+                    break;
 
-                    case 3:
-                        await RefreshVoltageInput(VoltageInput3);
-                        break;
+                case 3:
+                    await RefreshVoltageInput(VoltageInput3);
+                    break;
 
-                    case 4:
-                        await RefreshVoltageInput(VoltageInput4);
-                        break;
+                case 4:
+                    await RefreshVoltageInput(VoltageInput4);
+                    break;
 
-                    case 5:
-                        await RefreshVoltageInput(VoltageInput5);
-                        break;
+                case 5:
+                    await RefreshVoltageInput(VoltageInput5);
+                    break;
 
-                    case 6:
-                        await RefreshVoltageInput(VoltageInput6);
-                        break;
+                case 6:
+                    await RefreshVoltageInput(VoltageInput6);
+                    break;
 
-                    case 7:
-                        await RefreshVoltageInput(VoltageInput7);
-                        break;
+                case 7:
+                    await RefreshVoltageInput(VoltageInput7);
+                    break;
 
-                    case 8:
-                        await RefreshVoltageInput(VoltageInput8);
-                        break;
+                case 8:
+                    await RefreshVoltageInput(VoltageInput8);
+                    break;
 
-                    case 9:
-                        await RefreshVoltageInput(VoltageInput9);
-                        break;
+                case 9:
+                    await RefreshVoltageInput(VoltageInput9);
+                    break;
 
-                    case 10:
-                        await RefreshVoltageInput(VoltageInput10);
-                        break;
+                case 10:
+                    await RefreshVoltageInput(VoltageInput10);
+                    break;
 
-                    case 11:
-                        await RefreshVoltageInput(VoltageInput11);
-                        break;
+                case 11:
+                    await RefreshVoltageInput(VoltageInput11);
+                    break;
 
-                    case 12:
-                        await RefreshVoltageInput(VoltageInput12);
-                        break;
+                case 12:
+                    await RefreshVoltageInput(VoltageInput12);
+                    break;
 
-                    case 13:
-                        await RefreshVoltageInput(VoltageInput13);
-                        break;
+                case 13:
+                    await RefreshVoltageInput(VoltageInput13);
+                    break;
 
-                    case 14:
-                        await RefreshVoltageInput(VoltageInput14);
-                        break;
+                case 14:
+                    await RefreshVoltageInput(VoltageInput14);
+                    break;
 
-                    case 15:
-                        await RefreshVoltageInput(VoltageInput15);
-                        break;
-                }
+                case 15:
+                    await RefreshVoltageInput(VoltageInput15);
+                    break;
+            }
             //}
             //else
             //{
@@ -3710,63 +3098,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
-        public Boolean RefreshVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean RefreshVoltageInputCanExecute()
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
-
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
-
-            if (serialHubPortChannel is null) return false;
-
-            VoltageInputEx? host;
-
-            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
-
-            if (host.IsOpen)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        #endregion
-
-        #region RaisePerformanceEvent Command
-
-        public DelegateCommand<SerialHubPortChannel?> RaisePerformanceEventCommand { get; set; }
-        // If displaying UserControl
-        // public static WindowHost _RaisePerformanceEventHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE RaisePerformanceEventCommandParameter;
-
-        public string RaisePerformanceEventContent { get; set; } = "Raise Event";
-        public string RaisePerformanceEventToolTip { get; set; } = "Raise Performance Event";
-
-        // Can get fancy and use Resources
-        //public string RaisePerformanceEventContent { get; set; } = "ViewName_RaisePerformanceEventContent";
-        //public string RaisePerformanceEventToolTip { get; set; } = "ViewName_RaisePerformanceEventContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_RaisePerformanceEventContent">RaisePerformanceEvent</system:String>
-        //    <system:String x:Key="ViewName_RaisePerformanceEventContentToolTip">RaisePerformanceEvent ToolTip</system:String>  
-
-        private async Task RaisePerformanceEvent(VoltageInputEx voltageInput)
+        private async Task RefreshVoltageInput(VoltageInputEx voltageInput)
         {
             if (voltageInput.IsOpen is true)
             {
-                await Task.Run(() => voltageInput.RaisePlayPerformanceEvent());
+                await Task.Run(() => voltageInput.RefreshProperties());
             }
             else
             {
@@ -3774,127 +3110,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        // If using CommandParameter, figure out TYPE here
-        public async void RaisePerformanceEvent(SerialHubPortChannel? serialHubPortChannel)
-        //public void RaisePerformanceEvent()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
-            Message = $"Cool, you called RaisePerformanceEvent\r\n on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
-            PublishStatusMessage(Message);
-            //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
-
-            switch (shpc.Channel)
-                {
-                    case 0:
-                        await RaisePerformanceEvent(VoltageInput0);
-                        break;
-
-                    case 1:
-                        await RaisePerformanceEvent(VoltageInput1);
-                        break;
-
-                    case 2:
-                        await RaisePerformanceEvent(VoltageInput2);
-                        break;
-
-                    case 3:
-                        await RaisePerformanceEvent(VoltageInput3);
-                        break;
-
-                    case 4:
-                        await RaisePerformanceEvent(VoltageInput4);
-                        break;
-
-                    case 5:
-                        await RaisePerformanceEvent(VoltageInput5);
-                        break;
-
-                    case 6:
-                        await RaisePerformanceEvent(VoltageInput6);
-                        break;
-
-                    case 7:
-                        await RaisePerformanceEvent(VoltageInput7);
-                        break;
-
-                    case 8:
-                        await RaisePerformanceEvent(VoltageInput8);
-                        break;
-
-                    case 9:
-                        await RaisePerformanceEvent(VoltageInput9);
-                        break;
-
-                    case 10:
-                        await RaisePerformanceEvent(VoltageInput10);
-                        break;
-
-                    case 11:
-                        await RaisePerformanceEvent(VoltageInput11);
-                        break;
-
-                    case 12:
-                        await RaisePerformanceEvent(VoltageInput12);
-                        break;
-
-                    case 13:
-                        await RaisePerformanceEvent(VoltageInput13);
-                        break;
-
-                    case 14:
-                        await RaisePerformanceEvent(VoltageInput14);
-                        break;
-
-                    case 15:
-                        await RaisePerformanceEvent(VoltageInput15);
-                        break;
-                }
-            //}
-            //else
-            //{
-
-            //}
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<RaisePerformanceEventEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<RaisePerformanceEventEvent>().Publish(
-            //      new RaisePerformanceEventEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Four - Put this in PrismEvents
-
-            // public class RaisePerformanceEventEvent : PubSubEvent { }
-
-            // End Cut Four
-
-            // Start Cut Five - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<RaisePerformanceEventEvent>().Subscribe(RaisePerformanceEvent);
-
-            // End Cut Five
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
         // If using CommandParameter, figure out TYPE and fix above
-        public Boolean RaisePerformanceEventCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean RaisePerformanceEventCanExecute()
+        public Boolean RefreshVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        //public Boolean RefreshVoltageInputCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -4034,6 +3252,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
+        #endregion
+
+        #region VoltageRatioInputs
+
         #region OpenVoltageRatioInput Command
 
         public DelegateCommand<SerialHubPortChannel?> OpenVoltageRatioInputCommand { get; set; }
@@ -4054,158 +3276,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContent">OpenVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContentToolTip">OpenVoltageRatioInput ToolTip</system:String>  
 
-        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRatioInput)
-        {
-            ConfigureInitialLogging(voltageRatioInput);
-
-            if (voltageRatioInput.IsOpen is false)
-            {
-                await Task.Run(() => voltageRatioInput.Open(10000));    // Wait 1 seconds to attach
-                //await Task.Run(() => voltageRatioInput.Open());  // Block until attached
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageRatioInput} already open", Common.LOG_CATEGORY);
-            }
-        }
-
-        //public async void OpenVoltageRatioInputHubPort(SerialHubPortChannel? serialHubPortChannel)
-        ////public void OpenVoltageRatioInput()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-
-        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
-        //    Message = $"Cool, you called OpenVoltageRatioInput on " +
-        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
-        //        $":{shpc.HubPort}:{shpc.Channel}";
-        //    PublishStatusMessage(Message);
-        //    //VoltageRatioInputEx voltageRatioInputHost = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-
-        //    switch (shpc.HubPort)
-        //    {
-        //        case 0:
-        //            if (VoltageRatioInput0 is null) VoltageRatioInput0 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput0);
-        //            break;
-
-        //        case 1:
-        //            if (VoltageRatioInput1 is null) VoltageRatioInput1 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput1);
-        //            break;
-
-        //        case 2:
-        //            if (VoltageRatioInput2 is null) VoltageRatioInput2 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput2);
-        //            break;
-
-        //        case 3:
-        //            if (VoltageRatioInput3 is null) VoltageRatioInput3 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput3);
-        //            break;
-
-        //        case 4:
-        //            if (VoltageRatioInput4 is null) VoltageRatioInput4 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput4);
-        //            break;
-
-        //        case 5:
-        //            if (VoltageRatioInput5 is null) VoltageRatioInput5 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput5);
-        //            break;
-
-        //        case 6:
-        //            if (VoltageRatioInput6 is null) VoltageRatioInput6 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput6);
-        //            break;
-
-        //        case 7:
-        //            if (VoltageRatioInput7 is null) VoltageRatioInput7 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput7);
-        //            break;
-
-        //        case 8:
-        //            if (VoltageRatioInput8 is null) VoltageRatioInput8 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput8);
-        //            break;
-
-        //        case 9:
-        //            if (VoltageRatioInput9 is null) VoltageRatioInput9 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput9);
-        //            break;
-
-        //        case 10:
-        //            if (VoltageRatioInput10 is null) VoltageRatioInput10 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput10);
-        //            break;
-
-        //        case 11:
-        //            if (VoltageRatioInput11 is null) VoltageRatioInput11 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput11);
-        //            break;
-
-        //        case 12:
-        //            if (VoltageRatioInput12 is null) VoltageRatioInput12 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput12);
-        //            break;
-
-        //        case 13:
-        //            if (VoltageRatioInput13 is null) VoltageRatioInput13 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput13);
-        //            break;
-
-        //        case 14:
-        //            if (VoltageRatioInput14 is null) VoltageRatioInput14 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput14);
-        //            break;
-
-        //        case 15:
-        //            if (VoltageRatioInput15 is null) VoltageRatioInput15 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-        //            await OpenVoltageRatioInput(VoltageRatioInput15);
-        //            break;
-        //    }
-        //    //}
-        //    //else
-        //    //{
-
-        //    //}
-
-        //    OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
-        //    RefreshVoltageRatioInputCommand.RaiseCanExecuteChanged();
-        //    CloseVoltageRatioInputCommand.RaiseCanExecuteChanged();
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<OpenVoltageRatioInputEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<OpenVoltageRatioInputEvent>().Publish(
-        //    //      new OpenVoltageRatioInputEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Four - Put this in PrismEvents
-
-        //    // public class OpenVoltageRatioInputEvent : PubSubEvent { }
-
-        //    // End Cut Four
-
-        //    // Start Cut Five - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<OpenVoltageRatioInputEvent>().Subscribe(OpenVoltageRatioInput);
-
-        //    // End Cut Five
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
         // If using CommandParameter, figure out TYPE here
         public async void OpenVoltageRatioInput(SerialHubPortChannel? serialHubPortChannel)
         //public void OpenVoltageRatioInput()
@@ -4222,95 +3292,73 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 $"serialHubPortChannel:{shpc.SerialNumber}" +
                 $":{shpc.HubPort}:{shpc.Channel}";
             PublishStatusMessage(Message);
-            //VoltageRatioInputEx voltageRatioInputHost = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
 
             switch (shpc.Channel)
-                {
-                    case 0:
-                        if (VoltageRatioInput0 is null) VoltageRatioInput0 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput0);
-                        break;
+            {
+                case 0:
+                    await OpenVoltageRatioInput(VoltageRatioInput0);
+                    break;
 
-                    case 1:
-                        if (VoltageRatioInput1 is null) VoltageRatioInput1 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput1);
-                        break;
+                case 1:
+                    await OpenVoltageRatioInput(VoltageRatioInput1);
+                    break;
 
-                    case 2:
-                        if (VoltageRatioInput2 is null) VoltageRatioInput2 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput2);
-                        break;
+                case 2:
+                    await OpenVoltageRatioInput(VoltageRatioInput2);
+                    break;
 
-                    case 3:
-                        if (VoltageRatioInput3 is null) VoltageRatioInput3 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput3);
-                        break;
+                case 3:
+                    await OpenVoltageRatioInput(VoltageRatioInput3);
+                    break;
 
-                    case 4:
-                        if (VoltageRatioInput4 is null) VoltageRatioInput4 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput4);
-                        break;
+                case 4:
+                    await OpenVoltageRatioInput(VoltageRatioInput4);
+                    break;
 
-                    case 5:
-                        if (VoltageRatioInput5 is null) VoltageRatioInput5 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput5);
-                        break;
+                case 5:
+                    await OpenVoltageRatioInput(VoltageRatioInput5);
+                    break;
 
-                    case 6:
-                        if (VoltageRatioInput6 is null) VoltageRatioInput6 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput6);
-                        break;
+                case 6:
+                    await OpenVoltageRatioInput(VoltageRatioInput6);
+                    break;
 
-                    case 7:
-                        if (VoltageRatioInput7 is null) VoltageRatioInput7 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput7);
-                        break;
+                case 7:
+                    await OpenVoltageRatioInput(VoltageRatioInput7);
+                    break;
 
-                    case 8:
-                        if (VoltageRatioInput8 is null) VoltageRatioInput8 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput8);
-                        break;
+                case 8:
+                    await OpenVoltageRatioInput(VoltageRatioInput8);
+                    break;
 
-                    case 9:
-                        if (VoltageRatioInput9 is null) VoltageRatioInput9 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput9);
-                        break;
+                case 9:
+                    await OpenVoltageRatioInput(VoltageRatioInput9);
+                    break;
 
-                    case 10:
-                        if (VoltageRatioInput10 is null) VoltageRatioInput10 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput10);
-                        break;
+                case 10:
+                    await OpenVoltageRatioInput(VoltageRatioInput10);
+                    break;
 
-                    case 11:
-                        if (VoltageRatioInput11 is null) VoltageRatioInput11 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput11);
-                        break;
+                case 11:
+                    await OpenVoltageRatioInput(VoltageRatioInput11);
+                    break;
 
-                    case 12:
-                        if (VoltageRatioInput12 is null) VoltageRatioInput12 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput12);
-                        break;
+                case 12:
+                    await OpenVoltageRatioInput(VoltageRatioInput12);
+                    break;
 
-                    case 13:
-                        if (VoltageRatioInput13 is null) VoltageRatioInput13 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput13);
-                        break;
+                case 13:
+                    await OpenVoltageRatioInput(VoltageRatioInput13);
+                    break;
 
-                    case 14:
-                        if (VoltageRatioInput14 is null) VoltageRatioInput14 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput14);
-                        break;
+                case 14:
+                    await OpenVoltageRatioInput(VoltageRatioInput14);
+                    break;
 
-                    case 15:
-                        if (VoltageRatioInput15 is null) VoltageRatioInput15 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc];
-                        await OpenVoltageRatioInput(VoltageRatioInput15);
-                        break;
-                }
-            //}
-            //else
-            //{
-
-            //}
+                case 15:
+                    await OpenVoltageRatioInput(VoltageRatioInput15);
+                    break;
+            }
 
             OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
             RefreshVoltageRatioInputCommand.RaiseCanExecuteChanged();
@@ -4343,6 +3391,40 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRatioInput)
+        {
+            ConfigureInitialLogging(voltageRatioInput);
+
+            if (voltageRatioInput.IsOpen is false)
+            {
+                await Task.Run(() => voltageRatioInput.Open(10000));    // Wait 1 seconds to attach
+                //await Task.Run(() => voltageRatioInput.Open());  // Block until attached
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageRatioInput} already open", Common.LOG_CATEGORY);
+            }
+        }
+
+        void ConfigureInitialLogging(VoltageRatioInputEx phidgetEx)
+        {
+            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
+            phidgetEx.LogErrorEvents = LogErrorEvents;
+            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
+            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            phidgetEx.LogChannelAction = LogChannelAction;
+            phidgetEx.LogActionVerification = LogActionVerification;
+        }
+
+
 
         // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenVoltageRatioInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
@@ -4436,71 +3518,71 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //VoltageRatioInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
 
             switch (shpc.Channel)
-                {
-                    case 0:
-                        await RefreshVoltageRatioInput(VoltageRatioInput0);
-                        break;
+            {
+                case 0:
+                    await RefreshVoltageRatioInput(VoltageRatioInput0);
+                    break;
 
-                    case 1:
-                        await RefreshVoltageRatioInput(VoltageRatioInput1);
-                        break;
+                case 1:
+                    await RefreshVoltageRatioInput(VoltageRatioInput1);
+                    break;
 
-                    case 2:
-                        await RefreshVoltageRatioInput(VoltageRatioInput2);
-                        break;
+                case 2:
+                    await RefreshVoltageRatioInput(VoltageRatioInput2);
+                    break;
 
-                    case 3:
-                        await RefreshVoltageRatioInput(VoltageRatioInput3);
-                        break;
+                case 3:
+                    await RefreshVoltageRatioInput(VoltageRatioInput3);
+                    break;
 
-                    case 4:
-                        await RefreshVoltageRatioInput(VoltageRatioInput4);
-                        break;
+                case 4:
+                    await RefreshVoltageRatioInput(VoltageRatioInput4);
+                    break;
 
-                    case 5:
-                        await RefreshVoltageRatioInput(VoltageRatioInput5);
-                        break;
+                case 5:
+                    await RefreshVoltageRatioInput(VoltageRatioInput5);
+                    break;
 
-                    case 6:
-                        await RefreshVoltageRatioInput(VoltageRatioInput6);
-                        break;
+                case 6:
+                    await RefreshVoltageRatioInput(VoltageRatioInput6);
+                    break;
 
-                    case 7:
-                        await RefreshVoltageRatioInput(VoltageRatioInput7);
-                        break;
+                case 7:
+                    await RefreshVoltageRatioInput(VoltageRatioInput7);
+                    break;
 
-                    case 8:
-                        await RefreshVoltageRatioInput(VoltageRatioInput8);
-                        break;
+                case 8:
+                    await RefreshVoltageRatioInput(VoltageRatioInput8);
+                    break;
 
-                    case 9:
-                        await RefreshVoltageRatioInput(VoltageRatioInput9);
-                        break;
+                case 9:
+                    await RefreshVoltageRatioInput(VoltageRatioInput9);
+                    break;
 
-                    case 10:
-                        await RefreshVoltageRatioInput(VoltageRatioInput10);
-                        break;
+                case 10:
+                    await RefreshVoltageRatioInput(VoltageRatioInput10);
+                    break;
 
-                    case 11:
-                        await RefreshVoltageRatioInput(VoltageRatioInput11);
-                        break;
+                case 11:
+                    await RefreshVoltageRatioInput(VoltageRatioInput11);
+                    break;
 
-                    case 12:
-                        await RefreshVoltageRatioInput(VoltageRatioInput12);
-                        break;
+                case 12:
+                    await RefreshVoltageRatioInput(VoltageRatioInput12);
+                    break;
 
-                    case 13:
-                        await RefreshVoltageRatioInput(VoltageRatioInput13);
-                        break;
+                case 13:
+                    await RefreshVoltageRatioInput(VoltageRatioInput13);
+                    break;
 
-                    case 14:
-                        await RefreshVoltageRatioInput(VoltageRatioInput14);
-                        break;
+                case 14:
+                    await RefreshVoltageRatioInput(VoltageRatioInput14);
+                    break;
 
-                    case 15:
-                        await RefreshVoltageRatioInput(VoltageRatioInput15);
-                        break;
-                }
+                case 15:
+                    await RefreshVoltageRatioInput(VoltageRatioInput15);
+                    break;
+            }
             //}
             //else
             //{
@@ -4564,6 +3646,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 return false;
             }
         }
+
+        #endregion
 
         #region CloseVoltageRatioInput Command
 
@@ -4673,6 +3757,684 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #endregion
+
+        #region VoltageOutputs
+
+        #region OpenVoltageOutput Command
+
+        public DelegateCommand<SerialHubPortChannel?> OpenVoltageOutputCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _OpenVoltageOutputHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE OpenVoltageOutputCommandParameter;
+
+        public string OpenVoltageOutputContent { get; set; } = "Open";
+        public string OpenVoltageOutputToolTip { get; set; } = "Open VoltageOutput";
+
+        // Can get fancy and use Resources
+        //public string OpenVoltageOutputContent { get; set; } = "ViewName_OpenVoltageOutputContent";
+        //public string OpenVoltageOutputToolTip { get; set; } = "ViewName_OpenVoltageOutputContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_OpenVoltageOutputContent">OpenVoltageOutput</system:String>
+        //    <system:String x:Key="ViewName_OpenVoltageOutputContentToolTip">OpenVoltageOutput ToolTip</system:String>  
+
+
+        // If using CommandParameter, figure out TYPE here
+        public async void OpenVoltageOutput(SerialHubPortChannel? serialHubPortChannel)
+        //public void OpenVoltageOutput()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Do something amazing.
+
+            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+            Message = $"Cool, you called OpenVoltageOutput on " +
+                $"serialHubPortChannel:{shpc.SerialNumber}" +
+                $":{shpc.HubPort}:{shpc.Channel}";
+            PublishStatusMessage(Message);
+
+            switch (shpc.Channel)
+            {
+                case 0:
+                    await OpenVoltageOutput(VoltageOutput0);
+                    break;
+
+                case 1:
+                    await OpenVoltageOutput(VoltageOutput1);
+                    break;
+
+                case 2:
+                    await OpenVoltageOutput(VoltageOutput2);
+                    break;
+
+                case 3:
+                    await OpenVoltageOutput(VoltageOutput3);
+                    break;
+
+                case 4:
+                    await OpenVoltageOutput(VoltageOutput4);
+                    break;
+
+                case 5:
+                    await OpenVoltageOutput(VoltageOutput5);
+                    break;
+
+                case 6:
+                    await OpenVoltageOutput(VoltageOutput6);
+                    break;
+
+                case 7:
+                    await OpenVoltageOutput(VoltageOutput7);
+                    break;
+
+                case 8:
+                    await OpenVoltageOutput(VoltageOutput8);
+                    break;
+
+                case 9:
+                    await OpenVoltageOutput(VoltageOutput9);
+                    break;
+
+                case 10:
+                    await OpenVoltageOutput(VoltageOutput10);
+                    break;
+
+                case 11:
+                    await OpenVoltageOutput(VoltageOutput11);
+                    break;
+
+                case 12:
+                    await OpenVoltageOutput(VoltageOutput12);
+                    break;
+
+                case 13:
+                    await OpenVoltageOutput(VoltageOutput13);
+                    break;
+
+                case 14:
+                    await OpenVoltageOutput(VoltageOutput14);
+                    break;
+
+                case 15:
+                    await OpenVoltageOutput(VoltageOutput15);
+                    break;
+            }
+
+            OpenVoltageOutputCommand.RaiseCanExecuteChanged();
+            RefreshVoltageOutputCommand.RaiseCanExecuteChanged();
+            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
+            CloseVoltageOutputCommand.RaiseCanExecuteChanged();
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<OpenVoltageOutputEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<OpenVoltageOutputEvent>().Publish(
+            //      new OpenVoltageOutputEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class OpenVoltageOutputEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<OpenVoltageOutputEvent>().Subscribe(OpenVoltageOutput);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private async Task OpenVoltageOutput(VoltageOutputEx voltageOutput)
+        {
+            ConfigureInitialLogging(voltageOutput);
+
+            if (voltageOutput.IsOpen is false)
+            {
+                //await Task.Run(() => voltageOutput.Open(5000));    // Wait 5 seconds to attach
+                await Task.Run(() => voltageOutput.Open(10000));  // Block until attached
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageOutput} already open", Common.LOG_CATEGORY);
+            }
+        }
+
+        void ConfigureInitialLogging(VoltageOutputEx phidgetEx)
+        {
+            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
+            phidgetEx.LogErrorEvents = LogErrorEvents;
+            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
+            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            phidgetEx.LogChannelAction = LogChannelAction;
+            phidgetEx.LogActionVerification = LogActionVerification;
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public Boolean OpenVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        //public Boolean OpenVoltageOutputCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+
+            if (serialHubPortChannel is null) return false;
+
+            VoltageOutputEx? host;
+
+            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        #endregion
+
+        #region RefreshVoltageOutput Command
+
+        public DelegateCommand<SerialHubPortChannel?> RefreshVoltageOutputCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _RefreshVoltageOutputHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE RefreshVoltageOutputCommandParameter;
+
+        public string RefreshVoltageOutputContent { get; set; } = "Refresh";
+        public string RefreshVoltageOutputToolTip { get; set; } = "Refresh VoltageOutput";
+
+        // Can get fancy and use Resources
+        //public string RefreshVoltageOutputContent { get; set; } = "ViewName_RefreshVoltageOutputContent";
+        //public string RefreshVoltageOutputToolTip { get; set; } = "ViewName_RefreshVoltageOutputContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RefreshVoltageOutputContent">RefreshVoltageOutput</system:String>
+        //    <system:String x:Key="ViewName_RefreshVoltageOutputContentToolTip">RefreshVoltageOutput ToolTip</system:String>  
+
+        private async Task RefreshVoltageOutput(VoltageOutputEx voltageOutput)
+        {
+            if (voltageOutput.IsOpen is true)
+            {
+                await Task.Run(() => voltageOutput.RefreshProperties());
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageOutput} not open", Common.LOG_CATEGORY);
+            }
+        }
+
+        // If using CommandParameter, figure out TYPE here
+        public async void RefreshVoltageOutput(SerialHubPortChannel? serialHubPortChannel)
+        //public void RefreshVoltageOutput()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Do something amazing.
+
+            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+            Message = $"Cool, you called RefreshVoltageOutput\r\n on " +
+                $"serialHubPortChannel:{shpc.SerialNumber}" +
+                $":{shpc.HubPort}:{shpc.Channel}";
+            PublishStatusMessage(Message);
+
+            //if (Int32.TryParse(channelNumber, out channel))
+            //{
+            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+
+            //VoltageOutputEx voltageOutputHost = Common.PhidgetDeviceLibrary.VoltageOutputChannels[serialHubPortChannel];
+
+            switch (shpc.Channel)
+            {
+                case 0:
+                    await RefreshVoltageOutput(VoltageOutput0);
+                    break;
+
+                case 1:
+                    await RefreshVoltageOutput(VoltageOutput1);
+                    break;
+
+                case 2:
+                    await RefreshVoltageOutput(VoltageOutput2);
+                    break;
+
+                case 3:
+                    await RefreshVoltageOutput(VoltageOutput3);
+                    break;
+
+                case 4:
+                    await RefreshVoltageOutput(VoltageOutput4);
+                    break;
+
+                case 5:
+                    await RefreshVoltageOutput(VoltageOutput5);
+                    break;
+
+                case 6:
+                    await RefreshVoltageOutput(VoltageOutput6);
+                    break;
+
+                case 7:
+                    await RefreshVoltageOutput(VoltageOutput7);
+                    break;
+
+                case 8:
+                    await RefreshVoltageOutput(VoltageOutput8);
+                    break;
+
+                case 9:
+                    await RefreshVoltageOutput(VoltageOutput9);
+                    break;
+
+                case 10:
+                    await RefreshVoltageOutput(VoltageOutput10);
+                    break;
+
+                case 11:
+                    await RefreshVoltageOutput(VoltageOutput11);
+                    break;
+
+                case 12:
+                    await RefreshVoltageOutput(VoltageOutput12);
+                    break;
+
+                case 13:
+                    await RefreshVoltageOutput(VoltageOutput13);
+                    break;
+
+                case 14:
+                    await RefreshVoltageOutput(VoltageOutput14);
+                    break;
+
+                case 15:
+                    await RefreshVoltageOutput(VoltageOutput15);
+                    break;
+            }
+            //}
+            //else
+            //{
+
+            //}
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RefreshVoltageOutputEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RefreshVoltageOutputEvent>().Publish(
+            //      new RefreshVoltageOutputEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class RefreshVoltageOutputEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RefreshVoltageOutputEvent>().Subscribe(RefreshVoltageOutput);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public Boolean RefreshVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        //public Boolean RefreshVoltageOutputCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //Int32 channel = (Int32)channelNumber;
+
+            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
+
+            //if (SelectedInterfaceKitPhidget is null) return false;
+
+            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
+
+            if (serialHubPortChannel is null) return false;
+
+            VoltageOutputEx? host;
+
+            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region CloseVoltageOutput Command
+
+        public DelegateCommand<SerialHubPortChannel?> CloseVoltageOutputCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _CloseVoltageOutputHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE CloseVoltageOutputCommandParameter;
+
+        public string CloseVoltageOutputContent { get; set; } = "Close";
+        public string CloseVoltageOutputToolTip { get; set; } = "Close VoltageOutput";
+
+        // Can get fancy and use Resources
+        //public string CloseVoltageOutputContent { get; set; } = "ViewName_CloseVoltageOutputContent";
+        //public string CloseVoltageOutputToolTip { get; set; } = "ViewName_CloseVoltageOutputContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_CloseVoltageOutputContent">CloseVoltageOutput</system:String>
+        //    <system:String x:Key="ViewName_CloseVoltageOutputContentToolTip">CloseVoltageOutput ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE here
+        public async void CloseVoltageOutput(SerialHubPortChannel? serialHubPortChannel)
+        //public void CloseVoltageOutput()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+
+            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+            Message = $"Cool, you called CloseVoltageOutput on " +
+                $"serialHubPortChannel:{shpc.SerialNumber}" +
+                $":{shpc.HubPort}:{shpc.Channel}";
+            PublishStatusMessage(Message);
+
+            await Task.Run(() => Common.PhidgetDeviceLibrary.VoltageOutputChannels[shpc].Close());
+
+            OpenVoltageOutputCommand.RaiseCanExecuteChanged();
+            RefreshVoltageOutputCommand.RaiseCanExecuteChanged();
+            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
+            CloseVoltageOutputCommand.RaiseCanExecuteChanged();
+
+            // If launching a UserControl
+
+            // if (_CloseVoltageOutputHost is null) _CloseVoltageOutputHost = new WindowHost();
+            // var userControl = new USERCONTROL();
+
+            // _loggingConfigurationHost.DisplayUserControlInHost(
+            //     "TITLE GOES HERE",
+            //     //Common.DEFAULT_WINDOW_WIDTH,
+            //     //Common.DEFAULT_WINDOW_HEIGHT,
+            //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+            //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+            //     ShowWindowMode.Modeless_Show,
+            //     userControl);
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<CloseVoltageOutputEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<CloseVoltageOutputEvent>().Publish(
+            //      new CloseVoltageOutputEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class CloseVoltageOutputEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<CloseVoltageOutputEvent>().Subscribe(CloseVoltageOutput);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public Boolean CloseVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        //public Boolean CloseVoltageOutputCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+
+            if (serialHubPortChannel is null) return false;
+
+            VoltageOutputEx? host;
+
+            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region RaisePerformanceEvent Command
+
+        public DelegateCommand<SerialHubPortChannel?> RaisePerformanceEventCommand { get; set; }
+        // If displaying UserControl
+        // public static WindowHost _RaisePerformanceEventHost = null;
+
+        // If using CommandParameter, figure out TYPE here
+        //public TYPE RaisePerformanceEventCommandParameter;
+
+        public string RaisePerformanceEventContent { get; set; } = "Raise Event";
+        public string RaisePerformanceEventToolTip { get; set; } = "Raise Performance Event";
+
+        // Can get fancy and use Resources
+        //public string RaisePerformanceEventContent { get; set; } = "ViewName_RaisePerformanceEventContent";
+        //public string RaisePerformanceEventToolTip { get; set; } = "ViewName_RaisePerformanceEventContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_RaisePerformanceEventContent">RaisePerformanceEvent</system:String>
+        //    <system:String x:Key="ViewName_RaisePerformanceEventContentToolTip">RaisePerformanceEvent ToolTip</system:String>  
+
+        private async Task RaisePerformanceEvent(VoltageInputEx voltageInput)
+        {
+            if (voltageInput.IsOpen is true)
+            {
+                await Task.Run(() => voltageInput.RaisePlayPerformanceEvent());
+            }
+            else
+            {
+                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+            }
+        }
+
+        // If using CommandParameter, figure out TYPE here
+        public async void RaisePerformanceEvent(SerialHubPortChannel? serialHubPortChannel)
+        //public void RaisePerformanceEvent()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            // TODO(crhodes)
+            // Do something amazing.
+
+            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+            Message = $"Cool, you called RaisePerformanceEvent\r\n on " +
+                $"serialHubPortChannel:{shpc.SerialNumber}" +
+                $":{shpc.HubPort}:{shpc.Channel}";
+            PublishStatusMessage(Message);
+            //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
+
+            switch (shpc.Channel)
+            {
+                case 0:
+                    await RaisePerformanceEvent(VoltageInput0);
+                    break;
+
+                case 1:
+                    await RaisePerformanceEvent(VoltageInput1);
+                    break;
+
+                case 2:
+                    await RaisePerformanceEvent(VoltageInput2);
+                    break;
+
+                case 3:
+                    await RaisePerformanceEvent(VoltageInput3);
+                    break;
+
+                case 4:
+                    await RaisePerformanceEvent(VoltageInput4);
+                    break;
+
+                case 5:
+                    await RaisePerformanceEvent(VoltageInput5);
+                    break;
+
+                case 6:
+                    await RaisePerformanceEvent(VoltageInput6);
+                    break;
+
+                case 7:
+                    await RaisePerformanceEvent(VoltageInput7);
+                    break;
+
+                case 8:
+                    await RaisePerformanceEvent(VoltageInput8);
+                    break;
+
+                case 9:
+                    await RaisePerformanceEvent(VoltageInput9);
+                    break;
+
+                case 10:
+                    await RaisePerformanceEvent(VoltageInput10);
+                    break;
+
+                case 11:
+                    await RaisePerformanceEvent(VoltageInput11);
+                    break;
+
+                case 12:
+                    await RaisePerformanceEvent(VoltageInput12);
+                    break;
+
+                case 13:
+                    await RaisePerformanceEvent(VoltageInput13);
+                    break;
+
+                case 14:
+                    await RaisePerformanceEvent(VoltageInput14);
+                    break;
+
+                case 15:
+                    await RaisePerformanceEvent(VoltageInput15);
+                    break;
+            }
+            //}
+            //else
+            //{
+
+            //}
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<RaisePerformanceEventEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<RaisePerformanceEventEvent>().Publish(
+            //      new RaisePerformanceEventEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Four - Put this in PrismEvents
+
+            // public class RaisePerformanceEventEvent : PubSubEvent { }
+
+            // End Cut Four
+
+            // Start Cut Five - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<RaisePerformanceEventEvent>().Subscribe(RaisePerformanceEvent);
+
+            // End Cut Five
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        // If using CommandParameter, figure out TYPE and fix above
+        public Boolean RaisePerformanceEventCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        //public Boolean RaisePerformanceEventCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            //Int32 channel = (Int32)channelNumber;
+
+            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
+
+            //if (SelectedInterfaceKitPhidget is null) return false;
+
+            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
+
+            if (serialHubPortChannel is null) return false;
+
+            VoltageInputEx? host;
+
+            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+
+            if (host.IsOpen)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         #endregion
 
