@@ -39,7 +39,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="AdvancedServo\" />
       <Folder Include="Dictionary\" />
+      <Folder Include="InterfaceKit\" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
