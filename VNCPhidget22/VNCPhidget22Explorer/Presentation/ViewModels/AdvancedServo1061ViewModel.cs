@@ -1632,7 +1632,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
-            Message = $"Cool, you called CloseDigitalInput on " +
+            Message = $"Cool, you called CloseRCServo on " +
                 $"serialHubPortChannel:{shpc.SerialNumber}" +
                 $":{shpc.HubPort}:{shpc.Channel}";
 

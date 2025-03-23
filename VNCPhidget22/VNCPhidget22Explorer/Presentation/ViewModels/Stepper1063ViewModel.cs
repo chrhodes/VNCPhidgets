@@ -1023,17 +1023,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PublishStatusMessage(Message);
 
-            //if (Int32.TryParse(servoNumber, out channel))
-            //{
-            //    SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-                await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[shpc].Close());
-            //}
-            //else
-            //{
-            //    Message = $"Cannot parse servoNumber:>{servoNumber}<";
-            //    Log.Error(Message, Common.LOG_CATEGORY);
-            //}
+            await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[shpc].Close());
 
             OpenStepperCommand.RaiseCanExecuteChanged();
             CloseStepperCommand.RaiseCanExecuteChanged();

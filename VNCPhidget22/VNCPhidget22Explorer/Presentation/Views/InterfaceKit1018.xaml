@@ -632,7 +632,7 @@
                                 SensorValueOutOfRange="{Binding VoltageRatioInput0.SensorValueOutOfRange,Mode=OneWay}" />
 
                             <views:VoltageInputControl x:Name="vic1" ControlTitle="Voltage Input 1" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput0.SerialHubPortChannel, Mode=TwoWay}" 
+                                SerialHubPortChannel="{Binding VoltageRatioInput1.SerialHubPortChannel, Mode=TwoWay}" 
                                 Attached="{Binding VoltageInput1.Attached, Mode=TwoWay}"
                                 LogPhidgetEvents="{Binding VoltageInput1.LogPhidgetEvents,Mode=TwoWay}"
                                 LogErrorEvents="{Binding VoltageInput1.LogErrorEvents,Mode=TwoWay}"

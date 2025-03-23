@@ -555,26 +555,26 @@ namespace VNC.Phidget22.Ex
 
             try
             {
-                SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
+                //SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
 
-                MinDataInterval = voltageInput.MinDataInterval;
-                DataInterval = voltageInput.DataInterval;
-                //DataInterval = 100; // 100ms (10Hz)
-                MaxDataInterval = voltageInput.MaxDataInterval;
+                //MinDataInterval = voltageInput.MinDataInterval;
+                //DataInterval = voltageInput.DataInterval;
+                ////DataInterval = 100; // 100ms (10Hz)
+                //MaxDataInterval = voltageInput.MaxDataInterval;
 
-                MinDataRate = voltageInput.MinDataRate;
-                DataRate = voltageInput.DataRate;
-                //DataRate = 10; // 10 Hz (100ms)
-                MaxDataRate = voltageInput.MaxDataRate;
+                //MinDataRate = voltageInput.MinDataRate;
+                //DataRate = voltageInput.DataRate;
+                ////DataRate = 10; // 10 Hz (100ms)
+                //MaxDataRate = voltageInput.MaxDataRate;
 
-                MinVoltage = voltageInput.MinVoltage;
-                Voltage = voltageInput.Voltage;
-                SensorValue = voltageInput.SensorValue;
-                MaxVoltage = voltageInput.MaxVoltage;
+                //MinVoltage = voltageInput.MinVoltage;
+                //Voltage = voltageInput.Voltage;
+                //SensorValue = voltageInput.SensorValue;
+                //MaxVoltage = voltageInput.MaxVoltage;
 
-                MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
-                VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
-                MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
+                //MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
+                //VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
+                //MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -767,8 +767,26 @@ namespace VNC.Phidget22.Ex
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
 
+            SensorValueChangeTrigger = base.SensorValueChangeTrigger;
+
+            MinDataInterval = base.MinDataInterval;
             DataInterval = base.DataInterval;
+            //DataInterval = 100; // 100ms (10Hz)
+            MaxDataInterval = base.MaxDataInterval;
+
+            MinDataRate = base.MinDataRate;
             DataRate = base.DataRate;
+            //DataRate = 10; // 10 Hz (100ms)
+            MaxDataRate = base.MaxDataRate;
+
+            MinVoltage = base.MinVoltage;
+            Voltage = base.Voltage;
+            SensorValue = base.SensorValue;
+            MaxVoltage = base.MaxVoltage;
+
+            MinVoltageChangeTrigger = base.MinVoltageChangeTrigger;
+            VoltageChangeTrigger = base.VoltageChangeTrigger;
+            MaxVoltageChangeTrigger = base.MaxVoltageChangeTrigger;
 
             if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
