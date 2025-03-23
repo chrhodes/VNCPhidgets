@@ -201,19 +201,11 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
             try
             {
-
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {

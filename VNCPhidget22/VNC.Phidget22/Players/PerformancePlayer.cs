@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 
 using Prism.Events;
 
@@ -25,12 +23,6 @@ namespace VNC.Phidget22.Players
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
-
-            //PerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
-            //PerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
-            //PerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            //PerformanceSequencePlayer.LogChannelAction = LogChannelAction;
-            //PerformanceSequencePlayer.LogActionVerification = LogActionVerification;
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }

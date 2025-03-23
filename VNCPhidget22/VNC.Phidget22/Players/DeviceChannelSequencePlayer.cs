@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Events;
-using Prism.Regions.Behaviors;
 
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
@@ -36,9 +35,11 @@ namespace VNC.Phidget22.Players
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
@@ -48,16 +49,11 @@ namespace VNC.Phidget22.Players
         public static DeviceChannelSequencePlayer ActivePerformanceSequencePlayer { get; set; }
 
         // TODO(crhodes)
-        //// 
-        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
-        //public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
-
-        // TODO(crhodes)
         // This needs to be something fancier as we can have multiple RCServoHost per IP and multiple IP's
-        public RCServoEx ActiveRCServoHost { get; set; }
-        public StepperEx ActiveStepperHost { get; set; }
+        //public RCServoEx ActiveRCServoHost { get; set; }
+        //public StepperEx ActiveStepperHost { get; set; }
 
-        public DigitalOutputEx ActiveDigitalOutputHost { get; set; }
+        //public DigitalOutputEx ActiveDigitalOutputHost { get; set; }
 
         public Boolean LogDeviceChannelSequence { get; set; }
         public Boolean LogChannelAction { get; set; }
@@ -87,6 +83,7 @@ namespace VNC.Phidget22.Players
         #endregion
 
         #region Event Handlers (none)
+
 
 
         #endregion

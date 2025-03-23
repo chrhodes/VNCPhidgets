@@ -72,10 +72,10 @@ namespace VNC.Phidget22.Ex
 
             IsRemote = true;
 
-            Attach += TemperatureSensorExEx_Attach;
-            Detach += TemperatureSensorExEx_Detach;
-            Error += TemperatureSensorExEx_Error;
-            PropertyChange += TemperatureSensorExEx_PropertyChange;
+            Attach += TemperatureSensorEx_Attach;
+            Detach += TemperatureSensorEx_Detach;
+            Error += TemperatureSensorEx_Error;
+            PropertyChange += TemperatureSensorEx_PropertyChange;
 
             if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -184,7 +184,7 @@ namespace VNC.Phidget22.Ex
 
         #region Event Handlers
 
-        private void TemperatureSensorExEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        private void TemperatureSensorEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
             Phidgets.TemperatureSensor TemperatureSensor = sender as Phidgets.TemperatureSensor;
 
@@ -192,7 +192,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"TemperatureSensorExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"TemperatureSensorEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -200,19 +200,11 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
             try
             {
-
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -230,7 +222,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Exit TemperatureSensorExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Exit TemperatureSensorEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -239,13 +231,13 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private void TemperatureSensorExEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        private void TemperatureSensorEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
             if (LogPropertyChangeEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"TemperatureSensorExEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"TemperatureSensorEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -264,18 +256,18 @@ namespace VNC.Phidget22.Ex
                     break;
 
                 default:
-                    Log.EVENT_HANDLER($"TemperatureSensorExEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"TemperatureSensorEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
                     break;
             }
         }
 
-        private void TemperatureSensorExEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        private void TemperatureSensorEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"TemperatureSensorExEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"TemperatureSensorEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -286,7 +278,7 @@ namespace VNC.Phidget22.Ex
             Attached = false;
         }
 
-        private void TemperatureSensorExEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        private void TemperatureSensorEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
         {
             if (LogErrorEvents)
             {

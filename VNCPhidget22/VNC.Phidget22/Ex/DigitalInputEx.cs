@@ -265,19 +265,11 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = digitalInput.Attached;
-
-            // Just set it so UI behaves well
-            //Attached = true;
-
             try
             {
-                //State = digitalInput.State;
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -290,23 +282,6 @@ namespace VNC.Phidget22.Ex
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            // Not all DigitalInput support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    InputMode = digitalInput.InputMode;
-            //    PowerSupply = digitalInput.PowerSupply;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
 
             if (LogPhidgetEvents)
             {

@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -761,90 +763,33 @@ namespace VNC.Phidget22.Ex
 
             try
             {
-                // Set properties to values from Phidget
-
-                MinPulseWidth = rcServo.MinPulseWidth;
-                MaxPulseWidth = rcServo.MaxPulseWidth;
-
-                MinPulseWidthLimit = rcServo.MinPulseWidthLimit;
-                MaxPulseWidthLimit = rcServo.MaxPulseWidthLimit;
-
-                SpeedRampingState = rcServo.SpeedRampingState;
-
                 // TODO(crhodes)
-                // 
-                // This needs to be set before being read
-                //SensorUnit = RCServo.SensorUnit;
-
-                MinAcceleration = rcServo.MinAcceleration;
-                Acceleration = rcServo.Acceleration;
-                MaxAcceleration = rcServo.MaxAcceleration;
-
-                Velocity = rcServo.Velocity;
-
-                MinVelocityLimit = rcServo.MinVelocityLimit;
-                VelocityLimit = rcServo.VelocityLimit;
-                MaxVelocityLimit = rcServo.MaxVelocityLimit;
-
-                //MinDataInterval = rcServo.MinDataInterval;
-                //DataInterval = rcServo.DataInterval;
-                //MaxDataInterval = rcServo.MaxDataInterval;
-
-                //MinDataRate = rcServo.MinDataRate;
-                //DataRate = rcServo.DataRate;
-                //MaxDataRate = rcServo.MaxDataRate;
-
-                // MinPosition can be set.  Save initial limit
-                MinPositionServo = MinPosition = MinPositionStop = rcServo.MinPosition;
-
-                // MaxPosition can be set.  Save initial limit
-                MaxPositionServo = MaxPosition = MaxPositionStop = rcServo.MaxPosition;
-
-                // NOTE(crhodes)
-                // Position cannot be read until initially set
-                // Initialize in middle of range
-                Position = (rcServo.MaxPosition - rcServo.MinPosition) / 2;
-                // Have to set TargetPosition before engaging
-                TargetPosition = Position;
-            
-                Voltage = rcServo.Voltage;
-
-                // NOTE(crhodes)
-                // Shockingly, the Attached property is not set until after Attach Event
-                // It is also R/O so we cannot set.
-
-                //Attached = rcServo.Attached;
-
-                // Just set it so UI behaves well
-                Attached = true;
-
-                Engaged = rcServo.Engaged;
-
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            // Not all RCServo support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    MinFailsafeTime = rcServo.MinFailsafeTime;
-            //    MaxFailsafeTime = rcServo.MaxFailsafeTime;
-            //    MinTorque = rcServo.MinTorque;
-            //    Torque = rcServo.Torque;
-            //    MaxTorque = rcServo.MaxTorque;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit RCServoEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void RCServoEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -1009,6 +954,54 @@ namespace VNC.Phidget22.Ex
 
             try
             {
+                // Set properties to values from Phidget
+
+                MinPulseWidth = base.MinPulseWidth;
+                MaxPulseWidth = base.MaxPulseWidth;
+
+                MinPulseWidthLimit = base.MinPulseWidthLimit;
+                MaxPulseWidthLimit = base.MaxPulseWidthLimit;
+
+                SpeedRampingState = base.SpeedRampingState;
+
+                // TODO(crhodes)
+                // 
+                // This needs to be set before being read
+                //SensorUnit = RCServo.SensorUnit;
+
+                MinAcceleration = base.MinAcceleration;
+                Acceleration = base.Acceleration;
+                MaxAcceleration = base.MaxAcceleration;
+
+                Velocity = base.Velocity;
+
+                MinVelocityLimit = base.MinVelocityLimit;
+                VelocityLimit = base.VelocityLimit;
+                MaxVelocityLimit = base.MaxVelocityLimit;
+
+                //MinDataInterval = rcServo.MinDataInterval;
+                //DataInterval = rcServo.DataInterval;
+                //MaxDataInterval = rcServo.MaxDataInterval;
+
+                //MinDataRate = rcServo.MinDataRate;
+                //DataRate = rcServo.DataRate;
+                //MaxDataRate = rcServo.MaxDataRate;
+
+                // MinPosition can be set.  Save initial limit
+                MinPositionServo = MinPosition = MinPositionStop = base.MinPosition;
+                // MaxPosition can be set.  Save initial limit
+                MaxPositionServo = MaxPosition = MaxPositionStop = base.MaxPosition;
+
+                // NOTE(crhodes)
+                // Position cannot be read until initially set
+                // Initialize in middle of range
+                Position = (base.MaxPosition - base.MinPosition) / 2;
+                // Have to set TargetPosition before engaging
+                TargetPosition = Position;
+
+                Voltage = base.Voltage;
+
+                Engaged = base.Engaged;
                 // NOTE(crhodes)
                 // These are not supported by the 16x RC Servo Phidget
                 // Going to remove for all

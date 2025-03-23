@@ -497,53 +497,11 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = VoltageRatioInput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
-            // FIX(crhodes)
-            // This whole area is a mess.  Tried moving to RefreshProperties
-            // Not everything is available when Attach fires.
-            // If in SensorMode and SensorValue OutOfRange other stuff not available.
-            // Sigh
-
-            // For now just set attach and figure out rest in RefreshProperties
-
-            // TODO(crhodes)
-            // 
-            // SensorType needs to be set before SensorUnit and SensorValue can be read
-            //SensorType = VoltageSensorType.Voltage;
-            //SensorUnit = voltageInput.SensorUnit;
-            //SensorValue = voltageInput.SensorValue;
-
             try
             {
-                //SensorValueChangeTrigger = voltageRatioInput.SensorValueChangeTrigger;
-
-                //MinDataInterval = voltageRatioInput.MinDataInterval;
-                //DataInterval = voltageRatioInput.DataInterval;
-                ////DataInterval = 100; // 100ms (10Hz)
-                //MaxDataInterval = voltageRatioInput.MaxDataInterval;
-
-                //MinDataRate = voltageRatioInput.MinDataRate;
-                //DataRate = voltageRatioInput.DataRate;
-                ////DataRate = 10; // 10 Hz (100ms)
-                //MaxDataRate = voltageRatioInput.MaxDataRate;
-
-                //MinVoltageRatio = voltageRatioInput.MinVoltageRatio;
-                //VoltageRatio = voltageRatioInput.VoltageRatio;
-                //SensorValue = voltageRatioInput.SensorValue;
-                //MaxVoltageRatio = voltageRatioInput.MaxVoltageRatio;
-
-                //MinVoltageRatioChangeTrigger = voltageRatioInput.MinVoltageRatioChangeTrigger;
-                //VoltageRatioChangeTrigger = voltageRatioInput.VoltageRatioChangeTrigger;
-                //MaxVoltageRatioChangeTrigger = voltageRatioInput.MaxVoltageRatioChangeTrigger;
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -558,22 +516,6 @@ namespace VNC.Phidget22.Ex
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            // Not all VoltageRatioInput support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
 
             if (LogPhidgetEvents)
             {

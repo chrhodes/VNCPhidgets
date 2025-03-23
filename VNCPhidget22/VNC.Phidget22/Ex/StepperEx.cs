@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -755,77 +757,35 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
+            try
+            {
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw pex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
-            Engaged = stepper.Engaged;
-
-            // TODO(crhodes)
-            // 
-            // This needs to be set before being read
-            //SensorUnit = stepper.SensorUnit;
-
-            MinAcceleration = stepper.MinAcceleration;
-            Acceleration = stepper.Acceleration;
-            MaxAcceleration = stepper.MaxAcceleration;
-
-            Velocity = stepper.Velocity;
-
-            MinVelocityLimit = stepper.MinVelocityLimit;
-            VelocityLimit = stepper.VelocityLimit;
-            MaxVelocityLimit = stepper.MaxVelocityLimit;
-
-            MinDataInterval = stepper.MinDataInterval;
-            DataInterval = stepper.DataInterval;
-            MaxDataInterval = stepper.MaxDataInterval;
-
-            MinDataRate = stepper.MinDataRate;
-            DataRate = stepper.DataRate;
-            MaxDataRate = stepper.MaxDataRate;
-
-            // MinPosition can be set.  Save initial limit
-            MinPositionStepper = MinPosition = MinPositionStop = stepper.MinPosition;
-
-            // MaxPosition can be set.  Save initial limit
-            MaxPositionStepper = MaxPosition = MaxPositionStop = stepper.MaxPosition;
-
-            //// NOTE(crhodes)
-            //// Position cannot be read until initially set
-            //// Initialize in middle of range
-            //Position = (rcServo.MaxPosition - stepper.MinPosition) / 2;
-            //// Have to set TargetPosition before engaging
-            //TargetPosition = Position;
-
-            MinCurrentLimit = stepper.MinCurrentLimit;
-            CurrentLimit = stepper.CurrentLimit;
-            MaxCurrentLimit = stepper.MaxCurrentLimit;
-
-            ControlMode = stepper.ControlMode;
-            RescaleFactor = stepper.RescaleFactor;
-
-            // Not all RCServo support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    MinFailsafeTime = stepper.MinFailsafeTime;
-            //    MaxFailsafeTime = stepper.MaxFailsafeTime;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit StepperEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void StepperEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -969,6 +929,51 @@ namespace VNC.Phidget22.Ex
                 // TODO(crhodes)
                 // Move stuff out of Attach unless absolutely need to be set
                 // as some Phidgets do not provide values until Open
+
+                Engaged = base.Engaged;
+
+                // TODO(crhodes)
+                // 
+                // This needs to be set before being read
+                //SensorUnit = stepper.SensorUnit;
+
+                MinAcceleration = base.MinAcceleration;
+                Acceleration = base.Acceleration;
+                MaxAcceleration = base.MaxAcceleration;
+
+                Velocity = base.Velocity;
+
+                MinVelocityLimit = base.MinVelocityLimit;
+                VelocityLimit = base.VelocityLimit;
+                MaxVelocityLimit = base.MaxVelocityLimit;
+
+                MinDataInterval = base.MinDataInterval;
+                DataInterval = base.DataInterval;
+                MaxDataInterval = base.MaxDataInterval;
+
+                MinDataRate = base.MinDataRate;
+                DataRate = base.DataRate;
+                MaxDataRate = base.MaxDataRate;
+
+                // MinPosition can be set.  Save initial limit
+                MinPositionStepper = MinPosition = MinPositionStop = base.MinPosition;
+
+                // MaxPosition can be set.  Save initial limit
+                MaxPositionStepper = MaxPosition = MaxPositionStop = base.MaxPosition;
+
+                //// NOTE(crhodes)
+                //// Position cannot be read until initially set
+                //// Initialize in middle of range
+                //Position = (rcServo.MaxPosition - stepper.MinPosition) / 2;
+                //// Have to set TargetPosition before engaging
+                //TargetPosition = Position;
+
+                MinCurrentLimit = base.MinCurrentLimit;
+                CurrentLimit = base.CurrentLimit;
+                MaxCurrentLimit = base.MaxCurrentLimit;
+
+                ControlMode = base.ControlMode;
+                RescaleFactor = base.RescaleFactor;
             }
             catch (Phidgets.PhidgetException pex)
             {

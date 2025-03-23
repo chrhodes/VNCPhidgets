@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -281,23 +283,11 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = voltageOutput.Attached;
-
-            // Just set it so UI behaves well
             try
             {
-                Attached = true;
-
-                MinVoltage = voltageOutput.MinVoltage;
-                Voltage = voltageOutput.Voltage;
-                MaxVoltage = voltageOutput.MaxVoltage;
-
-                VoltageOutputRange = voltageOutput.VoltageOutputRange;
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -310,23 +300,6 @@ namespace VNC.Phidget22.Ex
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            // Not all VoltageOutput support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
 
             if (LogPhidgetEvents)
             {
@@ -419,7 +392,6 @@ namespace VNC.Phidget22.Ex
 
             base.Open();
 
-            Attached = base.Attached;
             RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
@@ -432,7 +404,6 @@ namespace VNC.Phidget22.Ex
 
             base.Open(timeout);
 
-            Attached = base.Attached;
             RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
@@ -444,7 +415,6 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
 
             base.Close();
-
             Attached = base.Attached;
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
@@ -460,6 +430,13 @@ namespace VNC.Phidget22.Ex
                 // TODO(crhodes)
                 // Move stuff out of Attach unless absolutely need to be set
                 // as some Phidgets do not provide values until Open
+                Attached = base.Attached;
+
+                MinVoltage = base.MinVoltage;
+                Voltage = base.Voltage;
+                MaxVoltage = base.MaxVoltage;
+
+                VoltageOutputRange = base.VoltageOutputRange;
             }
             catch (Phidgets.PhidgetException pex)
             {

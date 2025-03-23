@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -394,23 +396,11 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
             try
             {
-                MinDutyCycle = digitalOutput.MinDutyCycle;
-                DutyCycle = digitalOutput.DutyCycle;
-                MaxDutyCycle = digitalOutput.MaxDutyCycle;
-
-                State = digitalOutput.State;
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -423,33 +413,6 @@ namespace VNC.Phidget22.Ex
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
-
-            // Not all DigitalOutput support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    MinFrequency = dOutput.MinFrequency;
-            //    Frequency = dOutput.Frequency;
-            //    MaxFrequency = dOutput.MaxFrequency;
-
-            //    LEDForwardVoltage = dOutput.LEDForwardVoltage;
-
-            //    MinLEDCurrentLimit = dOutput.MinLEDCurrentLimit;
-            //    LEDCurrentLimit = dOutput.LEDCurrentLimit;
-            //    MaxLEDCurrentLimit = dOutput.MaxLEDCurrentLimit;
-
-            //    MinFailsafeTime = dOutput.MinFailsafeTime;
-            //    MaxFailsafeTime = dOutput.MaxFailsafeTime;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
 
             if (LogPhidgetEvents)
             {
@@ -574,6 +537,12 @@ namespace VNC.Phidget22.Ex
                 // TODO(crhodes)
                 // Move stuff out of Attach unless absolutely need to be set
                 // as some Phidgets do not provide values until Open
+
+                MinDutyCycle = base.MinDutyCycle;
+                DutyCycle = base.DutyCycle;
+                MaxDutyCycle = base.MaxDutyCycle;
+
+                State = base.State;
             }
             catch (Phidgets.PhidgetException pex)
             {

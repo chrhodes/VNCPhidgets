@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Channels;
 
 namespace VNC.Phidget22.Configuration
 {

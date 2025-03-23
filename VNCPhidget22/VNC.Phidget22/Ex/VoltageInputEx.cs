@@ -536,16 +536,6 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
             // TODO(crhodes)
             // 
             // SensorType needs to be set before SensorUnit and SensorValue can be read
@@ -555,26 +545,9 @@ namespace VNC.Phidget22.Ex
 
             try
             {
-                //SensorValueChangeTrigger = voltageInput.SensorValueChangeTrigger;
-
-                //MinDataInterval = voltageInput.MinDataInterval;
-                //DataInterval = voltageInput.DataInterval;
-                ////DataInterval = 100; // 100ms (10Hz)
-                //MaxDataInterval = voltageInput.MaxDataInterval;
-
-                //MinDataRate = voltageInput.MinDataRate;
-                //DataRate = voltageInput.DataRate;
-                ////DataRate = 10; // 10 Hz (100ms)
-                //MaxDataRate = voltageInput.MaxDataRate;
-
-                //MinVoltage = voltageInput.MinVoltage;
-                //Voltage = voltageInput.Voltage;
-                //SensorValue = voltageInput.SensorValue;
-                //MaxVoltage = voltageInput.MaxVoltage;
-
-                //MinVoltageChangeTrigger = voltageInput.MinVoltageChangeTrigger;
-                //VoltageChangeTrigger = voltageInput.VoltageChangeTrigger;
-                //MaxVoltageChangeTrigger = voltageInput.MaxVoltageChangeTrigger;
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration is need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
