@@ -111,7 +111,6 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
-        // as UI is bound before Attach fires to update properties from Phidget
 
         #region Logging
 
@@ -193,6 +192,102 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #region Data Interval and Rate
+
+        private Int32 _minDataInterval;
+        public new Int32 MinDataInterval
+        {
+            get => _minDataInterval;
+            set
+            {
+                //if (_minDataInterval == value)
+                //    return;
+                _minDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _DataInterval;
+        public new Int32 DataInterval
+        {
+            get => _DataInterval;
+            set
+            {
+                if (_DataInterval == value)
+                    return;
+                _DataInterval = value;
+
+                if (Attached)
+                {
+                    base.DataInterval = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _maxDataInterval;
+        public new Int32 MaxDataInterval
+        {
+            get => _maxDataInterval;
+            set
+            {
+                //if (_maxDataInterval == value)
+                //    return;
+                _maxDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minDataRate;
+        public new Double MinDataRate
+        {
+            get => _minDataRate;
+            set
+            {
+                //if (_minDataRate == value)
+                //    return;
+                _minDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _DataRate;
+        public new Double DataRate
+        {
+            get => _DataRate;
+            set
+            {
+                if (_DataRate == value)
+                    return;
+                _DataRate = value;
+
+                if (Attached)
+                {
+                    base.DataRate = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxDataRate;
+        public new Double MaxDataRate
+        {
+            get => _maxDataRate;
+            set
+            {
+                //if (_maxDataRate == value)
+                //    return;
+                _maxDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region DigitalInput
+
         private Phidgets.InputMode _inputMode;
         public new Phidgets.InputMode InputMode
         {
@@ -247,6 +342,8 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
+#endregion
+
         #region Event Handlers
 
         private void DigitalInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
@@ -269,7 +366,7 @@ namespace VNC.Phidget22.Ex
             {
                 // TODO(crhodes)
                 // Put things here that need to be initialized
-                // Use constructor configuration is need to pass things in
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -412,27 +509,32 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
         public new void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             try
             {
+                // TODO(crhodes)
+                // Move stuff out of Attach unless absolutely need to be set
+                // as some Phidgets do not provide values until Open
+
                 State = base.State;
-                // NOTE(crhodes)
-                // These are not supported by the 16x RC Servo Phidget
-                // Going to remove for all
 
-                //MinDataInterval = base.MinDataInterval;
-                //DataInterval = base.DataInterval;
-                ////DataInterval = 100; // 100ms (10Hz)
-                //MaxDataInterval = base.MaxDataInterval;
+                MinDataInterval = base.MinDataInterval;
+                DataInterval = base.DataInterval;
+                //DataInterval = 100; // 100ms (10Hz)
+                MaxDataInterval = base.MaxDataInterval;
 
-                //MinDataRate = base.MinDataRate;
-                //DataRate = base.DataRate;
-                ////DataRate = 10; // 10 Hz (100ms)
-                //MaxDataRate = base.MaxDataRate;
+                MinDataRate = base.MinDataRate;
+                DataRate = base.DataRate;
+                //DataRate = 10; // 10 Hz (100ms)
+                MaxDataRate = base.MaxDataRate;
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -449,7 +551,8 @@ namespace VNC.Phidget22.Ex
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 

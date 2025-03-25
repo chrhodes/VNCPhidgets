@@ -205,7 +205,7 @@ namespace VNC.Phidget22.Ex
             {
                 // TODO(crhodes)
                 // Put things here that need to be initialized
-                // Use constructor configuration is need to pass things in
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -307,11 +307,13 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
@@ -319,19 +321,49 @@ namespace VNC.Phidget22.Ex
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached} timeout:{timeout}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
             Attached = base.Attached;
+            RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
+        public new void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+
+            try
+            {
+                // TODO(crhodes)
+                // Move stuff out of Attach unless absolutely need to be set
+                // as some Phidgets do not provide values until Open
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 

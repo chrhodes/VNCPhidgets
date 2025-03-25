@@ -186,6 +186,102 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #region Data Interval and Rate
+
+        private Int32 _minDataInterval;
+        public new Int32 MinDataInterval
+        {
+            get => _minDataInterval;
+            set
+            {
+                //if (_minDataInterval == value)
+                //    return;
+                _minDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _DataInterval;
+        public new Int32 DataInterval
+        {
+            get => _DataInterval;
+            set
+            {
+                if (_DataInterval == value)
+                    return;
+                _DataInterval = value;
+
+                if (Attached)
+                {
+                    base.DataInterval = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _maxDataInterval;
+        public new Int32 MaxDataInterval
+        {
+            get => _maxDataInterval;
+            set
+            {
+                //if (_maxDataInterval == value)
+                //    return;
+                _maxDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minDataRate;
+        public new Double MinDataRate
+        {
+            get => _minDataRate;
+            set
+            {
+                //if (_minDataRate == value)
+                //    return;
+                _minDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _DataRate;
+        public new Double DataRate
+        {
+            get => _DataRate;
+            set
+            {
+                if (_DataRate == value)
+                    return;
+                _DataRate = value;
+
+                if (Attached)
+                {
+                    base.DataRate = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxDataRate;
+        public new Double MaxDataRate
+        {
+            get => _maxDataRate;
+            set
+            {
+                //if (_maxDataRate == value)
+                //    return;
+                _maxDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region VoltageRatioInputEx
+
         // TODO(crhodes)
         // 
         // There are two more properties that are not available on InterfaceKit1018
@@ -193,8 +289,8 @@ namespace VNC.Phidget22.Ex
         // BridgeEnabled
         // BridgeGain
 
-        private VoltageRatioSensorType? _sensorType;
-        public new VoltageRatioSensorType? SensorType
+        private VoltageRatioSensorType _sensorType;
+        public new VoltageRatioSensorType SensorType
         {
             get => _sensorType;
             set
@@ -251,100 +347,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-
-
-        private Int32? _minDataInterval;
-        public new Int32? MinDataInterval
-        {
-            get => _minDataInterval;
-            set
-            {
-                //if (_minDataInterval == value)
-                //    return;
-                _minDataInterval = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Int32? _DataInterval;
-        public new Int32? DataInterval
-        {
-            get => _DataInterval;
-            set
-            {
-                if (_DataInterval == value)
-                    return;
-                _DataInterval = value;
-
-                if (Attached)
-                {
-                    base.DataInterval = (Int32)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Int32? _maxDataInterval;
-        public new Int32? MaxDataInterval
-        {
-            get => _maxDataInterval;
-            set
-            {
-                //if (_maxDataInterval == value)
-                //    return;
-                _maxDataInterval = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _minDataRate;
-        public new Double? MinDataRate
-        {
-            get => _minDataRate;
-            set
-            {
-                //if (_minDataRate == value)
-                //    return;
-                _minDataRate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _DataRate;
-        public new Double? DataRate
-        {
-            get => _DataRate;
-            set
-            {
-                if (_DataRate == value)
-                    return;
-                _DataRate = value;
-
-                if (Attached)
-                {
-                    base.DataRate = (Int32)value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _maxDataRate;
-        public new Double? MaxDataRate
-        {
-            get => _maxDataRate;
-            set
-            {
-                //if (_maxDataRate == value)
-                //    return;
-                _maxDataRate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double? _minVoltageRatio;
-        public new Double? MinVoltageRatio
+        private Double _minVoltageRatio;
+        public new Double MinVoltageRatio
         {
             get => _minVoltageRatio;
             set
@@ -356,8 +360,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _VoltageRatio;
-        public new Double? VoltageRatio
+        private Double _VoltageRatio;
+        public new Double VoltageRatio
         {
             get => _VoltageRatio;
             set
@@ -369,8 +373,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _maxVoltageRatio;
-        public new Double? MaxVoltageRatio
+        private Double _maxVoltageRatio;
+        public new Double MaxVoltageRatio
         {
             get => _maxVoltageRatio;
             set
@@ -382,8 +386,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _minVoltageRatioChangeTrigger;
-        public new Double? MinVoltageRatioChangeTrigger
+        private Double _minVoltageRatioChangeTrigger;
+        public new Double MinVoltageRatioChangeTrigger
         {
             get => _minVoltageRatioChangeTrigger;
             set
@@ -395,8 +399,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _voltageRatioChangeTrigger;
-        public new Double? VoltageRatioChangeTrigger
+        private Double _voltageRatioChangeTrigger;
+        public new Double VoltageRatioChangeTrigger
         {
             get => _voltageRatioChangeTrigger;
             set
@@ -414,8 +418,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _maxVoltageRatioChangeTrigger;
-        public new Double? MaxVoltageRatioChangeTrigger
+        private Double _maxVoltageRatioChangeTrigger;
+        public new Double MaxVoltageRatioChangeTrigger
         {
             get => _maxVoltageRatioChangeTrigger;
             set
@@ -427,8 +431,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _sensorValue;
-        public new Double? SensorValue
+        private Double _sensorValue;
+        public new Double SensorValue
         {
             get => _sensorValue;
             set
@@ -440,8 +444,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Double? _sensorValueChangeTrigger;
-        public new Double? SensorValueChangeTrigger
+        private Double _sensorValueChangeTrigger;
+        public new Double SensorValueChangeTrigger
         {
             get => _sensorValueChangeTrigger;
             set
@@ -475,7 +479,9 @@ namespace VNC.Phidget22.Ex
                 _sensorValueOutOfRange = value;
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        #endregion
 
         #endregion
 
@@ -501,7 +507,7 @@ namespace VNC.Phidget22.Ex
             {
                 // TODO(crhodes)
                 // Put things here that need to be initialized
-                // Use constructor configuration is need to pass things in
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -650,21 +656,21 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}" +
-                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen} timeout:{timeout}" +
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached} timeout:{timeout}" +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
@@ -674,29 +680,26 @@ namespace VNC.Phidget22.Ex
             Thread.Sleep(timeout);
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
         }
 
-        public new void Close()
-        {
-            Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
-
-            base.Close();
-
-            Attached = base.Attached;
-
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
-        }
-
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
         public new void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+
 
             try
             {
-                //SensorType = base.SensorType;
+                // TODO(crhodes)
+                // Move stuff out of Attach unless absolutely need to be set
+                // as some Phidgets do not provide values until Open
+
+                SensorType = base.SensorType;
 
                 MinDataInterval = base.MinDataInterval;
                 DataInterval = base.DataInterval;
@@ -713,55 +716,11 @@ namespace VNC.Phidget22.Ex
                 //SensorValue = base.SensorValue;
                 MaxVoltageRatio = base.MaxVoltageRatio;
 
-                //MinVoltageRatioChangeTrigger = base.MinVoltageRatioChangeTrigger;
-                //VoltageRatioChangeTrigger = base.VoltageRatioChangeTrigger;
-                //SensorValueChangeTrigger = base.SensorValueChangeTrigger;
-                //MaxVoltageRatioChangeTrigger = base.MaxVoltageRatioChangeTrigger;
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-
-            try
-            {
-                SensorType = base.SensorType;
-
-                //MinDataInterval = base.MinDataInterval;
-                //DataInterval = base.DataInterval;
-                ////DataInterval = 100; // 100ms (10Hz)
-                //MaxDataInterval = base.MaxDataInterval;
-
-                //MinDataRate = base.MinDataRate;
-                //DataRate = base.DataRate;
-                ////DataRate = 10; // 10 Hz (100ms)
-                //MaxDataRate = base.MaxDataRate;
-
-                //MinVoltageRatio = base.MinVoltageRatio;
-                //VoltageRatio = base.VoltageRatio;
-                ////SensorValue = base.SensorValue;
-                //MaxVoltageRatio = base.MaxVoltageRatio;
-
                 MinVoltageRatioChangeTrigger = base.MinVoltageRatioChangeTrigger;
                 VoltageRatioChangeTrigger = base.VoltageRatioChangeTrigger;
-                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
                 MaxVoltageRatioChangeTrigger = base.MaxVoltageRatioChangeTrigger;
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
 
-            try
-            {
+                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
                 SensorValue = base.SensorValue;
             }
             catch (Phidgets.PhidgetException pex)
@@ -773,7 +732,20 @@ namespace VNC.Phidget22.Ex
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public new void Close()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+
+            base.Close();
+
+            Attached = base.Attached;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(VoltageRatioInputSequence voltageRatioInputSequence)

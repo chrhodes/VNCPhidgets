@@ -29,7 +29,7 @@
     <!-- </PropertyGroup> -->
 
     <ItemGroup>
-        <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
+        <PackageReference Include="Phidget22.NET" Version="1.22.20250324" />
     </ItemGroup>
     
     <!--<ItemGroup>

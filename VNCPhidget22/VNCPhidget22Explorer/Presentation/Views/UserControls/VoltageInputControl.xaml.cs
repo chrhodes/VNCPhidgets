@@ -1115,7 +1115,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-
         #region SensorValueOutOfRange
 
         public static readonly DependencyProperty SensorValueOutOfRangeProperty = DependencyProperty.Register(

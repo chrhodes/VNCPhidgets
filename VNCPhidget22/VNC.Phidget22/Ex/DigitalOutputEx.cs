@@ -102,7 +102,6 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
-        // as UI is bound before Attach fires to update properties from Phidget
 
         #region Logging
 
@@ -176,6 +175,8 @@ namespace VNC.Phidget22.Ex
                 OnPropertyChanged();
             }
         }
+
+        #region DigitalOutputEx
 
         private Double _minFrequency;
         public new Double MinFrequency
@@ -378,6 +379,8 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
+        #endregion
+
         #region Event Handlers
 
         private void DigitalOutputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
@@ -400,7 +403,7 @@ namespace VNC.Phidget22.Ex
             {
                 // TODO(crhodes)
                 // Put things here that need to be initialized
-                // Use constructor configuration is need to pass things in
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -502,7 +505,8 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
@@ -527,10 +531,14 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
         public new void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             try
             {
@@ -559,7 +567,8 @@ namespace VNC.Phidget22.Ex
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 

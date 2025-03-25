@@ -173,6 +173,101 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #region Data Interval and Rate
+
+        private Int32 _minDataInterval;
+        public new Int32 MinDataInterval
+        {
+            get => _minDataInterval;
+            set
+            {
+                //if (_minDataInterval == value)
+                //    return;
+                _minDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _DataInterval;
+        public new Int32 DataInterval
+        {
+            get => _DataInterval;
+            set
+            {
+                if (_DataInterval == value)
+                    return;
+                _DataInterval = value;
+
+                if (Attached)
+                {
+                    base.DataInterval = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _maxDataInterval;
+        public new Int32 MaxDataInterval
+        {
+            get => _maxDataInterval;
+            set
+            {
+                //if (_maxDataInterval == value)
+                //    return;
+                _maxDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minDataRate;
+        public new Double MinDataRate
+        {
+            get => _minDataRate;
+            set
+            {
+                //if (_minDataRate == value)
+                //    return;
+                _minDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _DataRate;
+        public new Double DataRate
+        {
+            get => _DataRate;
+            set
+            {
+                if (_DataRate == value)
+                    return;
+                _DataRate = value;
+
+                if (Attached)
+                {
+                    base.DataRate = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxDataRate;
+        public new Double MaxDataRate
+        {
+            get => _maxDataRate;
+            set
+            {
+                //if (_maxDataRate == value)
+                //    return;
+                _maxDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+
         #region PHSensorEx
 
 
@@ -204,7 +299,7 @@ namespace VNC.Phidget22.Ex
             {
                 // TODO(crhodes)
                 // Put things here that need to be initialized
-                // Use constructor configuration is need to pass things in
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -306,7 +401,8 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
@@ -319,7 +415,8 @@ namespace VNC.Phidget22.Ex
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached} timeout:{timeout}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
@@ -329,10 +426,14 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
         public new void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             try
             {
@@ -355,7 +456,8 @@ namespace VNC.Phidget22.Ex
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 

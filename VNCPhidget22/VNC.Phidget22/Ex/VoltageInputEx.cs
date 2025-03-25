@@ -192,65 +192,7 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private VoltageSensorType _sensorType;
-        public new VoltageSensorType SensorType
-        {
-            get => _sensorType;
-            set
-            {
-                if (_sensorType == value)
-                    return;
-                _sensorType = value;
-
-                if (Attached)
-                {
-                    base.SensorType = value;
-
-                    // Update values, SensorType changed
-
-                    SensorUnit_Unit = base.SensorUnit.Unit;
-                    SensorUnit_Name = base.SensorUnit.Name;
-                    SensorUnit_Symbol = base.SensorUnit.Symbol;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Unit _sensorUnit_Unit;
-        public Unit SensorUnit_Unit
-        {
-            get => _sensorUnit_Unit;
-            set
-            {
-                _sensorUnit_Unit = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _sensorUnit_Name;
-        public string SensorUnit_Name
-        {
-            get => _sensorUnit_Name;
-            set
-            {
-                _sensorUnit_Name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _sensorUnit_Symbol;
-        public string SensorUnit_Symbol
-        {
-            get => _sensorUnit_Symbol;
-            set
-            {
-                _sensorUnit_Symbol = value;
-                OnPropertyChanged();
-            }
-        }
-
-
+        #region Data Interval and Rate
 
         private Int32 _minDataInterval;
         public new Int32 MinDataInterval
@@ -342,6 +284,69 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+
+        private VoltageSensorType _sensorType;
+        public new VoltageSensorType SensorType
+        {
+            get => _sensorType;
+            set
+            {
+                if (_sensorType == value)
+                    return;
+                _sensorType = value;
+
+                if (Attached)
+                {
+                    base.SensorType = value;
+
+                    // Update values, SensorType changed
+
+                    SensorUnit_Unit = base.SensorUnit.Unit;
+                    SensorUnit_Name = base.SensorUnit.Name;
+                    SensorUnit_Symbol = base.SensorUnit.Symbol;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Unit _sensorUnit_Unit;
+        public Unit SensorUnit_Unit
+        {
+            get => _sensorUnit_Unit;
+            set
+            {
+                _sensorUnit_Unit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _sensorUnit_Name;
+        public string SensorUnit_Name
+        {
+            get => _sensorUnit_Name;
+            set
+            {
+                _sensorUnit_Name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _sensorUnit_Symbol;
+        public string SensorUnit_Symbol
+        {
+            get => _sensorUnit_Symbol;
+            set
+            {
+                _sensorUnit_Symbol = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #region VoltageInputEx
+
         private Double _minVoltage;
         public new Double MinVoltage
         {
@@ -426,27 +431,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private VoltageRange _voltageRange;
-        public new VoltageRange VoltageRange
-        {
-            get => _voltageRange;
-            set
-            {
-                if (_voltageRange == value)
-                    return;
-                _voltageRange = value;
-
-                if (Attached)
-                {
-                    base.VoltageRange = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-
-
         private Double _sensorValue;
         public new Double SensorValue
         {
@@ -473,6 +457,25 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.SensorValueChangeTrigger = (Double)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private VoltageRange _voltageRange;
+        public new VoltageRange VoltageRange
+        {
+            get => _voltageRange;
+            set
+            {
+                if (_voltageRange == value)
+                    return;
+                _voltageRange = value;
+
+                if (Attached)
+                {
+                    base.VoltageRange = value;
                 }
 
                 OnPropertyChanged();
@@ -518,6 +521,8 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
+        #endregion
+
         #region Event Handlers
 
         private void VoltageInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
@@ -547,7 +552,7 @@ namespace VNC.Phidget22.Ex
             {
                 // TODO(crhodes)
                 // Put things here that need to be initialized
-                // Use constructor configuration is need to pass things in
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -700,15 +705,15 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}" +
-                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
         }
 
         public new void Open(Int32 timeout)
@@ -722,48 +727,67 @@ namespace VNC.Phidget22.Ex
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+        }
+
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
+        public new void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+
+            try
+            {
+                // TODO(crhodes)
+                // Move stuff out of Attach unless absolutely need to be set
+                // as some Phidgets do not provide values until Open
+                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
+
+                MinDataInterval = base.MinDataInterval;
+                DataInterval = base.DataInterval;
+                //DataInterval = 100; // 100ms (10Hz)
+                MaxDataInterval = base.MaxDataInterval;
+
+                MinDataRate = base.MinDataRate;
+                DataRate = base.DataRate;
+                //DataRate = 10; // 10 Hz (100ms)
+                MaxDataRate = base.MaxDataRate;
+
+                MinVoltage = base.MinVoltage;
+                Voltage = base.Voltage;
+                SensorValue = base.SensorValue;
+                MaxVoltage = base.MaxVoltage;
+
+                MinVoltageChangeTrigger = base.MinVoltageChangeTrigger;
+                VoltageChangeTrigger = base.VoltageChangeTrigger;
+                MaxVoltageChangeTrigger = base.MaxVoltageChangeTrigger;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 
             Attached = base.Attached;
 
             if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
-        }
-
-        public new void RefreshProperties()
-        {
-            Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
-
-            SensorValueChangeTrigger = base.SensorValueChangeTrigger;
-
-            MinDataInterval = base.MinDataInterval;
-            DataInterval = base.DataInterval;
-            //DataInterval = 100; // 100ms (10Hz)
-            MaxDataInterval = base.MaxDataInterval;
-
-            MinDataRate = base.MinDataRate;
-            DataRate = base.DataRate;
-            //DataRate = 10; // 10 Hz (100ms)
-            MaxDataRate = base.MaxDataRate;
-
-            MinVoltage = base.MinVoltage;
-            Voltage = base.Voltage;
-            SensorValue = base.SensorValue;
-            MaxVoltage = base.MaxVoltage;
-
-            MinVoltageChangeTrigger = base.MinVoltageChangeTrigger;
-            VoltageChangeTrigger = base.VoltageChangeTrigger;
-            MaxVoltageChangeTrigger = base.MaxVoltageChangeTrigger;
-
-            if (LogPhidgetEvents) Log.Trace($"Exit isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(VoltageInputSequence voltageInputSequence)
