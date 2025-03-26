@@ -1,0 +1,158 @@
+﻿<vncmvvm:ViewBase
+    x:Class="VNCPhidget22Explorer.Presentation.Views.DigitalOutputChannelSequencesControl"
+    x:Name="thisControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d"
+
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"     
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase"
+    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"  
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+    
+    xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
+    xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
+    xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
+    
+    xmlns:core="clr-namespace:VNCPhidget22Explorer.Core;assembly=VNCPhidget22Explorer.Core"
+    
+    xmlns:vnccore="clr-namespace:VNC.Core;assembly=VNC.Core"
+    xmlns:vncenum="clr-namespace:VNC.Core.Xaml.Enums;assembly=VNC.Core"
+    xmlns:vncmvvm="clr-namespace:VNC.Core.Mvvm;assembly=VNC.Core"
+    xmlns:vncviews="clr-namespace:VNC.WPF.Presentation.Views;assembly=VNC.WPF.Presentation"
+    xmlns:vncconverters="clr-namespace:VNC.WPF.Presentation.Converters;assembly=VNC.WPF.Presentation" 
+
+    xmlns:prism="http://prismlibrary.com/"
+    prism:ViewModelLocator.AutoWireViewModel="False"
+
+    Background="{StaticResource DigitalOutputChannelSequencesControlBackground}"
+
+
+    d:DesignStyle="{StaticResource vncDesignStyleUC}"
+
+    SizeChanged="thisControl_SizeChanged"
+>
+    <!--d:DesignWidth="800" d:DesignHeight="350"-->
+    <!--xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"-->
+
+    <!-- Move this to Resources\Xaml\Display_StylesAndTemplates.xaml -->
+    <!-- <SolidColorBrush x:Key="DigitalOutputBoardSequencesControlBackground" Color="#00FF00" /> -->
+
+    <!-- <d:DesignerProperties.DesignStyle> -->
+        <!-- <Style TargetType="UserControl"> -->
+            <!-- <Setter Property="Background" Value="White" /> -->
+        <!-- </Style> -->
+    <!-- </d:DesignerProperties.DesignStyle> -->
+
+    <vncmvvm:ViewBase.Resources>
+        <!--<converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
+        <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
+        <!--<converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />-->
+        <!--<converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />-->
+        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfChannelClassSequenceConverter" />
+        <!--<converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
+        <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
+        <!--<converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />-->
+        <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
+         <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
+         <DataTemplate x:Key="dataTemplateHostSelector"> 
+             <StackPanel> 
+                 <Label Content="{Binding XPath=@Name}" /> 
+             </StackPanel> 
+         </DataTemplate> 
+
+         <DataTemplate x:Key="dataTemplateHostSelectorX"> 
+             <StackPanel> 
+                 <Label Content="{Binding Name}" /> 
+             </StackPanel> 
+         </DataTemplate>-->
+    </vncmvvm:ViewBase.Resources>
+
+    <!-- Can declare ViewModel in Xaml -->
+    <!-- <UserControl.DataContext> -->
+        <!-- <localvm:DigitalOutputBoardSequencesControlViewModel /> -->
+    <!-- </UserControl.DataContext> -->
+
+    <DockPanel>
+
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+
+        <dxlc:LayoutControl Padding="0" Orientation="Vertical">
+
+            <dxlc:LayoutGroup x:Name="lgSequences"  View="GroupBox"  Header="DigitalOut Channel Sequences"
+                Orientation="Horizontal" VerticalAlignment="Top" 
+                IsCollapsible="True" IsCollapsed="False" >
+
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                    VerticalAlignment="Top" HorizontalAlignment="Stretch" >
+
+                    <dxlc:LayoutItem Label="DigitalOutput Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
+                        <dxe:ComboBoxEdit Width="150" 
+                            ItemsSource="{Binding DigitalOutputs}"
+                            SelectedItem="{Binding SelectedDigitalOutput}" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
+                            ItemsSource="{Binding DigitalOutputSequences}" DisplayMember="Name" 
+                            SelectedItem="{Binding SelectedDigitalOutputSequence}"
+                            EditValue="{ Binding 
+                                Path=SelectedDigitalOutputSequences,
+                                Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource SelectedItemsToListOfChannelClassSequenceConverter} }" >
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+ 
+                    <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem Label="HubPort#" HorizontalAlignment="Left" LabelPosition="Left" >
+                            <dxe:ComboBoxEdit
+                                ItemsSource="{Binding HubPorts}"
+                                SelectedItem="{Binding SelectedHubPort}" >
+                                <!--<dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>-->
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Channe#" HorizontalAlignment="Left" LabelPosition="Left" >
+                            <dxe:ComboBoxEdit
+                                ItemsSource="{Binding Channels}"
+                                SelectedItem="{Binding SelectedChannel}" >
+                                <!--<dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>-->
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                    <Button 
+		                Command="{Binding PlayDigitalOutputSequenceCommand }"
+                        CommandParameter="false"
+		                Content="{Binding PlayDigitalOutputSequenceContent, FallbackValue='PlaySequence' }"
+		                ToolTip="{Binding PlayDigitalOutputSequenceToolTip, FallbackValue='PlayDigitalOutputSequence ToolTip' }" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <views:ChannelSequenceInfoControl DataContext="{Binding SelectedDigitalInputSequence}" />
+            
+        </dxlc:LayoutControl>
+
+    </DockPanel>
+
+</vncmvvm:ViewBase>

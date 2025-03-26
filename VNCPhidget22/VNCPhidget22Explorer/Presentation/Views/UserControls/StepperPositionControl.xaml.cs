@@ -2256,6 +2256,55 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
+
+        #region StepAngle
+
+        public static readonly DependencyProperty StepAngleProperty = DependencyProperty.Register(
+            "StepAngle",
+            typeof(Double),
+            typeof(StepperPositionControl),
+            new FrameworkPropertyMetadata(
+                0.0,
+                new PropertyChangedCallback(OnStepAngleChanged),
+                new CoerceValueCallback(OnCoerceStepAngle)
+                )
+            );
+
+        public Double StepAngle
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Double)GetValue(StepAngleProperty);
+            set => SetValue(StepAngleProperty, value);
+        }
+        private static object OnCoerceStepAngle(DependencyObject o, object value)
+        {
+            StepperPositionControl stepperControl = o as StepperPositionControl;
+            if (stepperControl != null)
+                return stepperControl.OnCoerceStepAngle((Double)value);
+            else
+                return value;
+        }
+
+        private static void OnStepAngleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperPositionControl stepperControl = o as StepperPositionControl;
+            if (stepperControl != null)
+                stepperControl.OnStepAngleChanged((Double)e.OldValue, (Double)e.NewValue);
+        }
+
+        protected virtual Double OnCoerceStepAngle(Double value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnStepAngleChanged(Double oldValue, Double newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
         #endregion
 
         #region Event Handlers

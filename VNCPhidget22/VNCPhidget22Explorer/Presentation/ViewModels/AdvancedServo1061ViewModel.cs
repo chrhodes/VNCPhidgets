@@ -648,11 +648,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Commands
 
-        #region OpenAdvancedServo Command
+        #region OpenAllRCServos Command
 
         public DelegateCommand OpenAllRCServosCommand { get; set; }
-        public string OpenAdvancedServoContent { get; set; } = "Open";
-        public string OpenAdvancedServoToolTip { get; set; } = "OpenAdvancedServo ToolTip";
+        public string OpenAllRCServosContent { get; set; } = "Open All RCServos";
+        public string OpenAllRCServosToolTip { get; set; } = "OpenAllRCServos ToolTip";
 
         // Can get fancy and use Resources
         //public string OpenAdvancedServoContent { get; set; } = "ViewName_OpenAdvancedServoContent";
@@ -730,11 +730,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region CloseAdvancedServo Command
+        #region CloseAllRCServos Command
 
         public DelegateCommand CloseAllRCServosCommand { get; set; }
-        public string CloseAdvancedServoContent { get; set; } = "Close";
-        public string CloseAdvancedServoToolTip { get; set; } = "CloseAdvancedServo ToolTip";
+        public string CloseAllRCServosContent { get; set; } = "Close All RCServos";
+        public string CloseAllRCServosToolTip { get; set; } = "CloseAllRCServos ToolTip";
 
         // Can get fancy and use Resources
         //public string CloseAdvancedServoContent { get; set; } = "ViewName_CloseAdvancedServoContent";

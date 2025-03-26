@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.Phidget22.Configuration.Performance;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -46,13 +48,40 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             
             SayHelloCommand = new DelegateCommand(SayHello, SayHelloCanExecute);
 
-            ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
-            ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
-            ReloadInterfaceKitSequenceConfigFilesCommand = new DelegateCommand(ReloadInterfaceKitSequenceConfigFiles);
-            ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
+            ReloadPerformanceConfigFileCommand = new DelegateCommand(ReloadPerformanceConfigFile);
+
+            ReloadDigitalInputSequenceConfigFileCommand = new DelegateCommand(ReloadDigitalInputSequenceConfigFile);
+            ReloadDigitalOutputSequenceConfigFileCommand = new DelegateCommand(ReloadDigitalOutputSequenceConfigFile);
+            ReloadRCServoSequenceConfigFileCommand = new DelegateCommand(ReloadRCServoSequenceConfigFile);
+            ReloadStepperSequenceConfigFileCommand = new DelegateCommand(ReloadStepperSequenceConfigFile);
+            ReloadVoltageInputSequenceConfigFileCommand = new DelegateCommand(ReloadVoltageInputSequenceConfigFile);
+            ReloadVoltageRatioInputSequenceConfigFileCommand = new DelegateCommand(ReloadVoltageRatioInputSequenceConfigFile);
+            ReloadVoltageOutputSequenceConfigFileCommand = new DelegateCommand(ReloadVoltageOutputSequenceConfigFile);
 
             Message = "ManagePerformanceLibraryViewModel says hello";
             PublishStatusMessage(Message);
+
+            PerformanceConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigFiles();
+            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+
+            DigitalInputSequenceConfigFiles = PerformanceLibrary.GetListOfDigitalInputConfigFiles();
+            DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
+
+            DigitalOutputSequenceConfigFiles = PerformanceLibrary.GetListOfDigitalOutputConfigFiles();
+            DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
+
+            RCServoSequenceConfigFiles = PerformanceLibrary.GetListOfRCServoConfigFiles();
+            RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
+
+            StepperSequenceConfigFiles = PerformanceLibrary.GetListOfStepperConfigFiles();
+            StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
+
+            VoltageInputSequenceConfigFiles = PerformanceLibrary.GetListOfVoltageInputConfigFiles();
+            VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
+
+            VoltageOutputSequenceConfigFiles = PerformanceLibrary.GetListOfVoltageOutputConfigFiles();
+            VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
+
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -72,17 +101,284 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Fields and Properties
 
         public ICommand SayHelloCommand { get; private set; }
-        
-        private string _message;
 
-        public string Message
+
+        private IEnumerable<string> _performanceConfigFiles;
+        public IEnumerable<string> PerformanceConfigFiles
         {
-            get => _message;
+            get => _performanceConfigFiles;
             set
             {
-                if (_message == value)
+                _performanceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedPerformanceConfigFile;
+        public string SelectedPerformanceConfigFile
+        {
+            get => _selectedPerformanceConfigFile;
+            set
+            {
+                if (_selectedPerformanceConfigFile == value)
                     return;
-                _message = value;
+                _selectedPerformanceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }        
+
+        private IEnumerable<Performance> _performances;
+        public IEnumerable<Performance> Performances
+        {
+            get => _performances;
+            set
+            {
+                _performances = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _digitalInputSequenceConfigFiles;
+        public IEnumerable<string> DigitalInputSequenceConfigFiles
+        {
+            get => _digitalInputSequenceConfigFiles;
+            set
+            {
+                _digitalInputSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedDigitalInputSequenceConfigFile;
+        public string SelectedDigitalInputSequenceConfigFile
+        {
+            get => _selectedDigitalInputSequenceConfigFile;
+            set
+            {
+                if (_selectedDigitalInputSequenceConfigFile == value)
+                    return;
+                _selectedDigitalInputSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _digitalInputSequences;
+        public IEnumerable<ChannelSequence> DigitalInputSequences
+        {
+            get => _digitalInputSequences;
+            set
+            {
+                _digitalInputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _digitalOutputSequenceConfigFiles;
+        public IEnumerable<string> DigitalOutputSequenceConfigFiles
+        {
+            get => _digitalOutputSequenceConfigFiles;
+            set
+            {
+                _digitalOutputSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedDigitalOutputSequenceConfigFile;
+        public string SelectedDigitalOutputSequenceConfigFile
+        {
+            get => _selectedDigitalOutputSequenceConfigFile;
+            set
+            {
+                if (_selectedDigitalOutputSequenceConfigFile == value)
+                    return;
+                _selectedDigitalOutputSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _digitalOutputSequences;
+        public IEnumerable<ChannelSequence> DigitalOutputSequences
+        {
+            get => _digitalOutputSequences;
+            set
+            {
+                _digitalOutputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _rcServoSequenceConfigFiles;
+        public IEnumerable<string> RCServoSequenceConfigFiles
+        {
+            get => _rcServoSequenceConfigFiles;
+            set
+            {
+                _rcServoSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedRCServoSequenceConfigFile;
+        public string SelectedRCServoSequenceConfigFile
+        {
+            get => _selectedRCServoSequenceConfigFile;
+            set
+            {
+                if (_selectedRCServoSequenceConfigFile == value)
+                    return;
+                _selectedRCServoSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _rcServoSequences;
+        public IEnumerable<ChannelSequence> RCServoSequences
+        {
+            get => _rcServoSequences;
+            set
+            {
+                _rcServoSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _stepperSequenceConfigFiles;
+        public IEnumerable<string> StepperSequenceConfigFiles
+        {
+            get => _stepperSequenceConfigFiles;
+            set
+            {
+                _stepperSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedStepperSequenceConfigFile;
+        public string SelectedStepperSequenceConfigFile
+        {
+            get => _selectedStepperSequenceConfigFile;
+            set
+            {
+                if (_selectedStepperSequenceConfigFile == value)
+                    return;
+                _selectedStepperSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _stepperSequences;
+        public IEnumerable<ChannelSequence> StepperSequences
+        {
+            get => _stepperSequences;
+            set
+            {
+                _stepperSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _voltageInputSequenceConfigFiles;
+        public IEnumerable<string> VoltageInputSequenceConfigFiles
+        {
+            get => _voltageInputSequenceConfigFiles;
+            set
+            {
+                _voltageInputSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedVoltageInputSequenceConfigFile;
+        public string SelectedVoltageInputSequenceConfigFile
+        {
+            get => _selectedVoltageInputSequenceConfigFile;
+            set
+            {
+                if (_selectedVoltageInputSequenceConfigFile == value)
+                    return;
+                _selectedVoltageInputSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _voltageInputSequences;
+        public IEnumerable<ChannelSequence> VoltageInputSequences
+        {
+            get => _voltageInputSequences;
+            set
+            {
+                _voltageInputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _voltageRatioInputSequenceConfigFiles;
+        public IEnumerable<string> VoltageRatioInputSequenceConfigFiles
+        {
+            get => _voltageRatioInputSequenceConfigFiles;
+            set
+            {
+                _voltageRatioInputSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedVoltageRatioInputSequenceConfigFile;
+        public string SelectedVoltageRatioInputSequenceConfigFile
+        {
+            get => _selectedVoltageRatioInputSequenceConfigFile;
+            set
+            {
+                if (_selectedVoltageRatioInputSequenceConfigFile == value)
+                    return;
+                _selectedVoltageRatioInputSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _voltageRatioInputSequences;
+        public IEnumerable<ChannelSequence> VoltageRatioInputSequences
+        {
+            get => _voltageRatioInputSequences;
+            set
+            {
+                _voltageRatioInputSequences = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string> _voltageOutputSequenceConfigFiles;
+        public IEnumerable<string> VoltageOutputSequenceConfigFiles
+        {
+            get => _voltageOutputSequenceConfigFiles;
+            set
+            {
+                _voltageOutputSequenceConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedVoltageOutputSequenceConfigFile;
+        public string SelectedVoltageOutputSequenceConfigFile
+        {
+            get => _selectedVoltageOutputSequenceConfigFile;
+            set
+            {
+                if (_selectedVoltageOutputSequenceConfigFile == value)
+                    return;
+                _selectedVoltageOutputSequenceConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<ChannelSequence> _voltageOutputSequences;
+        public IEnumerable<ChannelSequence> VoltageOutputSequences
+        {
+            get => _voltageOutputSequences;
+            set
+            {
+                _voltageOutputSequences = value;
                 OnPropertyChanged();
             }
         }
@@ -93,70 +389,126 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Reload Config Files
 
-        public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
-        public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
-        public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
-        public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
+        public ICommand ReloadPerformanceConfigFileCommand { get; private set; }
 
-        private void ReloadPerformanceConfigFiles()
+        public ICommand ReloadDigitalInputSequenceConfigFileCommand { get; private set; }
+        public ICommand ReloadDigitalOutputSequenceConfigFileCommand { get; private set; }
+        public ICommand ReloadRCServoSequenceConfigFileCommand { get; private set; }
+        public ICommand ReloadStepperSequenceConfigFileCommand { get; private set; }
+        public ICommand ReloadVoltageInputSequenceConfigFileCommand { get; private set; }
+        public ICommand ReloadVoltageRatioInputSequenceConfigFileCommand { get; private set; }
+        public ICommand ReloadVoltageOutputSequenceConfigFileCommand { get; private set; }
+
+
+        private void ReloadPerformanceConfigFile()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadPerformanceConfigFiles) Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadPerformanceConfigFiles Clicked";
-            PublishStatusMessage(Message);
-
-            //LoadPerformancesConfig();
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadSteReloadPerformanceConfigFilespperSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        private void ReloadAdvancedServoSequenceConfigFiles()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadAdvancedServoSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
-
-            Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
+            Message = "ReloadPerformanceConfigFile Clicked";
             PublishStatusMessage(Message);
 
             // TODO(crhodes)
-            // Call something in PerformanceSequencePlayer
+            // Reload config file and update PerformanceLibrary
 
-            //LoadAdvanceServoConfig();
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadAdvancedServoSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void ReloadInterfaceKitSequenceConfigFiles()
+        private void ReloadDigitalInputSequenceConfigFile()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadInterfaceKitSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
+            Message = "ReloadDigitalInputConfigFile Clicked";
             PublishStatusMessage(Message);
 
             // TODO(crhodes)
-            // Call something in PerformanceSequencePlayer
+            // Reload config file and update PerformanceLibrary
 
-            //LoadInterfaceKitConfig();
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadInterfaceKitSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
-        private void ReloadStepperSequenceConfigFiles()
+        private void ReloadDigitalOutputSequenceConfigFile()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ReloadStepperSequenceConfigFiles) Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadStepperSequenceConfigFiles Clicked";
+            Message = "ReloadDigitalOutputSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
 
             // TODO(crhodes)
-            // Call something in PerformanceSequencePlayer
+            // Reload config file and update PerformanceLibrary
 
-            //LoadStepperConfig();
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ReloadStepperSequenceConfigFiles) Exit", Common.LOG_CATEGORY, startTicks);
+        private void ReloadRCServoSequenceConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadRCServoSequenceConfigFile Clicked";
+            PublishStatusMessage(Message);
+
+            // TODO(crhodes)
+            // Reload config file and update PerformanceLibrary
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadStepperSequenceConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadStepperSequenceConfigFile Clicked";
+            PublishStatusMessage(Message);
+
+            // TODO(crhodes)
+            // Reload config file and update PerformanceLibrary
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadVoltageInputSequenceConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadVoltageInputConfigFile Clicked";
+            PublishStatusMessage(Message);
+
+            // TODO(crhodes)
+            // Reload config file and update PerformanceLibrary
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadVoltageRatioInputSequenceConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadVoltageRatioInputConfigFile Clicked";
+            PublishStatusMessage(Message);
+
+            // TODO(crhodes)
+            // Reload config file and update PerformanceLibrary
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void ReloadVoltageOutputSequenceConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = "ReloadVoltageOutputSequenceConfigFile Clicked";
+            PublishStatusMessage(Message);
+
+            // TODO(crhodes)
+            // Reload config file and update PerformanceLibrary
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

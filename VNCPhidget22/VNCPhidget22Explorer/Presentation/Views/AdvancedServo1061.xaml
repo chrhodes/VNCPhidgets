@@ -88,9 +88,9 @@
         
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
-
         <dxlc:LayoutControl Orientation="Vertical" Padding="0" >
+            
+            <!--Open / Close-->
 
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" >
 
@@ -125,8 +125,14 @@
 
             <dxlc:LayoutGroup Name="lgPhidget22Status" View="GroupBox" Header="PhidgetDevice Status and Event Logging"
                               Orientation="Vertical"
-                              IsCollapsible="True" IsCollapsed="False"  >
+                              IsCollapsible="True" IsCollapsed="False" >
 
+                <!--<views:PhidgetDevice x:Name="Phidget1" Margin="-5"
+                               AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
+                               DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
+
+                <!--Logging-->
+                
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
                    Margin="-5,0,-5,0"

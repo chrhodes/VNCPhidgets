@@ -117,7 +117,7 @@
                         HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Stopped"
-                        IsChecked="{Binding StoppedEvents, Mode=TwoWay}"
+                        IsChecked="{Binding LogStoppedEvents, Mode=TwoWay}"
                         HorizontalAlignment="Left"/>
 
                 </dxlc:LayoutGroup>

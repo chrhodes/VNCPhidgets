@@ -10,12 +10,15 @@ using Prism.Regions.Behaviors;
 
 using Unity.Interception.Utilities;
 
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace VNC.Phidget22.Configuration.Performance
 {
     /// <summary>
     /// Maintains Library of Hosts, Performances,
     /// and {AdvancedServo,InterfaceKit,Stepper}Sequences
     /// which are loaded from json config files
+    /// All properties marked static.  Almost a singleton
     /// </summary>
     public class PerformanceLibrary
     {
@@ -35,14 +38,15 @@ namespace VNC.Phidget22.Configuration.Performance
 
                 LoadPerformances();
 
-                LoadRCServoSequences();
-
                 LoadDigitalInputSequences();
                 LoadDigitalOutputSequences();
-                LoadVoltageInputSequences();
-                LoadVoltageOutputSequences();
+
+                LoadRCServoSequences();
 
                 LoadStepperSequences();
+
+                LoadVoltageInputSequences();
+                LoadVoltageOutputSequences();
             }
             catch (Exception ex)
             {
@@ -491,7 +495,7 @@ namespace VNC.Phidget22.Configuration.Performance
 
         #region Private Methods
 
-        private IEnumerable<string> GetListOfPerformanceConfigFiles()
+        public static IEnumerable<string> GetListOfPerformanceConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -516,7 +520,7 @@ namespace VNC.Phidget22.Configuration.Performance
             return files;
         }
 
-        private IEnumerable<string> GetListOfDigitalInputConfigFiles()
+        public static IEnumerable<string> GetListOfDigitalInputConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -531,7 +535,7 @@ namespace VNC.Phidget22.Configuration.Performance
             return files;
         }
 
-        private IEnumerable<string> GetListOfDigitalOutputConfigFiles()
+        public static IEnumerable<string> GetListOfDigitalOutputConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -546,7 +550,7 @@ namespace VNC.Phidget22.Configuration.Performance
             return files;
         }
 
-        private IEnumerable<string> GetListOfRCServoConfigFiles()
+        public static IEnumerable<string> GetListOfRCServoConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -572,7 +576,7 @@ namespace VNC.Phidget22.Configuration.Performance
             return files;
         }
 
-        private IEnumerable<string> GetListOfStepperConfigFiles()
+        public static IEnumerable<string> GetListOfStepperConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -582,11 +586,10 @@ namespace VNC.Phidget22.Configuration.Performance
             {
                 @"StepperSequences\StepperSequenceConfig_1.json",
             };
-
             return files;
         }
 
-        private IEnumerable<string> GetListOfVoltageInputConfigFiles()
+        public static IEnumerable<string> GetListOfVoltageInputConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -601,7 +604,22 @@ namespace VNC.Phidget22.Configuration.Performance
             return files;
         }
 
-        private IEnumerable<string> GetListOfVoltageOutputConfigFiles()
+        public static IEnumerable<string> GetListOfVoltageRatioInputConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+
+            List<string> files = new List<string>
+            {
+                @"VoltageRatioInputSequences\VoltageRatioInputSequenceConfig_1.json"
+            };
+
+            return files;
+        }
+
+        public static IEnumerable<string> GetListOfVoltageOutputConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match

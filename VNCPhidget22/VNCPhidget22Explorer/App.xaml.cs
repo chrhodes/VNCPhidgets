@@ -262,6 +262,9 @@ namespace VNCPhidget22Explorer
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
+            // NOTE(crhodes)
+            // This loads all the json config files
+
             PerformanceLibrary performanceLibrary = new PerformanceLibrary();
 
             // NOTE(crhodes)

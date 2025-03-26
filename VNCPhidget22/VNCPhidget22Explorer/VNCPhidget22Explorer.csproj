@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-23</VersionSuffix>
-        <FileVersion>2025.03.23A</FileVersion>
+        <FileVersion>2025.03.25A</FileVersion>
         <Description>Phidget22 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>    
@@ -54,10 +54,6 @@
       <!--<Page Remove="Presentation\Views\Stepper1063.xaml" />-->
     </ItemGroup>
 
-    <!--<PropertyGroup Condition="'$(TargetFramework)' == 'net48'">
-        <ApplicationIcon>Resources\Icons\ApplicationIcon-Left-Blue.ico</ApplicationIcon>
-    </PropertyGroup>-->
-
     <ItemGroup>
         <PackageReference Include="CalcBinding" Version="2.5.2" />
         <PackageReference Include="DevExpress.Wpf.Core" Version="24.1.3" />
@@ -95,12 +91,6 @@
         <PackageReference Include="Phidget22.NET" Version="1.22.20250324" />
     </ItemGroup>
     
-  <!--<ItemGroup>
-    <Reference Include="Phidget21.NET">
-      <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
-    </Reference>
-  </ItemGroup>-->
-
     <ItemGroup>
         <!-- Workaround for https://github.com/dotnet/wpf/issues/2648#issuecomment-635674683 -->
         <Reference Include="System.Web" />

@@ -89,9 +89,9 @@
 
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
-
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+            
+            <!--Open / Close-->
             
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top">
 
@@ -138,6 +138,8 @@
                 <!--<views:PhidgetDevice x:Name="Phidget1" Margin="-5"
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
+
+                <!--Logging-->
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
@@ -213,7 +215,6 @@
 
                             Attached="{Binding Stepper0.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper0.Engaged, Mode=TwoWay}"
-                            StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  
                             MinCurrentLimit="{Binding Stepper0.MinCurrentLimit,Mode=TwoWay}"
                             CurrentLimit="{Binding Stepper0.CurrentLimit,Mode=TwoWay}"
@@ -266,7 +267,6 @@
                                               
                             Attached="{Binding Stepper1.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper1.Engaged, Mode=TwoWay}"
-                            StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  
                             MinCurrentLimit="{Binding Stepper1.MinCurrentLimit,Mode=TwoWay}"
                             CurrentLimit="{Binding Stepper1.CurrentLimit,Mode=TwoWay}"

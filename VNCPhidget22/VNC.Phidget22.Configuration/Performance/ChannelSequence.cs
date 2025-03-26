@@ -15,21 +15,6 @@ namespace VNC.Phidget22.Configuration.Performance
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
-        /// ChannelClass.  Set in constructor.
-        /// </summary>
-        public string ChannelClass { get; } = "Generic";
-
-        /// <summary>
-        /// HubPort on Phidget Device.
-        /// </summary>
-        public Int32? HubPort { get; set; } = null;
-
-        /// <summary>
-        /// Channel on Phidget Device.
-        /// </summary>
-        public Int32? Channel { get; set; } = null;
-
-        /// <summary>
         /// Description of sequence (optional)
         /// </summary>
         public string? Description { get; set; }
@@ -38,6 +23,23 @@ namespace VNC.Phidget22.Configuration.Performance
         /// Description of sequence (optional)
         /// </summary>
         public string? UsageNotes { get; set; }
+
+        /// <summary>
+        /// ChannelClass.  Set in constructor.
+        /// </summary>
+        public string ChannelClass { get; } = "Generic";
+
+        /// <summary>
+        /// HubPort on Phidget Device.
+        /// If null, must be overriden in DeviceChannelSequence
+        /// </summary>
+        public Int32? HubPort { get; set; } = null;
+
+        /// <summary>
+        /// Channel on Phidget Device.
+        /// If null, must be overriden in DeviceChannelSequence 
+        /// </summary>
+        public Int32? Channel { get; set; } = null;
 
         /// <summary>
         /// Number of loops of sequence to execute
