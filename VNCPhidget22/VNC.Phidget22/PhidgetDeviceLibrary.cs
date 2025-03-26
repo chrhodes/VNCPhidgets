@@ -483,16 +483,29 @@ namespace VNC.Phidget22
 
             //ManagerAttachedPhidgetDevices.Add(serialHubChannel, phidgetDevice);
 
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.EVENT_HANDLER($"Adding AttachedPhidget {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+            try
+            {
+                if (Common.VNCLogging.ApplicationInitializeLow) Log.EVENT_HANDLER($"Adding AttachedPhidget {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
 
-            ManagerAttachedPhidgetDevices.Add(phidgetDevice);
-
+                ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
             // NOTE(crhodes)
             // Now add the Phidget to ChannelClass specific Dictionaries
             // that are used to find the right Phidget to use
 
-            AddDeviceChannel(phidget, phidgetDevice);
+            try
+            {
+                AddDeviceChannel(phidget, phidgetDevice);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
         }
         void AddDeviceChannel(Phidgets.Phidget phidget, PhidgetDevice phidgetDevice)
         {

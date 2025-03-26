@@ -73,7 +73,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Establish any additional DataContext(s), e.g. to things held in this View
 
-            lgChannelSequenceInfo.IsCollapsed = true
+            lgChannelSequenceInfo.IsCollapsed = true;
             //spDeveloperInfo.DataContext = this;
             //lgSequences.IsCollapsed = true;
 

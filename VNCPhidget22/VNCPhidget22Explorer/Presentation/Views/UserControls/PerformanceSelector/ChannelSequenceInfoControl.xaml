@@ -108,11 +108,11 @@
                 <dxe:TextEdit Text="{Binding Channel }" Width="30" TextWrapping="Wrap" NullText="null" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="SequenceLoops" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding SequenceLoops }" />
-            </dxlc:LayoutItem>
-
         </dxlc:LayoutGroup>
+
+        <dxlc:LayoutItem Label="SequenceLoops" HorizontalAlignment="Left" Background="Wheat" >
+            <dxe:TextEdit Text="{Binding SequenceLoops }" />
+        </dxlc:LayoutItem>
 
         <dxlc:LayoutGroup View="GroupBox" Header="ChannelSequence" Orientation="Vertical" Background="LimeGreen" Padding="5">
 
@@ -155,7 +155,6 @@
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
-
 
             <dxlc:LayoutItem Label="AfterActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
                 <dxe:TextEdit Text="{Binding AfterActionLoopSequences.Count, Mode=OneWay}" />
