@@ -1,7 +1,27 @@
 {
   "DigitalOutputSequences": [
     {
-      "Name": "Open DO0",
+      "Name": "Open DO",
+      "Description": "Open DigitalOutput",
+      "UsageNotes":  "Must specify HubPort and Channel",
+      "Actions": [
+        { "Open":  true },
+      ]
+    },
+    {
+      "Name": "Blink DO",
+      "Description": "Blink DigitalOutput",
+      "UsageNotes":  "Must specify HubPort and Channel",
+      "Actions": [
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+    {
+      "Name": "Open DO-HP0-C0",
+      "HubPort": 0,
       "Channel": 0,
       "Description": "Open DigitalOutput 0",
       "Actions": [
@@ -9,7 +29,8 @@
       ]
     },
     {
-      "Name": "Blink DO0",
+      "Name": "Blink DO-HP0-C0",
+      "HubPort": 0,
       "Channel": 0,
       "Description": "Blink DigitalOutput 0",
       "Actions": [
@@ -20,17 +41,19 @@
       ]
     },
     {
-      "Name": "Open DO1",
+      "Name": "Open DO-HP0-C1",
+      "HubPort": 0,
       "Channel": 1,
-      "Description": "Open DigitalOutput 1",
+      "Description": "Open DigitalOutput 0",
       "Actions": [
         { "Open":  true },
       ]
     },
     {
-      "Name": "Blink DO1",
+      "Name": "Blink DO-HP0-C1",
+      "HubPort": 0,
       "Channel": 1,
-      "Description": "Blink DigitalOutput 1",
+      "Description": "Blink DigitalOutput 0",
       "Actions": [
         { "DigitalOut": true, "Duration": 500 },
         { "DigitalOut": false, "Duration": 500 },
@@ -39,17 +62,19 @@
       ]
     },
     {
-      "Name": "Open DO2",
-      "Channel": 2,
-      "Description": "Open DigitalOutput 2",
+      "Name": "Open DO-HP1-C0",
+      "HubPort": 1,
+      "Channel": 0,
+      "Description": "Open DigitalOutput 0",
       "Actions": [
         { "Open":  true },
       ]
     },
     {
-      "Name": "Blink DO2",
-      "Channel": 2,
-      "Description": "Blink DigitalOutput 2",
+      "Name": "Blink DO-HP1-C0",
+      "HubPort": 1,
+      "Channel": 0,
+      "Description": "Blink DigitalOutput 0",
       "Actions": [
         { "DigitalOut": true, "Duration": 500 },
         { "DigitalOut": false, "Duration": 500 },

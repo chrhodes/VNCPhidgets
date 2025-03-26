@@ -83,7 +83,8 @@
 
     <!-- Simple Layout using Grid -->
 
-    <dxlc:LayoutGroup View="GroupBox" Header="ChannelSequence Info" Orientation="Vertical" >
+    <dxlc:LayoutGroup x:Name="lgChannelSequenceInfo" View="GroupBox" Header="ChannelSequence Info" Orientation="Vertical"
+                      IsCollapsible="True"  IsCollapsed="False">
 
         <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
             <dxe:TextEdit Text="{Binding Description }" TextWrapping="Wrap" Width="300" />
@@ -100,13 +101,12 @@
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
             <dxlc:LayoutItem Label="HubPort" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding HubPort }" Width="30" TextWrapping="Wrap" />
+                <dxe:TextEdit Text="{Binding HubPort }" Width="30" TextWrapping="Wrap" NullText="null" />
             </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="Channel" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding Channel }" Width="30" TextWrapping="Wrap" />
+                <dxe:TextEdit Text="{Binding Channel }" Width="30" TextWrapping="Wrap" NullText="null" />
             </dxlc:LayoutItem>
-
 
             <dxlc:LayoutItem Label="SequenceLoops" HorizontalAlignment="Left" Background="Wheat" >
                 <dxe:TextEdit Text="{Binding SequenceLoops }" />
@@ -114,43 +114,48 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup View="Group" Orientation="Vertical" Background="LawnGreen" Padding="5">
+        <dxlc:LayoutGroup View="GroupBox" Header="ChannelSequence" Orientation="Vertical" Background="LimeGreen" Padding="5">
 
             <dxlc:LayoutItem Label="BeforeActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
                 <dxe:TextEdit Text="{Binding BeforeActionLoopSequences.Count, Mode=OneWay}" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding StartActionLoopSequences.Count, Mode=OneWay}" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-
-                <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding ActionLoops.Count, Mode=OneWay}" />
+            <dxlc:LayoutGroup View="GroupBox" Header="ActionLoop" Orientation="Vertical" Background="LawnGreen" Padding="5">
+                
+                <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                    <dxe:TextEdit Text="{Binding StartActionLoopSequences.Count, Mode=OneWay}" />
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding Actions.Count, Mode=OneWay}" />
-                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" Background="LawnGreen" Padding="10">
 
-                <!--<dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
+                    <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding Actions.Count, Mode=OneWay}" />
+                    </dxlc:LayoutItem>
+
+                    <!--<dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
                                     <dxe:ListBoxEdit ItemsSource="{Binding Actions}" DisplayMember="Open"/>
                                 </dxlc:LayoutItem>-->
 
-                <dxlc:LayoutItem Label="Execute Actions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding ExecuteActionsInParallel }" />
+                    <dxlc:LayoutItem Label="Execute Actions InParallel" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding ExecuteActionsInParallel }" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding ActionsDuration }" />
+                    </dxlc:LayoutItem>
+                    
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
+                    <dxe:TextEdit Text="{Binding EndActionLoopSequences.Count, Mode=OneWay}" />
+                </dxlc:LayoutItem>
+                
+                <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
+                    <dxe:TextEdit Text="{Binding ActionLoops, Mode=OneWay}" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding ActionDuration }" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding EndActionLoopSequences.Count, Mode=OneWay}" />
-            </dxlc:LayoutItem>
 
             <dxlc:LayoutItem Label="AfterActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
                 <dxe:TextEdit Text="{Binding AfterActionLoopSequences.Count, Mode=OneWay}" />
@@ -158,6 +163,10 @@
 
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutItem Label="SequenceDuration" HorizontalAlignment="Left" Background="Wheat" >
+            <dxe:TextEdit Text="{Binding SequenceDuration }" />
+        </dxlc:LayoutItem>
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
             <dxlc:LayoutItem Label="NextSequence" HorizontalAlignment="Left" Background="Wheat" >

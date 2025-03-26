@@ -645,13 +645,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedDigitalOutput;
-        public Int32 SelectedDigitalOutput
+        private Int32 _selectedDigitalOutputPhidget;
+        public Int32 SelectedDigitalOutputPhidget
         {
-            get => _selectedDigitalOutput;
+            get => _selectedDigitalOutputPhidget;
             set
             {
-                _selectedDigitalOutput = value;
+                _selectedDigitalOutputPhidget = value;
                 OnPropertyChanged();
 
                 PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
@@ -1412,6 +1412,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                             SequenceLoops = sequence.SequenceLoops
                         };
 
+                    // NOTE(crhodes)
+                    // Apply ChannelSequence overrides if provided
+
                     if (nextPhidgetDeviceSequence.HubPort is null)
                     {
                         nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
@@ -1717,11 +1720,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     DeviceChannelSequence? nextPhidgetDeviceSequence =
                         new DeviceChannelSequence
                         {
-                            SerialNumber = SelectedDigitalOutput,
+                            SerialNumber = SelectedDigitalOutputPhidget,
                             Name = sequence.Name,
                             ChannelClass = "DigitalOutput",
                             SequenceLoops = sequence.SequenceLoops
                         };
+
+                    // NOTE(crhodes)
+                    // Apply ChannelSequence overrides if provided
+
+                    if (nextPhidgetDeviceSequence.HubPort is null)
+                    {
+                        nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                    }
+
+                    if (nextPhidgetDeviceSequence.Channel is null)
+                    {
+                        nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                    }
 
                     // NOTE(crhodes)
                     // Run on another thread to keep UI active
@@ -1831,6 +1847,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                             ChannelClass = "Stepper",
                             SequenceLoops = sequence.SequenceLoops
                         };
+
+                    // NOTE(crhodes)
+                    // Apply ChannelSequence overrides if provided
+
+                    if (nextPhidgetDeviceSequence.HubPort is null)
+                    {
+                        nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                    }
+
+                    if (nextPhidgetDeviceSequence.Channel is null)
+                    {
+                        nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                    }
 
                     // NOTE(crhodes)
                     // Run on another thread to keep UI active

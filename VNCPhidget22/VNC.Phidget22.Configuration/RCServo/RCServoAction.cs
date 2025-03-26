@@ -94,7 +94,7 @@ namespace VNC.Phidget22.Configuration
         public Boolean? SpeedRampingState { get; set; }
 
         /// <summary>
-        /// Duration of sleep in ms (sleep time after Action)
+        /// Duration of sleep in ms (sleep time after Action) (optional)
         /// </summary>
         public Int32? Duration { get; set; } // ms
     }

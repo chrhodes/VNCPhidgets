@@ -227,19 +227,29 @@ namespace VNC.Phidget22.Players
                     }
 
                     // NOTE(crhodes)
-                    // This allows reuse of a ChannelSequence that only varies by Channel
+                    // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
                     // Useful during initialization of common Channels on a Phidget Device
+
+                    if (deviceChannelSequence.HubPort is not null)
+                    {
+                        digitalOutputSequence.HubPort = deviceChannelSequence.HubPort;
+                    }
 
                     if (deviceChannelSequence.Channel is not null)
                     {
                         digitalOutputSequence.Channel = deviceChannelSequence.Channel;
                     }
 
-                    phidgetHost = GetDigitalOutputHost((Int32)deviceChannelSequence.SerialNumber, (Int32)digitalOutputSequence.Channel);
+                    phidgetHost = GetDigitalOutputHost(
+                        (Int32)deviceChannelSequence.SerialNumber, 
+                        (Int32)digitalOutputSequence.HubPort, 
+                        (Int32)digitalOutputSequence.Channel);
 
                     if (phidgetHost == null)
                     {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                            $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
+
                         nextDeviceChannelSequence = null;
                     }
 
@@ -344,11 +354,16 @@ namespace VNC.Phidget22.Players
                         rcServoSequence.Channel = deviceChannelSequence.Channel;
                     }
 
-                    phidgetHost = GetRCServoHost(deviceChannelSequence.SerialNumber, (Int32)rcServoSequence.HubPort, (Int32)rcServoSequence.Channel);
+                    phidgetHost = GetRCServoHost(
+                        deviceChannelSequence.SerialNumber, 
+                        (Int32)rcServoSequence.HubPort, 
+                        (Int32)rcServoSequence.Channel);
 
                     if (phidgetHost == null)
                     {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                            $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
+
                         nextDeviceChannelSequence = null;
                     }
 
@@ -445,11 +460,16 @@ namespace VNC.Phidget22.Players
                         stepperSequence.Channel = deviceChannelSequence.Channel;
                     }
 
-                    phidgetHost = GetStepperHost((Int32)deviceChannelSequence.SerialNumber, (Int32)stepperSequence.Channel);
+                    phidgetHost = GetStepperHost(
+                        (Int32)deviceChannelSequence.SerialNumber, 
+                        (Int32)stepperSequence.HubPort, 
+                        (Int32)stepperSequence.Channel);
 
                     if (phidgetHost == null)
                     {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}", Common.LOG_CATEGORY);
+                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                            $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
+
                         nextDeviceChannelSequence = null;
                     }
 
@@ -510,26 +530,23 @@ namespace VNC.Phidget22.Players
 
         #region Get<Channel>Host
 
-        private DigitalOutputEx GetDigitalOutputHost(Int32 serialNumber, Int32 channel)
+        private DigitalOutputEx GetDigitalOutputHost(Int32 serialNumber, Int32 hubPort, Int32 channel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
-
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel()
+            {
+                SerialNumber = serialNumber,
+                HubPort = hubPort,
+                Channel = channel
+            };
 
             DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
 
             digitalOutputHost.LogPhidgetEvents = LogPhidgetEvents;
             digitalOutputHost.LogErrorEvents = LogErrorEvents;
             digitalOutputHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            //digitalOutputHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //digitalOutputHost.LogPositionChangeEvents = LogPositionChangeEvents;
-            //digitalOutputHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //digitalOutputHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
             digitalOutputHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
             digitalOutputHost.LogChannelAction = LogChannelAction;
@@ -621,17 +638,17 @@ namespace VNC.Phidget22.Players
             return rcServoHost;
         }
 
-        private StepperEx GetStepperHost(Int32 serialNumber, Int32 channel)
+        private StepperEx GetStepperHost(Int32 serialNumber, Int32 hubPort, Int32 channel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
-
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-            // TODO(crhodes)
-            // This throws exception if serialHubPortChannel not found
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel()
+            {
+                SerialNumber = serialNumber,
+                HubPort = hubPort,
+                Channel = channel
+            };
 
             StepperEx stepperHost = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
 

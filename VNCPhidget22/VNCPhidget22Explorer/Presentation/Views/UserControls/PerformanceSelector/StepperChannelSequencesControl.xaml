@@ -89,33 +89,38 @@
                 IsCollapsible="True" IsCollapsed="False" >
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
-                    VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    VerticalAlignment="Top" >
 
-                    <dxlc:LayoutItem Label="Stepper Phidgets" LabelPosition="Left" HorizontalAlignment="Left">
-                        <dxe:ComboBoxEdit Width="150" 
-                            ItemsSource="{Binding Steppers}"
-                            SelectedItem="{Binding SelectedStepper}" NullText=""/>
-                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
+                                      VerticalAlignment="Top">
+                        
+                        <dxlc:LayoutItem Label="Stepper Phidgets" LabelPosition="Top" Width="150">
+                            <dxe:ComboBoxEdit 
+                                ItemsSource="{Binding Steppers}"
+                                SelectedItem="{Binding SelectedStepper}" NullText=""/>
+                        </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Selected Sequence(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap" 
-                            ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
-                            SelectedItem="{Binding SelectedStepperSequence}"
-                            EditValue="{ Binding 
-                                Path=SelectedStepperSequences,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:CheckedComboBoxStyleSettings />
-                            </dxe:ComboBoxEdit.StyleSettings>
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Selected Sequence(s)"  LabelPosition="Top">
+                            <dxe:ComboBoxEdit TextWrapping="Wrap" 
+                                ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
+                                SelectedItem="{Binding SelectedStepperSequence}"
+                                EditValue="{ Binding 
+                                    Path=SelectedStepperSequences,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
 
-                        <dxlc:LayoutItem Label="HubPort#" HorizontalAlignment="Left" LabelPosition="Left" >
-                            <dxe:ComboBoxEdit
+                        <dxlc:LayoutItem Label="HubPort#"  LabelPosition="Left" >
+                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                 ItemsSource="{Binding HubPorts}"
                                 SelectedItem="{Binding SelectedHubPort}" >
                                 <!--<dxe:ComboBoxEdit.StyleSettings>
@@ -124,8 +129,8 @@
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Channe#" HorizontalAlignment="Left" LabelPosition="Left" >
-                            <dxe:ComboBoxEdit
+                        <dxlc:LayoutItem Label="Channe#" LabelPosition="Left" >
+                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                 ItemsSource="{Binding Channels}"
                                 SelectedItem="{Binding SelectedChannel}" >
                                 <!--<dxe:ComboBoxEdit.StyleSettings>
@@ -138,7 +143,7 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch">
+                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
                     <Button 
 		                    Command="{Binding PlayStepperSequenceCommand }"
                             CommandParameter="false"
