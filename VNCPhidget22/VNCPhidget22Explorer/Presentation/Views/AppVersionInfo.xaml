@@ -59,34 +59,62 @@
 
         </Border>
 
-        <StackPanel Orientation="Vertical">
-            
+        <ScrollViewer>
+        <StackPanel Orientation="Vertical">            
 
             <Border Grid.Column="0" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
 
                 <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationApplication}" >
-
                     <vncviews:AssemblyInformation />
                     <vncviews:FileInformation />
+                </StackPanel>
 
+            </Border>
+        
+            <!-- TODO(crhodes)
+             Add sections below for additional assemblies
+            -->
+
+            <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
+
+                <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationVNCPhidget}">
+                    <vncviews:AssemblyInformation />
+                    <vncviews:FileInformation />
                 </StackPanel>
 
             </Border>
 
             <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
 
-                <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationVNCCore}">
-
+                <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationVNCPhidgetConfiguration}">
                     <vncviews:AssemblyInformation />
                     <vncviews:FileInformation />
+                </StackPanel>
 
+            </Border>
+
+            <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
+
+                <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationPhidget22}">
+                    <vncviews:AssemblyInformation />
+                    <vncviews:FileInformation />
+                </StackPanel>
+
+            </Border>
+
+            <!--VNCCore-->
+            
+            <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
+
+                <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationVNCCore}">
+                    <vncviews:AssemblyInformation />
+                    <vncviews:FileInformation />
                 </StackPanel>
 
             </Border>
 
         </StackPanel>
-
-        <!--</Grid>-->
+        </ScrollViewer>
 
     </DockPanel>
 

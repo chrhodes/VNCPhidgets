@@ -29,8 +29,14 @@ namespace VNCPhidget22Explorer
         // Initialize in App.xaml.cs GetAndSetInformation()
         //
         // Extend Views\AppVersionInfo.xaml as needed
+        //
+        // Update ShellViewModel
+        //  Add new properties
+        //  Update InitialzeViewModel()
 
         public static VNC.Core.Information? InformationVNCPhidget;
+        public static VNC.Core.Information? InformationVNCPhidgetConfiguration;
+        public static VNC.Core.Information? InformationPhidget22;
 
         // HACK(crhodes)
         // Decide if want to keep this.

@@ -131,7 +131,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             _aboutHost.DisplayUserControlInHost(
                 "VNCPhidgets22Explorer About",
-                    Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+                    900, 600,
                 //(Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
                 //(Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
                 ShowWindowMode.Modeless_Show,

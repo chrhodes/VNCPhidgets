@@ -4,6 +4,8 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 
+using DevExpress.Xpf.Bars;
+
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -44,6 +46,11 @@ namespace VNCPhidget22Explorer
             Common.InitializeLogging();
             VNC.Phidget22.Common.InitializeLogging();
 #endif
+
+            // NOTE(crhodes)
+            // Application Initialization is done in Startup EventHandler
+            // and GetAndSetInformation(), infra.
+
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
 
@@ -332,12 +339,24 @@ namespace VNCPhidget22Explorer
 
             Common.SetVersionInfoApplication(Assembly.GetExecutingAssembly(), appFileVersionInfo);
 
-            // Get Information about Phidget assembly
+            // Add Information about the other assemblies in our application
 
             var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget22.Common));
             var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
 
             Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
+
+            var vncPhidgetConfigurationAssembly = Assembly.GetAssembly(typeof(VNC.Phidget22.Configuration.Common));
+            var vncPhidgetConfigurationFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetConfigurationAssembly.Location);
+
+            Common.InformationVNCPhidgetConfiguration = Common.GetInformation(vncPhidgetConfigurationAssembly, vncPhidgetConfigurationFileVersionInfo);
+
+            // Get Information about Phidget assembly
+
+            var phidget22Assembly = Assembly.GetAssembly(typeof(Phidget22.Phidget));
+            var phidget22FileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(phidget22Assembly.Location);
+
+            Common.InformationPhidget22 = Common.GetInformation(phidget22Assembly, phidget22FileVersionInfo);
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -365,8 +384,8 @@ namespace VNCPhidget22Explorer
 
 #if DEBUG
             Common.DeveloperMode = true;
-            Common.DeveloperUIMode = Visibility.Visible;
-            //Common.DeveloperUIMode = Visibility.Hidden;
+            //Common.DeveloperUIMode = Visibility.Visible;
+            Common.DeveloperUIMode = Visibility.Hidden;
             //Common.DeveloperUIMode = Visibility.Collapsed;
 #else
             Common.DeveloperMode = false;
