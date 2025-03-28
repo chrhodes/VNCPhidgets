@@ -146,8 +146,8 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ManagePerformanceLibraryRegion}" />
                             </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
-                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}" />
+                            <dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="False" ShowCloseButton="False" MinWidth="700" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}"  />
                             </dxdo:LayoutPanel>
                             
                             <dxdo:LayoutPanel Caption="PhidgetDeviceLibrary" AutoHidden="True" ShowCloseButton="False" MinWidth="700" >

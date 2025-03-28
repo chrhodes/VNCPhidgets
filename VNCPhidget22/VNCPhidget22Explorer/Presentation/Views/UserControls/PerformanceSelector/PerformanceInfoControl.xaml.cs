@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+//using System.Windows.Controls;
+
+using Prism.Events;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Core.Presentation;
+using VNC.Phidget22.Configuration;
+using VNC.Phidget22.Configuration.Performance;
+using VNC.WPF.Presentation.Views;
 
 using VNCPhidget22Explorer.Presentation.ViewModels;
 
@@ -149,5 +156,47 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
+        public static WindowHost _aboutHost = null;
+
+        private void ListBoxEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var v2 = (DevExpress.Xpf.Editors.ListBoxEdit)e.Source;
+
+            Performance emptyPerformance = (Performance)v2.EditValue;
+            var v4 = emptyPerformance.Name;
+
+            Performance performance;
+
+            // NOTE(crhodes)
+            // Launch a Modal Window after looking up Performance
+
+            if (_aboutHost is null) _aboutHost = new WindowHost(Common.EventAggregator);
+
+            System.Windows.Controls.UserControl userControl = (Views.PerformanceInfoControl)Common.Container.Resolve(typeof(Views.PerformanceInfoControl));
+
+            // TODO(crhodes)
+            // Lookup Performance
+
+            if (PerformanceLibrary.AvailablePerformances.ContainsKey(emptyPerformance.Name ?? ""))
+            {
+                performance = PerformanceLibrary.AvailablePerformances[emptyPerformance.Name];
+
+                userControl.DataContext = performance;
+
+                _aboutHost.DisplayUserControlInHost(
+                    "VNCPhidgets22Explorer About",
+                        Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+                    //(Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+                    //(Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+                    ShowWindowMode.Modal_ShowDialog,
+                    userControl
+                );
+            }
+            else
+            {
+                Log.Error($"Cannot find performance:>{emptyPerformance?.Name}<", Common.LOG_CATEGORY);
+            }
+        }
     }
 }

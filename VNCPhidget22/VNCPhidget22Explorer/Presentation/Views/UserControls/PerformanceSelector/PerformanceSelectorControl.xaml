@@ -86,21 +86,6 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
                     
-                    <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="Performance Config Files" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit 
-                                ItemsSource="{Binding PerformanceConfigFiles}"
-                                SelectedItem="{Binding PerformanceConfigFileName}" >
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
-
-                        <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                            Command="{Binding ReloadPerformanceConfigFilesCommand}"
-                            ToolTip="Reload Config File" Width="20"/>
-
-                    </dxlc:LayoutGroup>-->
-
                     <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
                             ItemsSource="{Binding Performances}" DisplayMember="Name" 
@@ -117,45 +102,7 @@
                     </dxlc:LayoutItem>
 
                     <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
-                    
-                    <!--<dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
-                        <dxe:TextEdit Width="300" HorizontalAlignment="Left"
-           		            Text="{Binding SelectedPerformance.Name }">
-                        </dxe:TextEdit>
-                    </dxlc:LayoutItem>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical"  >
-
-                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformance.Description }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="BeforePerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformance.BeforePerformanceLoopPerformances.Count, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
-                            
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-
-                            <dxlc:LayoutItem Label="PerformanceLoops" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedPerformance.PerformanceLoops }" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="PlaySequences InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding SelectedPerformance.PlaySequencesInParallel }" />
-                            </dxlc:LayoutItem>
-
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutItem Label="AfterPerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformance.AfterPerformanceLoopPerformances.Count, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="NextPerformance" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformance.NextPerformance.Name }" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>-->
-                        
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
@@ -171,8 +118,6 @@
 
         <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
                           IsCollapsible="True" IsCollapsed="False">
-
-            <!--<views:HostSelectorControl VerticalAlignment="Top"/>-->
 
             <!--<ScrollViewer>-->
 

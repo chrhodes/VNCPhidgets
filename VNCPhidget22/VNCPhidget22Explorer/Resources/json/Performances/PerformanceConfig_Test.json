@@ -7,7 +7,7 @@
     //
     {
       "Name": "Test Before, After, and Next Performance Sequences",
-      "Description": "",
+      "Description": "This uses Specific ChannelSequences",
       "BeforePerformanceLoopPerformances": [
         { "Name": "Sequential Sequences InterfaceKit 124744" }
       ],
@@ -33,7 +33,7 @@
     //
     {
       "Name": "Open and Engage Servos 99415",
-      "Description": "This uses HubPort and Channel ChannelSequenceOverride",
+      "Description": "This uses HubPort and Channel Overrides",
       "Loops": 1,
       "PlaySequencesInParallel": false,
       "DeviceChannelSequences": [

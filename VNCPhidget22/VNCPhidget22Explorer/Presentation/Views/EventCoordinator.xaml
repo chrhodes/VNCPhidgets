@@ -73,7 +73,7 @@
 
     <!-- Simple Layout using Grid -->
 
-    <DockPanel Margin="5">
+    <DockPanel Margin="5" >
 
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 

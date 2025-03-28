@@ -86,7 +86,7 @@
     <dxlc:LayoutControl>
         
         <dxlc:LayoutGroup x:Name="lgPerformanceInfo" View="GroupBox" Header="PlayPerformance(Performance)" Orientation="Vertical"
-            IsCollapsible="True"  IsCollapsed="False" Background="Brown" Padding="0">
+            IsCollapsible="True"  IsCollapsed="False" Background="LightGray" Padding="0">
 
             <dxlc:LayoutGroup View="GroupBox" Header="RunPerformanceLoops(Performance)" Orientation="Vertical"
                               Background="White" Padding="0">
@@ -105,13 +105,32 @@
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                        <dxlc:LayoutItem Label="BeforePerformanceLoopPerformances" HorizontalAlignment="Left" >
+                        <dxlc:LayoutItem Label="BeforePerformanceLoopPerformances[]" HorizontalAlignment="Left" >
                             <dxe:TextEdit Text="{Binding BeforePerformanceLoopPerformances.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                        <!--<dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
                             <dxe:TextEdit Text="{Binding BeforePerformanceLoopPerformances[0].Name, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>-->
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="GroupBox" Header="BeforePerformanceLoopPerformances[]" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                                  IsCollapsible="True" IsCollapsed="False" MaxHeight="500">
+                        <!--<dxg:GridControl ItemsSource="{Binding BeforePerformanceLoopPerformances}"  >
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn Binding="{Binding Name}" Header="Name" Width="Auto" ReadOnly="True" />
+                                <dxg:GridColumn Binding="{Binding Description}" Header="Description" Width="Auto" ReadOnly="True" />
+                                <dxg:GridColumn Binding="{Binding DeviceChannelSequences.Count}" Header="DeviceChannelSequences" ReadOnly="True" />
+                                <dxg:GridColumn Binding="{Binding Performances.Count}" Header="Performances" ReadOnly="True" />
+                            </dxg:GridControl.Columns>
+                        </dxg:GridControl>-->
+
+                        <dxe:ListBoxEdit 
+                            ItemsSource="{Binding BeforePerformanceLoopPerformances}"
+                            DisplayMember="Name"
+                            MouseDoubleClick="ListBoxEdit_MouseDoubleClick" />
+
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutGroup View="Group" Header="Performance" Orientation="Vertical"
@@ -143,13 +162,14 @@
 
                                 <dxlc:LayoutGroup View="GroupBox" Header="DeviceClassSequence[]" Orientation="Vertical"
                                                   IsCollapsible="True" IsCollapsed="False" MaxHeight="500">
+
                                     <dxg:GridControl ItemsSource="{Binding DeviceChannelSequences}"  >
                                         <dxg:GridControl.Columns>
-                                            <dxg:GridColumn Binding="{Binding Name}" Header="Name" ReadOnly="True" />
-                                            <dxg:GridColumn Binding="{Binding SerialNumber}" Header="SerialNumber" ReadOnly="True" />
-                                            <dxg:GridColumn Binding="{Binding HubPort}" Header="HubPort" ReadOnly="True" />
-                                            <dxg:GridColumn Binding="{Binding Channel}" Header="Channel" ReadOnly="True" />
-                                            <dxg:GridColumn Binding="{Binding ChannelClass}" Header="ChannelClass" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding Name}" Header="Name" Width="Auto" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding SerialNumber}" Header="SerialNumber" Width="Auto" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding HubPort}" Header="HubPort" Width="Auto" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding Channel}" Header="Channel" Width="Auto" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding ChannelClass}" Header="ChannelClass" Width="Auto" ReadOnly="True" />
                                         </dxg:GridControl.Columns>
                                     </dxg:GridControl>
                                     
@@ -165,11 +185,11 @@
 
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                             
-                            <dxlc:LayoutItem Label="Performances Count" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxlc:LayoutItem Label="Performances Count" HorizontalAlignment="Left" >
                                 <dxe:TextEdit Text="{Binding Performances.Count, Mode=OneWay}" />
                             </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="PlayPerformances InParallel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxlc:LayoutItem Label="PlayPerformances InParallel" HorizontalAlignment="Left" >
                                 <dxe:TextEdit Text="{Binding PlayPerformancesInParallel }" />
                             </dxlc:LayoutItem>
 
@@ -192,7 +212,7 @@
                                                   IsCollapsible="True" IsCollapsed="False" MaxHeight="600">
                                     <dxg:GridControl ItemsSource="{Binding Performances}"  >
                                         <dxg:GridControl.Columns>
-                                            <dxg:GridColumn Binding="{Binding Name}" Header="Name" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding Name}" Header="Name" Width="Auto" ReadOnly="True" />
                                             <dxg:GridColumn Binding="{Binding SerialNumber}" Header="SerialNumber" ReadOnly="True" />
                                         </dxg:GridControl.Columns>
                                     </dxg:GridControl>
@@ -208,21 +228,49 @@
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                        <dxlc:LayoutItem Label="AfterPerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
+                    <!--<dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <dxlc:LayoutItem Label="AfterPerformanceLoopPerformances" HorizontalAlignment="Left" >
                             <dxe:TextEdit Text="{Binding AfterPerformanceLoopPerformances.Count, Mode=OneWay}" />
                         </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
                             <dxe:TextEdit Text="{Binding AfterPerformanceLoopPerformances[0].Name, Mode=OneWay}" />
                         </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>-->
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                        <dxlc:LayoutItem Label="AfterPerformanceLoopPerformances[]" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding AfterPerformanceLoopPerformances.Count, Mode=OneWay}" />
+                        </dxlc:LayoutItem>
+
+                        <!--<dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding BeforePerformanceLoopPerformances[0].Name, Mode=OneWay}" />
+                        </dxlc:LayoutItem>-->
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup View="GroupBox" Header="BeforePerformanceLoopPerformances[]" Orientation="Vertical"
+                                      VerticalAlignment="Top"
+                                      IsCollapsible="True" IsCollapsed="False" MaxHeight="500">
+                        
+                        <!--<dxg:GridControl ItemsSource="{Binding AfterPerformanceLoopPerformances}"  >
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn Binding="{Binding Name}" Header="Name" Width="Auto" ReadOnly="True" />
+                                <dxg:GridColumn Binding="{Binding DeviceChannelSequences.Count}" Header="DeviceChannelSequences" Width="Auto" ReadOnly="True" />
+                                <dxg:GridColumn Binding="{Binding Performances.Count}" Header="Performances" ReadOnly="True" />
+                            </dxg:GridControl.Columns>
+                        </dxg:GridControl>-->
+                        <dxe:ListBoxEdit 
+                            ItemsSource="{Binding AfterPerformanceLoopPerformances}"
+                            DisplayMember="Name"
+                            MouseDoubleClick="ListBoxEdit_MouseDoubleClick" />
+
                     </dxlc:LayoutGroup>
 
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="NextPerformance" HorizontalAlignment="Left" Background="Wheat" >
+            <dxlc:LayoutItem Label="NextPerformance" HorizontalAlignment="Left" >
                 <dxe:TextEdit Text="{Binding NextPerformance.Name }" />
             </dxlc:LayoutItem>
 

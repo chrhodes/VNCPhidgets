@@ -21,7 +21,7 @@
   "ApplicationLow": true,
   "ApplicationServices": true,
   "ApplicationServicesLow": true,
-  "DeviceInitialize": true,
+  "DeviceInitialize": false,
   "Domain": true,
   "DomainLow": true,
   "DomainServices": true,
