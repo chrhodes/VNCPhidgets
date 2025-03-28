@@ -16,7 +16,7 @@
   "ApplicationStart": true,
   "ApplicationEnd": true,
   "ApplicationInitialize": true,
-  "ApplicationInitializeLow": false,
+  "ApplicationInitializeLow": true,
   "Application": true,
   "ApplicationLow": true,
   "ApplicationServices": true,

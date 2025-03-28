@@ -6,7 +6,7 @@
     "Name": "Routine 1 - 99220 - Skull-012",
     "Description": "",
     "Loops": 1,
-    "PlaySequencesInParallel": false,
+    "PlayDeviceChannelSequencesInParallel": false,
     "DeviceChannelSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center"},
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Up Right" },
@@ -24,7 +24,7 @@
     "Name": "Routine 1 - 99220 - Skull-456",
     "Description": "",
     "Loops": 1,
-    "PlaySequencesInParallel": false,
+    "PlayDeviceChannelSequencesInParallel": false,
     "DeviceChannelSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center"},
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Up Right" },
@@ -42,7 +42,7 @@
     "Name": "Routine 1 - 169501 - Skull-012",
     "Description": "",
     "Loops": 1,
-    "PlaySequencesInParallel": false,
+    "PlayDeviceChannelSequencesInParallel": false,
     "DeviceChannelSequences": [
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center"},
       { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-012 Look Up Right" },
@@ -60,7 +60,7 @@
       "Name": "Routine 1 - 169501 - Skull-456",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-456 Center", },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "Skull-456 Look Up Right" },

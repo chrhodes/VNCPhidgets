@@ -9,7 +9,7 @@
       "Name": "AS Play All Performances A",
       "Description": "Play All the Performances Acceleration(6000) VelocityLimit(3125)",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -36,7 +36,7 @@
       "Name": "AS Play All Performances B",
       "Description": "Play All the Performances Acceleration(250) VelocityLimit(125)",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -63,7 +63,7 @@
       "Name": "AS Play All Performances C",
       "Description": "Play All the Performances Acceleration(50) VelocityLimit(25)",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -93,7 +93,7 @@
       "Name": "AS Parallel All",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -117,7 +117,7 @@
       "Name": "AS Parallel Pairs 1",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -141,7 +141,7 @@
       "Name": "AS Parallel Pairs 2",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
@@ -165,7 +165,7 @@
       "Name": "AS Parallel Pairs 3",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": false,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },

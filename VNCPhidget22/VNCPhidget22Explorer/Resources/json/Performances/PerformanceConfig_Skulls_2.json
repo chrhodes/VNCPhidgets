@@ -11,7 +11,7 @@
     "Name": "Center Skulls",
     "Description": "Centers all three skulls",
     "Loops": 1,
-    "PlaySequencesInParallel": true,
+    "PlayDeviceChannelSequencesInParallel": true,
     "DeviceChannelSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
@@ -22,7 +22,7 @@
   //  "Name": "Routine 2 - Move 1",
   //  "Description": "",
   //  "Loops": 1,
-  //  "PlaySequencesInParallel": true,
+  //  "PlayDeviceChannelSequencesInParallel": true,
   //  "DeviceChannelSequences": [
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
@@ -44,7 +44,7 @@
     "BeforePerformanceLoopPerformances": [
       { "Name": "Center Skulls" }
     ],
-    "PlaySequencesInParallel": true,
+    "PlayDeviceChannelSequencesInParallel": true,
     "DeviceChannelSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Up Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Up Right" },
@@ -56,7 +56,7 @@
     //  "Name": "Routine 2 - Move 3",
     //  "Description": "",
     //  "Loops": 1,
-    //  "PlaySequencesInParallel": true,
+    //  "PlayDeviceChannelSequencesInParallel": true,
     //  "DeviceChannelSequences": [
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
@@ -78,7 +78,7 @@
         { "Name": "Center Skulls" }
       ],
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Down Left" },
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Down Left" },
@@ -90,7 +90,7 @@
     //  "Name": "Routine 2 - Move 5",
     //  "Description": "",
     //  "Loops": 1,
-    //  "PlaySequencesInParallel": true,
+    //  "PlayDeviceChannelSequencesInParallel": true,
     //  "DeviceChannelSequences": [
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
@@ -112,7 +112,7 @@
         { "Name": "Center Skulls" }
       ],
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Up Left" },
         { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Up Left" },
@@ -124,7 +124,7 @@
     //  "Name": "Routine 2 - Move 7",
     //  "Description": "",
     //  "Loops": 1,
-    //  "PlaySequencesInParallel": true,
+    //  "PlayDeviceChannelSequencesInParallel": true,
     //  "DeviceChannelSequences": [
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
     //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
@@ -146,7 +146,7 @@
       { "Name": "Center Skulls" }
     ],
     "Loops": 1,
-    "PlaySequencesInParallel": true,
+    "PlayDeviceChannelSequencesInParallel": true,
     "DeviceChannelSequences": [
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-012 Look Down Right" },
       { "SequenceType": "AS", "SerialNumber": 99220, "Name": "Skull-456 Look Down Right" },
@@ -158,7 +158,7 @@
   //  "Name": "Routine 2 - Move 9",
   //  "Description": "",
   //  "Loops": 1,
-  //  "PlaySequencesInParallel": true,
+  //  "PlayDeviceChannelSequencesInParallel": true,
   //  "DeviceChannelSequences": [
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
   //    { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },

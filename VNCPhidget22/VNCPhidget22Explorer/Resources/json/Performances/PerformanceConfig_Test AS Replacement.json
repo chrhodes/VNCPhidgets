@@ -33,7 +33,7 @@
         // { "Name": "Sequential Sequences InterfaceKit 124744" }
       ],
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Initialize Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Initialize Servo1" },
@@ -59,7 +59,7 @@
         // { "Name": "Sequential Sequences InterfaceKit 124744" }
       ],
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 0, "Name": "Initialize Servo V100 A1000" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 1, "Name": "Initialize Servo V100 A1000" },
@@ -82,7 +82,7 @@
       "Name": "Parallel Sequences Servo 99415 04 15 26 37",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
@@ -102,7 +102,7 @@
       "Name": "Parallel Sequences Servo 99415 04",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo4" },
@@ -116,7 +116,7 @@
       "Name": "Parallel Sequences Servo 99415 15",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo1" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo5" },
@@ -130,7 +130,7 @@
       "Name": "Parallel Sequences Servo 99415 26",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo2" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo6" },
@@ -144,7 +144,7 @@
       "Name": "Parallel Sequences Servo 99415 37",
       "Description": "",
       "Loops": 1,
-      "PlaySequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo3" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415,  "Name": "Engage and Move Servo7" },

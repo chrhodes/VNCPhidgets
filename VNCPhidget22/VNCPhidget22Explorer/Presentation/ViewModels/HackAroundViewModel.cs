@@ -1272,7 +1272,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
                 //        $"\nbeforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                 //        $"\nperformanceSequences:{performance.DeviceChannelSequences?.Count()}" +
-                //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
                 //        $"\nafterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                 //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
                 //}
@@ -1297,7 +1297,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
                     //        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                     //        $" deviceClassSequences:{performance.DeviceChannelSequences?.Count()}" +
-                    //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                    //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
                     //        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                     //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
                     //}

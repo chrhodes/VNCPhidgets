@@ -452,8 +452,13 @@ namespace VNC.Phidget22.Players
                     }
 
                     // NOTE(crhodes)
-                    // This allows reuse of a ChannelSequence that only varies by Channel
+                    // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
                     // Useful during initialization of common Channels on a Phidget Device
+
+                    if (deviceChannelSequence.HubPort is not null)
+                    {
+                        stepperSequence.HubPort = deviceChannelSequence.HubPort;
+                    }
 
                     if (deviceChannelSequence.Channel is not null)
                     {

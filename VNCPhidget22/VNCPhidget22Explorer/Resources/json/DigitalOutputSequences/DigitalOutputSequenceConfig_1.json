@@ -20,6 +20,17 @@
       ]
     },
     {
+      "Name": "Open and Blink DO",
+      "Description": "Open and Blink DigitalOutput",
+      "UsageNotes":  "Must specify HubPort and Channel",
+      "Actions": [
+        { "Open":  true, "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+        { "DigitalOut": true, "Duration": 500 },
+        { "DigitalOut": false, "Duration": 500 },
+      ]
+    },
+    {
       "Name": "Open DO-HP0-C0",
       "HubPort": 0,
       "Channel": 0,

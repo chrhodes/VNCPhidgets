@@ -5,7 +5,6 @@
     //
     {
       "Name": "Initialize Stepper StepAngle 0.9", 
-      "Channel": 0,
       "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 0.9",
       "UsageNotes": "Does not Engage Stepper",
       "ExecuteActionsInParallel": false,
@@ -18,7 +17,6 @@
     //
     {
       "Name": "Initialize Stepper SA 1.8", 
-      "Channel": 0,
       "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 1.8",
       "UsageNotes": "Does not Engage Stepper",
       "ExecuteActionsInParallel": false,
@@ -31,7 +29,6 @@
     //
     {
       "Name": "Initialize Stepper SA 3.75", 
-      "Channel": 0,
       "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 3.75",
       "UsageNotes": "Does not Engage Stepper",
       "ExecuteActionsInParallel": false,
@@ -44,7 +41,6 @@
     //
     {
       "Name": "Open and Engage Stepper", 
-      "Channel": 0,
       "Description": "Open and Engage Stepper",
       "UsageNotes": "Engages Stepper",
       "ExecuteActionsInParallel": false,
@@ -57,7 +53,6 @@
     //
     {
       "Name": "Rotate +/- 90", 
-      "Channel": 0,
       "Description": "Rotate +/- 90",
       "UsageNotes": "Rotate +/- 90",
       "ExecuteActionsInParallel": false,
