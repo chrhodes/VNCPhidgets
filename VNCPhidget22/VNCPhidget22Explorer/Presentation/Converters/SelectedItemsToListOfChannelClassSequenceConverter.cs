@@ -12,7 +12,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
     /// <summary>
     /// Converts to and from a MultiItem Select ComboBox Control
     /// </summary>
-    public class SelectedItemsToListOfChannelClassSequenceConverter : MarkupExtension, IValueConverter
+    public class SelectedItemsToListOfChannelSequenceConverter : MarkupExtension, IValueConverter
     {
         public override object ProvideValue(IServiceProvider serviceProvider)
         {

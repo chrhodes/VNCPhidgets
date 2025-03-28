@@ -6,7 +6,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>indevelopment-23</VersionSuffix>
-        <FileVersion>2025.03.25</FileVersion>
+        <FileVersion>2025.03.28</FileVersion>
         <Company>VNC</Company>
         <Description>Phidget22 Explorer Core</Description>
     </PropertyGroup>

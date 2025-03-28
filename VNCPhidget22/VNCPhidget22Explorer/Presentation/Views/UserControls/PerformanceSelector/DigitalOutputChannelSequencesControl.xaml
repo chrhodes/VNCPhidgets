@@ -33,7 +33,6 @@
 
     Background="{StaticResource DigitalOutputChannelSequencesControlBackground}"
 
-
     d:DesignStyle="{StaticResource vncDesignStyleUC}"
 
     SizeChanged="thisControl_SizeChanged"
@@ -55,7 +54,7 @@
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
         <!--<converters:SelectedItemsToListOfAdvancedServoSequenceConverter x:Key="SelectedItemsToListOfAdvancedServoSequenceConverter" />-->
         <!--<converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />-->
-        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfChannelClassSequenceConverter" />
+        <converters:SelectedItemsToListOfChannelSequenceConverter x:Key="SelectedItemsToListOfChannelSequenceConverter" />
         <!--<converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
         <!--<converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />-->
@@ -92,7 +91,7 @@
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
-                    VerticalAlignment="Top" >
+                        VerticalAlignment="Top" >
 
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                                       VerticalAlignment="Top">
@@ -111,15 +110,14 @@
                                         Path=SelectedDigitalOutputSequences,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource SelectedItemsToListOfChannelClassSequenceConverter} }" >
+                                        Converter={StaticResource SelectedItemsToListOfChannelSequenceConverter} }" >
                                     <dxe:ComboBoxEdit.StyleSettings>
                                         <dxe:CheckedComboBoxStyleSettings />
                                     </dxe:ComboBoxEdit.StyleSettings>
                                 </dxe:ComboBoxEdit>
                             </dxlc:LayoutItem>
-
+                            
                         </dxlc:LayoutGroup>
-
 
                         <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
 
@@ -137,7 +135,7 @@
                                 <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                 ItemsSource="{Binding Channels}"
                                 SelectedItem="{Binding SelectedChannel}" >
-                                    <!--<dxe:ComboBoxEdit.StyleSettings>
+                                <!--<dxe:ComboBoxEdit.StyleSettings>
                                     <dxe:CheckedComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>-->
                                 </dxe:ComboBoxEdit>

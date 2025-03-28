@@ -56,7 +56,7 @@
         <!--<converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />-->
         <!--<converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
-        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfChannelClassSequenceConverter" />
+        <converters:SelectedItemsToListOfChannelSequenceConverter x:Key="SelectedItemsToListOfChannelSequenceConverter" />
         <!--<converters:SelectedItemsToListOfInterfaceKitSequenceConverter x:Key="SelectedItemsToListOfInterfaceKitSequenceConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />
@@ -90,75 +90,79 @@
         <dxlc:LayoutControl Padding="0" Orientation="Vertical">
 
             <dxlc:LayoutGroup x:Name="lgSequences" View="GroupBox" Header="RCServo Channel Sequences" 
-                Orientation="Horizontal" VerticalAlignment="Top"
+                Orientation="Vertical" VerticalAlignment="Top"
                 IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
-                    VerticalAlignment="Top" >
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                        VerticalAlignment="Top" >
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
-                                      VerticalAlignment="Top">
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
+                                          VerticalAlignment="Top">
 
-                        <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Top" Width="150">
-                            <dxe:ComboBoxEdit  
-                                ItemsSource="{Binding RCServoPhidgets}"
-                                SelectedItem="{Binding SelectedRCServoPhidget}" />
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Top" Width="150">
+                                <dxe:ComboBoxEdit  
+                                    ItemsSource="{Binding RCServoPhidgets}"
+                                    SelectedItem="{Binding SelectedRCServoPhidget}" />
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Selected Sequence(s)" LabelPosition="Top" >
-                            <dxe:ComboBoxEdit TextWrapping="Wrap" 
-                                    ItemsSource="{Binding RCServoSequences}" DisplayMember="Name" 
-                                    SelectedItem="{Binding SelectedRCServoSequence}"
-                                    EditValue="{ Binding 
-                                        Path=SelectedRCServoSequences,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource SelectedItemsToListOfChannelClassSequenceConverter} }" >
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Selected Sequence(s)" LabelPosition="Top" >
+                                <dxe:ComboBoxEdit TextWrapping="Wrap" 
+                                        ItemsSource="{Binding RCServoSequences}" DisplayMember="Name" 
+                                        SelectedItem="{Binding SelectedRCServoSequence}"
+                                        EditValue="{ Binding 
+                                            Path=SelectedRCServoSequences,
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource SelectedItemsToListOfChannelSequenceConverter} }" >
+                                    <dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="HubPort#" LabelPosition="Left" >
+                                <dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding HubPorts}"
+                                    SelectedItem="{Binding SelectedHubPort}" >
+                                    <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="Channe#"  LabelPosition="Left" >
+                                <dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding Channels}"
+                                    SelectedItem="{Binding SelectedChannel}" >
+                                    <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="HubPort#" LabelPosition="Left" >
-                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
-                                ItemsSource="{Binding HubPorts}"
-                                SelectedItem="{Binding SelectedHubPort}" >
-                                <!--<dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>-->
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Channe#"  LabelPosition="Left" >
-                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
-                                ItemsSource="{Binding Channels}"
-                                SelectedItem="{Binding SelectedChannel}" >
-                                <!--<dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>-->
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
+		                    Command="{Binding PlayRCServoSequenceCommand }"
+                            CommandParameter="false"
+		                    Content="{Binding PlayRCServoSequenceContent, FallbackValue='PlaySequence' }"
+		                    ToolTip="{Binding PlayRCServoSequenceToolTip, FallbackValue='PlayRCServoSequence ToolTip' }" />
+                    </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem  VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                    <Button 
-		                Command="{Binding PlayRCServoSequenceCommand }"
-                        CommandParameter="false"
-		                Content="{Binding PlayRCServoSequenceContent, FallbackValue='PlaySequence' }"
-		                ToolTip="{Binding PlayRCServoSequenceToolTip, FallbackValue='PlayRCServoSequence ToolTip' }" />
-                </dxlc:LayoutItem>
-
+                <views:DeviceChannelSequenceInfoControl DataContext="{Binding SelectedRCServoSequence}" />
+                
             </dxlc:LayoutGroup>
-            
-            <views:ChannelSequenceInfoControl DataContext="{Binding SelectedRCServoSequence}" />
 
         </dxlc:LayoutControl>
 

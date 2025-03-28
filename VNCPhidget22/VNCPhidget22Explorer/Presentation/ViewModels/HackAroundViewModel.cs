@@ -79,7 +79,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //Hosts = PerformanceLibrary.Hosts.ToList();
 
-            LoadChannelClassSequences();
+            LoadChannelSequences();
 
             // Turn on logging of PropertyChanged from VNC.Core
             //LogOnPropertyChanged = false;
@@ -88,7 +88,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        void LoadChannelClassSequences()
+        void LoadChannelSequences()
         {
             // TODO(crhodes)
             // Add a method for each new supported ChannelClass
@@ -1267,16 +1267,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             foreach (Performance performance in SelectedPerformances)
             {
-                //if (LogPerformance)
-                //{
-                //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
-                //        $"\nbeforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                //        $"\nperformanceSequences:{performance.DeviceChannelSequences?.Count()}" +
-                //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
-                //        $"\nafterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
-                //}
-
                 Performance? nextPerformance = performance;
 
                 // NOTE(crhodes)
@@ -1292,16 +1282,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 while (nextPerformance is not null)
                 {
-                    //if (LogPerformance)
-                    //{
-                    //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
-                    //        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    //        $" deviceClassSequences:{performance.DeviceChannelSequences?.Count()}" +
-                    //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
-                    //        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                    //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
-                    //}
-
                     if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
                     {
                         nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];

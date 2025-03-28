@@ -57,7 +57,7 @@
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />-->
         <!--<converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />-->
-        <converters:SelectedItemsToListOfChannelClassSequenceConverter x:Key="SelectedItemsToListOfDeviceClassSequenceConverter" />
+        <converters:SelectedItemsToListOfChannelSequenceConverter x:Key="SelectedItemsToListOfChannelSequenceConverter" />
         <!--<localc:SelectedItemsConverter x:Key="SelectedItemsConverter" /> 
          <localc:SelectedItemsToWorkItemQueryWrapperConverter x:Key="SelectedItemsToHostSelectorWrapperConverter" /> 
          <DataTemplate x:Key="dataTemplateHostSelector"> 
@@ -85,75 +85,79 @@
         <dxlc:LayoutControl Padding="0" Orientation="Vertical">
 
             <dxlc:LayoutGroup x:Name="lgSequences" View="GroupBox" Header="Stepper Channel Sequences"
-                Orientation="Horizontal" VerticalAlignment="Top"
+                Orientation="Vertical" VerticalAlignment="Top"
                 IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
-                    VerticalAlignment="Top" >
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                    
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                        VerticalAlignment="Top" >
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
-                                      VerticalAlignment="Top">
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
+                                          VerticalAlignment="Top">
                         
-                        <dxlc:LayoutItem Label="Stepper Phidgets" LabelPosition="Top" Width="150">
-                            <dxe:ComboBoxEdit 
-                                ItemsSource="{Binding Steppers}"
-                                SelectedItem="{Binding SelectedStepper}" NullText=""/>
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Stepper Phidgets" LabelPosition="Top" Width="150">
+                                <dxe:ComboBoxEdit 
+                                    ItemsSource="{Binding Steppers}"
+                                    SelectedItem="{Binding SelectedStepper}" NullText=""/>
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Selected Sequence(s)"  LabelPosition="Top">
-                            <dxe:ComboBoxEdit TextWrapping="Wrap" 
-                                ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedStepperSequence}"
-                                EditValue="{ Binding 
-                                    Path=SelectedStepperSequences,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfDeviceClassSequenceConverter} }" >
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Selected Sequence(s)"  LabelPosition="Top">
+                                <dxe:ComboBoxEdit TextWrapping="Wrap" 
+                                    ItemsSource="{Binding StepperSequences}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedStepperSequence}"
+                                    EditValue="{ Binding 
+                                        Path=SelectedStepperSequences,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SelectedItemsToListOfChannelSequenceConverter} }" >
+                                    <dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="HubPort#"  LabelPosition="Left" >
+                                <dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding HubPorts}"
+                                    SelectedItem="{Binding SelectedHubPort}" >
+                                    <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                            <dxlc:LayoutItem Label="Channe#" LabelPosition="Left" >
+                                <dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding Channels}"
+                                    SelectedItem="{Binding SelectedChannel}" >
+                                    <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
 
                     </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
-
-                        <dxlc:LayoutItem Label="HubPort#"  LabelPosition="Left" >
-                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
-                                ItemsSource="{Binding HubPorts}"
-                                SelectedItem="{Binding SelectedHubPort}" >
-                                <!--<dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>-->
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="Channe#" LabelPosition="Left" >
-                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
-                                ItemsSource="{Binding Channels}"
-                                SelectedItem="{Binding SelectedChannel}" >
-                                <!--<dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>-->
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
+		                        Command="{Binding PlayStepperSequenceCommand }"
+                                CommandParameter="false"
+		                        Content="{Binding PlayStepperSequenceContent, FallbackValue='PlaySequence' }"
+		                        ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
+                    </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                    <Button 
-		                    Command="{Binding PlayStepperSequenceCommand }"
-                            CommandParameter="false"
-		                    Content="{Binding PlayStepperSequenceContent, FallbackValue='PlaySequence' }"
-		                    ToolTip="{Binding PlayStepperSequenceToolTip, FallbackValue='PlayStepperSequence ToolTip' }" />
-                </dxlc:LayoutItem>
+                <views:DeviceChannelSequenceInfoControl DataContext="{Binding SelectedStepperSequence}" />
 
             </dxlc:LayoutGroup>
-
-            <views:ChannelSequenceInfoControl DataContext="{Binding SelectedStepperSequence}" />
 
         </dxlc:LayoutControl>
 
