@@ -50,7 +50,7 @@ namespace VNC.Phidget22
             // NOTE(crhodes)
             // This is for Excel use.  It needs to match what is in Manager_Attach()
             // See Manager_Attach for column choice comments
-            if (Common.VNCLogging.ApplicationInitialize) Log.EVENT_HANDLER($"|ServerPeerName" +
+            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"|ServerPeerName" +
                 //$"|ServerHostName" +
                 $"|DeviceSerialNumber" +
                 $"|IsLocal|IsRemote|GrandParent|Parent" +
@@ -485,7 +485,7 @@ namespace VNC.Phidget22
 
             try
             {
-                if (Common.VNCLogging.ApplicationInitializeLow) Log.EVENT_HANDLER($"Adding AttachedPhidget {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+                if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding AttachedPhidget {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
 
                 ManagerAttachedPhidgetDevices.Add(phidgetDevice);
             }
@@ -521,22 +521,22 @@ namespace VNC.Phidget22
             switch (phidget.ChannelClass)
             {
                 case Phidgets.ChannelClass.Accelerometer:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.BLDCMotor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CapacitiveTouch:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CurrentInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     
                     CurrentInputChannels.Add(
@@ -557,17 +557,17 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.DCMotor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Dictionary:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.DigitalInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     DigitalInputChannels.Add(
@@ -587,7 +587,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.DigitalOutput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     DigitalOutputChannels.Add(
@@ -607,42 +607,42 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.DistanceSensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Encoder:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FirmwareUpgrade:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FrequencyCounter:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Generic:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                        $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.GPS:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Gyroscope:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Hub:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     HubChannels.Add(
@@ -662,52 +662,52 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.HumiditySensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.IR:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LCD:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LightSensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Magnetometer:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                       $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.None:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PHSensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PowerGuard:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PressureSensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
 
                     RCServoChannels.Add(
@@ -728,27 +728,27 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.ResistanceInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RFID:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.SoundSensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Spatial:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Stepper:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     
                     StepperChannels.Add(
@@ -771,12 +771,12 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.TemperatureSensor:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.VoltageInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     
                     VoltageInputChannels.Add(
@@ -796,7 +796,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.VoltageRatioInput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     
                     VoltageRatioInputChannels.Add(
@@ -816,7 +816,7 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.VoltageOutput:
-                    if (Common.VNCLogging.ApplicationInitializeLow) Log.Trace($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Adding new {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} HubPort:{serialHubChannel.HubPort} Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     
                     VoltageOutputChannels.Add(
