@@ -383,10 +383,11 @@ namespace VNCPhidget22Explorer
             Directory.SetCurrentDirectory("./Resources/json");
 
 #if DEBUG
-            Common.DeveloperMode = true;
+            //Common.DeveloperMode = true;
+            Common.DeveloperMode = false;
             //Common.DeveloperUIMode = Visibility.Visible;
-            Common.DeveloperUIMode = Visibility.Hidden;
-            //Common.DeveloperUIMode = Visibility.Collapsed;
+            //Common.DeveloperUIMode = Visibility.Hidden;
+            Common.DeveloperUIMode = Visibility.Collapsed;
 #else
             Common.DeveloperMode = false;
             Common.DeveloperUIMode = Visibility.Collapsed;  // No space reserved

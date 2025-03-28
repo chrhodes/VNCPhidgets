@@ -42,11 +42,6 @@ namespace VNC.Phidget22.Configuration.Performance
         public Int32? Channel { get; set; } = null;
 
         /// <summary>
-        /// Number of loops of sequence to execute
-        /// </summary>
-        public Int32 SequenceLoops { get; set; } = 1;
-
-        /// <summary>
         /// PerformanceSequence[] to call before executing Actions
         /// </summary>
         public DeviceChannelSequence[]? BeforeActionLoopSequences { get; set; }
@@ -75,6 +70,11 @@ namespace VNC.Phidget22.Configuration.Performance
         /// PerformanceSequence[] to call at start of each SequenceLoop
         /// </summary>
         public DeviceChannelSequence[]? EndActionLoopSequences { get; set; }
+
+        /// <summary>
+        /// Number of loops of sequence to execute
+        /// </summary>
+        public Int32 SequenceLoops { get; set; } = 1;
 
         /// <summary>
         /// PerformanceSequence[] to call after executing Actions

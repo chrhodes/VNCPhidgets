@@ -116,7 +116,9 @@
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
+                    <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
+                    
+                    <!--<dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
                         <dxe:TextEdit Width="300" HorizontalAlignment="Left"
            		            Text="{Binding SelectedPerformance.Name }">
                         </dxe:TextEdit>
@@ -152,7 +154,7 @@
                             <dxe:TextEdit Text="{Binding SelectedPerformance.NextPerformance.Name }" />
                         </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>-->
                         
                 </dxlc:LayoutGroup>
 

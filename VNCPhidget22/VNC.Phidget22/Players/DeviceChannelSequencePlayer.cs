@@ -106,7 +106,7 @@ namespace VNC.Phidget22.Players
         {
             Int64 startTicks = 0;
 
-            DeviceChannelSequence nextPhidgetDeviceClassSequence = null;
+            DeviceChannelSequence nextPhidgetDeviceChannelSequence = null;
 
             try
             {
@@ -127,38 +127,38 @@ namespace VNC.Phidget22.Players
 
                     // NOTE(crhodes)
                     // Each loop starts back at the initial sequence
-                    nextPhidgetDeviceClassSequence = deviceChannelSequence;
+                    nextPhidgetDeviceChannelSequence = deviceChannelSequence;
 
                     // NOTE(crhodes)
                     // This allows reuse of a DeviceChannelSequence that only varies by SerialNumber
 
                     if (performanceSerialNumber is not null)
                     {
-                        nextPhidgetDeviceClassSequence.SerialNumber = (Int32)performanceSerialNumber;
+                        nextPhidgetDeviceChannelSequence.SerialNumber = (Int32)performanceSerialNumber;
                     }
 
                     do
                     {
-                        switch (nextPhidgetDeviceClassSequence.ChannelClass)
+                        switch (nextPhidgetDeviceChannelSequence.ChannelClass)
                         {
                              case "DigitalOutput":
-                                nextPhidgetDeviceClassSequence = await ExecuteDigitalOutputChannelSequence(nextPhidgetDeviceClassSequence);
+                                nextPhidgetDeviceChannelSequence = await ExecuteDigitalOutputChannelSequence(nextPhidgetDeviceChannelSequence);
                                 break;
 
                             case "RCServo":
-                                nextPhidgetDeviceClassSequence = await ExecuteRCServoChannelSequence(nextPhidgetDeviceClassSequence);
+                                nextPhidgetDeviceChannelSequence = await ExecuteRCServoChannelSequence(nextPhidgetDeviceChannelSequence);
                                 break;
 
                             case "Stepper":
-                                nextPhidgetDeviceClassSequence = await ExecuteStepperChannelSequence(nextPhidgetDeviceClassSequence);
+                                nextPhidgetDeviceChannelSequence = await ExecuteStepperChannelSequence(nextPhidgetDeviceChannelSequence);
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceClassSequence.ChannelClass}<", Common.LOG_CATEGORY);
-                                nextPhidgetDeviceClassSequence = null;
+                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceChannelSequence.ChannelClass}<", Common.LOG_CATEGORY);
+                                nextPhidgetDeviceChannelSequence = null;
                                 break;
                         }
-                    } while (nextPhidgetDeviceClassSequence is not null);
+                    } while (nextPhidgetDeviceChannelSequence is not null);
                 }
 
                 if (deviceChannelSequence.Duration is not null)

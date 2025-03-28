@@ -86,77 +86,81 @@
         <dxlc:LayoutControl Padding="0" Orientation="Vertical">
 
             <dxlc:LayoutGroup x:Name="lgSequences"  View="GroupBox"  Header="DigitalOut Channel Sequences"
-                Orientation="Horizontal" VerticalAlignment="Top" 
+                Orientation="Vertical" VerticalAlignment="Top" 
                 IsCollapsible="True" IsCollapsed="False" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
                     VerticalAlignment="Top" >
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                                       VerticalAlignment="Top">
-                        
-                        <dxlc:LayoutItem Label="DigitalOutput Phidgets" LabelPosition="Top" Width="150" >
-                            <dxe:ComboBoxEdit 
-                            ItemsSource="{Binding DigitalOutputs}"
-                            SelectedItem="{Binding SelectedDigitalOutputPhidget}" />
-                        </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Selected Sequence(s)" LabelPosition="Top"  >
-                            <dxe:ComboBoxEdit TextWrapping="Wrap" 
-                            ItemsSource="{Binding DigitalOutputSequences}" DisplayMember="Name" 
-                            SelectedItem="{Binding SelectedDigitalOutputSequence}"
-                            EditValue="{ Binding 
-                                Path=SelectedDigitalOutputSequences,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfChannelClassSequenceConverter} }" >
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
-                        
-                    </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="DigitalOutput Phidgets" LabelPosition="Top" Width="150" >
+                                <dxe:ComboBoxEdit 
+                                    ItemsSource="{Binding DigitalOutputs}"
+                                    SelectedItem="{Binding SelectedDigitalOutputPhidget}" />
+                            </dxlc:LayoutItem>
 
- 
-                    <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+                            <dxlc:LayoutItem Label="Selected Sequence(s)" LabelPosition="Top"  >
+                                <dxe:ComboBoxEdit TextWrapping="Wrap" 
+                                    ItemsSource="{Binding DigitalOutputSequences}" DisplayMember="Name" 
+                                    SelectedItem="{Binding SelectedDigitalOutputSequence}"
+                                    EditValue="{ Binding 
+                                        Path=SelectedDigitalOutputSequences,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource SelectedItemsToListOfChannelClassSequenceConverter} }" >
+                                    <dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="HubPort#" LabelPosition="Left" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
+                        </dxlc:LayoutGroup>
+
+
+                        <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="HubPort#" LabelPosition="Left" HorizontalAlignment="Left" >
+                                <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                 ItemsSource="{Binding HubPorts}"
                                 SelectedItem="{Binding SelectedHubPort}" >
-                                <!--<dxe:ComboBoxEdit.StyleSettings>
+                                    <!--<dxe:ComboBoxEdit.StyleSettings>
                                     <dxe:CheckedComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>-->
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Channe#" LabelPosition="Left" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit HorizontalAlignment="Left"
+                            <dxlc:LayoutItem Label="Channe#" LabelPosition="Left" HorizontalAlignment="Left" >
+                                <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                 ItemsSource="{Binding Channels}"
                                 SelectedItem="{Binding SelectedChannel}" >
-                                <!--<dxe:ComboBoxEdit.StyleSettings>
+                                    <!--<dxe:ComboBoxEdit.StyleSettings>
                                     <dxe:CheckedComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>-->
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>
+                                </dxe:ComboBoxEdit>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
 
                     </dxlc:LayoutGroup>
 
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                    <Button 
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
 		                Command="{Binding PlayDigitalOutputSequenceCommand }"
                         CommandParameter="false"
 		                Content="{Binding PlayDigitalOutputSequenceContent, FallbackValue='PlaySequence' }"
 		                ToolTip="{Binding PlayDigitalOutputSequenceToolTip, FallbackValue='PlayDigitalOutputSequence ToolTip' }" />
-                </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <views:DeviceChannelSequenceInfoControl DataContext="{Binding SelectedDigitalOutputSequence}" Margin="5" />
 
             </dxlc:LayoutGroup>
 
-            <views:ChannelSequenceInfoControl DataContext="{Binding SelectedDigitalOutputSequence}" Margin="5" />
-            
         </dxlc:LayoutControl>
 
     </DockPanel>

@@ -10,7 +10,7 @@
       "Description": "Play All the Performances Acceleration(6000) VelocityLimit(3125)",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
         { "Name": "99415-Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
@@ -27,7 +27,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
@@ -37,7 +37,7 @@
       "Description": "Play All the Performances Acceleration(250) VelocityLimit(125)",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
         { "Name": "99415-Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
@@ -54,7 +54,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
@@ -64,7 +64,7 @@
       "Description": "Play All the Performances Acceleration(50) VelocityLimit(25)",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
         { "Name": "99415-Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
@@ -81,7 +81,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
@@ -94,7 +94,7 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
@@ -105,7 +105,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
@@ -118,7 +118,7 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
@@ -129,7 +129,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
@@ -142,7 +142,7 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
@@ -153,7 +153,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }
@@ -166,7 +166,7 @@
       "Description": "",
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
@@ -177,7 +177,7 @@
      { 
         "Name": "Disengage All Servos and Close Phidget",
         "Description": "Play All the Performances",
-        "DeviceClassSequences": [
+        "DeviceChannelSequences": [
             { "Name": "99415-DisEngage All Servos", "SequenceType": "AS", "ClosePhidget": true }
         ]
       }

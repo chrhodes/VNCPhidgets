@@ -273,7 +273,7 @@ namespace VNC.Phidget22.Players
                 {
                     Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
                         $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                        $"\r deviceClassSequences:{performance.DeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                        $"\r deviceClassSequences:{performance.DeviceChannelSequences?.Count()} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
                         $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
                         $"\r loops:{performance.PerformanceLoops}" +
                         $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
@@ -306,7 +306,7 @@ namespace VNC.Phidget22.Players
 
                 Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
                     $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    $"\r deviceClassSequences:{performance.DeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
+                    $"\r deviceClassSequences:{performance.DeviceChannelSequences?.Count()} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
                     $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
                     $"\r loops:{performance.PerformanceLoops}" +
                     $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
@@ -322,17 +322,17 @@ namespace VNC.Phidget22.Players
             }
 
             // NOTE(crhodes)
-            // Then Execute DeviceClassSequences loops if any
+            // Then Execute DeviceChannelSequences loops if any
 
-            if (performance.DeviceClassSequences is not null)
+            if (performance.DeviceChannelSequences is not null)
             {
                 for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
                 {
-                    if (performance.PlaySequencesInParallel)
+                    if (performance.PlayDeviceChannelSequencesInParallel)
                     {
                         if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
 
-                        Parallel.ForEach(performance.DeviceClassSequences, async sequence =>
+                        Parallel.ForEach(performance.DeviceChannelSequences, async sequence =>
                         {
                             // TODO(crhodes)
                             // Maybe create a new DeviceChannelSequencePlayer
@@ -348,7 +348,7 @@ namespace VNC.Phidget22.Players
 
                         DeviceChannelSequencePlayer player = GetPerformanceSequencePlayer();
 
-                        foreach (DeviceChannelSequence sequence in performance.DeviceClassSequences)
+                        foreach (DeviceChannelSequence sequence in performance.DeviceChannelSequences)
                         {
                             await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
                         }

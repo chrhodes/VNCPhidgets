@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidget22Explorer.Presentation.Views.ChannelSequenceInfoControl"
+    x:Class="VNCPhidget22Explorer.Presentation.Views.DeviceChannelSequenceInfoControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -83,79 +83,79 @@
 
     <!-- Simple Layout using Grid -->
 
-    <!--<dxlc:LayoutControl Orientation="Vertical" Margin="-5">-->
+    <dxlc:LayoutControl Orientation="Vertical" Margin="-10">
+        
+        <dxlc:LayoutGroup x:Name="lgDeviceChannelSequenceInfo" View="GroupBox" Header="DeviceChannelSequence Info" Orientation="Vertical"
+                          IsCollapsible="True"  IsCollapsed="False"
+                          Background="Azure">
 
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical"
+                              Background="CadetBlue" Padding="5" Margin="-5">
+                
+                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-    <dxlc:LayoutGroup x:Name="lgChannelSequenceInfo" View="GroupBox" Header="RunActionLoops(ChannelSequence)" Orientation="Vertical" 
-                        IsCollapsible="True" IsCollapsed="False"
-                            Background="LightGreen" Padding="-5">
-
-        <dxlc:LayoutGroup View="Group" Orientation="Vertical"
-                            Background="Yellow" Padding="5">
-
-            <dxlc:LayoutItem Label="BeforeActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding BeforeActionLoopSequences.Count, Mode=OneWay}" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutGroup View="GroupBox" Header="ActionLoop" Orientation="Vertical" 
-                                  Background="LightBlue" >
-
-                <dxlc:LayoutItem Label="StartActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding StartActionLoopSequences.Count, Mode=OneWay}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
-                                      Background="PaleVioletRed" Padding="10">
-
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical"
-                                      Background="Red">
-                        
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                            <dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding Actions.Count, Mode=OneWay}" />
-                            </dxlc:LayoutItem>
-
-                            <!--<dxlc:LayoutItem Label="Actions" HorizontalAlignment="Left" Background="Wheat" >
-                                       <dxe:ListBoxEdit ItemsSource="{Binding Actions}" DisplayMember="Open"/>
-                                   </dxlc:LayoutItem>-->
-
-                            <dxlc:LayoutItem Label="Execute Actions InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding ExecuteActionsInParallel }" />
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <Label Content="PerformAction()" HorizontalAlignment="Center" />
-                        
-                    </dxlc:LayoutGroup> 
-
-                    <dxlc:LayoutItem Label="ActionDuration" HorizontalAlignment="Left" Background="Wheat" >
-                        <dxe:TextEdit Text="{Binding ActionsDuration }" />
+                    <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding Name }" TextWrapping="Wrap" Width="300" />
                     </dxlc:LayoutItem>
 
+                    <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding Description }" TextWrapping="Wrap" Width="300" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding UsageNotes }" TextWrapping="Wrap"  Width="300" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem Label="ChannelClass" HorizontalAlignment="Left" Background="Wheat" >
+                        <dxe:TextEdit Text="{Binding ChannelClass, Mode=OneWay}" Width="300" TextWrapping="Wrap" />
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem Label="SerialNumber" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding DeviceSerialNumber }" Width="30" TextWrapping="Wrap" NullText="null" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="HubPort" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding HubPort }" Width="30" TextWrapping="Wrap" NullText="null" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Channel" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding Channel }" Width="30" TextWrapping="Wrap" NullText="null" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <views:ChannelSequenceInfoControl />
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                        <dxlc:LayoutItem Label="NextSequence" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding NextSequence.Name }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Type" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding NextSequence.SequenceType }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    
                 </dxlc:LayoutGroup>
-
-                <dxlc:LayoutItem Label="EndActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding EndActionLoopSequences.Count, Mode=OneWay}" />
-                </dxlc:LayoutItem>
-
-                <dxlc:LayoutItem Label="ActionLoops" HorizontalAlignment="Left" Background="Wheat" >
-                    <dxe:TextEdit Text="{Binding ActionLoops, Mode=OneWay}" />
-                </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="AfterActionLoopSequences" HorizontalAlignment="Left" Background="Wheat" >
-                <dxe:TextEdit Text="{Binding AfterActionLoopSequences.Count, Mode=OneWay}" />
+            <dxlc:LayoutItem Label="SequenceDuration" HorizontalAlignment="Left" 
+                             Background="Wheat" Margin="-5,5,0,-7">
+                <dxe:TextEdit Text="{Binding SequenceDuration }" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutItem Label="SequenceDuration" HorizontalAlignment="Left" Background="Wheat" >
-            <dxe:TextEdit Text="{Binding SequenceDuration }" />
+        <dxlc:LayoutItem Label="SequenceLoops" HorizontalAlignment="Left" 
+                         Background="Wheat" Margin="2,0,0,3" >
+            <dxe:TextEdit Text="{Binding SequenceLoops }" />
         </dxlc:LayoutItem>
 
-    </dxlc:LayoutGroup>
-
-    <!--</dxlc:LayoutControl>-->
+    </dxlc:LayoutControl>
     
 </vncmvvm:ViewBase>

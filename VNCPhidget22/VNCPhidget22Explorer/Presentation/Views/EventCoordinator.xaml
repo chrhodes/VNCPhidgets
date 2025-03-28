@@ -95,9 +95,9 @@
         <!-- Also, use dxXMLNS to insert namespaces above -->
 
         <dxlc:LayoutControl View="Group" Orientation="Vertical">
-        
+
             <dxlc:LayoutGroup Header="Performance" View="GroupBox" Orientation="Vertical"  >
-            
+
                 <dxlc:LayoutGroup Orientation="Horizontal">
 
                     <dxlc:LayoutItem Label="Select Performance" HorizontalAlignment="Left" >
@@ -105,11 +105,11 @@
                                         ItemsSource="{Binding Performances}" DisplayMember="Name" 
                                         SelectedItem="{Binding SelectedPerformance}" >
                             <!--<dxe:ComboBoxEdit.StyleSettings>-->
-                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:TokenComboBoxStyleSettings/>-->
                             <!--</dxe:ComboBoxEdit.StyleSettings>-->
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
@@ -123,52 +123,8 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Header="PerformanceInfo" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top" >
+                <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
 
-                    <dxlc:LayoutItem Label="Name" Background="Wheat" HorizontalAlignment="Left" >
-                        <dxe:TextEdit HorizontalAlignment="Left"
-                    Text="{Binding EventPerformance.Name }">
-                        </dxe:TextEdit>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical"  >
-
-                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding EventPerformance.Description }" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="BeforePerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding EventPerformance.BeforePerformanceLoopPerformances.Count, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-
-                            <dxlc:LayoutItem Label="PerformanceLoops" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding EventPerformance.PerformanceLoops }" />
-                            </dxlc:LayoutItem>
-
-                            <dxlc:LayoutItem Label="PlaySequences InParallel" HorizontalAlignment="Left" Background="Wheat" >
-                                <dxe:TextEdit Text="{Binding EventPerformance.PlaySequencesInParallel }" />
-                            </dxlc:LayoutItem>
-
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutItem Label="AfterPerformanceLoopPerformances" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding EventPerformance.AfterPerformanceLoopPerformances.Count, Mode=OneWay}" />
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Label="NextPerformance" HorizontalAlignment="Left" Background="Wheat" >
-                            <dxe:TextEdit Text="{Binding EventPerformance.NextPerformance.Name }" />
-                        </dxlc:LayoutItem>
-
-                    </dxlc:LayoutGroup>
-
-                </dxlc:LayoutGroup>
-
-            </dxlc:LayoutGroup>
-            
-            <dxlc:LayoutGroup Header="DeviceClassSequences" View="GroupBox" Orientation="Vertical" >
-            
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutControl> 

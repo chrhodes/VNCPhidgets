@@ -13,7 +13,7 @@
       ],
       "Loops": 1,
       "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
+      "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (25) Acceleration(50)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (50) Acceleration(100)" },

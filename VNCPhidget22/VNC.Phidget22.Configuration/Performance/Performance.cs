@@ -15,37 +15,27 @@ namespace VNC.Phidget22.Configuration.Performance
         public string? Description { get; set; }
 
         /// <summary>
-        /// Performance[] to call before executing DeviceClassSequences[] and/or Performances[]
+        /// Performance[] to call before executing DeviceChannelSequences[] and/or Performances[]
         /// before calling NextPerformance
         /// </summary>
         public Performance[]? BeforePerformanceLoopPerformances { get; set; }
 
         /// <summary>
-        /// Number of loops of DeviceClassSequences[] and/or Performances[]
-        /// </summary>
-        public Int32 PerformanceLoops { get; set; } = 1;
-
-        /// <summary>
-        /// Play DeviceClassSequences in Parallel or Sequential (false)
-        /// </summary>
-        public Boolean PlaySequencesInParallel { get; set; } = false;
-
-        /// <summary>
-        /// SerialNumber of PhidgetDevice that will run DeviceClassSequences
+        /// SerialNumber of PhidgetDevice that will run DeviceChannelSequences
         /// If null, Name is used to lookup DeviceClassSequence 
         /// which must specify a SerialNumber
         /// </summary>
         public Int32? SerialNumber { get; set; } = null;
 
         /// <summary>
-        /// DeviceClassSequences to execute as part of this performance
+        /// DeviceChannelSequences to execute as part of this performance
         /// </summary>
-        public DeviceChannelSequence[]? DeviceClassSequences { get; set; }
+        public DeviceChannelSequence[]? DeviceChannelSequences { get; set; }
 
         /// <summary>
-        /// Play Performances in Parallel or Sequential (false)
+        /// Play DeviceChannelSequences in Parallel or Sequential (false)
         /// </summary>
-        public Boolean PlayPerformancesInParallel { get; set; } = false;
+        public Boolean PlayDeviceChannelSequencesInParallel { get; set; } = false;
 
         /// <summary>
         /// Performances to execute as part of this performance
@@ -53,18 +43,28 @@ namespace VNC.Phidget22.Configuration.Performance
         public Performance[]? Performances { get; set; }
 
         /// <summary>
-        /// Duration in ms of sleep time after DeviceClassSequences[] or Performances[] completed
+        /// Play Performances in Parallel or Sequential (false)
+        /// </summary>
+        public Boolean PlayPerformancesInParallel { get; set; } = false;
+
+        /// <summary>
+        /// Duration in ms of sleep time after DeviceChannelSequences[] or Performances[] completed
         /// </summary>
         public Int32? Duration { get; set; }
 
         /// <summary>
-        /// Performance[] to call after executing DeviceClassSequences[]
+        /// Number of loops of DeviceChannelSequences[] and/or Performances[]
+        /// </summary>
+        public Int32 PerformanceLoops { get; set; } = 1;
+
+        /// <summary>
+        /// Performance[] to call after executing DeviceChannelSequences[]
         /// before calling NextSequence
         /// </summary>
         public Performance[]? AfterPerformanceLoopPerformances { get; set; }
 
         /// <summary>
-        /// Performance to invoke at end of Loops of DeviceClassSequences or Performances
+        /// Performance to invoke at end of Loops of DeviceChannelSequences or Performances
         /// none or null to stop
         /// </summary>
         public Performance? NextPerformance { get; set; } = null;

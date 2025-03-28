@@ -102,7 +102,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void LoadDigitalInputSequences()
         {
             // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
+            // Think through how to load all the DeviceChannelSequences
             // that can be performed by an Stepper PhidgetDevice
 
             DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
@@ -116,7 +116,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void LoadDigitalOutputSequences()
         {
             // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
+            // Think through how to load all the DeviceChannelSequences
             // that can be performed by an Stepper PhidgetDevice
 
             DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
@@ -131,7 +131,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void LoadRCServoSequences()
         {
             // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
+            // Think through how to load all the DeviceChannelSequences
             // that can be performed by an Stepper PhidgetDevice
 
             RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
@@ -146,7 +146,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void LoadStepperSequences()
         {
             // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
+            // Think through how to load all the DeviceChannelSequences
             // that can be performed by an Stepper PhidgetDevice
 
             StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
@@ -1271,7 +1271,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //{
                 //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
                 //        $"\nbeforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                //        $"\nperformanceSequences:{performance.DeviceClassSequences?.Count()}" +
+                //        $"\nperformanceSequences:{performance.DeviceChannelSequences?.Count()}" +
                 //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
                 //        $"\nafterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                 //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
@@ -1296,7 +1296,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //{
                     //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
                     //        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    //        $" deviceClassSequences:{performance.DeviceClassSequences?.Count()}" +
+                    //        $" deviceClassSequences:{performance.DeviceChannelSequences?.Count()}" +
                     //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
                     //        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
                     //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
