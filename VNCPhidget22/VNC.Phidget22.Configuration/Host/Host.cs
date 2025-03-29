@@ -15,7 +15,6 @@ namespace VNC.Phidget22.Configuration
         public string IPAddress { get; set; } = "127.0.0.1";
         public Int32 Port { get; set; } = 5661;
         public Boolean Enable { get; set; } = true;
-
     }
 }
 

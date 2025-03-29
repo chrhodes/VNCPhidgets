@@ -17,7 +17,7 @@
   <Class Name="VNC.Phidget22.Configuration.Performance.Performance">
     <Position X="0.5" Y="7" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAAAiAAAAAAAIAAQAAAEAADAAAAEAAAACABE=</HashCode>
+      <HashCode>BAAAgAAAAAAiAAAAAAAACAQAAAEAADAAAAEAAAACABA=</HashCode>
       <FileName>Performance\Performance.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -143,19 +143,19 @@
   <Class Name="VNC.Phidget22.Configuration.Performance.PerformanceLibrary">
     <Position X="0.75" Y="0.5" Width="5.75" />
     <TypeIdentifier>
-      <HashCode>AAQABAAhCAACDABAAAACAAAAAAEAEAAJnAUCAAAwBAA=</HashCode>
+      <HashCode>AAQADAAhCAACDABAAAACAAAAAAEAEAAJnAUCAAAwBAA=</HashCode>
       <FileName>Performance\PerformanceLibrary.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.DeviceChannelSequence">
-    <Position X="2.75" Y="13.5" Width="2.5" />
+    <Position X="0.75" Y="13.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAACAAAAAAAAAAQAABGAAAAEAAAAAAAAABA=</HashCode>
       <FileName>Performance\DeviceChannelSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.Performance.ChannelSequence">
-    <Position X="9.5" Y="18.75" Width="4.5" />
+    <Position X="4.5" Y="14" Width="4.5" />
     <TypeIdentifier>
       <HashCode>AAAQAoAgAAAgAAAAAAAQAAQAABCAEEAAAEgAAAAAAhQ=</HashCode>
       <FileName>Performance\ChannelSequence.cs</FileName>

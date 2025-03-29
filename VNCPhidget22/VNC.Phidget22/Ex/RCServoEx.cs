@@ -1715,13 +1715,19 @@ namespace VNC.Phidget22.Ex
 
                     if (targetPosition < 0)
                     {
-                        if (action.TargetPosition == -1)        // -1 is magic number for MinPosition :)
+                        switch (targetPosition)
                         {
-                            targetPosition = MinPosition;
-                        }
-                        else if (action.TargetPosition == -2)   // -2 is magic number for MaxPosition :)
-                        {
-                            targetPosition = MaxPosition;
+                            case -1:
+                                targetPosition = MinPosition;
+                                break;
+
+                            case -2:
+                                targetPosition = MaxPosition;
+                                break;
+
+                                case -3:
+                                targetPosition = (MaxPosition - MinPosition) / 2;
+                                break;
                         }
                     }
 

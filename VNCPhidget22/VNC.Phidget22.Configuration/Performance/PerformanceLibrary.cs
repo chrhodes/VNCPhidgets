@@ -565,12 +565,12 @@ namespace VNC.Phidget22.Configuration.Performance
                 // Probably more
 
                 //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
-
-                @"RCServoSequences\RCServoSequenceConfig_OpenClose.json",
+                //@"AdvancedServoS
+                
                 @"RCServoSequences\RCServoSequenceConfig_Initialize.json",
-                @"RCServoSequences\RCServoSequenceConfig_Move.json",
-                @"RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json"
+                @"RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json",
+                @"RCServoSequences\RCServoSequenceConfig_OpenClose.json",
+                @"RCServoSequences\RCServoSequenceConfig_Move-Old.json",
             };
 
             return files;

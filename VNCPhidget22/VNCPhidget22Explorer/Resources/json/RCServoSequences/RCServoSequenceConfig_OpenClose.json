@@ -6,6 +6,7 @@
     { 
       "Name": "Open Servo", 
       "Description": "", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true }
@@ -14,153 +15,16 @@
     { 
       "Name": "Open and Engage Servo", 
       "Description": "", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "Engaged": true }
       ]
     },
     { 
-      "Name": "Open Servo0", 
-      "Channel": 0,
+      "Name": "Close Servo", 
       "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo1", 
-      "Channel": 1,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo2", 
-      "Channel":2,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo3", 
-      "Channel": 3,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo4", 
-      "Channel": 4,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo5", 
-      "Channel": 5,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo6", 
-      "Channel": 6,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    { 
-      "Name": "Open Servo7", 
-      "Channel": 7,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "LogPhidgetEvents": true }
-      ]
-    },
-    //
-    // Close Servos
-    //
-    { 
-      "Name": "Close Servo0", 
-      "Channel": 0,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo1", 
-      "Channel": 1,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo2", 
-      "Channel": 2,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo3", 
-      "Channel": 3,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo4", 
-      "Channel": 4,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo5", 
-      "Channel": 5,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo6", 
-      "Channel": 6,
-      "Description": "", 
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Close": true }
-      ]
-    },
-    { 
-      "Name": "Close Servo7", 
-      "Channel": 7,
-      "Description": "", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Close": true }
