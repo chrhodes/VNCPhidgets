@@ -1,0 +1,120 @@
+{
+  "Name": "PerformanceConfig_RCServos",
+  "Description": "Performances for RCServos",
+  "Performances": [
+    //
+    // Open/Close Servos 99415
+    //
+    {
+      "Name": "Open and Engage Servos 99415 A",
+      "Description": "This uses ChannelClasses that specify HubPort and Channel",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C0" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C1" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C2" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C3" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C4" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C5" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C6" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C7" },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Open and Engage Servos 99415 B",
+      "Description": "This uses HubPort and Channel Overrides",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 7, "Name": "Open and Engage Servo" },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Close Servos 99415",
+      "Description": "This uses HubPort and Channel Overrides",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 7, "Name": "Close Servo" },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Close Servos",
+      "Description": "This uses SerialNumber, HubPort, and Channel Overrides",
+      "SerialNumber": 99415,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Close Servo" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Sequential Sequences 99415
+    //
+    {
+      "Name": "Sequential Sequences Servo 99415",
+      "Description": "",
+      "SerialNumber": 99415,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Servo Min/Max" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Parallel Sequences Servo 99415
+    //
+    {
+      "Name": "Parallel Sequences Servo 99415",
+      "Description": "",
+      "SerialNumber": 99415,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Servo Min/Max" },
+      ],
+      "NextPerformance": null
+    },
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "RCServoSequences": [
+    //
+    // Move Servos in different ways
+    //
+    { 
+      "Name": "Move Servo Min/Max", 
+      "Description": "Centers Servo then Moves Min/Max then back to Center", 
+
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "TargetPosition": -3 }, // Center
+        { "TargetPosition": -1 }, // Min
+        { "TargetPosition": -2 }, // Max
+        { "TargetPosition": -3 }, // Center
+      ]
+    },
+    { 
+      "Name": "Move Left/Right in 30 unit steps",
+      "Description": "", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 150 },
+        { "TargetPosition": 120 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 30 },
+        { "TargetPosition": 60 },
+        { "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Move Left/Right in 30 unit steps using Relative",
+      "Description": "", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "TargetPosition": 90, },
+        { "RelativePosition": 30  },
+        { "RelativePosition": 30  },
+        { "RelativePosition": -30  },
+        { "RelativePosition": -30  },
+        { "RelativePosition": 30  },
+        { "RelativePosition": 30  },
+        { "RelativePosition": -30  },
+        { "RelativePosition": -30  },
+      ]
+    },
+  ]
+}

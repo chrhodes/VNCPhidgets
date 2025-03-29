@@ -51,8 +51,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            OpenSteppersCommand = new DelegateCommand(OpenSteppers, OpenSteppersCanExecute);
-            CloseSteppersCommand = new DelegateCommand(CloseSteppers, CloseSteppersCanExecute);
+            OpenAllSteppersCommand = new DelegateCommand(OpenAllSteppers, OpenAllSteppersCanExecute);
+            CloseAllSteppersCommand = new DelegateCommand(CloseAllSteppers, CloseAllSteppersCanExecute);
 
             OpenStepperCommand = new DelegateCommand<SerialHubPortChannel?>(OpenStepper, OpenStepperCanExecute);
             CloseStepperCommand = new DelegateCommand<SerialHubPortChannel?>(CloseStepper, CloseStepperCanExecute);
@@ -309,8 +309,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 LoadPhidgets();
 
-                OpenSteppersCommand.RaiseCanExecuteChanged();
-                OpenStepperCommand.RaiseCanExecuteChanged();
+                OpenAllSteppersCommand.RaiseCanExecuteChanged();
+                CloseAllSteppersCommand.RaiseCanExecuteChanged();
 
                 SteppersVisibility = Visibility.Visible;
             }
@@ -404,9 +404,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenSteppers Command
 
-        public DelegateCommand OpenSteppersCommand { get; set; }
-        public string OpenSteppersContent { get; set; } = "Open";
-        public string OpenSteppersToolTip { get; set; } = "OpenSteppers ToolTip";
+        public DelegateCommand OpenAllSteppersCommand { get; set; }
+        public string OpenAllSteppersContent { get; set; } = "Open";
+        public string OpenAllSteppersToolTip { get; set; } = "OpenSteppers ToolTip";
 
         // Can get fancy and use Resources
         //public string OpenStepperContent { get; set; } = "ViewName_OpenStepperContent";
@@ -416,7 +416,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
         //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
 
-        public async void OpenSteppers()
+        public async void OpenAllSteppers()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenSteppers) Enter", Common.LOG_CATEGORY);
@@ -433,8 +433,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenStepper(stepper.Key);
             }
 
-            OpenSteppersCommand.RaiseCanExecuteChanged();
-            CloseSteppersCommand.RaiseCanExecuteChanged();
+            OpenAllSteppersCommand.RaiseCanExecuteChanged();
+            CloseAllSteppersCommand.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -467,7 +467,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenSteppers) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean OpenSteppersCanExecute()
+        public Boolean OpenAllSteppersCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -655,9 +655,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseSteppers Command
 
-        public DelegateCommand CloseSteppersCommand { get; set; }
-        public string CloseSteppersContent { get; set; } = "Close";
-        public string CloseSteppersToolTip { get; set; } = "CloseSteppers ToolTip";
+        public DelegateCommand CloseAllSteppersCommand { get; set; }
+        public string CloseAllSteppersContent { get; set; } = "Close";
+        public string CloseAllSteppersToolTip { get; set; } = "CloseSteppers ToolTip";
 
         // Can get fancy and use Resources
         //public string CloseStepperContent { get; set; } = "ViewName_CloseStepperContent";
@@ -667,7 +667,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseStepperContent">CloseStepper</system:String>
         //    <system:String x:Key="ViewName_CloseStepperContentToolTip">CloseStepper ToolTip</system:String>  
 
-        public async void CloseSteppers()
+        public async void CloseAllSteppers()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
@@ -684,8 +684,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 CloseStepper(stepper.Key);
             }
 
-            OpenSteppersCommand.RaiseCanExecuteChanged();
-            CloseSteppersCommand.RaiseCanExecuteChanged();
+            OpenAllSteppersCommand.RaiseCanExecuteChanged();
+            CloseAllSteppersCommand.RaiseCanExecuteChanged();
 
             //InitializeVelocityCommand.RaiseCanExecuteChanged();
             //InitializeAccelerationCommand.RaiseCanExecuteChanged();
@@ -732,7 +732,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(CloseStepper) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean CloseSteppersCanExecute()
+        public Boolean CloseAllSteppersCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.

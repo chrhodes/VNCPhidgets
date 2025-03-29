@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>development-23</VersionSuffix>
-        <FileVersion>2025.03.28A</FileVersion>
+        <FileVersion>2025.03.29A</FileVersion>
         <Description>Phidget22 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>    
@@ -115,10 +115,19 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="Resources\json\Performances\PerformanceConfig_Steppers.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_DigitalOutputs.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\PerformanceConfig_RCServos.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\RCServoSequences\AdvancedServoSequenceConfig_Skulls.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\RCServoSequences\AdvancedServoSequenceConfig_99415.json">
+        <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_99415.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\RCServoSequences\AdvancedServoSequenceConfig_Initialization.json">
@@ -169,7 +178,7 @@
         <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_Move-Old.json">
+        <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_Move.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_OpenClose.json">

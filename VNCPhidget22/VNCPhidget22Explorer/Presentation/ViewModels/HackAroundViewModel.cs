@@ -498,6 +498,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        private Int32? _serialNumber;
+        public Int32? serialNumber
+        {
+            get => _serialNumber;
+            set
+            {
+                _serialNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region ChannelClass Sequences

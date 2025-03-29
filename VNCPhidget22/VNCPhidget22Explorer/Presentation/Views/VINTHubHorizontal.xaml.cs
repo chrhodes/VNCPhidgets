@@ -74,6 +74,13 @@ namespace VNCPhidget22Explorer.Presentation.Views
             //this.lgInterfaceKits.IsEnabled = true;
             this.lgPhidget22Status.IsCollapsed = true;
 
+            lgHubPort0.IsCollapsed = false;
+            lgHubPort1.IsCollapsed = true;
+            lgHubPort2.IsCollapsed = true;
+            lgHubPort3.IsCollapsed = true;
+            lgHubPort4.IsCollapsed = true;
+            lgHubPort5.IsCollapsed = true;
+
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;

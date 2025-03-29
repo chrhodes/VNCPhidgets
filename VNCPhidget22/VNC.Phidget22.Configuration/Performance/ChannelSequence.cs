@@ -20,7 +20,7 @@ namespace VNC.Phidget22.Configuration.Performance
         public string? Description { get; set; }
 
         /// <summary>
-        /// Description of sequence (optional)
+        /// Notes on using DeviceChannelSequence (optional)
         /// </summary>
         public string? UsageNotes { get; set; }
 

@@ -26,6 +26,12 @@
         { "Engaged": true, "VelocityLimit": 250, "Acceleration": 1000, "TargetPosition": -3 },
       ]
     },
+    //
+    // TODO(crhodes)
+    // Add a few more once we get a feel for useful MovementCharacteristics
+    //
+    // Specify HubPort and Channel.  Likely not (rarely) used.
+    //
     { 
       "Name": "Initialize Servo HP0 C0", 
       "HubPort": 0, "Channel": 0,
@@ -46,6 +52,10 @@
         { "Engaged": true, "VelocityLimit": 100, "Acceleration": 1000, "TargetPosition": -3 },
       ]
     },
+    //
+    // Not sure if there is an example of a Phidget RCServo with a non-zero HubPort
+    // RCServo(x16) is HubPort 0 Channel 0-15
+    //
     { 
       "Name": "Initialize Servo HP1 C0", 
       "HubPort": 1, "Channel": 0,

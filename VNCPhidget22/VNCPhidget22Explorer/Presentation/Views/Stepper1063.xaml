@@ -110,9 +110,9 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                     <Button 
-		                        Command="{Binding OpenSteppersCommand }"
-		                        Content="{Binding OpenSteppersContent, FallbackValue='Open' }"
-		                        ToolTip="{Binding OpenSteppersToolTip, FallbackValue='Open ToolTip' }" />
+		                        Command="{Binding OpenAllSteppersCommand }"
+		                        Content="{Binding OpenAllSteppersContent, FallbackValue='Open' }"
+		                        ToolTip="{Binding OpenAllSteppersToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
 
                 <!--<dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
@@ -124,9 +124,9 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button 
-                		        Command="{Binding CloseSteppersCommand }"
-                		        Content="{Binding CloseSteppersContent, FallbackValue='Close' }"
-                		        ToolTip="{Binding CloseSteppersToolTip, FallbackValue='Close ToolTip' }" />
+                		        Command="{Binding CloseAllSteppersCommand }"
+                		        Content="{Binding CloseAllSteppersContent, FallbackValue='Close' }"
+                		        ToolTip="{Binding CloseAllSteppersToolTip, FallbackValue='Close ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>

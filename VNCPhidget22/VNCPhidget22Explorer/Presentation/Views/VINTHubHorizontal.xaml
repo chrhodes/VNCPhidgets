@@ -138,6 +138,8 @@
                                AttachedPhidgetDevice="{Binding Phidget22Device, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}" />-->
 
+                <!--Logging-->
+                
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
                    Margin="-5,0,-5,0"

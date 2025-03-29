@@ -6,18 +6,6 @@
     // Need some way of specifying a range of Servos
     //
     { 
-      "Name": "Move Servo Min/Max", 
-      "Description": "Centers Servo then Moves Min/Max then back to Center", 
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "TargetPosition": -3 }, // Center
-        { "TargetPosition": -1 }, // Min
-        { "TargetPosition": -2 }, // Max
-        { "TargetPosition": -3 }, // Center
-      ]
-    },
-    { 
       "Name": "VelocityLimit (10) Acceleration(25)", 
       "Description": "VelocityLimit (10) Acceleration(25)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",

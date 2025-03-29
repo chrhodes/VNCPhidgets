@@ -94,15 +94,13 @@
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical"
                                   Background="Pink" Padding="10">
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
-                            <dxe:TextEdit Text="{Binding Name }" HorizontalAlignment="Left" />
-                        </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
+                        <dxe:TextEdit Text="{Binding Name }" HorizontalAlignment="Left" />
+                    </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" >
-                            <dxe:TextEdit Text="{Binding Description }" />
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" >
+                        <dxe:TextEdit Text="{Binding Description }" />
+                    </dxlc:LayoutItem>
 
                     <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                         <dxlc:LayoutItem Label="BeforePerformanceLoopPerformances[]" HorizontalAlignment="Left" >

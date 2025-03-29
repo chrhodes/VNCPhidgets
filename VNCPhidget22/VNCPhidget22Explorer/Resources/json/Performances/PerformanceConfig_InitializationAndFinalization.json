@@ -10,7 +10,8 @@
     { 
       "Name": "Begin the Show",
       "Description": "Initialize servos and set Position Limits.  Does not Enage servos.",
-      "Loops": 1, "PlayDeviceChannelSequencesInParallel": false,
+      "Loops": 1, 
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Initialize Skulls" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Initialize Skulls" },
@@ -19,7 +20,8 @@
     { 
       "Name": "Bring to Attention",
       "Description": "Engage and Center all servos",
-      "Loops": 1, "PlayDeviceChannelSequencesInParallel": true,
+      "Loops": 1, 
+      "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "SequenceType": "AS", "SerialNumber": 99220,  "Name": "99220-Wake up Skulls" },
         { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Wake up Skulls" }

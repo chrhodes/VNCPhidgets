@@ -90,11 +90,9 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
-                        VerticalAlignment="Top" >
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
-                                      VerticalAlignment="Top">
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                             <dxlc:LayoutItem Label="DigitalOutput Phidgets" LabelPosition="Top" Width="150" >
                                 <dxe:ComboBoxEdit 
@@ -123,11 +121,11 @@
 
                             <dxlc:LayoutItem Label="HubPort#" LabelPosition="Left" HorizontalAlignment="Left" >
                                 <dxe:ComboBoxEdit HorizontalAlignment="Left"
-                                ItemsSource="{Binding HubPorts}"
-                                SelectedItem="{Binding SelectedHubPort}" >
-                                    <!--<dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>-->
+                                    ItemsSource="{Binding HubPorts}"
+                                    SelectedItem="{Binding SelectedHubPort}" >
+                                        <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
                                 </dxe:ComboBoxEdit>
                             </dxlc:LayoutItem>
 
@@ -147,10 +145,10 @@
 
                     <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
                         <Button 
-		                Command="{Binding PlayDigitalOutputSequenceCommand }"
-                        CommandParameter="false"
-		                Content="{Binding PlayDigitalOutputSequenceContent, FallbackValue='PlaySequence' }"
-		                ToolTip="{Binding PlayDigitalOutputSequenceToolTip, FallbackValue='PlayDigitalOutputSequence ToolTip' }" />
+		                    Command="{Binding PlayDigitalOutputSequenceCommand }"
+                            CommandParameter="false"
+		                    Content="{Binding PlayDigitalOutputSequenceContent, FallbackValue='PlaySequence' }"
+		                    ToolTip="{Binding PlayDigitalOutputSequenceToolTip, FallbackValue='PlayDigitalOutputSequence ToolTip' }" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>

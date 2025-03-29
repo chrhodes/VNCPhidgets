@@ -1586,7 +1586,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.RescaleFactor is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" rescaleFactor:>{action.StepAngle}<");
+                    if (LogChannelAction) actionMessage.Append($" rescaleFactor:>{action.RescaleFactor}<");
 
                     RescaleFactor = (Double)action.RescaleFactor;
                 }

@@ -1,7 +1,7 @@
 {
   "RCServoSequences": [
     //
-    // Open Servos
+    // Sequences to Open, Engage, Disenage, Close RCServos
     //
     { 
       "Name": "Open Servo", 
@@ -19,6 +19,15 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "Engaged": true }
+      ]
+    },
+    { 
+      "Name": "Disengage Servo", 
+      "Description": "", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": false }
       ]
     },
     { 

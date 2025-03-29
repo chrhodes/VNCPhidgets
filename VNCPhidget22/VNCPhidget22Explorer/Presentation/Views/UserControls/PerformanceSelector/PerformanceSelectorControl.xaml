@@ -77,17 +77,22 @@
         Need LayoutControl so all things align properly.
         Might be able to put this in HackAround.xaml and not here 
     -->
-    <dxlc:LayoutControl  View="Group" Orientation="Vertical" >
-          
-        <dxlc:LayoutGroup x:Name="lgPerformances"  Header="Performances" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
-                          IsCollapsible="True" IsCollapsed="False">
-               
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+    <DockPanel>
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
-                    
-                    <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
+        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+
+        <dxlc:LayoutControl  Padding="0" Orientation="Vertical" >
+
+            <dxlc:LayoutGroup x:Name="lgPerformances" View="GroupBox" Header="Performances"  
+                Orientation="Vertical" VerticalAlignment="Top"
+                IsCollapsible="True" IsCollapsed="False">
+            
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
+
+                        <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
                             ItemsSource="{Binding Performances}" DisplayMember="Name" 
                             SelectedItem="{Binding SelectedPerformance}"
                             EditValue="{ Binding 
@@ -95,48 +100,63 @@
                                 Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
                                 Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:CheckedComboBoxStyleSettings />
-                            </dxe:ComboBoxEdit.StyleSettings>
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
 
-                    <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
+                        <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="SerialNumber#" LabelPosition="Left" HorizontalAlignment="Left" >
+                                <dxe:TextEdit Text="{Binding SerialNumber}" NullText="serialnumber"/>
+                                <!--<dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding HubPorts}"
+                                    SelectedItem="{Binding SelectedHubPort}" >
+                                    --><!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>--><!--
+                                </dxe:ComboBoxEdit>-->
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
+                    
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
+	                        Command="{Binding PlayPerformanceCommand }"
+	                        Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
+	                        ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
+                    </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
-                    <Button 
-	                    Command="{Binding PlayPerformanceCommand }"
-	                    Content="{Binding PlayPerformanceContent, FallbackValue='PlayPerformance' }"
-	                    ToolTip="{Binding PlayPerformanceToolTip, FallbackValue='PlayPerformance ToolTip' }" />
-                </dxlc:LayoutItem>
+                <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
 
             </dxlc:LayoutGroup>
 
-        </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
+                              IsCollapsible="True" IsCollapsed="False">
 
-        <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
-                          IsCollapsible="True" IsCollapsed="False">
+                <!--<ScrollViewer>-->
 
-            <!--<ScrollViewer>-->
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+                        <views:DigitalOutputChannelSequencesControl />
 
-                    <views:DigitalOutputChannelSequencesControl />
+                        <views:RCServoChannelSequencesControl />
 
-                    <views:RCServoChannelSequencesControl />
+                        <views:StepperChannelSequencesControl />                  
 
-                    <views:StepperChannelSequencesControl />                  
+                    </dxlc:LayoutGroup>
 
-                </dxlc:LayoutGroup>
+                <!--</ScrollViewer>-->
 
-            <!--</ScrollViewer>-->
+            </dxlc:LayoutGroup>
 
-        </dxlc:LayoutGroup>
-
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" VerticalAlignment="Bottom"/>
-
-    </dxlc:LayoutControl>
+        </dxlc:LayoutControl>
+        
+    </DockPanel>
 
 </vncmvvm:ViewBase>

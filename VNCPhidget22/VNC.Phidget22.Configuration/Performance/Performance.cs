@@ -15,6 +15,11 @@ namespace VNC.Phidget22.Configuration.Performance
         public string? Description { get; set; }
 
         /// <summary>
+        /// Notes on using Performance (optional)
+        /// </summary>
+        public string? UsageNotes { get; set; }
+
+        /// <summary>
         /// Performance[] to call before executing DeviceChannelSequences[] and/or Performances[]
         /// before calling NextPerformance
         /// </summary>

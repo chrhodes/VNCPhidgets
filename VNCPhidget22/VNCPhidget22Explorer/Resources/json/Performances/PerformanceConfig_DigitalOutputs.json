@@ -1,0 +1,60 @@
+{
+  "Name": "PerformanceConfig_DigitalOutputs",
+  "Description": "Performances for DigitalOutputs",
+  "Performances": [
+    //
+    // Sequential Sequences 1 IntefaceKit 124744
+    //
+    {
+      "Name": "Sequential Sequences 1 DigitalOutput 124744",
+      "Description": "Blink Lights in Sequence",
+      "SerialNumber": 124744,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Open and Blink DO 500ms" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Sequential Sequences 2 IntefaceKit 124744
+    //
+    {
+      "Name": "Sequential Sequences 2 DigitalOutput 124744",
+      "Description": "Blink Lights in Sequence, Two Loops",
+      "SerialNumber": 124744,
+      "Loops": 2,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Open and Blink DO 250ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open and Blink DO 250ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Open and Blink DO 250ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open and Blink DO 250ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Open and Blink DO 250ms" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Parallel Sequences InterfaceKit 124744
+    //
+    {
+      "Name": "Parallel Sequences InterfaceKit 124744",
+      "Description": "Blink Lights in Parallel",
+      "SerialNumber": 124744,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open and Blink DO 500ms" },
+        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Open and Blink DO 500ms" },
+
+      ],
+      "NextPerformance": null
+    },  
+  ]
+}
