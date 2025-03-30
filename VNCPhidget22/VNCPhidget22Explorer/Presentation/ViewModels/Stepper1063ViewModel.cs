@@ -422,7 +422,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenSteppers) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called OpenStepper";
+            Message = "Cool, you called OpenAllSteppers";
             PublishStatusMessage(Message);
 
             var steppers = Common.PhidgetDeviceLibrary.StepperChannels
@@ -523,22 +523,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             switch (shpc.Channel)
             {
                 case 0:
-                    if (Stepper0 is null) Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[shpc];
                     await OpenStepper(Stepper0);
                     break;
 
                 case 1:
-                    if (Stepper1 is null) Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[shpc];
                     await OpenStepper(Stepper1);
                     break;
 
                 case 2:
-                    if (Stepper2 is null) Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[shpc];
                     await OpenStepper(Stepper2);
                     break;
 
                 case 3:
-                    if (Stepper3 is null) Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[shpc];
                     await OpenStepper(Stepper0);
                     break;
 
@@ -641,7 +637,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 return true; 
             }
 
-            if (host.Attached)
+            if (host.IsOpen)
             {
                 return false;
             }
@@ -673,7 +669,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called CloseSteppers";
+            Message = "Cool, you called CloseAllSteppers";
             PublishStatusMessage(Message);
 
             var steppers = Common.PhidgetDeviceLibrary.StepperChannels
@@ -780,7 +776,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
-            Message = $"Cool, you called CloseDigitalInput on " +
+            Message = $"Cool, you called CloseStepper on " +
                 $"serialHubPortChannel:{shpc.SerialNumber}" +
                 $":{shpc.HubPort}:{shpc.Channel}";
 

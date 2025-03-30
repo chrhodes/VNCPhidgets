@@ -5,7 +5,7 @@ namespace VNC.Phidget22.Configuration.Performance
     public class Performance
     {
         /// <summary>
-        /// Name of Sequence
+        /// Name of Performance
         /// </summary>
         public string Name { get; set; } = "PERFORMANCE NAME";
 

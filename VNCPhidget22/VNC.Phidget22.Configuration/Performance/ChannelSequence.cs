@@ -10,17 +10,17 @@ namespace VNC.Phidget22.Configuration.Performance
         }
 
         /// <summary>
-        /// Name of sequence.  Must be unique in ChannelClass
+        /// Name of sequence. Must be unique in ChannelClass
         /// </summary>
         public string Name { get; set; } = "SEQUENCE NAME";
 
         /// <summary>
-        /// Description of sequence (optional)
+        /// Description of ChannelSequence (optional)
         /// </summary>
         public string? Description { get; set; }
 
         /// <summary>
-        /// Notes on using DeviceChannelSequence (optional)
+        /// Notes on using ChannelSequence (optional)
         /// </summary>
         public string? UsageNotes { get; set; }
 

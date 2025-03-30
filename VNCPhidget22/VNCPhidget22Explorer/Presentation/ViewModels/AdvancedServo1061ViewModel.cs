@@ -668,7 +668,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenAdvancedServo) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called OpenAdvancedServo";
+            Message = "Cool, you called OpenAllRCServos";
             PublishStatusMessage(Message);
 
             var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
@@ -749,7 +749,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseAdvancedServo) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called CloseAdvancedServo";
+            Message = "Cool, you called CloseAllRCServos";
             PublishStatusMessage(Message);
 
             var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
@@ -844,7 +844,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
-            Message = $"Cool, you called OpenDigitalInput on " +
+            Message = $"Cool, you called OpenRCServo on " +
                  $"serialHubPortChannel:{shpc.SerialNumber}" +
                  $":{shpc.HubPort}:{shpc.Channel}";
             PublishStatusMessage(Message);

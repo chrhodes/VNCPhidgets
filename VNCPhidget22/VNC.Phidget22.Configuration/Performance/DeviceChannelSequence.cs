@@ -12,6 +12,16 @@ namespace VNC.Phidget22.Configuration
         public string? Name { get; set; } = null;
 
         /// <summary>
+        /// Description of DeviceChannelSequence (optional)
+        /// </summary>
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// Notes on using DeviceChannelSequence (optional)
+        /// </summary>
+        public string? UsageNotes { get; set; }
+
+        /// <summary>
         /// SerialNumber of PhidgetDevice that will run sequencee
         /// </summary>
         public Int32 SerialNumber { get; set; }

@@ -499,7 +499,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         private Int32? _serialNumber;
-        public Int32? serialNumber
+        public Int32? SerialNumber
         {
             get => _serialNumber;
             set
@@ -1276,9 +1276,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformancePlayer performancePlayer = GetPerformancePlayer();
 
+            // TODO(crhodes)
+            // Maybe this should be a do / while loop
+
             foreach (Performance performance in SelectedPerformances)
             {
                 Performance? nextPerformance = performance;
+
+                if (SerialNumber is not null)
+                {
+                    nextPerformance.SerialNumber = SerialNumber;
+                }
 
                 // NOTE(crhodes)
                 // Run on another thread to keep UI active

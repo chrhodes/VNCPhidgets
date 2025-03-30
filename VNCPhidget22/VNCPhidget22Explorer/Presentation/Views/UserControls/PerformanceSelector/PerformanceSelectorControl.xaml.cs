@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Linq;
 
+using DevExpress.Mvvm.POCO;
+using DevExpress.Xpf.Editors;
 using DevExpress.XtraRichEdit.Import.OpenXml;
 
 using VNC;
 using VNC.Core.Mvvm;
+
+using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
@@ -120,5 +124,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
+        private void TextEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var viewModel = (HackAroundViewModel)DataContext;
+
+            // TODO(crhodes)
+            // Figure out how to 
+
+            viewModel.SerialNumber = null;
+        }
     }
 }
