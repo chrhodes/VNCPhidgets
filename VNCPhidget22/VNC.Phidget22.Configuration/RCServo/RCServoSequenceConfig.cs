@@ -7,6 +7,7 @@
             new RCServoSequence
             {
                 Name="RCServoSequence0",
+                HubPort = 0,
                 Channel = 0,
                 Actions = new[]
                 {

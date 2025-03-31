@@ -148,6 +148,18 @@
 
                         </dxlc:LayoutGroup>
 
+                        <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Name }" TextWrapping="Wrap" Width="300" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.Description }" TextWrapping="Wrap" Width="300" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
+                            <dxe:TextEdit Text="{Binding SelectedRCServoSequence.UsageNotes }" TextWrapping="Wrap"  Width="300" />
+                        </dxlc:LayoutItem>
+                        
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem  VerticalAlignment="Stretch" HorizontalAlignment="Right">

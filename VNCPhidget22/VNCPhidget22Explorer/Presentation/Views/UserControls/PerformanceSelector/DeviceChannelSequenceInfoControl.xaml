@@ -94,7 +94,7 @@
                 
                 <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
-                    <dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
+                    <!--<dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" Background="Wheat" >
                         <dxe:TextEdit Text="{Binding Name }" TextWrapping="Wrap" Width="300" />
                     </dxlc:LayoutItem>
 
@@ -104,7 +104,7 @@
 
                     <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" Background="Wheat" >
                         <dxe:TextEdit Text="{Binding UsageNotes }" TextWrapping="Wrap"  Width="300" />
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>-->
 
                     <dxlc:LayoutItem Label="ChannelClass" HorizontalAlignment="Left" Background="Wheat" >
                         <dxe:TextEdit Text="{Binding ChannelClass, Mode=OneWay}" Width="300" TextWrapping="Wrap" />

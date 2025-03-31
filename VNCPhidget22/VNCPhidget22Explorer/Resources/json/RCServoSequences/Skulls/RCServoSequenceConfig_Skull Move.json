@@ -1,0 +1,11 @@
+// RCServoSequenceConfig_Skull Move
+{
+  "RCServoSequences": [
+    //
+    // TODO(crhodes)
+    // Move skulls
+    // Get stuff from AdvancedServoConfig_Skulls
+    //
+
+  ]
+}

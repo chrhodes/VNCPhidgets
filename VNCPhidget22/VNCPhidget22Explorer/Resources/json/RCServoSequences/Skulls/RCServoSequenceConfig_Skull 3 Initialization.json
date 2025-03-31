@@ -1,0 +1,72 @@
+// RCServoSequenceConfig_Skull 3 Initialize
+// TODO(crhodes)
+// Need to set specific values for each axis
+{
+  "RCServoSequences": [
+    //
+    // Skull 3
+    //
+    { 
+      "Name": "Initialize Skull 3 X Axis", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "",
+      "HubPort": 0, "Channel": 0,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 250, "VelocityLimit": 25 },
+      ]
+    },
+    { 
+      "Name": "Initialize Skull 3 Y Axis", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "",
+      "HubPort": 0, "Channel": 1,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 250, "VelocityLimit": 25 },
+      ]
+    },
+    { 
+      "Name": "Initialize Skull 3 Z Axis", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "",
+      "HubPort": 0, "Channel": 2,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "ServoType": 5, "PositionMin": 120, "PositionMax": 150, "Acceleration": 250, "VelocityLimit": 25 },
+      ]
+    },
+    // TODO(crhodes)
+    // Maybe combine this with above
+    { 
+      "Name": "Enage and Center Skull 3 X Axis", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "",
+      "HubPort": 0, "Channel": 0,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "TargetPosition": 135 },
+      ]
+    },
+    { 
+      "Name": "Engage and Center Skull 3 Y Axis", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "",
+      "HubPort": 0, "Channel": 1,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "TargetPosition": 70 },
+      ]
+    },
+    { 
+      "Name": "Engage and Center Skull 3 Z Axis", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "",
+      "HubPort": 0, "Channel": 2,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true, "TargetPosition": 80 },
+      ]
+    },    
+  ]
+}
