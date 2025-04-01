@@ -527,8 +527,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
         
-        private Int32 _selectedHubPort;
-        public Int32 SelectedHubPort
+        private Int32? _selectedHubPort;
+        public Int32? SelectedHubPort
         {
             get => _selectedHubPort;
             set
@@ -552,8 +552,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedChannel;
-        public Int32 SelectedChannel
+        private Int32? _selectedChannel;
+        public Int32? SelectedChannel
         {
             get => _selectedChannel;
             set
@@ -580,13 +580,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedDigitalInput;
-        public Int32 SelectedDigitalInput
+        private Int32 _selectedDigitalInputPhidget;
+        public Int32 SelectedDigitalInputPhidget
         {
-            get => _selectedDigitalInput;
+            get => _selectedDigitalInputPhidget;
             set
             {
-                _selectedDigitalInput = value;
+                _selectedDigitalInputPhidget = value;
                 OnPropertyChanged();
 
                 //PlayDigitalInputSequenceCommand.RaiseCanExecuteChanged();
@@ -603,6 +603,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedDigitalInputSequence;
         public ChannelSequence? SelectedDigitalInputSequence
@@ -680,6 +683,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
+
         private ChannelSequence? _selectedDigitalOutputSequence;
         public ChannelSequence? SelectedDigitalOutputSequence
         {
@@ -756,6 +762,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
+
         private ChannelSequence? _selectedRCServoSequence;
         public ChannelSequence? SelectedRCServoSequence
         {
@@ -808,13 +817,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedStepper;
-        public Int32 SelectedStepper
+        private Int32 _selectedStepperPhidget;
+        public Int32 SelectedStepperPhidget
         {
-            get => _selectedStepper;
+            get => _selectedStepperPhidget;
             set
             {
-                _selectedStepper = value;
+                _selectedStepperPhidget = value;
                 OnPropertyChanged();
 
                 PlayStepperSequenceCommand.RaiseCanExecuteChanged();
@@ -832,6 +841,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
+
         private ChannelSequence? _selectedStepperSequence;
         public ChannelSequence? SelectedStepperSequence
         {
@@ -847,16 +859,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Dictionary<string, ChannelSequence> _availableStepperSequences;
-        public Dictionary<string, ChannelSequence> AvailableStepperSequences
-        {
-            get => _availableStepperSequences;
-            set
-            {
-                _availableStepperSequences = value;
-                OnPropertyChanged();
-            }
-        }
+        //private Dictionary<string, ChannelSequence> _availableStepperSequences;
+        //public Dictionary<string, ChannelSequence> AvailableStepperSequences
+        //{
+        //    get => _availableStepperSequences;
+        //    set
+        //    {
+        //        _availableStepperSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private List<ChannelSequence> _selectedStepperSequences;
         public List<ChannelSequence> SelectedStepperSequences
@@ -895,13 +907,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedVoltageInput;
-        public Int32 SelectedVoltageInput
+        private Int32 _selectedVoltageInputPhidget;
+        public Int32 SelectedVoltageInputPhidget
         {
-            get => _selectedVoltageInput;
+            get => _selectedVoltageInputPhidget;
             set
             {
-                _selectedVoltageInput = value;
+                _selectedVoltageInputPhidget = value;
                 OnPropertyChanged();
 
                 //PlayVoltageInputCommand.RaiseCanExecuteChanged();
@@ -918,6 +930,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedVoltageInputSequence;
         public ChannelSequence? SelectedVoltageInputSequence
@@ -971,13 +986,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedVoltageOutput;
-        public Int32 SelectedVoltageOutput
+        private Int32 _selectedVoltageOutputPhidget;
+        public Int32 SelectedVoltageOutputPhidget
         {
-            get => _selectedVoltageOutput;
+            get => _selectedVoltageOutputPhidget;
             set
             {
-                _selectedVoltageOutput = value;
+                _selectedVoltageOutputPhidget = value;
                 OnPropertyChanged();
 
                 //PlayVoltageOutputSequenceCommand.RaiseCanExecuteChanged();
@@ -994,6 +1009,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedVoltageOutputSequence;
         public ChannelSequence? SelectedVoltageOutputSequence
@@ -1473,7 +1491,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedRCServoSequences?.Count > 0)
+            if (SelectedRCServoPhidget > 0 && SelectedRCServoSequences?.Count > 0)
             {
                 return true;
             }
@@ -1841,7 +1859,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     DeviceChannelSequence? nextPhidgetDeviceSequence =
                         new DeviceChannelSequence
                         {
-                            SerialNumber = SelectedStepper,
+                            SerialNumber = SelectedStepperPhidget,
                             Name = sequence.Name,
                             ChannelClass = "Stepper",
                             SequenceLoops = sequence.SequenceLoops
@@ -1909,7 +1927,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedStepperSequences?.Count > 0)
+            if (SelectedStepperPhidget > 0 && SelectedStepperSequences?.Count > 0)
             {
                 return true;
             }

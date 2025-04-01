@@ -99,7 +99,7 @@
                             <dxlc:LayoutItem Label="Stepper Phidgets" LabelPosition="Top" Width="150">
                                 <dxe:ComboBoxEdit 
                                     ItemsSource="{Binding Steppers}"
-                                    SelectedItem="{Binding SelectedStepper}" NullText=""/>
+                                    SelectedItem="{Binding SelectedStepperPhidget}" NullText=""/>
                             </dxlc:LayoutItem>
 
                             <dxlc:LayoutItem Label="Selected Sequence(s)"  LabelPosition="Top">

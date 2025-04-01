@@ -113,9 +113,9 @@ namespace VNC.Phidget22.Players
                 if (LogDeviceChannelSequence)
                 {
                     startTicks = Log.Trace($"Executing DeviceChannel Sequence:>{deviceChannelSequence?.Name}" +
-                        $"\r channelClass:>{deviceChannelSequence?.ChannelClass}<" +
-                        $" performanceSerialNumber:>{performanceSerialNumber}< serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                        $" hubPort:>{deviceChannelSequence?.HubPort}< channel:>{deviceChannelSequence?.Channel}<" +
+                        $" channelClass:>{deviceChannelSequence?.ChannelClass}<" +
+                        $" performanceSerialNumber:>{performanceSerialNumber}< dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                        $" dcsHubPort:>{deviceChannelSequence?.HubPort}< dcsChannel:>{deviceChannelSequence?.Channel}<" +
                         $"\r loops:>{deviceChannelSequence?.SequenceLoops}<" +
                         $" duration:>{deviceChannelSequence?.Duration}<" +
                         $"\r closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
@@ -209,23 +209,6 @@ namespace VNC.Phidget22.Players
                 {
                     var digitalOutputSequence = PerformanceLibrary.AvailableDigitalOutputSequences[deviceChannelSequence.Name];
 
-                    if (LogDeviceChannelSequence)
-                    {
-                        startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
-                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{digitalOutputSequence.Channel}< " +
-                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
-
                     // NOTE(crhodes)
                     // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
                     // Useful during initialization of common Channels on a Phidget Device
@@ -238,6 +221,24 @@ namespace VNC.Phidget22.Players
                     if (deviceChannelSequence.Channel is not null)
                     {
                         digitalOutputSequence.Channel = deviceChannelSequence.Channel;
+                    }
+
+                    if (LogDeviceChannelSequence)
+                    {
+                        startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
+                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
+                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{digitalOutputSequence.Channel}< " +
+                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                            $"\r beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                            $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
+                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                            $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
                     phidgetHost = GetDigitalOutputHost(
@@ -322,24 +323,6 @@ namespace VNC.Phidget22.Players
                 {
                     rcServoSequence = PerformanceLibrary.AvailableRCServoSequences[deviceChannelSequence.Name];
 
-                    if (LogDeviceChannelSequence)
-                    {
-                        startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
-                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{rcServoSequence.Channel}< " +
-                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{rcServoSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
-
                     // NOTE(crhodes)
                     // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
                     // Useful during initialization of common Channels on a Phidget Device
@@ -352,6 +335,24 @@ namespace VNC.Phidget22.Players
                     if (deviceChannelSequence.Channel is not null)
                     {
                         rcServoSequence.Channel = deviceChannelSequence.Channel;
+                    }
+
+                    if (LogDeviceChannelSequence)
+                    {
+                        startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
+                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
+                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{rcServoSequence.Channel}< " +
+                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                            $"\r beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                            $" afterActionLoopSequences:>{rcServoSequence?.AfterActionLoopSequences?.Count()}<" +
+                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                            $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
                     phidgetHost = GetRCServoHost(
@@ -434,23 +435,6 @@ namespace VNC.Phidget22.Players
                 {
                     var stepperSequence = PerformanceLibrary.AvailableStepperSequences[deviceChannelSequence.Name];
 
-                    if (LogDeviceChannelSequence)
-                    {
-                        startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
-                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence.Channel}< " +
-                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
-
                     // NOTE(crhodes)
                     // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
                     // Useful during initialization of common Channels on a Phidget Device
@@ -463,6 +447,24 @@ namespace VNC.Phidget22.Players
                     if (deviceChannelSequence.Channel is not null)
                     {
                         stepperSequence.Channel = deviceChannelSequence.Channel;
+                    }
+
+                    if (LogDeviceChannelSequence)
+                    {
+                        startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
+                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{stepperSequence?.HubPort}<" +
+                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence.Channel}< " +
+                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                            $"\r beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                            $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
+                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                            $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                     }
 
                     phidgetHost = GetStepperHost(

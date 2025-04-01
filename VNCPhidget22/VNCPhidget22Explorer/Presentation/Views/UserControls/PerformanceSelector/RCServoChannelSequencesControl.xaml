@@ -129,7 +129,7 @@
                             <dxlc:LayoutItem Label="HubPort#" LabelPosition="Left" >
                                 <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                     ItemsSource="{Binding HubPorts}"
-                                    SelectedItem="{Binding SelectedHubPort}" >
+                                    SelectedItem="{Binding SelectedHubPort}" NullText="null" >
                                     <!--<dxe:ComboBoxEdit.StyleSettings>
                                         <dxe:CheckedComboBoxStyleSettings />
                                     </dxe:ComboBoxEdit.StyleSettings>-->
@@ -139,7 +139,7 @@
                             <dxlc:LayoutItem Label="Channe#"  LabelPosition="Left" >
                                 <dxe:ComboBoxEdit HorizontalAlignment="Left"
                                     ItemsSource="{Binding Channels}"
-                                    SelectedItem="{Binding SelectedChannel}" >
+                                    SelectedItem="{Binding SelectedChannel}" NullText="null" >
                                     <!--<dxe:ComboBoxEdit.StyleSettings>
                                         <dxe:CheckedComboBoxStyleSettings />
                                     </dxe:ComboBoxEdit.StyleSettings>-->

@@ -102,9 +102,9 @@
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "SerialNumber": 169501, "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "SerialNumber": 169501, "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "SerialNumber": 169501, "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" },      
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" },      
       ],
     },
     //
@@ -112,14 +112,17 @@
     //
     {
       "Name": "Sleep Skull 2",
-      "Description": "Sleep Skull 1",
-      "UsageNotes": "",
+      "Description": "Sleep Skull 2",
+      "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" },      
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" }, 
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" },   
       ],
     },
     //
@@ -127,14 +130,17 @@
     //
     {
       "Name": "Sleep Skull 3",
-      "Description": "Sleep Skull 1",
-      "UsageNotes": "",
+      "Description": "Sleep Skull 3",
+      "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 4, "Name": "Disengage Servo" },
        { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 5, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 6, "Name": "Disengage Servo" },      
+       { "ChannelClass": "RCServo", "SerialNumber": 99220, "HubPort": 0, "Channel": 6, "Name": "Disengage Servo" }, 
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Disengage Servo" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Disengage Servo" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Disengage Servo" },     
       ],
     },
     //
@@ -146,9 +152,11 @@
       "Loops": 1,
       "PlayPerformancesInParallel": false,
       "Performances": [
-       { "Name": "Initialize Skull 1", "SerialNumber": 169501 },
-       { "Name": "Initialize Skull 2", "SerialNumber": 99220 },
-       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },      
+       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
+       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
+       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
+       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
+       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },    
       ],
     },
     //
@@ -160,9 +168,11 @@
       "Loops": 1,
       "PlayPerformancesInParallel": false,
       "Performances": [
-       { "Name": "Engage and Center Skull 1", "SerialNumber": 169501 },
-       { "Name": "Engage and Center Skull 2", "SerialNumber": 99220 },
-       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },      
+       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
+       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
+       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },
+       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
+       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
       ],
     },
     //
@@ -174,9 +184,11 @@
       "Loops": 1,
       "PlayPerformancesInParallel": false,
       "Performances": [
-       { "Name": "Sleep Skull 1", "SerialNumber": 169501 },
-       { "Name": "Sleep Skull 2", "SerialNumber": 99220 },
-       { "Name": "Sleep Skull 3", "SerialNumber": 99220 },      
+       { "name": "sleep skull 1", "serialnumber": 99220 },
+       { "name": "sleep skull 2", "serialnumber": 169501 },
+       { "name": "sleep skull 3", "serialnumber": 99220 },
+       //{ "Name": "Sleep Skull 2", "SerialNumber": 99415 },
+       //{ "Name": "Sleep Skull 3", "SerialNumber": 99415 },   
       ],
     },   
   ]

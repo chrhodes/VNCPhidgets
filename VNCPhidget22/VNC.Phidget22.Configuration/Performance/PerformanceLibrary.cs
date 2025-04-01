@@ -504,23 +504,28 @@ namespace VNC.Phidget22.Configuration.Performance
 
             List<string> files = new List<string>
             {
-                @"Performances\PerformanceConfig_InitializationAndFinalization.json",
-
-                @"Performances\PerformanceConfig_Movement Studies.json",
-
-                @"Performances\PerformanceConfig_Skulls_1.json",
-                @"Performances\PerformanceConfig_Skulls_2.json",
-                @"Performances\PerformanceConfig_Skulls_3.json",
-
-                @"Performances\PerformanceConfig_DigitalOutputs.json",
-                @"Performances\PerformanceConfig_RCServos.json",
-                @"Performances\PerformanceConfig_Steppers.json",
-
-                @"Performances\PerformanceConfig_Test.json",
-                @"Performances\PerformanceConfig_Test AS Replacement.json",
+                // Performances\
 
                 //@"Performances\PerformanceConfig_2.json",
                 //@"Performances\PerformanceConfig_3.json",
+
+                @"Performances\PerformanceConfig_DigitalOutputs.json",
+                @"Performances\PerformanceConfig_InitializationAndFinalization.json",
+                @"Performances\PerformanceConfig_Movement Studies.json",
+                @"Performances\PerformanceConfig_RCServos.json",
+                @"Performances\PerformanceConfig_Steppers.json",
+
+                @"Performances\PerformanceConfig_Test AS Replacement.json",
+                @"Performances\PerformanceConfig_Test.json",
+
+                // Performaces\Skulls\
+
+                @"Performances\Skulls\PerformanceConfig_InitializeSkulls.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_1.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_2.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_3.json",
+
+
             };
 
             return files;
@@ -570,17 +575,24 @@ namespace VNC.Phidget22.Configuration.Performance
                 // The ServoIndex is wrong, should be Channel
                 // Probably more
 
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Initialization.json",
                 //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
                 //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
                 
                 @"RCServoSequences\RCServoSequenceConfig_99415.json",
 
-                @"RCServoSequences\RCServoSequenceConfig_Initialize.json",
+                //@"RCServoSequences\RCServoSequenceConfig_Initialize.json",
 
                 @"RCServoSequences\RCServoSequenceConfig_Move.json",
                 @"RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json",
                 @"RCServoSequences\RCServoSequenceConfig_OpenClose.json",
+
+                // RCServoSequences\Skulls\
+
+                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 1 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 2 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 3 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull Move.json",
+
             };
 
             return files;

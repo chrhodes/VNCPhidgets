@@ -3,7 +3,7 @@
   "Description": "PerformanceConfig_Skulls DESCRIPTION",
   "Performances": [
   {
-    "Name": "Routine 1 - Performances in Sequende",
+    "Name": "Routine 1 - Performances in Sequence",
     "Description": "",
     "Loops": 1,
     "PlayPerformancesInParallel": false,

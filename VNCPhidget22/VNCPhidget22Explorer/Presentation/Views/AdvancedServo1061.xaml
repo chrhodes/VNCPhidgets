@@ -207,6 +207,8 @@
 
                             Attached="{Binding RCServo0.Attached, Mode=TwoWay}"
                             Engaged="{Binding RCServo0.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo0.RCServoType, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo0.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo0.DataInterval,Mode=TwoWay}"
@@ -230,7 +232,7 @@
                                          
                             MaxPositionStop="{Binding RCServo0.MaxPositionStop,Mode=TwoWay}"
                             MaxPosition="{Binding RCServo0.MaxPosition,Mode=TwoWay}"   
-                            MaxPositionServo="{Binding RCServo0.MaxPositionServo,Mode=TwoWay}"
+                            MaxPositionServo="{Binding RCServo0.MaxPositionServo,Mode=TwoWay}"                                              
                                                         
                             MinPulseWidth="{Binding RCServo0.MinPulseWidth,Mode=TwoWay}"
                             MaxPulseWidth="{Binding RCServo0.MaxPulseWidth,Mode=TwoWay}"
@@ -262,6 +264,8 @@
 
                             Attached="{Binding RCServo1.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo1.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo1.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo1.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo1.DataInterval,Mode=TwoWay}"
@@ -317,6 +321,8 @@
 
                             Attached="{Binding RCServo2.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo2.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo2.RCServoType, Mode=TwoWay}"
                             
                             MinDataInterval="{Binding RCServo2.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo2.DataInterval,Mode=TwoWay}"
@@ -372,6 +378,8 @@
                                               
                             Attached="{Binding RCServo3.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo3.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo3.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo3.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo3.DataInterval,Mode=TwoWay}"
@@ -427,6 +435,8 @@
                                      
                             Attached="{Binding RCServo4.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo4.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo4.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo4.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo4.DataInterval,Mode=TwoWay}"
@@ -482,6 +492,8 @@
                                               
                             Attached="{Binding RCServo5.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo5.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo5.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo5.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo5.DataInterval,Mode=TwoWay}"
@@ -537,6 +549,8 @@
                                               
                             Attached="{Binding RCServo6.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo6.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo6.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo6.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo6.DataInterval,Mode=TwoWay}"
@@ -592,6 +606,8 @@
                                               
                             Attached="{Binding RCServo7.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo7.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo7.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo7.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo7.DataInterval,Mode=TwoWay}"
@@ -647,6 +663,8 @@
                                               
                             Attached="{Binding RCServo8.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo8.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo8.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo8.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo8.DataInterval,Mode=TwoWay}"
@@ -702,6 +720,8 @@
                                               
                             Attached="{Binding RCServo9.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo9.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo9.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo9.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo9.DataInterval,Mode=TwoWay}"
@@ -757,6 +777,8 @@
                                               
                             Attached="{Binding RCServo10.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo10.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo10.RCServoType, Mode=TwoWay}"                                              
                             
                             MinDataInterval="{Binding RCServo10.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo10.DataInterval,Mode=TwoWay}"
@@ -812,6 +834,8 @@
                                               
                             Attached="{Binding RCServo11.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo11.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo11.RCServoType, Mode=TwoWay}"                                                
                             
                             MinDataInterval="{Binding RCServo11.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo11.DataInterval,Mode=TwoWay}"
@@ -867,6 +891,8 @@
                                               
                             Attached="{Binding RCServo12.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo12.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo12.RCServoType, Mode=TwoWay}"                                                
                             
                             MinDataInterval="{Binding RCServo12.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo12.DataInterval,Mode=TwoWay}"
@@ -922,6 +948,8 @@
                                               
                             Attached="{Binding RCServo13.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo13.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo13.RCServoType, Mode=TwoWay}"                                                
                             
                             MinDataInterval="{Binding RCServo13.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo13.DataInterval,Mode=TwoWay}"
@@ -977,6 +1005,8 @@
                                               
                             Attached="{Binding RCServo14.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo14.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo14.RCServoType, Mode=TwoWay}"                                                
                             
                             MinDataInterval="{Binding RCServo14.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo14.DataInterval,Mode=TwoWay}"
@@ -1032,6 +1062,8 @@
                                               
                             Attached="{Binding RCServo15.Attached, Mode=TwoWay}"                                         
                             Engaged="{Binding RCServo15.Engaged, Mode=TwoWay}"
+                                              
+                            RCServoType="{Binding RCServo15.RCServoType, Mode=TwoWay}"                                                
                             
                             MinDataInterval="{Binding RCServo15.MinDataInterval,Mode=TwoWay}"
                             DataInterval="{Binding RCServo15.DataInterval,Mode=TwoWay}"

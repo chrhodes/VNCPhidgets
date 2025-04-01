@@ -75,7 +75,7 @@
 
     <ScrollViewer>
     <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="Group" Orientation="Vertical" 
-                      HorizontalAlignment="Left" ScrollBars="Auto" >
+                      HorizontalAlignment="Left" VerticalAlignment="Top"  ScrollBars="Auto" >
         
         <Label Content="{Binding SerialHubPortChannel}" />
         

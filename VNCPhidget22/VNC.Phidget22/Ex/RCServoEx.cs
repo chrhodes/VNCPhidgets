@@ -9,6 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+
 using Phidget22;
 
 using Prism.Events;
@@ -1554,7 +1556,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.RCServoType is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" servoType:>{action.RCServoType}<");
+                    if (LogChannelAction) actionMessage.Append($" rcServoType:>{action.RCServoType}<");
 
                     RCServoType = (RCServoType)action.RCServoType;
 
@@ -1643,32 +1645,39 @@ namespace VNC.Phidget22.Ex
                     SetVelocityLimit((Double)velocityLimit);
                 }
 
+                // TODO(crhodes)
+                // Figure out what these actually are intented to do.
+                // Where is bounds checking occuring?
                 if (action.PositionScaleMin is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" positionMin:>{action.PositionScaleMin}<");
+                    if (LogChannelAction) actionMessage.Append($" positionScaleMin:>{action.PositionScaleMin}<");
 
                     SetPositionScaleMin((Double)action.PositionScaleMin);
                 }
 
                 if (action.PositionScaleMax is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" positionMax:>{action.PositionScaleMax}<");
+                    if (LogChannelAction) actionMessage.Append($" positionScaleMax:>{action.PositionScaleMax}<");
 
                     SetPositionScaleMax((Double)action.PositionScaleMax);
                 }
 
                 if (action.PositionStopMin is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" positionMin:>{action.PositionStopMin}<");
+                    if (LogChannelAction) actionMessage.Append($" positionStopMin:>{action.PositionStopMin}<");
 
-                    SetPositionScaleMin((Double)action.PositionStopMin);
+                    MinPositionStop = (Double)action.PositionStopMin;
+
+                    //SetPositionStopMin((Double)action.PositionStopMin);
                 }
 
                 if (action.PositionStopMax is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" positionMax:>{action.PositionStopMax}<");
+                    if (LogChannelAction) actionMessage.Append($" positionStopMax:>{action.PositionStopMax}<");
 
-                    SetPositionStopMax((Double)action.PositionStopMax);
+                    MaxPositionStop = (Double)action.PositionStopMax;
+
+                    //SetPositionStopMax((Double)action.PositionStopMax);
                 }
 
                 if (action.SpeedRampingState is not null)
@@ -1772,6 +1781,10 @@ namespace VNC.Phidget22.Ex
                     NewPositionAchieved = false;    // TargetPositionReached Eventhandler will set true;
                     StartTargetPositionTime = Stopwatch.GetTimestamp();
 
+                    // NOTE(crhodes)
+                    // PositionStop{Min,Max} enforcement is in TargetPostion property.  Should it be here?
+                    // What if changes don't come through PerformAction.  How could that occur.  Maybe UI
+
                     TargetPosition = targetPosition;
                     
                     VerifyNewPositionAchieved(targetPosition);
@@ -1796,10 +1809,10 @@ namespace VNC.Phidget22.Ex
                     Thread.Sleep((Int32)action.Duration);
                 }
 
-                if (LogChannelAction)
-                {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-                }
+                //if (LogChannelAction)
+                //{
+                //    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                //}
             }
             catch (Phidgets.PhidgetException pex)
             {

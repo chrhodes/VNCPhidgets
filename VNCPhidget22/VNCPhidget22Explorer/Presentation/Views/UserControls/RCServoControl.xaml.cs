@@ -783,54 +783,54 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region ServoType
+        #region RCServoType
 
-        public static readonly DependencyProperty ServoTypeProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty RCServoTypeProperty = DependencyProperty.Register(
             "RCServoType", 
             typeof(RCServoType), 
             typeof(RCServoControl), 
             new FrameworkPropertyMetadata(
                 RCServoType.DEFAULT, 
-                new PropertyChangedCallback(OnServoTypeChanged), 
-                new CoerceValueCallback(OnCoerceServoType)
+                new PropertyChangedCallback(OnRCServoTypeChanged), 
+                new CoerceValueCallback(OnCoerceRCServoType)
                 )
             );
 
-        public RCServoType ServoType
+        public RCServoType RCServoType
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (RCServoType)GetValue(ServoTypeProperty);
-            set => SetValue(ServoTypeProperty, value);
+            get => (RCServoType)GetValue(RCServoTypeProperty);
+            set => SetValue(RCServoTypeProperty, value);
         }
 
-        private static object OnCoerceServoType(DependencyObject o, object value)
+        private static object OnCoerceRCServoType(DependencyObject o, object value)
         {
             RCServoControl rCServoControl = o as RCServoControl;
             if (rCServoControl != null)
-                return rCServoControl.OnCoerceServoType((RCServoType)value);
+                return rCServoControl.OnCoerceRCServoType((RCServoType)value);
             else
                 return value;
         }
 
-        private static void OnServoTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnRCServoTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             RCServoControl rCServoControl = o as RCServoControl;
             if (rCServoControl != null)
-                rCServoControl.OnServoTypeChanged((RCServoType)e.OldValue, (RCServoType)e.NewValue);
+                rCServoControl.OnRCServoTypeChanged((RCServoType)e.OldValue, (RCServoType)e.NewValue);
         }
 
-        protected virtual RCServoType OnCoerceServoType(RCServoType value)
+        protected virtual RCServoType OnCoerceRCServoType(RCServoType value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnServoTypeChanged(RCServoType oldValue, RCServoType newValue)
+        protected virtual void OnRCServoTypeChanged(RCServoType oldValue, RCServoType newValue)
         {
             MinPulseWidth = VNC.Phidget22.PhidgetDeviceLibrary.RCServoTypes[newValue].MinPulseWidth;
             MaxPulseWidth = VNC.Phidget22.PhidgetDeviceLibrary.RCServoTypes[newValue].MaxPulseWidth;
             // TODO: Add your property changed side-effects. Descendants can override as well.
-            //RCServoEx.RCServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[ServoType];
+            //RCServoEx.RCServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[RCServoType];
             //MinPulseWidth = servoConfiguration.MinPulseWidth;
             //MaxPulseWidth = servoConfiguration.MaxPulseWidth;
         }
