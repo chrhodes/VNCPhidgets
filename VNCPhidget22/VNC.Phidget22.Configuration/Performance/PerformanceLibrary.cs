@@ -520,7 +520,8 @@ namespace VNC.Phidget22.Configuration.Performance
 
                 // Performaces\Skulls\
 
-                @"Performances\Skulls\PerformanceConfig_InitializeSkulls.json",
+                @"Performances\Skulls\PerformanceConfig_Initialize Skulls.json",
+                @"Performances\Skulls\PerformanceConfig_Move Skulls.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_1.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_2.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_3.json",

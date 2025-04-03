@@ -271,7 +271,7 @@ namespace VNC.Phidget22.Players
             {
                 if (LogPerformance)
                 {
-                    Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
+                    Log.Trace($"PlayPerformance(>{performance.Name}<) description:>{performance.Description}<" +
                         $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                         $"\r deviceClassSequences:{performance.DeviceChannelSequences?.Count()} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
                         $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
@@ -302,9 +302,7 @@ namespace VNC.Phidget22.Players
 
             if (LogPerformance)
             {
-                startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-                Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
+                startTicks = Log.Trace($"Enter RunPerformanceLoops(:>{performance.Name}<) description:>{performance.Description}< serialNumber:>{performance.SerialNumber}<" +
                     $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
                     $"\r deviceClassSequences:{performance.DeviceChannelSequences?.Count()} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
                     $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
@@ -393,6 +391,11 @@ namespace VNC.Phidget22.Players
                             {
                                 Performance loadedPerf = PerformanceLibrary.AvailablePerformances[perf.Name];
 
+                                if (perf.SerialNumber is not null)
+                                {
+                                    loadedPerf.SerialNumber = perf.SerialNumber;
+                                }
+
                                 await RunPerformanceLoops(loadedPerf);
                             }
                             else
@@ -410,6 +413,11 @@ namespace VNC.Phidget22.Players
                             if (PerformanceLibrary.AvailablePerformances.ContainsKey(perf.Name ?? ""))
                             {
                                 Performance loadedPerf = PerformanceLibrary.AvailablePerformances[perf.Name];
+
+                                if (perf.SerialNumber is not null)
+                                {
+                                    loadedPerf.SerialNumber = perf.SerialNumber;
+                                }
 
                                 await RunPerformanceLoops(loadedPerf);
                             }

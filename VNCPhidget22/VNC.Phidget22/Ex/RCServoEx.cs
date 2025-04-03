@@ -993,6 +993,8 @@ namespace VNC.Phidget22.Ex
                 //MaxDataRate = rcServo.MaxDataRate;
 
                 // MinPosition can be set.  Save initial limit
+                // TODO(crhodes)
+                // Decide what to do about {Min,Max}PositionStop
                 MinPositionServo = MinPosition = MinPositionStop = base.MinPosition;
                 // MaxPosition can be set.  Save initial limit
                 MaxPositionServo = MaxPosition = MaxPositionStop = base.MaxPosition;
@@ -1055,7 +1057,7 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                        $"Running Action Loops:>{rcServoSequence.Name}<" +
+                        $"RunActionLoops(>{rcServoSequence.Name}<)" +
                         $"\r startActionLoopSequences:>{rcServoSequence.StartActionLoopSequences?.Count()}<" +
                         $"\r actionLoops:>{rcServoSequence.ActionLoops}<" +
                         $" actions:>{rcServoSequence.Actions?.Count()}<" +
@@ -1296,171 +1298,6 @@ namespace VNC.Phidget22.Ex
         /// <summary>
         /// Bounds check and set position
         /// </summary>
-        /// <param name="positionMin"></param>
-        /// <param name="servo"></param>
-        public void SetPositionStopMin(Double positionStopMin)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin positionMin:{positionMin}" +
-                    //    $" PositionMin:{PositionMin}" +
-                    //    $" PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (positionMin < 0)
-                //{
-                //    positionMin = InitialServoLimits[index].DevicePositionMin;
-                //}
-                //else if (positionMin < InitialServoLimits[index].DevicePositionMin)
-                //{
-                //    positionMin = InitialServoLimits[index].DevicePositionMin;
-                //}
-                //else if (positionMin > servo.PositionMax)
-                //{
-                //    positionMin = servo.PositionMax;
-                //}
-
-                //if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
-
-                // TODO(crhodes)
-                // Figure out if we need any of the above
-
-                MinPositionStop = positionStopMin;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End positionMin:{positionStopMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"index:{index} positionMin:{positionMin}" +
-                //    $" servo.PositionMin:{servo.PositionMin}" +
-                //    $" servo.PositionMax:{servo.PositionMax}" +
-                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="servo"></param>
-        public Double SetPosition(Double position)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin servo:{index} position:{position}" +
-                    //    $" servo.PositionMin:{servo.PositionMin}" +
-                    //    $" servo.PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (position < servo.PositionMin)
-                //{
-                //    position = servo.PositionMin;
-                //}
-                //else if (position > servo.PositionMax)
-                //{
-                //    position = servo.PositionMax;
-                //}
-
-                //// TODO(crhodes)
-                //// Maybe save last position set and not bother checking servo.Position is same
-                //if (servo.Position != position) servo.Position = position;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End position:{position} servo.Position:{Position}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"servo:{index} servo.position:{servo.Position}" +
-                //    $" servo.PositionMin:{servo.PositionMin}" +
-                //    $" servo.PositionMax:{servo.PositionMax}" +
-                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-
-            return position;
-        }
-
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="positionMax"></param>
-        /// <param name="servo"></param>
-        public void SetPositionStopMax(Double positionMax)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
-                    //    $" servo.PositionMin:{servo.PositionMin}" +
-                    //    $" servo.PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (positionMax < 0)
-                //{
-                //    positionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-                //else if (positionMax < servo.PositionMin)
-                //{
-                //    positionMax = servo.PositionMin;
-                //}
-                //else if (positionMax > InitialServoLimits[index].DevicePositionMax)
-                //{
-                //    positionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-
-                //if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
-
-                MaxPosition = positionMax;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
         /// <param name="positionMax"></param>
         /// <param name="servo"></param>
         public void SetPositionScaleMax(Double positionMax)
@@ -1554,6 +1391,23 @@ namespace VNC.Phidget22.Ex
 
                 #endregion
 
+                if (action.Open is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" open:>{action.Open}<");
+
+                    // TODO(crhodes)
+                    // Do we need a delay here?
+                    // This is where a call back from Attach event would be great!
+                    Open(Phidget.DefaultTimeout);
+                }
+
+                if (action.Close is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" close:>{action.Close}<");
+
+                    Close();
+                }
+
                 if (action.RCServoType is not null)
                 {
                     if (LogChannelAction) actionMessage.Append($" rcServoType:>{action.RCServoType}<");
@@ -1579,23 +1433,6 @@ namespace VNC.Phidget22.Ex
                     // FIX(crhodes)
                     // 
                     //SaveServoLimits(servo, index);
-                }
-
-                if (action.Open is not null)
-                {
-                    if (LogChannelAction) actionMessage.Append($" open:>{action.Open}<");
-
-                    // TODO(crhodes)
-                    // Do we need a delay here?
-                    // This is where a call back from Attach event would be great!
-                    Open();
-                }
-
-                if (action.Close is not null)
-                {
-                    if (LogChannelAction) actionMessage.Append($" close:>{action.Close}<");
-
-                    Close();
                 }
 
                 // NOTE(crhodes)
@@ -1662,22 +1499,18 @@ namespace VNC.Phidget22.Ex
                     SetPositionScaleMax((Double)action.PositionScaleMax);
                 }
 
-                if (action.PositionStopMin is not null)
+                if (action.MinPositionStop is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" positionStopMin:>{action.PositionStopMin}<");
+                    if (LogChannelAction) actionMessage.Append($" positionStopMin:>{action.MinPositionStop}<");
 
-                    MinPositionStop = (Double)action.PositionStopMin;
-
-                    //SetPositionStopMin((Double)action.PositionStopMin);
+                    MinPositionStop = (Double)action.MinPositionStop;
                 }
 
-                if (action.PositionStopMax is not null)
+                if (action.MaxPositionStop is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" positionStopMax:>{action.PositionStopMax}<");
+                    if (LogChannelAction) actionMessage.Append($" positionStopMax:>{action.MaxPositionStop}<");
 
-                    MaxPositionStop = (Double)action.PositionStopMax;
-
-                    //SetPositionStopMax((Double)action.PositionStopMax);
+                    MaxPositionStop = (Double)action.MaxPositionStop;
                 }
 
                 if (action.SpeedRampingState is not null)
@@ -1786,8 +1619,12 @@ namespace VNC.Phidget22.Ex
                     // What if changes don't come through PerformAction.  How could that occur.  Maybe UI
 
                     TargetPosition = targetPosition;
+
+                    if (Engaged)
+                    {
+                        VerifyNewPositionAchieved(targetPosition);
+                    }
                     
-                    VerifyNewPositionAchieved(targetPosition);
                 }
 
                 if (action.RelativePosition is not null)
@@ -1796,10 +1633,14 @@ namespace VNC.Phidget22.Ex
                     if (LogChannelAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({targetPosition})");
 
                     NewPositionAchieved = false;    // TargetPositionReached Eventhandler will set true;
+                    StartTargetPositionTime = Stopwatch.GetTimestamp();
 
                     TargetPosition = targetPosition;
 
-                    VerifyNewPositionAchieved(targetPosition);
+                    if (Engaged)
+                    {
+                        VerifyNewPositionAchieved(targetPosition);
+                    }
                 }
 
                 if (action.Duration > 0)

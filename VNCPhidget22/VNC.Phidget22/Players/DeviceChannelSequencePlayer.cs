@@ -559,6 +559,9 @@ namespace VNC.Phidget22.Players
             digitalOutputHost.LogChannelAction = LogChannelAction;
             digitalOutputHost.LogActionVerification = LogActionVerification;
 
+            // NOTE(crhodes)
+            // Opening is handled by the Performance/DeviceChannelSequence/ChannelSequence
+
             // TODO(crhodes)
             // Maybe we just let the Action.Open do the open
 
@@ -568,7 +571,7 @@ namespace VNC.Phidget22.Players
             // Things that work and things that don't
             //
             // This does work
-            digitalOutputHost.Open(500);
+            //digitalOutputHost.Open(500);
 
             // This does not work.
             //digitalOutputHost.Open();
@@ -616,6 +619,9 @@ namespace VNC.Phidget22.Players
             rcServoHost.LogChannelAction = LogChannelAction;
             rcServoHost.LogActionVerification = LogActionVerification;
 
+            // NOTE(crhodes)
+            // Opening is handled by the Performance/DeviceChannelSequence/ChannelSequence
+
             // TODO(crhodes)
             // Maybe we just let the Action.Open do the open
 
@@ -625,7 +631,7 @@ namespace VNC.Phidget22.Players
             // Things that work and things that don't
             //
             // This does work
-            rcServoHost.Open(500);
+            //rcServoHost.Open(500);
 
             // This does not work.
             //rcServoHost.Open();
@@ -670,6 +676,9 @@ namespace VNC.Phidget22.Players
             stepperHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
             stepperHost.LogChannelAction = LogChannelAction;
             stepperHost.LogActionVerification = LogActionVerification;
+
+            // NOTE(crhodes)
+            // Opening is handled by the Performance/DeviceChannelSequence/ChannelSequence
 
             // TODO(crhodes)
             // Maybe we just let the Action.Open do the open

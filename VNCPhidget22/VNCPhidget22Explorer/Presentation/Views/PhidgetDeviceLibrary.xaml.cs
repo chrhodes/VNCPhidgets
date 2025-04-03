@@ -43,7 +43,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         public PhidgetDeviceLibrary(IPhidgetDeviceLibraryViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
             InstanceCountVP++;
 

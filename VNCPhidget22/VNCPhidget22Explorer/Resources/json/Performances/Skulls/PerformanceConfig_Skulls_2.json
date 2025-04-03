@@ -1,23 +1,10 @@
 {
+  // This is leagacy.
+  // Decide how to do this in new approach.
   "Name": "PerformanceConfig_Skulls",
   "Description": "PerformanceConfig_Skulls DESCRIPTION",
   "Performances": [
-  //
-  // Center Skulls
-  //
-  // This is called in BeforePerformanceLoopPerformances[]
-  // to avoid having to repeat.
-  {
-    "Name": "Center Skulls",
-    "Description": "Centers all three skulls",
-    "Loops": 1,
-    "PlayDeviceChannelSequencesInParallel": true,
-    "DeviceChannelSequences": [
-      { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-012 Center" },
-      { "SequenceType": "AS", "SerialNumber": 99220, "Name": "99220-Skull-456 Center" },
-      { "SequenceType": "AS", "SerialNumber": 169501, "Name": "169501-Skull-012 Center" },
-    ],
-  },
+
   //{
   //  "Name": "Routine 2 - Move 1",
   //  "Description": "",

@@ -69,7 +69,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Minimum TargetPosition (optional)
         /// </summary>
-        public Double? PositionStopMin { get; set; }
+        public Double? MinPositionStop { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
@@ -84,7 +84,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Maximum TargetPosition (optional)
         /// </summary>
-        public Double? PositionStopMax { get; set; }
+        public Double? MaxPositionStop { get; set; }
 
         /// <summary>
         /// Scaled Maximum TargetPosition (optional)

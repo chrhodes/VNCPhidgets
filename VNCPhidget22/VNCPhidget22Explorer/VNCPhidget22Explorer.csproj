@@ -124,7 +124,10 @@
         <None Update="Resources\json\Performances\PerformanceConfig_RCServos.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_InitializeSkulls.json">
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Move Skulls.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Initialize Skulls.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequenceConfig_Skull Move.json">

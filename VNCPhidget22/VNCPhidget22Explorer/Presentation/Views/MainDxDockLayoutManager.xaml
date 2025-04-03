@@ -126,7 +126,7 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                             </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
                             </dxdo:LayoutPanel>
 
@@ -146,7 +146,7 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ManagePerformanceLibraryRegion}" />
                             </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="False" ShowCloseButton="False" MinWidth="700" >
+                            <dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="True" ShowCloseButton="False" MinWidth="700" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}"  />
                             </dxdo:LayoutPanel>
                             
@@ -154,7 +154,7 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.PhidgetDeviceLibraryRegion}" />
                             </dxdo:LayoutPanel>                       
 
-                            <dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region2}"/>
                             </dxdo:LayoutPanel>
 

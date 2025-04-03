@@ -1301,7 +1301,7 @@ namespace VNC.Phidget22.Ex
         /// </summary>
         /// <param name="positionMin"></param>
         /// <param name="servo"></param>
-        public void SetPositionStopMin(Double positionStopMin)
+        public void SetMinPositionStop(Double positionStopMin)
         {
             try
             {
@@ -1415,7 +1415,7 @@ namespace VNC.Phidget22.Ex
         /// </summary>
         /// <param name="positionMax"></param>
         /// <param name="servo"></param>
-        public void SetPositionStopMax(Double positionMax)
+        public void SetMaxPositionStop(Double positionMax)
         {
             try
             {
@@ -1652,18 +1652,18 @@ namespace VNC.Phidget22.Ex
                 //    SetPositionScaleMax((Double)action.PositionScaleMax);
                 //}
 
-                //if (action.PositionStopMin is not null)
+                //if (action.MinPositionStop is not null)
                 //{
-                //    if (LogChannelAction) actionMessage.Append($" positionMin:>{action.PositionStopMin}<");
+                //    if (LogChannelAction) actionMessage.Append($" positionMin:>{action.MinPositionStop}<");
 
-                //    SetPositionScaleMin((Double)action.PositionStopMin);
+                //    SetPositionScaleMin((Double)action.MinPositionStop);
                 //}
 
-                //if (action.PositionStopMax is not null)
+                //if (action.MaxPositionStop is not null)
                 //{
-                //    if (LogChannelAction) actionMessage.Append($" positionMax:>{action.PositionStopMax}<");
+                //    if (LogChannelAction) actionMessage.Append($" positionMax:>{action.MaxPositionStop}<");
 
-                //    SetPositionStopMax((Double)action.PositionStopMax);
+                //    SetMaxPositionStop((Double)action.MaxPositionStop);
                 //}
 
                 //if (action.SpeedRampingState is not null)

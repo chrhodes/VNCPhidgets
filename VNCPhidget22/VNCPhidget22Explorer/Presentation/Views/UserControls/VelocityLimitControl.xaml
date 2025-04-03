@@ -82,13 +82,16 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" Margin="-2,0,-2,0" >
 
-                <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
-                    <Label Content="+/-" />
+                <Label Content="+/- VelocityLimit" />
+                
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >                    
                     <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight" >1000</RadioButton>
                     <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight">100</RadioButton>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                     <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight">10</RadioButton>
                     <RadioButton GroupName="VelocityLimitScale" Click="VelocityLimitIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
-
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem  LabelPosition="Top" LabelHorizontalAlignment="Center" >

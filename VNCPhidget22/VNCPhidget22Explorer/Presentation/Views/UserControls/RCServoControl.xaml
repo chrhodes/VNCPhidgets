@@ -73,7 +73,7 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="Group" Orientation="Vertical" 
                       HorizontalAlignment="Left" VerticalAlignment="Top"  ScrollBars="Auto" >
         
@@ -117,30 +117,29 @@
         </dxlc:LayoutGroup>
 
         <!--Open/Close-->
-        
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-            <dxlc:LayoutItem>
-                <Button x:Name="btnOpenRCServoCommand" 
+
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                <dxlc:LayoutItem>
+                    <Button x:Name="btnOpenRCServoCommand" 
                     DataContext="{Binding DataContext, 
                                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		    Command="{Binding OpenRCServoCommand }"
                     CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		    Content="{Binding OpenRCServoContent, FallbackValue='OpenRCServo' }"
         		    ToolTip="{Binding OpenRCServoToolTip, FallbackValue='OpenRCServo ToolTip' }" />
-            </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem>
-                <Button x:Name="btnCloseRCServoCommand" 
+                <dxlc:LayoutItem>
+                    <Button x:Name="btnCloseRCServoCommand" 
                     DataContext="{Binding DataContext, 
                                     RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		    Command="{Binding CloseRCServoCommand }"
                     CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		    Content="{Binding CloseRCServoContent, FallbackValue='CloseRCServo' }"
         		    ToolTip="{Binding CloseRCServoToolTip, FallbackValue='CloseRCServo ToolTip' }" />
-            </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
 
-        </dxlc:LayoutGroup>
-
+            </dxlc:LayoutGroup>
 
             <!--<views:SerialHubPortControl />-->
 
@@ -163,7 +162,7 @@
             Velocity="{Binding Velocity, Mode=OneWay}"
             Current="{Binding Current, Mode=OneWay}"/>
 
-        <views:RCServoTargetPositionControl
+        <views:RCServoTargetPositionControl 
             MinPositionServo="{Binding MinPositionServo, Mode=OneWay}"
             MinPosition="{Binding MinPosition, Mode=TwoWay}"
             MinPositionStop="{Binding MinPositionStop, Mode=TwoWay}"
@@ -177,7 +176,7 @@
         <dxlc:LayoutGroup x:Name="lgMovementCharacteristics" Header="Movement Characteristics" View="GroupBox" Orientation="Vertical"
             VerticalAlignment="Top"
             IsCollapsible="True" IsCollapsed="False" 
-            Padding="-5" Background="AliceBlue">
+            Padding="-5" Background="AliceBlue" >
 
             <!--<dxlc:LayoutItem Label="Speed Ramping" LabelPosition="Left">-->
             <dxe:CheckEdit IsChecked="{Binding SpeedRampingState}" Content="Speed Ramping"
@@ -189,7 +188,7 @@
             
             <views:AccelerationControl />
 
-            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup x:Name="lgConfigureServo" Header="ConfigureServo" View="GroupBox" Orientation="Vertical"
                                       IsCollapsible="True" IsCollapsed="False" >

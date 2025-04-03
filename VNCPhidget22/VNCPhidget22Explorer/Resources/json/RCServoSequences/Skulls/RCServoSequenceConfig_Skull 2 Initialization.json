@@ -13,7 +13,8 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RCServoType": 1, "PositionStopMin": 105, "PositionStopMax": 145, "Acceleration": 250, "VelocityLimit": 25 },
+        //{ "Open": true, "RCServoType": 1, "MinPositionStop": 105, "TargetPosition": 125, "MaxPositionStop": 145, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 105, "TargetPosition": 125, "MaxPositionStop": 145, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     { 
@@ -23,7 +24,8 @@
       //"HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RCServoType": 1, "PositionStopMin": 55, "PositionStopMax": 95, "Acceleration": 250, "VelocityLimit": 25 },
+        //{ "Open": true, "RCServoType": 1, "MinPositionStop": 55, "TargetPosition": 75, "MaxPositionStop": 95, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 55, "TargetPosition": 75, "MaxPositionStop": 95, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     { 
@@ -33,7 +35,8 @@
       //"HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RCServoType": 1, "PositionStopMin": 60, "PositionStopMax": 120, "Acceleration": 250, "VelocityLimit": 25 },
+        //{ "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 90, "MaxPositionStop": 120, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 90, "MaxPositionStop": 120, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     // TODO(crhodes)
@@ -67,6 +70,27 @@
       "Actions": [
         { "Engaged": true, "TargetPosition": 90 },
       ]
-    },    
+    }, 
+    { 
+      "Name": "Center Skull 2 X Axis", 
+      "Description": "Down(-)/Up(+)",
+      "Actions": [
+        { "TargetPosition": 125 },
+      ]
+    },
+    { 
+      "Name": "Center Skull 2 Y Axis", 
+      "Description": "Tilt Right(-)/Left(+)",
+      "Actions": [
+        { "TargetPosition": 75 },
+      ]
+    },
+    { 
+      "Name": "Center Skull 2 Z Axis", 
+      "Description": "Rotate Left(-)/Right(+)",
+      "Actions": [
+        { "TargetPosition": 90 },
+      ]
+    },   
   ]
 }

@@ -34,7 +34,7 @@
     Background="{StaticResource ServoStateControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="75"
+    Height="95"
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450" -->
         
@@ -74,7 +74,7 @@
             
             <!--<dxlc:LayoutItem Label="Engaged" LabelPosition="Left" Margin="-2" >-->
                 <dxe:CheckEdit Content="Engaged" IsChecked="{Binding Engaged, Mode=TwoWay}" IsEnabled="{Binding Attached}"
-                               HorizontalAlignment="Left"
+                               HorizontalAlignment="Left" VerticalAlignment="Top"
                          
                             Background="{Binding Engaged, Mode=OneWay, 
                                         Converter={StaticResource BooleanToColorConverter}}"/>
@@ -96,13 +96,13 @@
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
                 
-                <dxlc:LayoutItem Label="Position" LabelPosition="Left" Width="90" >
+                <dxlc:LayoutItem Label="Position" LabelPosition="Top" Width="70" >
                     <dxe:TextEdit Text="{Binding Position, Mode=OneWay}" IsReadOnly="True" 
                         ToolTip="Current Position"
                         Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Velocity" LabelPosition="Left" Width="90" >
+                <dxlc:LayoutItem Label="Velocity" LabelPosition="Top" Width="70" >
                     <dxe:TextEdit Text="{Binding Velocity, Mode=OneWay}" IsReadOnly="True" 
                         ToolTip="Current Position"
                         Mask="f2" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>

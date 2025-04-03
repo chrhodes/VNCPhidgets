@@ -13,7 +13,7 @@
       "HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RCServoType": 1, "PositionStopMin": 70, "PositionStopMax": 110, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 70, "TargetPosition": 90, "MaxPositionStop": 110, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     { 
@@ -23,7 +23,7 @@
       "HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RCServoType": 1, "PositionStopMin": 60, "PositionStopMax": 100, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 80, "MaxPositionStop": 100, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     { 
@@ -33,7 +33,7 @@
       "HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RCServoType": 1, "PositionStopMin": 65, "PositionStopMax": 105, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 85, "MaxPositionStop": 105, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     // TODO(crhodes)
@@ -67,6 +67,27 @@
       "Actions": [
         { "Engaged": true, "TargetPosition": 85 },
       ]
-    },    
+    },
+    { 
+      "Name": "Center Skull 3 X Axis", 
+      "Description": "Down(-)/Up(+)",
+      "Actions": [
+        { "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Center Skull 3 Y Axis", 
+      "Description": "Tilt Right(-)/Left(+)",
+      "Actions": [
+        { "TargetPosition": 80 },
+      ]
+    },
+    { 
+      "Name": "Center Skull 3 Z Axis", 
+      "Description": "Rotate Left(-)/Right(+)",
+      "Actions": [
+        { "TargetPosition": 85 },
+      ]
+    }, 
   ]
 }
