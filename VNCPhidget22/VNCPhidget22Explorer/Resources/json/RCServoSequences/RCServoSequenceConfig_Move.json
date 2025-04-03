@@ -53,49 +53,49 @@
     { 
       "Name": "Move Relative 20", 
       "Actions": [
-        { "RelativePositiopn": 20 }, 
+        { "RelativePosition": 20 }, 
       ]
     },
     { 
       "Name": "Move Relative 15", 
       "Actions": [
-        { "RelativePositiopn": 15 }, 
+        { "RelativePosition": 15 }, 
       ]
     },
     { 
       "Name": "Move Relative 10", 
       "Actions": [
-        { "RelativePositiopn": 10 }, 
+        { "RelativePosition": 10 }, 
       ]
     },
     { 
       "Name": "Move Relative 5", 
       "Actions": [
-        { "RelativePositiopn": 5 }, 
+        { "RelativePosition": 5 }, 
       ]
     },
     { 
       "Name": "Move Relative -5", 
       "Actions": [
-        { "RelativePositiopn": -5 }, 
+        { "RelativePosition": -5 }, 
       ]
     },
     { 
       "Name": "Move Relative -10", 
       "Actions": [
-        { "RelativePositiopn": -10 }, 
+        { "RelativePosition": -10 }, 
       ]
     },
     { 
       "Name": "Move Relative -15", 
       "Actions": [
-        { "RelativePositiopn": -15 }, 
+        { "RelativePosition": -15 }, 
       ]
     },
     { 
       "Name": "Move Relative -20", 
       "Actions": [
-        { "RelativePositiopn": -20 }, 
+        { "RelativePosition": -20 }, 
       ]
     },
   ]

@@ -13,7 +13,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 85, "TargetPosition": 105, "MaxPositionStop": 125, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     { 
@@ -23,7 +23,7 @@
       //"HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 85, "MaxPositionStop": 105, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     { 
@@ -33,7 +33,7 @@
       //"HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 75, "TargetPosition": 95, "MaxPositionStop": 115, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 95, "MaxPositionStop": 125, "Acceleration": 250, "VelocityLimit": 25 },
       ]
     },
     // TODO(crhodes)

@@ -1735,7 +1735,7 @@ namespace VNC.Phidget22.Ex
                 {
                     if (LogActionVerification) Log.Trace($"velocity:{Velocity,8:0.000} position:{Position,7:0.000}" +
                         $" - isMoving:{IsMoving}", Common.LOG_CATEGORY);
-                    Thread.Sleep(1);
+                    Thread.Sleep(10);
                     msSleep++;
                 }
                 while (NewPositionAchieved is false);
