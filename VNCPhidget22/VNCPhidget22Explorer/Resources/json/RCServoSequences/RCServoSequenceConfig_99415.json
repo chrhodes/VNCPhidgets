@@ -757,11 +757,11 @@
       "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
     },
     //
-    // Acceleration(10000) VelocityLimit(5000)
+    // Acceleration (10000) VelocityLimit(5000)
     //
     {
 
-      "Name": "99415-Acceleration(10000) VelocityLimit(5000)", 
+      "Name": "99415-Acceleration (10000) VelocityLimit(5000)", 
       "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -776,11 +776,11 @@
       ]
     },
     //
-    // Acceleration(5000) VelocityLimit(1000)
+    // Acceleration (5000) VelocityLimit(1000)
     //
     {
 
-      "Name": "99415-Acceleration(5000) VelocityLimit(1000)", 
+      "Name": "99415-Acceleration (5000) VelocityLimit(1000)", 
       "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -795,11 +795,11 @@
       ]
     },
     //
-    // Acceleration(500) VelocityLimit(100)
+    // Acceleration (500) VelocityLimit(100)
     //
     {
 
-      "Name": "99415-Acceleration(500) VelocityLimit(100)", 
+      "Name": "99415-Acceleration (500) VelocityLimit(100)", 
       "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -814,11 +814,11 @@
       ]
     },
     //
-    // Acceleration(50) VelocityLimit(25)
+    // Acceleration (50) VelocityLimit(25)
     //
     {
 
-      "Name": "99415-Acceleration(50) VelocityLimit(25)", 
+      "Name": "99415-Acceleration (50) VelocityLimit(25)", 
       "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "ExecuteActionsInParallel": true,
       "Actions": [
@@ -833,11 +833,11 @@
       ]
     },
     //
-    // Acceleration(25) VelocityLimit(10)
+    // Acceleration (25) VelocityLimit(10)
     //
     {
 
-      "Name": "99415-Acceleration(25) VelocityLimit(10)", 
+      "Name": "99415-Acceleration (25) VelocityLimit(10)", 
       "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
       "ExecuteActionsInParallel": true,
       "Actions": [

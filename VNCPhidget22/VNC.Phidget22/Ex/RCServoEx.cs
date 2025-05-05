@@ -500,12 +500,12 @@ namespace VNC.Phidget22.Ex
 
                 if (value < MinPositionStop)
                 {
-                    Log.Warning($"Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}", Common.LOG_CATEGORY);
+                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel} Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MinPositionStop;
                 }
                 else if (value > MaxPositionStop)
                 {
-                    Log.Warning($"Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}", Common.LOG_CATEGORY);
+                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel} Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MaxPositionStop;
                 }
                 else
@@ -1058,11 +1058,11 @@ namespace VNC.Phidget22.Ex
                 {
                     startTicks = Log.Trace(
                         $"RunActionLoops(>{rcServoSequence.Name}<)" +
-                        $"\r startActionLoopSequences:>{rcServoSequence.StartActionLoopSequences?.Count()}<" +
-                        $"\r actionLoops:>{rcServoSequence.ActionLoops}<" +
+                        $" startActionLoopSequences:>{rcServoSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{rcServoSequence.ActionLoops}<" +
                         $" actions:>{rcServoSequence.Actions?.Count()}<" +
                         $" actionsDuration:>{rcServoSequence.ActionsDuration}<" +
-                        $"\r endActionLoopSequences:>{rcServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" endActionLoopSequences:>{rcServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
                 }
 
                 if (rcServoSequence.Actions is not null)
@@ -1139,7 +1139,7 @@ namespace VNC.Phidget22.Ex
         /// </summary>
         /// <param name="acceleration"></param>
         /// <param name="servo"></param>
-        public void SetAcceleration(Double acceleration)
+        public void SetAcceleration (Double acceleration)
         {
             try
             {
@@ -1366,8 +1366,7 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter hubPort:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
-                //actionMessage.Append($"servo:{Channel}");
+                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber} hubPort:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
             }
 
             try
@@ -1459,7 +1458,7 @@ namespace VNC.Phidget22.Ex
                         }
                     }
 
-                    SetAcceleration((Double)acceleration);
+                    SetAcceleration ((Double)acceleration);
                 }
 
                 if (action.VelocityLimit is not null)
@@ -1538,7 +1537,7 @@ namespace VNC.Phidget22.Ex
                     var newAcceleration = Acceleration + (Double)action.RelativeAcceleration;
                     if (LogChannelAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
 
-                    SetAcceleration(newAcceleration);
+                    SetAcceleration (newAcceleration);
                 }
 
                 if (action.RelativeVelocityLimit is not null)
@@ -1567,7 +1566,7 @@ namespace VNC.Phidget22.Ex
                                 targetPosition = MaxPosition;
                                 break;
 
-                                case -3:
+                            case -3:
                                 targetPosition = (MaxPosition - MinPosition) / 2;
                                 break;
                         }
@@ -1630,7 +1629,7 @@ namespace VNC.Phidget22.Ex
                 if (action.RelativePosition is not null)
                 {
                     var targetPosition = TargetPosition + (Double)action.RelativePosition;
-                    if (LogChannelAction) actionMessage.Append($" relativePosition:>{action.RelativePosition}< ({targetPosition})");
+                    if (LogChannelAction) actionMessage.Append($" TargetPosition:{TargetPosition} relativePosition:>{action.RelativePosition}< ({targetPosition})");
 
                     NewPositionAchieved = false;    // TargetPositionReached Eventhandler will set true;
                     StartTargetPositionTime = Stopwatch.GetTimestamp();
@@ -1658,8 +1657,7 @@ namespace VNC.Phidget22.Ex
             catch (Phidgets.PhidgetException pex)
             {
                 Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{Channel} source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                Log.Error($"deviceSerialNumber:{DeviceSerialNumber} hubPort:{HubPort} channel:{Channel} source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -1669,7 +1667,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber} hubPort:{HubPort} channel:{Channel} {actionMessage}", Common.LOG_CATEGORY, startTicks);
                 }
             }
         }

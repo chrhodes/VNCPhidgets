@@ -1,4 +1,6 @@
 {
+  // This is leagacy.
+  // Decide how to do this in new approach.
   "Name": "PerformanceConfig_3",
   "Description": "Explore Pairs in Sequence and in Parallel",
   "Performances": [
@@ -7,13 +9,13 @@
     //
     {
       "Name": "AS Play All Performances A",
-      "Description": "Play All the Performances Acceleration(6000) VelocityLimit(3125)",
+      "Description": "Play All the Performances Acceleration (6000) VelocityLimit(3125)",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
-        { "Name": "99415-Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (6000) VelocityLimit(3125)", "SequenceType": "AS" },
 
         { "Name": "99415-Parallel All (PA)", "SequenceType": "AS" },
 
@@ -34,13 +36,13 @@
     },
     {
       "Name": "AS Play All Performances B",
-      "Description": "Play All the Performances Acceleration(250) VelocityLimit(125)",
+      "Description": "Play All the Performances Acceleration (250) VelocityLimit(125)",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
-        { "Name": "99415-Acceleration(250) VelocityLimit(125)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (250) VelocityLimit(125)", "SequenceType": "AS" },
 
         { "Name": "99415-Parallel All (PA)", "SequenceType": "AS" },
 
@@ -61,13 +63,13 @@
     },
     {
       "Name": "AS Play All Performances C",
-      "Description": "Play All the Performances Acceleration(50) VelocityLimit(25)",
+      "Description": "Play All the Performances Acceleration (50) VelocityLimit(25)",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
-        { "Name": "99415-Acceleration(50) VelocityLimit(25)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (50) VelocityLimit(25)", "SequenceType": "AS" },
 
         { "Name": "99415-Parallel All (PA)", "SequenceType": "AS" },
 
@@ -98,7 +100,7 @@
         { "Name": "Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
-        { "Name": "99415-Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "99415-Parallel All (PA)", "SequenceType": "AS" }
       ],
      "NextPerformance":
@@ -122,7 +124,7 @@
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS"},
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
-        { "Name": "99415-Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "99415-Parallel Pairs 1 (PP1)", "SequenceType": "AS" }
       ],
      "NextPerformance":
@@ -146,7 +148,7 @@
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
-        { "Name": "99415-Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "99415-Parallel Pairs 2 (PP2)", "SequenceType": "AS" }
       ],
      "NextPerformance":
@@ -170,7 +172,7 @@
         { "Name": "99415-Reset Position Limits (RPL)", "SequenceType": "AS" },
         { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
 
-        { "Name": "99415-Acceleration(6000) VelocityLimit(3125)", "SequenceType": "AS" },
+        { "Name": "99415-Acceleration (6000) VelocityLimit(3125)", "SequenceType": "AS" },
         { "Name": "99415-Parallel Pairs 3 (PP3)", "SequenceType": "AS" }
       ],
      "NextPerformance":

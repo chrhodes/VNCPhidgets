@@ -7,8 +7,8 @@
     // Need some way of specifying a range of Servos
     //
     { 
-      "Name": "VelocityLimit (10) Acceleration(25)", 
-      "Description": "VelocityLimit (10) Acceleration(25)", 
+      "Name": "VelocityLimit (10) Acceleration (25)", 
+      "Description": "VelocityLimit (10) Acceleration (25)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -16,8 +16,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (25) Acceleration(50)", 
-      "Description": "VelocityLimit (25) Acceleration(50)",
+      "Name": "VelocityLimit (25) Acceleration (50)", 
+      "Description": "VelocityLimit (25) Acceleration (50)",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -25,8 +25,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (50) Acceleration(100)", 
-      "Description": "VelocityLimit (50) Acceleration(100)", 
+      "Name": "VelocityLimit (50) Acceleration (100)", 
+      "Description": "VelocityLimit (50) Acceleration (100)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -34,8 +34,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (100) Acceleration(200)", 
-      "Description": "VelocityLimit (100) Acceleration(200)", 
+      "Name": "VelocityLimit (100) Acceleration (200)", 
+      "Description": "VelocityLimit (100) Acceleration (200)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -43,8 +43,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (250) Acceleration(500)", 
-      "Description": "VelocityLimit (250) Acceleration(500)", 
+      "Name": "VelocityLimit (250) Acceleration (500)", 
+      "Description": "VelocityLimit (250) Acceleration (500)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -52,8 +52,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (500) Acceleration(1000)", 
-      "Description": "VelocityLimit (500) Acceleration(1000)", 
+      "Name": "VelocityLimit (500) Acceleration (1000)", 
+      "Description": "VelocityLimit (500) Acceleration (1000)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -61,8 +61,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (1000) Acceleration(2000)", 
-      "Description": "VelocityLimit (1000) Acceleration(2000)", 
+      "Name": "VelocityLimit (1000) Acceleration (2000)", 
+      "Description": "VelocityLimit (1000) Acceleration (2000)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -70,8 +70,8 @@
       ]
     },
     { 
-      "Name": "VelocityLimit (5000) Acceleration(10000)", 
-      "Description": "VelocityLimit (5000) Acceleration(10000)", 
+      "Name": "VelocityLimit (5000) Acceleration (10000)", 
+      "Description": "VelocityLimit (5000) Acceleration (10000)", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [

@@ -1303,6 +1303,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 if (SerialNumber is not null)
                 {
+                    if (LogPerformance) Log.Trace($"Setting nextPerformance:{nextPerformance.Name} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
                     nextPerformance.SerialNumber = SerialNumber;
                 }
 
@@ -1322,6 +1323,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
                     {
                         nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+
+                        if (SerialNumber is not null)
+                        {
+                            if (LogPerformance) Log.Trace($"Setting nextPerformance:{nextPerformance.Name} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+                            nextPerformance.SerialNumber = SerialNumber;
+                        }
 
                         await performancePlayer.RunPerformanceLoops(nextPerformance);
 

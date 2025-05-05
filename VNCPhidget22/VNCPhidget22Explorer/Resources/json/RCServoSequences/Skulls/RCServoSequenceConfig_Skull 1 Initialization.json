@@ -13,7 +13,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130, "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
     { 
@@ -23,7 +23,7 @@
       //"HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110, "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
     { 
@@ -33,7 +33,7 @@
       //"HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 95, "MaxPositionStop": 125, "Acceleration": 250, "VelocityLimit": 25 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 95, "MaxPositionStop": 125, "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
     // TODO(crhodes)
@@ -70,21 +70,24 @@
     },   
     { 
       "Name": "Center Skull 1 X Axis", 
-      "Description": "Down(-)/Up(+)",
+      "Description": "Center X Axis",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": 105 },
       ]
     },
     { 
       "Name": "Center Skull 1 Y Axis", 
-      "Description": "Tilt Right(-)/Left(+)",
+      "Description": "Center Y Axis",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": 85 },
       ]
     },
     { 
       "Name": "Center Skull 1 Z Axis", 
-      "Description": "Rotate Left(-)/Right(+)",
+      "Description": "Center Z Axis",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": 95 },
       ]

@@ -1,4 +1,6 @@
 {
+  // This is leagacy.
+  // Decide how to do this in new approach.
   "Name": "PerformanceConfig_Skulls",
   "Description": "PerformanceConfig_Skulls DESCRIPTION",
   "Performances": [

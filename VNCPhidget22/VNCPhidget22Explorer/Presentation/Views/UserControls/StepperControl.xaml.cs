@@ -1337,11 +1337,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MinAccelerationProperty);
             set => SetValue(MinAccelerationProperty, value);
         }
-        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMinAcceleration (DependencyObject o, object value)
         {
             StepperControl stepperControl = o as StepperControl;
             if (stepperControl != null)
-                return stepperControl.OnCoerceMinAcceleration((Double)value);
+                return stepperControl.OnCoerceMinAcceleration ((Double)value);
             else
                 return value;
         }
@@ -1353,7 +1353,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 stepperControl.OnMinAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMinAcceleration(Double value)
+        protected virtual Double OnCoerceMinAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1385,11 +1385,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(AccelerationProperty);
             set => SetValue(AccelerationProperty, value);
         }
-        private static object OnCoerceAcceleration(DependencyObject o, object value)
+        private static object OnCoerceAcceleration (DependencyObject o, object value)
         {
             StepperControl stepperControl = o as StepperControl;
             if (stepperControl != null)
-                return stepperControl.OnCoerceAcceleration((Double)value);
+                return stepperControl.OnCoerceAcceleration ((Double)value);
             else
                 return value;
         }
@@ -1401,7 +1401,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 stepperControl.OnAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceAcceleration(Double value)
+        protected virtual Double OnCoerceAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1433,11 +1433,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MaxAccelerationProperty);
             set => SetValue(MaxAccelerationProperty, value);
         }
-        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMaxAcceleration (DependencyObject o, object value)
         {
             StepperControl stepperControl = o as StepperControl;
             if (stepperControl != null)
-                return stepperControl.OnCoerceMaxAcceleration((Double)value);
+                return stepperControl.OnCoerceMaxAcceleration ((Double)value);
             else
                 return value;
         }
@@ -1449,7 +1449,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 stepperControl.OnMaxAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMaxAcceleration(Double value)
+        protected virtual Double OnCoerceMaxAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;

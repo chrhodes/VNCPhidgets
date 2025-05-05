@@ -112,13 +112,13 @@ namespace VNC.Phidget22.Players
             {
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Executing DeviceChannel Sequence:>{deviceChannelSequence?.Name}" +
-                        $" channelClass:>{deviceChannelSequence?.ChannelClass}<" +
+                    startTicks = Log.Trace($"Executing DeviceChannel channelClass:>{deviceChannelSequence?.ChannelClass}<" +
+                        $" Sequence:>{deviceChannelSequence?.Name}<" +
                         $" performanceSerialNumber:>{performanceSerialNumber}< dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" dcsHubPort:>{deviceChannelSequence?.HubPort}< dcsChannel:>{deviceChannelSequence?.Channel}<" +
-                        $"\r loops:>{deviceChannelSequence?.SequenceLoops}<" +
+                        $" loops:>{deviceChannelSequence?.SequenceLoops}<" +
                         $" duration:>{deviceChannelSequence?.Duration}<" +
-                        $"\r closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                        $" closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
                 }
 
                 for (Int32 sequenceLoop = 0; sequenceLoop < deviceChannelSequence.SequenceLoops; sequenceLoop++)
@@ -134,6 +134,8 @@ namespace VNC.Phidget22.Players
 
                     if (performanceSerialNumber is not null)
                     {
+                        if (LogDeviceChannelSequence) Log.Trace($"Setting deviceChannelSequence:>{nextPhidgetDeviceChannelSequence.Name}< serialNumber:>{performanceSerialNumber}<", Common.LOG_CATEGORY);
+
                         nextPhidgetDeviceChannelSequence.SerialNumber = (Int32)performanceSerialNumber;
                     }
 
@@ -227,10 +229,10 @@ namespace VNC.Phidget22.Players
                     {
                         startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
                             $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{digitalOutputSequence.Channel}< " +
+                            $" deviceHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
+                            $" deviceChannel:>{deviceChannelSequence?.Channel}< channel:>{digitalOutputSequence?.Channel}< " +
                             //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            $" beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
                             //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
                             //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
                             //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
@@ -298,7 +300,7 @@ namespace VNC.Phidget22.Players
                     nextDeviceChannelSequence = null;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:{nextDeviceChannelSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -340,11 +342,11 @@ namespace VNC.Phidget22.Players
                     if (LogDeviceChannelSequence)
                     {
                         startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
-                            $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{rcServoSequence.Channel}< " +
+                            $" dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                            $" dcsHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
+                            $" dcsChannel:>{deviceChannelSequence?.Channel}< channel:>{rcServoSequence?.Channel}< " +
                             //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            $" beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
                             //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
                             //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
                             //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
@@ -412,7 +414,7 @@ namespace VNC.Phidget22.Players
                     nextDeviceChannelSequence = null;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:{nextDeviceChannelSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -456,7 +458,7 @@ namespace VNC.Phidget22.Players
                             $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{stepperSequence?.HubPort}<" +
                             $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence.Channel}< " +
                             //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
+                            $" beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
                             //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
                             //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
                             //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
@@ -523,7 +525,7 @@ namespace VNC.Phidget22.Players
                     nextDeviceChannelSequence = null;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:{nextDeviceChannelSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {

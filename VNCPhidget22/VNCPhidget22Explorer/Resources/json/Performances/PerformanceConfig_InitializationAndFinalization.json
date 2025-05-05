@@ -1,4 +1,6 @@
 {
+  // This is leagacy.
+  // Decide how to do this in new approach.
   // This contains the necessary sequences to begin and end shows.
   // Shows should not appear in this file.  
   // However, other performances should be able to count on 

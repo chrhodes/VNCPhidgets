@@ -1140,7 +1140,7 @@ namespace VNC.Phidget22.Ex
         /// </summary>
         /// <param name="acceleration"></param>
         /// <param name="servo"></param>
-        public void SetAcceleration(Double acceleration)
+        public void SetAcceleration (Double acceleration)
         {
             try
             {
@@ -1615,7 +1615,7 @@ namespace VNC.Phidget22.Ex
                         }
                     }
 
-                    SetAcceleration((Double)acceleration);
+                    SetAcceleration ((Double)acceleration);
                 }
 
                 if (action.VelocityLimit is not null)
@@ -1691,7 +1691,7 @@ namespace VNC.Phidget22.Ex
                     var newAcceleration = Acceleration + (Double)action.RelativeAcceleration;
                     if (LogChannelAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
 
-                    SetAcceleration(newAcceleration);
+                    SetAcceleration (newAcceleration);
                 }
 
                 if (action.RelativeVelocityLimit is not null)

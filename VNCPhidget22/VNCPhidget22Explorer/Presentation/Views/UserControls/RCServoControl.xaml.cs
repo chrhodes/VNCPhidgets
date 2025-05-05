@@ -1245,11 +1245,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MinAccelerationProperty);
             set => SetValue(MinAccelerationProperty, value);
         }
-        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMinAcceleration (DependencyObject o, object value)
         {
             RCServoControl rcServoControl = o as RCServoControl;
             if (rcServoControl != null)
-                return rcServoControl.OnCoerceMinAcceleration((Double)value);
+                return rcServoControl.OnCoerceMinAcceleration ((Double)value);
             else
                 return value;
         }
@@ -1261,7 +1261,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 rcServoControl.OnMinAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMinAcceleration(Double value)
+        protected virtual Double OnCoerceMinAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1293,11 +1293,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(AccelerationProperty);
             set => SetValue(AccelerationProperty, value);
         }
-        private static object OnCoerceAcceleration(DependencyObject o, object value)
+        private static object OnCoerceAcceleration (DependencyObject o, object value)
         {
             RCServoControl rcServoControl = o as RCServoControl;
             if (rcServoControl != null)
-                return rcServoControl.OnCoerceAcceleration((Double)value);
+                return rcServoControl.OnCoerceAcceleration ((Double)value);
             else
                 return value;
         }
@@ -1309,7 +1309,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 rcServoControl.OnAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceAcceleration(Double value)
+        protected virtual Double OnCoerceAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1341,11 +1341,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MaxAccelerationProperty);
             set => SetValue(MaxAccelerationProperty, value);
         }
-        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMaxAcceleration (DependencyObject o, object value)
         {
             RCServoControl rcServoControl = o as RCServoControl;
             if (rcServoControl != null)
-                return rcServoControl.OnCoerceMaxAcceleration((Double)value);
+                return rcServoControl.OnCoerceMaxAcceleration ((Double)value);
             else
                 return value;
         }
@@ -1357,7 +1357,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 rcServoControl.OnMaxAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMaxAcceleration(Double value)
+        protected virtual Double OnCoerceMaxAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;

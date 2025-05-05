@@ -14,7 +14,7 @@ namespace VNC.Phidget22.Players
     public class PerformancePlayer : INPCBase
     {
         #region Constructors, Initialization, and Load
-        
+
         public IEventAggregator EventAggregator { get; set; }
 
         public PerformancePlayer(IEventAggregator eventAggregator)
@@ -272,12 +272,14 @@ namespace VNC.Phidget22.Players
                 if (LogPerformance)
                 {
                     Log.Trace($"PlayPerformance(>{performance.Name}<) description:>{performance.Description}<" +
-                        $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                        $"\r deviceClassSequences:{performance.DeviceChannelSequences?.Count()} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
-                        $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
-                        $"\r loops:{performance.PerformanceLoops}" +
-                        $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                        $"\r nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                        $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
+                        $" deviceChannelSequences:>{performance.DeviceChannelSequences?.Count()}<" +
+                        $" playSequencesInParallel:>{performance.PlayDeviceChannelSequencesInParallel}<" +
+                        $" performances:>{performance.Performances?.Count()}<" +
+                        $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
+                        $" loops:>{performance.PerformanceLoops}<" +
+                        $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
+                        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
                 }
 
                 if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
@@ -303,12 +305,14 @@ namespace VNC.Phidget22.Players
             if (LogPerformance)
             {
                 startTicks = Log.Trace($"Enter RunPerformanceLoops(:>{performance.Name}<) description:>{performance.Description}< serialNumber:>{performance.SerialNumber}<" +
-                    $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    $"\r deviceClassSequences:{performance.DeviceChannelSequences?.Count()} playSequencesInParallel:{performance.PlayDeviceChannelSequencesInParallel}" +
-                    $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
-                    $"\r loops:{performance.PerformanceLoops}" +
-                    $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                    $"\r nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
+                    $" deviceClassSequences:>{performance.DeviceChannelSequences?.Count()}<" +
+                    $" playSequencesInParallel:>{performance.PlayDeviceChannelSequencesInParallel}<" +
+                    $" performances:>{performance.Performances?.Count()}<" +
+                    $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
+                    $" loops:>{performance.PerformanceLoops}<" +
+                    $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
+                    $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
             }
 
             // NOTE(crhodes)
@@ -328,7 +332,7 @@ namespace VNC.Phidget22.Players
                 {
                     if (performance.PlayDeviceChannelSequencesInParallel)
                     {
-                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:>{performanceLoop + 1}<", Common.LOG_CATEGORY);
 
                         Parallel.ForEach(performance.DeviceChannelSequences, async sequence =>
                         {
@@ -342,7 +346,7 @@ namespace VNC.Phidget22.Players
                     }
                     else
                     {
-                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:>{performanceLoop + 1}<", Common.LOG_CATEGORY);
 
                         DeviceChannelSequencePlayer player = GetPerformanceSequencePlayer();
 
@@ -383,7 +387,7 @@ namespace VNC.Phidget22.Players
                 {
                     if (performance.PlayPerformancesInParallel)
                     {
-                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:>{performanceLoop + 1}<", Common.LOG_CATEGORY);
 
                         Parallel.ForEach(performance.Performances, async perf =>
                         {
@@ -393,6 +397,7 @@ namespace VNC.Phidget22.Players
 
                                 if (perf.SerialNumber is not null)
                                 {
+                                    if (LogPerformance) Log.Trace($"Setting performance:>{loadedPerf.Name}< serialNumber:>{perf.SerialNumber}<", Common.LOG_CATEGORY);
                                     loadedPerf.SerialNumber = perf.SerialNumber;
                                 }
 
@@ -406,7 +411,7 @@ namespace VNC.Phidget22.Players
                     }
                     else
                     {
-                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
+                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:>{performanceLoop + 1}<", Common.LOG_CATEGORY);
 
                         foreach (Performance perf in performance.Performances)
                         {
@@ -416,6 +421,7 @@ namespace VNC.Phidget22.Players
 
                                 if (perf.SerialNumber is not null)
                                 {
+                                    if (LogPerformance) Log.Trace($"Setting performance:>{loadedPerf.Name}< serialNumber:>{perf.SerialNumber}<", Common.LOG_CATEGORY);
                                     loadedPerf.SerialNumber = perf.SerialNumber;
                                 }
 
@@ -425,7 +431,7 @@ namespace VNC.Phidget22.Players
                             {
                                 Log.Error($"Cannot find performance:>{perf.Name}<", Common.LOG_CATEGORY);
                             }
-                       }
+                        }
                     }
                 }
 
@@ -456,7 +462,7 @@ namespace VNC.Phidget22.Players
         private async Task ExecutePerfomanceSequences(Performance[] performanceSequences)
         {
             Int64 startTicks = 0;
-            if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:{performanceSequences.Count()}", Common.LOG_CATEGORY);
+            if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:>{performanceSequences.Count()}<", Common.LOG_CATEGORY);
 
             foreach (Performance callPerformance in performanceSequences)
             {

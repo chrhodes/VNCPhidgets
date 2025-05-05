@@ -656,6 +656,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     TargetPosition = MinPosition;
                     break;
 
+                case "MinStop":
+                    TargetPosition = MinPositionStop;
+                    break;
+
                 // NOTE(crhodes)
                 // This is now handled with TargetPostion Increment/Decrement
                 // and PositionIncrement Scale RadioButtons
@@ -668,6 +672,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     TargetPosition = (MaxPosition - MinPosition) / 2 + MinPosition;
                     break;
 
+                case "CenterStop":
+                    TargetPosition = (MaxPositionStop - MinPositionStop) / 2 + MinPositionStop;
+                    break;
+
                 // NOTE(crhodes)
                 // This is now handled with TargetPostion Increment/Decrement
                 // and PositionIncrement Scale RadioButtons
@@ -675,6 +683,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 //case "R+5":
                 //    TargetPosition = TargetPosition += 5;
                 //    break;
+
+                case "MaxStop":
+                    TargetPosition = MaxPositionStop;
+                    break;
 
                 case "Max":
                     TargetPosition = MaxPosition;
