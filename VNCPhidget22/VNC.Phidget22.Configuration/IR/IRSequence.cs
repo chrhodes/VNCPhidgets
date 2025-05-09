@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public IRSequence(IRSequence sequence) : base("IR", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of IR actions in sequence
         /// </summary>

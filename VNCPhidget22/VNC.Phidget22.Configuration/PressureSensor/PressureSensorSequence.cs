@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public PressureSensorSequence(PressureSensorSequence sequence) : base("PressureSensor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of PressureSensor actions in sequence
         /// </summary>

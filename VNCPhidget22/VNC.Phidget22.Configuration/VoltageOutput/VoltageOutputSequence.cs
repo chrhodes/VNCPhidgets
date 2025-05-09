@@ -11,6 +11,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public VoltageOutputSequence(VoltageOutputSequence sequence) : base("VoltageOutput", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of VoltageOutput actions in sequence
         /// </summary>

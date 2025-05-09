@@ -4,9 +4,35 @@ namespace VNC.Phidget22.Configuration.Performance
 {
     public class ChannelSequence
     {
+        private static readonly object _lock = new object();
+
         public ChannelSequence(string channelClass)
         {
             ChannelClass = channelClass;
+        }
+
+        public ChannelSequence(string channelClass, ChannelSequence channelSequence)
+        {
+            lock (_lock)
+            {
+                ChannelClass = channelClass;
+
+                Name = channelSequence.Name;
+                Description = channelSequence.Description;
+                UsageNotes = channelSequence.UsageNotes;
+                HubPort = channelSequence.HubPort;
+                Channel = channelSequence.Channel;
+                BeforeActionLoopSequences = channelSequence.BeforeActionLoopSequences;
+                StartActionLoopSequences = channelSequence.StartActionLoopSequences;
+                ActionLoops = channelSequence.ActionLoops;
+                ExecuteActionsInParallel = channelSequence.ExecuteActionsInParallel;
+                ActionsDuration = channelSequence.ActionsDuration;
+                EndActionLoopSequences = channelSequence.EndActionLoopSequences;
+                SequenceLoops = channelSequence.SequenceLoops;
+                AfterActionLoopSequences = channelSequence.AfterActionLoopSequences;
+                SequenceDuration = channelSequence.SequenceDuration;
+                NextSequence = channelSequence.NextSequence;
+            }
         }
 
         /// <summary>

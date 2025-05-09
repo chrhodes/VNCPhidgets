@@ -14,7 +14,8 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "Open": true, "RCServoType": 1, "MinPositionStop": 105, "TargetPosition": 125, "MaxPositionStop": 145, "Acceleration": 250, "VelocityLimit": 25 },
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 110, "TargetPosition": 135, "MaxPositionStop": 160, "Acceleration": 100, "VelocityLimit": 50 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 110, "TargetPosition": 135, "MaxPositionStop": 160,
+          "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
     { 
@@ -25,7 +26,8 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "Open": true, "RCServoType": 1, "MinPositionStop": 55, "TargetPosition": 75, "MaxPositionStop": 95, "Acceleration": 250, "VelocityLimit": 25 },
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 50, "TargetPosition": 75, "MaxPositionStop": 100, "Acceleration": 100, "VelocityLimit": 50 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 50, "TargetPosition": 75, "MaxPositionStop": 100,
+          "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
     { 
@@ -36,7 +38,8 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 90, "MaxPositionStop": 120, "Acceleration": 250, "VelocityLimit": 25 },
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 90, "MaxPositionStop": 120, "Acceleration": 100, "VelocityLimit": 50 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 55, "TargetPosition": 85, "MaxPositionStop": 115,
+          "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
     // TODO(crhodes)
@@ -44,7 +47,7 @@
     { 
       "Name": "Engage and Center Skull 2 X Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
-      "UsageNotes": "",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -54,7 +57,7 @@
     { 
       "Name": "Engage and Center Skull 2 Y Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
-      "UsageNotes": "",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -64,11 +67,11 @@
     { 
       "Name": "Engage and Center Skull 2 Z Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
-      "UsageNotes": "",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 90 },
+        { "Engaged": true, "TargetPosition": 85 },
       ]
     }, 
     { 
@@ -92,7 +95,7 @@
       "Description": "Center Z Axis",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 90 },
+        { "TargetPosition": 85 },
       ]
     },   
   ]

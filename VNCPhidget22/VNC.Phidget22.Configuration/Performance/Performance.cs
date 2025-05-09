@@ -4,6 +4,26 @@ namespace VNC.Phidget22.Configuration.Performance
 {
     public class Performance
     {
+        public Performance()
+        {
+        }
+        public Performance(Performance performance)
+        {
+            Name = performance.Name;
+            Description = performance.Description;
+            UsageNotes = performance.UsageNotes;
+            BeforePerformanceLoopPerformances = performance.BeforePerformanceLoopPerformances;
+            SerialNumber = performance.SerialNumber;
+            DeviceChannelSequences = performance.DeviceChannelSequences;
+            PlayDeviceChannelSequencesInParallel = performance.PlayDeviceChannelSequencesInParallel;
+            Performances = performance.Performances;
+            PlayPerformancesInParallel = performance.PlayPerformancesInParallel;
+            Duration = performance.Duration;
+            PerformanceLoops = performance.PerformanceLoops;
+            AfterPerformanceLoopPerformances = performance.AfterPerformanceLoopPerformances;
+            NextPerformance = performance.NextPerformance;
+        }
+
         /// <summary>
         /// Name of Performance
         /// </summary>

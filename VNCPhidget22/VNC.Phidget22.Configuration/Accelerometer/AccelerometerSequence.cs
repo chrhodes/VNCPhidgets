@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public AccelerometerSequence(AccelerometerSequence sequence) : base("Accelerometer", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of Accelerometer actions in sequence
         /// </summary>

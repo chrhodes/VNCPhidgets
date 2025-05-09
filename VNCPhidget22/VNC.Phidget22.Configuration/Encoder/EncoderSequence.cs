@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public EncoderSequence(EncoderSequence sequence) : base("Encoder", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of Encoder actions in sequence
         /// </summary>

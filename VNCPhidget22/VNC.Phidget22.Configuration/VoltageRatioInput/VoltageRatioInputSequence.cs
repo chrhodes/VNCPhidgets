@@ -10,6 +10,10 @@ namespace VNC.Phidget22.Configuration
         public VoltageRatioInputSequence() : base("VoltageRatioInput")
         {
         }
+        public VoltageRatioInputSequence(VoltageRatioInputSequence sequence) : base("VoltageRatioInput")
+        {
+            Actions = sequence.Actions;
+        }
 
         /// <summary>
         /// Array of VoltageOutput actions in sequence

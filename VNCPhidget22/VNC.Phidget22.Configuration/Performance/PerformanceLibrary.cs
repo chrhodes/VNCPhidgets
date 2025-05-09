@@ -519,14 +519,12 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\PerformanceConfig_Test.json",
 
                 // Performaces\Skulls\
-
-                @"Performances\Skulls\PerformanceConfig_Initialize Skulls.json",
-                @"Performances\Skulls\PerformanceConfig_Move Skulls.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_1.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_2.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_3.json",
-
-
+                @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_Move.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
+                @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_1.json",
+                @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_2.json",
+                @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_3.json",
             };
 
             return files;

@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public CapacitiveTouchSequence(CapacitiveTouchSequence sequence) : base("CapacitiveTouch", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of CapacitiveTouch actions in sequence
         /// </summary>

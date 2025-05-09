@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public PHSensorSequence(PHSensorSequence sequence) : base("PHSensor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of PHSensor actions in sequence
         /// </summary>

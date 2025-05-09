@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public PowerGuardSequence(PowerGuardSequence sequence) : base("PowerGuard", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of PowerGuard actions in sequence
         /// </summary>

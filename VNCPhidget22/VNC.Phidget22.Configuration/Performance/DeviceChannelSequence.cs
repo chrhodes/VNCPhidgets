@@ -24,7 +24,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// SerialNumber of PhidgetDevice that will run sequencee
         /// </summary>
-        public Int32 SerialNumber { get; set; }
+        public Int32? SerialNumber { get; set; }
 
         /// <summary>
         /// HubPort of PhidgetDevice that will run sequence

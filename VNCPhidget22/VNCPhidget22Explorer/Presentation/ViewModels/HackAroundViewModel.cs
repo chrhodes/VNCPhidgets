@@ -1283,19 +1283,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         public async void PlayPerformance()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayPerformance) Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
-            // TODO(crhodes)
-            // This has sideffect of setting ActivePerformanceSequencePlayer.
-            // Think through whether this make sense.
-
-            PerformancePlayer performancePlayer = GetPerformancePlayer();
+            PerformancePlayer performancePlayer = GetNewPerformancePlayer();
 
             // TODO(crhodes)
             // Maybe this should be a do / while loop
+
+            if (LogPerformance) Log.Trace($"Selected Performances:{SelectedPerformances.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
 
             foreach (Performance performance in SelectedPerformances)
             {
@@ -1303,7 +1301,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 if (SerialNumber is not null)
                 {
-                    if (LogPerformance) Log.Trace($"Setting nextPerformance:{nextPerformance.Name} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+                    if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{nextPerformance.Name}", Common.LOG_CATEGORY);
                     nextPerformance.SerialNumber = SerialNumber;
                 }
 
@@ -1326,7 +1324,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                         if (SerialNumber is not null)
                         {
-                            if (LogPerformance) Log.Trace($"Setting nextPerformance:{nextPerformance.Name} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+                            if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{nextPerformance.Name}", Common.LOG_CATEGORY);
                             nextPerformance.SerialNumber = SerialNumber;
                         }
 
@@ -1369,7 +1367,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayPerformance) Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public Boolean PlayPerformanceCanExecute()
@@ -1419,7 +1417,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This has side effect of using current Logging Settings
 
-            DeviceChannelSequencePlayer player = GetPhidgetDeviceSequencePlayer();
+            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
             foreach (RCServoSequence sequence in SelectedRCServoSequences)
             {
@@ -1430,8 +1428,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     DeviceChannelSequence? nextPhidgetDeviceSequence =
                         new DeviceChannelSequence
                         {
-                            SerialNumber = SelectedRCServoPhidget,
                             Name = sequence.Name,
+                            SerialNumber = SelectedRCServoPhidget,                            
                             ChannelClass = "RCServo",
                             SequenceLoops = sequence.SequenceLoops
                         };
@@ -1733,7 +1731,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This has side effect of using current Logging Settings
 
-            DeviceChannelSequencePlayer player = GetPhidgetDeviceSequencePlayer();
+            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
             foreach (DigitalOutputSequence sequence in SelectedDigitalOutputSequences)
             {
@@ -1855,7 +1853,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This has side effect of using current Logging Settings
 
-            DeviceChannelSequencePlayer player = GetPhidgetDeviceSequencePlayer();
+            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
             foreach (StepperSequence sequence in SelectedStepperSequences)
             {
@@ -1968,48 +1966,44 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private PerformancePlayer GetPerformancePlayer()
+        private PerformancePlayer GetNewPerformancePlayer()
         {
-            if (ActivePerformancePlayer == null)
-            {
-                ActivePerformancePlayer = new PerformancePlayer(EventAggregator);
-            }
+            PerformancePlayer player = new PerformancePlayer(EventAggregator);
 
             // HACK(crhodes)
             // Need a cleaner way of handing logging.  Maybe a LoggingConfiguration class that gets passed around.
 
-            ActivePerformancePlayer.LogPerformance = LogPerformance;
-            ActivePerformancePlayer.LogPhidgetEvents = LogPhidgetEvents;
-            ActivePerformancePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActivePerformancePlayer.LogChannelAction = LogChannelAction;
-            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
+            player.LogPerformance = LogPerformance;
 
-            return ActivePerformancePlayer;
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            return player;
         }
 
-        private DeviceChannelSequencePlayer GetPhidgetDeviceSequencePlayer()
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
-            if (ActiveDeviceChannelSequencePlayer == null)
-            {
-                ActiveDeviceChannelSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
-            }
+            DeviceChannelSequencePlayer deviceChannelSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
 
-            ActiveDeviceChannelSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActiveDeviceChannelSequencePlayer.LogChannelAction = LogChannelAction;
-            ActiveDeviceChannelSequencePlayer.LogActionVerification = LogActionVerification;
+            deviceChannelSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            deviceChannelSequencePlayer.LogChannelAction = LogChannelAction;
+            deviceChannelSequencePlayer.LogActionVerification = LogActionVerification;
 
-            ActiveDeviceChannelSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+            deviceChannelSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            deviceChannelSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
+            deviceChannelSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            deviceChannelSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            ActiveDeviceChannelSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
+            deviceChannelSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
+            deviceChannelSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
+            deviceChannelSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            ActiveDeviceChannelSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
+            deviceChannelSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
 
-            return ActiveDeviceChannelSequencePlayer;
+            return deviceChannelSequencePlayer;
         }
 
         //private async Task PlayParty()

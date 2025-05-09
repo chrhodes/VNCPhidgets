@@ -91,20 +91,48 @@
                 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
+                        <!--<dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
+                                ItemsSource="{Binding Performances}" DisplayMember="Name" 
+                                SelectedItem="{Binding SelectedPerformance}"
+                                EditValue="{ Binding 
+                                    Path=SelectedPerformances,
+                                    Mode=TwoWay,
+                                    Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>-->
+
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
-                            ItemsSource="{Binding Performances}" DisplayMember="Name" 
-                            SelectedItem="{Binding SelectedPerformance}"
-                            EditValue="{ Binding 
-                                Path=SelectedPerformances,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
+                                ItemsSource="{Binding Performances}" DisplayMember="Name" 
+                                SelectedItem="{Binding SelectedPerformance}"                                              
+                                EditValue="{ Binding 
+                                    Path=SelectedPerformances,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
                                 <dxe:ComboBoxEdit.StyleSettings>
                                     <dxe:CheckedComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>
+                        <!--<dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
+                                ItemsSource="{Binding Performances}" DisplayMember="Name" 
+                                SelectedItem="{Binding SelectedPerformance}"
+                                EditValue="{ Binding 
+                                    Path=SelectedPerformances,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>-->
 
                         <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
 

@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public LightSensorSequence(LightSensorSequence sequence) : base("LightSensor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of LightSensor actions in sequence
         /// </summary>

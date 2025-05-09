@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public FrequencyCounterSequence(FrequencyCounterSequence sequence) : base("FrequencyCounter", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of FrequencyCounter actions in sequence
         /// </summary>

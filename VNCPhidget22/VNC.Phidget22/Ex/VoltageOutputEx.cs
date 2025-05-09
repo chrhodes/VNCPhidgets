@@ -489,9 +489,7 @@ namespace VNC.Phidget22.Ex
                             // TODO(crhodes)
                             // May want to create a new player instead of reaching for the property.
 
-                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in voltageOutputSequence.StartActionLoopSequences)
                             {
@@ -533,9 +531,7 @@ namespace VNC.Phidget22.Ex
 
                         if (voltageOutputSequence.EndActionLoopSequences is not null)
                         {
-                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in voltageOutputSequence.EndActionLoopSequences)
                             {
@@ -551,6 +547,27 @@ namespace VNC.Phidget22.Ex
             {
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
+        }
+
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
         }
 
         #endregion

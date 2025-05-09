@@ -3,6 +3,53 @@
   "Description": "Performances Move Skulls",
   "Performances": [
     //
+    // Move All Skulls MovementCharacteristics Progression
+    //
+    {
+      "Name": "Move All Skulls MovementCharacteristics Progression",
+      "Description": "Move All Skulls with increasing MovementCharacteristics",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+       //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
+       //{ "Name": "Move All Skulls"},
+       //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
+       //{ "Name": "Move All Skulls"},
+       { "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
+       { "Name": "Move All Skulls"},
+       //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       //{ "Name": "Move All Skulls"},
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "Move All Skulls"},  
+       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
+       { "Name": "Move All Skulls"},  
+       { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
+       { "Name": "Move All Skulls"},  
+      ],
+    },
+    {
+      "Name": "Move All Skulls Parallel MovementCharacteristics Progression",
+      "Description": "Move All Skulls with increasing MovementCharacteristics",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+       //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
+       //{ "Name": "Move All Skulls Parallel"},
+       //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
+       //{ "Name": "Move All Skulls Parallel"},
+       { "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
+       { "Name": "Move All Skulls Parallel"},
+       //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       //{ "Name": "Move All Skulls Parallel"},
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "Move All Skulls Parallel"},  
+       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
+       { "Name": "Move All Skulls Parallel"},  
+       { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
+       { "Name": "Move All Skulls Parallel"},  
+      ],
+    },
+    //
     // Move All Skulls
     //
     {
@@ -53,8 +100,6 @@
        { "Name": "Skull-012 Look Down Left", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Left", "SerialNumber": 169501 },
        { "Name": "Skull-456 Look Down Left", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
       ],
     },
     //
@@ -69,8 +114,6 @@
        { "Name": "Skull-012 Look Down Right", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Right", "SerialNumber": 169501 },
        { "Name": "Skull-456 Look Down Right", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
       ],
     },
     //
@@ -84,9 +127,7 @@
       "Performances": [
        { "Name": "Skull-012 Look Up Left", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Left", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
+       { "Name": "Skull-456 Look Up Left", "SerialNumber": 99220 },      
       ],
     },
     //
@@ -100,29 +141,39 @@
       "Performances": [
        { "Name": "Skull-012 Look Up Right", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Right", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
+       { "Name": "Skull-456 Look Up Right", "SerialNumber": 99220 },    
       ],
     },
     //
-    // All Skulls - Lown Down Left
+    // All Skulls - Look Down Left Parallel
     //
     {
       "Name": "All Skulls - Look Down Left Parallel",
-      "Description": "Look Down Left",
+      "Description": "Look Down Left Performances Parallel DCS Sequential",
       "Loops": 1,
       "PlayPerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down Left", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Left", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
+       { "Name": "Skull-456 Look Down Left", "SerialNumber": 99220 },     
       ],
     },
     //
-    // All Skulls - Lown Down Right
+    // All Skulls - Look Down Left Parallel DCS Parallel
+    //
+    {
+      "Name": "All Skulls - Look Down Left Parallel DCS Parallel",
+      "Description": "Look Down Left Performances Parallel DCS Parallel",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Look Down Left Parallel", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Look Down Left Parallel", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Look Down Left Parallel", "SerialNumber": 99220 },     
+      ],
+    },
+    //
+    // All Skulls - Look Down Right Parallel
     //
     {
       "Name": "All Skulls - Look Down Right Parallel",
@@ -132,13 +183,11 @@
       "Performances": [
        { "Name": "Skull-012 Look Down Right", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Right", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
+       { "Name": "Skull-456 Look Down Right", "SerialNumber": 99220 },      
       ],
     },
     //
-    // All Skulls - Lown Up Left
+    // All Skulls - Look Up Left Parallel
     //
     {
       "Name": "All Skulls - Look Up Left Parallel",
@@ -148,9 +197,7 @@
       "Performances": [
        { "Name": "Skull-012 Look Up Left", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Left", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
+       { "Name": "Skull-456 Look Up Left", "SerialNumber": 99220 },  
       ],
     },
     //
@@ -164,17 +211,30 @@
       "Performances": [
        { "Name": "Skull-012 Look Up Right", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Right", "SerialNumber": 99220 },
-       //{ "Name": "Engage and Center Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Engage and Center Skull 3", "SerialNumber": 99415 },        
+       { "Name": "Skull-456 Look Up Right", "SerialNumber": 99220 },     
+      ],
+    },
+    //
+    // Skull-012 Look Down Left
+    //
+    {
+      "Name": "Skull-012 Look Down Left",
+      "Description": "Skull Look Down Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)   
       ],
     },
     //
     // Skull-012 Look Down Left Parallel
     //
     {
-      "Name": "Skull-012 Look Down Left",
-      "Description": "Skull Look Down Left",
+      "Name": "Skull-012 Look Down Left Parallel",
+      "Description": "Skull Look Down Left PlayDeviceChannelSequencesInParallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -185,11 +245,26 @@
       ],
     },
     //
-    // Skull-456 Look Down Left Parallel
+    // Skull-456 Look Down Left
     //
     {
       "Name": "Skull-456 Look Down Left",
       "Description": "Skull Look Down Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)      
+      ],
+    },
+    //
+    // Skull-456 Look Down Left Parallel
+    //
+    {
+      "Name": "Skull-456 Look Down Left Parallel",
+      "Description": "Skull Look Down Left PlayDeviceChannelSequencesInParallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -198,13 +273,28 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)      
       ],
-    },   
+    }, 
     //
-    // Skull-012 Look Down Right Parallel
+    // Skull-012 Look Down Right
     //
     {
       "Name": "Skull-012 Look Down Right",
       "Description": "Skull Look Down Right",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 10" },   // Rotate Left(-)/Right(+)     
+      ],
+    },
+    //
+    // Skull-012 Look Down Right Parallel
+    //
+    {
+      "Name": "Skull-012 Look Down Right Parallel",
+      "Description": "Skull Look Down Right PlayDeviceChannelSequencesInParallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -222,6 +312,21 @@
       "Description": "Skull Look Down Right",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 10" },   // // Rotate Left(-)/Right(+)    
+      ],
+    },
+    //
+    // Skull-456 Look Down Right Parallel
+    //
+    {
+      "Name": "Skull-456 Look Down Right Parallel",
+      "Description": "Skull Look Down Right PlayDeviceChannelSequencesInParallel",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
@@ -235,6 +340,21 @@
     {
       "Name": "Skull-012 Look Up Left",
       "Description": "Skull Look Up Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)   
+      ],
+    },
+    //
+    // Skull-012 Look Up Left Parallel
+    //
+    {
+      "Name": "Skull-012 Look Up Left Parallel",
+      "Description": "Skull Look Up Left PlayDeviceChannelSequencesInParallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -252,19 +372,49 @@
       "Description": "Skull Look Up Left",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)      
+      ],
+    },
+    //
+    // Skull-456 Look Up Left
+    //
+    {
+      "Name": "Skull-456 Look Up Left Parallel",
+      "Description": "Skull Look Up Left PlayDeviceChannelSequencesInParallel",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)      
       ],
-    },   
+    },  
     //
     // Skull-012 Look Up Right
     //
     {
       "Name": "Skull-012 Look Up Right",
       "Description": "Skull Look Up Right",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 10" },   // Rotate Left(-)/Right(+)     
+      ],
+    },
+    //
+    // Skull-012 Look Up Right Parallel
+    //
+    {
+      "Name": "Skull-012 Look Up Right Parallel",
+      "Description": "Skull Look Up Right PlayDeviceChannelSequencesInParallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -282,13 +432,27 @@
       "Description": "Skull Look Up Right",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "PlayDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 10" },   // // Rotate Left(-)/Right(+)    
       ],
     },       
-
+    //
+    // Skull-456 Look Up Right Parallel
+    //
+    {
+      "Name": "Skull-456 Look Up Right Parallel",
+      "Description": "Skull Look Up Right PlayDeviceChannelSequencesInParallel",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 10" },   // // Rotate Left(-)/Right(+)    
+      ],
+    },      
   ]
 }

@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public RCServoSequence(RCServoSequence sequence) : base("RCServo", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of RCServo actions for channel in sequence
         /// </summary>

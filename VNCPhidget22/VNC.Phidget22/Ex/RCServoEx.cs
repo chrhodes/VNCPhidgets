@@ -500,12 +500,16 @@ namespace VNC.Phidget22.Ex
 
                 if (value < MinPositionStop)
                 {
-                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel} Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}", Common.LOG_CATEGORY);
+                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
+                        $" Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MinPositionStop;
                 }
                 else if (value > MaxPositionStop)
                 {
-                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel} Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}", Common.LOG_CATEGORY);
+                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
+                        $" Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MaxPositionStop;
                 }
                 else
@@ -1060,9 +1064,13 @@ namespace VNC.Phidget22.Ex
                         $"RunActionLoops(>{rcServoSequence.Name}<)" +
                         $" startActionLoopSequences:>{rcServoSequence.StartActionLoopSequences?.Count()}<" +
                         $" actionLoops:>{rcServoSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{rcServoSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{rcServoSequence.Channel}<" +
                         $" actions:>{rcServoSequence.Actions?.Count()}<" +
                         $" actionsDuration:>{rcServoSequence.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{rcServoSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" endActionLoopSequences:>{rcServoSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (rcServoSequence.Actions is not null)
@@ -1071,22 +1079,22 @@ namespace VNC.Phidget22.Ex
                     {
                         if (rcServoSequence.StartActionLoopSequences is not null)
                         {
-                            // TODO(crhodes)
-                            // May want to create a new player instead of reaching for the property.
-
-                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in rcServoSequence.StartActionLoopSequences)
                             {
+                                // NOTE(crhodes)
+                                // We do not support passing in a SerialNumber.
+                                // All that could be used is ourselves.
                                 await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
 
                         if (rcServoSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}< actions:{rcServoSequence.Actions.Count()}", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{rcServoSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(rcServoSequence.Actions, async action =>
                             {
@@ -1095,7 +1103,9 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}< actions:{rcServoSequence.Actions.Count()}", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{rcServoSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             foreach (RCServoAction action in rcServoSequence.Actions)
                             {
@@ -1114,12 +1124,13 @@ namespace VNC.Phidget22.Ex
 
                         if (rcServoSequence.EndActionLoopSequences is not null)
                         {
-                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in rcServoSequence.EndActionLoopSequences)
                             {
+                                // NOTE(crhodes)
+                                // We do not support passing in a SerialNumber.
+                                // All that could be used is ourselves.
                                 await player.ExecuteDeviceChannelSequence(sequence);
                             }
                         }
@@ -1131,7 +1142,30 @@ namespace VNC.Phidget22.Ex
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogChannelAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogChannelAction) Log.Trace($"Exit" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            player.LogPositionChangeEvents = LogPositionChangeEvents;
+            player.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            player.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
         }
 
         /// <summary>
@@ -1366,7 +1400,9 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber} hubPort:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                    $" hubPort:{HubPort} channel:{Channel}" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
 
             try
@@ -1667,7 +1703,9 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber} hubPort:{HubPort} channel:{Channel} {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                        $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
             }
         }

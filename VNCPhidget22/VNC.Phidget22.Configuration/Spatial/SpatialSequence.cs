@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public SpatialSequence(SpatialSequence sequence) : base("Spatial", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of Spatial actions in sequence
         /// </summary>

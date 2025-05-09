@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public GPSSequence(GPSSequence sequence) : base("GPS", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of GPS actions in sequence
         /// </summary>

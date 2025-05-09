@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public HubSequence(HubSequence sequence) : base("Hub", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of Hub actions in sequence
         /// </summary>
