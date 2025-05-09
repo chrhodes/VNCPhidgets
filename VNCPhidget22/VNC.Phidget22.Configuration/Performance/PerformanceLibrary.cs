@@ -520,8 +520,11 @@ namespace VNC.Phidget22.Configuration.Performance
 
                 // Performaces\Skulls\
                 @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_Move.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_Move.json",
+
+                // Performaces\Skulls\Legacy\
                 @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_1.json",
                 @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_2.json",
                 @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_3.json",
@@ -591,7 +594,6 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 2 Initialization.json",
                 @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 3 Initialization.json",
                 @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull Move.json",
-
             };
 
             return files;

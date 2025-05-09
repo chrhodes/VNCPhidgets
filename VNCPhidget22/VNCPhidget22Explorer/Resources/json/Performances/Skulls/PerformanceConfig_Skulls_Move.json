@@ -3,223 +3,11 @@
   "Description": "Performances Move Skulls",
   "Performances": [
     //
-    // Move All Skulls MovementCharacteristics Progression
-    //
-    {
-      "Name": "Move All Skulls MovementCharacteristics Progression",
-      "Description": "Move All Skulls with increasing MovementCharacteristics",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
-       //{ "Name": "Move All Skulls"},
-       //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
-       //{ "Name": "Move All Skulls"},
-       { "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
-       { "Name": "Move All Skulls"},
-       //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-       //{ "Name": "Move All Skulls"},
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Move All Skulls"},  
-       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
-       { "Name": "Move All Skulls"},  
-       { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
-       { "Name": "Move All Skulls"},  
-      ],
-    },
-    {
-      "Name": "Move All Skulls Parallel MovementCharacteristics Progression",
-      "Description": "Move All Skulls with increasing MovementCharacteristics",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
-       //{ "Name": "Move All Skulls Parallel"},
-       //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
-       //{ "Name": "Move All Skulls Parallel"},
-       { "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
-       { "Name": "Move All Skulls Parallel"},
-       //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-       //{ "Name": "Move All Skulls Parallel"},
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Move All Skulls Parallel"},  
-       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
-       { "Name": "Move All Skulls Parallel"},  
-       { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
-       { "Name": "Move All Skulls Parallel"},  
-      ],
-    },
-    //
-    // Move All Skulls
-    //
-    {
-      "Name": "Move All Skulls",
-      "Description": "Move All Skulls",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "All Skulls - Look Down Left"},
-       { "Name": "Center All Skulls" },
-       { "Name": "All Skulls - Look Up Right"},
-       { "Name": "Center All Skulls" },
-       { "Name": "All Skulls - Look Down Right"},
-       { "Name": "Center All Skulls" },
-       { "Name": "All Skulls - Look Up Left"},
-       { "Name": "Center All Skulls" },       
-      ],
-    },
-
-    //
-    // Move All Skulls Parallel
-    //
-    {
-      "Name": "Move All Skulls Parallel",
-      "Description": "Move All Skulls",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "All Skulls - Look Down Left Parallel"},
-       { "Name": "Center All Skulls" },
-       { "Name": "All Skulls - Look Up Right Parallel"},
-       { "Name": "Center All Skulls" },
-       { "Name": "All Skulls - Look Down Right Parallel"},
-       { "Name": "Center All Skulls" },
-       { "Name": "All Skulls - Look Up Left Parallel"},
-       { "Name": "Center All Skulls" },       
-      ],
-    },
-    //
-    // All Skulls - Lown Down Left
-    //
-    {
-      "Name": "All Skulls - Look Down Left",
-      "Description": "Look Down Left",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Skull-012 Look Down Left", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Down Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Left", "SerialNumber": 99220 },
-      ],
-    },
-    //
-    // All Skulls - Lown Down Right
-    //
-    {
-      "Name": "All Skulls - Look Down Right",
-      "Description": "Look Down Right",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Skull-012 Look Down Right", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Down Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Right", "SerialNumber": 99220 },
-      ],
-    },
-    //
-    // All Skulls - Lown Up Left
-    //
-    {
-      "Name": "All Skulls - Look Up Left",
-      "Description": "Look Up Left",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Skull-012 Look Up Left", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Up Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Left", "SerialNumber": 99220 },      
-      ],
-    },
-    //
-    // All Skulls - Look Up Right
-    //
-    {
-      "Name": "All Skulls - Look Up Right",
-      "Description": "Look Up Right",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Skull-012 Look Up Right", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Up Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Right", "SerialNumber": 99220 },    
-      ],
-    },
-    //
-    // All Skulls - Look Down Left Parallel
-    //
-    {
-      "Name": "All Skulls - Look Down Left Parallel",
-      "Description": "Look Down Left Performances Parallel DCS Sequential",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Look Down Left", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Down Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Left", "SerialNumber": 99220 },     
-      ],
-    },
-    //
-    // All Skulls - Look Down Left Parallel DCS Parallel
-    //
-    {
-      "Name": "All Skulls - Look Down Left Parallel DCS Parallel",
-      "Description": "Look Down Left Performances Parallel DCS Parallel",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Look Down Left Parallel", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Down Left Parallel", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Left Parallel", "SerialNumber": 99220 },     
-      ],
-    },
-    //
-    // All Skulls - Look Down Right Parallel
-    //
-    {
-      "Name": "All Skulls - Look Down Right Parallel",
-      "Description": "Look Down Right",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Look Down Right", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Down Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Down Right", "SerialNumber": 99220 },      
-      ],
-    },
-    //
-    // All Skulls - Look Up Left Parallel
-    //
-    {
-      "Name": "All Skulls - Look Up Left Parallel",
-      "Description": "Look Up Left",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Look Up Left", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Up Left", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Left", "SerialNumber": 99220 },  
-      ],
-    },
-    //
-    // All Skulls - Look Up Right Parallel
-    //
-    {
-      "Name": "All Skulls - Look Up Right Parallel",
-      "Description": "Look Up Right",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Look Up Right", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Look Up Right", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Look Up Right", "SerialNumber": 99220 },     
-      ],
-    },
-    //
     // Skull-012 Look Down Left
     //
     {
-      "Name": "Skull-012 Look Down Left",
-      "Description": "Skull Look Down Left",
+      "Name": "Skull-012 Look Down Left - DCS Sequential",
+      "Description": "Skull Look Down Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -229,12 +17,9 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)   
       ],
     },
-    //
-    // Skull-012 Look Down Left Parallel
-    //
     {
-      "Name": "Skull-012 Look Down Left Parallel",
-      "Description": "Skull Look Down Left PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-012 Look Down Left - DCS Parallel",
+      "Description": "Skull Look Down Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -248,8 +33,8 @@
     // Skull-456 Look Down Left
     //
     {
-      "Name": "Skull-456 Look Down Left",
-      "Description": "Skull Look Down Left",
+      "Name": "Skull-456 Look Down Left - DCS Sequential",
+      "Description": "Skull Look Down Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -259,12 +44,9 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)      
       ],
     },
-    //
-    // Skull-456 Look Down Left Parallel
-    //
     {
-      "Name": "Skull-456 Look Down Left Parallel",
-      "Description": "Skull Look Down Left PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-456 Look Down Left - DCS Parallel",
+      "Description": "Skull Look Down Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -278,8 +60,8 @@
     // Skull-012 Look Down Right
     //
     {
-      "Name": "Skull-012 Look Down Right",
-      "Description": "Skull Look Down Right",
+      "Name": "Skull-012 Look Down Right - DCS Sequential",
+      "Description": "Skull Look Down Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -289,12 +71,9 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 10" },   // Rotate Left(-)/Right(+)     
       ],
     },
-    //
-    // Skull-012 Look Down Right Parallel
-    //
     {
-      "Name": "Skull-012 Look Down Right Parallel",
-      "Description": "Skull Look Down Right PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-012 Look Down Right - DCS Parallel",
+      "Description": "Skull Look Down Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -308,8 +87,8 @@
     // Skull-456 Look Down Right
     //
     {
-      "Name": "Skull-456 Look Down Right",
-      "Description": "Skull Look Down Right",
+      "Name": "Skull-456 Look Down Right - DCS Sequential",
+      "Description": "Skull Look Down Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -319,12 +98,9 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 10" },   // // Rotate Left(-)/Right(+)    
       ],
     },
-    //
-    // Skull-456 Look Down Right Parallel
-    //
     {
-      "Name": "Skull-456 Look Down Right Parallel",
-      "Description": "Skull Look Down Right PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-456 Look Down Right - DCS Parallel",
+      "Description": "Skull Look Down Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -338,8 +114,8 @@
     // Skull-012 Look Up Left
     //
     {
-      "Name": "Skull-012 Look Up Left",
-      "Description": "Skull Look Up Left",
+      "Name": "Skull-012 Look Up Left - DCS Sequential",
+      "Description": "Skull Look Up Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -353,8 +129,8 @@
     // Skull-012 Look Up Left Parallel
     //
     {
-      "Name": "Skull-012 Look Up Left Parallel",
-      "Description": "Skull Look Up Left PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-012 Look Up Left - DCS Parallel",
+      "Description": "Skull Look Up Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -368,8 +144,8 @@
     // Skull-456 Look Up Left
     //
     {
-      "Name": "Skull-456 Look Up Left",
-      "Description": "Skull Look Up Left",
+      "Name": "Skull-456 Look Up Left - DCS Sequential",
+      "Description": "Skull Look Up Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -379,12 +155,9 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)      
       ],
     },
-    //
-    // Skull-456 Look Up Left
-    //
     {
-      "Name": "Skull-456 Look Up Left Parallel",
-      "Description": "Skull Look Up Left PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-456 Look Up Left - DCS Parallel",
+      "Description": "Skull Look Up Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -398,8 +171,8 @@
     // Skull-012 Look Up Right
     //
     {
-      "Name": "Skull-012 Look Up Right",
-      "Description": "Skull Look Up Right",
+      "Name": "Skull-012 Look Up Right - DCS Sequential",
+      "Description": "Skull Look Up Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -409,12 +182,9 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 10" },   // Rotate Left(-)/Right(+)     
       ],
     },
-    //
-    // Skull-012 Look Up Right Parallel
-    //
     {
-      "Name": "Skull-012 Look Up Right Parallel",
-      "Description": "Skull Look Up Right PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-012 Look Up Right - DCS Parallel",
+      "Description": "Skull Look Up Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,
@@ -428,8 +198,8 @@
     // Skull-456 Look Up Right
     //
     {
-      "Name": "Skull-456 Look Up Right",
-      "Description": "Skull Look Up Right",
+      "Name": "Skull-456 Look Up Right - DCS Sequential",
+      "Description": "Skull Look Up Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,
@@ -443,8 +213,8 @@
     // Skull-456 Look Up Right Parallel
     //
     {
-      "Name": "Skull-456 Look Up Right Parallel",
-      "Description": "Skull Look Up Right PlayDeviceChannelSequencesInParallel",
+      "Name": "Skull-456 Look Up Right - DCS Parallel",
+      "Description": "Skull Look Up Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": true,

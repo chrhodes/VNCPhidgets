@@ -52,48 +52,56 @@
     },
     { 
       "Name": "Move Relative 20", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 20 }, 
       ]
     },
     { 
       "Name": "Move Relative 15", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 15 }, 
       ]
     },
     { 
       "Name": "Move Relative 10", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 10 }, 
       ]
     },
     { 
       "Name": "Move Relative 5", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 5 }, 
       ]
     },
     { 
       "Name": "Move Relative -5", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -5 }, 
       ]
     },
     { 
       "Name": "Move Relative -10", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -10 }, 
       ]
     },
     { 
       "Name": "Move Relative -15", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -15 }, 
       ]
     },
     { 
       "Name": "Move Relative -20", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -20 }, 
       ]
