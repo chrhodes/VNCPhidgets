@@ -11,10 +11,10 @@
       "Loops": 1,
       "PlayPerformancesInParallel": false,
       "Performances": [
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Sequential", "Duration": 3000},
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel", "Duration": 3000},
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential", "Duration": 3000},
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel", "Duration": 3000},
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Sequential"},
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel"},
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential"},
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel"},
       ],
     },
     {
@@ -38,6 +38,7 @@
        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        //{ "Name": "Move All Skulls - Performances Sequential DCS Sequential"},
       ],
+      "Duration": 2000
     },
     {
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel",
@@ -60,6 +61,7 @@
        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        //{ "Name": "Move All Skulls - Performances Sequential DCS Parallel"},
       ],
+      "Duration": 2000
     },
     {
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential",
@@ -82,6 +84,7 @@
        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        //{ "Name": "Move All Skulls - Performances Parallel DCS Sequential"},
       ],
+      "Duration": 2000
     },
     {
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel",
@@ -104,6 +107,7 @@
        { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        { "Name": "Move All Skulls - Performances Parallel DCS Parallel"},
       ],
+      "Duration": 2000
     },
     //
     // Move All Skulls
@@ -124,6 +128,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Sequential DCS Sequential"},
        { "Name": "Center All Skulls" },       
       ],
+      "Duration": 1000
     },
     {
       "Name": "Move All Skulls - Performances Sequential DCS Parallel",
@@ -141,6 +146,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Sequential DCS Parallel"},
        { "Name": "Center All Skulls" },       
       ],
+      "Duration": 1000
     },
     {
       "Name": "Move All Skulls - Performances Parallel DCS Sequential",
@@ -158,6 +164,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Parallel DCS Sequential"},
        { "Name": "Center All Skulls" },       
       ],
+      "Duration": 1000
     },
     {
       "Name": "Move All Skulls - Performances Parallel DCS Parallel",
@@ -175,6 +182,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Parallel DCS Parallel"},
        { "Name": "Center All Skulls" },       
       ],
+      "Duration": 1000
     },
     //
     // All Skulls - Look Down Left

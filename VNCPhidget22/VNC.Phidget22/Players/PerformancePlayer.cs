@@ -322,6 +322,7 @@ namespace VNC.Phidget22.Players
                     $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
                     $" loops:>{performance.PerformanceLoops}<" +
                     $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
+                    $" duration:>{performance.Duration}<" +
                     $" nextPerformance:>{performance.NextPerformance?.Name}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
