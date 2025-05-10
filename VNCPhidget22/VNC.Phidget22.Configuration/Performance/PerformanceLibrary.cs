@@ -521,8 +521,12 @@ namespace VNC.Phidget22.Configuration.Performance
                 // Performaces\Skulls\
                 @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_Move.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MoveUpDown.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MoveLeftRight.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_TiltLeftRight.json",
 
                 // Performaces\Skulls\Legacy\
                 @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_1.json",

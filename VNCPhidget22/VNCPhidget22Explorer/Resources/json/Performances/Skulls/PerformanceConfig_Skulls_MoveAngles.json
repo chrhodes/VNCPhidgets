@@ -1,6 +1,6 @@
 {
-  "Name": "PerformanceConfig_Move Skulls",
-  "Description": "Performances Move Skulls",
+  "Name": "PerformanceConfig_Skulls_MoveAngles",
+  "Description": "Performances Move Skulls Look Up/Down Left/Right",
   "Performances": [
     //
     // Skull-012 Look Down Left

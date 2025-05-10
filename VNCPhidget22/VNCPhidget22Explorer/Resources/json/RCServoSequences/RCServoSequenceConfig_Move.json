@@ -106,5 +106,19 @@
         { "RelativePosition": -20 }, 
       ]
     },
+    { 
+      "Name": "Move Relative -25", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "RelativePosition": -25 }, 
+      ]
+    },
+    { 
+      "Name": "Move Relative -30", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "RelativePosition": -30 }, 
+      ]
+    },
   ]
 }

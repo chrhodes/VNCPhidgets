@@ -8,7 +8,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>indevelopment-24</VersionSuffix>
-        <FileVersion>2025.05.08</FileVersion>
+        <FileVersion>2025.05.09</FileVersion>
         <Description>Phidget22 Explorer</Description>
         <Nullable>enable</Nullable>
         <ImplicitUsings>disable</ImplicitUsings>    
@@ -102,7 +102,7 @@
         <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">
             <ItemGroup>
                 <PackageReference Include="VNC.Core" Version="3.1.0" />
-                <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.0.0" />
+                <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.1.0" />
             </ItemGroup>
         </When>
     </Choose>
@@ -124,13 +124,25 @@
         <None Update="Resources\json\Performances\PerformanceConfig_RCServos.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_TiltLeftRight.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveUpDown.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveLeftRight.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Move.json">
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Initialize.json">
