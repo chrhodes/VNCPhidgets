@@ -1,0 +1,82 @@
+{
+  "Name": "PerformanceConfig_Move_Routines",
+  "Description": "Performances Skull Routines",
+  "Performances": [
+    //
+    // Initialize All Skulls
+    //
+    {
+      "Name": "Initialize All Skulls",
+      "Description": "Initialize All Skulls",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
+       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
+       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
+       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
+       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },    
+      ],
+    },
+    //
+    // Wake up All Skulls
+    //
+    {
+      "Name": "Wake up All Skulls",
+      "Description": "Engage and Center All Skulls",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
+       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
+       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },       
+      ],
+    },
+    //
+    // Center All Skulls
+    //
+    {
+      "Name": "Center All Skulls",
+      "Description": "Center All Skulls",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Center Skull 1", "SerialNumber": 99220 },
+       { "Name": "Center Skull 2", "SerialNumber": 169501 },
+       { "Name": "Center Skull 3", "SerialNumber": 99220 },      
+      ],
+    },
+    //
+    // Sleep All Skulls
+    //
+    {
+      "Name": "Sleep All Skulls",
+      "Description": "Sleep All Skulls",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Sleep Skull 1", "SerialNumber": 99220 },
+       { "Name": "Sleep Skull 2", "SerialNumber": 169501 },
+       { "Name": "Sleep Skull 3", "SerialNumber": 99220 }, 
+      ],
+    },
+    //
+    // Move All Skulls - Sound to Left
+    //
+    {
+      "Name": "Move All Skulls - Sound to Left",
+      "Description": "",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       { "Name": "Skull-456 Look Left 20", "SerialNumber": 99220  },
+       { "Name": "Skull-456 Look Right 20", "SerialNumber": 99220 },
+       { "Name": "Skull-456 Look Right 10", "SerialNumber": 99220 },
+       { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220 },
+       { "Name": "Move All Skulls - Left 20" },
+      ],
+    },
+    
+  ]
+}

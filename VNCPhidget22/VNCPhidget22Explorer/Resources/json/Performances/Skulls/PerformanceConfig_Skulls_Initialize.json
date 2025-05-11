@@ -2,22 +2,7 @@
   "Name": "PerformanceConfig_InitializeSkulls",
   "Description": "Performances to Initialize, WakeUp and Sleep Skulls",
   "Performances": [
-    //
-    // Initialize All Skulls
-    //
-    {
-      "Name": "Initialize All Skulls",
-      "Description": "Initialize All Skulls",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
-       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
-       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
-       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },    
-      ],
-    },
+
     //
     // Initialize Skull 1
     //
@@ -63,20 +48,7 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Initialize Skull 3 Z Axis" },      
       ],
     },
-    //
-    // Wake up All Skulls
-    //
-    {
-      "Name": "Wake up All Skulls",
-      "Description": "Engage and Center All Skulls",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
-       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
-       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },       
-      ],
-    },
+
     //
     // Engage and Center Skull 1
     //
@@ -122,20 +94,7 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Engage and Center Skull 3 Z Axis" },      
       ],
     },
-    //
-    // Center All Skulls
-    //
-    {
-      "Name": "Center All Skulls",
-      "Description": "Center All Skulls",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Center Skull 1", "SerialNumber": 99220 },
-       { "Name": "Center Skull 2", "SerialNumber": 169501 },
-       { "Name": "Center Skull 3", "SerialNumber": 99220 },      
-      ],
-    },
+
     //
     // Center Skull 1
     //
@@ -181,20 +140,7 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Center Skull 3 Z Axis" },      
       ],
     },
-    //
-    // Sleep All Skulls
-    //
-    {
-      "Name": "Sleep All Skulls",
-      "Description": "Sleep All Skulls",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Sleep Skull 1", "SerialNumber": 99220 },
-       { "Name": "Sleep Skull 2", "SerialNumber": 169501 },
-       { "Name": "Sleep Skull 3", "SerialNumber": 99220 }, 
-      ],
-    },
+
     //
     // Sleep Skull 1
     //

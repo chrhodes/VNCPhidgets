@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -44,11 +46,6 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void TriggerSequence(SequenceEventArgs args)
-        {
-            Log.EVENT_HANDLER("Called", Common.LOG_CATEGORY);
-        }
-
         /// <summary>
         /// Configures HumiditySensorEx using HumiditySensorConfiguration
         /// and establishes event handlers
@@ -73,10 +70,27 @@ namespace VNC.Phidget22.Ex
 
             IsRemote = true;
 
-            Attach += HumiditySensorExEx_Attach;
-            Detach += HumiditySensorExEx_Detach;
-            Error += HumiditySensorExEx_Error;
-            PropertyChange += HumiditySensorExEx_PropertyChange;
+            // NOTE(crhodes)
+            // Having these passed in is handy for Performance stuff where there is no UI
+
+            LogPhidgetEvents = configuration.LogPhidgetEvents;
+            LogErrorEvents = configuration.LogErrorEvents;
+            LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            // TODO(crhodes)
+            // Add and device specific logging options
+
+            LogDeviceChannelSequence = configuration.LogDeviceChannelSequence;
+            LogChannelAction = configuration.LogChannelAction;
+            LogActionVerification = configuration.LogActionVerification;
+
+            Attach += HumiditySensorEx_Attach;
+            Detach += HumiditySensorEx_Detach;
+            Error += HumiditySensorEx_Error;
+            PropertyChange += HumiditySensorEx_PropertyChange;
+
+            // TODO(crhodes)
+            // Add any device specific events
 
             if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -153,9 +167,6 @@ namespace VNC.Phidget22.Ex
             get => _serialHubPortChannel;
             set
             {
-                //if (_serialHubPortChannel.Equals(value)) return;
-                //if (_serialHubPortChannel == value)
-                //    return;
                 _serialHubPortChannel = value;
                 OnPropertyChanged();
             }
@@ -182,8 +193,6 @@ namespace VNC.Phidget22.Ex
             get => _minDataInterval;
             set
             {
-                //if (_minDataInterval == value)
-                //    return;
                 _minDataInterval = value;
                 OnPropertyChanged();
             }
@@ -214,8 +223,6 @@ namespace VNC.Phidget22.Ex
             get => _maxDataInterval;
             set
             {
-                //if (_maxDataInterval == value)
-                //    return;
                 _maxDataInterval = value;
                 OnPropertyChanged();
             }
@@ -227,8 +234,6 @@ namespace VNC.Phidget22.Ex
             get => _minDataRate;
             set
             {
-                //if (_minDataRate == value)
-                //    return;
                 _minDataRate = value;
                 OnPropertyChanged();
             }
@@ -259,8 +264,6 @@ namespace VNC.Phidget22.Ex
             get => _maxDataRate;
             set
             {
-                //if (_maxDataRate == value)
-                //    return;
                 _maxDataRate = value;
                 OnPropertyChanged();
             }
@@ -279,7 +282,7 @@ namespace VNC.Phidget22.Ex
 
         #region Event Handlers
 
-        private void HumiditySensorExEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        private void HumiditySensorEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
             Phidgets.HumiditySensor HumiditySensor = sender as Phidgets.HumiditySensor;
 
@@ -287,7 +290,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"HumiditySensorExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"HumiditySensorEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -317,7 +320,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Exit HumiditySensorExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Exit HumiditySensorEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -326,13 +329,13 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private void HumiditySensorExEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        private void HumiditySensorEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
             if (LogPropertyChangeEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"HumiditySensorExEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"HumiditySensorEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -351,18 +354,18 @@ namespace VNC.Phidget22.Ex
                     break;
 
                 default:
-                    Log.EVENT_HANDLER($"HumiditySensorExEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"HumiditySensorEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
                     break;
             }
         }
 
-        private void HumiditySensorExEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        private void HumiditySensorEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"HumiditySensorExEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"HumiditySensorEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -373,7 +376,7 @@ namespace VNC.Phidget22.Ex
             Attached = false;
         }
 
-        private void HumiditySensorExEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        private void HumiditySensorEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
         {
             if (LogErrorEvents)
             {
@@ -437,9 +440,8 @@ namespace VNC.Phidget22.Ex
 
             try
             {
-                // TODO(crhodes)
-                // Move stuff out of Attach unless absolutely need to be set
-                // as some Phidgets do not provide values until Open
+                // Set properties to values from Phidget
+                // We do not use Attach as some Phidgets do not provide values until Open
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -468,20 +470,23 @@ namespace VNC.Phidget22.Ex
 
         public async Task RunActionLoops(HumiditySensorSequence humiditySensorSequence)
         {
+            Int64 startTicks = 0;
+
             try
             {
-                Int64 startTicks = 0;
-
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                        $"Running Action Loops" +
-                        $" name:>{humiditySensorSequence.Name}<" +
-                        $" startActionLoopSequences:>{humiditySensorSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{humiditySensorSequence.ActionLoops}<" +
-                        $" actions:>{humiditySensorSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{humiditySensorSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{humiditySensorSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                          $"RunActionLoops(>{humiditySensorSequence.Name}<)" +
+                          $" startActionLoopSequences:>{humiditySensorSequence.StartActionLoopSequences?.Count()}<" +
+                          $" actionLoops:>{humiditySensorSequence.ActionLoops}<" +
+                          $" serialNumber:>{DeviceSerialNumber}<" +
+                          $" hubPort:>{HubPort}< >{humiditySensorSequence.HubPort}<" +
+                          $" channel:>{Channel}< >{humiditySensorSequence.Channel}<" +
+                          $" actions:>{humiditySensorSequence.Actions?.Count()}<" +
+                          $" actionsDuration:>{humiditySensorSequence.ActionsDuration}<" +
+                          $" endActionLoopSequences:>{humiditySensorSequence.EndActionLoopSequences?.Count()}<" +
+                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (humiditySensorSequence.Actions is not null)
@@ -490,9 +495,6 @@ namespace VNC.Phidget22.Ex
                     {
                         if (humiditySensorSequence.StartActionLoopSequences is not null)
                         {
-                            // TODO(crhodes)
-                            // May want to create a new player instead of reaching for the property.
-
                             DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in humiditySensorSequence.StartActionLoopSequences)
@@ -503,7 +505,9 @@ namespace VNC.Phidget22.Ex
 
                         if (humiditySensorSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{humiditySensorSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(humiditySensorSequence.Actions, async action =>
                             {
@@ -512,7 +516,9 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{humiditySensorSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             foreach (HumiditySensorAction action in humiditySensorSequence.Actions)
                             {
@@ -550,6 +556,104 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+        #region Protected Methods (none)
+
+
+
+        #endregion
+
+        #region Private Methods
+
+        private async Task PerformAction(HumiditySensorAction action)
+        {
+            Int64 startTicks = 0;
+
+            StringBuilder actionMessage = new StringBuilder();
+
+            if (LogChannelAction)
+            {
+                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                    $" hubPort:{HubPort} channel:{Channel}" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+            }
+
+            try
+            {
+                 // NOTE(crhodes)
+                 // First make any logging changes
+
+                #region Logging
+
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
+
+                // TODO(crhodes)
+                // Add Device specific logging options
+
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
+                if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
+
+                #endregion
+
+                if (action.Open is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" open:>{action.Open}<");
+
+                    // TODO(crhodes)
+                    // Do we need a delay here?
+                    // This is where a call back from Attach event would be great!
+                    Open(Phidget.DefaultTimeout);
+                }
+
+                if (action.Close is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" close:>{action.Close}<");
+
+                    Close();
+                }
+
+                #region HumiditySensorEx Actions
+
+                // TODO(crhodes)
+                // Implement
+
+                #endregion
+
+                if (action.Duration > 0)
+                {
+                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"deviceSerialNumber:{DeviceSerialNumber}" +
+                     $" hubPort:{HubPort} channel:{Channel}" +
+                     $" source:{pex.Source}" +
+                     $" description:{pex.Description}" +
+                     $" inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogChannelAction)
+                {
+                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                        $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+        }
+
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
@@ -571,72 +675,15 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        #endregion
-
-        #region Protected Methods (none)
-
-
-
-        #endregion
-
-        #region Private Methods
-
-        // FIX(crhodes)
-        // 
-        private async Task PerformAction(HumiditySensorAction action)
+        private async void TriggerSequence(SequenceEventArgs args)
         {
-            Int64 startTicks = 0;
+            long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            StringBuilder actionMessage = new StringBuilder();
+            var sequence = args.HumiditySensorSequence;
 
-            if (LogChannelAction)
-            {
-                startTicks = Log.Trace($"Enter HumiditySensorEx:{Channel}", Common.LOG_CATEGORY);
-                actionMessage.Append($"HumiditySensorEx:{Channel}");
-            }
+            await RunActionLoops(sequence);
 
-            try
-            {
-                 // NOTE(crhodes)
-                 // First make any logging changes
-
-                #region Logging
-
-                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
-                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
-                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
-
-                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
-                if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
-                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
-
-                #endregion
-
-                #region HumiditySensorEx Actions
-
-                // TODO(crhodes)
-                // Implement
-
-                #endregion
-
-                if (action.Duration > 0)
-                {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
-
-                    Thread.Sleep((Int32)action.Duration);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-            finally
-            {
-                if (LogChannelAction)
-                {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-                }
-            }
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -645,21 +692,12 @@ namespace VNC.Phidget22.Ex
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // This is the traditional approach - requires string name to be passed in
-
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             long startTicks = 0;
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
-            // This is the new CompilerServices attribute!
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);

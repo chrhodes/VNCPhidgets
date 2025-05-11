@@ -43,11 +43,6 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void TriggerSequence(SequenceEventArgs args)
-        {
-            Log.EVENT_HANDLER("Called", Common.LOG_CATEGORY);
-        }
-
         /// <summary>
         /// Configures CurrentInputEx using CurrentInputConfiguration
         /// and establishes event handlers
@@ -72,10 +67,27 @@ namespace VNC.Phidget22.Ex
 
             IsRemote = true;
 
-            Attach += CurrentInputExEx_Attach;
-            Detach += CurrentInputExEx_Detach;
-            Error += CurrentInputExEx_Error;
-            PropertyChange += CurrentInputExEx_PropertyChange;
+            // NOTE(crhodes)
+            // Having these passed in is handy for Performance stuff where there is no UI
+
+            LogPhidgetEvents = configuration.LogPhidgetEvents;
+            LogErrorEvents = configuration.LogErrorEvents;
+            LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            // TODO(crhodes)
+            // Add and device specific logging options
+
+            LogDeviceChannelSequence = configuration.LogDeviceChannelSequence;
+            LogChannelAction = configuration.LogChannelAction;
+            LogActionVerification = configuration.LogActionVerification;
+
+            Attach += CurrentInputEx_Attach;
+            Detach += CurrentInputEx_Detach;
+            Error += CurrentInputEx_Error;
+            PropertyChange += CurrentInputEx_PropertyChange;
+
+            // TODO(crhodes)
+            // Add any device specific events
 
             if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -152,9 +164,6 @@ namespace VNC.Phidget22.Ex
             get => _serialHubPortChannel;
             set
             {
-                //if (_serialHubPortChannel.Equals(value)) return;
-                //if (_serialHubPortChannel == value)
-                //    return;
                 _serialHubPortChannel = value;
                 OnPropertyChanged();
             }
@@ -181,8 +190,6 @@ namespace VNC.Phidget22.Ex
             get => _minDataInterval;
             set
             {
-                //if (_minDataInterval == value)
-                //    return;
                 _minDataInterval = value;
                 OnPropertyChanged();
             }
@@ -213,8 +220,6 @@ namespace VNC.Phidget22.Ex
             get => _maxDataInterval;
             set
             {
-                //if (_maxDataInterval == value)
-                //    return;
                 _maxDataInterval = value;
                 OnPropertyChanged();
             }
@@ -226,8 +231,6 @@ namespace VNC.Phidget22.Ex
             get => _minDataRate;
             set
             {
-                //if (_minDataRate == value)
-                //    return;
                 _minDataRate = value;
                 OnPropertyChanged();
             }
@@ -258,8 +261,6 @@ namespace VNC.Phidget22.Ex
             get => _maxDataRate;
             set
             {
-                //if (_maxDataRate == value)
-                //    return;
                 _maxDataRate = value;
                 OnPropertyChanged();
             }
@@ -278,7 +279,7 @@ namespace VNC.Phidget22.Ex
 
         #region Event Handlers
 
-        private void CurrentInputExEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        private void CurrentInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
             Phidgets.CurrentInput CurrentInputEx = sender as Phidgets.CurrentInput;
 
@@ -286,7 +287,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"CurrentInputExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CurrentInputEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -316,7 +317,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Exit CurrentInputExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Exit CurrentInputEx_Attach: sender:{sender} isAttached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -325,13 +326,13 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private void CurrentInputExEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        private void CurrentInputEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
             if (LogPropertyChangeEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"CurrentInputExEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CurrentInputEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -350,18 +351,18 @@ namespace VNC.Phidget22.Ex
                     break;
 
                 default:
-                    Log.EVENT_HANDLER($"CurrentInputExEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CurrentInputEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
                     break;
             }
         }
 
-        private void CurrentInputExEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        private void CurrentInputEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"CurrentInputExEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CurrentInputEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -372,7 +373,7 @@ namespace VNC.Phidget22.Ex
             Attached = false;
         }
 
-        private void CurrentInputExEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        private void CurrentInputEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
         {
             if (LogErrorEvents)
             {
@@ -436,9 +437,8 @@ namespace VNC.Phidget22.Ex
 
             try
             {
-                // TODO(crhodes)
-                // Move stuff out of Attach unless absolutely need to be set
-                // as some Phidgets do not provide values until Open
+                // Set properties to values from Phidget
+                // We do not use Attach as some Phidgets do not provide values until Open
             }
             catch (Phidgets.PhidgetException pex)
             {
@@ -467,20 +467,23 @@ namespace VNC.Phidget22.Ex
 
         public async Task RunActionLoops(CurrentInputSequence currentInputSequence)
         {
+            Int64 startTicks = 0;
+
             try
             {
-                Int64 startTicks = 0;
-
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                        $"Running Action Loops" +
-                        $" name:>{currentInputSequence.Name}<" +
-                        $" startActionLoopSequences:>{currentInputSequence.StartActionLoopSequences?.Count()}<" +
-                        $" actionLoops:>{currentInputSequence.ActionLoops}<" +
-                        $" actions:>{currentInputSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{currentInputSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{currentInputSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                         $"RunActionLoops(>{currentInputSequence.Name}<)" +
+                         $" startActionLoopSequences:>{currentInputSequence.StartActionLoopSequences?.Count()}<" +
+                         $" actionLoops:>{currentInputSequence.ActionLoops}<" +
+                         $" serialNumber:>{DeviceSerialNumber}<" +
+                         $" hubPort:>{HubPort}< >{currentInputSequence.HubPort}<" +
+                         $" channel:>{Channel}< >{currentInputSequence.Channel}<" +
+                         $" actions:>{currentInputSequence.Actions?.Count()}<" +
+                         $" actionsDuration:>{currentInputSequence.ActionsDuration}<" +
+                         $" endActionLoopSequences:>{currentInputSequence.EndActionLoopSequences?.Count()}<" +
+                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (currentInputSequence.Actions is not null)
@@ -499,7 +502,9 @@ namespace VNC.Phidget22.Ex
 
                         if (currentInputSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{currentInputSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             Parallel.ForEach(currentInputSequence.Actions, async action =>
                             {
@@ -508,7 +513,9 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{currentInputSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             foreach (CurrentInputAction action in currentInputSequence.Actions)
                             {
@@ -546,6 +553,105 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+        #region Protected Methods (none)
+
+
+
+        #endregion
+
+        #region Private Methods
+
+        private async Task PerformAction(CurrentInputAction action)
+        {
+            Int64 startTicks = 0;
+
+            StringBuilder actionMessage = new StringBuilder();
+
+            if (LogChannelAction)
+            {
+                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                    $" hubPort:{HubPort} channel:{Channel}" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+            }
+
+            try
+            {
+                 // NOTE(crhodes)
+                 // First make any logging changes
+
+                #region Logging
+
+                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
+                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
+                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
+
+                // TODO(crhodes)
+                // Add Device specific logging options
+
+                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
+                if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
+                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
+
+                #endregion
+
+                if (action.Open is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" open:>{action.Open}<");
+
+                    // TODO(crhodes)
+                    // Do we need a delay here?
+                    // This is where a call back from Attach event would be great!
+                    Open();
+                }
+
+                if (action.Close is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" close:>{action.Close}<");
+
+                    Close();
+
+                }
+
+                #region CurrentInputEx Actions
+
+                // TODO(crhodes)
+                // Implement
+
+                #endregion
+
+                if (action.Duration > 0)
+                {
+                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+
+                    Thread.Sleep((Int32)action.Duration);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"deviceSerialNumber:{DeviceSerialNumber}" +
+                     $" hubPort:{HubPort} channel:{Channel}" +
+                     $" source:{pex.Source}" +
+                     $" description:{pex.Description}" +
+                     $" inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+            finally
+            {
+                if (LogChannelAction)
+                {
+                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                        $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+                }
+            }
+        }
+
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
@@ -567,72 +673,15 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        #endregion
-
-        #region Protected Methods (none)
-
-
-
-        #endregion
-
-        #region Private Methods
-
-        // FIX(crhodes)
-        // 
-        private async Task PerformAction(CurrentInputAction action)
+        private async void TriggerSequence(SequenceEventArgs args)
         {
-            Int64 startTicks = 0;
+            long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            StringBuilder actionMessage = new StringBuilder();
+            var sequence = args.CurrentInputSequence;
 
-            if (LogChannelAction)
-            {
-                startTicks = Log.Trace($"Enter CurrentInputEx:{Channel}", Common.LOG_CATEGORY);
-                actionMessage.Append($"CurrentInputEx:{Channel}");
-            }
+            await RunActionLoops(sequence);
 
-            try
-            {
-                 // NOTE(crhodes)
-                 // First make any logging changes
-
-                #region Logging
-
-                if (action.LogPhidgetEvents is not null) LogPhidgetEvents = (Boolean)action.LogPhidgetEvents;
-                if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
-                if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
-
-                if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
-                if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
-                if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
-
-                #endregion
-
-                #region CurrentInputEx Actions
-
-                // TODO(crhodes)
-                // Implement
-
-                #endregion
-
-                if (action.Duration > 0)
-                {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
-
-                    Thread.Sleep((Int32)action.Duration);
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-            finally
-            {
-                if (LogChannelAction)
-                {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
-                }
-            }
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -641,21 +690,12 @@ namespace VNC.Phidget22.Ex
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // This is the traditional approach - requires string name to be passed in
-
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             long startTicks = 0;
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
-            // This is the new CompilerServices attribute!
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);

@@ -509,6 +509,11 @@ namespace VNC.Phidget22.Configuration.Performance
                 //@"Performances\PerformanceConfig_2.json",
                 //@"Performances\PerformanceConfig_3.json",
 
+                // Top Level Routines
+                // These go first to get a top of dropdown
+
+                @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
+
                 @"Performances\PerformanceConfig_DigitalOutputs.json",
                 @"Performances\PerformanceConfig_InitializationAndFinalization.json",
                 @"Performances\PerformanceConfig_Movement Studies.json",
@@ -518,7 +523,8 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\PerformanceConfig_Test AS Replacement.json",
                 @"Performances\PerformanceConfig_Test.json",
 
-                // Performaces\Skulls\
+                // Performaces\Skulls\                
+
                 @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json",
