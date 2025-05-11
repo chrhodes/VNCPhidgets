@@ -327,6 +327,9 @@ namespace VNC.Phidget22.Players
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
 
+            // TODO(crhodes)
+            // This is likely where to handle performance without a name
+
             Performance configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
 
             if (configuredPerf is null)
@@ -424,6 +427,9 @@ namespace VNC.Phidget22.Players
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             await performancePlayer.RunPerformanceLoops(perf);
+
+                            // TODO(crhodes)
+                            // Is this where we need to add duration?
                         });
                     }
                     else
@@ -443,6 +449,9 @@ namespace VNC.Phidget22.Players
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             await RunPerformanceLoops(perf);
+
+                            // TODO(crhodes)
+                            // Is this where we need to add duration?
                         }
                     }
                 }

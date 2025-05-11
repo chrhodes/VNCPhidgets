@@ -222,7 +222,8 @@ namespace VNC.Phidget22.Players
             try
             {
                 DigitalOutputEx phidgetHost = null;
-
+                // TODO(crhodes)
+                // This is likely where to handle sequence without a name
                 DigitalOutputSequence digitalOutputSequence = RetrieveDigitalOutputSequence(deviceChannelSequence);
 
                 if (LogDeviceChannelSequence)
@@ -351,7 +352,8 @@ namespace VNC.Phidget22.Players
             try
             {
                 RCServoEx phidgetHost = null;
-
+                // TODO(crhodes)
+                // This is likely where to handle sequence without a name
                 RCServoSequence rcServoSequence = RetrieveRCServoSequence(deviceChannelSequence);
 
                 if (LogDeviceChannelSequence)
@@ -478,43 +480,6 @@ namespace VNC.Phidget22.Players
 
                 return updatedSequence;
             }
-            
-            //if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(deviceChannelSequence.Name))
-            //{
-            //    lock (_lock)
-            //    {
-            //        RCServoSequence retrievedSequence = PerformanceLibrary.AvailableRCServoSequences[deviceChannelSequence.Name];
-
-            //        if (LogDeviceChannelSequence) startTicks = Log.Trace($"Retrieved rcServoSequence:>{retrievedSequence.Name}<" +
-            //            $" hubPort:>{retrievedSequence.HubPort}<" +
-            //            $" channel:>{retrievedSequence.Channel}<" +
-            //            $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
-
-            //        updatedSequence = new RCServoSequence(retrievedSequence);
-
-            //        // NOTE(crhodes)
-            //        // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
-            //        // Useful during initialization of common Channels on a Phidget Device
-
-            //        if (deviceChannelSequence.HubPort is not null)
-            //        {
-            //            updatedSequence.HubPort = deviceChannelSequence.HubPort;
-            //        }
-
-            //        if (deviceChannelSequence.Channel is not null)
-            //        {
-            //            updatedSequence.Channel = deviceChannelSequence.Channel;
-            //        }
-
-            //        if (LogDeviceChannelSequence) Log.Trace($"Configured rcServoSequence:>{retrievedSequence.Name}<" +
-
-            //            $" hubPort:>{updatedSequence.HubPort}<" +
-            //            $" channel:>{updatedSequence.Channel}<" +
-            //            $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
-            //    }
-
-            //    return updatedSequence;
-            //}
             else
             {
                 Log.Trace($"Cannot find rcServoSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
@@ -530,7 +495,8 @@ namespace VNC.Phidget22.Players
             try
             {
                 StepperEx phidgetHost = null;
-
+                // TODO(crhodes)
+                // This is likely where to handle sequence without a name
                 StepperSequence stepperSequence = RetrieveStepperSequence(deviceChannelSequence);
 
                 if (LogDeviceChannelSequence)
