@@ -104,22 +104,6 @@ namespace VNC.Phidget22.Players
         {
             Int64 startTicks = 0;
 
-            //DeviceChannelSequence nextPhidgetDeviceChannelSequence = null;
-
-            //lock (_lock)
-            //{
-            //    if (performanceSerialNumber.HasValue)
-            //    {
-            //        deviceChannelSequence.SerialNumber = (Int32)performanceSerialNumber;
-
-            //        if (LogDeviceChannelSequence) Log.Trace($"Set serialNumber:>{performanceSerialNumber}<" +
-            //            $" on deviceChannelSequence:>{deviceChannelSequence.Name}<" +
-            //            $" channelClass:>{deviceChannelSequence.ChannelClass}<" +
-            //            $" hubport:>{deviceChannelSequence.HubPort}<" +
-            //            $" channel:>{deviceChannelSequence.Channel}<", Common.LOG_CATEGORY);
-            //    }
-            //}
-
             try
             {
                 if (LogDeviceChannelSequence)
@@ -229,6 +213,7 @@ namespace VNC.Phidget22.Players
                 if (LogDeviceChannelSequence)
                 {
                     startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
                         $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" deviceHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
                         $" deviceChannel:>{deviceChannelSequence?.Channel}< channel:>{digitalOutputSequence?.Channel}< " +
@@ -352,13 +337,25 @@ namespace VNC.Phidget22.Players
             try
             {
                 RCServoEx phidgetHost = null;
+
+                RCServoSequence rcServoSequence;
+
                 // TODO(crhodes)
                 // This is likely where to handle sequence without a name
-                RCServoSequence rcServoSequence = RetrieveRCServoSequence(deviceChannelSequence);
+
+                if (deviceChannelSequence.Name is not null)
+                {
+                    rcServoSequence = RetrieveRCServoSequence(deviceChannelSequence);
+                }
+                else
+                {
+                    rcServoSequence = InlineRCServoSequence(deviceChannelSequence);
+                }
 
                 if (LogDeviceChannelSequence)
                 {
                     startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" dcsHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
                         $" dcsChannel:>{deviceChannelSequence?.Channel}< channel:>{rcServoSequence?.Channel}< " +
@@ -442,6 +439,34 @@ namespace VNC.Phidget22.Players
             return nextDeviceChannelSequence;
         }
 
+        private RCServoSequence InlineRCServoSequence(DeviceChannelSequence deviceChannelSequence)
+        {
+            Int64 startTicks = 0;
+
+            RCServoSequence rcServoSequence = new RCServoSequence(deviceChannelSequence.RCServoSequence);
+
+            // NOTE(crhodes)
+            // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
+            // Useful during initialization of common Channels on a Phidget Device
+
+            if (deviceChannelSequence.HubPort is not null)
+            {
+                rcServoSequence.HubPort = deviceChannelSequence.HubPort;
+            }
+
+            if (deviceChannelSequence.Channel is not null)
+            {
+                rcServoSequence.Channel = deviceChannelSequence.Channel;
+            }
+
+            if (LogDeviceChannelSequence) Log.Trace1($"Configured rcServoSequence:>{rcServoSequence.Name}<" +
+                $" dcsHubPort:>{deviceChannelSequence.HubPort}> hubPort:>{rcServoSequence.HubPort}<" +
+                $" dcsHChannel:>{deviceChannelSequence.Channel}> channel:>{rcServoSequence.Channel}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+
+            return rcServoSequence;
+        }
+
         private RCServoSequence? RetrieveRCServoSequence(DeviceChannelSequence deviceChannelSequence)
         {
             Int64 startTicks = 0;
@@ -502,6 +527,7 @@ namespace VNC.Phidget22.Players
                 if (LogDeviceChannelSequence)
                 {
                     startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
                         $" serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{stepperSequence?.HubPort}<" +
                         $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence.Channel}< " +

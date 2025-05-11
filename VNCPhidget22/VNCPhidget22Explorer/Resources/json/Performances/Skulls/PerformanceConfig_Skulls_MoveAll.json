@@ -11,10 +11,10 @@
       "Loops": 1,
       "PlayPerformancesInParallel": false,
       "Performances": [
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Sequential"},
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel"},
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential"},
-       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel"},
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Sequential", "Duration":  2000 },
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel", "Duration":  2000 },
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential", "Duration":  2000 },
+       { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel" },
       ],
     },
     {
@@ -38,7 +38,7 @@
        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        //{ "Name": "Move All Skulls - Performances Sequential DCS Sequential"},
       ],
-      "Duration": 2000
+      //"Duration": 2000
     },
     {
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel",
@@ -55,13 +55,13 @@
        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
        //{ "Name": "Move All Skulls"},
        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Move All Skulls - Performances Sequential DCS Parallel"},
-       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
-       { "Name": "Move All Skulls - Performances Sequential DCS Parallel"},
+       { "Name": "Move All Skulls - Performances Sequential DCS Parallel", "Duration":  1000 },
+       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+       { "Name": "Move All Skulls - Performances Sequential DCS Parallel", "Duration":  1000 },
        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        //{ "Name": "Move All Skulls - Performances Sequential DCS Parallel"},
       ],
-      "Duration": 2000
+      //"Duration": 2000
     },
     {
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential",
@@ -77,14 +77,14 @@
        //{ "Name": "Move All Skulls - Performances Parallel DCS Sequential"},
        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
        //{ "Name": "Move All Skulls Parallel"},
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Move All Skulls - Performances Parallel DCS Sequential"},
-       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
-       { "Name": "Move All Skulls - Performances Parallel DCS Sequential"},
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+       { "Name": "Move All Skulls - Performances Parallel DCS Sequential", "Duration":  1000 },
+       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+       { "Name": "Move All Skulls - Performances Parallel DCS Sequential", "Duration":  1000 },
        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
        //{ "Name": "Move All Skulls - Performances Parallel DCS Sequential"},
       ],
-      "Duration": 2000
+      //"Duration": 2000
     },
     {
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel",
@@ -100,14 +100,14 @@
        //{ "Name": "Move All Skulls - Performances Parallel DCS Parallel"},
        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
        //{ "Name": "Move All Skulls Parallel"},
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Move All Skulls - Performances Parallel DCS Parallel"},
-       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)"},
-       { "Name": "Move All Skulls - Performances Parallel DCS Parallel"},
-       { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
-       { "Name": "Move All Skulls - Performances Parallel DCS Parallel"},
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+       { "Name": "Move All Skulls - Performances Parallel DCS Parallel", "Duration":  1000 },
+       { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)", },
+       { "Name": "Move All Skulls - Performances Parallel DCS Parallel", "Duration":  1000 },
+       { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)", },
+       { "Name": "Move All Skulls - Performances Parallel DCS Parallel", "Duration":  1000},
       ],
-      "Duration": 2000
+      //"Duration": 2000
     },
     //
     // Move All Skulls
@@ -128,7 +128,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Sequential DCS Sequential"},
        { "Name": "Center All Skulls" },       
       ],
-      "Duration": 1000
+      //"Duration": 1000
     },
     {
       "Name": "Move All Skulls - Performances Sequential DCS Parallel",
@@ -146,7 +146,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Sequential DCS Parallel"},
        { "Name": "Center All Skulls" },       
       ],
-      "Duration": 1000
+      //"Duration": 1000
     },
     {
       "Name": "Move All Skulls - Performances Parallel DCS Sequential",
@@ -164,7 +164,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Parallel DCS Sequential"},
        { "Name": "Center All Skulls" },       
       ],
-      "Duration": 1000
+      //"Duration": 1000
     },
     {
       "Name": "Move All Skulls - Performances Parallel DCS Parallel",
@@ -182,7 +182,7 @@
        { "Name": "All Skulls - Look Up Left - Performances Parallel DCS Parallel"},
        { "Name": "Center All Skulls" },       
       ],
-      "Duration": 1000
+      //"Duration": 1000
     },
     //
     // All Skulls - Look Down Left
