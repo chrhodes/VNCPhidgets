@@ -60,6 +60,26 @@
        { "Name": "Sleep Skull 3", "SerialNumber": 99220 }, 
       ],
     },
+    {
+      "Name": "Move All Skulls on Axes",
+      "Description": "",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       { "Name": "Move All Skulls - Performances Sequential DCS Sequential"},
+       { "Name": "Move All Skulls 5" },
+       { "Name": "Move All Skulls 10" },
+       { "Name": "Move All Skulls 15" },
+       { "Name": "Move All Skulls 20" },
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "Move All Skulls - Performances Sequential DCS Sequential"},
+       { "Name": "Move All Skulls 5" },
+       { "Name": "Move All Skulls 10" },
+       { "Name": "Move All Skulls 15" },
+       { "Name": "Move All Skulls 20" },
+      ],
+    },
     //
     // Move All Skulls - Sound to Left
     //

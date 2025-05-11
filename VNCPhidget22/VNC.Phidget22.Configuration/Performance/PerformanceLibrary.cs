@@ -513,12 +513,13 @@ namespace VNC.Phidget22.Configuration.Performance
                 // These go first to get a top of dropdown
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
 
                 @"Performances\PerformanceConfig_DigitalOutputs.json",
-                @"Performances\PerformanceConfig_InitializationAndFinalization.json",
-                @"Performances\PerformanceConfig_Movement Studies.json",
                 @"Performances\PerformanceConfig_RCServos.json",
                 @"Performances\PerformanceConfig_Steppers.json",
+
+                @"Performances\PerformanceConfig_Movement Studies.json",
 
                 @"Performances\PerformanceConfig_Test AS Replacement.json",
                 @"Performances\PerformanceConfig_Test.json",
@@ -526,7 +527,7 @@ namespace VNC.Phidget22.Configuration.Performance
                 // Performaces\Skulls\                
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
+  
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json",
@@ -534,10 +535,6 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveLeftRight.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_TiltLeftRight.json",
 
-                // Performaces\Skulls\Legacy\
-                @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_1.json",
-                @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_2.json",
-                @"Performances\Skulls\Legacy\PerformanceConfig_Skulls_3.json",
             };
 
             return files;

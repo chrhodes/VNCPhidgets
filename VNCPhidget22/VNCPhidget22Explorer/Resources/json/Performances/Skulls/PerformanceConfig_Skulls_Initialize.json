@@ -4,7 +4,7 @@
   "Performances": [
 
     //
-    // Initialize Skull 1
+    // Initialize Skulls
     //
     {
       "Name": "Initialize Skull 1",
@@ -18,9 +18,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Initialize Skull 1 Z Axis" },      
       ],
     },
-    //
-    // Initialize Skull 2
-    //
     {
       "Name": "Initialize Skull 2",
       "Description": "Initialize Skull 2",
@@ -33,9 +30,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Initialize Skull 2 Z Axis" },      
       ],
     },
-    //
-    // Initialize Skull 3
-    //
     {
       "Name": "Initialize Skull 3",
       "Description": "Initialize Skull 3",
@@ -50,7 +44,7 @@
     },
 
     //
-    // Engage and Center Skull 1
+    // Engage and Center Skulls
     //
     {
       "Name": "Engage and Center Skull 1",
@@ -64,9 +58,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Engage and Center Skull 1 Z Axis" },      
       ],
     },
-    //
-    // Engage and Center Skull 2
-    //
     {
       "Name": "Engage and Center Skull 2",
       "Description": "Engage and Center Skull 2",
@@ -79,9 +70,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Engage and Center Skull 2 Z Axis" },      
       ],
     },
-    //
-    // Engage and Center Skull 3
-    //
     {
       "Name": "Engage and Center Skull 3",
       "Description": "Engage and Center Skull 3",
@@ -96,7 +84,7 @@
     },
 
     //
-    // Center Skull 1
+    // Center Skulls
     //
     {
       "Name": "Center Skull 1",
@@ -110,9 +98,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Center Skull 1 Z Axis" },      
       ],
     },
-    //
-    // Center Skull 2
-    //
     {
       "Name": "Center Skull 2",
       "Description": "Center Skull 2",
@@ -125,9 +110,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Center Skull 2 Z Axis" },      
       ],
     },
-    //
-    // Center Skull 3
-    //
     {
       "Name": "Center Skull 3",
       "Description": "Center Skull 3",
@@ -142,7 +124,7 @@
     },
 
     //
-    // Sleep Skull 1
+    // Sleep Skulls
     //
     {
       "Name": "Sleep Skull 1",
@@ -156,9 +138,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" },      
       ],
     },
-    //
-    // Sleep Skull 2
-    //
     {
       "Name": "Sleep Skull 2",
       "Description": "Sleep Skull 2",
@@ -171,9 +150,6 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Disengage Servo" },   
       ],
     },
-    //
-    // Sleep Skull 3
-    //
     {
       "Name": "Sleep Skull 3",
       "Description": "Sleep Skull 3",

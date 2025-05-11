@@ -181,9 +181,6 @@
         <None Update="Resources\json\hostconfig.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\PerformanceConfig_InitializationAndFinalization.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Movement Studies.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
@@ -191,15 +188,6 @@
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\PerformanceConfig_Test.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\Performances\PerformanceConfig_3_Legacy.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\Performances\Skulls\Legacy\PerformanceConfig_Skulls_1.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\Performances\Skulls\Legacy\PerformanceConfig_Skulls_2.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\Skulls\Legacy\PerformanceConfig_Skulls_3.json">

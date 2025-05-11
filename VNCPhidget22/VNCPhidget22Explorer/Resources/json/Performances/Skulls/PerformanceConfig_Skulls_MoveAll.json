@@ -282,7 +282,7 @@
     // All Skulls - Look Up Left
     //
     {
-      "Name": "All Skulls - Look Up Left  - Performances Sequential DCS Sequential",
+      "Name": "All Skulls - Look Up Left - Performances Sequential DCS Sequential",
       "Description": "Look Up Left Performances Sequential DCS Sequential",
       "Loops": 1,
       "PlayPerformancesInParallel": false,
