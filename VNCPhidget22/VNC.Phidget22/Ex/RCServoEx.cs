@@ -1304,6 +1304,8 @@ namespace VNC.Phidget22.Ex
                 // TODO(crhodes)
                 // Figure out what these actually are intented to do.
                 // Where is bounds checking occuring?
+                // What is diference between Scale and Stop
+
                 if (action.PositionScaleMin is not null)
                 {
                     if (LogChannelAction) actionMessage.Append($" positionScaleMin:>{action.PositionScaleMin}<");
@@ -1388,6 +1390,18 @@ namespace VNC.Phidget22.Ex
 
                             case -3:
                                 targetPosition = (MaxPosition - MinPosition) / 2;
+                                break;
+
+                            case -11:
+                                targetPosition = MinPositionStop;
+                                break;
+
+                            case -12:
+                                targetPosition = MaxPositionStop;
+                                break;
+
+                            case -13:
+                                targetPosition = (MaxPositionStop - MinPositionStop) / 2;
                                 break;
                         }
                     }

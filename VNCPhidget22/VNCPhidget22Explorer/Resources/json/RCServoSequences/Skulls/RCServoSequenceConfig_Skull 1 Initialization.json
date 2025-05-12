@@ -35,7 +35,7 @@
       //"HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 95, "MaxPositionStop": 125,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 10, "TargetPosition": 85, "MaxPositionStop": 160,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },

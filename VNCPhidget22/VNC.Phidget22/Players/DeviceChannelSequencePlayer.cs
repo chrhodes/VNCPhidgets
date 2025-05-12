@@ -349,7 +349,7 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    rcServoSequence = InlineRCServoSequence(deviceChannelSequence);
+                    rcServoSequence = CreateInlineRCServoSequence(deviceChannelSequence);
                 }
 
                 if (LogDeviceChannelSequence)
@@ -439,32 +439,15 @@ namespace VNC.Phidget22.Players
             return nextDeviceChannelSequence;
         }
 
-        private RCServoSequence InlineRCServoSequence(DeviceChannelSequence deviceChannelSequence)
+        private RCServoSequence CreateInlineRCServoSequence(DeviceChannelSequence deviceChannelSequence)
         {
             Int64 startTicks = 0;
 
             RCServoSequence rcServoSequence = new RCServoSequence(deviceChannelSequence.RCServoSequence);
 
-            // NOTE(crhodes)
-            // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
-            // Useful during initialization of common Channels on a Phidget Device
+            return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, rcServoSequence);
 
-            if (deviceChannelSequence.HubPort is not null)
-            {
-                rcServoSequence.HubPort = deviceChannelSequence.HubPort;
-            }
-
-            if (deviceChannelSequence.Channel is not null)
-            {
-                rcServoSequence.Channel = deviceChannelSequence.Channel;
-            }
-
-            if (LogDeviceChannelSequence) Log.Trace1($"Configured rcServoSequence:>{rcServoSequence.Name}<" +
-                $" dcsHubPort:>{deviceChannelSequence.HubPort}> hubPort:>{rcServoSequence.HubPort}<" +
-                $" dcsHChannel:>{deviceChannelSequence.Channel}> channel:>{rcServoSequence.Channel}<" +
-                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
-
-            return rcServoSequence;
+            //return rcServoSequence;
         }
 
         private RCServoSequence? RetrieveRCServoSequence(DeviceChannelSequence deviceChannelSequence)
@@ -481,35 +464,64 @@ namespace VNC.Phidget22.Players
                     $" channel:>{retrievedSequence.Channel}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                updatedSequence = new RCServoSequence(retrievedSequence);
+                //updatedSequence = new RCServoSequence(retrievedSequence);
 
-                // NOTE(crhodes)
-                // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
-                // Useful during initialization of common Channels on a Phidget Device
+                //ConfigureSequence(deviceChannelSequence, rcServoSequence);
 
-                if (deviceChannelSequence.HubPort is not null)
-                {
-                    updatedSequence.HubPort = deviceChannelSequence.HubPort;
-                }
+                //// NOTE(crhodes)
+                //// This allows reuse of a ChannelSequence that only varies by HubPort or Channel
+                //// Useful during initialization of common Channels on a Phidget Device
 
-                if (deviceChannelSequence.Channel is not null)
-                {
-                    updatedSequence.Channel = deviceChannelSequence.Channel;
-                }
+                //if (deviceChannelSequence.HubPort is not null)
+                //{
+                //    updatedSequence.HubPort = deviceChannelSequence.HubPort;
+                //}
 
-                if (LogDeviceChannelSequence) Log.Trace1($"Configured rcServoSequence:>{retrievedSequence.Name}<" +
+                //if (deviceChannelSequence.Channel is not null)
+                //{
+                //    updatedSequence.Channel = deviceChannelSequence.Channel;
+                //}
 
-                    $" hubPort:>{updatedSequence.HubPort}<" +
-                    $" channel:>{updatedSequence.Channel}<" +
-                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+                //if (LogDeviceChannelSequence) Log.Trace1($"Configured rcServoSequence:>{retrievedSequence.Name}<" +
 
-                return updatedSequence;
+                //    $" hubPort:>{updatedSequence.HubPort}<" +
+                //    $" channel:>{updatedSequence.Channel}<" +
+                //    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+
+                return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, retrievedSequence);
             }
             else
             {
                 Log.Trace($"Cannot find rcServoSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
                 return null;
             }
+        }
+
+        private ChannelSequence ApplyDeviceChannelSequenceOverrides(DeviceChannelSequence deviceChannelSequence, ChannelSequence channelSequence)
+        {
+            // NOTE(crhodes)
+            // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
+            // Useful during initialization of common Channels on a Phidget Device
+
+            // TODO(crhodes)
+            // Decide if we always want to override or only if no channelSequence value
+
+            if (deviceChannelSequence.HubPort is not null)
+            {
+                channelSequence.HubPort = deviceChannelSequence.HubPort;
+            }
+
+            if (deviceChannelSequence.Channel is not null)
+            {
+                channelSequence.Channel = deviceChannelSequence.Channel;
+            }
+
+            if (LogDeviceChannelSequence) Log.Trace1($"Configured channelSequence:>{channelSequence.Name}<" +
+                $" dcsHubPort:>{deviceChannelSequence.HubPort}> hubPort:>{channelSequence.HubPort}<" +
+                $" dcsHChannel:>{deviceChannelSequence.Channel}> channel:>{channelSequence.Channel}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+            return channelSequence;
         }
 
         private async Task<DeviceChannelSequence> ExecuteStepperChannelSequence(DeviceChannelSequence deviceChannelSequence)

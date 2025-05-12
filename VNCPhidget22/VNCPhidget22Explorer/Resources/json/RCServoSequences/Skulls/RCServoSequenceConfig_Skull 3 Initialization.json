@@ -8,7 +8,7 @@
     //
     { 
       "Name": "Initialize Skull 3 X Axis", 
-      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit and TargetPosition",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
@@ -19,7 +19,7 @@
     },
     { 
       "Name": "Initialize Skull 3 Y Axis", 
-      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit and TargetPosition",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
@@ -30,12 +30,12 @@
     },
     { 
       "Name": "Initialize Skull 3 Z Axis", 
-      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit and TargetPosition",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "HubPort": 0, "Channel": 2,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 55, "TargetPosition": 85, "MaxPositionStop": 115,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 10, "TargetPosition": 85, "MaxPositionStop": 160,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 
 using VNC.Phidget22.Configuration.Performance;
 
@@ -49,7 +50,16 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public string ChannelClass { get; set; } = "Generic";
 
+        // NOTE(crhodes)
+        // These are used for embedded sequences - Name not used for lookup
+
+        public DigitalInputSequence? DigitalInputSequence { get; set; } = null;
+        public DigitalOutputSequence? DigitalOutputSequence { get; set; } = null;
         public RCServoSequence? RCServoSequence { get; set; } = null;
+        public StepperSequence? StepperSequence { get; set; } = null;
+        public VoltageInputSequence? VoltageInputSequence { get; set; } = null;
+        public VoltageRatioInputSequence? VoltageRatioInputSequence { get; set; } = null;
+        public VoltageOutputSequence? VoltageOutputSequence { get; set; } = null;
 
         /// <summary>
         /// Number of loops of Sequence
