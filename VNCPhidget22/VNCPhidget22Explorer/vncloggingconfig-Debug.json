@@ -44,36 +44,36 @@
   //"ViewModel": false,
   //"ViewModelLow": false,
 
-  "ApplicationStart": true,
-  "ApplicationEnd": true,
-  "ApplicationInitialize": true,
-  "ApplicationInitializeLow": true,
-  "Application": true,
-  "ApplicationLow": true,
-  "ApplicationServices": true,
-  "ApplicationServicesLow": true,
-  "DeviceInitialize": true,
-  "Domain": true,
-  "DomainLow": true,
-  "DomainServices": true,
-  "DomainServicesLow": true,
-  "Constructor": false,
-  "Core": true,
-  "Event": true,
-  "EventHandler": true,
-  "EventHandlerLow": false,
-  "Module": true,
-  "ModuleInitialize": true,
-  "Persistence": true,
-  "PersistenceLow": true,
-  "Infrastructure": true,
-  "InfrastructureLow": true,
-  "Presentation": true,
-  "PresentationLow": true,
-  "View": true,
-  "ViewLow": true,
-  "ViewModel": true,
-  "ViewModelLow": true,
+  "ApplicationStart": true,           // Info100
+  "ApplicationEnd": true,             // Info100
+  "ApplicationInitialize": true,      // Arch9003
+  "ApplicationInitializeLow": false,  // Arch9103
+  "Application": true,                // Arch9010
+  "ApplicationLow": true,             // Arch9110
+  "ApplicationServices": true,        // Arch9011
+  "ApplicationServicesLow": true,     // Arch9111
+  "DeviceInitialize": true,           // Arch9007
+  "Domain": true,                     // Arch9012
+  "DomainLow": true,                  // Arch9112
+  "DomainServices": true,             // Arch9013
+  "DomainServicesLow": true,          // Arch9113
+  "Constructor": true,                // Arch9000
+  "Core": true,                       // Arch9004
+  "Event": true,                      // Arch9001
+  "EventHandler": true,               // Arch9002
+  "EventHandlerLow": false,           // Arch9102
+  "Module": true,                     // Arch9005
+  "ModuleInitialize": true,           // Arch9006
+  "Persistence": true,                // Arch9015
+  "PersistenceLow": true,             // Arch9105
+  "Infrastructure": true,             // Arch9014
+  "InfrastructureLow": true,          // Arch9114
+  "Presentation": true,               // Arch9016
+  "PresentationLow": true,            // Arch9116
+  "View": true,                       // Arch9017
+  "ViewLow": false,                   // Arch9117
+  "ViewModel": true,                  // Arch9018
+  "ViewModelLow": true,               // Arch9118
 
   "INPC": false
 }

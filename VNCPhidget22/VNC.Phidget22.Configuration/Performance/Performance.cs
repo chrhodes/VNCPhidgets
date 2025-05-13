@@ -25,9 +25,9 @@ namespace VNC.Phidget22.Configuration.Performance
         }
 
         /// <summary>
-        /// Name of Performance
+        /// Name of Performance.  Can be null if using embedded performance
         /// </summary>
-        public string Name { get; set; } = "PERFORMANCE NAME";
+        public string? Name { get; set; }
 
         /// <summary>
         /// Description of Performance

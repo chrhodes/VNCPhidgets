@@ -9,6 +9,7 @@ namespace VNC.Phidget22.Configuration
     {
         /// <summary>
         /// Name of DeviceChannelSequence.
+        /// Can be null if using embedded DeviceChannelSequence
         /// </summary>
         public string? Name { get; set; } = null;
 

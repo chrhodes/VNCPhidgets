@@ -446,8 +446,6 @@ namespace VNC.Phidget22.Players
             RCServoSequence rcServoSequence = new RCServoSequence(deviceChannelSequence.RCServoSequence);
 
             return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, rcServoSequence);
-
-            //return rcServoSequence;
         }
 
         private RCServoSequence? RetrieveRCServoSequence(DeviceChannelSequence deviceChannelSequence)
@@ -463,30 +461,6 @@ namespace VNC.Phidget22.Players
                     $" hubPort:>{retrievedSequence.HubPort}<" +
                     $" channel:>{retrievedSequence.Channel}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
-
-                //updatedSequence = new RCServoSequence(retrievedSequence);
-
-                //ConfigureSequence(deviceChannelSequence, rcServoSequence);
-
-                //// NOTE(crhodes)
-                //// This allows reuse of a ChannelSequence that only varies by HubPort or Channel
-                //// Useful during initialization of common Channels on a Phidget Device
-
-                //if (deviceChannelSequence.HubPort is not null)
-                //{
-                //    updatedSequence.HubPort = deviceChannelSequence.HubPort;
-                //}
-
-                //if (deviceChannelSequence.Channel is not null)
-                //{
-                //    updatedSequence.Channel = deviceChannelSequence.Channel;
-                //}
-
-                //if (LogDeviceChannelSequence) Log.Trace1($"Configured rcServoSequence:>{retrievedSequence.Name}<" +
-
-                //    $" hubPort:>{updatedSequence.HubPort}<" +
-                //    $" channel:>{updatedSequence.Channel}<" +
-                //    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
 
                 return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, retrievedSequence);
             }

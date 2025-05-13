@@ -36,9 +36,9 @@ namespace VNCPhidget22Explorer
             // and the first few log messages are missed.
             // NB.  All are properly recored in the log file.
 
-            Thread.Sleep(150);
+            Thread.Sleep(250);
 
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Enter"), Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR(String.Format("Enter"), Common.LOG_CATEGORY, startTicks);
 #if DEBUG
             Common.InitializeLogging(debugConfig: true);
             VNC.Phidget22.Common.InitializeLogging(debugConfig: true);

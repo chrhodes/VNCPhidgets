@@ -37,8 +37,9 @@ namespace VNC.Phidget22.Configuration.Performance
 
         /// <summary>
         /// Name of sequence. Must be unique in ChannelClass
+        /// Can be null if using embedded ChannelSequence
         /// </summary>
-        public string Name { get; set; } = "SEQUENCE NAME";
+        public string? Name { get; set; }
 
         /// <summary>
         /// Description of ChannelSequence (optional)

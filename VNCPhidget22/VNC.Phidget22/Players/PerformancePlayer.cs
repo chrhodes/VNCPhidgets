@@ -329,8 +329,20 @@ namespace VNC.Phidget22.Players
 
             // TODO(crhodes)
             // This is likely where to handle performance without a name
+            Performance configuredPerf;
 
-            Performance configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
+
+            if (performance.Name is not null)
+            {
+                configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
+            }
+            else
+            {
+                configuredPerf = CreateInlinePerformance(performance, SerialNumber);
+                var oops = true;
+            }
+
+            //Performance configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
 
             if (configuredPerf is null)
             {
@@ -535,8 +547,31 @@ namespace VNC.Phidget22.Players
                 await ExecutePerfomanceSequences(configuredPerf.AfterPerformanceLoopPerformances);
             }
 
+            // NOTE(crhodes)
+            // Play the nextPerformance if any`
+
+            if (configuredPerf.NextPerformance is not null)
+            {
+                await RunPerformanceLoops(configuredPerf.NextPerformance);
+            }
+
+
             if (LogPerformance) Log.Trace($"Exit" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private Performance CreateInlinePerformance(Performance performance, int? serialNumber)
+        {
+            Int64 startTicks = 0;
+
+            Performance createdPerformance = new Performance(performance);
+
+            if (serialNumber is not null)
+            {
+                createdPerformance.SerialNumber = serialNumber;
+            }
+
+            return createdPerformance;
         }
 
         private Performance? RetrieveAndConfigurePerformance(string performanceName, Int32? serialNumber)
