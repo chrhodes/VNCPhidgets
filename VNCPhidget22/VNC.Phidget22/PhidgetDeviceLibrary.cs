@@ -31,18 +31,17 @@ namespace VNC.Phidget22
         private readonly IEventAggregator _eventAggregator;
 
         public PhidgetDeviceLibrary(IEventAggregator eventAggregator)
-        //public PhidgetDeviceLibrary()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             _eventAggregator = eventAggregator;
-            BuildPhidgetDeviceDictionary();
+            //BuildPhidgetDeviceDictionary();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void BuildPhidgetDeviceDictionary()
+        public void BuildPhidgetDeviceDictionary()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);

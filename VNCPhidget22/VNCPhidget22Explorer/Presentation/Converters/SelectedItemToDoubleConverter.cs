@@ -19,15 +19,6 @@ namespace VNCPhidget22Explorer.Presentation.Converters
 
             return null;
         }
-        //object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        //{
-        //    ObservableCollection<string> result = new ObservableCollection<string>();
-        //    var enumerable = (List<object>)value;
-        //    if (enumerable != null)
-        //        foreach (object item in enumerable)
-        //            result.Add((string)item);
-        //    return result;
-        //}
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

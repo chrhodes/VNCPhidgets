@@ -285,6 +285,7 @@ namespace VNC.Phidget22.Players
                         $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
                         $" loops:>{performance.PerformanceLoops}<" +
                         $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
+                        $" duration:>{performance.Duration}<" +
                         $" nextPerformance:>{performance.NextPerformance?.Name}<" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
@@ -334,7 +335,7 @@ namespace VNC.Phidget22.Players
 
             if (performance.Name is not null)
             {
-                configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
+                configuredPerf = RetrieveAndConfigurePerformance(performance, SerialNumber);
             }
             else
             {
@@ -547,6 +548,15 @@ namespace VNC.Phidget22.Players
                 await ExecutePerfomanceSequences(configuredPerf.AfterPerformanceLoopPerformances);
             }
 
+            if (configuredPerf.Duration is not null)
+            {
+                if (LogPerformance)
+                {
+                    Log.Trace($"Zzzzz End of Performances Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
+                }
+                Thread.Sleep((Int32)configuredPerf.Duration);
+            }
+
             // NOTE(crhodes)
             // Play the nextPerformance if any`
 
@@ -574,13 +584,13 @@ namespace VNC.Phidget22.Players
             return createdPerformance;
         }
 
-        private Performance? RetrieveAndConfigurePerformance(string performanceName, Int32? serialNumber)
+        private Performance? RetrieveAndConfigurePerformance(Performance performance, Int32? serialNumber)
         {
             Int64 startTicks = 0;
 
-            if (PerformanceLibrary.AvailablePerformances.ContainsKey(performanceName ?? ""))
+            if (PerformanceLibrary.AvailablePerformances.ContainsKey(performance.Name ?? ""))
             {
-                Performance retrievedPerfrormance = PerformanceLibrary.AvailablePerformances[performanceName];
+                Performance retrievedPerfrormance = PerformanceLibrary.AvailablePerformances[performance.Name];
 
                 if (LogPerformance) startTicks = Log.Trace($"Retrieved  performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
@@ -595,15 +605,21 @@ namespace VNC.Phidget22.Players
                     configuredPerformance.SerialNumber = serialNumber;
                 }
 
+                if (performance.Duration.HasValue)
+                {
+                    configuredPerformance.Duration = performance.Duration;
+                }
+
                 if (LogPerformance) Log.Trace($"Configured performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{configuredPerformance.SerialNumber}<" +
+                    $" duration:>{configuredPerformance.Duration}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
 
                 return configuredPerformance;
             }
             else
             {
-                Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
+                Log.Error($"Cannot find performance:>{performance.Name}<", Common.LOG_CATEGORY);
                 return null;
             }
         }

@@ -7,25 +7,76 @@
     // Get stuff from AdvancedServoConfig_Skulls
     //
     { 
+      "Name": "Skull Big Yes", 
+      "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": 10 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 10 },
+      ]
+    },
+    { 
       "Name": "Skull Yes", 
       "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RelativePosition": -5 },
+        { "RelativePosition": 5 },
+        { "RelativePosition": -10 },
         { "RelativePosition": 10 },
         { "RelativePosition": -10 },
         { "RelativePosition": 5 },
       ]
     },
     { 
+      "Name": "Skull Laugh", 
+      "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -5 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -5 },
+      ]
+    },
+    { 
+      "Name": "Skull Big Laugh", 
+      "Description": "Move up and down X axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -10 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -10 },
+      ]
+    },
+
+    { 
       "Name": "Skull No", 
       "Description": "Move left and right Z axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RelativePosition": -15 },
-        { "RelativePosition": 25 },
-        { "RelativePosition": -25 },
-        { "RelativePosition": 15 },
+        { "RelativePosition": -5 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -5 },
+      ]
+    },
+    { 
+      "Name": "Skull Big No", 
+      "Description": "Move left and right Z axis 2 times",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -10 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -10 },
       ]
     },
     { 

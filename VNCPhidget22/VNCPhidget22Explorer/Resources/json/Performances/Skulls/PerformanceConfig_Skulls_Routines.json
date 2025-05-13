@@ -60,6 +60,109 @@
        { "Name": "Sleep Skull 3", "SerialNumber": 99220 }, 
       ],
     },
+    //
+    // All Skulls Yes and Laugh
+    //
+    {
+      "Name": "All Skulls Yes and Laugh and No",
+      "Description": "All Skulls Yes and Laugh and No",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       { "Name": "All Skulls Yes", "Duration": 1000 },
+       { "Name": "All Skulls Big Yes", "Duration": 1000 },
+       { "Name": "All Skulls Laugh", "Duration": 1000 },
+       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
+       { "Name": "All Skulls No", "Duration": 1000 },
+       { "Name": "All Skulls Big No", "Duration": 1000 },
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "All Skulls Yes", "Duration": 1000 },
+       { "Name": "All Skulls Big Yes", "Duration": 1000 },
+       { "Name": "All Skulls Laugh", "Duration": 1000 },
+       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
+       { "Name": "All Skulls No", "Duration": 1000 },
+       { "Name": "All Skulls Big No", "Duration": 1000 },
+      ],
+    },
+    //
+    // All Skulls Yes
+    //
+    {
+      "Name": "All Skulls Yes",
+      "Description": "All Skulls Yes",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Yes", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Yes", "SerialNumber": 99220 }, 
+      ],
+    },
+    {
+      "Name": "All Skulls Big Yes",
+      "Description": "All Skulls Big Yes",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Big Yes", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Big Yes", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Big Yes", "SerialNumber": 99220 }, 
+      ],
+    },
+    //
+    // All Skulls No
+    //
+    {
+      "Name": "All Skulls No",
+      "Description": "All Skulls No",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 No", "SerialNumber": 99220 },
+       { "Name": "Skull-012 No", "SerialNumber": 169501 },
+       { "Name": "Skull-456 No", "SerialNumber": 99220 }, 
+      ],
+    },
+    {
+      "Name": "All Skulls Big No",
+      "Description": "All Skulls Big No",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Big No", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Big No", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Big No", "SerialNumber": 99220 }, 
+      ],
+    },
+    //
+    // All Skulls Laugh
+    //
+    {
+      "Name": "All Skulls Laugh",
+      "Description": "All Skulls Laugh",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Laugh", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Laugh", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Laugh", "SerialNumber": 99220 }, 
+      ],
+    },
+    {
+      "Name": "All Skulls Big Laugh",
+      "Description": "All Skulls Laugh",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Big Laugh", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Big Laugh", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Big Laugh", "SerialNumber": 99220 }, 
+      ],
+    },
+    //
+    //Move All Skulls on Axes
+    //
     {
       "Name": "Move All Skulls on Axes",
       "Description": "",

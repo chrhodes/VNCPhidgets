@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 using DevExpress.Xpf.Bars;
@@ -259,12 +260,16 @@ namespace VNCPhidget22Explorer
 
             base.InitializeModules();
 
-            InitializePhidgets();
+            // NOTE(crhodes)
+            // These must complete before UI starts loading to ensure data available for binding.
+
+            InitializePerformanceLibrary();
+            InitializePhidgetDeviceLibrary();
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void InitializePhidgets()
+        private void InitializePerformanceLibrary()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -274,11 +279,25 @@ namespace VNCPhidget22Explorer
 
             PerformanceLibrary performanceLibrary = new PerformanceLibrary();
 
+            performanceLibrary.LoadConfigFiles();
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void InitializePhidgetDeviceLibrary()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
             // NOTE(crhodes)
             // This will read hostconfig to know what servers we have
             // This uses a Phidget Manager to determine what Phidgets are attached.
 
-            Common.PhidgetDeviceLibrary = new VNC.Phidget22.PhidgetDeviceLibrary(Common.EventAggregator);
+            VNC.Phidget22.PhidgetDeviceLibrary phidgetDeviceLibrary = new VNC.Phidget22.PhidgetDeviceLibrary(Common.EventAggregator);
+
+            phidgetDeviceLibrary.BuildPhidgetDeviceDictionary();
+
+            Common.PhidgetDeviceLibrary = phidgetDeviceLibrary;
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -305,7 +324,7 @@ namespace VNCPhidget22Explorer
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
+            //if (Common.VNCLogging.EventHandler) startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
             if (Common.VNCLogging.ApplicationStart) Log.APPLICATION_START("Enter", Common.LOG_CATEGORY, startTicks);
 
             try
@@ -321,7 +340,7 @@ namespace VNCPhidget22Explorer
             }
 
             if (Common.VNCLogging.ApplicationStart) Log.APPLICATION_START("Exit", Common.LOG_CATEGORY, startTicks);
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+            //if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         private void GetAndSetInformation()

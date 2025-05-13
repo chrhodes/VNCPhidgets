@@ -32,6 +32,16 @@ namespace VNC.Phidget22.Configuration.Performance
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
+            //LoadConfigFiles();
+
+            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadConfigFiles()
+        {
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+
             try
             {
                 LoadHostsConfig();
@@ -50,10 +60,10 @@ namespace VNC.Phidget22.Configuration.Performance
             }
             catch (Exception ex)
             {
-                
+                Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -514,6 +524,7 @@ namespace VNC.Phidget22.Configuration.Performance
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json",
 
                 @"Performances\PerformanceConfig_DigitalOutputs.json",
                 @"Performances\PerformanceConfig_RCServos.json",
@@ -532,6 +543,7 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveUpDown.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_YesNoMaybe.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveLeftRight.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_TiltLeftRight.json",
 
