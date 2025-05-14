@@ -542,10 +542,22 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MoveUpDown.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_YesNoMaybe.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MoveLeftRight.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_TiltLeftRight.json",
+
+                @"Performances\Skulls\Device\PerformanceConfig_99220_Skull_012.json",
+                @"Performances\Skulls\Device\PerformanceConfig_99220_Skull_456.json",
+                @"Performances\Skulls\Device\PerformanceConfig_169501_Skull_012.json",
+
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_LeftRight.json",
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_TiltLeftRight.json",
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_UpDown.json",
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_YesNoMaybe.json",
+
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_LeftRight.json",
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_TiltLeftRight.json",
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json",
+                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json",
+
+
 
             };
 

@@ -127,7 +127,31 @@
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_YesNoMaybe.json">
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_TiltLeftRight.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_LeftRight.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_LeftRight.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Device\PerformanceConfig_99220_Skull_456.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Device\PerformanceConfig_169501_Skull_012.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Device\PerformanceConfig_99220_Skull_012.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_YesNoMaybe.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Routines.json">
@@ -139,13 +163,10 @@
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_TiltLeftRight.json">
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_TiltLeftRight.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
-        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveUpDown.json">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveLeftRight.json">
+        <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_UpDown.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json">
