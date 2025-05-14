@@ -6,6 +6,9 @@ using System.Windows.Input;
 using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.LayoutControl;
 
+using Prism.Services.Dialogs;
+
+
 
 //using System.Windows.Controls;
 
@@ -36,6 +39,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Can create directly
             // ViewModel = InterfaceKitViewModel();
+
+            ViewModel = new InterfaceKit1018ViewModel(
+                Common.EventAggregator, 
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
 
             InitializeView();
 

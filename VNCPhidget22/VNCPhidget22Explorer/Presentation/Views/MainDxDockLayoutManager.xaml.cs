@@ -45,6 +45,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;
+            Common.MainDockLayoutManagerControl = dlmControl;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -54,7 +55,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SaveLayout_Click) Enter", Common.LOG_CATEGORY);
 
-            dlm.SaveLayoutToXml(Common.cCONFIG_FILE);
+            dlmControl.SaveLayoutToXml(Common.cCONFIG_FILE);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SaveLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,7 +65,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RestoreLayout_Click) Enter", Common.LOG_CATEGORY);
 
-            dlm.RestoreLayoutFromXml(Common.cCONFIG_FILE);
+            dlmControl.RestoreLayoutFromXml(Common.cCONFIG_FILE);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RestoreLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }

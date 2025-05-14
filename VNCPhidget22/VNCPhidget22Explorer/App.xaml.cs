@@ -360,6 +360,11 @@ namespace VNCPhidget22Explorer
 
             // Add Information about the other assemblies in our application
 
+            var vncVNCPhidget22ExplorerCoreAssembly = Assembly.GetAssembly(typeof(VNCPhidget22Explorer.Core.RegionNames));
+            var vncVNCPhidget22ExplorerCoreFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncVNCPhidget22ExplorerCoreAssembly.Location);
+
+            Common.InformationApplicationCore = Common.GetInformation(vncVNCPhidget22ExplorerCoreAssembly, vncVNCPhidget22ExplorerCoreFileVersionInfo);
+
             var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget22.Common));
             var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
 

@@ -6,6 +6,8 @@ using System.Windows.Input;
 using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.LayoutControl;
 
+using Prism.Services.Dialogs;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -33,6 +35,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Can create directly
             // ViewModel = AdvancedServo1061ViewModel();
+
+            ViewModel = new AdvancedServo1061ViewModel(Common.EventAggregator, (DialogService)Common.Container.Resolve(typeof(DialogService)));
 
             InitializeView();
 

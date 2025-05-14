@@ -10,11 +10,11 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class ShellRibbon : ViewBase, IRibbon, IInstanceCountV
+    public partial class FullRibbon : ViewBase, IRibbon, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
-        public ShellRibbon()
+        public FullRibbon()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
@@ -42,7 +42,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public ShellRibbon(ViewModels.IRibbonViewModel viewModel)
+        public FullRibbon(ViewModels.IRibbonViewModel viewModel)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
@@ -142,9 +142,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-
         #region Stuff from Code Behind.  Move to ViewModel
-
 
         #region Initialization
 

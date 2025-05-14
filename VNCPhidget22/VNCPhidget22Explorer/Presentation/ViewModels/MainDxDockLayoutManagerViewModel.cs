@@ -12,7 +12,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class MainDxDockLayoutManagerViewModel : EventViewModelBase, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public MainDxDockLayoutManagerViewModel(

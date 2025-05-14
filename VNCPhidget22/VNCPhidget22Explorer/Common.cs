@@ -6,6 +6,7 @@ using Prism.Ioc;
 using Prism.Regions;
 
 using VNC.Phidget22;
+using VNC.WPF.Presentation.Dx.Views;
 
 using VNCPhidget22Explorer.Presentation.Views;
 
@@ -34,6 +35,7 @@ namespace VNCPhidget22Explorer
         //  Add new properties
         //  Update InitialzeViewModel()
 
+        //public static VNC.Core.Information? InformationApplicationCore;
         public static VNC.Core.Information? InformationVNCPhidget;
         public static VNC.Core.Information? InformationVNCPhidgetConfiguration;
         public static VNC.Core.Information? InformationPhidget22;
@@ -48,6 +50,7 @@ namespace VNCPhidget22Explorer
         public static IRegionManager DefaultRegionManager;
 
         public static Shell? CurrentShell;
+        public static DevExpress.Xpf.Docking.DockLayoutManager MainDockLayoutManagerControl;
 
         //public static Int32 PhidgetOpenTimeout { get; set; } = 60000; // ms
         public static Int32? PhidgetOpenTimeout { get; set; } = null; // ms

@@ -95,9 +95,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
@@ -111,13 +113,17 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Event Handlers (none)
 
 
+
         #endregion
 
         #region Commands (none)
 
+
+
         #endregion
 
         #region Public Methods (none)
+
 
 
         #endregion
@@ -125,9 +131,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Protected Methods (none)
 
 
+
         #endregion
 
         #region Private Methods (none)
+
 
 
         #endregion

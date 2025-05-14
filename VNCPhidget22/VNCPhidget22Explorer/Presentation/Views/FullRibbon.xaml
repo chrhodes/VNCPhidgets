@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidget22Explorer.Presentation.Views.ShellRibbon"
+    x:Class="VNCPhidget22Explorer.Presentation.Views.FullRibbon"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -217,6 +217,17 @@
                         ItemClick="OnShowInCurrentWindow_Click"
                         Tag="VNCCodeCommandConsole.User_Interface.User_Controls.wucCodeExplorer"/>-->
 
+                    <!-- This tag form is used for local controls -->
+                    
+                    <dxb:BarButtonItem
+                        Name="bbi_UI1"
+                        Content="UI1"
+                        Hint="Hint about UI 1"
+                        ItemClick="OnShowInCurrentWindow_Click"
+                        Tag="User_Controls.wucUIOnw"/>
+
+                    <!-- This tag form is used for external controls -->
+                    
                     <!--<dxb:BarButtonItem
                         Name="bbi_UI1"
                         Content="UI1"
@@ -228,12 +239,45 @@
 
                     <!-- This tag form is used for local controls -->
 
-                    <!--<dxb:BarButtonItem
-                        Name="bbi_UI2"
-                        Content="UI2"
-                        Hint="Hint about UI 2"
-                        ItemClick="OnShowInCurrentWindow_Click"
-                        Tag="User_Controls.wucUITwo"/>-->
+                    <dxb:BarButtonItem
+                        Name="bbiAddAdvancedServo1061View"
+                        Hint="Hint about AddAdvancedServo1061View"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="AdvancedServo1061"
+                        Content="Add AddvancedServo1061 View"
+                        ToolTip="Add AddvancedServo1061 View" />
+
+                    <dxb:BarButtonItem
+                        Name="bbiAddInterfaceKit1018View"
+                        Hint="Hint about AddInterfaceKit1018View"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="InterfaceKit1018"
+                        Content="Add InterfaceKit1018 View"
+                        ToolTip="Add InterfaceKit1018 View" />
+
+                    <dxb:BarButtonItem
+                        Name="bbiAddStepper1063View"
+                        Hint="Hint about AddStepper1063View"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="Stepper1063"
+                        Content="Add Stepper1063 View"
+                        ToolTip="Add Stepper1063 View" />
+
+                    <dxb:BarButtonItem
+                        Name="bbiAddVINTHubView"
+                        Hint="Hint about AddVINTHubView"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="VINTHub"
+                        Content="Add VINTHub View"
+                        ToolTip="Add VINTHub View" />
+
+                    <dxb:BarButtonItem
+                        Name="bbiAddVINTHubHorizontalView"
+                        Hint="Hint about AddVINTHubHorizontalView"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="VINTHubHorizontal"
+                        Content="Add VINTHubHorizontal View"
+                        ToolTip="Add VINTHubHorizontal View" />
 
                     <!-- This tag form is used for external controls -->
 
@@ -296,9 +340,13 @@
 
                     <dxb:BarSubItem Name="bsi_View" Content="View"  >
                         <!-- These items are always visible -->
-                        <dxb:BarButtonItemLink BarItemName="bbi_CodeExplorer" IsVisible="True" />
-                        <dxb:BarButtonItemLink BarItemName="bbi_UI1" IsVisible="True"  />
-                        <dxb:BarButtonItemLink BarItemName="bbi_UI2" IsVisible="True"  />
+                        <!--<dxb:BarButtonItemLink BarItemName="bbi_CodeExplorer" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbi_UI1" IsVisible="True"  />-->
+                        <dxb:BarButtonItemLink BarItemName="bbiAddAdvancedServo1061View" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiAddInterfaceKit1018View" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiAddStepper1063View" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiAddVINTHubView" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiAddVINTHubHorizontalView" IsVisible="True" />
 
                         <dxb:BarItemLinkSeparator />
 

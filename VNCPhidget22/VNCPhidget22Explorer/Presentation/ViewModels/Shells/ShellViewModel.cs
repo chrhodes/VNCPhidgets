@@ -35,6 +35,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //DeveloperUIMode = Common.DeveloperUIMode;
 
             InformationApplication = Common.InformationApplication;
+            InformationApplicationCore = Common.InformationApplicationCore;
             InformationVNCPhidget = Common.InformationVNCPhidget;
             InformationVNCPhidgetConfiguration = Common.InformationVNCPhidgetConfiguration;
 
@@ -74,6 +75,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         public Information InformationApplication { get; set; }
+        public Information InformationApplicationCore { get; set; }
         public Information InformationVNCCore { get; set; }
         public Information InformationVNCPhidget { get; set; }
         public Information InformationVNCPhidgetConfiguration { get; set; }

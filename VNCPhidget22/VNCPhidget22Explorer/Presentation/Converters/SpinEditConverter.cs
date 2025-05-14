@@ -15,10 +15,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
         }
 
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.PresentationLow) startTicks = Log.CONSTRUCTOR("Enter/Exit", Common.LOG_CATEGORY);
-
+        { 
             if (value != null)
                 return value;
 
@@ -27,12 +24,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.PresentationLow) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
-
             Double? result = Convert.ToDouble(value);
-
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
 
             return result;
         }

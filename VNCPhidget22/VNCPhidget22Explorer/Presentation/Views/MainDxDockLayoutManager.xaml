@@ -110,7 +110,7 @@
 
             <dxlc:LayoutGroup Name="lg_Body" VerticalAlignment="Stretch">
                 <!-- Use this if you want a LayoutManager -->
-                <dxdo:DockLayoutManager Name="dlm"   
+                <dxdo:DockLayoutManager Name="dlmControl"   
                     dx:StyleManager.ApplyApplicationTheme="True"
                     FontSize="12"            
                     FloatingMode="Desktop"

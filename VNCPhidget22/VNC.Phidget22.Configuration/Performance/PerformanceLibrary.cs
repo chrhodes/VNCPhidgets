@@ -520,7 +520,7 @@ namespace VNC.Phidget22.Configuration.Performance
                 //@"Performances\PerformanceConfig_3.json",
 
                 // Top Level Routines
-                // These go first to get a top of dropdown
+                // These go first to get on top of dropdown
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
@@ -556,8 +556,6 @@ namespace VNC.Phidget22.Configuration.Performance
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_TiltLeftRight.json",
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json",
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json",
-
-
 
             };
 

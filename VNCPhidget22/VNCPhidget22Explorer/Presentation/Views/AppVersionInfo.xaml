@@ -75,6 +75,16 @@
              Add sections below for additional assemblies
             -->
 
+            <Border Grid.Column="0" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
+
+                <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationApplicationCore}" >
+                    <vncviews:AssemblyInformation />
+                    <vncviews:FileInformation />
+                </StackPanel>
+
+            </Border>
+            
+
             <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
 
                 <StackPanel Orientation="Vertical" Margin="2" DataContext="{Binding InformationVNCPhidget}">
