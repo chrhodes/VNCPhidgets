@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 
+using Prism.Services.Dialogs;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -31,6 +33,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Can create directly
 
             // ViewModel = Common.PhidgetDeviceLibraryViewModel();
+
+            ViewModel = new PhidgetDeviceLibraryViewModel(
+                Common.EventAggregator,
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
 
             // Can use ourselves for everything
 

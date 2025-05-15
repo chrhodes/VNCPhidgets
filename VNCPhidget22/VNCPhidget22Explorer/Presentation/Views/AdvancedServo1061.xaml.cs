@@ -36,7 +36,13 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Can create directly
             // ViewModel = AdvancedServo1061ViewModel();
 
-            ViewModel = new AdvancedServo1061ViewModel(Common.EventAggregator, (DialogService)Common.Container.Resolve(typeof(DialogService)));
+            ViewModel = new AdvancedServo1061ViewModel(
+                Common.EventAggregator, 
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
 
             InitializeView();
 

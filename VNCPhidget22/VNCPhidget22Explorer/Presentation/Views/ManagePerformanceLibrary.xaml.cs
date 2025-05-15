@@ -6,6 +6,7 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 using VNC;
 using VNC.Core.Mvvm;
 using System.Linq;
+using Prism.Services.Dialogs;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
@@ -30,6 +31,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Can create directly
             // ViewModel = ManagePerformanceLibraryViewModel();
+
+            ViewModel = new ManagePerformanceLibraryViewModel(
+                Common.EventAggregator, 
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
 
             InitializeView();
 

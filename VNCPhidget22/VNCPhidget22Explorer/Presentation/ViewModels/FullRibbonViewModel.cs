@@ -243,34 +243,22 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             switch (phidgetDeviceView)
             {
-                case "AdvancedServo1061":
-                    //layoutPanel = Common.MainDockLayoutManagerControl.GetItem(phidgetDeviceView) as LayoutPanel;
+                // NOTE(crhodes)
+                // These allow multiple
 
-                    //if (layoutPanel is null)
-                    //{
-                        Common.MainDockLayoutManagerControl.LayoutRoot.Add(
-                            new AdvancedServo1061_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
-                    //}
-                    //else
-                    //{
-                    //    Common.MainDockLayoutManagerControl.LayoutRoot.Add(
-                    //        new AdvancedServo1061_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
-                    //    //Common.MainDockLayoutManagerControl.Activate(layoutPanel);
-                    //}
+                case "AdvancedServo1061":
+                    Common.MainDockLayoutManagerControl.LayoutRoot.Add(
+                        new AdvancedServo1061_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
                     break;
 
                 case "InterfaceKit1018":
                     Common.MainDockLayoutManagerControl.LayoutRoot.Add(
-                        new InterfaceKit1018_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
-   
+                        new InterfaceKit1018_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });   
                     break;
 
                 case "Stepper1063":
-                    //layoutPanel = Common.MainDockLayoutManagerControl.GetItem(phidgetDeviceView) as LayoutPanel;
-
-                        Common.MainDockLayoutManagerControl.LayoutRoot.Add(
-                            new Stepper1063_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
-    
+                    Common.MainDockLayoutManagerControl.LayoutRoot.Add(
+                        new Stepper1063_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });    
                     break;
 
                 case "VINTHub":
@@ -283,11 +271,55 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                             new VINTHubHorizontal_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
                     break;
 
+                // NOTE(crhodes)
+                // These allow only one
+
+                case "HackAround":
+                    layoutPanel = Common.MainDockLayoutManagerControl.GetItem(phidgetDeviceView) as LayoutPanel;
+
+                    if (layoutPanel is null)
+                    {
+                        Common.MainDockLayoutManagerControl.LayoutRoot.Add(
+                            new HackAround_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
+                    }
+                    else
+                    {
+                        Common.MainDockLayoutManagerControl.Activate(layoutPanel);
+                    }
+                    break;
+
+                case "ManagePerformanceLibrary":
+                    layoutPanel = Common.MainDockLayoutManagerControl.GetItem(phidgetDeviceView) as LayoutPanel;
+
+                    if (layoutPanel is null)
+                    {
+                        Common.MainDockLayoutManagerControl.LayoutRoot.Add(
+                            new ManagePerformanceLibrary_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
+                    }
+                    else
+                    {
+                        Common.MainDockLayoutManagerControl.Activate(layoutPanel);
+                    }
+                    break;
+
+                case "PhidgetDeviceLibrary":
+                    layoutPanel = Common.MainDockLayoutManagerControl.GetItem(phidgetDeviceView) as LayoutPanel;
+
+                    if (layoutPanel is null)
+                    {
+                        Common.MainDockLayoutManagerControl.LayoutRoot.Add(
+                            new PhidgetDeviceLibrary_LayoutPanel() { Name = phidgetDeviceView, Caption = phidgetDeviceView });
+                    }
+                            else
+                    {
+                        Common.MainDockLayoutManagerControl.Activate(layoutPanel);
+                    }
+                    break;
+
                 default:
                     Log.Error($"Unsupported phidgetDeviceView:>{phidgetDeviceView}<", Common.LOG_CATEGORY);
                     break;
             }
-
 
             //LayoutPanel lp = Common.MainDockLayoutManagerControl.GetItem("AdvancedServo1061") as LayoutPanel;
 

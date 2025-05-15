@@ -279,6 +279,22 @@
                         Content="Add VINTHubHorizontal View"
                         ToolTip="Add VINTHubHorizontal View" />
 
+                    <dxb:BarButtonItem
+                        Name="bbiAddManagePerformanceLibraryView"
+                        Hint="Hint about AddManagePerformanceLibraryView"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="ManagePerformanceLibrary"
+                        Content="Add ManagePerformanceLibrary View"
+                        ToolTip="Add ManagePerformanceLibrary View" />
+
+                    <dxb:BarButtonItem
+                        Name="bbiAddPhidgetDeviceLibraryView"
+                        Hint="Hint about AddPhidgetDeviceLibraryView"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="PhidgetDeviceLibrary"
+                        Content="Add PhidgetDeviceLibrary View"
+                        ToolTip="Add PhidgetDeviceLibrary View" />
+
                     <!-- This tag form is used for external controls -->
 
                     <!--<dxb:BarButtonItem
@@ -338,7 +354,7 @@
                         <dxb:BarButtonItemLink BarItemName="bbi_Exit" />
                     </dxb:BarSubItem>
 
-                    <dxb:BarSubItem Name="bsi_View" Content="View"  >
+                    <dxb:BarSubItem Name="bsi_View" Content="Views"  >
                         <!-- These items are always visible -->
                         <!--<dxb:BarButtonItemLink BarItemName="bbi_CodeExplorer" IsVisible="True" />
                         <dxb:BarButtonItemLink BarItemName="bbi_UI1" IsVisible="True"  />-->
@@ -350,6 +366,8 @@
 
                         <dxb:BarItemLinkSeparator />
 
+                        <dxb:BarButtonItemLink BarItemName="bbiAddManagePerformanceLibraryView" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiAddPhidgetDeviceLibraryView" IsVisible="True" />
                         <dxb:BarButtonItemLink BarItemName="bbi_Info" IsVisible="True"  />
 
                         <dxb:BarItemLinkSeparator />

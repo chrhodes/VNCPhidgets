@@ -115,6 +115,15 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="Presentation\Views\HackAround_Layout.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Presentation\Views\ManagePerformanceLibrary_LayoutPanel.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Presentation\Views\PhidgetDeviceLibrary_LayoutPanel.xaml.cs">
+        <SubType>Code</SubType>
+      </Compile>
       <Compile Update="Presentation\Views\VINTHub_LayoutPanel.xaml.cs">
         <SubType>Code</SubType>
       </Compile>
