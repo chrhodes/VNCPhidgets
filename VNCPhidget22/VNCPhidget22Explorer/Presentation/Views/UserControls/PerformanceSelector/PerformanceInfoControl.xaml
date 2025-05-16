@@ -168,6 +168,7 @@
                                             <dxg:GridColumn Binding="{Binding HubPort}" Header="HubPort" Width="Auto" ReadOnly="True" />
                                             <dxg:GridColumn Binding="{Binding Channel}" Header="Channel" Width="Auto" ReadOnly="True" />
                                             <dxg:GridColumn Binding="{Binding ChannelClass}" Header="ChannelClass" Width="Auto" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding Duration}" Header="Duration" ReadOnly="True" />
                                         </dxg:GridControl.Columns>
                                     </dxg:GridControl>
                                     
@@ -212,6 +213,7 @@
                                         <dxg:GridControl.Columns>
                                             <dxg:GridColumn Binding="{Binding Name}" Header="Name" Width="Auto" ReadOnly="True" />
                                             <dxg:GridColumn Binding="{Binding SerialNumber}" Header="SerialNumber" ReadOnly="True" />
+                                            <dxg:GridColumn Binding="{Binding Duration}" Header="Duration" ReadOnly="True" />
                                         </dxg:GridControl.Columns>
                                     </dxg:GridControl>
                                 </dxlc:LayoutGroup>

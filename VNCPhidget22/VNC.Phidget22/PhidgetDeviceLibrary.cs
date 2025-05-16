@@ -10,7 +10,6 @@ using VNC.Phidget22.Ex;
 
 using PhidgetEvents = Phidget22.Events;
 using Phidgets = Phidget22;
-using VNC.Phidget22.Configuration.Performance;
 using Prism.Regions.Behaviors;
 using Phidget22;
 using System.Diagnostics.CodeAnalysis;

@@ -6,6 +6,8 @@ using System.Windows.Input;
 using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.LayoutControl;
 
+using Prism.Services.Dialogs;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -16,6 +18,40 @@ namespace VNCPhidget22Explorer.Presentation.Views
     public partial class HackAround : ViewBase, IInstanceCountV
     {
         //public HackAroundViewModel _viewModel;
+
+        #region Constructors, Initialization, and Load
+
+        public HackAround()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR("Enter", Common.LOG_CATEGORY);
+
+            InstanceCountV++;
+
+            InitializeComponent();
+
+            // Wire up ViewModel if needed
+
+            // If View First with ViewModel in Xaml
+
+            // ViewModel = (HackAroundViewModel)DataContext;
+
+            // Can create directly
+
+            // ViewModel = Common.HackAroundViewModel();
+
+            ViewModel = new HackAroundViewModel(
+                Common.EventAggregator,
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
+
+            InitializeView();
+
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         public HackAround(HackAroundViewModel viewModel)
         {
@@ -54,6 +90,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        #endregion
 
         private void LayoutGroup_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

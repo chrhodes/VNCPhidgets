@@ -18,6 +18,7 @@
     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
 
+    xmlns:app="clr-namespace:VNCPhidget22Explorer"
     xmlns:converters="clr-namespace:VNCPhidget22Explorer.Presentation.Converters"
     xmlns:views="clr-namespace:VNCPhidget22Explorer.Presentation.Views"
     xmlns:viewModels="clr-namespace:VNCPhidget22Explorer.Presentation.ViewModels"
@@ -50,6 +51,7 @@
      <vncmvvm:ViewBase.Resources>
         <converters:SelectedItemsToListOfPerformanceSequenceConverter x:Key="SelectedItemsToListOfPerformanceSequenceConverter" />
         <converters:SelectedItemsToListOfPerformanceConverter x:Key="SelectedItemsToListOfPerformanceConverter" />
+        <converters:SelectedItemToXXXConverter x:Key="SelectedItemToXXXConverter" />
         <converters:SelectedItemsToListOfDigitalOutputSequenceConverter x:Key="SelectedItemsToListOfDigitalOutputSequenceConverter" />
         <converters:SelectedItemsToListOfRCServoSequenceConverter x:Key="SelectedItemsToListOfRCServoSequenceConverter" />         
         <converters:SelectedItemsToListOfStepperSequenceConverter x:Key="SelectedItemsToListOfStepperSequenceConverter" />
@@ -94,10 +96,11 @@
                         <!--<dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
                                 ItemsSource="{Binding Performances}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedPerformance}"
+                                SelectedItem="{Binding SelectedPerformance}"                                              
                                 EditValue="{ Binding 
                                     Path=SelectedPerformances,
                                     Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
                                     Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
                                 <dxe:ComboBoxEdit.StyleSettings>
                                     <dxe:CheckedComboBoxStyleSettings />
@@ -105,9 +108,24 @@
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>-->
 
+                        <!-- HACK(crhodes)
+                         This was an attempt
+                        -->
+                        <!--DisplayMember="Value"
+                        ValueMember="Key"--><!--
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
-                                ItemsSource="{Binding Performances}" DisplayMember="Name" 
+                            <dxe:ComboBoxEdit x:Name="cbePerformances" Width="300" TextWrapping="Wrap"
+                                DisplayMember="Value.Name"
+                                SelectedItem="{Binding SelectedPerformance, Converter={StaticResource SelectedItemToXXXConverter}}"  >
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>-->
+
+                        <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit x:Name="cbePerformances" Width="300" TextWrapping="Wrap"
+                                ItemsSource="{Binding Performances}" DisplayMember="Name"
                                 SelectedItem="{Binding SelectedPerformance}"                                              
                                 EditValue="{ Binding 
                                     Path=SelectedPerformances,
@@ -119,20 +137,6 @@
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
                         </dxlc:LayoutItem>
-                        <!--<dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
-                                ItemsSource="{Binding Performances}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedPerformance}"
-                                EditValue="{ Binding 
-                                    Path=SelectedPerformances,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>-->
 
                         <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
 
@@ -177,7 +181,8 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" Orientation="Vertical" VerticalAlignment="Top"
+            <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" 
+                              Orientation="Vertical" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False">
 
                 <!--<ScrollViewer>-->

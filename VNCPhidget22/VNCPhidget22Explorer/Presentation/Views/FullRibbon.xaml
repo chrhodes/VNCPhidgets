@@ -280,20 +280,28 @@
                         ToolTip="Add VINTHubHorizontal View" />
 
                     <dxb:BarButtonItem
-                        Name="bbiAddManagePerformanceLibraryView"
-                        Hint="Hint about AddManagePerformanceLibraryView"
+                        Name="bbiHackAroundView"
+                        Hint="Hint about ManagePerformanceLibraryView"
+                        Command="{Binding AddPhidgetDeviceViewCommand }"
+                        CommandParameter="HackAround"
+                        Content="HackAround"
+                        ToolTip="HackAround" />
+                    
+                    <dxb:BarButtonItem
+                        Name="bbiManagePerformanceLibraryView"
+                        Hint="Hint about ManagePerformanceLibraryView"
                         Command="{Binding AddPhidgetDeviceViewCommand }"
                         CommandParameter="ManagePerformanceLibrary"
-                        Content="Add ManagePerformanceLibrary View"
-                        ToolTip="Add ManagePerformanceLibrary View" />
+                        Content="ManagePerformanceLibrary"
+                        ToolTip="ManagePerformanceLibrary" />
 
                     <dxb:BarButtonItem
-                        Name="bbiAddPhidgetDeviceLibraryView"
-                        Hint="Hint about AddPhidgetDeviceLibraryView"
+                        Name="bbiPhidgetDeviceLibraryView"
+                        Hint="Hint about PhidgetDeviceLibraryView"
                         Command="{Binding AddPhidgetDeviceViewCommand }"
                         CommandParameter="PhidgetDeviceLibrary"
-                        Content="Add PhidgetDeviceLibrary View"
-                        ToolTip="Add PhidgetDeviceLibrary View" />
+                        Content="PhidgetDeviceLibrary"
+                        ToolTip="PhidgetDeviceLibrary" />
 
                     <!-- This tag form is used for external controls -->
 
@@ -364,10 +372,11 @@
                         <dxb:BarButtonItemLink BarItemName="bbiAddVINTHubView" IsVisible="True" />
                         <dxb:BarButtonItemLink BarItemName="bbiAddVINTHubHorizontalView" IsVisible="True" />
 
-                        <dxb:BarItemLinkSeparator />
+                        <dxb:BarItemLinkSeparator Description="dd" />
 
-                        <dxb:BarButtonItemLink BarItemName="bbiAddManagePerformanceLibraryView" IsVisible="True" />
-                        <dxb:BarButtonItemLink BarItemName="bbiAddPhidgetDeviceLibraryView" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiHackAroundView" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiManagePerformanceLibraryView" IsVisible="True" />
+                        <dxb:BarButtonItemLink BarItemName="bbiPhidgetDeviceLibraryView" IsVisible="True" />
                         <dxb:BarButtonItemLink BarItemName="bbi_Info" IsVisible="True"  />
 
                         <dxb:BarItemLinkSeparator />

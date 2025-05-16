@@ -22,6 +22,7 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
 using DevExpress.CodeParser;
 using VNC.Phidget22;
+using System.Collections.ObjectModel;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -70,12 +71,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PlayStepperSequenceCommand = new DelegateCommand(PlayStepperSequence, PlayStepperSequenceCanExecute);
 
+            
+
             // TODO(crhodes)
             // Fill out PlayStepperSequenceCommand
 
             //ActivePerformancePlayer = GetPerformancePlayer();
 
-            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+
+            Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
 
             //Hosts = PerformanceLibrary.Hosts.ToList();
 
@@ -88,6 +93,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Log.Trace("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
+        }
+
         void LoadChannelSequences()
         {
             // TODO(crhodes)
@@ -455,6 +466,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // TODO(crhodes)
+        // Try this to see if it helps when PerformanceLibrary changes
+
+        //private ObservableCollection<Performance> _performances;
+        //public ObservableCollection<Performance> Performances
+        //{
+        //    get => _performances;
+        //    set
+        //    {
+        //        _performances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Performance? _selectedPerformance;
         public Performance? SelectedPerformance
@@ -1318,9 +1343,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 while (nextPerformance is not null)
                 {
-                    if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                    if (Common.PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
                     {
-                        nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+                        nextPerformance = Common.PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
 
                         if (SerialNumber is not null)
                         {
@@ -1968,7 +1993,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private PerformancePlayer GetNewPerformancePlayer()
         {
-            PerformancePlayer player = new PerformancePlayer(EventAggregator);
+            PerformancePlayer player = new PerformancePlayer(EventAggregator, Common.PerformanceLibrary);
 
             // HACK(crhodes)
             // Need a cleaner way of handing logging.  Maybe a LoggingConfiguration class that gets passed around.

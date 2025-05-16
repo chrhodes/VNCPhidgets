@@ -17,7 +17,7 @@ using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
 using VNC.Phidget22;
-using VNC.Phidget22.Configuration.Performance;
+using VNC.Phidget22.Configuration;
 
 using VNCPhidget22Explorer.Presentation.Views;
 
@@ -280,6 +280,8 @@ namespace VNCPhidget22Explorer
             PerformanceLibrary performanceLibrary = new PerformanceLibrary();
 
             performanceLibrary.LoadConfigFiles();
+
+            Common.PerformanceLibrary = performanceLibrary;
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

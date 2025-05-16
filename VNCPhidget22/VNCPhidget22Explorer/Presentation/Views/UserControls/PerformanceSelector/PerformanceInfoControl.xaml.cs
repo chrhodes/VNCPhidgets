@@ -178,9 +178,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // TODO(crhodes)
             // Lookup Performance
 
-            if (PerformanceLibrary.AvailablePerformances.ContainsKey(emptyPerformance.Name ?? ""))
+            if (Common.PerformanceLibrary.AvailablePerformances.ContainsKey(emptyPerformance.Name ?? ""))
             {
-                performance = PerformanceLibrary.AvailablePerformances[emptyPerformance.Name];
+                performance = Common.PerformanceLibrary.AvailablePerformances[emptyPerformance.Name];
 
                 userControl.DataContext = performance;
 

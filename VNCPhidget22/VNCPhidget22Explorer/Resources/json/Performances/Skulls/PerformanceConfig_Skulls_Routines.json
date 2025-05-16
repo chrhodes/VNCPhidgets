@@ -61,7 +61,7 @@
       ],
     },
     //
-    // All Skulls Yes and Laugh
+    // All Skulls Yes and Laugh and No
     //
     {
       "Name": "All Skulls Yes and Laugh and No",
@@ -70,7 +70,7 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-       { "Name": "All Skulls Yes", "Duration": 1000 },
+       { "Name": "All Skulls Yes", "Duration": 1002 },
        { "Name": "All Skulls Big Yes", "Duration": 1000 },
        { "Name": "All Skulls Laugh", "Duration": 1000 },
        { "Name": "All Skulls Big Laugh", "Duration": 1000 },
@@ -191,8 +191,8 @@
       "Performances": [
        { "Name": "Center All Skulls"},
        { "Name": "Move All Skulls - Sound to Left", "Duration": 1000},
-       { "Name": "Center All Skulls", "Duration": 1000},
-       { "Name": "Move All Skulls - Sound to Right", "Duration": 1000 },
+       { "Name": "Center All Skulls", "Duration": 2000},
+       { "Name": "Move All Skulls - Sound to Right", "Duration": 3000 },
        { "Name": "Center All Skulls"},
       ],
     },

@@ -144,8 +144,9 @@
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadPerformanceConfigFileCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadPerformanceConfigFileCommand}"
+                        CommandParameter="Performance"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
@@ -159,8 +160,9 @@
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                    Command="{Binding ReloadDigitalInputSequenceConfigFileCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadDigitalInputSequenceConfigFileCommand}"
+                        CommandParameter="DigitalInputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
@@ -174,8 +176,9 @@
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                        Command="{Binding ReloadDigitalOutputSequenceConfigFileCommand}"
-                                        ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadDigitalOutputSequenceConfigFileCommand}"
+                        CommandParameter="DigitalOutputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
@@ -183,14 +186,15 @@
 
                     <dxlc:LayoutItem Label="RCServo Sequences" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                                    ItemsSource="{Binding RCServoSequenceConfigFiles}"
-                                    SelectedItem="{Binding SelectedRCServoSequenceConfigFile}" >
+                            ItemsSource="{Binding RCServoSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedRCServoSequenceConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadRCServoSequenceConfigFileCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadRCServoSequenceConfigFileCommand}"
+                        CommandParameter="RCServoSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
                 
@@ -198,14 +202,15 @@
 
                     <dxlc:LayoutItem Label="Stepper Sequences" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                                    ItemsSource="{Binding StepperSequenceConfigFiles}"
-                                    SelectedItem="{Binding SelectedStepperSequenceConfigFile}" >
+                            ItemsSource="{Binding StepperSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedStepperSequenceConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadStepperSequenceConfigFileCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadStepperSequenceConfigFileCommand}"
+                        CommandParameter="StepperSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
@@ -219,8 +224,9 @@
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                    Command="{Binding ReloadVoltageInputSequenceConfigFileCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadVoltageInputSequenceConfigFileCommand}"
+                        CommandParameter="VoltageInputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
@@ -234,8 +240,9 @@
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                    Command="{Binding ReloadVoltageRatioInputSequenceConfigFileCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadVoltageRatioInputSequenceConfigFileCommand}"
+                        CommandParameter="VoltageRatioInputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
@@ -249,8 +256,9 @@
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                        Command="{Binding ReloadVoltageOutputSequenceConfigFileCommand}"
-                                        ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadVoltageOutputSequenceConfigFileCommand}"
+                        CommandParameter="VoltageOutputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 

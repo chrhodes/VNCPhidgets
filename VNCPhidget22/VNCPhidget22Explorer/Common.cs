@@ -5,8 +5,12 @@ using Prism.Events;
 using Prism.Ioc;
 using Prism.Regions;
 
-using VNC.Phidget22;
-using VNC.WPF.Presentation.Dx.Views;
+//using VNC.Phidget22.Configuration;
+
+
+////using VNC.Phidget22;
+////using VNC.Phidget22.Configuration.Performance;
+////using VNC.WPF.Presentation.Dx.Views;
 
 using VNCPhidget22Explorer.Presentation.Views;
 
@@ -55,11 +59,12 @@ namespace VNCPhidget22Explorer
         //public static Int32 PhidgetOpenTimeout { get; set; } = 60000; // ms
         public static Int32? PhidgetOpenTimeout { get; set; } = null; // ms
 
-        public static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
+        internal static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
+        internal static VNC.Phidget22.Configuration.PerformanceLibrary PerformanceLibrary;
 
         public static event EventHandler AutoHideGroupSpeedChanged;
 
-        private static Int32 _AutoHideGroupSpeed = 250;
+        private static Int32 _AutoHideGroupSpeed = 250;        
 
         public static Int32 AutoHideGroupSpeed
         {

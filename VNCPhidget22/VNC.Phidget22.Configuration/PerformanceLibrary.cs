@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
@@ -10,9 +13,11 @@ using Prism.Regions.Behaviors;
 
 using Unity.Interception.Utilities;
 
+using VNC.Core.Collections;
+
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace VNC.Phidget22.Configuration.Performance
+namespace VNC.Phidget22.Configuration
 {
     /// <summary>
     /// Maintains Library of Hosts, Performances,
@@ -20,7 +25,7 @@ namespace VNC.Phidget22.Configuration.Performance
     /// which are loaded from json config files
     /// All properties marked static.  Almost a singleton
     /// </summary>
-    public class PerformanceLibrary
+    public class PerformanceLibrary : INotifyPropertyChanged, INotifyCollectionChanged
     {
         #region Constructors, Initialization, and Load
 
@@ -34,7 +39,14 @@ namespace VNC.Phidget22.Configuration.Performance
 
             //LoadConfigFiles();
 
+            //AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
+
             if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void AvailablePerformances_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            Log.Trace("Collection Changed", Common.LOG_CATEGORY);
         }
 
         public void LoadConfigFiles()
@@ -56,7 +68,10 @@ namespace VNC.Phidget22.Configuration.Performance
                 LoadStepperSequences();
 
                 LoadVoltageInputSequences();
+                LoadVoltageRatioInputSequences();
                 LoadVoltageOutputSequences();
+
+                Common.PerformanceLibrary = this;
             }
             catch (Exception ex)
             {
@@ -80,22 +95,56 @@ namespace VNC.Phidget22.Configuration.Performance
 
         #region Fields and Properties
 
-        public static List<Host> Hosts {  get; private set; } = new List<Host>();
+        public static List<Host> Hosts { get; private set; } = new List<Host>();
 
-        public static Dictionary<string, Performance> AvailablePerformances { get; set; } =
-            new Dictionary<string, Performance>();
+        private ObservableDictionary<string, Performance.Performance> _availablePerformances =
+            new ObservableDictionary<string, Performance.Performance>();
+        public ObservableDictionary<string, Performance.Performance> AvailablePerformances
+        {
+            get 
+            { 
+                return _availablePerformances; 
+            }
+            set
+            {
+                _availablePerformances = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //public static Dictionary<string, AdvancedServoSequence> AvailableAdvancedServoSequences { get; set; } =
-        //    new Dictionary<string, AdvancedServoSequence>();
+        //public event NotifyCollectionChangedEventHandler? CollectionChanged
+        //{
+        //    add
+        //    {
+        //        ((INotifyCollectionChanged)AvailablePerformances).CollectionChanged += value;
+        //    }
+
+        //    remove
+        //    {
+        //        ((INotifyCollectionChanged)AvailablePerformances).CollectionChanged -= value;
+        //    }
+        //}
+
+        //private Dictionary<string, Performance> _availablePerformances =
+        //    new Dictionary<string, Performance>();
+        //public Dictionary<string, Performance> AvailablePerformances
+        //{
+        //    get { return _availablePerformances; }
+        //    set
+        //    {
+        //        _availablePerformances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //public static Dictionary<string, Performance> AvailablePerformances { get; set; } =
+        //    new Dictionary<string, Performance>();
 
         public static Dictionary<string, DigitalInputSequence> AvailableDigitalInputSequences { get; set; } =
              new Dictionary<string, DigitalInputSequence>();
 
         public static Dictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences { get; set; } =
             new Dictionary<string, DigitalOutputSequence>();
-
-        //public static Dictionary<string, InterfaceKitSequence> AvailableInterfaceKitSequences { get; set; } =
-        //    new Dictionary<string, InterfaceKitSequence>();
 
         public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
             new Dictionary<string, RCServoSequence>();
@@ -153,79 +202,74 @@ namespace VNC.Phidget22.Configuration.Performance
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //void LoadNetworkHosts(List<Host> hosts)
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
-
-        //    foreach (Host host in hosts)
-        //    {
-        //        try
-        //        {
-        //            Phidgets.Net.AddServer(host.Name, host.IPAddress, host.Port, "", 0);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            //Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-        //            Log.Error($"{ex}", Common.LOG_CATEGORY);
-        //        }                
-        //    }
-
-        //    if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
         // TODO(crhodes)
         // Clean this area up
         // Looks like identical code
         // Method that gets a list of files,
         // Add to AvailableTYPE
 
-        public void LoadPerformances()
+        public void LoadPerformances(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailablePerformances.Clear();
+            if (reload)
+            {
+                //AvailablePerformances.Clear();
+                //AvailablePerformances = new ObservableDictionary<string, Performance>();
+            }            
 
             foreach (string configFile in GetListOfPerformanceConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    PerformanceConfig? performanceConfig
-                        = JsonSerializer.Deserialize<PerformanceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
-                    {
-                        try
-                        {
-                            AvailablePerformances.Add(performance.Key, performance.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadPerformancesFromConfigFile(configFile);
             }
+
+            AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadDigitalInputSequences()
+        public void LoadPerformancesFromConfigFile(string configFile, bool reload = false)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                PerformanceConfig? performanceConfig
+                    = JsonSerializer.Deserialize<PerformanceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
+                {
+                    try
+                    {
+                        if (reload)
+                        {
+                            AvailablePerformances.Remove(performance.Key);
+                        }
+
+                        AvailablePerformances.Add(performance.Key, performance.Value);
+                    }
+                    catch (ArgumentException ax)
+                    {
+                        Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
+                    }
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
+        }
+
+        public void LoadDigitalInputSequences(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -270,7 +314,7 @@ namespace VNC.Phidget22.Configuration.Performance
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadDigitalOutputSequences()
+        public void LoadDigitalOutputSequences(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -315,7 +359,7 @@ namespace VNC.Phidget22.Configuration.Performance
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadRCServoSequences()
+        public void LoadRCServoSequences(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -360,7 +404,7 @@ namespace VNC.Phidget22.Configuration.Performance
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadStepperSequences()
+        public void LoadStepperSequences(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -405,7 +449,7 @@ namespace VNC.Phidget22.Configuration.Performance
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadVoltageInputSequences()
+        public void LoadVoltageInputSequences(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -450,7 +494,52 @@ namespace VNC.Phidget22.Configuration.Performance
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public void LoadVoltageOutputSequences()
+        public void LoadVoltageRatioInputSequences(bool reload = false)
+        {
+            long startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            AvailableVoltageInputSequences.Clear();
+
+            foreach (string configFile in GetListOfVoltageRatioInputConfigFiles())
+            {
+                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+                try
+                {
+                    string jsonString = File.ReadAllText(configFile);
+
+                    VoltageInputSequenceConfig? sequenceConfig
+                        = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
+                        (jsonString, GetJsonSerializerOptions());
+
+                    foreach (var sequence in sequenceConfig.VoltageInputSequences.ToDictionary(k => k.Name, v => v))
+                    {
+                        try
+                        {
+                            AvailableVoltageInputSequences.Add(sequence.Key, sequence.Value);
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                        }
+                    }
+                }
+                catch (FileNotFoundException fnfex)
+                {
+                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageRatioInputConfigFiles()", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                    Log.Error($"{ex}", Common.LOG_CATEGORY);
+                }
+            }
+
+            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadVoltageOutputSequences(bool reload = false)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
@@ -665,7 +754,9 @@ namespace VNC.Phidget22.Configuration.Performance
 
             List<string> files = new List<string>
             {
-                @"VoltageRatioInputSequences\VoltageRatioInputSequenceConfig_1.json"
+                // TODO(crhodes)
+                // Implement
+                //@"VoltageRatioInputSequences\VoltageRatioInputSequenceConfig_1.json"
             };
 
             return files;
@@ -698,5 +789,40 @@ namespace VNC.Phidget22.Configuration.Performance
         }
 
         #endregion
+
+        #region INotifyCollectionChanged
+
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
+        #endregion
+
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        // This is the traditional approach - requires string name to be passed in
+
+        //private void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            long startTicks = 0;
+#if LOGGING
+                    if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEW_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
+#endif
+            // This is the new CompilerServices attribute!
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+#if LOGGING
+                    if (Common.VNCCoreLogging.INPC) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+#endif
+        }
+
+        #endregion
+
     }
 }

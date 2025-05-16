@@ -58,7 +58,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             RaisePlayPerformanceEventCommand = new DelegateCommand(RaisePlayPerformanceEvent, RaisePlayPerformanceEventCanExecute);
 
-            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             Message = "EventCoordinatorViewModel says hello";
 
@@ -156,7 +156,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             EventPerformance = eventArgs.Performance;
 
-            PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator);
+            PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator, Common.PerformanceLibrary);
 
             performancePlayer.PlayPerformance(EventPerformance);
 

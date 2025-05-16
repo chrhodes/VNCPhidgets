@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Forms;
 
 using DevExpress.Mvvm.POCO;
 using DevExpress.Xpf.Editors;
@@ -61,9 +62,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Establish any additional DataContext(s), e.g. to things held in this View
             spDeveloperInfo.DataContext = this;
 
+            // HACK(crhodes)
+            // Trying stuff
+            //cbePerformances.ItemsSource = new BindingSource(Common.PerformanceLibrary.AvailablePerformances, null);
+
+            //Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
+            //cbePerformances.ItemsSource = Common.PerformanceLibrary.AvailablePerformances;
+
+            //cbePerformances.ItemsSource = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
+        private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Log.Trace("PerformanceSelectorControl notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
+            cbePerformances.ItemsSource = new BindingSource(Common.PerformanceLibrary.AvailablePerformances, null);
+        }
+
         #endregion
 
         #region Enums (none)
@@ -87,7 +103,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #endregion
 
         #region Commands (none)
-         
+
         #endregion
 
         #region Public Methods (none)
@@ -103,8 +119,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Private Methods (none)
 
 
-        #endregion   
-        
+        #endregion
+
         #region IInstanceCount
 
         private static Int32 _instanceCountV;

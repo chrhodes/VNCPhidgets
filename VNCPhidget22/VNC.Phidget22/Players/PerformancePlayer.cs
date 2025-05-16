@@ -21,13 +21,14 @@ namespace VNC.Phidget22.Players
 
         public IEventAggregator EventAggregator { get; set; }
 
-        public PerformancePlayer(IEventAggregator eventAggregator, Int32? serialNumber = null)
+        public PerformancePlayer(IEventAggregator eventAggregator, PerformanceLibrary performanceLibrary, Int32? serialNumber = null)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
             SerialNumber = serialNumber;
+            PerformanceLibrary = performanceLibrary;
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -49,6 +50,8 @@ namespace VNC.Phidget22.Players
         #region Fields and Properties
 
         public Int32? SerialNumber { get; set; } = null;
+
+        public PerformanceLibrary PerformanceLibrary { get; set; }
 
         #region Logging
 
@@ -290,7 +293,7 @@ namespace VNC.Phidget22.Players
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
-                if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                if (VNC.Phidget22.Configuration.Common.PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
                 {
                     nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
 
@@ -702,7 +705,7 @@ namespace VNC.Phidget22.Players
             //Int64 startTicks = 0;
             //if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            PerformancePlayer player = new PerformancePlayer(EventAggregator, serialNumber);
+            PerformancePlayer player = new PerformancePlayer(EventAggregator, PerformanceLibrary, serialNumber);
 
             player.LogPerformance = LogPerformance;
             player.LogPhidgetEvents = LogPhidgetEvents;

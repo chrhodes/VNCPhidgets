@@ -13,6 +13,7 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
@@ -62,7 +63,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PublishStatusMessage(Message);
 
             PerformanceConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigFiles();
-            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             DigitalInputSequenceConfigFiles = PerformanceLibrary.GetListOfDigitalInputConfigFiles();
             DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
@@ -405,11 +406,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadPerformanceConfigFile Clicked";
+            Message = $"ReloadPerformanceConfigFile Clicked - >{SelectedPerformanceConfigFile}<";
             PublishStatusMessage(Message);
 
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
+
+            Common.PerformanceLibrary.LoadPerformancesFromConfigFile(SelectedPerformanceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -421,6 +424,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "ReloadDigitalInputConfigFile Clicked";
             PublishStatusMessage(Message);
+
+            Common.PerformanceLibrary.LoadDigitalInputSequences(reload: true);
 
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
@@ -434,6 +439,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "ReloadDigitalOutputSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
+
+            Common.PerformanceLibrary.LoadDigitalOutputSequences(reload: true);
 
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
@@ -449,6 +456,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadRCServoSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
 
+            Common.PerformanceLibrary.LoadRCServoSequences(reload: true);
+
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
 
@@ -462,6 +471,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "ReloadStepperSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
+
+            Common.PerformanceLibrary.LoadStepperSequences(reload: true);
 
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
@@ -477,6 +488,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadVoltageInputConfigFile Clicked";
             PublishStatusMessage(Message);
 
+            Common.PerformanceLibrary.LoadVoltageInputSequences(reload: true);
+
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
 
@@ -491,6 +504,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadVoltageRatioInputConfigFile Clicked";
             PublishStatusMessage(Message);
 
+            Common.PerformanceLibrary.LoadVoltageRatioInputSequences(reload: true);
+
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
 
@@ -504,6 +519,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "ReloadVoltageOutputSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
+
+            Common.PerformanceLibrary.LoadVoltageOutputSequences(reload: true);
 
             // TODO(crhodes)
             // Reload config file and update PerformanceLibrary
