@@ -400,6 +400,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         public ICommand ReloadVoltageRatioInputSequenceConfigFileCommand { get; private set; }
         public ICommand ReloadVoltageOutputSequenceConfigFileCommand { get; private set; }
 
+        // TODO(crhodes)
+        // This could be ReloadConfigFile(string configCategory)
+        // with a switch.  See ManagePerformanceLibrary.xaml
 
         private void ReloadPerformanceConfigFile()
         {

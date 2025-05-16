@@ -143,6 +143,9 @@
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
+                    <!-- TODO(crhodes)
+                     If make Reload generic, keep CommandParameter, otherwise not needed
+                    -->
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
                         Command="{Binding ReloadPerformanceConfigFileCommand}"
                         CommandParameter="Performance"

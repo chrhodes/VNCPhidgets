@@ -190,9 +190,9 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
        { "Name": "Center All Skulls"},
-       { "Name": "Move All Skulls - Sound to Left", "Duration": 1000},
-       { "Name": "Center All Skulls", "Duration": 2000},
-       { "Name": "Move All Skulls - Sound to Right", "Duration": 3000 },
+       { "Name": "Move All Skulls - Sound to Left", "Duration": 3001},
+       { "Name": "Center All Skulls", "Duration": 1500},
+       { "Name": "Move All Skulls - Sound to Right", "Duration": 3004 },
        { "Name": "Center All Skulls"},
       ],
     },
@@ -206,12 +206,11 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
         { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 2000 }, // Look at sound      
-        //{ "Name": "Skull 99220 456 MinPositionStop", "SerialNumber": 99220, "Duration": 500 },  // Move back to talk to others       
-        { 
+        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 2004 }, // Look at sound    
+        { // Move back to talk to others
           "DeviceChannelSequences": [
             { "SerialNumber": 99220, "ChannelClass": "RCServo",
-              "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "RelativePosition": -100 } ], "SequenceDuration": 1000 } // Rotate Left(-)/Right(+) 
+              "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "RelativePosition": -110 } ], "SequenceDuration": 1004 } // Rotate Left(-)/Right(+) 
             }
           ],
         }
@@ -228,12 +227,11 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-       { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 2000 }, // Look at sound
-       //{ "Name": "Skull 99220 012 MaxPositionStop", "SerialNumber": 99220 },
-        { 
+       { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 2001 }, // Look at sound
+        { // Move back to talk to others
           "DeviceChannelSequences": [
             { "SerialNumber": 99220, "ChannelClass": "RCServo",
-              "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "RelativePosition": 100 } ], "SequenceDuration": 1000 } // Rotate Left(-)/Right(+) 
+              "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "RelativePosition": 110 } ], "SequenceDuration": 1001 } // Rotate Left(-)/Right(+) 
             }
           ],
         }

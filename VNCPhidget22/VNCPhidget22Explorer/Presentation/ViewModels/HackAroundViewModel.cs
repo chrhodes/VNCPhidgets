@@ -23,6 +23,8 @@ using VNC.Phidget22.Configuration.Performance;
 using DevExpress.CodeParser;
 using VNC.Phidget22;
 using System.Collections.ObjectModel;
+using DevExpress.Mvvm.POCO;
+using DevExpress.Mvvm.Native;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -71,18 +73,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PlayStepperSequenceCommand = new DelegateCommand(PlayStepperSequence, PlayStepperSequenceCanExecute);
 
-            
-
-            // TODO(crhodes)
-            // Fill out PlayStepperSequenceCommand
-
-            //ActivePerformancePlayer = GetPerformancePlayer();
-
-            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
-
-            Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
-
-            //Hosts = PerformanceLibrary.Hosts.ToList();
+            LoadPerformances();
 
             LoadChannelSequences();
 
@@ -94,9 +85,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private void LoadPerformances()
+        {
+            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+
+            // TODO(crhodes)
+            // Might be better to do this with an Event so gets called fewer times.
+            // Currently called for each Performance in file.  Ideally just once per file.
+
+            Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
+        }
+
         private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Log.Trace("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
+
+            // NOTE(crhodes)
+            // Trigger a PropertyChanged event on Performances so UI is updated.
+
+            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToObservableCollection<Performance>();
         }
 
         void LoadChannelSequences()
@@ -108,14 +115,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             LoadDigitalOutputSequences();
             LoadRCServoSequences();
             LoadStepperSequences();
+            LoadVolatageInputSequences();
+            LoadVolatageOutputSequences();
         }
 
         private void LoadDigitalInputSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceChannelSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
 
             DigitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
@@ -126,10 +131,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
         private void LoadDigitalOutputSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceChannelSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
 
             DigitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
@@ -141,10 +142,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadRCServoSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceChannelSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
 
             RCServoPhidgets = Common.PhidgetDeviceLibrary.RCServoChannels
@@ -156,10 +153,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadStepperSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceChannelSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             Steppers = Common.PhidgetDeviceLibrary.StepperChannels

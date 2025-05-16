@@ -413,7 +413,7 @@ namespace VNC.Phidget22.Players
                         {
                             // TODO(crhodes)
                             // If we have configured a SerialNumber override, we need to use that
-                            // Otherwise we use the sequence SerialNumber
+                            // Otherwise we use the deviceChannelSequence SerialNumber
 
                             DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
                                 configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
@@ -422,7 +422,7 @@ namespace VNC.Phidget22.Players
                             if (LogPerformance) Log.Trace($"Sequential DeviceChannelSequences" +
                                 $" performance:>{deviceChannelSequence.Name}<" +
                                 $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +
-                                $" sequenceSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
+                                $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" hubPort:>{deviceChannelSequence.HubPort}<" +
                                 $" channel:>{deviceChannelSequence.Channel}<" +
@@ -432,17 +432,17 @@ namespace VNC.Phidget22.Players
 
                             await deviceChannelSequencePlayer.ExecuteDeviceChannelSequence(deviceChannelSequence);
 
-                            // NOTE(crhodes)
-                            // Then Sleep if necessary before next sequential DeviceChannelSequence
+                            //// NOTE(crhodes)
+                            //// Then Sleep if necessary before next sequential DeviceChannelSequence
 
-                            if (deviceChannelSequence.Duration is not null)
-                            {
-                                if (LogPerformance)
-                                {
-                                    Log.Trace($"Zz-z-z End of DeviceChanelSequence Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
-                                }
-                                Thread.Sleep((Int32)deviceChannelSequence.Duration);
-                            }
+                            //if (deviceChannelSequence.Duration is not null)
+                            //{
+                            //    if (LogPerformance)
+                            //    {
+                            //        Log.Trace($"Zzzz - End of deviceChannelSequence Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
+                            //    }
+                            //    Thread.Sleep((Int32)deviceChannelSequence.Duration);
+                            //}
                         }
                     }
                 }
@@ -454,7 +454,7 @@ namespace VNC.Phidget22.Players
                 {
                     if (LogPerformance)
                     {
-                        Log.Trace($"Zzzzz End of DeviceChanelSequences Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
+                        Log.Trace($"Zzzz End of DeviceChannelSequences[] Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
                     }
                     Thread.Sleep((Int32)configuredPerf.Duration);
                 }
@@ -473,27 +473,26 @@ namespace VNC.Phidget22.Players
                         {
                             PerformancePlayer performancePlayer = GetNewPerformancePlayer(perf.SerialNumber);
 
-                            if (LogPerformance) Log.Trace($"Parallel Performance" +
-                                $" performance:>{perf.Name}< " +
+                            if (LogPerformance) Log.Trace($"Parallel RunPerformanceLoops(>{perf.Name}<)" +
                                 $" serialNumber:>{perf.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" performanceLoop:>{performanceLoop + 1}<" +
-                                $" duration:>{performance.Duration}<" +
+                                $" duration:>{perf.Duration}<" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             await performancePlayer.RunPerformanceLoops(perf);
 
-                            // NOTE(crhodes)
-                            // Don't think it makes sense if parallel performances
+                        // NOTE(crhodes)
+                        // Don't think it makes sense to sleep if parallel performances
 
-                            //if (configuredPerf.Duration is not null)
-                            //{
-                            //    if (LogPerformance)
-                            //    {
-                            //        Log.Trace($"Zzzzz End of Performance Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
-                            //    }
-                            //    Thread.Sleep((Int32)configuredPerf.Duration);
-                            //}
+                        //if (perf.Duration is not null)
+                        //{
+                        //    if (LogPerformance)
+                        //    {
+                        //        Log.Trace($"Zzzz - End of performance Sleeping:>{perf.Duration}<", Common.LOG_CATEGORY);
+                        //    }
+                        //    Thread.Sleep((Int32)perf.Duration);
+                        //}
                         });
                     }
                     else
@@ -505,42 +504,41 @@ namespace VNC.Phidget22.Players
 
                             SerialNumber = perf.SerialNumber;
 
-                            if (LogPerformance) Log.Trace($"Sequential Performance" +
-                                $" performance:>{perf.Name}< " +
+                            if (LogPerformance) Log.Trace($"Sequential RunPerformanceLoops(>{perf.Name}<)" +
                                 $" serialNumber:>{perf.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" performanceLoop:>{performanceLoop + 1}<" +
-                                $" duration:>{performance.Duration}<" +
+                                $" duration:>{perf.Duration}<" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             await RunPerformanceLoops(perf);
 
-                            // NOTE(crhodes)
-                            // Then Sleep if necessary before next sequential performance
+                            //// NOTE(crhodes)
+                            //// Then Sleep if necessary before next sequential performance
 
-                            if (configuredPerf.Duration is not null)
-                            {
-                                if (LogPerformance)
-                                {
-                                    Log.Trace($"Zz-z-z End of Performance Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
-                                }
-                                Thread.Sleep((Int32)configuredPerf.Duration);
-                            }
+                            //if (perf.Duration is not null)
+                            //{
+                            //    if (LogPerformance)
+                            //    {
+                            //        Log.Trace($"Zzzz - End of performance Sleeping:>{perf.Duration}<", Common.LOG_CATEGORY);
+                            //    }
+                            //    Thread.Sleep((Int32)perf.Duration);
+                            //}
                         }
                     }
                 }
 
-                // NOTE(crhodes)
-                // Then Sleep if necessary before next loop
+                //// NOTE(crhodes)
+                //// Then Sleep if necessary before next loop
 
-                if (configuredPerf.Duration is not null)
-                {
-                    if (LogPerformance)
-                    {
-                        Log.Trace($"Zzzzz End of Performances Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
-                    }
-                    Thread.Sleep((Int32)configuredPerf.Duration);
-                }
+                //if (configuredPerf.Duration is not null)
+                //{
+                //    if (LogPerformance)
+                //    {
+                //        Log.Trace($"Zzzz - End of Performances[] Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
+                //    }
+                //    Thread.Sleep((Int32)configuredPerf.Duration);
+                //}
             }
 
             // NOTE(crhodes)
@@ -551,13 +549,13 @@ namespace VNC.Phidget22.Players
                 await ExecutePerfomanceSequences(configuredPerf.AfterPerformanceLoopPerformances);
             }
 
-            if (configuredPerf.Duration is not null)
+            if (performance.Duration is not null)
             {
                 if (LogPerformance)
                 {
-                    Log.Trace($"Zzzzz End of Performances Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
+                    Log.Trace($"Zzzzzzz - End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                 }
-                Thread.Sleep((Int32)configuredPerf.Duration);
+                Thread.Sleep((Int32)performance.Duration);
             }
 
             // NOTE(crhodes)
@@ -595,8 +593,9 @@ namespace VNC.Phidget22.Players
             {
                 Performance retrievedPerfrormance = PerformanceLibrary.AvailablePerformances[performance.Name];
 
-                if (LogPerformance) startTicks = Log.Trace($"Retrieved  performance:>{retrievedPerfrormance.Name}<" +
+                if (LogPerformance) startTicks = Log.Trace($"Retrieved performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
+                    $" duration:>{retrievedPerfrormance.Duration}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                 Performance configuredPerformance = new Performance(retrievedPerfrormance);
@@ -608,10 +607,10 @@ namespace VNC.Phidget22.Players
                     configuredPerformance.SerialNumber = serialNumber;
                 }
 
-                if (performance.Duration.HasValue)
-                {
-                    configuredPerformance.Duration = performance.Duration;
-                }
+                //if (performance.Duration.HasValue)
+                //{
+                //    configuredPerformance.Duration = performance.Duration;
+                //}
 
                 if (LogPerformance) Log.Trace($"Configured performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{configuredPerformance.SerialNumber}<" +

@@ -225,7 +225,7 @@ namespace VNC.Phidget22.Players
                         //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
                         //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
                         $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
-                        //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                        $" sequenceDuration:>{digitalOutputSequence?.SequenceDuration}<" +
                         $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
@@ -273,7 +273,7 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzzz Sequence:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            Log.Trace($"Zzzz - End of DigitalOutputSequence:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)digitalOutputSequence.SequenceDuration);
                     }
@@ -367,7 +367,7 @@ namespace VNC.Phidget22.Players
                         //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
                         //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
                         $" afterActionLoopSequences:>{rcServoSequence?.AfterActionLoopSequences?.Count()}<" +
-                        //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                        $" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
                         $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
@@ -420,7 +420,7 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzzz Sequence:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            Log.Trace($"Zzzz - End of rcServoSequence:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
                     }
@@ -525,7 +525,7 @@ namespace VNC.Phidget22.Players
                         //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
                         //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
                         $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
-                        //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                        $" sequenceDuration:>{stepperSequence?.SequenceDuration}<" +
                         $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                 }
 
@@ -571,7 +571,7 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzzz Sequence:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            Log.Trace($"Zzzz - End of stepperSequence:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)stepperSequence.SequenceDuration);
                     }
