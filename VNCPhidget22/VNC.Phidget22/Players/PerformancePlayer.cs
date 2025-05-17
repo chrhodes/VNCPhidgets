@@ -450,14 +450,14 @@ namespace VNC.Phidget22.Players
                 // NOTE(crhodes)
                 // Then Sleep if necessary before next loop
 
-                if (configuredPerf.Duration is not null)
-                {
-                    if (LogPerformance)
-                    {
-                        Log.Trace($"Zzzz End of DeviceChannelSequences[] Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
-                    }
-                    Thread.Sleep((Int32)configuredPerf.Duration);
-                }
+                //if (configuredPerf.Duration is not null)
+                //{
+                //    if (LogPerformance)
+                //    {
+                //        Log.Trace($"Zzzz End of DeviceChannelSequences[] Sleeping:>{configuredPerf.Duration}<", Common.LOG_CATEGORY);
+                //    }
+                //    Thread.Sleep((Int32)configuredPerf.Duration);
+                //}
             }
 
             // NOTE(crhodes)
@@ -553,7 +553,7 @@ namespace VNC.Phidget22.Players
             {
                 if (LogPerformance)
                 {
-                    Log.Trace($"Zzzzzzz - End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
+                    Log.Trace($"Zzzzzzz - End of Performance:>{performance.Name}< Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                 }
                 Thread.Sleep((Int32)performance.Duration);
             }

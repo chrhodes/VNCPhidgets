@@ -273,7 +273,8 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzz - End of DigitalOutputSequence:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            Log.Trace($"Zzzz - End of DigitalOutputSequence:>{digitalOutputSequence.Name}<" +
+                                $" Sleeping:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)digitalOutputSequence.SequenceDuration);
                     }
@@ -420,7 +421,8 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzz - End of rcServoSequence:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            Log.Trace($"Zzzz - End of RCServoSequence:>{rcServoSequence.Name}<" +
+                                $" Sleeping:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
                     }
@@ -571,7 +573,8 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzz - End of stepperSequence:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                            Log.Trace($"Zzzz - End of StepperSequence:>{stepperSequence.Name}<" +
+                                $" Sleeping:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)stepperSequence.SequenceDuration);
                     }
