@@ -190,13 +190,12 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
        { "Name": "Center All Skulls"},
-       { "Name": "Move All Skulls - Sound to Left", "Duration": 3030},
-       { "Name": "Center All Skulls", "Duration": 1500},
-       { "Name": "Move All Skulls - Sound to Right", "Duration": 3020 },
+       { "Name": "Move All Skulls - Sound to Left", "Duration": 2003},
+       { "Name": "Center All Skulls", "Duration": 1000},
+       { "Name": "Move All Skulls - Sound to Right", "Duration": 2002 },
        { "Name": "Center All Skulls"},
       ],
     },
-
     {
       "Name": "Consulting Skulls",
       "Description": "",
@@ -207,135 +206,6 @@
        { "Name": "Consulting Skulls Say No"},
       ],
     },    
-    {
-      "Name": "Consulting Skulls Say Yes",
-      "Description": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Center All Skulls"},
-       { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes", "Duration": 100},
-       { "Name": "Center All Skulls", "Duration": 1000},
-       { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes", "Duration": 100 },
-       { "Name": "Center All Skulls"},
-      ],
-    },
-    {
-      "Name": "Consulting Skulls Say No",
-      "Description": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
-      "Performances": [
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Center All Skulls"},
-       { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say No", "Duration": 100},
-       { "Name": "Center All Skulls", "Duration": 1000},
-       { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No", "Duration": 100 },
-       { "Name": "Center All Skulls"},
-      ],
-    },
-    ///
-    /// Consulting Skulls say yes
-    ///
-    {
-      "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220, "Duration": 1000 },
-        { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501, "Duration": 1000 }
-      ],
-      "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say Yes" }
-    },
-    {
-      "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220, "Duration": 1000 },
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501, "Duration": 1000 },
-      ],
-      "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say Yes" }
-    },
-
-    ///
-    /// Consulting Skulls say No
-    ///
-    {
-      "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say No",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220, "Duration": 1000 },
-        { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501, "Duration": 1000 }
-      ],
-      "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say No" }
-    },
-    {
-      "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220, "Duration": 1000 },
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501, "Duration": 1000 },
-      ],
-      "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say No" }
-    },
-    {
-      "Name": "Skull 99220-456 and Skull 169501-012 Say Yes",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-456 Yes", "SerialNumber": 99220, "Duration": 0 },
-        { "Name": "Skull-012 Yes", "SerialNumber": 169501, "Duration": 0 }
-      ],
-    },
-    {
-      "Name": "Skull 99220-456 and Skull 169501-012 Say No",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-456 No", "SerialNumber": 99220, "Duration": 0 },
-        { "Name": "Skull-012 No", "SerialNumber": 169501, "Duration": 0 }
-      ],
-    },
-
-    {
-      "Name": "Skull 99220-012 and Skull 169501-012 Say Yes",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-012 Yes", "SerialNumber": 99220, "Duration": 0 },
-        { "Name": "Skull-012 Yes", "SerialNumber": 169501, "Duration": 0 }
-      ],
-    },
-    {
-      "Name": "Skull 99220-012 and Skull 169501-012 Say No",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-012 No", "SerialNumber": 99220, "Duration": 0 },
-        { "Name": "Skull-012 No", "SerialNumber": 169501, "Duration": 0 }
-      ],
-    },
-
     //
     // Move All Skulls - Sound to Right
     //
@@ -346,19 +216,19 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
         { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 2020 }, // Look at sound    
+        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 1502 }, // Look at sound    
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
         { // Move back to talk to others
           "DeviceChannelSequences": [
             { "SerialNumber": 99220, "ChannelClass": "RCServo",
               "RCServoSequence": { "HubPort": 0, "Channel": 6, 
-                                   "Actions": [ { "RelativePosition": -110 } ], "SequenceDuration": 1020 } // Rotate Left(-)/Right(+) 
+                                   "Actions": [ { "RelativePosition": -110 } ], "SequenceDuration": 502 } // Rotate Left(-)/Right(+) 
             }
           ],
         },
-        // Need to have skulls look at each other
-        // Need to have skulls center and nod yes
+        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
       ],
-      "NextPerformance": { "Name": "All Skulls MaxPositionStop", "Duration":  2022 }
+      "NextPerformance": { "Name": "All Skulls MaxPositionStop", "Duration":  1022 }
     },
     //
     // Move All Skulls - Sound to Left
@@ -370,19 +240,23 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
         { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-        { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 2030 }, // Look at sound
+        { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1503 }, // Look at sound
         { // Move back to talk to others
           "DeviceChannelSequences": [
             { "SerialNumber": 99220, "ChannelClass": "RCServo",
               "RCServoSequence": { "HubPort": 0, "Channel": 2, 
-                                   "Actions": [ { "RelativePosition": 110 } ], "SequenceDuration": 1030 } // Rotate Left(-)/Right(+) 
+                                   "Actions": [ { "RelativePosition": 110 } ], "SequenceDuration": 503 } // Rotate Left(-)/Right(+) 
             }
           ],
         },
-      // Need to have skulls look at each other
-      // Need to have skulls center and shake no
+        { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No", "Duration": 533 },
+        { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+        { "Name": "Center Skull 2", "SerialNumber": 169501 },
+        { "Name": "Center Skull 3", "SerialNumber": 99220 },
+        // Need to center Skull 99220 456 and Skull 169501 012
+        // and Dip Skull 99220 012 then either look back at sound and then center or just look back at sound
       ],
-      "NextPerformance": { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 2030 }, // Look back at sound
+      "NextPerformance": { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }, // Look back at sound
       //"NextPerformance": { "Name": "All Skulls MinPositionStop", "Duration":  2033 }
     },
     //

@@ -151,6 +151,9 @@
         <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Consulting.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>

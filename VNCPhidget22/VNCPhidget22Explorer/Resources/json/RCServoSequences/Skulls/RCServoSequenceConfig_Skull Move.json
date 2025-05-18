@@ -31,6 +31,15 @@
       ]
     },
     { 
+      "Name": "Skull Sigh", 
+      "Description": "Move down, wait, then back up",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -15, "Duration": 1000 },
+        { "RelativePosition": 15 },
+      ]
+    },
+    { 
       "Name": "Skull Laugh", 
       "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,

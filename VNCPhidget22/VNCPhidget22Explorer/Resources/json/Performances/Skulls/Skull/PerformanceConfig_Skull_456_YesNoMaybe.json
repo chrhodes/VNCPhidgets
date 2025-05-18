@@ -12,6 +12,16 @@
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Yes" },  // Channel 4 - X Axis  
       ],
     },
+     {
+      "Name": "Skull-456 Sigh",
+      "Description": "Skull-456 Sigh",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Sigh" },  // Channel 4 - X Axis  
+      ],
+    },
     {
       "Name": "Skull-456 Big Yes",
       "Description": "Skull-456 Big Yes",

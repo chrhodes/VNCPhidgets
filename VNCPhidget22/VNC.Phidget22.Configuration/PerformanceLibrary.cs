@@ -612,6 +612,7 @@ namespace VNC.Phidget22.Configuration
                 // These go first to get on top of dropdown
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_Consulting.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json",
 
