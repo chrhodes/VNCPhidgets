@@ -1114,7 +1114,7 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{rcServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"ZzzzAD Action:>{rcServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)rcServoSequence.ActionsDuration);
                         }
@@ -1480,7 +1480,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

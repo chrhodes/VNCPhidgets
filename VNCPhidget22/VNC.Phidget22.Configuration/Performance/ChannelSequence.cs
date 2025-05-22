@@ -89,7 +89,7 @@ namespace VNC.Phidget22.Configuration.Performance
         public Boolean ExecuteActionsInParallel { get; set; } = false;
 
         /// <summary>
-        /// Duration of Action[] in ms (sleep time after Actions completed)
+        /// Duration of Action[] in ms (sleep time after Action[] completed)
         /// </summary>
         public Int32? ActionsDuration { get; set; }
 

@@ -26,7 +26,7 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         //{ "Open": true, "RCServoType": 1, "MinPositionStop": 55, "TargetPosition": 75, "MaxPositionStop": 95, "Acceleration": 250, "VelocityLimit": 25 },
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 50, "TargetPosition": 75, "MaxPositionStop": 100,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110,
           "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
@@ -61,7 +61,7 @@
       //"HubPort": 0, "Channel": 1,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 75 },
+        { "Engaged": true, "TargetPosition": 85 },
       ]
     },
     { 
@@ -87,7 +87,7 @@
       "Description": "Center Y Axis",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 75 },
+        { "TargetPosition": 85 },
       ]
     },
     { 

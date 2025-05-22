@@ -73,6 +73,7 @@ namespace VNC.Phidget22.Players
         public Boolean LogInputChangeEvents { get; set; }
         public Boolean LogOutputChangeEvents { get; set; }
         public Boolean LogSensorChangeEvents { get; set; }
+
         #endregion
 
         //
@@ -166,7 +167,8 @@ namespace VNC.Phidget22.Players
                 {
                     if (LogDeviceChannelSequence)
                     {
-                        Log.Trace($"Zzzzz Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
+                        Log.Trace($"Zzzz - End of DeviceChannelSequence:>{deviceChannelSequence.Name}<" +
+                            $" Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
                     }
                     Thread.Sleep((Int32)deviceChannelSequence.Duration);
                 }

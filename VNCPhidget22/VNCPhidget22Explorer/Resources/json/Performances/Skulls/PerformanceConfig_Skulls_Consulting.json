@@ -31,31 +31,56 @@
       ],
     },
     ///
-    /// Consulting Skulls say yes
+    /// Skull 99220 012 and Skull 169501 012 Consult and Say Yes
     ///
     {
       "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "PlayPerformancesInParallel": true,
       "Performances": [
         { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220 },
         { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501 }
       ],
       "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say Yes" }
-    },
+    }, 
     {
-      "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes",
+      "Name": "Skull 99220-012 and Skull 169501-012 Say Yes",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
       "PlayPerformancesInParallel": true,
       "Performances": [
+        { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
+        { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
+      ],
+    },
+    ///
+    /// Skull 99220 456 and Skull 169501 012 Consult and Say Yes
+    ///
+    {
+      "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
         { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220 },
         { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501 },
       ],
       "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say Yes" }
+    },
+    {
+      "Name": "Skull 99220-456 and Skull 169501-012 Say Yes",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
+        { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
+      ],
     },
     ///
     /// Consulting Skulls say No
@@ -73,6 +98,17 @@
       "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say No" }
     },
     {
+      "Name": "Skull 99220-456 and Skull 169501-012 Say No",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull-456 No", "SerialNumber": 99220 },
+        { "Name": "Skull-012 No", "SerialNumber": 169501 }
+      ],
+    },
+    {
       "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No",
       "Description": "",
       "UsageNotes": "",
@@ -85,48 +121,14 @@
       "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say No" }
     },
     {
-      "Name": "Skull 99220-456 and Skull 169501-012 Say Yes",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
-      ],
-    },
-    {
-      "Name": "Skull 99220-456 and Skull 169501-012 Say No",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-456 No", "SerialNumber": 99220 },
-        { "Name": "Skull-012 No", "SerialNumber": 169501  }
-      ],
-    },
-
-    {
-      "Name": "Skull 99220-012 and Skull 169501-012 Say Yes",
-      "Description": "",
-      "UsageNotes": "",
-      "Loops": 1,
-      "PlayPerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
-      ],
-    },
-    {
       "Name": "Skull 99220-012 and Skull 169501-012 Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "PlayPerformancesInParallel": false,
       "Performances": [
         { "Name": "Skull-012 No", "SerialNumber": 99220 },
-        { "Name": "Skull-012 No", "SerialNumber": 169501  }
+        { "Name": "Skull-012 No", "SerialNumber": 169501 }
       ],
     },
   ]

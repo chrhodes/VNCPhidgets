@@ -61,13 +61,41 @@
       ],
     },
     //
+    // Main Performance
+    //
+    {
+      "Name": "Main Show",
+      "Description": "Play everything we have",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"PlayDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      //"PlayPerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls Yes and Laugh and No", "Duration": 0 },
+       { "Name": "Move All Skulls on Axes", "Duration": 0 },
+       { "Name": "Sounds on Left and Right", "SerialNumber": 0, "Duration": 0 }
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    //
     // All Skulls Yes and Laugh and No
     //
     {
       "Name": "All Skulls Yes and Laugh and No",
       "Description": "All Skulls Yes and Laugh and No",
-      "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "Loops": 1, "PlayPerformancesInParallel": false,
       "Performances": [
        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
        { "Name": "All Skulls Yes", "Duration": 1002 },
@@ -227,8 +255,11 @@
           ],
         },
         { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
+        { "Name": "All Skulls MaxPositionStop", "Duration": 1022 }
       ],
-      "NextPerformance": { "Name": "All Skulls MaxPositionStop", "Duration":  1022 }
+      // If use NextPerformance, the Duration specified in any performance that called us
+      // is used before NextPerformance is called.
+      //"NextPerformance": { "Name": "All Skulls MaxPositionStop", "Duration":  1022 }
     },
     //
     // Move All Skulls - Sound to Left
@@ -250,14 +281,44 @@
           ],
         },
         { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No", "Duration": 533 },
-        { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
-        { "Name": "Center Skull 2", "SerialNumber": 169501 },
-        { "Name": "Center Skull 3", "SerialNumber": 99220 },
+        { "Name": "Nothing to See There" },
+        { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }
+        //{ "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+        //{ "Name": "Center Skull 2", "SerialNumber": 169501 },
+        //{ "Name": "Center Skull 3", "SerialNumber": 99220 },
         // Need to center Skull 99220 456 and Skull 169501 012
         // and Dip Skull 99220 012 then either look back at sound and then center or just look back at sound
       ],
-      "NextPerformance": { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }, // Look back at sound
+      // If use NextPerformance, the Duration specified in any performance that called us
+      // is used before NextPerformance is called.
+      //"NextPerformance": { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }, // Look back at sound
       //"NextPerformance": { "Name": "All Skulls MinPositionStop", "Duration":  2033 }
+    },
+    {
+      "Name": "Nothing to See There",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"PlayDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+        { "Name": "Center Skull 2", "SerialNumber": 169501 },
+        { "Name": "Center Skull 3", "SerialNumber": 99220 },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
     },
     //
     // All Skulls {Min,Max}PositionStop
