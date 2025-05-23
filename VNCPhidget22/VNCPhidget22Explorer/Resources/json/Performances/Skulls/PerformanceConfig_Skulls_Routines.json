@@ -212,6 +212,174 @@
       ],
     },
     {
+      "Name": "Rock Out",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  jaddP
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"PlayDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // jaddDCS
+      //],
+      // Use this if calling Performances
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Rock Tilt Left/Right" },
+       { "Name": "Rock Up/Down" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  jaddP
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Tilt Left/Right",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"PlayDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Out 2",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"PlayDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Up/Down",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"PlayDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
       "Name": "Sounds on Left and Right",
       "Description": "",
       "Loops": 1,
