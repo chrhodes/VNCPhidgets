@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFrameworks>net8.0-windows</TargetFrameworks>
@@ -6,7 +6,7 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>indevelopment-2025</VersionSuffix>
-        <FileVersion>2025.05.22</FileVersion>
+        <FileVersion>2025.05.23</FileVersion>
         <Company>VNC</Company>
         <Description>Phidget22 Explorer Core</Description>
     </PropertyGroup>
@@ -57,5 +57,8 @@
             </ItemGroup>
         </When>
     </Choose>
-  
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
+    </Target>
 </Project>

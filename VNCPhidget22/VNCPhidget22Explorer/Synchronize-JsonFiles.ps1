@@ -14,30 +14,18 @@
 
 # $AB = "A"
 
-
-
-$jsonOutputFolder = "bin\Debug\net8.0-windows\Resources\json"
-# $jsonOutputFolder = ".\bin\Release\net8.0\windows\Resources\json"
+$jsonExecutionFolder = "bin\Debug\net8.0-windows\Resources\json"
+# $jsonExecutionFolder = ".\bin\Release\net8.0\windows\Resources\json"
 $jsonSourceFolder = "Resources\json"
-
-$templateMaster = "VNC_PT_APPLICATION_PrismDxWPF_EF"
-
-$sourceMaster = "ProjectTemplates$($AB)\VNC\$($templateMaster)"
-
-$templateCoreMaster = "VNC_PT_APPLICATION.Core_EF"
-
-$sourceCoreMaster = "ProjectTemplates$($AB)\VNC\$($templateCoreMaster)"
-
 
 #$VerbosePreference = 'Continue'
 $VerbosePreference = 'Ignore'
 
 # set to $false to have the magic just happen, $true to prompt before changes
 
-$confirmUpdate = $false
+$confirmUpdate = $true
 
 # $ErrorActionPreference = 'Break'
-
 
 #endregion
 
@@ -56,45 +44,47 @@ function WriteDelimitedMessage($msg)
     Write-Host ""
 }
 
-function CompareAndUpdateFile ([System.IO.FileInfo]$masterFile, [System.IO.FileInfo]$targetFile, [string] $targetTemplateFolder)
+function CompareAndUpdateFile ([System.IO.FileInfo]$executionFile, [System.IO.FileInfo]$sourceFile, [string] $targetTemplateFolder)
 {
-    if ($masterFile.LastWriteTime -ne $targetFile.LastWriteTime)
+    if ($executionFile.LastWriteTime -ne $sourceFile.LastWriteTime)
     {
-        Write-Verbose "  master: $($masterFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
-        Write-Verbose "  target: $($targetFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
-        if ($masterFile.LastWriteTime -gt $targetFile.LastWriteTime)
+        Write-Verbose "  master: $($executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
+        Write-Verbose "  target: $($sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
+
+        if ($executionFile.LastWriteTime -gt $sourceFile.LastWriteTime)
         {
-            $newer = "Master"
+            $newer = "Execution"
             [System.ConsoleColor]$foreGroundColor = "Green"
         }
         else
         {
-            $newer = "Target"
+            $newer = "Source"
             [System.ConsoleColor]$foreGroundColor = "DarkYellow"
         }
 
-        # Write-Host -ForegroundColor Red "$($masterFile.Name) $($masterFile.LastWriteTime) $($masterFile.Length)"
-        Write-Host -ForegroundColor Yellow " > $($targetFile.Name) $($targetFile.LastWriteTime) $($targetFile.Length)"
+        # Write-Host -ForegroundColor Red "$($executionFile.Name) $($executionFile.LastWriteTime) $($executionFile.Length)"
+        Write-Host -ForegroundColor Yellow " > $($sourceFile.Name) $($sourceFile.LastWriteTime) $($sourceFile.Length)"
         Write-Host "   in $($targetTemplateFolder)"
         Write-Host -ForegroundColor $foreGroundColor.ToString() "    Last Write Time Different - $newer newer"
 
-        if ($masterFile.LastWriteTime -gt $targetFile.LastWriteTime)
+        if ($executionFile.LastWriteTime -gt $sourceFile.LastWriteTime)
         {
-            Write-Host -ForegroundColor Green "      master: " $masterFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-            Write-Host "      target: " $targetFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+            Write-Host -ForegroundColor Green "      execution: " $executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+            Write-Host "      source: " $sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+
+            Write-Host "Copying Execution to Source"
 
             if ($confirmUpdate)
             {
-                while( -not ( ($choice= (Read-Host "Copy Master to Target")) -match "^(y|n)$")){ "Y or N ?"}
+                while( -not ( ($choice= (Read-Host "Copy Execution to Source")) -match "^(y|n)$")){ "Y or N ?"}
 
                 if ($choice -eq "y")
                 {
-                    Write-Host "Copying Master to Target"
-                    Copy-Item -Path $masterFile -Destination $targetFile
-                    $targetFile.LastWriteTime = $masterFile.LastWriteTime
+                    Copy-Item -Path $executionFile -Destination $sourceFile
+                    # $sourceFile.LastWriteTime = $executionFile.LastWriteTime
 
-                    Write-Verbose "  master: $($masterFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
-                    Write-Verbose "  target: $($targetFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
+                    # Write-Verbose "  master: $($executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
+                    # Write-Verbose "  target: $($sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
 
                     # Read-Host "Enter to continue"
                 }
@@ -104,57 +94,56 @@ function CompareAndUpdateFile ([System.IO.FileInfo]$masterFile, [System.IO.FileI
                 }
             }
             else
-            {
-                Write-Host "Copying Master to Target"
-                Copy-Item -Path $masterFile -Destination $targetFile
+            {                
+                Copy-Item -Path $executionFile -Destination $sourceFile
             }
         }
-        else
-        {
-            Write-Host -ForegroundColor DarkYellow "      target: " $targetFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-            Write-Host "      master: " $masterFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        # else
+        # {
+        #     Write-Host -ForegroundColor DarkYellow "      target: " $sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        #     Write-Host "      master: " $executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
 
-            if ($confirmUpdate)
-            {
-                while( -not ( ($choice= (Read-Host "Copy Target to Master")) -match "^(y|n)$")){ "Y or N ?"}
+        #     if ($confirmUpdate)
+        #     {
+        #         while( -not ( ($choice= (Read-Host "Copy Target to Master")) -match "^(y|n)$")){ "Y or N ?"}
 
-                if ($choice -eq "y")
-                {
-                    Write-Host "Copying Target to Master"
-                    Copy-Item -Path $targetFile -Destination $masterFile
-                    $masterFile.LastWriteTime = $targetFile.LastWriteTime
+        #         if ($choice -eq "y")
+        #         {
+        #             Write-Host "Copying Target to Master"
+        #             Copy-Item -Path $sourceFile -Destination $executionFile
+        #             $executionFile.LastWriteTime = $sourceFile.LastWriteTime
 
-                    Write-Verbose "  master: $($masterFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
-                    Write-Verbose "  target: $($targetFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
+        #             Write-Verbose "  master: $($executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
+        #             Write-Verbose "  target: $($sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
 
-                    # Read-Host "Enter to continue"
-                }
-                else
-                {
-                    "Skipping"
-                }
-            }
-            else
-            {
-                Write-Host "Copying Target to Master"
-                Copy-Item -Path $targetFile -Destination $masterFile
-            }
+        #             # Read-Host "Enter to continue"
+        #         }
+        #         else
+        #         {
+        #             "Skipping"
+        #         }
+        #     }
+        #     else
+        #     {
+        #         Write-Host "Copying Target to Master"
+        #         Copy-Item -Path $sourceFile -Destination $executionFile
+        #     }
 
-            # This means masterFile may need to propagate to other places
+        #     # This means executionFile may need to propagate to other places
 
-            $script:masterFileUpdated = $true
-        }
+        #     $script:executionFileUpdated = $true
+        # }
     }
     else
     {
         Write-Verbose "LastWriteTime match"
 
-        if ($masterFile.Length -ne $targetFile.Length)
+        if ($executionFile.Length -ne $sourceFile.Length)
         {
-            Write-Host "++++++++++ Lengths do not match ++++++++++ Using Master"
+            Write-Host "++++++++++ Lengths do not match ++++++++++ Using Execution"
 
-            Copy-Item -Path $masterFile -Destination $targetFile
-            $targetFile.LastWriteTime = $masterFile.LastWriteTime
+            # Copy-Item -Path $executionFile -Destination $sourceFile
+            # $sourceFile.LastWriteTime = $executionFile.LastWriteTime
         }
         else
         {
@@ -165,27 +154,30 @@ function CompareAndUpdateFile ([System.IO.FileInfo]$masterFile, [System.IO.FileI
 
 function UpdateMatchingFile([string] $fileName, [string] $folderName)
 {
+    $jsonFilePath = "$($folderName)\$($fileName)"
     # Set-Location $PSScriptRoot
-    $sourceFile = "$($PSScriptRoot)\$($jsonOutputFolder)\$($folderName)\$($fileName)"
-    $targetFile = "$($PSScriptRoot)\$($jsonSourceFolder)\$($folderName)\$($fileName)"
+    $executionFilePath = "$($PSScriptRoot)\$($jsonExecutionFolder)\$($jsonFilePath)"
+    $sourceFilePath = "$($PSScriptRoot)\$($jsonSourceFolder)\$($jsonFilePath)"
 
-    if (Test-Path $targetFile)
+    if (Test-Path $sourceFilePath)
     {
-        $sourceFileInfo = Get-ChildItem $sourceFile
+        $executionFile = Get-ChildItem $executionFilePath
 
-        Write-Host -ForegroundColor Blue ("{0,-60} - {1} {2}" -f $sourceFile, $sourceFileInfo.LastWriteTime, $sourceFileInfo.Length)
+        # Write-Host -ForegroundColor Green ("{0,-60} - {1} {2}" `
+        #     -f "$($jsonFilePath)", $executionFile.LastWriteTime, $executionFile.Length)
 
-        $targetFileInfo = Get-ChildItem $targetFile
+        $sourceFile = Get-ChildItem $sourceFilePath
 
-        Write-Host -ForegroundColor Blue ("{0,-60} - {1} {2}" -f $targetFile, $targetFileInfo.LastWriteTime, $targetFileInfo.Length)
+        # Write-Host -ForegroundColor Blue ("{0,-60} - {1} {2}" `
+        #     -f "$($jsonFilePath)", $sourceFile.LastWriteTime, $sourceFile.Length)
  
-        # CompareAndUpdateFile $masterFileInfo $fileInfo "$($projectTemplates)\$($targetTemplateFolder)"
+        CompareAndUpdateFile $executionFile $sourceFile "$($folderName)"
 
         Write-Verbose ""
     }
     else
     {
-        Write-Error "$targetFile does not exist"
+        Write-Error "$($jsonFilePath) does not exist in $($jsonSourceFolder), ignoring."
     }
 }
 
@@ -219,15 +211,14 @@ function ProcessFilesInFolder([string] $folderName)
         {
             ProcessFilesInFolder "$($folderName)\$($subFolder.Name)"
         }
-
     }
 }
 
 #endregion
 
-Set-Location $PSScriptRoot\$jsonOutputFolder
+Set-Location $PSScriptRoot\$jsonExecutionFolder
 
-WriteDelimitedMessage "Updating $jsonSourceFolder using files in $jsonOutputFolder"
+WriteDelimitedMessage "Updating $jsonSourceFolder using files in $jsonExecutionFolder"
 
 ProcessFilesInFolder ""
 

@@ -15,7 +15,7 @@
        { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
        { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
        //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },    
+       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },
       ],
     },
     //
@@ -29,7 +29,7 @@
       "Performances": [
        { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
        { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
-       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },       
+       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },
       ],
     },
     //
@@ -43,7 +43,7 @@
       "Performances": [
        { "Name": "Center Skull 1", "SerialNumber": 99220 },
        { "Name": "Center Skull 2", "SerialNumber": 169501 },
-       { "Name": "Center Skull 3", "SerialNumber": 99220 },      
+       { "Name": "Center Skull 3", "SerialNumber": 99220 },
       ],
     },
     //
@@ -57,7 +57,7 @@
       "Performances": [
        { "Name": "Sleep Skull 1", "SerialNumber": 99220 },
        { "Name": "Sleep Skull 2", "SerialNumber": 169501 },
-       { "Name": "Sleep Skull 3", "SerialNumber": 99220 }, 
+       { "Name": "Sleep Skull 3", "SerialNumber": 99220 },
       ],
     },
     //
@@ -124,7 +124,7 @@
       "Performances": [
        { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
        { "Name": "Skull-012 Yes", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Yes", "SerialNumber": 99220 }, 
+       { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
       ],
     },
     {
@@ -135,7 +135,7 @@
       "Performances": [
        { "Name": "Skull-012 Big Yes", "SerialNumber": 99220 },
        { "Name": "Skull-012 Big Yes", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Big Yes", "SerialNumber": 99220 }, 
+       { "Name": "Skull-456 Big Yes", "SerialNumber": 99220 },
       ],
     },
     //
@@ -149,7 +149,7 @@
       "Performances": [
        { "Name": "Skull-012 No", "SerialNumber": 99220 },
        { "Name": "Skull-012 No", "SerialNumber": 169501 },
-       { "Name": "Skull-456 No", "SerialNumber": 99220 }, 
+       { "Name": "Skull-456 No", "SerialNumber": 99220 },
       ],
     },
     {
@@ -160,7 +160,7 @@
       "Performances": [
        { "Name": "Skull-012 Big No", "SerialNumber": 99220 },
        { "Name": "Skull-012 Big No", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Big No", "SerialNumber": 99220 }, 
+       { "Name": "Skull-456 Big No", "SerialNumber": 99220 },
       ],
     },
     //
@@ -174,7 +174,7 @@
       "Performances": [
        { "Name": "Skull-012 Laugh", "SerialNumber": 99220 },
        { "Name": "Skull-012 Laugh", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Laugh", "SerialNumber": 99220 }, 
+       { "Name": "Skull-456 Laugh", "SerialNumber": 99220 },
       ],
     },
     {
@@ -185,7 +185,7 @@
       "Performances": [
        { "Name": "Skull-012 Big Laugh", "SerialNumber": 99220 },
        { "Name": "Skull-012 Big Laugh", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Big Laugh", "SerialNumber": 99220 }, 
+       { "Name": "Skull-456 Big Laugh", "SerialNumber": 99220 },
       ],
     },
     //
@@ -299,38 +299,155 @@
       // Use this if calling Performances
       "PlayPerformancesInParallel": false,
       "Performances": [
-        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
-        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (250)" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Down 20" },
-        { "Name": "Move All Skulls - Up 20" },
-        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Down 20" },
-        { "Name": "Move All Skulls - Up 20" },
-        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Down 20" },
-        { "Name": "Move All Skulls - Up 20" },
-        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Down 20" },
-        { "Name": "Move All Skulls - Up 20" },
-        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
         { "Name": "Move All Skulls - Up 10" },
-        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
       ],
       //"AfterPerformanceLoopPerformances": [
       //  { "Name": "" },
       //],
       //"Duration": 0
       //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Out 3",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      "PlayPerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+      ],
+    },
+    {
+      "Name": "Rock Out 4",
+      "Description": "",
+      "UsageNotes": "",
+      "PerformanceLoops": 10,
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+        { "Name": "All Tilt Left/Right" },
+        { "Name": "All Up/Down" },
+      ],
+    },
+    {
+      "Name": "All Tilt Right and Up/Down",
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "All Up/Down" }
+      ],
+    },
+    {
+      "Name": "All Tilt Left and Up/Down",
+      "PlayPerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "All Up/Down" }
+      ],
+    },
+    {
+      "Name": "All Up/Down",
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+      ],
+    },
+    {
+      "Name": "All Tilt Left/Right",
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+      ],
     },
     {
       "Name": "Rock Up/Down",
@@ -401,7 +518,7 @@
        { "Name": "Consulting Skulls Say Yes"},
        { "Name": "Consulting Skulls Say No"},
       ],
-    },    
+    },
     //
     // Move All Skulls - Sound to Right
     //
@@ -412,13 +529,13 @@
       "PlayPerformancesInParallel": false,
       "Performances": [
         { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 1502 }, // Look at sound    
+        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 1502 }, // Look at sound
         { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
         { // Move back to talk to others
           "DeviceChannelSequences": [
             { "SerialNumber": 99220, "ChannelClass": "RCServo",
-              "RCServoSequence": { "HubPort": 0, "Channel": 6, 
-                                   "Actions": [ { "RelativePosition": -110 } ], "SequenceDuration": 502 } // Rotate Left(-)/Right(+) 
+              "RCServoSequence": { "HubPort": 0, "Channel": 6,
+                                   "Actions": [ { "RelativePosition": -110 } ], "SequenceDuration": 502 } // Rotate Left(-)/Right(+)
             }
           ],
         },
@@ -443,8 +560,8 @@
         { // Move back to talk to others
           "DeviceChannelSequences": [
             { "SerialNumber": 99220, "ChannelClass": "RCServo",
-              "RCServoSequence": { "HubPort": 0, "Channel": 2, 
-                                   "Actions": [ { "RelativePosition": 110 } ], "SequenceDuration": 503 } // Rotate Left(-)/Right(+) 
+              "RCServoSequence": { "HubPort": 0, "Channel": 2,
+                                   "Actions": [ { "RelativePosition": 110 } ], "SequenceDuration": 503 } // Rotate Left(-)/Right(+)
             }
           ],
         },

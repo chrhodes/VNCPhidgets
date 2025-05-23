@@ -315,7 +315,7 @@ namespace VNC.Phidget22.Players
                     $" playSequencesInParallel:>{performance.PlayDeviceChannelSequencesInParallel}<" +
                     $" performances:>{performance.Performances?.Count()}<" +
                     $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
-                    $" loops:>{performance.PerformanceLoops}<" +
+                    $" performanceLoops:>{performance.PerformanceLoops}<" +
                     $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
                     $" duration:>{performance.Duration}<" +
                     $" nextPerformance:>{performance.NextPerformance?.Name}<" +

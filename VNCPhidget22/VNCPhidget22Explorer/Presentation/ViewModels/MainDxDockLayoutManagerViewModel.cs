@@ -54,19 +54,19 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCLogViewer - MainDxDockLayoutManager - ";
+        //private string _title = "VNCLogViewer - MainDxDockLayoutManager - ";
 
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                if (_title == value)
-                    return;
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
+        //public string Title
+        //{
+        //    get => _title;
+        //    set
+        //    {
+        //        if (_title == value)
+        //            return;
+        //        _title = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public DelegateCommand DeveloperModeCommand { get; set; }
 
