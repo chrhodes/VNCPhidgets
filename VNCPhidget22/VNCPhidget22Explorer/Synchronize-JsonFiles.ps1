@@ -23,7 +23,7 @@ $VerbosePreference = 'Ignore'
 
 # set to $false to have the magic just happen, $true to prompt before changes
 
-$confirmUpdate = $true
+$confirmUpdate = $false
 
 # $ErrorActionPreference = 'Break'
 
@@ -70,7 +70,7 @@ function CompareAndUpdateFile ([System.IO.FileInfo]$executionFile, [System.IO.Fi
         if ($executionFile.LastWriteTime -gt $sourceFile.LastWriteTime)
         {
             Write-Host -ForegroundColor Green "      execution: " $executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-            Write-Host "      source: " $sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
+            Write-Host "      source:    " $sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
 
             Write-Host "Copying Execution to Source"
 
@@ -98,41 +98,6 @@ function CompareAndUpdateFile ([System.IO.FileInfo]$executionFile, [System.IO.Fi
                 Copy-Item -Path $executionFile -Destination $sourceFile
             }
         }
-        # else
-        # {
-        #     Write-Host -ForegroundColor DarkYellow "      target: " $sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-        #     Write-Host "      master: " $executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff")
-
-        #     if ($confirmUpdate)
-        #     {
-        #         while( -not ( ($choice= (Read-Host "Copy Target to Master")) -match "^(y|n)$")){ "Y or N ?"}
-
-        #         if ($choice -eq "y")
-        #         {
-        #             Write-Host "Copying Target to Master"
-        #             Copy-Item -Path $sourceFile -Destination $executionFile
-        #             $executionFile.LastWriteTime = $sourceFile.LastWriteTime
-
-        #             Write-Verbose "  master: $($executionFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
-        #             Write-Verbose "  target: $($sourceFile.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss.fff"))"
-
-        #             # Read-Host "Enter to continue"
-        #         }
-        #         else
-        #         {
-        #             "Skipping"
-        #         }
-        #     }
-        #     else
-        #     {
-        #         Write-Host "Copying Target to Master"
-        #         Copy-Item -Path $sourceFile -Destination $executionFile
-        #     }
-
-        #     # This means executionFile may need to propagate to other places
-
-        #     $script:executionFileUpdated = $true
-        # }
     }
     else
     {
@@ -163,14 +128,8 @@ function UpdateMatchingFile([string] $fileName, [string] $folderName)
     {
         $executionFile = Get-ChildItem $executionFilePath
 
-        # Write-Host -ForegroundColor Green ("{0,-60} - {1} {2}" `
-        #     -f "$($jsonFilePath)", $executionFile.LastWriteTime, $executionFile.Length)
-
         $sourceFile = Get-ChildItem $sourceFilePath
 
-        # Write-Host -ForegroundColor Blue ("{0,-60} - {1} {2}" `
-        #     -f "$($jsonFilePath)", $sourceFile.LastWriteTime, $sourceFile.Length)
- 
         CompareAndUpdateFile $executionFile $sourceFile "$($folderName)"
 
         Write-Verbose ""

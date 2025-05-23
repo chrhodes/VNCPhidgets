@@ -37,7 +37,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+        <PlatformTarget>AnyCPU</PlatformTarget>   
     </PropertyGroup>
 
     <ItemGroup>
@@ -65,5 +65,9 @@
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
         <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
     </Target>
-    
+
+    <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Release'">
+        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
+    </Target>-->
+
 </Project>
