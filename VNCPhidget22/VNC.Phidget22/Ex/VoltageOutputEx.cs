@@ -570,16 +570,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{voltageOutputSequence.Name}<)" +
-                          $" startActionLoopSequences:>{voltageOutputSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{voltageOutputSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{voltageOutputSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{voltageOutputSequence.Channel}<" +
-                          $" actions:>{voltageOutputSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{voltageOutputSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{voltageOutputSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{voltageOutputSequence.Name}<)" +
+                        $" startActionLoopSequences:>{voltageOutputSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{voltageOutputSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{voltageOutputSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{voltageOutputSequence.Channel}<" +
+                        $" actions:>{voltageOutputSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{voltageOutputSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{voltageOutputSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (voltageOutputSequence.Actions is not null)
@@ -623,7 +623,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{voltageOutputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{voltageOutputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)voltageOutputSequence.ActionsDuration);
                         }
@@ -647,7 +648,6 @@ namespace VNC.Phidget22.Ex
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
-
 
         #endregion
 
@@ -739,7 +739,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

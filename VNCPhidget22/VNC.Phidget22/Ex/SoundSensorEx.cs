@@ -477,16 +477,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{soundSensorSequence.Name}<)" +
-                          $" startActionLoopSequences:>{soundSensorSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{soundSensorSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{soundSensorSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{soundSensorSequence.Channel}<" +
-                          $" actions:>{soundSensorSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{soundSensorSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{soundSensorSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{soundSensorSequence.Name}<)" +
+                        $" startActionLoopSequences:>{soundSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{soundSensorSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{soundSensorSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{soundSensorSequence.Channel}<" +
+                        $" actions:>{soundSensorSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{soundSensorSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{soundSensorSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (soundSensorSequence.Actions is not null)
@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{soundSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{soundSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)soundSensorSequence.ActionsDuration);
@@ -646,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

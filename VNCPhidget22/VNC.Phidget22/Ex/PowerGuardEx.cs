@@ -477,16 +477,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                         $"RunActionLoops(>{powerGuardSequence.Name}<)" +
-                         $" startActionLoopSequences:>{powerGuardSequence.StartActionLoopSequences?.Count()}<" +
-                         $" actionLoops:>{powerGuardSequence.ActionLoops}<" +
-                         $" serialNumber:>{DeviceSerialNumber}<" +
-                         $" hubPort:>{HubPort}< >{powerGuardSequence.HubPort}<" +
-                         $" channel:>{Channel}< >{powerGuardSequence.Channel}<" +
-                         $" actions:>{powerGuardSequence.Actions?.Count()}<" +
-                         $" actionsDuration:>{powerGuardSequence.ActionsDuration}<" +
-                         $" endActionLoopSequences:>{powerGuardSequence.EndActionLoopSequences?.Count()}<" +
-                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{powerGuardSequence.Name}<)" +
+                        $" startActionLoopSequences:>{powerGuardSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{powerGuardSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{powerGuardSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{powerGuardSequence.Channel}<" +
+                        $" actions:>{powerGuardSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{powerGuardSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{powerGuardSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (powerGuardSequence.Actions is not null)
@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{powerGuardSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{powerGuardSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)powerGuardSequence.ActionsDuration);
@@ -556,6 +557,16 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+        #region Protected Methods (none)
+
+
+
+        #endregion
+
+        #region Private Methods
+
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
@@ -577,15 +588,6 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        #endregion
-
-        #region Protected Methods (none)
-
-
-
-        #endregion
-
-        #region Private Methods
 
         private async Task PerformAction(PowerGuardAction action)
         {
@@ -646,7 +648,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

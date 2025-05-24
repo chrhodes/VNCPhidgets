@@ -477,16 +477,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{pressureSensorSequence.Name}<)" +
-                          $" startActionLoopSequences:>{pressureSensorSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{pressureSensorSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{pressureSensorSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{pressureSensorSequence.Channel}<" +
-                          $" actions:>{pressureSensorSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{pressureSensorSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{pressureSensorSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{pressureSensorSequence.Name}<)" +
+                        $" startActionLoopSequences:>{pressureSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{pressureSensorSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{pressureSensorSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{pressureSensorSequence.Channel}<" +
+                        $" actions:>{pressureSensorSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{pressureSensorSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{pressureSensorSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (pressureSensorSequence.Actions is not null)
@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{pressureSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{pressureSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)pressureSensorSequence.ActionsDuration);
@@ -646,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

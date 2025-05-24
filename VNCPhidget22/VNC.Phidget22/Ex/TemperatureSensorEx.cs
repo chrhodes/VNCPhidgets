@@ -478,16 +478,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{temperatureSensorSequence.Name}<)" +
-                          $" startActionLoopSequences:>{temperatureSensorSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{temperatureSensorSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{temperatureSensorSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{temperatureSensorSequence.Channel}<" +
-                          $" actions:>{temperatureSensorSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{temperatureSensorSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{temperatureSensorSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{temperatureSensorSequence.Name}<)" +
+                        $" startActionLoopSequences:>{temperatureSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{temperatureSensorSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{temperatureSensorSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{temperatureSensorSequence.Channel}<" +
+                        $" actions:>{temperatureSensorSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{temperatureSensorSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{temperatureSensorSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (temperatureSensorSequence.Actions is not null)
@@ -531,7 +531,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{temperatureSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{temperatureSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)temperatureSensorSequence.ActionsDuration);
@@ -647,7 +648,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

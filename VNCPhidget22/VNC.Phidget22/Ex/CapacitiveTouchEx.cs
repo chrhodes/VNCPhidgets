@@ -477,16 +477,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                         $"RunActionLoops(>{capacitiveTouchSequence.Name}<)" +
-                         $" startActionLoopSequences:>{capacitiveTouchSequence.StartActionLoopSequences?.Count()}<" +
-                         $" actionLoops:>{capacitiveTouchSequence.ActionLoops}<" +
-                         $" serialNumber:>{DeviceSerialNumber}<" +
-                         $" hubPort:>{HubPort}< >{capacitiveTouchSequence.HubPort}<" +
-                         $" channel:>{Channel}< >{capacitiveTouchSequence.Channel}<" +
-                         $" actions:>{capacitiveTouchSequence.Actions?.Count()}<" +
-                         $" actionsDuration:>{capacitiveTouchSequence.ActionsDuration}<" +
-                         $" endActionLoopSequences:>{capacitiveTouchSequence.EndActionLoopSequences?.Count()}<" +
-                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{capacitiveTouchSequence.Name}<)" +
+                        $" startActionLoopSequences:>{capacitiveTouchSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{capacitiveTouchSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{capacitiveTouchSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{capacitiveTouchSequence.Channel}<" +
+                        $" actions:>{capacitiveTouchSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{capacitiveTouchSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{capacitiveTouchSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (capacitiveTouchSequence.Actions is not null)
@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{capacitiveTouchSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{capacitiveTouchSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)capacitiveTouchSequence.ActionsDuration);
@@ -565,6 +566,28 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Private Methods
+
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
+        }
+
 
         private async Task PerformAction(CapacitiveTouchAction action)
         {
@@ -625,7 +648,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -652,27 +675,6 @@ namespace VNC.Phidget22.Ex
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
             }
-        }
-
-        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
-        {
-            Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-
-            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            player.LogChannelAction = LogChannelAction;
-            player.LogActionVerification = LogActionVerification;
-
-            // TODO(crhodes)
-            // Add appropriate events for this device
-
-            player.LogPhidgetEvents = LogPhidgetEvents;
-
-            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return player;
         }
 
         private async void TriggerSequence(SequenceEventArgs args)

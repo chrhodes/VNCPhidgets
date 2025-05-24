@@ -682,16 +682,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{digitalOutputSequence.Name}<)" +
-                          $" startActionLoopSequences:>{digitalOutputSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{digitalOutputSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{digitalOutputSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{digitalOutputSequence.Channel}<" +
-                          $" actions:>{digitalOutputSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{digitalOutputSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{digitalOutputSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{digitalOutputSequence.Name}<)" +
+                        $" startActionLoopSequences:>{digitalOutputSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{digitalOutputSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{digitalOutputSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{digitalOutputSequence.Channel}<" +
+                        $" actions:>{digitalOutputSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{digitalOutputSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{digitalOutputSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (digitalOutputSequence.Actions is not null)
@@ -735,7 +735,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{digitalOutputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{digitalOutputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)digitalOutputSequence.ActionsDuration);
@@ -771,7 +772,28 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
-         private async Task PerformAction(DigitalOutputAction action)
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
+        }
+
+        private async Task PerformAction(DigitalOutputAction action)
         {
             Int64 startTicks = 0;
 
@@ -834,7 +856,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -861,27 +883,6 @@ namespace VNC.Phidget22.Ex
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
             }
-        }
-
-        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
-        {
-            Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-
-            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            player.LogChannelAction = LogChannelAction;
-            player.LogActionVerification = LogActionVerification;
-
-            // TODO(crhodes)
-            // Add appropriate events for this device
-
-            player.LogPhidgetEvents = LogPhidgetEvents;
-
-            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return player;
         }
 
         private async void TriggerSequence(SequenceEventArgs args)

@@ -1114,7 +1114,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"ZzzzAD Action:>{rcServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{rcServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)rcServoSequence.ActionsDuration);
                         }
@@ -1175,8 +1176,6 @@ namespace VNC.Phidget22.Ex
         private async Task PerformAction(RCServoAction action)
         {
             Int64 startTicks = 0;
-
-            var channel = Channel;
 
             StringBuilder actionMessage = new StringBuilder();
 

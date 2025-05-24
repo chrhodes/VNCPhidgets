@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{motorPositionControllerSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                   $" Sleeping:>{motorPositionControllerSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)motorPositionControllerSequence.ActionsDuration);
@@ -556,6 +557,16 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+        #region Protected Methods (none)
+
+
+
+        #endregion
+
+        #region Private Methods
+
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
@@ -576,16 +587,6 @@ namespace VNC.Phidget22.Ex
 
             return player;
         }
-
-        #endregion
-
-        #region Protected Methods (none)
-
-
-
-        #endregion
-
-        #region Private Methods
 
         private async Task PerformAction(MotorPositionControllerAction action)
         {
@@ -647,7 +648,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

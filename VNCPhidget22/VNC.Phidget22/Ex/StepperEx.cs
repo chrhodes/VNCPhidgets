@@ -689,7 +689,9 @@ namespace VNC.Phidget22.Ex
                 // NOTE(crhodes)
                 // Unfortunately no events are fired by setting new RescaleFactor
                 // Go get new values;
-                RefreshServoProperties();
+                MinPosition = base.MinPosition;
+                Position = base.Position;
+                MaxPosition = base.MaxPosition;
 
                 OnPropertyChanged();
             }
@@ -1027,29 +1029,18 @@ namespace VNC.Phidget22.Ex
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY);
 
             base.AddPositionOffset(offset);
+
             // NOTE(crhodes)
             // Unfortunately no events are fired by AddPositionOffset()
             // Go get new values;
-            RefreshServoProperties();
-
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY, startTicks);
-        }
-
-        void RefreshServoProperties()
-        {
-            MinAcceleration = base.MinAcceleration;
-            Acceleration = base.Acceleration;
-            MaxAcceleration = base.MaxAcceleration;
-
-            MinVelocityLimit = base.MinVelocityLimit;
-            VelocityLimit = base.VelocityLimit;
-            MaxVelocityLimit = base.MaxVelocityLimit;
 
             MinPosition = base.MinPosition;
             Position = base.Position;
             MaxPosition = base.MaxPosition;
 
             TargetPosition = base.TargetPosition;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(StepperSequence stepperSequence)
@@ -1061,16 +1052,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{stepperSequence.Name}<)" +
-                          $" startActionLoopSequences:>{stepperSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{stepperSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{stepperSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{stepperSequence.Channel}<" +
-                          $" actions:>{stepperSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{stepperSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{stepperSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{stepperSequence.Name}<)" +
+                        $" startActionLoopSequences:>{stepperSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{stepperSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{stepperSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{stepperSequence.Channel}<" +
+                        $" actions:>{stepperSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{stepperSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{stepperSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (stepperSequence.Actions is not null)
@@ -1114,7 +1105,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)stepperSequence.ActionsDuration);
                         }
@@ -1138,7 +1130,6 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
-
 
         #endregion
 
@@ -1175,9 +1166,7 @@ namespace VNC.Phidget22.Ex
         {
             Int64 startTicks = 0;
 
-            var channel = Channel;
-
-            StringBuilder actionMessage = new StringBuilder();
+             StringBuilder actionMessage = new StringBuilder();
 
             if (LogChannelAction)
             {
@@ -1225,8 +1214,6 @@ namespace VNC.Phidget22.Ex
                 }
 
                 #region StepperEx Actions
-
-
 
                 // NOTE(crhodes)
                 // Not sure if these can be done without Stepper engaged
@@ -1465,7 +1452,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

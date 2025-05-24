@@ -76,8 +76,6 @@ namespace VNC.Phidget22.Players
 
         #endregion
 
-        //
-
         #endregion
 
         #region Event Handlers (none)

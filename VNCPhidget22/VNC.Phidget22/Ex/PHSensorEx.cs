@@ -477,16 +477,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{phSensorSequence.Name}<)" +
-                          $" startActionLoopSequences:>{phSensorSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{phSensorSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{phSensorSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{phSensorSequence.Channel}<" +
-                          $" actions:>{phSensorSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{phSensorSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{phSensorSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{phSensorSequence.Name}<)" +
+                        $" startActionLoopSequences:>{phSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{phSensorSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{phSensorSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{phSensorSequence.Channel}<" +
+                        $" actions:>{phSensorSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{phSensorSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{phSensorSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (phSensorSequence.Actions is not null)
@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{phSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{phSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)phSensorSequence.ActionsDuration);
@@ -556,6 +557,16 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+        #region Protected Methods (none)
+
+
+
+        #endregion
+
+        #region Private Methods
+
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
@@ -576,16 +587,6 @@ namespace VNC.Phidget22.Ex
 
             return player;
         }
-
-        #endregion
-
-        #region Protected Methods (none)
-
-
-
-        #endregion
-
-        #region Private Methods
 
         private async Task PerformAction(PHSensorAction action)
         {
@@ -647,7 +648,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

@@ -476,16 +476,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{frequencyCounterSequence.Name}<)" +
-                          $" startActionLoopSequences:>{frequencyCounterSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{frequencyCounterSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{frequencyCounterSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{frequencyCounterSequence.Channel}<" +
-                          $" actions:>{frequencyCounterSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{frequencyCounterSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{frequencyCounterSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{frequencyCounterSequence.Name}<)" +
+                        $" startActionLoopSequences:>{frequencyCounterSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{frequencyCounterSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{frequencyCounterSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{frequencyCounterSequence.Channel}<" +
+                        $" actions:>{frequencyCounterSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{frequencyCounterSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{frequencyCounterSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (frequencyCounterSequence.Actions is not null)
@@ -529,7 +529,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{frequencyCounterSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{frequencyCounterSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)frequencyCounterSequence.ActionsDuration);
@@ -555,6 +556,16 @@ namespace VNC.Phidget22.Ex
             }
         }
 
+        #endregion
+
+        #region Protected Methods (none)
+
+
+
+        #endregion
+
+        #region Private Methods
+
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
@@ -575,16 +586,6 @@ namespace VNC.Phidget22.Ex
 
             return player;
         }
-
-        #endregion
-
-        #region Protected Methods (none)
-
-
-
-        #endregion
-
-        #region Private Methods
 
         private async Task PerformAction(FrequencyCounterAction action)
         {
@@ -646,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

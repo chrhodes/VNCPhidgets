@@ -476,16 +476,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{rfidSequence.Name}<)" +
-                          $" startActionLoopSequences:>{rfidSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{rfidSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{rfidSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{rfidSequence.Channel}<" +
-                          $" actions:>{rfidSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{rfidSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{rfidSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{rfidSequence.Name}<)" +
+                        $" startActionLoopSequences:>{rfidSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{rfidSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{rfidSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{rfidSequence.Channel}<" +
+                        $" actions:>{rfidSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{rfidSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{rfidSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (rfidSequence.Actions is not null)
@@ -529,7 +529,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{rfidSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{rfidSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)rfidSequence.ActionsDuration);
@@ -646,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

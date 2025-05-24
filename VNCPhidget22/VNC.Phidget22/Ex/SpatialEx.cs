@@ -477,16 +477,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{spatialSequence.Name}<)" +
-                          $" startActionLoopSequences:>{spatialSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{spatialSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{spatialSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{spatialSequence.Channel}<" +
-                          $" actions:>{spatialSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{spatialSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{spatialSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{spatialSequence.Name}<)" +
+                        $" startActionLoopSequences:>{spatialSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{spatialSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{spatialSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{spatialSequence.Channel}<" +
+                        $" actions:>{spatialSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{spatialSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{spatialSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (spatialSequence.Actions is not null)
@@ -530,7 +530,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{spatialSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{spatialSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)spatialSequence.ActionsDuration);
@@ -646,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }

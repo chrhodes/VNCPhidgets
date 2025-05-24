@@ -476,16 +476,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                          $"RunActionLoops(>{distanceSensorSequence.Name}<)" +
-                          $" startActionLoopSequences:>{distanceSensorSequence.StartActionLoopSequences?.Count()}<" +
-                          $" actionLoops:>{distanceSensorSequence.ActionLoops}<" +
-                          $" serialNumber:>{DeviceSerialNumber}<" +
-                          $" hubPort:>{HubPort}< >{distanceSensorSequence.HubPort}<" +
-                          $" channel:>{Channel}< >{distanceSensorSequence.Channel}<" +
-                          $" actions:>{distanceSensorSequence.Actions?.Count()}<" +
-                          $" actionsDuration:>{distanceSensorSequence.ActionsDuration}<" +
-                          $" endActionLoopSequences:>{distanceSensorSequence.EndActionLoopSequences?.Count()}<" +
-                          $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        $"RunActionLoops(>{distanceSensorSequence.Name}<)" +
+                        $" startActionLoopSequences:>{distanceSensorSequence.StartActionLoopSequences?.Count()}<" +
+                        $" actionLoops:>{distanceSensorSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{distanceSensorSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{distanceSensorSequence.Channel}<" +
+                        $" actions:>{distanceSensorSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{distanceSensorSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{distanceSensorSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (distanceSensorSequence.Actions is not null)
@@ -529,7 +529,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{distanceSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{distanceSensorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)distanceSensorSequence.ActionsDuration);
@@ -564,6 +565,27 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Private Methods
+
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
+        }
 
         private async Task PerformAction(DistanceSensorAction action)
         {
@@ -625,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -652,27 +674,6 @@ namespace VNC.Phidget22.Ex
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
             }
-        }
-
-        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
-        {
-            Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-
-            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            player.LogChannelAction = LogChannelAction;
-            player.LogActionVerification = LogActionVerification;
-
-            // TODO(crhodes)
-            // Add appropriate events for this device
-
-            player.LogPhidgetEvents = LogPhidgetEvents;
-
-            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return player;
         }
 
         private async void TriggerSequence(SequenceEventArgs args)

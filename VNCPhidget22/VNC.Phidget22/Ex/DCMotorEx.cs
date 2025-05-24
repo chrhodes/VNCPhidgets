@@ -529,7 +529,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{dcMotorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{dcMotorSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)dcMotorSequence.ActionsDuration);
@@ -564,6 +565,27 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Private Methods
+
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
+        }
 
         private async Task PerformAction(DCMotorAction action)
         {
@@ -625,7 +647,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($"Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
@@ -654,26 +676,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
-        {
-            Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
-
-            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-
-            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            player.LogChannelAction = LogChannelAction;
-            player.LogActionVerification = LogActionVerification;
-
-            // TODO(crhodes)
-            // Add appropriate events for this device
-
-            player.LogPhidgetEvents = LogPhidgetEvents;
-
-            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return player;
-        }
 
         private async void TriggerSequence(SequenceEventArgs args)
         {
