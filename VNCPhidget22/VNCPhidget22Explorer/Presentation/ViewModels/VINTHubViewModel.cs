@@ -69,6 +69,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             OpenDigitalOutputCommand = new DelegateCommand<SerialHubPortChannel?>(OpenDigitalOutput, OpenDigitalOutputCanExecute);
             CloseDigitalOutputCommand = new DelegateCommand<SerialHubPortChannel?>(CloseDigitalOutput, CloseDigitalOutputCanExecute);
 
+            //OpenRCServoCommand = new DelegateCommand<SerialHubPortChannel?>(OpenRCServo, OpenRCServoCanExecute);
+            //CloseRCServoCommand = new DelegateCommand<SerialHubPortChannel?>(CloseRCServo, CloseRCServoCanExecute);
+            //SetPositionRangeCommand = new DelegateCommand<string>(SetPositionRange, SetPositionRangeCanExecute);
+
+            //OpenStepperCommand = new DelegateCommand<SerialHubPortChannel?>(OpenStepper, OpenStepperCanExecute);
+            //CloseStepperCommand = new DelegateCommand<SerialHubPortChannel?>(CloseStepper, CloseStepperCanExecute);
+            //ZeroCurrentPositionCommand = new DelegateCommand<string>(ZeroCurrentPosition, ZeroCurrentPositionCanExecute);
+
             OpenVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(OpenVoltageInput, OpenVoltageInputCanExecute);
             RefreshVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(RefreshVoltageInput, RefreshVoltageInputCanExecute);
             CloseVoltageInputCommand = new DelegateCommand<SerialHubPortChannel?>(CloseVoltageInput, CloseVoltageInputCanExecute);
@@ -101,6 +109,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadPhidgets()
         {
+            // NOTE(crhodes)
+            // Load everything that can be used from VINTHub that has been detected
+
             var digitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
 
@@ -114,6 +125,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             var voltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
 
+            //var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
+            //    .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
+
+            //LoadRCServos(rcServos);
+
+            //var steppers = Common.PhidgetDeviceLibrary.StepperChannels
+            //    .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
+
+            //LoadSteppers(steppers);
+
             LoadVoltageInputs(voltageInputs);
 
             var voltageRatioInputs = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
@@ -126,8 +147,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             foreach (var digitalInput in digitalInputs)
             {
+                // NOTE(crhodes)
+                // This is a bit tricky.  For VINT that support DI/DO/VI we use the Key.HubPort
+
                 switch (digitalInput.Key.HubPort)
                 {
+                    // TODO(crhodes)
+                    // Don't think we need 16. Just the maximum number of HubPorts.  Think it is 6.
+
                     case 0:
                         DigitalInput0 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
                         break;
@@ -199,8 +226,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             foreach (var digitalOutput in digitalOutputs)
             {
+                // NOTE(crhodes)
+                // This is a bit tricky.  For VINT that support DI/DO/VI we use the Key.HubPort
                 switch (digitalOutput.Key.HubPort)
                 {
+                    // TODO(crhodes)
+                    // Don't think we need 16. Just the maximum number of HubPorts.  Think it is 6.
+                   
                     case 0:
                         DigitalOutput0 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
                         break;
@@ -268,12 +300,176 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
+        //void LoadRCServos(IEnumerable<KeyValuePair<SerialHubPortChannel, RCServoEx>> rcServos)
+        //{
+        //    foreach (var rcServo in rcServos)
+        //    {
+        //        // NOTE(crhodes)
+        //        // This is a bit tricky.
+        //        // For VINTDevice that is connected to a VINT Hub, we use the Channel
+        //        // and support as many channels as the VINTDevice supports.
+
+        //        switch (rcServo.Key.Channel)
+        //        {
+        //            //RCC1000 has 16 channels
+        //            case 0:
+        //                RCServo0 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 1:
+        //                RCServo1 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 2:
+        //                RCServo2 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 3:
+        //                RCServo3 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 4:
+        //                RCServo4 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 5:
+        //                RCServo5 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 6:
+        //                RCServo6 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 7:
+        //                RCServo7 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 8:
+        //                RCServo8 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 9:
+        //                RCServo9 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 10:
+        //                RCServo10 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 11:
+        //                RCServo11 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 12:
+        //                RCServo12 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 13:
+        //                RCServo13 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 14:
+        //                RCServo14 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+
+        //            case 15:
+        //                RCServo15 = Common.PhidgetDeviceLibrary.RCServoChannels[rcServo.Key];
+        //                break;
+        //        }
+        //    }
+        //}
+
+        //void LoadSteppers(IEnumerable<KeyValuePair<SerialHubPortChannel, StepperEx>> steppers)
+        //{
+        //    foreach (var stepper in steppers)
+        //    {
+        //        // NOTE(crhodes)
+        //        // This is a bit tricky.
+        //        // For VINTDevice that is connected to a VINT Hub, we use the Channel
+        //        // and support as many channels as the VINTDevice supports.
+
+        //        switch (stepper.Key.Channel)
+        //        {
+        //            // STC1001 has one channel
+        //            case 0:
+        //                Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 1:
+        //                Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 2:
+        //                Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 3:
+        //                Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 4:
+        //                Stepper4 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 5:
+        //                Stepper5 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 6:
+        //                Stepper6 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 7:
+        //                Stepper7 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 8:
+        //                Stepper8 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 9:
+        //                Stepper9 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 10:
+        //                Stepper10 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 11:
+        //                Stepper11 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 12:
+        //                Stepper12 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 13:
+        //                Stepper13 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 14:
+        //                Stepper14 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+
+        //            case 15:
+        //                Stepper15 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+        //                break;
+        //        }
+        //    }
+        //}
+        
         void LoadVoltageInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageInputEx>> voltageInputs)
         {
             foreach (var voltageInput in voltageInputs)
             {
+                // NOTE(crhodes)
+                // This is a bit tricky.  For VINT that support DI/DO/VI we use the Key.HubPort
+
                 switch (voltageInput.Key.HubPort)
                 {
+                    // TODO(crhodes)
+                    // Don't think we need 16. Just the maximum number of HubPorts.  Think it is 6.
+
                     case 0:
                         VoltageInput0 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
                         break;
@@ -347,6 +543,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 switch (voltageRatioInput.Key.HubPort)
                 {
+                    // TODO(crhodes)
+                    // Don't think we need 16. Just the maximum number of HubPorts.  Think it is 6.
+
                     case 0:
                         VoltageRatioInput0 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
                         break;
@@ -527,6 +726,75 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
+        #region RCServo and Stepper Events
+
+        private Boolean _logCurrentChangeEvents = false;
+        public Boolean LogCurrentChangeEvents
+        {
+            get => _logCurrentChangeEvents;
+            set
+            {
+                if (_logCurrentChangeEvents == value)
+                    return;
+                _logCurrentChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logPositionChangeEvents = false;
+        public Boolean LogPositionChangeEvents
+        {
+            get => _logPositionChangeEvents;
+            set
+            {
+                if (_logPositionChangeEvents == value)
+                    return;
+                _logPositionChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logVelocityChangeEvents = false;
+        public Boolean LogVelocityChangeEvents
+        {
+            get => _logVelocityChangeEvents;
+            set
+            {
+                if (_logVelocityChangeEvents == value)
+                    return;
+                _logVelocityChangeEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logStoppeddEvents = false;
+        public Boolean LogStoppedEvents
+        {
+            get => _logStoppeddEvents;
+            set
+            {
+                if (_logStoppeddEvents == value)
+                    return;
+                _logStoppeddEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Boolean _logTargetPositionReachedEvents = false;
+        public Boolean LogTargetPositionReachedEvents
+        {
+            get => _logTargetPositionReachedEvents;
+            set
+            {
+                if (_logTargetPositionReachedEvents == value)
+                    return;
+                _logTargetPositionReachedEvents = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
         #region Performance Events
 
         private Boolean _logDeviceChannelSequence = false;
@@ -606,11 +874,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenDigitalInputCommand.RaiseCanExecuteChanged();
                 OpenDigitalOutputCommand.RaiseCanExecuteChanged();
 
+                //OpenRCServoCommand.RaiseCanExecuteChanged();
+                //OpenStepperCommand.RaiseCanExecuteChanged();
+
                 OpenVoltageInputCommand.RaiseCanExecuteChanged();
                 OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
 
                 DigitalInputsVisibility = Visibility.Visible;
                 DigitalOutputsVisibility = Visibility.Visible;
+                RCServosVisibility = Visibility.Visible;
+                SteppersVisibility = Visibility.Visible;
                 VoltageInputsVisibility = Visibility.Visible;
             }
         }
@@ -1059,6 +1332,456 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_digitalOutput15 == value)
                     return;
                 _digitalOutput15 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region RCServos
+
+        private Visibility _rcServosVisibility = Visibility.Collapsed;
+        public Visibility RCServosVisibility
+        {
+            get => _rcServosVisibility;
+            set
+            {
+                if (_rcServosVisibility == value)
+                    return;
+                _rcServosVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo0;
+        public RCServoEx RCServo0
+        {
+            get => _rcServo0;
+            set
+            {
+                if (_rcServo0 == value)
+                    return;
+                _rcServo0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo1;
+        public RCServoEx RCServo1
+        {
+            get => _rcServo1;
+            set
+            {
+                if (_rcServo1 == value)
+                    return;
+                _rcServo1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo2;
+        public RCServoEx RCServo2
+        {
+            get => _rcServo2;
+            set
+            {
+                if (_rcServo2 == value)
+                    return;
+                _rcServo2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo3;
+        public RCServoEx RCServo3
+        {
+            get => _rcServo3;
+            set
+            {
+                if (_rcServo3 == value)
+                    return;
+                _rcServo3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo4;
+        public RCServoEx RCServo4
+        {
+            get => _rcServo4;
+            set
+            {
+                if (_rcServo4 == value)
+                    return;
+                _rcServo4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo5;
+        public RCServoEx RCServo5
+        {
+            get => _rcServo5;
+            set
+            {
+                if (_rcServo5 == value)
+                    return;
+                _rcServo5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo6;
+        public RCServoEx RCServo6
+        {
+            get => _rcServo6;
+            set
+            {
+                if (_rcServo6 == value)
+                    return;
+                _rcServo6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo7;
+        public RCServoEx RCServo7
+        {
+            get => _rcServo7;
+            set
+            {
+                if (_rcServo7 == value)
+                    return;
+                _rcServo7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo8;
+        public RCServoEx RCServo8
+        {
+            get => _rcServo8;
+            set
+            {
+                if (_rcServo8 == value)
+                    return;
+                _rcServo8 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo9;
+        public RCServoEx RCServo9
+        {
+            get => _rcServo9;
+            set
+            {
+                if (_rcServo9 == value)
+                    return;
+                _rcServo9 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo10;
+        public RCServoEx RCServo10
+        {
+            get => _rcServo10;
+            set
+            {
+                if (_rcServo10 == value)
+                    return;
+                _rcServo10 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo11;
+        public RCServoEx RCServo11
+        {
+            get => _rcServo11;
+            set
+            {
+                if (_rcServo11 == value)
+                    return;
+                _rcServo11 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo12;
+        public RCServoEx RCServo12
+        {
+            get => _rcServo12;
+            set
+            {
+                if (_rcServo12 == value)
+                    return;
+                _rcServo12 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo13;
+        public RCServoEx RCServo13
+        {
+            get => _rcServo13;
+            set
+            {
+                if (_rcServo13 == value)
+                    return;
+                _rcServo13 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo14;
+        public RCServoEx RCServo14
+        {
+            get => _rcServo14;
+            set
+            {
+                if (_rcServo14 == value)
+                    return;
+                _rcServo14 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private RCServoEx _rcServo15;
+        public RCServoEx RCServo15
+        {
+            get => _rcServo15;
+            set
+            {
+                if (_rcServo15 == value)
+                    return;
+                _rcServo15 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Steppers
+
+        private Visibility _steppersVisibility = Visibility.Collapsed;
+        public Visibility SteppersVisibility
+        {
+            get => _steppersVisibility;
+            set
+            {
+                if (_steppersVisibility == value)
+                    return;
+                _steppersVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper0;
+        public StepperEx Stepper0
+        {
+            get => _stepper0;
+            set
+            {
+                if (_stepper0 == value)
+                    return;
+                _stepper0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper1;
+        public StepperEx Stepper1
+        {
+            get => _stepper1;
+            set
+            {
+                if (_stepper1 == value)
+                    return;
+                _stepper1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper2;
+        public StepperEx Stepper2
+        {
+            get => _stepper2;
+            set
+            {
+                if (_stepper2 == value)
+                    return;
+                _stepper2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper3;
+        public StepperEx Stepper3
+        {
+            get => _stepper3;
+            set
+            {
+                if (_stepper3 == value)
+                    return;
+                _stepper3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper4;
+        public StepperEx Stepper4
+        {
+            get => _stepper4;
+            set
+            {
+                if (_stepper4 == value)
+                    return;
+                _stepper4 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper5;
+        public StepperEx Stepper5
+        {
+            get => _stepper5;
+            set
+            {
+                if (_stepper5 == value)
+                    return;
+                _stepper5 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper6;
+        public StepperEx Stepper6
+        {
+            get => _stepper6;
+            set
+            {
+                if (_stepper6 == value)
+                    return;
+                _stepper6 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper7;
+        public StepperEx Stepper7
+        {
+            get => _stepper7;
+            set
+            {
+                if (_stepper7 == value)
+                    return;
+                _stepper7 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper8;
+        public StepperEx Stepper8
+        {
+            get => _stepper8;
+            set
+            {
+                if (_stepper8 == value)
+                    return;
+                _stepper8 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper9;
+        public StepperEx Stepper9
+        {
+            get => _stepper9;
+            set
+            {
+                if (_stepper9 == value)
+                    return;
+                _stepper9 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper10;
+        public StepperEx Stepper10
+        {
+            get => _stepper10;
+            set
+            {
+                if (_stepper10 == value)
+                    return;
+                _stepper10 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper11;
+        public StepperEx Stepper11
+        {
+            get => _stepper11;
+            set
+            {
+                if (_stepper11 == value)
+                    return;
+                _stepper11 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper12;
+        public StepperEx Stepper12
+        {
+            get => _stepper12;
+            set
+            {
+                if (_stepper12 == value)
+                    return;
+                _stepper12 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper13;
+        public StepperEx Stepper13
+        {
+            get => _stepper13;
+            set
+            {
+                if (_stepper13 == value)
+                    return;
+                _stepper13 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper14;
+        public StepperEx Stepper14
+        {
+            get => _stepper14;
+            set
+            {
+                if (_stepper14 == value)
+                    return;
+                _stepper14 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx _stepper15;
+        public StepperEx Stepper15
+        {
+            get => _stepper15;
+            set
+            {
+                if (_stepper15 == value)
+                    return;
+                _stepper15 = value;
                 OnPropertyChanged();
             }
         }
@@ -2301,6 +3024,913 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #endregion
+
+        //#region OpenRCServo Command
+
+        //public DelegateCommand<SerialHubPortChannel?> OpenRCServoCommand { get; set; }
+        //// If displaying UserControl
+        //// public static WindowHost _OpenRCServoHost = null;
+
+        //// If using CommandParameter, figure out TYPE here
+        ////public TYPE OpenRCServoCommandParameter;
+
+        //public string OpenRCServoContent { get; set; } = "Open";
+        //public string OpenRCServoToolTip { get; set; } = "Open RCServo";
+
+        //// Can get fancy and use Resources
+        ////public string OpenRCServoContent { get; set; } = "ViewName_OpenRCServoContent";
+        ////public string OpenRCServoToolTip { get; set; } = "ViewName_OpenRCServoContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_OpenRCServoContent">OpenRCServo</system:String>
+        ////    <system:String x:Key="ViewName_OpenRCServoContentToolTip">OpenRCServo ToolTip</system:String>  
+
+        //// If using CommandParameter, figure out TYPE here
+
+
+
+        //public async void OpenRCServo(SerialHubPortChannel? serialHubPortChannel)
+        ////public void OpenRCServo()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+
+        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+        //    Message = $"Cool, you called OpenRCServo on " +
+        //         $"serialHubPortChannel:{shpc.SerialNumber}" +
+        //         $":{shpc.HubPort}:{shpc.Channel}";
+        //    PublishStatusMessage(Message);
+
+        //    RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+
+        //    switch (shpc.Channel)
+        //    {
+        //        case 0:
+        //            await OpenRCServo(RCServo0);
+        //            break;
+
+        //        case 1:
+        //            await OpenRCServo(RCServo1);
+        //            break;
+
+        //        case 2:
+        //            await OpenRCServo(RCServo2);
+        //            break;
+
+        //        case 3:
+        //            await OpenRCServo(RCServo3);
+        //            break;
+
+        //        case 4:
+        //            await OpenRCServo(RCServo4);
+        //            break;
+
+        //        case 5:
+        //            await OpenRCServo(RCServo5);
+        //            break;
+
+        //        case 6:
+        //            await OpenRCServo(RCServo6);
+        //            break;
+
+        //        case 7:
+        //            await OpenRCServo(RCServo7);
+        //            break;
+
+        //        case 8:
+        //            await OpenRCServo(RCServo8);
+        //            break;
+
+        //        case 9:
+        //            await OpenRCServo(RCServo9);
+        //            break;
+
+        //        case 10:
+        //            await OpenRCServo(RCServo10);
+        //            break;
+
+        //        case 11:
+        //            await OpenRCServo(RCServo11);
+        //            break;
+
+        //        case 12:
+        //            await OpenRCServo(RCServo12);
+        //            break;
+
+        //        case 13:
+        //            await OpenRCServo(RCServo13);
+        //            break;
+
+        //        case 14:
+        //            await OpenRCServo(RCServo14);
+        //            break;
+
+        //        case 15:
+        //            await OpenRCServo(RCServo15);
+        //            break;
+
+        //    }
+
+        //    OpenRCServoCommand.RaiseCanExecuteChanged();
+        //    CloseRCServoCommand.RaiseCanExecuteChanged();
+
+        //    // If launching a UserControl
+
+        //    // if (_OpenRCServoHost is null) _OpenRCServoHost = new WindowHost();
+        //    // var userControl = new USERCONTROL();
+
+        //    // _loggingConfigurationHost.DisplayUserControlInHost(
+        //    //     "TITLE GOES HERE",
+        //    //     //Common.DEFAULT_WINDOW_WIDTH,
+        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
+        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+        //    //     ShowWindowMode.Modeless_Show,
+        //    //     userControl);
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<OpenRCServoEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<OpenRCServoEvent>().Publish(
+        //    //      new OpenRCServoEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Four - Put this in PrismEvents
+
+        //    // public class OpenRCServoEvent : PubSubEvent { }
+
+        //    // End Cut Four
+
+        //    // Start Cut Five - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<OpenRCServoEvent>().Subscribe(OpenRCServo);
+
+        //    // End Cut Five
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //private async Task OpenRCServo(RCServoEx rcServo)
+        //{
+        //    ConfigureInitialLogging(rcServo);
+
+        //    if (rcServo.IsOpen is false)
+        //    {
+        //        await Task.Run(() => rcServo.Open(10000));
+        //    }
+        //    else
+        //    {
+        //        if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{rcServo} already open", Common.LOG_CATEGORY);
+        //    }
+        //}
+
+        //void ConfigureInitialLogging(RCServoEx rcServo)
+        //{
+        //    rcServo.LogPhidgetEvents = LogPhidgetEvents;
+        //    rcServo.LogErrorEvents = LogErrorEvents;
+        //    rcServo.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+        //    //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
+        //    rcServo.LogPositionChangeEvents = LogPositionChangeEvents;
+        //    rcServo.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+        //    rcServo.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+
+        //    rcServo.LogDeviceChannelSequence = LogDeviceChannelSequence;
+        //    rcServo.LogChannelAction = LogChannelAction;
+        //    rcServo.LogActionVerification = LogActionVerification;
+        //}
+
+        //// If using CommandParameter, figure out TYPE and fix above
+        //public Boolean OpenRCServoCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        ////public Boolean OpenRCServoCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+
+        //    if (SelectedVINTHubPhidget is null) return false;
+
+        //    if (serialHubPortChannel is null) return false;
+
+        //    RCServoEx? host;
+
+        //    if (!Common.PhidgetDeviceLibrary.RCServoChannels
+        //        .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+        //    {
+        //        return true;
+        //    }
+
+        //    if (host.Attached)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+
+        //#endregion
+
+        //#region CloseRCServo Command
+
+        //public DelegateCommand<SerialHubPortChannel?> CloseRCServoCommand { get; set; }
+        //// If displaying UserControl
+        //// public static WindowHost _CloseRCServoHost = null;
+
+        //// If using CommandParameter, figure out TYPE here
+        ////public TYPE CloseRCServoCommandParameter;
+
+        //public string CloseRCServoContent { get; set; } = "Close";
+        //public string CloseRCServoToolTip { get; set; } = "Close RCServo";
+
+        //// Can get fancy and use Resources
+        ////public string CloseRCServoContent { get; set; } = "ViewName_CloseRCServoContent";
+        ////public string CloseRCServoToolTip { get; set; } = "ViewName_CloseRCServoContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_CloseRCServoContent">CloseRCServo</system:String>
+        ////    <system:String x:Key="ViewName_CloseRCServoContentToolTip">CloseRCServo ToolTip</system:String>  
+
+        //// If using CommandParameter, figure out TYPE here
+        //public async void CloseRCServo(SerialHubPortChannel? serialHubPortChannel)
+        ////public void CloseRCServo()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+
+        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+        //    Message = $"Cool, you called CloseRCServo on " +
+        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
+        //        $":{shpc.HubPort}:{shpc.Channel}";
+
+        //    PublishStatusMessage(Message);
+
+        //    await Task.Run(() => Common.PhidgetDeviceLibrary.RCServoChannels[shpc].Close());
+
+        //    OpenRCServoCommand.RaiseCanExecuteChanged();
+        //    CloseRCServoCommand.RaiseCanExecuteChanged();
+
+        //    // If launching a UserControl
+
+        //    // if (_CloseRCServoHost is null) _CloseRCServoHost = new WindowHost();
+        //    // var userControl = new USERCONTROL();
+
+        //    // _loggingConfigurationHost.DisplayUserControlInHost(
+        //    //     "TITLE GOES HERE",
+        //    //     //Common.DEFAULT_WINDOW_WIDTH,
+        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
+        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+        //    //     ShowWindowMode.Modeless_Show,
+        //    //     userControl);
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<CloseRCServoEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<CloseRCServoEvent>().Publish(
+        //    //      new CloseRCServoEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Four - Put this in PrismEvents
+
+        //    // public class CloseRCServoEvent : PubSubEvent { }
+
+        //    // End Cut Four
+
+        //    // Start Cut Five - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<CloseRCServoEvent>().Subscribe(CloseRCServo);
+
+        //    // End Cut Five
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //public Boolean CloseRCServoCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+
+        //    if (serialHubPortChannel is null) return false;
+
+        //    RCServoEx? host;
+
+        //    if (!Common.PhidgetDeviceLibrary.RCServoChannels
+        //        .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+        //    {
+        //        return false;
+        //    }
+
+        //    if (host.IsOpen)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //#endregion
+
+        //#region SetPositionRange Command
+
+        //public DelegateCommand<string> SetPositionRangeCommand { get; set; }
+        ////public TYPE SetPositionRangeCommandParameter;
+        //public string SetPositionRangeContent { get; set; } = "SetPositionRange";
+        //public string SetPositionRangeToolTip { get; set; } = "SetPositionRange ToolTip";
+
+        //// Can get fancy and use Resources
+        ////public string SetPositionRangeContent { get; set; } = "ViewName_SetPositionRangeContent";
+        ////public string SetPositionRangeToolTip { get; set; } = "ViewName_SetPositionRangeContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_SetPositionRangeContent">SetPositionRange</system:String>
+        ////    <system:String x:Key="ViewName_SetPositionRangeContentToolTip">SetPositionRange ToolTip</system:String>  
+
+        //public void SetPositionRange(string servoID)
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(SetPositionRange) Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+        //    Message = "Cool, you called SetPositionRange";
+        //    PublishStatusMessage(Message);
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<SetPositionRangeEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<SetPositionRangeEvent>().Publish(
+        //    //      new SetPositionRangeEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Three - Put this in PrismEvents
+
+        //    // public class SetPositionRangeEvent : PubSubEvent { }
+
+        //    // End Cut Three
+
+        //    // Start Cut Four - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<SetPositionRangeEvent>().Subscribe(SetPositionRange);
+
+        //    // End Cut Four
+
+        //    // FIX(crhodes)
+        //    // 
+        //    //AdvancedServoServoCollection servos = ActiveAdvancedServo.AdvancedServo.servos;
+        //    //Phidget22.AdvancedServoServo servo = null;
+
+        //    //Int32 servoIndex = Int32.Parse(servoID);
+        //    //servo = servos[servoIndex];
+
+        //    // NOTE(crhodes)
+        //    // Should be safe to get Acceleration, Velocity, and Position here
+        //    // Device is Engaged
+
+        //    Double? halfRange;
+        //    Double? tenPercent;
+
+        //    try
+        //    {
+        //        // FIX(crhodes)
+        //        // 
+        //        //AdvancedServoProperties[servoIndex].PositionMin =
+        //        //    AdvancedServoProperties[servoIndex].Position - AdvancedServoProperties[servoIndex].PositionRange;
+
+        //        //AdvancedServoProperties[servoIndex].PositionMax =
+        //        //    AdvancedServoProperties[servoIndex].Position + AdvancedServoProperties[servoIndex].PositionRange;
+
+        //        //switch (servoIndex)
+        //        //{
+
+        //        //    case 0:
+        //        //        // TODO(crhodes)
+        //        //        // Make this fancier.  Take the smaller of difference
+        //        //        // between Min and Current and Max and Current
+        //        //        // and then divide that by 10
+
+        //        //        AdvancedServoProperties[0].PositionMin = AdvancedServoProperties[0].Position - AdvancedServoProperties[0].PositionRange;
+
+        //        //        AdvancedServoProperties[0].PositionMax = AdvancedServoProperties[0].Position + AdvancedServoProperties[0].PositionRange;
+
+        //        //        //PositionMin_S0 = Position_S0 - PositionRange_S0;
+
+        //        //        //PositionMax_S0 = Position_S0 + PositionRange_S0;
+
+        //        //        break;
+
+        //        //    case 1:
+        //        //        PositionMin_S1 = Position_S1 - PositionRange_S1;
+
+        //        //        PositionMax_S1 = Position_S1 + PositionRange_S1;
+
+        //        //        break;
+
+        //        //    case 2:
+        //        //        PositionMin_S2 = Position_S2 - PositionRange_S2;
+
+        //        //        PositionMax_S2 = Position_S2 + PositionRange_S2;
+
+        //        //        break;
+
+        //        //    case 3:
+        //        //        PositionMin_S3 = Position_S3 - PositionRange_S3;
+
+        //        //        PositionMax_S3 = Position_S3 + PositionRange_S3;
+
+        //        //        break;
+
+        //        //    case 4:
+        //        //        PositionMin_S4 = Position_S4 - PositionRange_S4;
+
+        //        //        PositionMax_S4 = Position_S4 + PositionRange_S4;
+
+        //        //        break;
+
+        //        //    case 5:
+        //        //        PositionMin_S5 = Position_S5 - PositionRange_S5;
+
+        //        //        PositionMax_S5 = Position_S5 + PositionRange_S5;
+
+        //        //        break;
+
+        //        //    case 6:
+        //        //        PositionMin_S6 = Position_S6 - PositionRange_S6;
+
+        //        //        PositionMax_S6 = Position_S6 + PositionRange_S6;
+
+        //        //        break;
+
+        //        //    case 7:
+        //        //        PositionMin_S7 = Position_S7 - PositionRange_S7;
+
+        //        //        PositionMax_S7 = Position_S7 + PositionRange_S7;
+
+        //        //        break;
+
+        //        //    default:
+        //        //        Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+        //        //        break;
+
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //    }
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SetPositionRange) Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //public Boolean SetPositionRangeCanExecute(string value)
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    return true;
+        //    //if (DeviceAttached is not null)
+        //    //    return (Boolean)DeviceAttached;
+        //    //else
+        //    //    return false;
+        //}
+
+        //#endregion
+
+        //#region OpenStepper Command
+
+        //public DelegateCommand<SerialHubPortChannel?> OpenStepperCommand { get; set; }
+        //// If displaying UserControl
+        //// public static WindowHost _OpenStepperHost = null;
+
+        //// If using CommandParameter, figure out TYPE here
+        ////public TYPE OpenStepperCommandParameter;
+
+        //public string OpenStepperContent { get; set; } = "Open";
+        //public string OpenStepperToolTip { get; set; } = "Open Stepper";
+
+        //// Can get fancy and use Resources
+        ////public string OpenStepperContent { get; set; } = "ViewName_OpenStepperContent";
+        ////public string OpenStepperToolTip { get; set; } = "ViewName_OpenStepperContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
+        ////    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
+
+        //// If using CommandParameter, figure out TYPE here
+        //public async void OpenStepper(SerialHubPortChannel? serialHubPortChannel)
+        ////public void OpenStepper()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+
+        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+        //    Message = $"Cool, you called OpenStepper on " +
+        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
+        //        $":{shpc.HubPort}:{shpc.Channel}";
+        //    PublishStatusMessage(Message);
+
+        //    switch (shpc.Channel)
+        //    {
+        //        case 0:
+        //            await OpenStepper(Stepper0);
+        //            break;
+
+        //        case 1:
+        //            await OpenStepper(Stepper1);
+        //            break;
+
+        //        case 2:
+        //            await OpenStepper(Stepper2);
+        //            break;
+
+        //        case 3:
+        //            await OpenStepper(Stepper0);
+        //            break;
+
+        //            // TODO(crhodes)
+        //            // Add more cases if a board supports more channels
+        //    }
+
+        //    OpenStepperCommand.RaiseCanExecuteChanged();
+        //    CloseStepperCommand.RaiseCanExecuteChanged();
+
+        //    // If launching a UserControl
+
+        //    // if (_OpenStepperHost is null) _OpenStepperHost = new WindowHost();
+        //    // var userControl = new USERCONTROL();
+
+        //    // _loggingConfigurationHost.DisplayUserControlInHost(
+        //    //     "TITLE GOES HERE",
+        //    //     //Common.DEFAULT_WINDOW_WIDTH,
+        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
+        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+        //    //     ShowWindowMode.Modeless_Show,
+        //    //     userControl);
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<OpenStepperEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<OpenStepperEvent>().Publish(
+        //    //      new OpenStepperEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Four - Put this in PrismEvents
+
+        //    // public class OpenStepperEvent : PubSubEvent { }
+
+        //    // End Cut Four
+
+        //    // Start Cut Five - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<OpenStepperEvent>().Subscribe(OpenStepper);
+
+        //    // End Cut Five
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //private async Task OpenStepper(StepperEx stepper)
+        //{
+        //    ConfigureInitialLogging(stepper);
+
+        //    if (stepper.IsOpen is false)
+        //    {
+        //        await Task.Run(() => stepper.Open(10000));
+        //    }
+        //    else
+        //    {
+        //        if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{stepper} already open", Common.LOG_CATEGORY);
+        //    }
+        //}
+
+        //void ConfigureInitialLogging(StepperEx stepper)
+        //{
+        //    stepper.LogPhidgetEvents = LogPhidgetEvents;
+        //    stepper.LogErrorEvents = LogErrorEvents;
+        //    stepper.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+        //    stepper.LogPositionChangeEvents = LogPositionChangeEvents;
+        //    stepper.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+        //    stepper.LogStoppedEvents = LogStoppedEvents;
+
+        //    stepper.LogDeviceChannelSequence = LogDeviceChannelSequence;
+        //    stepper.LogChannelAction = LogChannelAction;
+        //    stepper.LogActionVerification = LogActionVerification;
+        //}
+
+        //// If using CommandParameter, figure out TYPE and fix above
+        //public Boolean OpenStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        ////public Boolean OpenStepperCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+
+        //    if (SelectedVINTHubPhidget is null) return false;
+
+        //    if (serialHubPortChannel is null) return false;
+
+        //    StepperEx? host;
+
+        //    if (!Common.PhidgetDeviceLibrary.StepperChannels
+        //            .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+        //    {
+        //        return true;
+        //    }
+
+        //    if (host.IsOpen)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+
+        //#endregion
+
+        //#region CloseStepper Command
+
+        //public DelegateCommand<SerialHubPortChannel?> CloseStepperCommand { get; set; }
+        //// If displaying UserControl
+        //// public static WindowHost _CloseStepperHost = null;
+
+        //// If using CommandParameter, figure out TYPE here
+        ////public TYPE CloseStepperCommandParameter;
+
+        //public string CloseStepperContent { get; set; } = "Close";
+        //public string CloseStepperToolTip { get; set; } = "Close Stepper";
+
+        //// Can get fancy and use Resources
+        ////public string CloseStepperContent { get; set; } = "ViewName_CloseStepperContent";
+        ////public string CloseStepperToolTip { get; set; } = "ViewName_CloseStepperContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_CloseStepperContent">CloseStepper</system:String>
+        ////    <system:String x:Key="ViewName_CloseStepperContentToolTip">CloseStepper ToolTip</system:String>  
+
+        //// If using CommandParameter, figure out TYPE here
+        //public async void CloseStepper(SerialHubPortChannel? serialHubPortChannel)
+        ////public void CloseStepper()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+
+        //    SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+
+        //    Message = $"Cool, you called CloseStepper on " +
+        //        $"serialHubPortChannel:{shpc.SerialNumber}" +
+        //        $":{shpc.HubPort}:{shpc.Channel}";
+
+        //    PublishStatusMessage(Message);
+
+        //    await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[shpc].Close());
+
+        //    OpenStepperCommand.RaiseCanExecuteChanged();
+        //    CloseStepperCommand.RaiseCanExecuteChanged();
+
+        //    // If launching a UserControl
+
+        //    // if (_CloseStepperHost is null) _CloseStepperHost = new WindowHost();
+        //    // var userControl = new USERCONTROL();
+
+        //    // _loggingConfigurationHost.DisplayUserControlInHost(
+        //    //     "TITLE GOES HERE",
+        //    //     //Common.DEFAULT_WINDOW_WIDTH,
+        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
+        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+        //    //     ShowWindowMode.Modeless_Show,
+        //    //     userControl);
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<CloseStepperEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<CloseStepperEvent>().Publish(
+        //    //      new CloseStepperEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Four - Put this in PrismEvents
+
+        //    // public class CloseStepperEvent : PubSubEvent { }
+
+        //    // End Cut Four
+
+        //    // Start Cut Five - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<CloseStepperEvent>().Subscribe(CloseStepper);
+
+        //    // End Cut Five
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //// If using CommandParameter, figure out TYPE and fix above
+        //public Boolean CloseStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        ////public Boolean CloseStepperCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+
+        //    if (serialHubPortChannel is null) return false;
+
+        //    StepperEx? host;
+
+        //    if (!Common.PhidgetDeviceLibrary.StepperChannels
+        //        .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+
+        //    if (host.IsOpen)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //#endregion
+
+        //#region ZeroCurrentPosition Command
+
+        //// TODO(crhodes)
+        //// I think this belongs in StepperPositionControl
+        //// like the stuff in RCServoTargetPositionControl
+
+        ////public DelegateCommand ZeroCurrentPositionCommand { get; set; }
+        //// If using CommandParameter, figure out TYPE here and above
+        //// and remove above declaration
+        //public DelegateCommand<string> ZeroCurrentPositionCommand { get; set; }
+
+        //// If displaying UserControl
+        //// public static WindowHost _ZeroCurrentPositionHost = null;
+
+        //// If using CommandParameter, figure out TYPE here
+        ////public TYPE ZeroCurrentPositionCommandParameter;
+
+        //public string ZeroCurrentPositionContent { get; set; } = "ZeroCurrentPosition";
+        //public string ZeroCurrentPositionToolTip { get; set; } = "ZeroCurrentPosition ToolTip";
+
+        //// Can get fancy and use Resources
+        ////public string ZeroCurrentPositionContent { get; set; } = "ViewName_ZeroCurrentPositionContent";
+        ////public string ZeroCurrentPositionToolTip { get; set; } = "ViewName_ZeroCurrentPositionContentToolTip";
+
+        //// Put these in Resource File
+        ////    <system:String x:Key="ViewName_ZeroCurrentPositionContent">ZeroCurrentPosition</system:String>
+        ////    <system:String x:Key="ViewName_ZeroCurrentPositionContentToolTip">ZeroCurrentPosition ToolTip</system:String>  
+
+        //// If using CommandParameter, figure out TYPE here
+        //public void ZeroCurrentPosition(string stepperNumber)
+        ////public void ZeroCurrentPosition()
+        //{
+        //    Int64 startTicks = 0;
+        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+        //    // TODO(crhodes)
+        //    // Do something amazing.
+
+        //    Message = "Cool, you called ZeroCurrentPosition";
+        //    PublishStatusMessage(Message);
+
+        //    Int32 channel;
+
+        //    if (!Int32.TryParse(stepperNumber, out channel)) throw new Exception($"Cannot parse stepperNumber:{stepperNumber}");
+
+        //    switch (channel)
+        //    {
+        //        case 0:
+        //            Stepper0?.AddPositionOffset(-Stepper0.Position);
+        //            break;
+
+        //        case 1:
+        //            Stepper1.AddPositionOffset(-Stepper1.Position);
+        //            break;
+
+        //        case 2:
+        //            Stepper2.AddPositionOffset(-Stepper2.Position);
+        //            break;
+
+        //        case 3:
+        //            Stepper3.AddPositionOffset(-Stepper3.Position);
+        //            break;
+
+        //            //case 4:
+        //            //    Stepper4.Position = 0;
+        //            //    Stepper4.TargetPosition = 0;
+        //            //    break;
+
+        //            //case 5:
+        //            //    Stepper5.Position = 0;
+        //            //    Stepper5.TargetPosition = 0;
+        //            //    break;
+
+        //            //case 6:
+        //            //    Stepper6.Position = 0;
+        //            //    Stepper6.TargetPosition = 0;
+        //            //    break;
+
+        //            //case 7:
+        //            //    Stepper7.Position = 0;
+        //            //    Stepper7.TargetPosition = 0;
+        //            //    break;
+        //    }
+
+        //    // If launching a UserControl
+
+        //    // if (_ZeroCurrentPositionHost is null) _ZeroCurrentPositionHost = new WindowHost();
+        //    // var userControl = new USERCONTROL();
+
+        //    // _loggingConfigurationHost.DisplayUserControlInHost(
+        //    //     "TITLE GOES HERE",
+        //    //     //Common.DEFAULT_WINDOW_WIDTH,
+        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
+        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
+        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
+        //    //     ShowWindowMode.Modeless_Show,
+        //    //     userControl);
+
+        //    // Uncomment this if you are telling someone else to handle this
+
+        //    // Common.EventAggregator.GetEvent<ZeroCurrentPositionEvent>().Publish();
+
+        //    // May want EventArgs
+
+        //    //  EventAggregator.GetEvent<ZeroCurrentPositionEvent>().Publish(
+        //    //      new ZeroCurrentPositionEventArgs()
+        //    //      {
+        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+        //    //            Process = _contextMainViewModel.Context.SelectedProcess
+        //    //      });
+
+        //    // Start Cut Four - Put this in PrismEvents
+
+        //    // public class ZeroCurrentPositionEvent : PubSubEvent { }
+
+        //    // End Cut Four
+
+        //    // Start Cut Five - Put this in places that listen for event
+
+        //    //Common.EventAggregator.GetEvent<ZeroCurrentPositionEvent>().Subscribe(ZeroCurrentPosition);
+
+        //    // End Cut Five
+
+        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        //}
+
+        //// If using CommandParameter, figure out TYPE and fix above
+        //public Boolean ZeroCurrentPositionCanExecute(string stepperNumber)
+        ////public Boolean ZeroCurrentPositionCanExecute()
+        //{
+        //    // TODO(crhodes)
+        //    // Add any before button is enabled logic.
+        //    return true;
+        //}
+
+        //#endregion
 
         #region Voltage Inputs
 

@@ -85,6 +85,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             lgDigitalOutputs.IsCollapsed = true;
             lgVoltageInputs.IsCollapsed = true;
 
+            //lgRCServos.IsCollapsed = true;
+            //lgSteppers.IsCollapsed = true;
+
             // Establish any additional DataContext(s), e.g. to things held in this View
 
             spDeveloperInfo.DataContext = this;

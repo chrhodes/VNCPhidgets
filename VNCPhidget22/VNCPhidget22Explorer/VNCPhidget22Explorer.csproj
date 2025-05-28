@@ -7,7 +7,7 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix>indevelopment-2025</VersionSuffix>
-    <FileVersion>2025.05.24</FileVersion>
+    <FileVersion>2025.05.28</FileVersion>
     <Description>Phidget22 Explorer</Description>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>

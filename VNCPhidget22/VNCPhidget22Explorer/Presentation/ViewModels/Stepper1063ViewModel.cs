@@ -72,7 +72,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
             StepperPhidgets = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices
-                .Where(x => x.DeviceClass == "Stepper")
+                .Where(x => x.ChannelClass == "Stepper")
                 .DistinctBy(x => x.DeviceSerialNumber)
                 .Select(x => x.DeviceSerialNumber);
 
@@ -81,25 +81,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         void LoadPhidgets()
         {
-            LoadSteppers();
+            var steppers = Common.PhidgetDeviceLibrary.StepperChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedStepperPhidget);
+
+            LoadSteppers(steppers);
 
             // TODO(crhodes)
             // Figure out what else is available on phidget
             // like Digital I/O and Current
         }
 
-        private void LoadSteppers()
+        private void LoadSteppers(IEnumerable<KeyValuePair<SerialHubPortChannel, StepperEx>> steppers)
         {
-            var steppers = Common.PhidgetDeviceLibrary.StepperChannels
-                            .Where(kv => kv.Key.SerialNumber == SelectedStepperPhidget);
-
             // NOTE(crhodes)
             // May be able to go back to Stepper[]
+            // Check if INPC get's messed up
 
             foreach (var stepper in steppers)
             {
                 switch (stepper.Key.Channel)
                 {
+                    // TODO(crhodes)
+                    // Add more cases if a board supports more channels
+                    // Not sure any board supports more than one
+
                     case 0:
                         Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
                         break;
@@ -116,8 +121,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
                         break;
 
-                        // TODO(crhodes)
-                        // Add more cases if a board supports more channels
+
                 }
             }
         }
