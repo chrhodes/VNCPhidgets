@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows;
 
+using DevExpress.Xpf.Grid;
+
 using Prism.Services.Dialogs;
 
 using VNC;
@@ -79,6 +81,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
             ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
             ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
 
+            TargetGrid = grdResults;
+
             lgChannels.IsCollapsed = true;
 
             // TODO(crhodes)
@@ -112,8 +116,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (none)
+        #region Fields and Properties
 
+        private GridControl _targetGrid;
+
+        public GridControl TargetGrid
+        {
+            get => _targetGrid;
+            set => _targetGrid = value;
+        }
 
         #endregion
 

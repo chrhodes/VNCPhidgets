@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+using DevExpress.DocumentServices.ServiceModel.DataContracts;
+using DevExpress.Xpf.Grid;
+
 using Prism.Commands;
 using Prism.Events;
 using Prism.Services.Dialogs;
@@ -15,6 +18,8 @@ using VNC.Core.Mvvm;
 using VNC.Core.Services;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Players;
+
+using VNCPhidget22Explorer.Core.Events;
 
 using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
@@ -51,7 +56,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Initialize EventHandlers, Commands, etc.
 
             SayHelloCommand = new DelegateCommand(
-                SayHello, SayHelloCanExecute);
+            SayHello, SayHelloCanExecute);
+
+            ExportGridCommand = new DelegateCommand<GridControl>(ExportGrid, ExportGridCanExecute);
+            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
             Message = "PhidgetDeviceLibraryViewModel says hello";
             PublishStatusMessage(Message);
@@ -87,12 +95,29 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _phidgetDeviceLibrary = value;
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        private string _outputFileNameAndPath;
+        public string OutputFileNameAndPath
+        {
+            get => _outputFileNameAndPath;
+            set
+            {
+                if (_outputFileNameAndPath == value)
+                    return;
+                _outputFileNameAndPath = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
         #region Event Handlers (none)
 
+        public virtual void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-TYPE";
+        }
 
         #endregion
 
@@ -102,7 +127,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
-
 
         #region SayHello Command
 
@@ -125,6 +149,54 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
+
+        #region ExportGrid Command
+
+        public DelegateCommand<GridControl> ExportGridCommand { get; set; }
+
+        public string ExportGridContent { get; set; } = "ExportGrid";
+        public string ExportGridToolTip { get; set; } = "ExportGrid ToolTip";
+
+        // Can get fancy and use Resources
+        //public string ExportGridContent { get; set; } = "ViewName_ExportGridContent";
+        //public string ExportGridToolTip { get; set; } = "ViewName_ExportGridContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_ExportGridContent">ExportGrid</system:String>
+        //    <system:String x:Key="ViewName_ExportGridContentToolTip">ExportGrid ToolTip</system:String>
+
+        public void ExportGrid(GridControl gridControl)
+        {
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called ExportGrid";
+            PublishStatusMessage(Message);
+
+            var dialogParameters = new DialogParameters();
+
+            dialogParameters.Add("message", $"Message)");
+            dialogParameters.Add("title", "Exception");
+            dialogParameters.Add("gridcontrol", gridControl);
+
+            // TODO(crhodes)
+            // Add some more context to name, e.g. Org, Team Project, ???
+
+            dialogParameters.Add("outputfilenameandpath", OutputFileNameAndPath);
+
+            DialogService.Show("ExportGridDialog", dialogParameters, r =>
+            {
+            });
+        }
+
+        public bool ExportGridCanExecute(GridControl gridControl)
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            return true;
+        }
+
+        #endregion ExportGrid Command
+
 
         #endregion
 

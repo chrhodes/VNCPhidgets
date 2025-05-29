@@ -102,7 +102,11 @@
             <dxlc:LayoutGroup x:Name="lgPhidgets" View="GroupBox" Header="Phidget Manager Attached Phidgets" Orientation="Vertical"
                               IsCollapsible="True" IsCollapsed="False"  >
 
-                <dxg:GridControl ItemsSource="{Binding PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices}"  >
+                <views:CommonGridHeader x:Name="commonGridHeader" VerticalAlignment="Top"
+                    Count="{Binding PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices.Count, Mode=OneWay}"/>
+
+                <dxg:GridControl x:Name="grdResults" 
+                                 ItemsSource="{Binding PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices}"  >
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Binding="{Binding HostComputer}" Header="HostComputer" ReadOnly="True" />
                         <dxg:GridColumn Binding="{Binding DeviceSerialNumber}" Header="SerialNumber" ReadOnly="True" Width="100" />                                                

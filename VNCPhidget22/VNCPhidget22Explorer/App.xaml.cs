@@ -128,6 +128,7 @@ namespace VNCPhidget22Explorer
 
             containerRegistry.RegisterDialog<NotificationDialog, NotificationDialogViewModel>("NotificationDialog");
             containerRegistry.RegisterDialog<OkCancelDialog, OkCancelDialogViewModel>("OkCancelDialog");
+            containerRegistry.RegisterDialog<ExportGridDialog, ExportGridDialogViewModel>("ExportGridDialog");
 
             // Add the new UI elements
 
