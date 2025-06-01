@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of DigitalInput actions in sequence
         /// </summary>
-        public DigitalInputAction[] Actions { get; set; }
+        public DigitalInputAction[]? Actions { get; set; }
     }
 }

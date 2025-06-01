@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of MotorPositionController actions in sequence
         /// </summary>
-        public MotorPositionControllerAction[] Actions { get; set; }
+        public MotorPositionControllerAction[]? Actions { get; set; }
     }
 }

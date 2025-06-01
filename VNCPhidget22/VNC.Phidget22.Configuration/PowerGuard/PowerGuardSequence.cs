@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of PowerGuard actions in sequence
         /// </summary>
-        public PowerGuardAction[] Actions { get; set; }
+        public PowerGuardAction[]? Actions { get; set; }
     }
 }

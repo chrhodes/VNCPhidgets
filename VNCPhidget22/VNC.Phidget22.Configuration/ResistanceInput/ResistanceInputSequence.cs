@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of ResistanceInput actions in sequence
         /// </summary>
-        public ResistanceInputAction[] Actions { get; set; }
+        public ResistanceInputAction[]? Actions { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of Spatial actions in sequence
         /// </summary>
-        public SpatialAction[] Actions { get; set; }
+        public SpatialAction[]? Actions { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of LCD actions in sequence
         /// </summary>
-        public LCDAction[] Actions { get; set; }
+        public LCDAction[]? Actions { get; set; }
     }
 }

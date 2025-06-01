@@ -18,6 +18,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of VoltageOutput actions in sequence
         /// </summary>
-        public VoltageRatioInputAction[] Actions { get; set; }
+        public VoltageRatioInputAction[]? Actions { get; set; }
     }
 }

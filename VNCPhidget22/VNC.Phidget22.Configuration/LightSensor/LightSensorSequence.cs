@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of LightSensor actions in sequence
         /// </summary>
-        public LightSensorAction[] Actions { get; set; }
+        public LightSensorAction[]? Actions { get; set; }
     }
 }

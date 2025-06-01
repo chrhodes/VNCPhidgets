@@ -23,15 +23,15 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public Double? RescaleFactor { get; set; }
 
-        /// <summary>
-        /// Open RCServo (optional)
-        /// </summary>
-        public Boolean? Open { get; set; }
+        ///// <summary>
+        ///// Open RCServo (optional)
+        ///// </summary>
+        //public Boolean? Open { get; set; }
 
-        /// <summary>
-        /// Close RCServo (optional)
-        /// </summary>
-        public Boolean? Close { get; set; }
+        ///// <summary>
+        ///// Close RCServo (optional)
+        ///// </summary>
+        //public Boolean? Close { get; set; }
 
         /// <summary>
         /// Engage Stepper (optional)

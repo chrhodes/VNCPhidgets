@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of SoundSensor actions in sequence
         /// </summary>
-        public SoundSensorAction[] Actions { get; set; }
+        public SoundSensorAction[]? Actions { get; set; }
     }
 }

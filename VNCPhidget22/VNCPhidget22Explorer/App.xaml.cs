@@ -119,7 +119,7 @@ namespace VNCPhidget22Explorer
             // Think this is where we switch to using the Generic Repository.
             // But how to avoid pulling knowledge of EF Context in.  Maybe Service hides details
             // of
-            //containerRegistry.RegisterSingleton<IAddressDataService, AddressDataService>();
+            // containerRegistry.RegisterSingleton<IAddressDataService, AddressDataService>();
             // AddressDataService2 has a constructor that takes a CustomPoolAndSpaDbContext.
 
             //containerRegistry.RegisterSingleton<ICatLookupDataService, CatLookupDataService>();
@@ -136,7 +136,7 @@ namespace VNCPhidget22Explorer
             // Most of what would typically appear here is in VNCPhidgetsExploerModule
             //
             // Maybe the Ribbon, Main, StatusBar should be moved back here
-            // and the App Specific stuff left in VNCPhidgetsExploerModule
+            // and the App Specific stuff left in VNCPhidgetsExplorerModule
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

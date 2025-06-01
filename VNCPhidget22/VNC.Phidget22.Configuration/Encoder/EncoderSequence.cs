@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of Encoder actions in sequence
         /// </summary>
-        public EncoderAction[] Actions { get; set; }
+        public EncoderAction[]? Actions { get; set; }
     }
 }

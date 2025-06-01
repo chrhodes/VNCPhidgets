@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of DCMotor actions in sequence
         /// </summary>
-        public DCMotorAction[] Actions { get; set; }
+        public DCMotorAction[]? Actions { get; set; }
     }
 }

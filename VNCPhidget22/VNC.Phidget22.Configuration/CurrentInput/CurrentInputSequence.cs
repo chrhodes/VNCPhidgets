@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of CurrentInput actions in sequence
         /// </summary>
-        public CurrentInputAction[] Actions { get; set; }
+        public CurrentInputAction[]? Actions { get; set; }
     }
 }

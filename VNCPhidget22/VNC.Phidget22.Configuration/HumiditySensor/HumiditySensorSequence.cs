@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of HumiditySensor actions in sequence
         /// </summary>
-        public HumiditySensorAction[] Actions { get; set; }
+        public HumiditySensorAction[]? Actions { get; set; }
     }
 }

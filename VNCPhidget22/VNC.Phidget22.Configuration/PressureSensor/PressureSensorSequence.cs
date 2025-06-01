@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of PressureSensor actions in sequence
         /// </summary>
-        public PressureSensorAction[] Actions { get; set; }
+        public PressureSensorAction[]? Actions { get; set; }
     }
 }

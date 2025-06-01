@@ -15,6 +15,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of BLDCMotor actions in sequence
         /// </summary>
-        public BLDCMotorAction[] Actions { get; set; }
+        public BLDCMotorAction[]? Actions { get; set; }
     }
 }

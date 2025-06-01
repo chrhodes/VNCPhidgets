@@ -50,7 +50,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(BLDCMotorConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+            if (Core.Common.VNCLogging.DeviceInitialize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
                 $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = configuration.DeviceSerialNumber;
@@ -62,7 +62,8 @@ namespace VNC.Phidget22.Ex
             {
                 SerialNumber = DeviceSerialNumber,
                 HubPort = HubPort,
-                Channel = Channel
+                Channel = Channel,
+                IsHubPortDevice = IsHubPortDevice
             };
 
             IsRemote = true;
@@ -89,7 +90,7 @@ namespace VNC.Phidget22.Ex
             // TODO(crhodes)
             // Add any device specific events
 
-            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitialize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -170,7 +171,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Boolean _attached;
-        public Boolean Attached
+        public new Boolean Attached
         {
             get => _attached;
             set
@@ -430,7 +431,7 @@ namespace VNC.Phidget22.Ex
         /// <summary>
         /// Gather properties from Open Phidget Device
         /// </summary>
-        public new void RefreshProperties()
+        public void RefreshProperties()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
@@ -691,10 +692,10 @@ namespace VNC.Phidget22.Ex
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            long startTicks = 0;
 #if LOGGING
+            long startTicks = 0;
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

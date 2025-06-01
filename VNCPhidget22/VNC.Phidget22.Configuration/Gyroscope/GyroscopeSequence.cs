@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of Gyroscope actions in sequence
         /// </summary>
-        public GyroscopeAction[] Actions { get; set; }
+        public GyroscopeAction[]? Actions { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of TemperatureSensor actions in sequence
         /// </summary>
-        public TemperatureSensorAction[] Actions { get; set; }
+        public TemperatureSensorAction[]? Actions { get; set; }
     }
 }

@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of PHSensor actions in sequence
         /// </summary>
-        public PHSensorAction[] Actions { get; set; }
+        public PHSensorAction[]? Actions { get; set; }
     }
 }

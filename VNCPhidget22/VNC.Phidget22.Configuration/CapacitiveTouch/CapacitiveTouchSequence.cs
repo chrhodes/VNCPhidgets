@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of CapacitiveTouch actions in sequence
         /// </summary>
-        public CapacitiveTouchAction[] Actions { get; set; }
+        public CapacitiveTouchAction[]? Actions { get; set; }
     }
 }

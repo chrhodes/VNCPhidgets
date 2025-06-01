@@ -197,6 +197,7 @@ namespace VNC.Phidget22.Configuration
             catch (Exception ex)
             {
                 Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error(ex, Common.LOG_CATEGORY);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
@@ -255,12 +256,14 @@ namespace VNC.Phidget22.Configuration
                     catch (ArgumentException ax)
                     {
                         Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
+                        Log.Error($"{ax}", Common.LOG_CATEGORY);
                     }
                 }
             }
             catch (FileNotFoundException fnfex)
             {
                 Log.Error($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -297,12 +300,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalInputConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -342,12 +347,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -387,12 +394,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -432,12 +441,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -477,12 +488,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }                        
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageInputConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -522,12 +535,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageRatioInputConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -567,12 +582,14 @@ namespace VNC.Phidget22.Configuration
                         catch (ArgumentException ax)
                         {
                             Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
                 catch (FileNotFoundException fnfex)
                 {
                     Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageOutputConfigFiles()", Common.LOG_CATEGORY);
+                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -811,15 +828,16 @@ namespace VNC.Phidget22.Configuration
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            long startTicks = 0;
+
 #if LOGGING
-                    if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEW_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
+            long startTicks = 0;
+            if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEW_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
             // This is the new CompilerServices attribute!
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 #if LOGGING
-                    if (Common.VNCCoreLogging.INPC) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCCoreLogging.INPC) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
 #endif
         }
 

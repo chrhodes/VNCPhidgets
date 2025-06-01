@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of Accelerometer actions in sequence
         /// </summary>
-        public AccelerometerAction[] Actions { get; set; }
+        public AccelerometerAction[]? Actions { get; set; }
     }
 }

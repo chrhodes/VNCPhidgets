@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of Magnetometer actions in sequence
         /// </summary>
-        public MagnetometerAction[] Actions { get; set; }
+        public MagnetometerAction[]? Actions { get; set; }
     }
 }

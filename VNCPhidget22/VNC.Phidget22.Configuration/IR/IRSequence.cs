@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of IR actions in sequence
         /// </summary>
-        public IRAction[] Actions { get; set; }
+        public IRAction[]? Actions { get; set; }
     }
 }

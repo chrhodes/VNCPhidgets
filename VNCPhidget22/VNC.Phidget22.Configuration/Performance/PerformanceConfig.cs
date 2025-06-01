@@ -12,7 +12,7 @@
         /// </summary>
         public string Description { get; set; } = "PerformanceConfig DESCRIPTION";
 
-        public Performance.Performance[] Performances { get; set; } // = new[] // PerformanceSequence[0];
+        public Performance.Performance[]? Performances { get; set; } // = new[] // PerformanceSequence[0];
         //{
             //new Performance.Performance
             //{

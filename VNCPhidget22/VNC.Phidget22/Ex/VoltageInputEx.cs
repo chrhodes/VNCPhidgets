@@ -54,7 +54,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(VoltageInputConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+            if (Core.Common.VNCLogging.DeviceInitialize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
                 $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = configuration.DeviceSerialNumber;
@@ -93,7 +93,7 @@ namespace VNC.Phidget22.Ex
             SensorChange += VoltageInputEx_SensorChange;
             VoltageChange += VoltageInputEx_VoltageChange;
 
-            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitialize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

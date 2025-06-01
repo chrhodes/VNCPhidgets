@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of GPS actions in sequence
         /// </summary>
-        public GPSAction[] Actions { get; set; }
+        public GPSAction[]? Actions { get; set; }
     }
 }

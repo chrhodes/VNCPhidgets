@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of RFID actions in sequence
         /// </summary>
-        public RFIDAction[] Actions { get; set; }
+        public RFIDAction[]? Actions { get; set; }
     }
 }

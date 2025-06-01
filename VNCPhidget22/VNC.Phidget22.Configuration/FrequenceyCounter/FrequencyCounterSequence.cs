@@ -16,6 +16,6 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Array of FrequencyCounter actions in sequence
         /// </summary>
-        public FrequencyCounterAction[] Actions { get; set; }
+        public FrequencyCounterAction[]? Actions { get; set; }
     }
 }

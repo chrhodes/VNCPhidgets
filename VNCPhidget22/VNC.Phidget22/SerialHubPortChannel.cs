@@ -7,6 +7,7 @@ namespace VNC.Phidget22
         public Int32 SerialNumber;
         public Int32 HubPort;
         public Int32 Channel;
+        public Boolean IsHubPortDevice;
 
         public override string ToString()
         {

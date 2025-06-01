@@ -53,6 +53,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
+            // NOTE(crhodes)
+            // SerialHubPortChannel is a struct.  It must be declared nullable as DelegateCommand
+            // takes an object or a nullable type.
             OpenInterfaceKitCommand = new DelegateCommand(OpenInterfaceKit, OpenInterfaceKitCanExecute);
             CloseInterfaceKitCommand = new DelegateCommand(CloseInterfaceKit, CloseInterfaceKitCanExecute);
 
