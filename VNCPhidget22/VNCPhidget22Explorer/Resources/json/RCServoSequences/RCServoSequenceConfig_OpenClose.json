@@ -3,40 +3,100 @@
     //
     // Sequences to Open, Engage, Disenage, Close RCServos
     //
-    { 
-      "Name": "Open Servo", 
-      "Description": "", 
+    {
+      "Name": "Open Servo",
+      "Description": "",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true }
       ]
     },
-    { 
-      "Name": "Open and Engage Servo", 
-      "Description": "", 
+    {
+      "Name": "Open and Engage Servo",
+      "Description": "",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "Engaged": true }
       ]
     },
-    { 
-      "Name": "Disengage Servo", 
-      "Description": "", 
+    {
+      "Name": "Disengage Servo",
+      "Description": "",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Engaged": false }
       ]
     },
-    { 
-      "Name": "Close Servo", 
-      "Description": "", 
+    {
+      "Name": "Close Servo",
+      "Description": "",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Close": true }
+      ]
+    },
+    {
+      "Name": "Open and Engage Servo HP0 C0",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "HubPort": 0, "Channel": 0,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },
+    {
+      "Name": "Open and Engage Servo HP0 C1",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "HubPort": 0, "Channel": 0,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },
+    {
+      "Name": "Open and Engage Servo HP0 C0",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "HubPort": 0, "Channel": 0,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },	
+    {
+      "Name": "Open and Engage Servo HP0 C0",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "HubPort": 0, "Channel": 0,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },	
+    {
+      "Name": "Open and Engage Servo HP0 C0",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "HubPort": 0, "Channel": 0,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },	
+	{
+      "Name": "Open and Engage Servo HP0 C0",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "HubPort": 0, "Channel": 0,
+      "Actions": [
+        { "Open": true, "Engaged": true }
       ]
     },
   ]
