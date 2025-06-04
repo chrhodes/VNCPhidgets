@@ -7,7 +7,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class StepperStateControl : ViewBase, IInstanceCountV
+    public partial class StepperStateControl : ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -99,7 +99,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 return stepperStateControl.OnCoerceAttached((Boolean?)value);
             else
@@ -108,7 +108,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 stepperStateControl.OnAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -145,7 +145,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 return stepperStateControl.OnCoerceCurrent((Double?)value);
             else
@@ -154,7 +154,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 stepperStateControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -193,7 +193,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceIsMoving(DependencyObject o, object value)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 return stepperStateControl.OnCoerceIsMoving((Boolean?)value);
             else
@@ -202,7 +202,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 stepperStateControl.OnIsMovingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -239,7 +239,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceEngaged(DependencyObject o, object value)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 return stepperStateControl.OnCoerceEngaged((Boolean?)value);
             else
@@ -248,7 +248,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperStateControl stepperStateControl = o as StepperStateControl;
+            StepperStateControl stepperStateControl = (StepperStateControl)o;
             if (stepperStateControl != null)
                 stepperStateControl.OnEngagedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -288,7 +288,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePosition(DependencyObject o, object value)
         {
-            StepperStateControl positionControl = o as StepperStateControl;
+            StepperStateControl positionControl = (StepperStateControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePosition((Double?)value);
             else
@@ -297,7 +297,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperStateControl positionControl = o as StepperStateControl;
+            StepperStateControl positionControl = (StepperStateControl)o;
             if (positionControl != null)
                 positionControl.OnPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -337,7 +337,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceVelocity(DependencyObject o, object value)
         {
-            StepperStateControl positionControl = o as StepperStateControl;
+            StepperStateControl positionControl = (StepperStateControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceVelocity((Double?)value);
             else
@@ -346,7 +346,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperStateControl positionControl = o as StepperStateControl;
+            StepperStateControl positionControl = (StepperStateControl)o;
             if (positionControl != null)
                 positionControl.OnVelocityChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -391,24 +391,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

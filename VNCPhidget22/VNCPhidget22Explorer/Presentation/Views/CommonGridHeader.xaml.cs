@@ -13,10 +13,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             tbCount.DataContext = this;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
@@ -62,9 +61,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnCountChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            CommonGridHeader commonGridHeader = o as CommonGridHeader;
+            CommonGridHeader commonGridHeader = (CommonGridHeader)o;
             if (commonGridHeader != null)
-                        commonGridHeader.OnCountChanged((string)e.OldValue, (string)e.NewValue);
+               commonGridHeader.OnCountChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual void OnCountChanged(string oldValue, string newValue)

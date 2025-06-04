@@ -14,6 +14,7 @@ using Prism.Regions.Behaviors;
 using Unity.Interception.Utilities;
 
 using VNC.Core.Collections;
+using VNC.Phidget22.Configuration.Performance;
 
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -190,7 +191,7 @@ namespace VNC.Phidget22.Configuration
                     = JsonSerializer.Deserialize<HostConfig>
                     (jsonString, GetJsonSerializerOptions());
 
-                Hosts = hostConfig.Hosts.ToList();
+                if (hostConfig is not null) Hosts = hostConfig.Hosts.ToList();
 
                 //LoadNetworkHosts(Hosts);
             }
@@ -242,22 +243,44 @@ namespace VNC.Phidget22.Configuration
                     = JsonSerializer.Deserialize<PerformanceConfig>
                     (jsonString, GetJsonSerializerOptions());
 
-                foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
+                if (performanceConfig != null && performanceConfig.Performances is not null)
                 {
-                    try
+                    foreach (var performance in performanceConfig.Performances)
                     {
-                        if (reload)
+                        try
                         {
-                            AvailablePerformances.Remove(performance.Key);
-                        }
+                            if (performance.Name is not null)
+                            {
+                                if (reload) AvailablePerformances.Remove(performance.Name);
 
-                        AvailablePerformances.Add(performance.Key, performance.Value);
+                                AvailablePerformances.Add(performance.Name, performance);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
                     }
-                    catch (ArgumentException ax)
-                    {
-                        Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
-                        Log.Error($"{ax}", Common.LOG_CATEGORY);
-                    }
+                    // NOTE(crhodes)
+                    // Not smart enough to understand ToDictionary compiler warning.  Ugh.
+                    //foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
+                    //{
+                    //    try
+                    //    {
+                    //        if (performance.Key is not null)
+                    //        {
+                    //            if (reload) AvailablePerformances.Remove(performance.Key);                             
+
+                    //            AvailablePerformances.Add(performance.Key, performance.Value);
+                    //        }                            
+                    //    }
+                    //    catch (ArgumentException ax)
+                    //    {
+                    //        Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
+                    //        Log.Error($"{ax}", Common.LOG_CATEGORY);
+                    //    }
+                    //}
                 }
             }
             catch (FileNotFoundException fnfex)
@@ -291,16 +314,24 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<DigitalInputSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.DigitalInputSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig != null && sequenceConfig.DigitalInputSequences is not null)
                     {
-                        try
+                        foreach (var sequence in sequenceConfig.DigitalInputSequences)
                         {
-                            AvailableDigitalInputSequences.Add(sequence.Key, sequence.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableDigitalInputSequences.Remove(sequence.Name);
+
+                                    AvailableDigitalInputSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
                     }
                 }
@@ -338,16 +369,24 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<DigitalOutputSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.DigitalOutputSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig is not null && sequenceConfig.DigitalOutputSequences is not null)
                     {
-                        try
+                        foreach (var sequence in sequenceConfig.DigitalOutputSequences)
                         {
-                            AvailableDigitalOutputSequences.Add(sequence.Key, sequence.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableDigitalOutputSequences.Remove(sequence.Name);
+
+                                    AvailableDigitalOutputSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
                     }
                 }
@@ -385,16 +424,24 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<RCServoSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.RCServoSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig != null && sequenceConfig.RCServoSequences is not null)
                     {
-                        try
+                        foreach (var sequence in sequenceConfig.RCServoSequences)
                         {
-                            AvailableRCServoSequences.Add(sequence.Key, sequence.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableRCServoSequences.Remove(sequence.Name);
+
+                                    AvailableRCServoSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
                     }
                 }
@@ -432,16 +479,24 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<StepperSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.StepperSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig != null && sequenceConfig.StepperSequences is not null)
                     {
-                        try
+                        foreach (var sequence in sequenceConfig.StepperSequences)
                         {
-                            AvailableStepperSequences.Add(sequence.Key, sequence.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableStepperSequences.Remove(sequence.Name);
+
+                                    AvailableStepperSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
                     }
                 }
@@ -479,17 +534,25 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.VoltageInputSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig != null && sequenceConfig.VoltageInputSequences is not null)
                     {
-                        try
+                        foreach (var sequence in sequenceConfig.VoltageInputSequences)
                         {
-                            AvailableVoltageInputSequences.Add(sequence.Key, sequence.Value);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableVoltageInputSequences.Remove(sequence.Name);
+
+                                    AvailableVoltageInputSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
-                        }                        
                     }
                 }
                 catch (FileNotFoundException fnfex)
@@ -526,16 +589,24 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.VoltageInputSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig != null && sequenceConfig.VoltageInputSequences is not null)
                     {
-                        try
+                        foreach (var sequence in sequenceConfig.VoltageInputSequences)
                         {
-                            AvailableVoltageInputSequences.Add(sequence.Key, sequence.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableVoltageInputSequences.Remove(sequence.Name);
+
+                                    AvailableVoltageInputSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
                     }
                 }
@@ -573,16 +644,24 @@ namespace VNC.Phidget22.Configuration
                         = JsonSerializer.Deserialize<VoltageOutputSequenceConfig>
                         (jsonString, GetJsonSerializerOptions());
 
-                    foreach (var sequence in sequenceConfig.VoltageOutputSequences.ToDictionary(k => k.Name, v => v))
+                    if (sequenceConfig != null && sequenceConfig.VoltageOutputSequences is not null)
                     {
-                        try 
+                        foreach (var sequence in sequenceConfig.VoltageOutputSequences)
                         {
-                            AvailableVoltageOutputSequences.Add(sequence.Key, sequence.Value);
-                        }
-                        catch (ArgumentException ax)
-                        {
-                            Log.Error($"Duplicate Key >{sequence.Key}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            try
+                            {
+                                if (sequence.Name is not null)
+                                {
+                                    if (reload) AvailableVoltageOutputSequences.Remove(sequence.Name);
+
+                                    AvailableVoltageOutputSequences.Add(sequence.Name, sequence);
+                                }
+                            }
+                            catch (ArgumentException ax)
+                            {
+                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                                Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            }
                         }
                     }
                 }
@@ -816,8 +895,7 @@ namespace VNC.Phidget22.Configuration
 
         #region INotifyPropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         // This is the traditional approach - requires string name to be passed in
 
@@ -826,7 +904,7 @@ namespace VNC.Phidget22.Configuration
         //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //}
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
 
 #if LOGGING

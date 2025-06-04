@@ -53,7 +53,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(RCServoConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitialize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+            if (Core.Common.VNCLogging.DeviceInitializeLow) startTicks = Log.DEVICE_INITIALIZE_LOW($"Enter" +
                 $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = configuration.DeviceSerialNumber;
@@ -95,7 +95,7 @@ namespace VNC.Phidget22.Ex
             TargetPositionReached += RCServoEx_TargetPositionReached;
             VelocityChange += RCServoEx_VelocityChange;
 
-            if (Core.Common.VNCLogging.DeviceInitialize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -418,7 +418,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (_minPositionServo == value)
                     return;
-                _minPosition = value;
+                _minPositionServo = value;
                 OnPropertyChanged();
             }
         }
@@ -544,7 +544,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _maxPositionServo;
-        public new Double MaxPositionServo
+        public Double MaxPositionServo
         {
             get => _maxPositionServo;
             set
@@ -746,7 +746,7 @@ namespace VNC.Phidget22.Ex
 
         private void RCServoEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+            Phidgets.RCServo rcServo = (Phidgets.RCServo)sender;
 
             if (LogPhidgetEvents)
             {
@@ -768,9 +768,10 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
+                Log.Error(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
-                    throw pex;
+                    throw;
                 }
             }
             catch (Exception ex)
@@ -823,7 +824,7 @@ namespace VNC.Phidget22.Ex
 
         private void RCServoEx_PositionChange(object sender, PhidgetsEvents.RCServoPositionChangeEventArgs e)
         {
-            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+            Phidgets.RCServo rcServo = (Phidgets.RCServo)sender;
 
             if (LogPositionChangeEvents)
             {
@@ -843,7 +844,7 @@ namespace VNC.Phidget22.Ex
 
         private void RCServoEx_VelocityChange(object sender, PhidgetsEvents.RCServoVelocityChangeEventArgs e)
         {
-            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+            Phidgets.RCServo rcServo = (Phidgets.RCServo)sender;
 
             if (LogVelocityChangeEvents)
             {
@@ -863,7 +864,7 @@ namespace VNC.Phidget22.Ex
 
         private void RCServoEx_TargetPositionReached(object sender, PhidgetsEvents.RCServoTargetPositionReachedEventArgs e)
         {
-            Phidgets.RCServo rcServo = sender as Phidgets.RCServo;
+            Phidgets.RCServo rcServo = (Phidgets.RCServo)sender;
 
             if (LogTargetPositionReachedEvents)
             {
@@ -1094,9 +1095,10 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{rcServoSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(rcServoSequence.Actions, async action =>
+                            Parallel.ForEach(rcServoSequence.Actions, action =>
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
+                                //PerformAction(action);
                             });
                         }
                         else
@@ -1107,7 +1109,8 @@ namespace VNC.Phidget22.Ex
 
                             foreach (RCServoAction action in rcServoSequence.Actions)
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
+                                //PerformAction(action);
                             }
                         }
 
@@ -1173,8 +1176,8 @@ namespace VNC.Phidget22.Ex
 
             return player;
         }
-
-        private async Task PerformAction(RCServoAction action)
+        //private void PerformAction(RCServoAction action)
+        private void PerformAction(RCServoAction action)
         {
             Int64 startTicks = 0;
 
@@ -1763,7 +1766,7 @@ namespace VNC.Phidget22.Ex
 
             var sequence = args.RCServoSequence;
 
-            await RunActionLoops(sequence);
+            if (sequence is not null) await RunActionLoops(sequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

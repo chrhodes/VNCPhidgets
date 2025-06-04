@@ -54,7 +54,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(StepperConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitialize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+            if (Core.Common.VNCLogging.DeviceInitializeLow) startTicks = Log.DEVICE_INITIALIZE_LOW($"Enter" +
                 $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = configuration.DeviceSerialNumber;
@@ -96,7 +96,7 @@ namespace VNC.Phidget22.Ex
             Stopped += StepperEx_Stopped;
             VelocityChange += StepperEx_VelocityChange;
 
-            if (Core.Common.VNCLogging.DeviceInitialize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 
@@ -471,7 +471,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (_minPositionStepper == value)
                     return;
-                _minPosition = value;
+                _minPositionStepper = value;
                 OnPropertyChanged();
             }
         }
@@ -581,7 +581,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _maxPositionStepper;
-        public new Double MaxPositionStepper
+        public Double MaxPositionStepper
         {
             get => _maxPositionStepper;
             set
@@ -595,7 +595,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _minVelocity;
-        public new Double MinVelocity
+        public Double MinVelocity
         {
             get => _minVelocity;
             set
@@ -608,7 +608,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _maxVelocity;
-        public new Double MaxVelocity
+        public Double MaxVelocity
         {
             get => _maxVelocity;
             set
@@ -702,7 +702,7 @@ namespace VNC.Phidget22.Ex
         // This might go away once we better understand RescaleFactor
 
         private Double _stepAngle;
-        public new Double StepAngle
+        public Double StepAngle
         {
             get => _stepAngle;
             set
@@ -723,7 +723,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Phidgets.StepperControlMode _controlMode;
-        public Phidgets.StepperControlMode ControlMode
+        public new Phidgets.StepperControlMode ControlMode
         {
             get => _controlMode;
             set
@@ -746,7 +746,7 @@ namespace VNC.Phidget22.Ex
 
         private void StepperEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            Phidgets.Stepper stepper = (Phidgets.Stepper)sender;
 
             if (LogPhidgetEvents)
             {
@@ -768,9 +768,10 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
+                Log.Error(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
-                    throw pex;
+                    throw;
                 }
             }
             catch (Exception ex)
@@ -1085,9 +1086,9 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{stepperSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(stepperSequence.Actions, async action =>
+                            Parallel.ForEach(stepperSequence.Actions, action =>
                             {
-                                 await PerformAction(action);
+                                 PerformAction(action);
                             });
                         }
                         else
@@ -1098,7 +1099,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (StepperAction action in stepperSequence.Actions)
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
                             }
                         }
 
@@ -1163,7 +1164,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private async Task PerformAction(StepperAction action)
+        private void PerformAction(StepperAction action)
         {
             Int64 startTicks = 0;
 
@@ -1488,7 +1489,7 @@ namespace VNC.Phidget22.Ex
 
             var sequence = args.StepperSequence;
 
-            await RunActionLoops(sequence);
+            if (sequence is not null) await RunActionLoops(sequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

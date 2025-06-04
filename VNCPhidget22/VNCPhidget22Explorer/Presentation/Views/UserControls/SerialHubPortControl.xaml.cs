@@ -7,7 +7,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class SerialHubPortControl : ViewBase, IInstanceCountV
+    public partial class SerialHubPortControl : ViewBase //, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -100,7 +100,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 return serialHubPortControl.OnCoerceAttached((Boolean?)value);
             else
@@ -109,7 +109,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 serialHubPortControl.OnAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -150,7 +150,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSpeedRamping(DependencyObject o, object value)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 return serialHubPortControl.OnCoerceSpeedRamping((Boolean?)value);
             else
@@ -159,7 +159,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSpeedRampingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 serialHubPortControl.OnSpeedRampingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -195,7 +195,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 return serialHubPortControl.OnCoerceCurrent((Double?)value);
             else
@@ -204,7 +204,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 serialHubPortControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -243,7 +243,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceIsMoving(DependencyObject o, object value)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 return serialHubPortControl.OnCoerceIsMoving((Boolean?)value);
             else
@@ -252,15 +252,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 serialHubPortControl.OnIsMovingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
-        protected virtual Boolean? OnCoerceIsMoving(Boolean? value)
+        protected virtual Boolean OnCoerceIsMoving(Boolean? value)
         {
             // TODO: Keep the proposed value within the desired range.
-            return value;
+            return (Boolean)value;
         }
 
         protected virtual void OnIsMovingChanged(Boolean? oldValue, Boolean? newValue)
@@ -289,7 +289,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceEngaged(DependencyObject o, object value)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 return serialHubPortControl.OnCoerceEngaged((Boolean?)value);
             else
@@ -298,7 +298,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl serialHubPortControl = o as SerialHubPortControl;
+            SerialHubPortControl serialHubPortControl = (SerialHubPortControl)o;
             if (serialHubPortControl != null)
                 serialHubPortControl.OnEngagedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -338,7 +338,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePosition(DependencyObject o, object value)
         {
-            SerialHubPortControl positionControl = o as SerialHubPortControl;
+            SerialHubPortControl positionControl = (SerialHubPortControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePosition((Double?)value);
             else
@@ -347,7 +347,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl positionControl = o as SerialHubPortControl;
+            SerialHubPortControl positionControl = (SerialHubPortControl)o;
             if (positionControl != null)
                 positionControl.OnPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -387,7 +387,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceVelocity(DependencyObject o, object value)
         {
-            SerialHubPortControl positionControl = o as SerialHubPortControl;
+            SerialHubPortControl positionControl = (SerialHubPortControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceVelocity((Double?)value);
             else
@@ -396,7 +396,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            SerialHubPortControl positionControl = o as SerialHubPortControl;
+            SerialHubPortControl positionControl = (SerialHubPortControl)o;
             if (positionControl != null)
                 positionControl.OnVelocityChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -440,24 +440,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

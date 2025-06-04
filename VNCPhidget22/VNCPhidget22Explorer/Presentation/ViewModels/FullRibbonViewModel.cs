@@ -16,7 +16,7 @@ using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class FullRibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
+    public class FullRibbonViewModel : EventViewModelBase, IRibbonViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -239,7 +239,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"Cool, you called AddPhidgetDeviceView {phidgetDeviceView}";
             PublishStatusMessage(Message);
 
-            LayoutPanel layoutPanel;
+            LayoutPanel? layoutPanel;
 
             switch (phidgetDeviceView)
             {
@@ -439,16 +439,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+        //private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+        //public Int32 InstanceCountVM
+        //{
+        //    get => _instanceCountVM;
+        //    set => _instanceCountVM = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

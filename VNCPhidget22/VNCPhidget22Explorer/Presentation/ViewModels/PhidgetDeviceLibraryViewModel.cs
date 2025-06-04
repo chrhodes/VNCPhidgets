@@ -25,7 +25,7 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class PhidgetDeviceLibraryViewModel : EventViewModelBase, IPhidgetDeviceLibraryViewModel, IInstanceCountVM
+    public class PhidgetDeviceLibraryViewModel : EventViewModelBase, IPhidgetDeviceLibraryViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -83,9 +83,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private VNC.Phidget22.PhidgetDeviceLibrary _phidgetDeviceLibrary;
+        private VNC.Phidget22.PhidgetDeviceLibrary? _phidgetDeviceLibrary;
         
-        public VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary
+        public VNC.Phidget22.PhidgetDeviceLibrary? PhidgetDeviceLibrary
         {
             get => _phidgetDeviceLibrary;
             set
@@ -97,8 +97,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _outputFileNameAndPath;
-        public string OutputFileNameAndPath
+        private string? _outputFileNameAndPath;
+        public string? OutputFileNameAndPath
         {
             get => _outputFileNameAndPath;
             set
@@ -130,7 +130,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region SayHello Command
 
-        public ICommand SayHelloCommand { get; private set; }
+        public ICommand? SayHelloCommand { get; private set; }
 
         private void SayHello()
         {
@@ -152,7 +152,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region ExportGrid Command
 
-        public DelegateCommand<GridControl> ExportGridCommand { get; set; }
+        public DelegateCommand<GridControl>? ExportGridCommand { get; set; }
 
         public string ExportGridContent { get; set; } = "ExportGrid";
         public string ExportGridToolTip { get; set; } = "ExportGrid ToolTip";
@@ -210,16 +210,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+        //private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+        //public Int32 InstanceCountVM
+        //{
+        //    get => _instanceCountVM;
+        //    set => _instanceCountVM = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

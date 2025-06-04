@@ -2,10 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-
-using DevExpress.Xpf.Bars;
 
 using Prism.Events;
 using Prism.Ioc;
@@ -16,7 +13,6 @@ using Prism.Unity;
 using VNC;
 using VNC.Core.Presentation.ViewModels;
 using VNC.Core.Presentation.Views;
-using VNC.Phidget22;
 using VNC.Phidget22.Configuration;
 
 using VNCPhidget22Explorer.Presentation.Views;
@@ -364,26 +360,54 @@ namespace VNCPhidget22Explorer
             // Add Information about the other assemblies in our application
 
             var vncVNCPhidget22ExplorerCoreAssembly = Assembly.GetAssembly(typeof(VNCPhidget22Explorer.Core.RegionNames));
-            var vncVNCPhidget22ExplorerCoreFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncVNCPhidget22ExplorerCoreAssembly.Location);
 
-            Common.InformationApplicationCore = Common.GetInformation(vncVNCPhidget22ExplorerCoreAssembly, vncVNCPhidget22ExplorerCoreFileVersionInfo);
+            if (vncVNCPhidget22ExplorerCoreAssembly is not null)
+            {
+                var vncVNCPhidget22ExplorerCoreFileVersionInfo = System.Diagnostics.FileVersionInfo
+                    .GetVersionInfo(vncVNCPhidget22ExplorerCoreAssembly.Location);
+
+                Common.InformationApplicationCore = Common.GetInformation(
+                    vncVNCPhidget22ExplorerCoreAssembly,
+                    vncVNCPhidget22ExplorerCoreFileVersionInfo);
+            }         
 
             var vncPhidgetAssembly = Assembly.GetAssembly(typeof(VNC.Phidget22.Common));
-            var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetAssembly.Location);
 
-            Common.InformationVNCPhidget = Common.GetInformation(vncPhidgetAssembly, vncPhidgetFileVersionInfo);
+            if (vncPhidgetAssembly is not null)
+            {
+                var vncPhidgetFileVersionInfo = System.Diagnostics.FileVersionInfo
+                    .GetVersionInfo(vncPhidgetAssembly.Location);
+
+                Common.InformationVNCPhidget = Common.GetInformation(
+                    vncPhidgetAssembly, 
+                    vncPhidgetFileVersionInfo);
+            }
 
             var vncPhidgetConfigurationAssembly = Assembly.GetAssembly(typeof(VNC.Phidget22.Configuration.Common));
-            var vncPhidgetConfigurationFileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(vncPhidgetConfigurationAssembly.Location);
 
-            Common.InformationVNCPhidgetConfiguration = Common.GetInformation(vncPhidgetConfigurationAssembly, vncPhidgetConfigurationFileVersionInfo);
+            if (vncPhidgetConfigurationAssembly is not null)
+            {
+                var vncPhidgetConfigurationFileVersionInfo = System.Diagnostics.FileVersionInfo
+                    .GetVersionInfo(vncPhidgetConfigurationAssembly.Location);
+
+                Common.InformationVNCPhidgetConfiguration = Common.GetInformation(
+                    vncPhidgetConfigurationAssembly, 
+                    vncPhidgetConfigurationFileVersionInfo);
+            }
 
             // Get Information about Phidget assembly
 
             var phidget22Assembly = Assembly.GetAssembly(typeof(Phidget22.Phidget));
-            var phidget22FileVersionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(phidget22Assembly.Location);
 
-            Common.InformationPhidget22 = Common.GetInformation(phidget22Assembly, phidget22FileVersionInfo);
+            if (phidget22Assembly is not null)
+            {
+                var phidget22FileVersionInfo = System.Diagnostics.FileVersionInfo
+                    .GetVersionInfo(phidget22Assembly.Location);
+
+                Common.InformationPhidget22 = Common.GetInformation(
+                    phidget22Assembly, 
+                    phidget22FileVersionInfo);
+            }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -18,7 +18,7 @@ using VNC.Phidget22.Configuration.Performance;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class ManagePerformanceLibraryViewModel : EventViewModelBase, IManagePerformanceLibraryViewModel, IInstanceCountVM
+    public class ManagePerformanceLibraryViewModel : EventViewModelBase, IManagePerformanceLibraryViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -44,8 +44,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             InstanceCountVM++;
 
-            // TODO(crhodes)
-            //
+            // NOTE(crhodes)
+            // Because we initialize the Commands here and not in constructor,
+            // Have to declare them as Nullable.  Seems like the analyzer should be able to figure 
+            // out that we call this method :(
             
             SayHelloCommand = new DelegateCommand(SayHello, SayHelloCanExecute);
 
@@ -101,11 +103,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        public ICommand SayHelloCommand { get; private set; }
+        public ICommand? SayHelloCommand { get; private set; }
 
-
-        private IEnumerable<string> _performanceConfigFiles;
-        public IEnumerable<string> PerformanceConfigFiles
+        private IEnumerable<string>? _performanceConfigFiles;
+        public IEnumerable<string>? PerformanceConfigFiles
         {
             get => _performanceConfigFiles;
             set
@@ -115,8 +116,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedPerformanceConfigFile;
-        public string SelectedPerformanceConfigFile
+        private string? _selectedPerformanceConfigFile;
+        public string? SelectedPerformanceConfigFile
         {
             get => _selectedPerformanceConfigFile;
             set
@@ -128,8 +129,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }        
 
-        private IEnumerable<Performance> _performances;
-        public IEnumerable<Performance> Performances
+        private IEnumerable<Performance>? _performances;
+        public IEnumerable<Performance>? Performances
         {
             get => _performances;
             set
@@ -139,8 +140,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _digitalInputSequenceConfigFiles;
-        public IEnumerable<string> DigitalInputSequenceConfigFiles
+        private IEnumerable<string>? _digitalInputSequenceConfigFiles;
+        public IEnumerable<string>? DigitalInputSequenceConfigFiles
         {
             get => _digitalInputSequenceConfigFiles;
             set
@@ -150,8 +151,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedDigitalInputSequenceConfigFile;
-        public string SelectedDigitalInputSequenceConfigFile
+        private string? _selectedDigitalInputSequenceConfigFile;
+        public string? SelectedDigitalInputSequenceConfigFile
         {
             get => _selectedDigitalInputSequenceConfigFile;
             set
@@ -163,8 +164,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _digitalInputSequences;
-        public IEnumerable<ChannelSequence> DigitalInputSequences
+        private IEnumerable<ChannelSequence>? _digitalInputSequences;
+        public IEnumerable<ChannelSequence>? DigitalInputSequences
         {
             get => _digitalInputSequences;
             set
@@ -174,8 +175,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _digitalOutputSequenceConfigFiles;
-        public IEnumerable<string> DigitalOutputSequenceConfigFiles
+        private IEnumerable<string>? _digitalOutputSequenceConfigFiles;
+        public IEnumerable<string>? DigitalOutputSequenceConfigFiles
         {
             get => _digitalOutputSequenceConfigFiles;
             set
@@ -185,8 +186,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedDigitalOutputSequenceConfigFile;
-        public string SelectedDigitalOutputSequenceConfigFile
+        private string? _selectedDigitalOutputSequenceConfigFile;
+        public string? SelectedDigitalOutputSequenceConfigFile
         {
             get => _selectedDigitalOutputSequenceConfigFile;
             set
@@ -198,8 +199,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _digitalOutputSequences;
-        public IEnumerable<ChannelSequence> DigitalOutputSequences
+        private IEnumerable<ChannelSequence>? _digitalOutputSequences;
+        public IEnumerable<ChannelSequence>? DigitalOutputSequences
         {
             get => _digitalOutputSequences;
             set
@@ -209,8 +210,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _rcServoSequenceConfigFiles;
-        public IEnumerable<string> RCServoSequenceConfigFiles
+        private IEnumerable<string>? _rcServoSequenceConfigFiles;
+        public IEnumerable<string>? RCServoSequenceConfigFiles
         {
             get => _rcServoSequenceConfigFiles;
             set
@@ -220,8 +221,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedRCServoSequenceConfigFile;
-        public string SelectedRCServoSequenceConfigFile
+        private string? _selectedRCServoSequenceConfigFile;
+        public string? SelectedRCServoSequenceConfigFile
         {
             get => _selectedRCServoSequenceConfigFile;
             set
@@ -233,8 +234,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _rcServoSequences;
-        public IEnumerable<ChannelSequence> RCServoSequences
+        private IEnumerable<ChannelSequence>? _rcServoSequences;
+        public IEnumerable<ChannelSequence>? RCServoSequences
         {
             get => _rcServoSequences;
             set
@@ -244,8 +245,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _stepperSequenceConfigFiles;
-        public IEnumerable<string> StepperSequenceConfigFiles
+        private IEnumerable<string>? _stepperSequenceConfigFiles;
+        public IEnumerable<string>? StepperSequenceConfigFiles
         {
             get => _stepperSequenceConfigFiles;
             set
@@ -255,8 +256,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedStepperSequenceConfigFile;
-        public string SelectedStepperSequenceConfigFile
+        private string? _selectedStepperSequenceConfigFile;
+        public string? SelectedStepperSequenceConfigFile
         {
             get => _selectedStepperSequenceConfigFile;
             set
@@ -268,8 +269,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _stepperSequences;
-        public IEnumerable<ChannelSequence> StepperSequences
+        private IEnumerable<ChannelSequence>? _stepperSequences;
+        public IEnumerable<ChannelSequence>? StepperSequences
         {
             get => _stepperSequences;
             set
@@ -279,8 +280,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _voltageInputSequenceConfigFiles;
-        public IEnumerable<string> VoltageInputSequenceConfigFiles
+        private IEnumerable<string>? _voltageInputSequenceConfigFiles;
+        public IEnumerable<string>? VoltageInputSequenceConfigFiles
         {
             get => _voltageInputSequenceConfigFiles;
             set
@@ -290,8 +291,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedVoltageInputSequenceConfigFile;
-        public string SelectedVoltageInputSequenceConfigFile
+        private string? _selectedVoltageInputSequenceConfigFile;
+        public string? SelectedVoltageInputSequenceConfigFile
         {
             get => _selectedVoltageInputSequenceConfigFile;
             set
@@ -303,8 +304,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _voltageInputSequences;
-        public IEnumerable<ChannelSequence> VoltageInputSequences
+        private IEnumerable<ChannelSequence>? _voltageInputSequences;
+        public IEnumerable<ChannelSequence>? VoltageInputSequences
         {
             get => _voltageInputSequences;
             set
@@ -314,8 +315,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _voltageRatioInputSequenceConfigFiles;
-        public IEnumerable<string> VoltageRatioInputSequenceConfigFiles
+        private IEnumerable<string>? _voltageRatioInputSequenceConfigFiles;
+        public IEnumerable<string>? VoltageRatioInputSequenceConfigFiles
         {
             get => _voltageRatioInputSequenceConfigFiles;
             set
@@ -325,8 +326,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedVoltageRatioInputSequenceConfigFile;
-        public string SelectedVoltageRatioInputSequenceConfigFile
+        private string? _selectedVoltageRatioInputSequenceConfigFile;
+        public string? SelectedVoltageRatioInputSequenceConfigFile
         {
             get => _selectedVoltageRatioInputSequenceConfigFile;
             set
@@ -338,8 +339,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _voltageRatioInputSequences;
-        public IEnumerable<ChannelSequence> VoltageRatioInputSequences
+        private IEnumerable<ChannelSequence>? _voltageRatioInputSequences;
+        public IEnumerable<ChannelSequence>? VoltageRatioInputSequences
         {
             get => _voltageRatioInputSequences;
             set
@@ -349,8 +350,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<string> _voltageOutputSequenceConfigFiles;
-        public IEnumerable<string> VoltageOutputSequenceConfigFiles
+        private IEnumerable<string>? _voltageOutputSequenceConfigFiles;
+        public IEnumerable<string>? VoltageOutputSequenceConfigFiles
         {
             get => _voltageOutputSequenceConfigFiles;
             set
@@ -360,8 +361,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _selectedVoltageOutputSequenceConfigFile;
-        public string SelectedVoltageOutputSequenceConfigFile
+        private string? _selectedVoltageOutputSequenceConfigFile;
+        public string? SelectedVoltageOutputSequenceConfigFile
         {
             get => _selectedVoltageOutputSequenceConfigFile;
             set
@@ -373,8 +374,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<ChannelSequence> _voltageOutputSequences;
-        public IEnumerable<ChannelSequence> VoltageOutputSequences
+        private IEnumerable<ChannelSequence>? _voltageOutputSequences;
+        public IEnumerable<ChannelSequence>? VoltageOutputSequences
         {
             get => _voltageOutputSequences;
             set
@@ -390,15 +391,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Reload Config Files
 
-        public ICommand ReloadPerformanceConfigFileCommand { get; private set; }
+        public ICommand? ReloadPerformanceConfigFileCommand { get; private set; }
 
-        public ICommand ReloadDigitalInputSequenceConfigFileCommand { get; private set; }
-        public ICommand ReloadDigitalOutputSequenceConfigFileCommand { get; private set; }
-        public ICommand ReloadRCServoSequenceConfigFileCommand { get; private set; }
-        public ICommand ReloadStepperSequenceConfigFileCommand { get; private set; }
-        public ICommand ReloadVoltageInputSequenceConfigFileCommand { get; private set; }
-        public ICommand ReloadVoltageRatioInputSequenceConfigFileCommand { get; private set; }
-        public ICommand ReloadVoltageOutputSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadDigitalInputSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadDigitalOutputSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadRCServoSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadStepperSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadVoltageInputSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadVoltageRatioInputSequenceConfigFileCommand { get; private set; }
+        public ICommand? ReloadVoltageOutputSequenceConfigFileCommand { get; private set; }
 
         // TODO(crhodes)
         // This could be ReloadConfigFile(string configCategory)
@@ -577,16 +578,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+        //private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+        //public Int32 InstanceCountVM
+        //{
+        //    get => _instanceCountVM;
+        //    set => _instanceCountVM = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

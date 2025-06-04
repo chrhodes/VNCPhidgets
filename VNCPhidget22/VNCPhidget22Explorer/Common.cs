@@ -44,25 +44,30 @@ namespace VNCPhidget22Explorer
         public static VNC.Core.Information? InformationVNCPhidgetConfiguration;
         public static VNC.Core.Information? InformationPhidget22;
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+
         // HACK(crhodes)
         // Decide if want to keep this.
         // Put here to try to get in View and ViewModel that don't have it passed in.
         // Can also ask for in constructor, which is what is mostly done
 
         public static IContainerProvider Container;
+
         public static IEventAggregator EventAggregator;
         public static IRegionManager DefaultRegionManager;
 
-        public static Shell? CurrentShell;
+        public static Shell CurrentShell;
         public static DevExpress.Xpf.Docking.DockLayoutManager MainDockLayoutManagerControl;
-
-        //public static Int32 PhidgetOpenTimeout { get; set; } = 60000; // ms
-        public static Int32? PhidgetOpenTimeout { get; set; } = null; // ms
 
         internal static VNC.Phidget22.PhidgetDeviceLibrary PhidgetDeviceLibrary;
         internal static VNC.Phidget22.Configuration.PerformanceLibrary PerformanceLibrary;
 
-        public static event EventHandler AutoHideGroupSpeedChanged;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+
+        //public static Int32 PhidgetOpenTimeout { get; set; } = 60000; // ms
+        public static Int32? PhidgetOpenTimeout { get; set; } = null; // ms
+
+        public static event EventHandler? AutoHideGroupSpeedChanged;
 
         private static Int32 _AutoHideGroupSpeed = 250;        
 
@@ -73,7 +78,7 @@ namespace VNCPhidget22Explorer
             {
                 _AutoHideGroupSpeed = value;
 
-                EventHandler evt = AutoHideGroupSpeedChanged;
+                EventHandler? evt = AutoHideGroupSpeedChanged;
 
                 if (evt != null)
                 {

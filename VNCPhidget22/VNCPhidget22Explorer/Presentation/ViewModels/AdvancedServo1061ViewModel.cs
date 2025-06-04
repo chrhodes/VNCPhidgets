@@ -26,7 +26,7 @@ using System.Windows;
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public partial class AdvancedServo1061ViewModel 
-        : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
+        : EventViewModelBase, IAdvancedServo1061ViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -100,7 +100,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // like Digital I/O and Current
         }
 
-        private void LoadRCServos(IEnumerable<KeyValuePair<SerialHubPortChannel, RCServoEx>> rcServos)
+        private void LoadRCServos(IEnumerable<KeyValuePair<SerialHubPortChannel, RCServoEx?>> rcServos)
         {
             // NOTE(crhodes)
             // May be able to go back to RCServo[]
@@ -364,10 +364,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 LoadPhidgets();
 
-                OpenAllRCServosCommand.RaiseCanExecuteChanged();
-                CloseAllRCServosCommand.RaiseCanExecuteChanged();
+                OpenAllRCServosCommand?.RaiseCanExecuteChanged();
+                CloseAllRCServosCommand?.RaiseCanExecuteChanged();
 
-                OpenRCServoCommand.RaiseCanExecuteChanged();
+                OpenRCServoCommand?.RaiseCanExecuteChanged();
 
                 RCServosVisibility = Visibility.Visible;
             }
@@ -379,8 +379,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // I think we can go back to RCServoEX[16]
         // Besure doesn't break UI with INPC
 
-        RCServoEx _rcServo0;
-        public RCServoEx RCServo0
+        RCServoEx? _rcServo0;
+        public RCServoEx? RCServo0
         {
             get
             {
@@ -393,8 +393,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo1;
-        public RCServoEx RCServo1
+        RCServoEx? _rcServo1;
+        public RCServoEx? RCServo1
         {
             get
             {
@@ -407,8 +407,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo2;
-        public RCServoEx RCServo2
+        RCServoEx? _rcServo2;
+        public RCServoEx? RCServo2
         {
             get
             {
@@ -421,8 +421,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo3;
-        public RCServoEx RCServo3
+        RCServoEx? _rcServo3;
+        public RCServoEx? RCServo3
         {
             get
             {
@@ -435,8 +435,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo4;
-        public RCServoEx RCServo4
+        RCServoEx? _rcServo4;
+        public RCServoEx? RCServo4
         {
             get
             {
@@ -449,8 +449,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo5;
-        public RCServoEx RCServo5
+        RCServoEx? _rcServo5;
+        public RCServoEx? RCServo5
         {
             get
             {
@@ -463,8 +463,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo6;
-        public RCServoEx RCServo6
+        RCServoEx? _rcServo6;
+        public RCServoEx? RCServo6
         {
             get
             {
@@ -477,8 +477,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo7;
-        public RCServoEx RCServo7
+        RCServoEx? _rcServo7;
+        public RCServoEx? RCServo7
         {
             get
             {
@@ -491,9 +491,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-
-        RCServoEx _rcServo8;
-        public RCServoEx RCServo8
+        RCServoEx? _rcServo8;
+        public RCServoEx? RCServo8
         {
             get
             {
@@ -506,9 +505,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-
-        RCServoEx _rcServo9;
-        public RCServoEx RCServo9
+        RCServoEx? _rcServo9;
+        public RCServoEx? RCServo9
         {
             get
             {
@@ -521,8 +519,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo10;
-        public RCServoEx RCServo10
+        RCServoEx? _rcServo10;
+        public RCServoEx? RCServo10
         {
             get
             {
@@ -535,8 +533,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo11;
-        public RCServoEx RCServo11
+        RCServoEx? _rcServo11;
+        public RCServoEx? RCServo11
         {
             get
             {
@@ -549,8 +547,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo12;
-        public RCServoEx RCServo12
+        RCServoEx? _rcServo12;
+        public RCServoEx? RCServo12
         {
             get
             {
@@ -563,8 +561,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo13;
-        public RCServoEx RCServo13
+        RCServoEx? _rcServo13;
+        public RCServoEx? RCServo13
         {
             get
             {
@@ -577,8 +575,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo14;
-        public RCServoEx RCServo14
+        RCServoEx? _rcServo14;
+        public RCServoEx? RCServo14
         {
             get
             {
@@ -591,8 +589,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        RCServoEx _rcServo15;
-        public RCServoEx RCServo15
+        RCServoEx? _rcServo15;
+        public RCServoEx? RCServo15
         {
             get
             {
@@ -622,13 +620,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region RCServos
-
-        #region RCServo0
-
-        #endregion
-
-        #endregion
 
         #region CurrentInputs
 
@@ -650,7 +641,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenAllRCServos Command
 
-        public DelegateCommand OpenAllRCServosCommand { get; set; }
+        public DelegateCommand? OpenAllRCServosCommand { get; set; }
         public string OpenAllRCServosContent { get; set; } = "Open All RCServos";
         public string OpenAllRCServosToolTip { get; set; } = "OpenAllRCServos ToolTip";
 
@@ -662,7 +653,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenAdvancedServoContent">OpenAdvancedServo</system:String>
         //    <system:String x:Key="ViewName_OpenAdvancedServoContentToolTip">OpenAdvancedServo ToolTip</system:String>  
 
-        public async void OpenAllRCServos()
+        public void OpenAllRCServos()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenAdvancedServo) Enter", Common.LOG_CATEGORY);
@@ -679,11 +670,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenRCServo(rcServo.Key);        
             }
 
-            OpenAllRCServosCommand.RaiseCanExecuteChanged();
-            CloseAllRCServosCommand.RaiseCanExecuteChanged();
+            OpenAllRCServosCommand?.RaiseCanExecuteChanged();
+            CloseAllRCServosCommand?.RaiseCanExecuteChanged();
 
-            //InitializeVelocityCommand.RaiseCanExecuteChanged();
-            //InitializeAccelerationCommand.RaiseCanExecuteChanged();
+            //InitializeVelocityCommand?.RaiseCanExecuteChanged();
+            //InitializeAccelerationCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -732,7 +723,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseAllRCServos Command
 
-        public DelegateCommand CloseAllRCServosCommand { get; set; }
+        public DelegateCommand? CloseAllRCServosCommand { get; set; }
         public string CloseAllRCServosContent { get; set; } = "Close All RCServos";
         public string CloseAllRCServosToolTip { get; set; } = "CloseAllRCServos ToolTip";
 
@@ -760,10 +751,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 CloseRCServo(rcServo.Key);
             }
 
-            OpenAllRCServosCommand.RaiseCanExecuteChanged();
-            CloseAllRCServosCommand.RaiseCanExecuteChanged();
+            OpenAllRCServosCommand?.RaiseCanExecuteChanged();
+            CloseAllRCServosCommand?.RaiseCanExecuteChanged();
 
-            SetPositionRangeCommand.RaiseCanExecuteChanged();
+            SetPositionRangeCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -812,7 +803,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenRCServo Command
 
-        public DelegateCommand<SerialHubPortChannel?> OpenRCServoCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenRCServoCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenRCServoHost = null;
 
@@ -832,26 +823,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         // If using CommandParameter, figure out TYPE here
 
-
-
         public async void OpenRCServo(SerialHubPortChannel? serialHubPortChannel)
         //public void OpenRCServo()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
             Message = $"Cool, you called OpenRCServo on " +
-                 $"serialHubPortChannel:{shpc.SerialNumber}" +
-                 $":{shpc.HubPort}:{shpc.Channel}";
+                 $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                 $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
             PublishStatusMessage(Message);
 
-            RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[shpc];
+            RCServoEx? rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[(SerialHubPortChannel)serialHubPortChannel];
 
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await OpenRCServo(RCServo0);
@@ -919,8 +904,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             }
             
-            OpenRCServoCommand.RaiseCanExecuteChanged();
-            CloseRCServoCommand.RaiseCanExecuteChanged();
+            OpenRCServoCommand?.RaiseCanExecuteChanged();
+            CloseRCServoCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -964,7 +949,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenRCServo(RCServoEx rcServo)
+        private async Task OpenRCServo(RCServoEx? rcServo)
         {
             ConfigureInitialLogging(rcServo);
 
@@ -978,7 +963,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void ConfigureInitialLogging(RCServoEx rcServo)
+        void ConfigureInitialLogging(RCServoEx? rcServo)
         {
             rcServo.LogPhidgetEvents = LogPhidgetEvents;
             rcServo.LogErrorEvents = LogErrorEvents;
@@ -1028,7 +1013,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseRCServo Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseRCServoCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseRCServoCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseRCServoHost = null;
 
@@ -1052,21 +1037,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
             Message = $"Cool, you called CloseRCServo on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
 
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.RCServoChannels[shpc].Close());
+            if (serialHubPortChannel is not null)
+            {
+                await Task.Run(() => Common.PhidgetDeviceLibrary.RCServoChannels[(SerialHubPortChannel)serialHubPortChannel].Close());
+            }            
  
-            OpenRCServoCommand.RaiseCanExecuteChanged();
-            CloseRCServoCommand.RaiseCanExecuteChanged();
+            OpenRCServoCommand?.RaiseCanExecuteChanged();
+            CloseRCServoCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -1139,7 +1123,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region SetPositionRange Command
 
-        public DelegateCommand<string> SetPositionRangeCommand { get; set; }
+        public DelegateCommand<string>? SetPositionRangeCommand { get; set; }
         //public TYPE SetPositionRangeCommandParameter;
         public string SetPositionRangeContent { get; set; } = "SetPositionRange";
         public string SetPositionRangeToolTip { get; set; } = "SetPositionRange ToolTip";
@@ -1309,7 +1293,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region ConfigureServo2 Command
 
         //public DelegateCommand ConfigureServo2Command { get; set; }
-        public DelegateCommand<string> ConfigureServo2Command { get; set; }
+        public DelegateCommand<string>? ConfigureServo2Command { get; set; }
         // If using CommandParameter, figure out TYPE and use second above
         //public DelegateCommand<TYPE> ConfigureServo2CommandParameter;
         public string ConfigureServo2Content { get; set; } = "ConfigureServo2";
@@ -1415,16 +1399,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+        //private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+        //public Int32 InstanceCountVM
+        //{
+        //    get => _instanceCountVM;
+        //    set => _instanceCountVM = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

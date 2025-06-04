@@ -53,7 +53,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(LCDConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitialize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+            if (Core.Common.VNCLogging.DeviceInitializeLow) startTicks = Log.DEVICE_INITIALIZE_LOW($"Enter" +
                 $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = configuration.DeviceSerialNumber;
@@ -93,7 +93,7 @@ namespace VNC.Phidget22.Ex
             // TODO(crhodes)
             // Add any device specific events
 
-            if (Core.Common.VNCLogging.DeviceInitialize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -286,7 +286,7 @@ namespace VNC.Phidget22.Ex
 
         private void LCDEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.LCD LCD = sender as Phidgets.LCD;
+            Phidgets.LCD? LCD = sender as Phidgets.LCD;
 
             if (LogPhidgetEvents)
             {
@@ -308,9 +308,10 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
+                Log.Error(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
-                    throw pex;
+                    throw;
                 }
             }
             catch (Exception ex)
@@ -511,9 +512,9 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{lcdSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(lcdSequence.Actions, async action =>
+                            Parallel.ForEach(lcdSequence.Actions, action =>
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
                             });
                         }
                         else
@@ -524,7 +525,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (LCDAction action in lcdSequence.Actions)
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
                             }
                         }
 
@@ -590,7 +591,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private async Task PerformAction(LCDAction action)
+        private void PerformAction(LCDAction action)
         {
             Int64 startTicks = 0;
 
@@ -685,7 +686,7 @@ namespace VNC.Phidget22.Ex
 
             var sequence = args.LCDSequence;
 
-            await RunActionLoops(sequence);
+            if (sequence is not null) await RunActionLoops(sequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

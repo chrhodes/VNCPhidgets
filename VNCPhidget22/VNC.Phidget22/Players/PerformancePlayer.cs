@@ -284,17 +284,22 @@ namespace VNC.Phidget22.Players
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
-                if (VNC.Phidget22.Configuration.Common.PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                string? performanceName = nextPerformance?.Name;
+
+                if (performanceName != null)
                 {
-                    nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+                    if (VNC.Phidget22.Configuration.Common.PerformanceLibrary.AvailablePerformances.ContainsKey(performanceName))
+                    {
+                        nextPerformance = PerformanceLibrary.AvailablePerformances[performanceName];
 
-                    await RunPerformanceLoops(nextPerformance);
+                        await RunPerformanceLoops(nextPerformance);
 
-                    nextPerformance = nextPerformance?.NextPerformance;
+                        nextPerformance = nextPerformance?.NextPerformance;
+                    }
                 }
                 else
                 {
-                    Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
                     nextPerformance = null;
                 }
             }
@@ -322,11 +327,11 @@ namespace VNC.Phidget22.Players
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
 
-            Performance configuredPerf;
+            Performance? configuredPerf;
 
             if (performance.Name is not null)
             {
-                configuredPerf = RetrieveAndConfigurePerformance(performance, SerialNumber);
+                configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
             }
             else
             {
@@ -336,7 +341,7 @@ namespace VNC.Phidget22.Players
 
             if (configuredPerf is null)
             {
-                Log.Error("Aborting RunPerformanceLoops", Common.LOG_CATEGORY);
+                Log.Error("Aborting RunPerformanceLoops configuredPerf is null", Common.LOG_CATEGORY);
                 return;
             }
 
@@ -488,6 +493,8 @@ namespace VNC.Phidget22.Players
         private Performance CreateInlinePerformance(Performance performance, int? serialNumber)
         {
             Int64 startTicks = 0;
+            if (LogPerformance) startTicks = Log.Trace($"Enter" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
             Performance createdPerformance = new Performance(performance);
 
@@ -496,17 +503,18 @@ namespace VNC.Phidget22.Players
                 createdPerformance.SerialNumber = serialNumber;
             }
 
+            if (LogPerformance) Log.Trace($"Exit" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+
             return createdPerformance;
         }
 
-        private Performance? RetrieveAndConfigurePerformance(Performance performance, Int32? serialNumber)
+        private Performance? RetrieveAndConfigurePerformance(string performanceName, Int32? serialNumber)
         {
             Int64 startTicks = 0;
 
-            if (PerformanceLibrary.AvailablePerformances.ContainsKey(performance.Name ?? ""))
+            if (PerformanceLibrary.AvailablePerformances.TryGetValue(performanceName, out Performance? retrievedPerfrormance))
             {
-                Performance retrievedPerfrormance = PerformanceLibrary.AvailablePerformances[performance.Name];
-
                 if (LogPerformance) startTicks = Log.Trace($"Retrieved performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
                     $" duration:>{retrievedPerfrormance.Duration}<" +
@@ -514,17 +522,10 @@ namespace VNC.Phidget22.Players
 
                 Performance configuredPerformance = new Performance(retrievedPerfrormance);
 
-                //Performance performance = PerformanceLibrary.AvailablePerformances[performanceName];
-
                 if (serialNumber is not null)
                 {
                     configuredPerformance.SerialNumber = serialNumber;
                 }
-
-                //if (performance.Duration.HasValue)
-                //{
-                //    configuredPerformance.Duration = performance.Duration;
-                //}
 
                 if (LogPerformance) Log.Trace($"Configured performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{configuredPerformance.SerialNumber}<" +
@@ -535,7 +536,7 @@ namespace VNC.Phidget22.Players
             }
             else
             {
-                Log.Error($"Cannot find performance:>{performance.Name}<", Common.LOG_CATEGORY);
+                Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
                 return null;
             }
         }
@@ -547,11 +548,14 @@ namespace VNC.Phidget22.Players
 
             foreach (Performance callPerformance in performanceSequences)
             {
-                Performance nextPerformance = null;
+                //Performance? nextPerformance = null;
 
-                if (PerformanceLibrary.AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
+                // TODO(crhodes)
+                // Do we want to handle embedded InLine Performance without a name?
+
+                if (PerformanceLibrary.AvailablePerformances.TryGetValue(callPerformance.Name, out Performance? nextPerformance))
                 {
-                    nextPerformance = PerformanceLibrary.AvailablePerformances[callPerformance.Name];
+                    //nextPerformance = value;
 
                     await RunPerformanceLoops(nextPerformance);
 

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows.Input;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using System.Windows;
 
 using Prism.Commands;
 using Prism.Events;
@@ -16,16 +11,11 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
-
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
-using System.Windows;
-using DevExpress.Xpo.Logger.Transport;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class Stepper1063ViewModel : EventViewModelBase, IStepper1063ViewModel, IInstanceCountVM
+    public class Stepper1063ViewModel : EventViewModelBase, IStepper1063ViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -287,8 +277,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Stepper
 
-        private IEnumerable<Int32> _SteperPhidgets;
-        public IEnumerable<Int32> StepperPhidgets
+        private IEnumerable<Int32>? _SteperPhidgets;
+        public IEnumerable<Int32>? StepperPhidgets
         {
             get
             {
@@ -313,8 +303,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 LoadPhidgets();
 
-                OpenAllSteppersCommand.RaiseCanExecuteChanged();
-                CloseAllSteppersCommand.RaiseCanExecuteChanged();
+                OpenAllSteppersCommand?.RaiseCanExecuteChanged();
+                CloseAllSteppersCommand?.RaiseCanExecuteChanged();
 
                 SteppersVisibility = Visibility.Visible;
             }
@@ -335,8 +325,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private StepperEx _stepper0;
-        public StepperEx Stepper0
+        private StepperEx? _stepper0;
+        public StepperEx? Stepper0
         {
             get => _stepper0;
             set
@@ -352,8 +342,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // I think some boards support more than one Stepper
         // Stub out four for now
 
-        private StepperEx _stepper1;
-        public StepperEx Stepper1
+        private StepperEx? _stepper1;
+        public StepperEx? Stepper1
         {
             get => _stepper1;
             set
@@ -365,8 +355,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private StepperEx _stepper2;
-        public StepperEx Stepper2
+        private StepperEx? _stepper2;
+        public StepperEx? Stepper2
         {
             get => _stepper2;
             set
@@ -378,8 +368,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private StepperEx _stepper3;
-        public StepperEx Stepper3
+        private StepperEx? _stepper3;
+        public StepperEx? Stepper3
         {
             get => _stepper3;
             set
@@ -390,7 +380,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         #endregion
 
@@ -408,7 +397,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenSteppers Command
 
-        public DelegateCommand OpenAllSteppersCommand { get; set; }
+        public DelegateCommand? OpenAllSteppersCommand { get; set; }
         public string OpenAllSteppersContent { get; set; } = "Open";
         public string OpenAllSteppersToolTip { get; set; } = "OpenSteppers ToolTip";
 
@@ -420,7 +409,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
         //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
 
-        public async void OpenAllSteppers()
+        public void OpenAllSteppers()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenSteppers) Enter", Common.LOG_CATEGORY);
@@ -437,8 +426,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenStepper(stepper.Key);
             }
 
-            OpenAllSteppersCommand.RaiseCanExecuteChanged();
-            CloseAllSteppersCommand.RaiseCanExecuteChanged();
+            OpenAllSteppersCommand?.RaiseCanExecuteChanged();
+            CloseAllSteppersCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -465,17 +454,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            //OpenStepperCommand.RaiseCanExecuteChanged();
-            //CloseStepperCommand.RaiseCanExecuteChanged();
+            //OpenStepperCommand?.RaiseCanExecuteChanged();
+            //CloseStepperCommand?.RaiseCanExecuteChanged();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenSteppers) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public Boolean OpenAllSteppersCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (SelectedStepperPhidget > 0)
             {
                 return true;
@@ -490,12 +476,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenStepper Command
 
-        public DelegateCommand<SerialHubPortChannel?> OpenStepperCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenStepperCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenStepperHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenStepperCommandParameter;
 
         public string OpenStepperContent { get; set; } = "Open";
         public string OpenStepperToolTip { get; set; } = "Open Stepper";
@@ -508,23 +491,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
         //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void OpenStepper(SerialHubPortChannel? serialHubPortChannel)
-        //public void OpenStepper()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);           
 
             Message = $"Cool, you called OpenStepper on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await OpenStepper(Stepper0);
@@ -546,8 +524,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     // Add more cases if a board supports more channels
             }
 
-            OpenStepperCommand.RaiseCanExecuteChanged();
-            CloseStepperCommand.RaiseCanExecuteChanged();
+            OpenStepperCommand?.RaiseCanExecuteChanged();
+            CloseStepperCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -591,17 +569,24 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenStepper(StepperEx stepper)
+        private async Task OpenStepper(StepperEx? stepper)
         {
-            ConfigureInitialLogging(stepper);
-
-            if (stepper.IsOpen is false)
+            if (stepper is not null)
             {
-                await Task.Run(() => stepper.Open(10000));
+                ConfigureInitialLogging(stepper);
+
+                if (stepper.IsOpen is false)
+                {
+                    await Task.Run(() => stepper.Open(10000));
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{stepper} already open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{stepper} already open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to Open null StepperEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -621,14 +606,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             stepper.LogActionVerification = LogActionVerification;
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean OpenStepperCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            Int32 channel;
-
             if (SelectedStepperPhidget is null) return false;
 
             if (serialHubPortChannel is null) return false;
@@ -655,7 +634,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseSteppers Command
 
-        public DelegateCommand CloseAllSteppersCommand { get; set; }
+        public DelegateCommand? CloseAllSteppersCommand { get; set; }
         public string CloseAllSteppersContent { get; set; } = "Close";
         public string CloseAllSteppersToolTip { get; set; } = "CloseSteppers ToolTip";
 
@@ -671,8 +650,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
+
             Message = "Cool, you called CloseAllSteppers";
             PublishStatusMessage(Message);
 
@@ -684,11 +662,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 CloseStepper(stepper.Key);
             }
 
-            OpenAllSteppersCommand.RaiseCanExecuteChanged();
-            CloseAllSteppersCommand.RaiseCanExecuteChanged();
+            OpenAllSteppersCommand?.RaiseCanExecuteChanged();
+            CloseAllSteppersCommand?.RaiseCanExecuteChanged();
 
-            //InitializeVelocityCommand.RaiseCanExecuteChanged();
-            //InitializeAccelerationCommand.RaiseCanExecuteChanged();
+            //InitializeVelocityCommand?.RaiseCanExecuteChanged();
+            //InitializeAccelerationCommand?.RaiseCanExecuteChanged();
 
             //await Task.Run(() => ActiveStepper.Close());
 
@@ -697,12 +675,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ActiveStepper = null;
             //ClearDigitalInputsAndOutputs();
 
-            //OpenStepperCommand.RaiseCanExecuteChanged();
-            //RefreshStepperCommand.RaiseCanExecuteChanged();
-            //CloseStepperCommand.RaiseCanExecuteChanged();
+            //OpenStepperCommand?.RaiseCanExecuteChanged();
+            //RefreshStepperCommand?.RaiseCanExecuteChanged();
+            //CloseStepperCommand?.RaiseCanExecuteChanged();
 
-            //InitializeAccelerationCommand.RaiseCanExecuteChanged();
-            //InitializeVelocityCommand.RaiseCanExecuteChanged();
+            //InitializeAccelerationCommand?.RaiseCanExecuteChanged();
+            //InitializeVelocityCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -734,9 +712,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public Boolean CloseAllSteppersCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (SelectedStepperPhidget > 0)
             {
                 return true;
@@ -751,12 +726,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseStepper Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseStepperCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseStepperCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseStepperHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseStepperCommandParameter;
 
         public string CloseStepperContent { get; set; } = "Close";
         public string CloseStepperToolTip { get; set; } = "Close Stepper";
@@ -769,27 +741,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseStepperContent">CloseStepper</system:String>
         //    <system:String x:Key="ViewName_CloseStepperContentToolTip">CloseStepper ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void CloseStepper(SerialHubPortChannel? serialHubPortChannel)
-        //public void CloseStepper()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);           
 
             Message = $"Cool, you called CloseStepper on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
 
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[shpc].Close());
+            await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[(SerialHubPortChannel)serialHubPortChannel].Close());
 
-            OpenStepperCommand.RaiseCanExecuteChanged();
-            CloseStepperCommand.RaiseCanExecuteChanged();
+            OpenStepperCommand?.RaiseCanExecuteChanged();
+            CloseStepperCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -833,13 +799,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean CloseStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean CloseStepperCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
             StepperEx? host;
@@ -868,13 +829,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //public DelegateCommand ZeroCurrentPositionCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
-        public DelegateCommand<string> ZeroCurrentPositionCommand { get; set; }
+        public DelegateCommand<string>? ZeroCurrentPositionCommand { get; set; }
 
         // If displaying UserControl
         // public static WindowHost _ZeroCurrentPositionHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE ZeroCurrentPositionCommandParameter;
 
         public string ZeroCurrentPositionContent { get; set; } = "ZeroCurrentPosition";
         public string ZeroCurrentPositionToolTip { get; set; } = "ZeroCurrentPosition ToolTip";
@@ -887,15 +845,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_ZeroCurrentPositionContent">ZeroCurrentPosition</system:String>
         //    <system:String x:Key="ViewName_ZeroCurrentPositionContentToolTip">ZeroCurrentPosition ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public void ZeroCurrentPosition(string stepperNumber)
-        //public void ZeroCurrentPosition()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Do something amazing.
 
             Message = "Cool, you called ZeroCurrentPosition";
             PublishStatusMessage(Message);
@@ -911,15 +864,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
 
                 case 1:
-                    Stepper1.AddPositionOffset(-Stepper1.Position);
+                    Stepper1?.AddPositionOffset(-Stepper1.Position);
                     break;
 
                 case 2:
-                    Stepper2.AddPositionOffset(-Stepper2.Position);
+                    Stepper2?.AddPositionOffset(-Stepper2.Position);
                     break;
 
                 case 3:
-                    Stepper3.AddPositionOffset(-Stepper3.Position);
+                    Stepper3?.AddPositionOffset(-Stepper3.Position);
                     break;
 
                 //case 4:
@@ -985,9 +938,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean ZeroCurrentPositionCanExecute(string stepperNumber)
-        //public Boolean ZeroCurrentPositionCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -1013,18 +964,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Private Methods (none)
 
 
-
-        #endregion
-
-        #region IInstanceCount
-
-        private static Int32 _instanceCountVM;
-
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
 
         #endregion
     }

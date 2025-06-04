@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using DevExpress.Xpf.Editors.DateNavigator;
 
 using Prism.Commands;
 using Prism.Events;
@@ -16,18 +13,12 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
-using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
-
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using System.Threading.Channels;
-using DevExpress.Xpf.Editors.DateNavigator;
-using DevExpress.CodeParser;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class InterfaceKit1018ViewModel 
-        : EventViewModelBase, IInterfaceKitViewModel, IInstanceCountVM
+        : EventViewModelBase, IInterfaceKitViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -651,8 +642,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region InterfaceKit
 
-        private IEnumerable<Int32> _InterfaceKitPhidgets;
-        public IEnumerable<Int32> InterfaceKitPhidgets
+        private IEnumerable<Int32>? _InterfaceKitPhidgets;
+        public IEnumerable<Int32>? InterfaceKitPhidgets
         {
             get
             {
@@ -677,15 +668,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 LoadPhidgets();
 
-                OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-                CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+                OpenInterfaceKitCommand?.RaiseCanExecuteChanged();
+                CloseInterfaceKitCommand?.RaiseCanExecuteChanged();
 
-                OpenDigitalInputCommand.RaiseCanExecuteChanged();
-                OpenDigitalOutputCommand.RaiseCanExecuteChanged();
+                OpenDigitalInputCommand?.RaiseCanExecuteChanged();
+                OpenDigitalOutputCommand?.RaiseCanExecuteChanged();
 
-                OpenVoltageInputCommand.RaiseCanExecuteChanged();
-                OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
-                OpenVoltageOutputCommand.RaiseCanExecuteChanged();
+                OpenVoltageInputCommand?.RaiseCanExecuteChanged();
+                OpenVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+                OpenVoltageOutputCommand?.RaiseCanExecuteChanged();
 
                 DigitalInputsVisibility = Visibility.Visible;
                 DigitalOutputsVisibility = Visibility.Visible;
@@ -710,11 +701,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // I think we can go back to DigitalInputEx[16]
+        // I think we can go back to DigitalInputEx?[16]
         // Besure doesn't break UI with INPC
 
-        private DigitalInputEx _digitalInput0;
-        public DigitalInputEx DigitalInput0
+        private DigitalInputEx? _digitalInput0;
+        public DigitalInputEx? DigitalInput0
         {
             get => _digitalInput0;
             set
@@ -726,8 +717,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput1;
-        public DigitalInputEx DigitalInput1
+        private DigitalInputEx? _digitalInput1;
+        public DigitalInputEx? DigitalInput1
         {
             get => _digitalInput1;
             set
@@ -739,8 +730,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput2;
-        public DigitalInputEx DigitalInput2
+        private DigitalInputEx? _digitalInput2;
+        public DigitalInputEx? DigitalInput2
         {
             get => _digitalInput2;
             set
@@ -752,8 +743,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput3;
-        public DigitalInputEx DigitalInput3
+        private DigitalInputEx? _digitalInput3;
+        public DigitalInputEx? DigitalInput3
         {
             get => _digitalInput3;
             set
@@ -765,8 +756,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput4;
-        public DigitalInputEx DigitalInput4
+        private DigitalInputEx? _digitalInput4;
+        public DigitalInputEx? DigitalInput4
         {
             get => _digitalInput4;
             set
@@ -778,8 +769,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput5;
-        public DigitalInputEx DigitalInput5
+        private DigitalInputEx? _digitalInput5;
+        public DigitalInputEx? DigitalInput5
         {
             get => _digitalInput5;
             set
@@ -791,8 +782,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput6;
-        public DigitalInputEx DigitalInput6
+        private DigitalInputEx? _digitalInput6;
+        public DigitalInputEx? DigitalInput6
         {
             get => _digitalInput6;
             set
@@ -804,8 +795,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput7;
-        public DigitalInputEx DigitalInput7
+        private DigitalInputEx? _digitalInput7;
+        public DigitalInputEx? DigitalInput7
         {
             get => _digitalInput7;
             set
@@ -817,8 +808,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput8;
-        public DigitalInputEx DigitalInput8
+        private DigitalInputEx? _digitalInput8;
+        public DigitalInputEx? DigitalInput8
         {
             get => _digitalInput8;
             set
@@ -830,8 +821,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput9;
-        public DigitalInputEx DigitalInput9
+        private DigitalInputEx? _digitalInput9;
+        public DigitalInputEx? DigitalInput9
         {
             get => _digitalInput9;
             set
@@ -843,8 +834,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput10;
-        public DigitalInputEx DigitalInput10
+        private DigitalInputEx? _digitalInput10;
+        public DigitalInputEx? DigitalInput10
         {
             get => _digitalInput10;
             set
@@ -856,8 +847,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput11;
-        public DigitalInputEx DigitalInput11
+        private DigitalInputEx? _digitalInput11;
+        public DigitalInputEx? DigitalInput11
         {
             get => _digitalInput11;
             set
@@ -869,8 +860,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput12;
-        public DigitalInputEx DigitalInput12
+        private DigitalInputEx? _digitalInput12;
+        public DigitalInputEx? DigitalInput12
         {
             get => _digitalInput12;
             set
@@ -882,8 +873,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput13;
-        public DigitalInputEx DigitalInput13
+        private DigitalInputEx? _digitalInput13;
+        public DigitalInputEx? DigitalInput13
         {
             get => _digitalInput13;
             set
@@ -895,8 +886,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput14;
-        public DigitalInputEx DigitalInput14
+        private DigitalInputEx? _digitalInput14;
+        public DigitalInputEx? DigitalInput14
         {
             get => _digitalInput14;
             set
@@ -908,8 +899,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx _digitalInput15;
-        public DigitalInputEx DigitalInput15
+        private DigitalInputEx? _digitalInput15;
+        public DigitalInputEx? DigitalInput15
         {
             get => _digitalInput15;
             set
@@ -939,11 +930,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // I think we can go back to DigitalOutputEx[16]
+        // I think we can go back to DigitalOutputEx?[16]
         // Besure doesn't break UI with INPC
 
-        private DigitalOutputEx _digitalOutput0;
-        public DigitalOutputEx DigitalOutput0
+        private DigitalOutputEx? _digitalOutput0;
+        public DigitalOutputEx? DigitalOutput0
         {
             get => _digitalOutput0;
             set
@@ -955,8 +946,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput1;
-        public DigitalOutputEx DigitalOutput1
+        private DigitalOutputEx? _digitalOutput1;
+        public DigitalOutputEx? DigitalOutput1
         {
             get => _digitalOutput1;
             set
@@ -968,8 +959,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput2;
-        public DigitalOutputEx DigitalOutput2
+        private DigitalOutputEx? _digitalOutput2;
+        public DigitalOutputEx? DigitalOutput2
         {
             get => _digitalOutput2;
             set
@@ -981,8 +972,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput3;
-        public DigitalOutputEx DigitalOutput3
+        private DigitalOutputEx? _digitalOutput3;
+        public DigitalOutputEx? DigitalOutput3
         {
             get => _digitalOutput3;
             set
@@ -994,8 +985,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput4;
-        public DigitalOutputEx DigitalOutput4
+        private DigitalOutputEx? _digitalOutput4;
+        public DigitalOutputEx? DigitalOutput4
         {
             get => _digitalOutput4;
             set
@@ -1007,8 +998,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput5;
-        public DigitalOutputEx DigitalOutput5
+        private DigitalOutputEx? _digitalOutput5;
+        public DigitalOutputEx? DigitalOutput5
         {
             get => _digitalOutput5;
             set
@@ -1020,8 +1011,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput6;
-        public DigitalOutputEx DigitalOutput6
+        private DigitalOutputEx? _digitalOutput6;
+        public DigitalOutputEx? DigitalOutput6
         {
             get => _digitalOutput6;
             set
@@ -1033,8 +1024,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput7;
-        public DigitalOutputEx DigitalOutput7
+        private DigitalOutputEx? _digitalOutput7;
+        public DigitalOutputEx? DigitalOutput7
         {
             get => _digitalOutput7;
             set
@@ -1046,8 +1037,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput8;
-        public DigitalOutputEx DigitalOutput8
+        private DigitalOutputEx? _digitalOutput8;
+        public DigitalOutputEx? DigitalOutput8
         {
             get => _digitalOutput8;
             set
@@ -1059,8 +1050,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput9;
-        public DigitalOutputEx DigitalOutput9
+        private DigitalOutputEx? _digitalOutput9;
+        public DigitalOutputEx? DigitalOutput9
         {
             get => _digitalOutput9;
             set
@@ -1072,8 +1063,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput10;
-        public DigitalOutputEx DigitalOutput10
+        private DigitalOutputEx? _digitalOutput10;
+        public DigitalOutputEx? DigitalOutput10
         {
             get => _digitalOutput10;
             set
@@ -1085,8 +1076,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput11;
-        public DigitalOutputEx DigitalOutput11
+        private DigitalOutputEx? _digitalOutput11;
+        public DigitalOutputEx? DigitalOutput11
         {
             get => _digitalOutput11;
             set
@@ -1098,8 +1089,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput12;
-        public DigitalOutputEx DigitalOutput12
+        private DigitalOutputEx? _digitalOutput12;
+        public DigitalOutputEx? DigitalOutput12
         {
             get => _digitalOutput12;
             set
@@ -1111,8 +1102,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput13;
-        public DigitalOutputEx DigitalOutput13
+        private DigitalOutputEx? _digitalOutput13;
+        public DigitalOutputEx? DigitalOutput13
         {
             get => _digitalOutput13;
             set
@@ -1124,8 +1115,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput14;
-        public DigitalOutputEx DigitalOutput14
+        private DigitalOutputEx? _digitalOutput14;
+        public DigitalOutputEx? DigitalOutput14
         {
             get => _digitalOutput14;
             set
@@ -1137,8 +1128,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx _digitalOutput15;
-        public DigitalOutputEx DigitalOutput15
+        private DigitalOutputEx? _digitalOutput15;
+        public DigitalOutputEx? DigitalOutput15
         {
             get => _digitalOutput15;
             set
@@ -1171,11 +1162,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // I think we can go back to VoltageInputEx[16]
+        // I think we can go back to VoltageInputEx?[16]
         // Besure doesn't break UI with INPC
 
-        private VoltageInputEx _voltageInput0;
-        public VoltageInputEx VoltageInput0
+        private VoltageInputEx? _voltageInput0;
+        public VoltageInputEx? VoltageInput0
         {
             get => _voltageInput0;
             set
@@ -1187,8 +1178,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput1;
-        public VoltageInputEx VoltageInput1
+        private VoltageInputEx? _voltageInput1;
+        public VoltageInputEx? VoltageInput1
         {
             get => _voltageInput1;
             set
@@ -1200,8 +1191,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput2;
-        public VoltageInputEx VoltageInput2
+        private VoltageInputEx? _voltageInput2;
+        public VoltageInputEx? VoltageInput2
         {
             get => _voltageInput2;
             set
@@ -1213,8 +1204,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput3;
-        public VoltageInputEx VoltageInput3
+        private VoltageInputEx? _voltageInput3;
+        public VoltageInputEx? VoltageInput3
         {
             get => _voltageInput3;
             set
@@ -1226,8 +1217,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput4;
-        public VoltageInputEx VoltageInput4
+        private VoltageInputEx? _voltageInput4;
+        public VoltageInputEx? VoltageInput4
         {
             get => _voltageInput4;
             set
@@ -1239,8 +1230,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput5;
-        public VoltageInputEx VoltageInput5
+        private VoltageInputEx? _voltageInput5;
+        public VoltageInputEx? VoltageInput5
         {
             get => _voltageInput5;
             set
@@ -1252,8 +1243,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput6;
-        public VoltageInputEx VoltageInput6
+        private VoltageInputEx? _voltageInput6;
+        public VoltageInputEx? VoltageInput6
         {
             get => _voltageInput6;
             set
@@ -1265,8 +1256,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput7;
-        public VoltageInputEx VoltageInput7
+        private VoltageInputEx? _voltageInput7;
+        public VoltageInputEx? VoltageInput7
         {
             get => _voltageInput7;
             set
@@ -1278,8 +1269,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput8;
-        public VoltageInputEx VoltageInput8
+        private VoltageInputEx? _voltageInput8;
+        public VoltageInputEx? VoltageInput8
         {
             get => _voltageInput8;
             set
@@ -1291,8 +1282,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput9;
-        public VoltageInputEx VoltageInput9
+        private VoltageInputEx? _voltageInput9;
+        public VoltageInputEx? VoltageInput9
         {
             get => _voltageInput9;
             set
@@ -1304,8 +1295,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput10;
-        public VoltageInputEx VoltageInput10
+        private VoltageInputEx? _voltageInput10;
+        public VoltageInputEx? VoltageInput10
         {
             get => _voltageInput10;
             set
@@ -1317,8 +1308,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput11;
-        public VoltageInputEx VoltageInput11
+        private VoltageInputEx? _voltageInput11;
+        public VoltageInputEx? VoltageInput11
         {
             get => _voltageInput11;
             set
@@ -1330,8 +1321,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput12;
-        public VoltageInputEx VoltageInput12
+        private VoltageInputEx? _voltageInput12;
+        public VoltageInputEx? VoltageInput12
         {
             get => _voltageInput12;
             set
@@ -1343,8 +1334,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput13;
-        public VoltageInputEx VoltageInput13
+        private VoltageInputEx? _voltageInput13;
+        public VoltageInputEx? VoltageInput13
         {
             get => _voltageInput13;
             set
@@ -1356,8 +1347,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput14;
-        public VoltageInputEx VoltageInput14
+        private VoltageInputEx? _voltageInput14;
+        public VoltageInputEx? VoltageInput14
         {
             get => _voltageInput14;
             set
@@ -1369,8 +1360,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageInputEx _voltageInput15;
-        public VoltageInputEx VoltageInput15
+        private VoltageInputEx? _voltageInput15;
+        public VoltageInputEx? VoltageInput15
         {
             get => _voltageInput15;
             set
@@ -1387,11 +1378,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region VoltageRatioInputs
 
         // TODO(crhodes)
-        // I think we can go back to VoltageRatioInputEx[16]
+        // I think we can go back to VoltageRatioInputEx?[16]
         // Besure doesn't break UI with INPC
 
-        private VoltageRatioInputEx _voltageRatioInput0;
-        public VoltageRatioInputEx VoltageRatioInput0
+        private VoltageRatioInputEx? _voltageRatioInput0;
+        public VoltageRatioInputEx? VoltageRatioInput0
         {
             get => _voltageRatioInput0;
             set
@@ -1403,8 +1394,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput1;
-        public VoltageRatioInputEx VoltageRatioInput1
+        private VoltageRatioInputEx? _voltageRatioInput1;
+        public VoltageRatioInputEx? VoltageRatioInput1
         {
             get => _voltageRatioInput1;
             set
@@ -1416,8 +1407,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput2;
-        public VoltageRatioInputEx VoltageRatioInput2
+        private VoltageRatioInputEx? _voltageRatioInput2;
+        public VoltageRatioInputEx? VoltageRatioInput2
         {
             get => _voltageRatioInput2;
             set
@@ -1429,8 +1420,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput3;
-        public VoltageRatioInputEx VoltageRatioInput3
+        private VoltageRatioInputEx? _voltageRatioInput3;
+        public VoltageRatioInputEx? VoltageRatioInput3
         {
             get => _voltageRatioInput3;
             set
@@ -1442,8 +1433,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput4;
-        public VoltageRatioInputEx VoltageRatioInput4
+        private VoltageRatioInputEx? _voltageRatioInput4;
+        public VoltageRatioInputEx? VoltageRatioInput4
         {
             get => _voltageRatioInput4;
             set
@@ -1455,8 +1446,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput5;
-        public VoltageRatioInputEx VoltageRatioInput5
+        private VoltageRatioInputEx? _voltageRatioInput5;
+        public VoltageRatioInputEx? VoltageRatioInput5
         {
             get => _voltageRatioInput5;
             set
@@ -1468,8 +1459,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput6;
-        public VoltageRatioInputEx VoltageRatioInput6
+        private VoltageRatioInputEx? _voltageRatioInput6;
+        public VoltageRatioInputEx? VoltageRatioInput6
         {
             get => _voltageRatioInput6;
             set
@@ -1481,8 +1472,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput7;
-        public VoltageRatioInputEx VoltageRatioInput7
+        private VoltageRatioInputEx? _voltageRatioInput7;
+        public VoltageRatioInputEx? VoltageRatioInput7
         {
             get => _voltageRatioInput7;
             set
@@ -1494,8 +1485,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput8;
-        public VoltageRatioInputEx VoltageRatioInput8
+        private VoltageRatioInputEx? _voltageRatioInput8;
+        public VoltageRatioInputEx? VoltageRatioInput8
         {
             get => _voltageRatioInput8;
             set
@@ -1507,8 +1498,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput9;
-        public VoltageRatioInputEx VoltageRatioInput9
+        private VoltageRatioInputEx? _voltageRatioInput9;
+        public VoltageRatioInputEx? VoltageRatioInput9
         {
             get => _voltageRatioInput9;
             set
@@ -1520,8 +1511,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput10;
-        public VoltageRatioInputEx VoltageRatioInput10
+        private VoltageRatioInputEx? _voltageRatioInput10;
+        public VoltageRatioInputEx? VoltageRatioInput10
         {
             get => _voltageRatioInput10;
             set
@@ -1533,8 +1524,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput11;
-        public VoltageRatioInputEx VoltageRatioInput11
+        private VoltageRatioInputEx? _voltageRatioInput11;
+        public VoltageRatioInputEx? VoltageRatioInput11
         {
             get => _voltageRatioInput11;
             set
@@ -1546,8 +1537,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput12;
-        public VoltageRatioInputEx VoltageRatioInput12
+        private VoltageRatioInputEx? _voltageRatioInput12;
+        public VoltageRatioInputEx? VoltageRatioInput12
         {
             get => _voltageRatioInput12;
             set
@@ -1559,8 +1550,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput13;
-        public VoltageRatioInputEx VoltageRatioInput13
+        private VoltageRatioInputEx? _voltageRatioInput13;
+        public VoltageRatioInputEx? VoltageRatioInput13
         {
             get => _voltageRatioInput13;
             set
@@ -1572,8 +1563,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput14;
-        public VoltageRatioInputEx VoltageRatioInput14
+        private VoltageRatioInputEx? _voltageRatioInput14;
+        public VoltageRatioInputEx? VoltageRatioInput14
         {
             get => _voltageRatioInput14;
             set
@@ -1585,8 +1576,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx _voltageRatioInput15;
-        public VoltageRatioInputEx VoltageRatioInput15
+        private VoltageRatioInputEx? _voltageRatioInput15;
+        public VoltageRatioInputEx? VoltageRatioInput15
         {
             get => _voltageRatioInput15;
             set
@@ -1616,11 +1607,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         // TODO(crhodes)
-        // I think we can go back to VoltageOutputEx[16]
+        // I think we can go back to VoltageOutputEx?[16]
         // Besure doesn't break UI with INPC
+        // May have to implement OnCollectionChanged
 
-        private VoltageOutputEx _voltageOutput0;
-        public VoltageOutputEx VoltageOutput0
+        private VoltageOutputEx? _voltageOutput0;
+        public VoltageOutputEx? VoltageOutput0
         {
             get => _voltageOutput0;
             set
@@ -1632,8 +1624,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput1;
-        public VoltageOutputEx VoltageOutput1
+        private VoltageOutputEx? _voltageOutput1;
+        public VoltageOutputEx? VoltageOutput1
         {
             get => _voltageOutput1;
             set
@@ -1645,8 +1637,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput2;
-        public VoltageOutputEx VoltageOutput2
+        private VoltageOutputEx? _voltageOutput2;
+        public VoltageOutputEx? VoltageOutput2
         {
             get => _voltageOutput2;
             set
@@ -1658,8 +1650,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput3;
-        public VoltageOutputEx VoltageOutput3
+        private VoltageOutputEx? _voltageOutput3;
+        public VoltageOutputEx? VoltageOutput3
         {
             get => _voltageOutput3;
             set
@@ -1671,8 +1663,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput4;
-        public VoltageOutputEx VoltageOutput4
+        private VoltageOutputEx? _voltageOutput4;
+        public VoltageOutputEx? VoltageOutput4
         {
             get => _voltageOutput4;
             set
@@ -1684,8 +1676,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput5;
-        public VoltageOutputEx VoltageOutput5
+        private VoltageOutputEx? _voltageOutput5;
+        public VoltageOutputEx? VoltageOutput5
         {
             get => _voltageOutput5;
             set
@@ -1697,8 +1689,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput6;
-        public VoltageOutputEx VoltageOutput6
+        private VoltageOutputEx? _voltageOutput6;
+        public VoltageOutputEx? VoltageOutput6
         {
             get => _voltageOutput6;
             set
@@ -1710,8 +1702,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput7;
-        public VoltageOutputEx VoltageOutput7
+        private VoltageOutputEx? _voltageOutput7;
+        public VoltageOutputEx? VoltageOutput7
         {
             get => _voltageOutput7;
             set
@@ -1723,8 +1715,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput8;
-        public VoltageOutputEx VoltageOutput8
+        private VoltageOutputEx? _voltageOutput8;
+        public VoltageOutputEx? VoltageOutput8
         {
             get => _voltageOutput8;
             set
@@ -1736,8 +1728,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput9;
-        public VoltageOutputEx VoltageOutput9
+        private VoltageOutputEx? _voltageOutput9;
+        public VoltageOutputEx? VoltageOutput9
         {
             get => _voltageOutput9;
             set
@@ -1749,8 +1741,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput10;
-        public VoltageOutputEx VoltageOutput10
+        private VoltageOutputEx? _voltageOutput10;
+        public VoltageOutputEx? VoltageOutput10
         {
             get => _voltageOutput10;
             set
@@ -1762,8 +1754,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput11;
-        public VoltageOutputEx VoltageOutput11
+        private VoltageOutputEx? _voltageOutput11;
+        public VoltageOutputEx? VoltageOutput11
         {
             get => _voltageOutput11;
             set
@@ -1775,8 +1767,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput12;
-        public VoltageOutputEx VoltageOutput12
+        private VoltageOutputEx? _voltageOutput12;
+        public VoltageOutputEx? VoltageOutput12
         {
             get => _voltageOutput12;
             set
@@ -1788,8 +1780,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput13;
-        public VoltageOutputEx VoltageOutput13
+        private VoltageOutputEx? _voltageOutput13;
+        public VoltageOutputEx? VoltageOutput13
         {
             get => _voltageOutput13;
             set
@@ -1801,8 +1793,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput14;
-        public VoltageOutputEx VoltageOutput14
+        private VoltageOutputEx? _voltageOutput14;
+        public VoltageOutputEx? VoltageOutput14
         {
             get => _voltageOutput14;
             set
@@ -1814,8 +1806,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageOutputEx _voltageOutput15;
-        public VoltageOutputEx VoltageOutput15
+        private VoltageOutputEx? _voltageOutput15;
+        public VoltageOutputEx? VoltageOutput15
         {
             get => _voltageOutput15;
             set
@@ -1843,7 +1835,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenInterfaceKit Command
 
-        public DelegateCommand OpenInterfaceKitCommand { get; set; }
+        public DelegateCommand? OpenInterfaceKitCommand { get; set; }
         public string OpenInterfaceKitContent { get; set; } = "Open";
         public string OpenInterfaceKitToolTip { get; set; } = "OpenInterfaceKit ToolTip";
 
@@ -1855,12 +1847,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenInterfaceKitContent">OpenInterfaceKit</system:String>
         //    <system:String x:Key="ViewName_OpenInterfaceKitContentToolTip">OpenInterfaceKit ToolTip</system:String>  
 
-        public async void OpenInterfaceKit()
+        public void OpenInterfaceKit()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenInterfaceKit) Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
+
             Message = "Cool, you called OpenInterfaceKit";
             PublishStatusMessage(Message);
 
@@ -1905,8 +1896,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenVoltageOutput(voltageOutput.Key);
             }
 
-            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+            OpenInterfaceKitCommand?.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1933,8 +1924,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            //OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            //CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+            //OpenInterfaceKitCommand?.RaiseCanExecuteChanged();
+            //CloseInterfaceKitCommand?.RaiseCanExecuteChanged();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenInterfaceKit) Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1963,7 +1954,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseInterfaceKit Command
 
-        public DelegateCommand CloseInterfaceKitCommand { get; set; }
+        public DelegateCommand? CloseInterfaceKitCommand { get; set; }
         public string CloseInterfaceKitContent { get; set; } = "Close";
         public string CloseInterfaceKitToolTip { get; set; } = "CloseInterfaceKit ToolTip";
 
@@ -1980,8 +1971,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseInterfaceKit) Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
             Message = "Cool, you called CloseInterfaceKit";
             PublishStatusMessage(Message);
 
@@ -2025,8 +2014,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 CloseVoltageOutput(voltageOutput.Key);
             }
 
-            OpenInterfaceKitCommand.RaiseCanExecuteChanged();
-            CloseInterfaceKitCommand.RaiseCanExecuteChanged();
+            OpenInterfaceKitCommand?.RaiseCanExecuteChanged();
+            CloseInterfaceKitCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2082,12 +2071,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenDigitalInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> OpenDigitalInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenDigitalInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenDigitalInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenDigitalInputCommandParameter;
 
         public string OpenDigitalInputContent { get; set; } = "Open";
         public string OpenDigitalInputToolTip { get; set; } = "Open DigitalInput";
@@ -2100,26 +2086,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenDigitalInputContent">OpenDigitalInput</system:String>
         //    <system:String x:Key="ViewName_OpenDigitalInputContentToolTip">OpenDigitalInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void OpenDigitalInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void OpenDigitalInput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called OpenDigitalInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            DigitalInputEx digitalInputHost = Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc];
-
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await OpenDigitalInput(DigitalInput0);
@@ -2186,8 +2164,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
             }
 
-            OpenDigitalInputCommand.RaiseCanExecuteChanged();
-            CloseDigitalInputCommand.RaiseCanExecuteChanged();
+            OpenDigitalInputCommand?.RaiseCanExecuteChanged();
+            CloseDigitalInputCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2217,17 +2195,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenDigitalInput(DigitalInputEx digitalInput)
+        private async Task OpenDigitalInput(DigitalInputEx? digitalInput)
         {
-            ConfigureInitialLogging(digitalInput);
+            if (digitalInput is not null)
+            {        
+                ConfigureInitialLogging(digitalInput);
 
-            if (digitalInput.IsOpen is false)
-            {
-                await Task.Run(() => digitalInput.Open(10000));
+                if (digitalInput?.IsOpen is false)
+                {
+                    await Task.Run(() => digitalInput.Open(10000));     // Wait 10 seconds to attach
+                    //await Task.Run(() => voltageRatioInput.Open());   // Block until attached
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalInput} already open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalInput} already open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to open null DigitalInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2248,23 +2234,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             phidgetEx.LogActionVerification = LogActionVerification;
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenDigitalInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean OpenDigitalInputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (SelectedInterfaceKitPhidget is null) return false;
 
             if (serialHubPortChannel is null) return false;
 
-            DigitalInputEx? host;
-
             if (!Common.PhidgetDeviceLibrary.DigitalInputChannels
-                    .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
-            { 
-                return true; 
+                    .TryGetValue((SerialHubPortChannel)serialHubPortChannel, 
+                    out DigitalInputEx? host))
+            {
+                return true;
             }
 
             if (host.Attached)
@@ -2281,12 +2261,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseDigitalInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseDigitalInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseDigitalInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseDigitalInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseDigitalInputCommandParameter;
 
         public string CloseDigitalInputContent { get; set; } = "Close";
         public string CloseDigitalInputToolTip { get; set; } = "Close DigitalInput";
@@ -2299,26 +2276,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseDigitalInputContent">CloseDigitalInput</system:String>
         //    <system:String x:Key="ViewName_CloseDigitalInputContentToolTip">CloseDigitalInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void CloseDigitalInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void CloseDigitalInput()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);          
 
             Message = $"Cool, you called CloseDigitalInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.DigitalInputChannels[shpc].Close());
+            if (serialHubPortChannel is not null)
+            {
+                await Task.Run(() => 
+                    Common.PhidgetDeviceLibrary.DigitalInputChannels[(SerialHubPortChannel)serialHubPortChannel]
+                    .Close());
 
-            OpenDigitalInputCommand.RaiseCanExecuteChanged();
-            CloseDigitalInputCommand.RaiseCanExecuteChanged();
+                OpenDigitalInputCommand?.RaiseCanExecuteChanged();
+                CloseDigitalInputCommand?.RaiseCanExecuteChanged();
+            }
+            else
+            {
+                Log.Error("Attempt to Close DigitalInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+            }
 
             // If launching a UserControl
 
@@ -2362,13 +2343,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean CloseDigitalInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean CloseDigitalInputCanExecute()
         {
-            //// TODO(crhodes)
-            //// Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
             DigitalInputEx? host;
@@ -2386,7 +2362,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             else
             {
                 return false;
-            }        }
+            }      
+        }
 
         #endregion
 
@@ -2397,12 +2374,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region OpenDigitalOutput Command
 
         //public DelegateCommand<Int32?> OpenDigitalOutputCommand { get; set; }
-        public DelegateCommand<SerialHubPortChannel?> OpenDigitalOutputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenDigitalOutputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenDigitalOutputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenDigitalOutputCommandParameter;
 
         public string OpenDigitalOutputContent { get; set; } = "Open";
         public string OpenDigitalOutputToolTip { get; set; } = "Open DigitalOutput";
@@ -2415,119 +2389,105 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenDigitalOutputContent">OpenDigitalOutput</system:String>
         //    <system:String x:Key="ViewName_OpenDigitalOutputContentToolTip">OpenDigitalOutput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void OpenDigitalOutput(SerialHubPortChannel? serialHubPortChannel)
-        //public async void OpenDigitalOutput(Int32? channelNumber)
-        //public void OpenDigitalOutput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called OpenDigitalOutput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            //Int32 serialNumber = (Int32)SelectedInterfaceKitPhidget;
-            //Int32 channel = (Int32)channelNumber;
-
-            //if (Int32.TryParse(channelNumber, out channel))
-            //{
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-            //DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
-
-            switch (shpc.Channel)
+            if (Common.PhidgetDeviceLibrary is not null)
             {
-                case 0:
-                    if (DigitalOutput0 is null) DigitalOutput0 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput0);
-                    break;
+                switch (serialHubPortChannel?.Channel)
+                {
+                    case 0:
+                        /*if (DigitalOutput0 is null) */DigitalOutput0 ??= Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput0);
+                        break;
 
-                case 1:
-                    if (DigitalOutput1 is null) DigitalOutput1 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput1);
-                    break;
+                    case 1:
+                        if (DigitalOutput1 is null) DigitalOutput1 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput1);
+                        break;
 
-                case 2:
-                    if (DigitalOutput2 is null) DigitalOutput2 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput2);
-                    break;
+                    case 2:
+                        if (DigitalOutput2 is null) DigitalOutput2 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput2);
+                        break;
 
-                case 3:
-                    if (DigitalOutput3 is null) DigitalOutput3 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput3);
-                    break;
+                    case 3:
+                        if (DigitalOutput3 is null) DigitalOutput3 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput3);
+                        break;
 
-                case 4:
-                    if (DigitalOutput4 is null) DigitalOutput4 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput4);
-                    break;
+                    case 4:
+                        if (DigitalOutput4 is null) DigitalOutput4 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput4);
+                        break;
 
-                case 5:
-                    if (DigitalOutput5 is null) DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput5);
-                    break;
+                    case 5:
+                        if (DigitalOutput5 is null) DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput5);
+                        break;
 
-                case 6:
-                    if (DigitalOutput6 is null) DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput6);
-                    break;
+                    case 6:
+                        if (DigitalOutput6 is null) DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput6);
+                        break;
 
-                case 7:
-                    if (DigitalOutput7 is null) DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput7);
-                    break;
+                    case 7:
+                        if (DigitalOutput7 is null) DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput7);
+                        break;
 
-                case 8:
-                    if (DigitalOutput8 is null) DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput8);
-                    break;
+                    case 8:
+                        if (DigitalOutput8 is null) DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput8);
+                        break;
 
-                case 9:
-                    if (DigitalOutput9 is null) DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput9);
-                    break;
+                    case 9:
+                        if (DigitalOutput9 is null) DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput9);
+                        break;
 
-                case 10:
-                    if (DigitalOutput10 is null) DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput10);
-                    break;
+                    case 10:
+                        if (DigitalOutput10 is null) DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput10);
+                        break;
 
-                case 11:
-                    if (DigitalOutput11 is null) DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput11);
-                    break;
+                    case 11:
+                        if (DigitalOutput11 is null) DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput11);
+                        break;
 
-                case 12:
-                    if (DigitalOutput12 is null) DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput12);
-                    break;
+                    case 12:
+                        if (DigitalOutput12 is null) DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput12);
+                        break;
 
-                case 13:
-                    if (DigitalOutput13 is null) DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput13);
-                    break;
+                    case 13:
+                        if (DigitalOutput13 is null) DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput13);
+                        break;
 
-                case 14:
-                    if (DigitalOutput14 is null) DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput14);
-                    break;
+                    case 14:
+                        if (DigitalOutput14 is null) DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput14);
+                        break;
 
-                case 15:
-                    if (DigitalOutput15 is null) DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc];
-                    await OpenDigitalOutput(DigitalOutput15);
-                    break;
+                    case 15:
+                        if (DigitalOutput15 is null) DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel];
+                        await OpenDigitalOutput(DigitalOutput15);
+                        break;
+                }
             }
-            //}
 
-            OpenDigitalOutputCommand.RaiseCanExecuteChanged();
-            CloseDigitalOutputCommand.RaiseCanExecuteChanged();
+            OpenDigitalOutputCommand?.RaiseCanExecuteChanged();
+            CloseDigitalOutputCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -2571,17 +2531,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenDigitalOutput(DigitalOutputEx digitalOutput)
+        private async Task OpenDigitalOutput(DigitalOutputEx? digitalOutput)
         {
-            ConfigureInitialLogging(digitalOutput);
-
-            if (digitalOutput.IsOpen is false)
+            if (digitalOutput is not null)
             {
-                await Task.Run(() => digitalOutput.Open(10000));
+                ConfigureInitialLogging(digitalOutput);
+
+                if (digitalOutput.IsOpen is false)
+                {
+                    await Task.Run(() => digitalOutput.Open(10000));    // Wait 10 seconds to attach
+                    //await Task.Run(() => voltageRatioInput.Open());   // Block until attached
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalOutput} already open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{digitalOutput} already open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to open null DigitalOutputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2602,15 +2570,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             phidgetEx.LogActionVerification = LogActionVerification;
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
-        //public Boolean OpenDigitalOutputCanExecute(Int32? channelNumber)
         public Boolean OpenDigitalOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean OpenDigitalOutputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (SelectedInterfaceKitPhidget is null) return false;
+
+            if (serialHubPortChannel is null) return false;
 
             DigitalOutputEx? host;
 
@@ -2634,12 +2598,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseDigitalOutput Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseDigitalOutputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseDigitalOutputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseDigitalOutputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseDigitalOutputCommandParameter;
 
         public string CloseDigitalOutputContent { get; set; } = "Close";
         public string CloseDigitalOutputToolTip { get; set; } = "Close DigitalOutput";
@@ -2652,27 +2613,30 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseDigitalOutputContent">CloseDigitalOutput</system:String>
         //    <system:String x:Key="ViewName_CloseDigitalOutputContentToolTip">CloseDigitalOutput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void CloseDigitalOutput(SerialHubPortChannel? serialHubPortChannel)
-        //public void CloseDigitalOutput()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);           
 
             Message = $"Cool, you called CloseDigitalInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
 
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.DigitalOutputChannels[shpc].Close());
+            if (serialHubPortChannel is not null)
+            {
+                await Task.Run(() => Common.PhidgetDeviceLibrary
+                    .DigitalOutputChannels[(SerialHubPortChannel)serialHubPortChannel]
+                    .Close());
 
-            OpenDigitalOutputCommand.RaiseCanExecuteChanged();
-            CloseDigitalOutputCommand.RaiseCanExecuteChanged();
+                OpenDigitalOutputCommand?.RaiseCanExecuteChanged();
+                CloseDigitalOutputCommand?.RaiseCanExecuteChanged();
+            }
+            else
+            {
+                Log.Error("Attempt to Close DigitalOutput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+            }
 
             // If launching a UserControl
 
@@ -2718,18 +2682,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public Boolean CloseDigitalOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
-            DigitalOutputEx? host;
-
             if (!Common.PhidgetDeviceLibrary.DigitalOutputChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
-            {
-                return false;
-            }
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel,
+                out DigitalOutputEx? host)) return false;
 
             if (host.IsOpen)
             {
@@ -2749,12 +2706,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenVoltageInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> OpenVoltageInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenVoltageInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenVoltageInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenVoltageInputCommandParameter;
 
         public string OpenVoltageInputContent { get; set; } = "Open";
         public string OpenVoltageInputToolTip { get; set; } = "Open VoltageInput";
@@ -2767,24 +2721,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageInputContent">OpenVoltageInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageInputContentToolTip">OpenVoltageInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void OpenVoltageInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void OpenVoltageInput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called OpenVoltageInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await OpenVoltageInput(VoltageInput0);
@@ -2850,16 +2798,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     await OpenVoltageInput(VoltageInput15);
                     break;
             }
-            //}
-            //else
-            //{
 
-            //}
-
-            OpenVoltageInputCommand.RaiseCanExecuteChanged();
-            RefreshVoltageInputCommand.RaiseCanExecuteChanged();
-            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
-            CloseVoltageInputCommand.RaiseCanExecuteChanged();
+            OpenVoltageInputCommand?.RaiseCanExecuteChanged();
+            RefreshVoltageInputCommand?.RaiseCanExecuteChanged();
+            RaisePerformanceEventCommand?.RaiseCanExecuteChanged();
+            CloseVoltageInputCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -2889,18 +2832,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenVoltageInput(VoltageInputEx voltageInput)
+        private async Task OpenVoltageInput(VoltageInputEx? voltageInput)
         {
-            ConfigureInitialLogging(voltageInput);
-
-            if (voltageInput.IsOpen is false)
+            if (voltageInput is not null)
             {
-                //await Task.Run(() => voltageInput.Open(5000));    // Wait 5 seconds to attach
-                await Task.Run(() => voltageInput.Open(10000));  // Block until attached
+                ConfigureInitialLogging(voltageInput);
+
+                if (voltageInput.IsOpen is false)
+                {
+                    await Task.Run(() => voltageInput.Open(10000));     // Wait 10 seconds to attach
+                    //await Task.Run(() => voltageRatioInput.Open());   // Block until attached
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} already open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} already open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to open null VoltageInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2920,31 +2870,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             phidgetEx.LogChannelAction = LogChannelAction;
             phidgetEx.LogActionVerification = LogActionVerification;
         }
-        // If using CommandParameter, figure out TYPE and fix above
+
         public Boolean OpenVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean OpenVoltageInputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
-
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() 
-            //    { 
-            //        SerialNumber = (Int32)SelectedInterfaceKitPhidget,
-            //        // FIX(crhodes)
-            //        // Need to add HubPort
-            //        Channel = channel 
-            //    };
-
             if (serialHubPortChannel is null) return false;
 
             VoltageInputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -2960,12 +2894,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RefreshVoltageInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> RefreshVoltageInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? RefreshVoltageInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _RefreshVoltageInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE RefreshVoltageInputCommandParameter;
 
         public string RefreshVoltageInputContent { get; set; } = "Refresh";
         public string RefreshVoltageInputToolTip { get; set; } = "Refresh VoltageInput";
@@ -2978,30 +2909,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RefreshVoltageInputContent">RefreshVoltageInput</system:String>
         //    <system:String x:Key="ViewName_RefreshVoltageInputContentToolTip">RefreshVoltageInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void RefreshVoltageInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void RefreshVoltageInput()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);            
 
             Message = $"Cool, you called RefreshVoltageInput\r\n on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            //if (Int32.TryParse(channelNumber, out channel))
-            //{
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-            //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
-
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await RefreshVoltageInput(VoltageInput0);
@@ -3067,11 +2986,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     await RefreshVoltageInput(VoltageInput15);
                     break;
             }
-            //}
-            //else
-            //{
-
-            //}
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -3101,37 +3015,33 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task RefreshVoltageInput(VoltageInputEx voltageInput)
+        private async Task RefreshVoltageInput(VoltageInputEx? voltageInput)
         {
-            if (voltageInput.IsOpen is true)
+            if (voltageInput is not null)
             {
-                await Task.Run(() => voltageInput.RefreshProperties());
+                if (voltageInput.IsOpen is true)
+                {
+                    await Task.Run(() => voltageInput.RefreshProperties());
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to Refresh null VoltageInputEx", Common.LOG_CATEGORY);
             }
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean RefreshVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean RefreshVoltageInputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
-
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
-
             if (serialHubPortChannel is null) return false;
 
             VoltageInputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -3147,12 +3057,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseVoltageInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseVoltageInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseVoltageInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseVoltageInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseVoltageInputCommandParameter;
 
         public string CloseVoltageInputContent { get; set; } = "Close";
         public string CloseVoltageInputToolTip { get; set; } = "Close VoltageInput";
@@ -3165,28 +3072,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseVoltageInputContent">CloseVoltageInput</system:String>
         //    <system:String x:Key="ViewName_CloseVoltageInputContentToolTip">CloseVoltageInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void CloseVoltageInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void CloseVoltageInput()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);           
 
             Message = $"Cool, you called CloseVoltageInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.VoltageInputChannels[shpc].Close());
+            if (serialHubPortChannel is not null)
+            {
+                await Task.Run(() => Common.PhidgetDeviceLibrary
+                    .VoltageInputChannels[(SerialHubPortChannel)serialHubPortChannel]
+                    .Close());
 
-            OpenVoltageInputCommand.RaiseCanExecuteChanged();
-            RefreshVoltageInputCommand.RaiseCanExecuteChanged();
-            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
-            CloseVoltageInputCommand.RaiseCanExecuteChanged();
+                OpenVoltageInputCommand?.RaiseCanExecuteChanged();
+                RefreshVoltageInputCommand?.RaiseCanExecuteChanged();
+                RaisePerformanceEventCommand?.RaiseCanExecuteChanged();
+                CloseVoltageInputCommand?.RaiseCanExecuteChanged();
+            }
+            else
+            {
+                Log.Error("Attempt to Close VoltageInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+            }
 
             // If launching a UserControl
 
@@ -3230,18 +3141,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean CloseVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean CloseVoltageInputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
             VoltageInputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -3261,12 +3168,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenVoltageRatioInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> OpenVoltageRatioInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenVoltageRatioInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenVoltageRatioInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenVoltageRatioInputCommandParameter;
 
         public string OpenVoltageRatioInputContent { get; set; } = "Open";
         public string OpenVoltageRatioInputToolTip { get; set; } = "Open VoltageRatioInput";
@@ -3279,24 +3183,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContent">OpenVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageRatioInputContentToolTip">OpenVoltageRatioInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void OpenVoltageRatioInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void OpenVoltageRatioInput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called OpenVoltageRatioInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await OpenVoltageRatioInput(VoltageRatioInput0);
@@ -3363,9 +3261,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
             }
 
-            OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
-            RefreshVoltageRatioInputCommand.RaiseCanExecuteChanged();
-            CloseVoltageRatioInputCommand.RaiseCanExecuteChanged();
+            OpenVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+            RefreshVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+            CloseVoltageRatioInputCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -3395,18 +3293,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenVoltageRatioInput(VoltageRatioInputEx voltageRatioInput)
+        private async Task OpenVoltageRatioInput(VoltageRatioInputEx? voltageRatioInput)
         {
-            ConfigureInitialLogging(voltageRatioInput);
-
-            if (voltageRatioInput.IsOpen is false)
+            if (voltageRatioInput is not null)
             {
-                await Task.Run(() => voltageRatioInput.Open(10000));    // Wait 1 seconds to attach
-                //await Task.Run(() => voltageRatioInput.Open());  // Block until attached
+                ConfigureInitialLogging(voltageRatioInput);
+
+                if (voltageRatioInput.IsOpen is false)
+                {
+                    await Task.Run(() => voltageRatioInput.Open(10000));    // Wait 10 seconds to attach
+                    //await Task.Run(() => voltageRatioInput.Open());       // Block until attached
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageRatioInput} already open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageRatioInput} already open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to open null VoltageRatioInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -3427,36 +3332,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             phidgetEx.LogActionVerification = LogActionVerification;
         }
 
-
-
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenVoltageRatioInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean OpenVoltageRatioInputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
-
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //// FIX(crhodes)
-            //// Figure out how to handle non zero HubPort
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() 
-            //    { 
-            //        SerialNumber = (Int32)SelectedInterfaceKitPhidget,
-            //        // FIX(crhodes)
-            //        // Need to add HubPort
-            //        Channel = channel 
-            //    };
-
             if (serialHubPortChannel is null) return false;
 
             VoltageRatioInputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -3472,12 +3355,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RefreshVoltageRatioInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> RefreshVoltageRatioInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? RefreshVoltageRatioInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _RefreshVoltageRatioInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE RefreshVoltageRatioInputCommandParameter;
 
         public string RefreshVoltageRatioInputContent { get; set; } = "Refresh";
         public string RefreshVoltageRatioInputToolTip { get; set; } = "Refresh VoltageRatioInput";
@@ -3490,37 +3370,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RefreshVoltageRatioInputContent">RefreshVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_RefreshVoltageRatioInputContentToolTip">RefreshVoltageRatioInput ToolTip</system:String>  
 
-        private async Task RefreshVoltageRatioInput(VoltageRatioInputEx voltageInput)
-        {
-            if (voltageInput.IsOpen is true)
-            {
-                await Task.Run(() => voltageInput.RefreshProperties());
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
-            }
-        }
-
-        // If using CommandParameter, figure out TYPE here
         public async void RefreshVoltageRatioInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void RefreshVoltageRatioInput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called RefreshVoltageRatioInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
-            PublishStatusMessage(Message);
-            //VoltageRatioInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
 
-            switch (shpc.Channel)
+            PublishStatusMessage(Message);
+
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await RefreshVoltageRatioInput(VoltageRatioInput0);
@@ -3586,11 +3447,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     await RefreshVoltageRatioInput(VoltageRatioInput15);
                     break;
             }
-            //}
-            //else
-            //{
-
-            //}
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -3620,25 +3476,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
-        public Boolean RefreshVoltageRatioInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean RefreshVoltageRatioInputCanExecute()
+        private async Task RefreshVoltageRatioInput(VoltageRatioInputEx? voltageInput)
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
+            if (voltageInput is not null)
+            {
+                if (voltageInput.IsOpen is true)
+                {
+                    await Task.Run(() => voltageInput.RefreshProperties());
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+                }
+            }
+            else
+            {
+                Log.Error("Attempt to Refresh null VoltageRatioInputEx", Common.LOG_CATEGORY);
+            }
+        }
 
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
-
+        public Boolean RefreshVoltageRatioInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        {
             if (serialHubPortChannel is null) return false;
 
-            VoltageRatioInputEx? host;
-
-            if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel,
+                out VoltageRatioInputEx? host)) return false;
 
             if (host.IsOpen)
             {
@@ -3654,7 +3517,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseVoltageRatioInput Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseVoltageRatioInputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseVoltageRatioInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseVoltageRatioInputHost = null;
 
@@ -3671,27 +3534,31 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseVoltageRatioInputContent">CloseVoltageRatioInput</system:String>
         //    <system:String x:Key="ViewName_CloseVoltageRatioInputContentToolTip">CloseVoltageRatioInput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void CloseVoltageRatioInput(SerialHubPortChannel? serialHubPortChannel)
-        //public void CloseVoltageRatioInput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
             Message = $"Cool, you called CloseVoltageRatioInput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[shpc].Close());
+            if (serialHubPortChannel is not null)
+            {
+                await Task.Run(() => Common.PhidgetDeviceLibrary
+                    .VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel]
+                    .Close());
 
-            OpenVoltageRatioInputCommand.RaiseCanExecuteChanged();
-            RefreshVoltageRatioInputCommand.RaiseCanExecuteChanged();
-            CloseVoltageRatioInputCommand.RaiseCanExecuteChanged();
+                OpenVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+                RefreshVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+                CloseVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+            }
+            else
+            {
+                Log.Error("Attempt to Close VoltageRatioInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+            }
 
             // If launching a UserControl
 
@@ -3735,13 +3602,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean CloseVoltageRatioInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean CloseVoltageRatioInputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
             VoltageRatioInputEx? host;
@@ -3767,12 +3629,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenVoltageOutput Command
 
-        public DelegateCommand<SerialHubPortChannel?> OpenVoltageOutputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenVoltageOutputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenVoltageOutputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenVoltageOutputCommandParameter;
 
         public string OpenVoltageOutputContent { get; set; } = "Open";
         public string OpenVoltageOutputToolTip { get; set; } = "Open VoltageOutput";
@@ -3785,25 +3644,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenVoltageOutputContent">OpenVoltageOutput</system:String>
         //    <system:String x:Key="ViewName_OpenVoltageOutputContentToolTip">OpenVoltageOutput ToolTip</system:String>  
 
-
-        // If using CommandParameter, figure out TYPE here
         public async void OpenVoltageOutput(SerialHubPortChannel? serialHubPortChannel)
-        //public void OpenVoltageOutput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called OpenVoltageOutput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await OpenVoltageOutput(VoltageOutput0);
@@ -3870,10 +3722,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
             }
 
-            OpenVoltageOutputCommand.RaiseCanExecuteChanged();
-            RefreshVoltageOutputCommand.RaiseCanExecuteChanged();
-            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
-            CloseVoltageOutputCommand.RaiseCanExecuteChanged();
+            OpenVoltageOutputCommand?.RaiseCanExecuteChanged();
+            RefreshVoltageOutputCommand?.RaiseCanExecuteChanged();
+            RaisePerformanceEventCommand?.RaiseCanExecuteChanged();
+            CloseVoltageOutputCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -3903,18 +3755,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async Task OpenVoltageOutput(VoltageOutputEx voltageOutput)
+        private async Task OpenVoltageOutput(VoltageOutputEx? voltageOutput)
         {
-            ConfigureInitialLogging(voltageOutput);
-
-            if (voltageOutput.IsOpen is false)
+            if (voltageOutput is not null)
             {
-                //await Task.Run(() => voltageOutput.Open(5000));    // Wait 5 seconds to attach
-                await Task.Run(() => voltageOutput.Open(10000));  // Block until attached
+                ConfigureInitialLogging(voltageOutput);
+
+                if (voltageOutput.IsOpen is false)
+                {
+                    await Task.Run(() => voltageOutput.Open(10000));  // Wait 10 seconds to attach
+                    //await Task.Run(() => voltageRatioInput.Open());   // Block until attached
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageOutput} already open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageOutput} already open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to open null VoltageOutputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -3935,18 +3794,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             phidgetEx.LogActionVerification = LogActionVerification;
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean OpenVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean OpenVoltageOutputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
             VoltageOutputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -3962,12 +3817,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RefreshVoltageOutput Command
 
-        public DelegateCommand<SerialHubPortChannel?> RefreshVoltageOutputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? RefreshVoltageOutputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _RefreshVoltageOutputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE RefreshVoltageOutputCommandParameter;
 
         public string RefreshVoltageOutputContent { get; set; } = "Refresh";
         public string RefreshVoltageOutputToolTip { get; set; } = "Refresh VoltageOutput";
@@ -3980,42 +3832,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RefreshVoltageOutputContent">RefreshVoltageOutput</system:String>
         //    <system:String x:Key="ViewName_RefreshVoltageOutputContentToolTip">RefreshVoltageOutput ToolTip</system:String>  
 
-        private async Task RefreshVoltageOutput(VoltageOutputEx voltageOutput)
-        {
-            if (voltageOutput.IsOpen is true)
-            {
-                await Task.Run(() => voltageOutput.RefreshProperties());
-            }
-            else
-            {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageOutput} not open", Common.LOG_CATEGORY);
-            }
-        }
-
-        // If using CommandParameter, figure out TYPE here
         public async void RefreshVoltageOutput(SerialHubPortChannel? serialHubPortChannel)
-        //public void RefreshVoltageOutput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called RefreshVoltageOutput\r\n on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
             PublishStatusMessage(Message);
 
-            //if (Int32.TryParse(channelNumber, out channel))
-            //{
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-            //VoltageOutputEx voltageOutputHost = Common.PhidgetDeviceLibrary.VoltageOutputChannels[serialHubPortChannel];
-
-            switch (shpc.Channel)
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await RefreshVoltageOutput(VoltageOutput0);
@@ -4081,11 +3908,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     await RefreshVoltageOutput(VoltageOutput15);
                     break;
             }
-            //}
-            //else
-            //{
-
-            //}
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -4115,25 +3937,34 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
+        private async Task RefreshVoltageOutput(VoltageOutputEx? voltageOutput)
+        {
+            if (voltageOutput is not null)
+            {
+                if (voltageOutput.IsOpen is true)
+                {
+                    await Task.Run(() => voltageOutput.RefreshProperties());
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageOutput} not open", Common.LOG_CATEGORY);
+                }
+            }
+            else
+            {
+                Log.Error("Attempt to Refresh null VoltageOutputEx", Common.LOG_CATEGORY);
+            }
+        }
+
         public Boolean RefreshVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
         //public Boolean RefreshVoltageOutputCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
-
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
-
             if (serialHubPortChannel is null) return false;
 
             VoltageOutputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -4149,12 +3980,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseVoltageOutput Command
 
-        public DelegateCommand<SerialHubPortChannel?> CloseVoltageOutputCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseVoltageOutputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseVoltageOutputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseVoltageOutputCommandParameter;
 
         public string CloseVoltageOutputContent { get; set; } = "Close";
         public string CloseVoltageOutputToolTip { get; set; } = "Close VoltageOutput";
@@ -4167,28 +3995,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseVoltageOutputContent">CloseVoltageOutput</system:String>
         //    <system:String x:Key="ViewName_CloseVoltageOutputContentToolTip">CloseVoltageOutput ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public async void CloseVoltageOutput(SerialHubPortChannel? serialHubPortChannel)
-        //public void CloseVoltageOutput()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
 
             Message = $"Cool, you called CloseVoltageOutput on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            await Task.Run(() => Common.PhidgetDeviceLibrary.VoltageOutputChannels[shpc].Close());
+            if (serialHubPortChannel is not null)
+            {
+                await Task.Run(() => 
+                    Common.PhidgetDeviceLibrary.VoltageOutputChannels[(SerialHubPortChannel)serialHubPortChannel]
+                    .Close());
 
-            OpenVoltageOutputCommand.RaiseCanExecuteChanged();
-            RefreshVoltageOutputCommand.RaiseCanExecuteChanged();
-            RaisePerformanceEventCommand.RaiseCanExecuteChanged();
-            CloseVoltageOutputCommand.RaiseCanExecuteChanged();
+                OpenVoltageOutputCommand?.RaiseCanExecuteChanged();
+                RefreshVoltageOutputCommand?.RaiseCanExecuteChanged();
+                RaisePerformanceEventCommand?.RaiseCanExecuteChanged();
+                CloseVoltageOutputCommand?.RaiseCanExecuteChanged();
+            }
+            else
+            {
+                Log.Error("Attempt to Close VoltageOutput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+            }
 
             // If launching a UserControl
 
@@ -4232,7 +4064,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean CloseVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
         //public Boolean CloseVoltageOutputCanExecute()
         {
@@ -4243,7 +4074,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             VoltageOutputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageOutputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -4261,12 +4093,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RaisePerformanceEvent Command
 
-        public DelegateCommand<SerialHubPortChannel?> RaisePerformanceEventCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? RaisePerformanceEventCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _RaisePerformanceEventHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE RaisePerformanceEventCommandParameter;
 
         public string RaisePerformanceEventContent { get; set; } = "Raise Event";
         public string RaisePerformanceEventToolTip { get; set; } = "Raise Performance Event";
@@ -4279,37 +4108,37 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_RaisePerformanceEventContent">RaisePerformanceEvent</system:String>
         //    <system:String x:Key="ViewName_RaisePerformanceEventContentToolTip">RaisePerformanceEvent ToolTip</system:String>  
 
-        private async Task RaisePerformanceEvent(VoltageInputEx voltageInput)
+        private async Task RaisePerformanceEvent(VoltageInputEx? voltageInput)
         {
-            if (voltageInput.IsOpen is true)
+            if (voltageInput is not null)
             {
-                await Task.Run(() => voltageInput.RaisePlayPerformanceEvent());
+                if (voltageInput.IsOpen is true)
+                {
+                    await Task.Run(() => voltageInput.RaisePlayPerformanceEvent());
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+                }
             }
             else
             {
-                if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{voltageInput} not open", Common.LOG_CATEGORY);
+                Log.Error("Attempt to RaisePerformanceEvent on null VoltageInputEx", Common.LOG_CATEGORY);
             }
         }
 
-        // If using CommandParameter, figure out TYPE here
         public async void RaisePerformanceEvent(SerialHubPortChannel? serialHubPortChannel)
-        //public void RaisePerformanceEvent()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            // Do something amazing.
-
-            SerialHubPortChannel shpc = (SerialHubPortChannel)serialHubPortChannel;
-
             Message = $"Cool, you called RaisePerformanceEvent\r\n on " +
-                $"serialHubPortChannel:{shpc.SerialNumber}" +
-                $":{shpc.HubPort}:{shpc.Channel}";
-            PublishStatusMessage(Message);
-            //VoltageInputEx voltageInputHost = Common.PhidgetDeviceLibrary.VoltageInputChannels[serialHubPortChannel];
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
 
-            switch (shpc.Channel)
+            PublishStatusMessage(Message);
+
+            switch (serialHubPortChannel?.Channel)
             {
                 case 0:
                     await RaisePerformanceEvent(VoltageInput0);
@@ -4375,11 +4204,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     await RaisePerformanceEvent(VoltageInput15);
                     break;
             }
-            //}
-            //else
-            //{
-
-            //}
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -4409,25 +4233,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean RaisePerformanceEventCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean RaisePerformanceEventCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //Int32 channel = (Int32)channelNumber;
-
-            ////if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            //if (SelectedInterfaceKitPhidget is null) return false;
-
-            //SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedInterfaceKitPhidget, Channel = channel };
-
             if (serialHubPortChannel is null) return false;
 
             VoltageInputEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels.TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.VoltageInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -4458,18 +4271,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Private Methods (none)
 
 
-
-        #endregion
-
-        #region IInstanceCount
-
-        private static Int32 _instanceCountVM;
-
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
 
         #endregion
     }

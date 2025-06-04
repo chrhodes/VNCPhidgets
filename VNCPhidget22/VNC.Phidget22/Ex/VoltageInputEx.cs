@@ -54,7 +54,7 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(VoltageInputConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitialize) startTicks = Log.DEVICE_INITIALIZE($"Enter" +
+            if (Core.Common.VNCLogging.DeviceInitializeLow) startTicks = Log.DEVICE_INITIALIZE_LOW($"Enter" +
                 $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
             DeviceSerialNumber = configuration.DeviceSerialNumber;
@@ -93,7 +93,7 @@ namespace VNC.Phidget22.Ex
             SensorChange += VoltageInputEx_SensorChange;
             VoltageChange += VoltageInputEx_VoltageChange;
 
-            if (Core.Common.VNCLogging.DeviceInitialize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -188,7 +188,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Boolean _attached;
-        public Boolean Attached
+        public new Boolean Attached
         {
             get => _attached;
             set
@@ -313,8 +313,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Unit _sensorUnit_Unit;
-        public Unit SensorUnit_Unit
+        private Unit? _sensorUnit_Unit;
+        public Unit? SensorUnit_Unit
         {
             get => _sensorUnit_Unit;
             set
@@ -324,8 +324,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private string _sensorUnit_Name;
-        public string SensorUnit_Name
+        private string? _sensorUnit_Name;
+        public string? SensorUnit_Name
         {
             get => _sensorUnit_Name;
             set
@@ -335,8 +335,8 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private string _sensorUnit_Symbol;
-        public string SensorUnit_Symbol
+        private string? _sensorUnit_Symbol;
+        public string? SensorUnit_Symbol
         {
             get => _sensorUnit_Symbol;
             set
@@ -526,7 +526,7 @@ namespace VNC.Phidget22.Ex
 
         private void VoltageInputEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.VoltageInput voltageInput = sender as Phidgets.VoltageInput;
+            Phidgets.VoltageInput voltageInput =  (Phidgets.VoltageInput)sender;
 
             if (LogPhidgetEvents)
             {
@@ -548,12 +548,11 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
+                Log.Error(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
-                    throw pex;
+                    throw;
                 }
-
-                Log.Error(pex, Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -710,7 +709,7 @@ namespace VNC.Phidget22.Ex
         /// <summary>
         /// Gather properties from Open Phidget Device
         /// </summary>
-        public new void RefreshProperties()
+        public void RefreshProperties()
         {
             Int64 startTicks = 0;
             if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}" +
@@ -808,9 +807,9 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{voltageInputSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(voltageInputSequence.Actions, async action =>
+                            Parallel.ForEach(voltageInputSequence.Actions, action =>
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
                             });
                         }
                         else
@@ -821,7 +820,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (VoltageInputAction action in voltageInputSequence.Actions)
                             {
-                                await PerformAction(action);
+                                PerformAction(action);
                             }
                         }
 
@@ -855,7 +854,7 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        public async void RaisePlayPerformanceEvent()
+        public void RaisePlayPerformanceEvent()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RaisePlayPerformanceEvent) Enter", Common.LOG_CATEGORY);
@@ -903,7 +902,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private async Task PerformAction(VoltageInputAction action)
+        private void PerformAction(VoltageInputAction action)
         {
             Int64 startTicks = 0;
 
@@ -997,7 +996,7 @@ namespace VNC.Phidget22.Ex
 
             var sequence = args.VoltageInputSequence;
 
-            await RunActionLoops(sequence);
+            if (sequence is not null) await RunActionLoops(sequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -1008,10 +1007,10 @@ namespace VNC.Phidget22.Ex
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            long startTicks = 0;
 #if LOGGING
+            long startTicks = 0;
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

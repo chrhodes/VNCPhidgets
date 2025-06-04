@@ -15,7 +15,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
     // Do not know why this doesn't work
 
     //public partial class Shell : WindowBase
-    public partial class Shell : Window, IInstanceCountV, INotifyPropertyChanged
+    public partial class Shell : Window, INotifyPropertyChanged, IInstanceCountV
     {
         #region Contructors, Initialization, and Load
 
@@ -101,9 +101,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region Fields and Properties
 
-        private string _viewType;
+        private string? _viewType;
 
-        public string ViewType
+        public string? ViewType
         {
             get => _viewType;
             set
@@ -118,9 +118,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
-        private string _viewDataContextType;
+        private string? _viewDataContextType;
 
-        public string ViewDataContextType
+        public string? ViewDataContextType
         {
             get => _viewDataContextType;
             set
@@ -135,8 +135,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
-        private ShellViewModel _viewModel;
-        public ShellViewModel ViewModel
+        private ShellViewModel? _viewModel;
+        public ShellViewModel? ViewModel
         {
             get => _viewModel; set
             {
@@ -147,9 +147,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
-        private string _viewModelType;
+        private string? _viewModelType;
 
-        public string ViewModelType
+        public string? ViewModelType
         {
             get => _viewModelType;
             set
@@ -206,7 +206,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region INotifyPropertyChanged
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         // This is the traditional approach - requires string name to be passed in
 
@@ -215,7 +215,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //}
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             long startTicks = 0;
             if (Common.VNCLogging.INPC) startTicks = Log.VIEW_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);

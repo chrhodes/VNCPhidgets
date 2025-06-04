@@ -4,6 +4,6 @@ namespace VNC.Phidget22.Events
 {
     public class PerformanceEventArgs
     {
-        public Performance Performance { get; set; }
+        public Performance? Performance { get; set; }
     }
 }

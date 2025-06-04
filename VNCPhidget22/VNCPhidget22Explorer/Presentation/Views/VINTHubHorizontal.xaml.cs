@@ -19,7 +19,7 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class VINTHubHorizontal : ViewBase, IVINTHub, IInstanceCountV
+    public partial class VINTHubHorizontal : ViewBase, IVINTHub//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -155,20 +155,20 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
-        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-#if LOGGING
-            Int64 startTicks = 0;
-            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-#endif
-            var newSize = e.NewSize;
-            var previousSize = e.PreviousSize;
-            WindowSize = newSize;
+//        private void thisControl_SizeChanged(object sender, SizeChangedEventArgs e)
+//        {
+//#if LOGGING
+//            Int64 startTicks = 0;
+//            if (Common.VNCCoreLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+//#endif
+//            var newSize = e.NewSize;
+//            var previousSize = e.PreviousSize;
+//            WindowSize = newSize;
 
-#if LOGGING
-            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-#endif
-        }
+//#if LOGGING
+//            if (Common.VNCCoreLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+//#endif
+//        }
 
         #endregion
 
@@ -191,25 +191,25 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
 
         //private void SensorMode_Click(object sender, RoutedEventArgs e)
         //{

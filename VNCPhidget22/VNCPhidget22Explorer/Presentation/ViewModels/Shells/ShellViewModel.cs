@@ -7,7 +7,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class ShellViewModel : ViewModelBase, IInstanceCountVM
+    public class ShellViewModel : ViewModelBase//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -31,6 +31,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // Put things here that initialize the ViewModel
             // Initialize EventHandlers, Commands, etc.
+
+            Title = "VNCPhidget22Explorer - Shell";
 
             //DeveloperUIMode = Common.DeveloperUIMode;
 
@@ -60,26 +62,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _title = "VNCPhidget22Explorer - Shell";
-
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                if (_title == value)
-                    return;
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Information InformationApplication { get; set; }
-        public Information InformationApplicationCore { get; set; }
-        public Information InformationVNCCore { get; set; }
-        public Information InformationVNCPhidget { get; set; }
-        public Information InformationVNCPhidgetConfiguration { get; set; }
-        public Information InformationPhidget22 { get; set; }
+        public Information? InformationApplication { get; set; }
+        public Information? InformationApplicationCore { get; set; }
+        public Information? InformationVNCCore { get; set; }
+        public Information? InformationVNCPhidget { get; set; }
+        public Information? InformationVNCPhidgetConfiguration { get; set; }
+        public Information? InformationPhidget22 { get; set; }
 
         #endregion
 
@@ -100,18 +88,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Private Methods (none)
 
-
-        #endregion
-
-        #region IInstanceCount
-
-        private static Int32 _instanceCountVM;
-
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
 
         #endregion
     }

@@ -10,7 +10,7 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class MainDxDockLayoutManager : ViewBase, IMain, IInstanceCountV
+    public partial class MainDxDockLayoutManager : ViewBase, IMain//, IInstanceCountV
     {
         //public MainDxDockLayoutManagerViewModel _viewModel;
 
@@ -70,24 +70,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(RestoreLayout_Click) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }
