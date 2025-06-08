@@ -7,7 +7,7 @@
       "Description": "Skull-012 Yes",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Yes" },  // Channel 0 - X Axis  
       ],
@@ -17,7 +17,7 @@
       "Description": "Skull-012 Sigh",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Sigh" },  // Channel 0 - X Axis  
       ],
@@ -27,7 +27,7 @@
       "Description": "Skull-012 Big Yes",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Big Yes" },  // Channel 0 - X Axis  
       ],
@@ -37,7 +37,7 @@
       "Description": "Skull-012 No",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Skull No" },  // Channel 2 - Z Axis   
       ],
@@ -47,7 +47,7 @@
       "Description": "Skull-012 Big No",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Skull Big No" },  // Channel 2 - Z Axis  
       ],
@@ -57,7 +57,7 @@
       "Description": "Skull-012 Laugh",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Laugh" },  // Channel 0 - X Axis   
       ],
@@ -67,7 +67,7 @@
       "Description": "Skull-012 Big Laugh",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Big Laugh" },  // Channel 0 - X Axis  
       ],

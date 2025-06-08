@@ -510,7 +510,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(accelerometerSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -521,7 +521,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (AccelerometerAction action in accelerometerSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -587,7 +587,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(AccelerometerAction action)
+        private void ExecuteAction(AccelerometerAction action)
         {
             Int64 startTicks = 0;
 

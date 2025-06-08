@@ -9,7 +9,7 @@
       "Name": "All Skulls - VelocityLimit (10) Acceleration (25)",
       "Description": "All Skulls - VelocityLimit (10) Acceleration (25)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (10) Acceleration (25)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (10) Acceleration (25)", "SerialNumber": 169501 },
@@ -23,7 +23,7 @@
       "Name": "All Skulls - VelocityLimit (25) Acceleration (50)",
       "Description": "All Skulls - VelocityLimit (25) Acceleration (50)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (25) Acceleration (50)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (25) Acceleration (50)", "SerialNumber": 169501 },
@@ -37,7 +37,7 @@
       "Name": "All Skulls - VelocityLimit (50) Acceleration (100)",
       "Description": "All Skulls - VelocityLimit (50) Acceleration (100)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (50) Acceleration (100)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (50) Acceleration (100)", "SerialNumber": 169501 },
@@ -51,7 +51,7 @@
       "Name": "All Skulls - VelocityLimit (100) Acceleration (200)",
       "Description": "All Skulls - VelocityLimit (100) Acceleration (200)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 169501 },
@@ -65,7 +65,7 @@
       "Name": "All Skulls - VelocityLimit (250) Acceleration (500)",
       "Description": "All Skulls - VelocityLimit (250) Acceleration (500)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 169501 },
@@ -79,7 +79,7 @@
       "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)",
       "Description": "All Skulls - VelocityLimit (500) Acceleration (1000)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 169501 },
@@ -93,7 +93,7 @@
       "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)",
       "Description": "All Skulls - VelocityLimit (1000) Acceleration (2000)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 169501 },
@@ -107,7 +107,7 @@
       "Name": "All Skulls - VelocityLimit (5000) Acceleration (10000)",
       "Description": "All Skulls - VelocityLimit (5000) Acceleration (10000)",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull HP0 C012 - VelocityLimit (5000) Acceleration (10000)", "SerialNumber": 99220 },
        { "Name": "Skull HP0 C012 - VelocityLimit (5000) Acceleration (10000)", "SerialNumber": 169501 },

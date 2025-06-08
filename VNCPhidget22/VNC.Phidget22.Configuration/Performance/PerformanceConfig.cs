@@ -29,7 +29,7 @@
             //{
             //    Name = "IK Performance 1",
             //    Description = "psbc{21,22,23}_SequenceIK 1 in Parallel",
-            //    PlayDeviceChannelSequencesInParallel = true,
+            //    ExecuteDeviceChannelSequencesInParallel = true,
 
             //    DeviceChannelSequences = new[]
             //    {
@@ -53,7 +53,7 @@
             //{
             //    Name = "AS and IK Parallel",
             //    Description = "psbc21_{SequenceServo0,SequenceIK 1} in Parallel",
-            //    PlayDeviceChannelSequencesInParallel = true,
+            //    ExecuteDeviceChannelSequencesInParallel = true,
 
             //    DeviceChannelSequences = new[]
             //    {

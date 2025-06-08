@@ -274,9 +274,9 @@ namespace VNC.Phidget22.Players
                     Log.Trace($"PlayPerformance(>{performance.Name}<) description:>{performance.Description}<" +
                         $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
                         $" deviceChannelSequences:>{performance.DeviceChannelSequences?.Count()}<" +
-                        $" playSequencesInParallel:>{performance.PlayDeviceChannelSequencesInParallel}<" +
+                        $" playSequencesInParallel:>{performance.ExecuteDeviceChannelSequencesInParallel}<" +
                         $" performances:>{performance.Performances?.Count()}<" +
-                        $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
+                        $" playPerformancesInParallel:>{performance.ExecutePerformancesInParallel}<" +
                         $" loops:>{performance.PerformanceLoops}<" +
                         $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
                         $" duration:>{performance.Duration}<" +
@@ -292,7 +292,7 @@ namespace VNC.Phidget22.Players
                     {
                         nextPerformance = PerformanceLibrary.AvailablePerformances[performanceName];
 
-                        await RunPerformanceLoops(nextPerformance);
+                        await ExecutePerformance(nextPerformance);
 
                         nextPerformance = nextPerformance?.NextPerformance;
                     }
@@ -305,7 +305,7 @@ namespace VNC.Phidget22.Players
             }
         }
 
-        public async Task RunPerformanceLoops(Performance performance)
+        public async Task ExecutePerformance(Performance performance)
         {
             long startTicks = 0;
 
@@ -317,9 +317,9 @@ namespace VNC.Phidget22.Players
                     $" serialNumber:>{performance.SerialNumber}<" +
                     $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
                     $" deviceClassSequences:>{performance.DeviceChannelSequences?.Count()}<" +
-                    $" playSequencesInParallel:>{performance.PlayDeviceChannelSequencesInParallel}<" +
+                    $" playSequencesInParallel:>{performance.ExecuteDeviceChannelSequencesInParallel}<" +
                     $" performances:>{performance.Performances?.Count()}<" +
-                    $" playPerformancesInParallel:>{performance.PlayPerformancesInParallel}<" +
+                    $" playPerformancesInParallel:>{performance.ExecutePerformancesInParallel}<" +
                     $" performanceLoops:>{performance.PerformanceLoops}<" +
                     $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
                     $" duration:>{performance.Duration}<" +
@@ -360,7 +360,7 @@ namespace VNC.Phidget22.Players
             {
                 for (Int32 performanceLoop = 0; performanceLoop < configuredPerf.PerformanceLoops; performanceLoop++)
                 {
-                    if (configuredPerf.PlayDeviceChannelSequencesInParallel)
+                    if (configuredPerf.ExecuteDeviceChannelSequencesInParallel)
                     {                       
                         Parallel.ForEach(configuredPerf.DeviceChannelSequences, async deviceChannelSequence =>
                         {
@@ -422,7 +422,7 @@ namespace VNC.Phidget22.Players
             {
                 for (Int32 performanceLoop = 0; performanceLoop < configuredPerf.PerformanceLoops; performanceLoop++)
                 {
-                    if (configuredPerf.PlayPerformancesInParallel)
+                    if (configuredPerf.ExecutePerformancesInParallel)
                     {
                         Parallel.ForEach(configuredPerf.Performances, async perf =>
                         {
@@ -435,7 +435,7 @@ namespace VNC.Phidget22.Players
                                 $" duration:>{perf.Duration}<" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            await performancePlayer.RunPerformanceLoops(perf);
+                            await performancePlayer.ExecutePerformance(perf);
                         });
                     }
                     else
@@ -454,7 +454,7 @@ namespace VNC.Phidget22.Players
                                 $" duration:>{perf.Duration}<" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            await RunPerformanceLoops(perf);
+                            await ExecutePerformance(perf);
                         }
                     }
                 }
@@ -483,7 +483,7 @@ namespace VNC.Phidget22.Players
 
             if (configuredPerf.NextPerformance is not null)
             {
-                await RunPerformanceLoops(configuredPerf.NextPerformance);
+                await ExecutePerformance(configuredPerf.NextPerformance);
             }
 
             if (LogPerformance) Log.Trace($"Exit" +
@@ -557,7 +557,7 @@ namespace VNC.Phidget22.Players
                 {
                     //nextPerformance = value;
 
-                    await RunPerformanceLoops(nextPerformance);
+                    await ExecutePerformance(nextPerformance);
 
                     // TODO(crhodes)
                     // Should we process Next Performance if exists.

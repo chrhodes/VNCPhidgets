@@ -513,7 +513,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(pressureSensorSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -524,7 +524,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (PressureSensorAction action in pressureSensorSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -590,7 +590,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(PressureSensorAction action)
+        private void ExecuteAction(PressureSensorAction action)
         {
             Int64 startTicks = 0;
 

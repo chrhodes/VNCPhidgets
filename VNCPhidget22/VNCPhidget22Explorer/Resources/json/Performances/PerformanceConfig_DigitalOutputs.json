@@ -9,7 +9,7 @@
       "Description": "",
       "SerialNumber": 124744,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Open DigitalOutput" },
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open DigitalOutput" },
@@ -22,7 +22,7 @@
       "Description": "",
       "SerialNumber": 124744,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Close DigitalOutput" },
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Close DigitalOutput" },
@@ -38,7 +38,7 @@
       "Description": "Blink Lights in Sequence",
       "SerialNumber": 124744,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Blink DigitalOutput 500ms" },
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 500ms" },
@@ -57,7 +57,7 @@
       "Description": "Blink Lights in Sequence, Two Loops",
       "SerialNumber": 124744,
       "Loops": 2,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Blink DigitalOutput 250ms" },
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 250ms" },
@@ -75,7 +75,7 @@
       "Description": "Blink Lights in Parallel",
       "SerialNumber": 124744,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Blink DigitalOutput 500ms" },
         { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 500ms" },

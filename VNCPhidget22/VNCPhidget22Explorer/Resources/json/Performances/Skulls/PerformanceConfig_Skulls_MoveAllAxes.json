@@ -6,7 +6,7 @@
       "Name": "Move All Skulls 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Move All Skulls - Up 5" },
        { "Name": "Move All Skulls - Down 5" },
@@ -26,7 +26,7 @@
       "Name": "Move All Skulls 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Move All Skulls - Up 10" },
        { "Name": "Move All Skulls - Down 10" },
@@ -46,7 +46,7 @@
       "Name": "Move All Skulls 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Move All Skulls - Up 15" },
        { "Name": "Move All Skulls - Down 15" },
@@ -66,7 +66,7 @@
       "Name": "Move All Skulls 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Move All Skulls - Up 20" },
        { "Name": "Move All Skulls - Down 20" },
@@ -90,7 +90,7 @@
       "Name": "Move All Skulls - Up 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up 5", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Up 5", "SerialNumber": 169501},
@@ -101,7 +101,7 @@
       "Name": "Move All Skulls - Down 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down 5", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Down 5", "SerialNumber": 169501},
@@ -112,7 +112,7 @@
       "Name": "Move All Skulls - Right 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Right 5", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Right 5", "SerialNumber": 169501},
@@ -123,7 +123,7 @@
       "Name": "Move All Skulls - Left 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Left 5", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Left 5", "SerialNumber": 169501},
@@ -134,7 +134,7 @@
       "Name": "Move All Skulls - Tilt Left 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Left 5", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Left 5", "SerialNumber": 169501},
@@ -145,7 +145,7 @@
       "Name": "Move All Skulls - Tilt Right 5",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Right 5", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Right 5", "SerialNumber": 169501},
@@ -156,7 +156,7 @@
       "Name": "Move All Skulls - Up 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up 10", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Up 10", "SerialNumber": 169501},
@@ -167,7 +167,7 @@
       "Name": "Move All Skulls - Down 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down 10", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Down 10", "SerialNumber": 169501},
@@ -178,7 +178,7 @@
       "Name": "Move All Skulls - Right 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501},
@@ -189,7 +189,7 @@
       "Name": "Move All Skulls - Left 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Left 10", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501},
@@ -200,7 +200,7 @@
       "Name": "Move All Skulls - Tilt Left 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Left 10", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Left 10", "SerialNumber": 169501},
@@ -211,7 +211,7 @@
       "Name": "Move All Skulls - Tilt Right 10",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Right 10", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Right 10", "SerialNumber": 169501},
@@ -222,7 +222,7 @@
       "Name": "Move All Skulls - Up 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up 15", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Up 15", "SerialNumber": 169501},
@@ -233,7 +233,7 @@
       "Name": "Move All Skulls - Down 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down 15", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Down 15", "SerialNumber": 169501},
@@ -244,7 +244,7 @@
       "Name": "Move All Skulls - Right 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Right 15", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Right 15", "SerialNumber": 169501},
@@ -255,7 +255,7 @@
       "Name": "Move All Skulls - Left 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Left 15", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Left 15", "SerialNumber": 169501},
@@ -266,7 +266,7 @@
       "Name": "Move All Skulls - Tilt Left 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Left 15", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Left 15", "SerialNumber": 169501},
@@ -277,7 +277,7 @@
       "Name": "Move All Skulls - Tilt Right 15",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Right 15", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Right 15", "SerialNumber": 169501},
@@ -288,7 +288,7 @@
       "Name": "Move All Skulls - Up 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up 20", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Up 20", "SerialNumber": 169501},
@@ -299,7 +299,7 @@
       "Name": "Move All Skulls - Down 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down 20", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Down 20", "SerialNumber": 169501},
@@ -310,7 +310,7 @@
       "Name": "Move All Skulls - Right 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Right 20", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Right 20", "SerialNumber": 169501},
@@ -321,7 +321,7 @@
       "Name": "Move All Skulls - Left 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Left 20", "SerialNumber": 99220},
        { "Name": "Skull-012 Look Left 20", "SerialNumber": 169501},
@@ -332,7 +332,7 @@
       "Name": "Move All Skulls - Tilt Left 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Left 20", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Left 20", "SerialNumber": 169501},
@@ -343,7 +343,7 @@
       "Name": "Move All Skulls - Tilt Right 20",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Tilt Right 20", "SerialNumber": 99220},
        { "Name": "Skull-012 Tilt Right 20", "SerialNumber": 169501},

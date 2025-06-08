@@ -1088,7 +1088,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(stepperSequence.Actions, action =>
                             {
-                                 PerformAction(action);
+                                 ExecuteAction(action);
                             });
                         }
                         else
@@ -1099,7 +1099,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (StepperAction action in stepperSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -1164,7 +1164,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(StepperAction action)
+        private void ExecuteAction(StepperAction action)
         {
             Int64 startTicks = 0;
 

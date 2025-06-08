@@ -513,7 +513,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(resistanceInputSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -524,7 +524,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (ResistanceInputAction action in resistanceInputSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -590,7 +590,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(ResistanceInputAction action)
+        private void ExecuteAction(ResistanceInputAction action)
         {
             Int64 startTicks = 0;
 

@@ -6,7 +6,7 @@
       "Name": "Consulting Skulls Say Yes",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
        { "Name": "Center All Skulls"},
@@ -20,7 +20,7 @@
       "Name": "Consulting Skulls Say No",
       "Description": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
        { "Name": "Center All Skulls"},
@@ -38,7 +38,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
         { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220 },
         { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501 }
@@ -50,7 +50,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
         { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
         { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
@@ -64,7 +64,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
         { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220 },
         { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501 },
@@ -76,7 +76,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
         { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
         { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
@@ -90,7 +90,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
         { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220 },
         { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501 }
@@ -102,7 +102,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
         { "Name": "Skull-456 No", "SerialNumber": 99220 },
         { "Name": "Skull-012 No", "SerialNumber": 169501 }
@@ -113,7 +113,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
         { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220 },
         { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501 },
@@ -125,7 +125,7 @@
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
         { "Name": "Skull-012 No", "SerialNumber": 99220 },
         { "Name": "Skull-012 No", "SerialNumber": 169501 }

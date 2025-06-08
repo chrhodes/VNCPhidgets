@@ -514,7 +514,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(temperatureSensorSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -525,7 +525,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (TemperatureSensorAction action in temperatureSensorSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -591,7 +591,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(TemperatureSensorAction action)
+        private void ExecuteAction(TemperatureSensorAction action)
         {
             Int64 startTicks = 0;
 

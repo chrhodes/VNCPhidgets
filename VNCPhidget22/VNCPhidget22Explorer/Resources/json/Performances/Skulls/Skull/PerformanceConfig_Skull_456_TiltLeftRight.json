@@ -10,7 +10,7 @@
       "Description": "Skull Tilt Right",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -20" },   // Tilt Right(-)/Left(+)
       ],
@@ -20,7 +20,7 @@
       "Description": "Skull Tilt Right",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -15" },  // Tilt Right(-)/Left(+)  
       ],
@@ -30,7 +30,7 @@
       "Description": "Skull Tilt Right",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)  
       ],
@@ -40,7 +40,7 @@
       "Description": "Skull Tilt Right",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -5" },  // Tilt Right(-)/Left(+)  
       ],
@@ -53,7 +53,7 @@
       "Description": "Skull Tilt Left",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 5" },  // Tilt Right(-)/Left(+)  
       ],
@@ -63,7 +63,7 @@
       "Description": "Skull Tilt Left",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },  // Tilt Right(-)/Left(+)  
       ],
@@ -73,7 +73,7 @@
       "Description": "Skull Tilt Left",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 15" },  // Tilt Right(-)/Left(+)  
       ],
@@ -83,7 +83,7 @@
       "Description": "Skull Tilt Left",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 20" },  // Tilt Right(-)/Left(+)  
       ],

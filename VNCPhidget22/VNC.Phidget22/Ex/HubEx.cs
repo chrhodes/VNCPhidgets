@@ -514,7 +514,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(hubSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -525,7 +525,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (HubAction action in hubSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -591,7 +591,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(HubAction action)
+        private void ExecuteAction(HubAction action)
         {
             Int64 startTicks = 0;
 

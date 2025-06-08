@@ -512,7 +512,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(frequencyCounterSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -523,7 +523,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (FrequencyCounterAction action in frequencyCounterSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -589,7 +589,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(FrequencyCounterAction action)
+        private void ExecuteAction(FrequencyCounterAction action)
         {
             Int64 startTicks = 0;
 

@@ -140,7 +140,7 @@
                             </dxlc:LayoutItem>
 
                             <dxlc:LayoutItem Label="PlayDeviceChannelSequences InParallel" HorizontalAlignment="Left" >
-                                <dxe:TextEdit Text="{Binding PlayDeviceChannelSequencesInParallel }" />
+                                <dxe:TextEdit Text="{Binding ExecuteDeviceChannelSequencesInParallel }" />
                             </dxlc:LayoutItem>
 
                         </dxlc:LayoutGroup>
@@ -189,7 +189,7 @@
                             </dxlc:LayoutItem>
 
                             <dxlc:LayoutItem Label="PlayPerformances InParallel" HorizontalAlignment="Left" >
-                                <dxe:TextEdit Text="{Binding PlayPerformancesInParallel }" />
+                                <dxe:TextEdit Text="{Binding ExecutePerformancesInParallel }" />
                             </dxlc:LayoutItem>
 
                         </dxlc:LayoutGroup>

@@ -514,7 +514,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(lcdSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -525,7 +525,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (LCDAction action in lcdSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -591,7 +591,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(LCDAction action)
+        private void ExecuteAction(LCDAction action)
         {
             Int64 startTicks = 0;
 

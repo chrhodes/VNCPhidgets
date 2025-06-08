@@ -9,7 +9,7 @@
       "Name": "Move All Skulls - MovementCharacteristics Progression",
       "Description": "Move All Skulls with increasing MovementCharacteristics",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Sequential", "Duration":  2000 },
        { "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel", "Duration":  2000 },
@@ -21,7 +21,7 @@
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Sequential",
       "Description": "Move All Skulls with increasing MovementCharacteristics",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
        //{ "Name": "Move All Skulls"},
@@ -44,7 +44,7 @@
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Sequential DCS Parallel",
       "Description": "Move All Skulls with increasing MovementCharacteristics",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
        //{ "Name": "Move All Skulls"},
@@ -67,7 +67,7 @@
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Sequential",
       "Description": "Move All Skulls with increasing MovementCharacteristics",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
        //{ "Name": "Move All Skulls Parallel"},
@@ -90,7 +90,7 @@
       "Name": "Move All Skulls - MovementCharacteristics Progression - Performances Parallel DCS Parallel",
       "Description": "Move All Skulls with increasing MovementCharacteristics",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
        //{ "Name": "Move All Skulls Parallel"},
@@ -116,7 +116,7 @@
       "Name": "Move All Skulls - Performances Sequential DCS Sequential",
       "Description": "Move All Skulls - Performances Sequential DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Center All Skulls" }, 
        { "Name": "All Skulls - Look Down Left - Performances Sequential DCS Sequential"},
@@ -134,7 +134,7 @@
       "Name": "Move All Skulls - Performances Sequential DCS Parallel",
       "Description": "Move All Skulls - Performances Sequential DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Center All Skulls" }, 
        { "Name": "All Skulls - Look Down Left - Performances Sequential DCS Parallel"},
@@ -152,7 +152,7 @@
       "Name": "Move All Skulls - Performances Parallel DCS Sequential",
       "Description": "Move All Skulls",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Center All Skulls" }, 
        { "Name": "All Skulls - Look Down Left - Performances Parallel DCS Sequential"},
@@ -170,7 +170,7 @@
       "Name": "Move All Skulls - Performances Parallel DCS Parallel",
       "Description": "Move All Skulls",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Center All Skulls" }, 
        { "Name": "All Skulls - Look Down Left - Performances Parallel DCS Parallel"},
@@ -191,7 +191,7 @@
       "Name": "All Skulls - Look Down Left - Performances Sequential DCS Sequential",
       "Description": "Look Down Left Performances Sequential DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Down Left - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Left - DCS Sequential", "SerialNumber": 169501 },
@@ -202,7 +202,7 @@
       "Name": "All Skulls - Look Down Left - Performances Sequential DCS Parallel",
       "Description": "Look Down Left Performances Sequential DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Down Left - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Left - DCS Parallel", "SerialNumber": 169501 },
@@ -213,7 +213,7 @@
       "Name": "All Skulls - Look Down Left - Performances Parallel DCS Sequential",
       "Description": "Look Down Left Performances Parallel DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down Left - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Left - DCS Sequential", "SerialNumber": 169501 },
@@ -224,7 +224,7 @@
       "Name": "All Skulls - Look Down Left - Performances Parallel DCS Parallel",
       "Description": "Look Down Left Performances Parallel DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down Left - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Left - DCS Parallel", "SerialNumber": 169501 },
@@ -238,7 +238,7 @@
       "Name": "All Skulls - Look Down Right - Performances Sequential DCS Sequential",
       "Description": "Look Down Right Performances Sequential DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Down Right - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Right - DCS Sequential", "SerialNumber": 169501 },
@@ -249,7 +249,7 @@
       "Name": "All Skulls - Look Down Right - Performances Sequential DCS Parallel",
       "Description": "Look Down Right Performances Sequential DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Down Right - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Right - DCS Parallel", "SerialNumber": 169501 },
@@ -260,7 +260,7 @@
       "Name": "All Skulls - Look Down Right - Performances Parallel DCS Sequential",
       "Description": "Look Down Right Performances Parallel DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down Right - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Right - DCS Sequential", "SerialNumber": 169501 },
@@ -271,7 +271,7 @@
       "Name": "All Skulls - Look Down Right - Performances Parallel DCS Parallel",
       "Description": "Look Down Right Performances Parallel DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Down Right - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Down Right - DCS Parallel", "SerialNumber": 169501 },
@@ -285,7 +285,7 @@
       "Name": "All Skulls - Look Up Left - Performances Sequential DCS Sequential",
       "Description": "Look Up Left Performances Sequential DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Up Left - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Left - DCS Sequential", "SerialNumber": 169501 },
@@ -296,7 +296,7 @@
       "Name": "All Skulls - Look Up Left - Performances Sequential DCS Parallel",
       "Description": "Look Up Left Performances Sequential DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Up Left - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Left - DCS Parallel", "SerialNumber": 169501 },
@@ -307,7 +307,7 @@
       "Name": "All Skulls - Look Up Left - Performances Parallel DCS Sequential",
       "Description": "Look Up Left Performances Parallel DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up Left - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Left - DCS Sequential", "SerialNumber": 169501 },
@@ -318,7 +318,7 @@
       "Name": "All Skulls - Look Up Left - Performances Parallel DCS Parallel",
       "Description": "Look Up Left Performances Parallel DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up Left - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Left - DCS Parallel", "SerialNumber": 169501 },
@@ -332,7 +332,7 @@
       "Name": "All Skulls - Look Up Right - Performances Sequential DCS Sequential",
       "Description": "Look Up Right Performances Sequential DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Up Right - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Right - DCS Sequential", "SerialNumber": 169501 },
@@ -343,7 +343,7 @@
       "Name": "All Skulls - Look Up Right - Performances Sequential DCS Parallel",
       "Description": "Look Up Right Performances Sequential DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": false,
+      "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "Skull-012 Look Up Right - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Right - DCS Parallel", "SerialNumber": 169501 },
@@ -354,7 +354,7 @@
       "Name": "All Skulls - Look Up Right - Performances Parallel DCS Sequential",
       "Description": "Look Up Right Performances Parallel DCS Sequential",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up Right - DCS Sequential", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Right - DCS Sequential", "SerialNumber": 169501 },
@@ -365,7 +365,7 @@
       "Name": "All Skulls - Look Up Right - Performances Parallel DCS Parallel",
       "Description": "Look Up Right Performances Parallel DCS Parallel",
       "Loops": 1,
-      "PlayPerformancesInParallel": true,
+      "ExecutePerformancesInParallel": true,
       "Performances": [
        { "Name": "Skull-012 Look Up Right - DCS Parallel", "SerialNumber": 99220 },
        { "Name": "Skull-012 Look Up Right - DCS Parallel", "SerialNumber": 169501 },

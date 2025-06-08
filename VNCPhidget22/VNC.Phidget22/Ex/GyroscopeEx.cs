@@ -513,7 +513,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(gyroscopeSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -524,7 +524,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (GyroscopeAction action in gyroscopeSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -590,7 +590,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(GyroscopeAction action)
+        private void ExecuteAction(GyroscopeAction action)
         {
             Int64 startTicks = 0;
 

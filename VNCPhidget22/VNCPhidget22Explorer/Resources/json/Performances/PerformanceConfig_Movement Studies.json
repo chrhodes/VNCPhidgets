@@ -12,7 +12,7 @@
         { "Name": "RCServos 99415 - Open and Engage A" }
       ],
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (25) Acceleration (50)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },

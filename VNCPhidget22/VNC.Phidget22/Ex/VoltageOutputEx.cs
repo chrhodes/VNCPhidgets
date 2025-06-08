@@ -606,7 +606,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(voltageOutputSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -617,7 +617,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (VoltageOutputAction action in voltageOutputSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -682,7 +682,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(VoltageOutputAction action)
+        private void ExecuteAction(VoltageOutputAction action)
         {
             Int64 startTicks = 0;
 

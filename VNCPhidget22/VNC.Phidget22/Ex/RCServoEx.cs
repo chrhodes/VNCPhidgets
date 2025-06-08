@@ -1114,8 +1114,8 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(rcServoSequence.Actions, action =>
                             {
-                                PerformAction(action);
-                                //PerformAction(action);
+                                ExecuteAction(action);
+                                //ExecuteAction(action);
                             });
                         }
                         else
@@ -1126,8 +1126,8 @@ namespace VNC.Phidget22.Ex
 
                             foreach (RCServoAction action in rcServoSequence.Actions)
                             {
-                                PerformAction(action);
-                                //PerformAction(action);
+                                ExecuteAction(action);
+                                //ExecuteAction(action);
                             }
                         }
 
@@ -1193,8 +1193,8 @@ namespace VNC.Phidget22.Ex
 
             return player;
         }
-        //private void PerformAction(RCServoAction action)
-        private void PerformAction(RCServoAction action)
+        //private void ExecuteAction(RCServoAction action)
+        private void ExecuteAction(RCServoAction action)
         {
             Int64 startTicks = 0;
 
@@ -1469,7 +1469,7 @@ namespace VNC.Phidget22.Ex
 
                     // NOTE(crhodes)
                     // PositionStop{Min,Max} enforcement is in TargetPostion property.  Should it be here?
-                    // What if changes don't come through PerformAction.  How could that occur.  Maybe UI
+                    // What if changes don't come through ExecuteAction.  How could that occur.  Maybe UI
 
                     TargetPosition = targetPosition;
 

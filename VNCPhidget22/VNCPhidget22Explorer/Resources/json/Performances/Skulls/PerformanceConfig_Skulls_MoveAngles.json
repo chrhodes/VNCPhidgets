@@ -10,7 +10,7 @@
       "Description": "Skull Look Down Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -22,7 +22,7 @@
       "Description": "Skull Look Down Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -37,7 +37,7 @@
       "Description": "Skull Look Down Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -49,7 +49,7 @@
       "Description": "Skull Look Down Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -64,7 +64,7 @@
       "Description": "Skull Look Down Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -76,7 +76,7 @@
       "Description": "Skull Look Down Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -91,7 +91,7 @@
       "Description": "Skull Look Down Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -103,7 +103,7 @@
       "Description": "Skull Look Down Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -118,7 +118,7 @@
       "Description": "Skull Look Up Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -133,7 +133,7 @@
       "Description": "Skull Look Up Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -148,7 +148,7 @@
       "Description": "Skull Look Up Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -160,7 +160,7 @@
       "Description": "Skull Look Up Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 10" },   // Tilt Right(-)/Left(+)
@@ -175,7 +175,7 @@
       "Description": "Skull Look Up Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -187,7 +187,7 @@
       "Description": "Skull Look Up Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -202,7 +202,7 @@
       "Description": "Skull Look Up Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)
@@ -217,7 +217,7 @@
       "Description": "Skull Look Up Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Down(-)/Up(+)
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)

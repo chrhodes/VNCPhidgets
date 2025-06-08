@@ -10,7 +10,7 @@
       "Description": "DeviceChannelSequence SerialNumber and ChannelClasses that specify HubPort and Channel",
       "UsageNotes": "This is common when ChannelClassSequence is tied to a specific HubPort and Channel, e.g. Skull",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "Name": "Open and Engage Servo HP0 C1" },
@@ -29,7 +29,7 @@
       "UsageNotes": "This tests being able to specify a SerialNumber that is passed into each DeviceChannelSequence",
       "Loops": 1,
       "SerialNumber": 99415,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "Name": "Open and Engage Servo HP0 C0" },
         { "ChannelClass": "RCServo", "Name": "Open and Engage Servo HP0 C1" },
@@ -46,7 +46,7 @@
       "Name": "RCServos 99415 - Open and Engage C",
       "Description": "DeviceChannelSequence SerialNumber and HubPort and Channel overrides",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Open and Engage Servo" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Open and Engage Servo" },
@@ -64,7 +64,7 @@
       "Description": "DeviceChannelSequence SerialNumber and HubPort override",
       "UsageNotes":  "This tests being able to override just HubPort",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Name": "Open and Engage Servo C0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Name": "Open and Engage Servo C1" },
@@ -82,7 +82,7 @@
       "Description": "DeviceChannelSequence SerialNumber and HubPort override",
       "UsageNotes":  "This tests being able to override just Channel",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 0, "Name": "Open and Engage Servo HP0" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "Channel": 1, "Name": "Open and Engage Servo HP0" },
@@ -102,7 +102,7 @@
       "Name": "RCServos 99415 - Close A",
       "Description": "DeviceChannelSequence SerialNumber and HubPort and Channel overrides",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Close Servo" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Close Servo" },
@@ -120,7 +120,7 @@
       "Description": "Performance SerialNumber override and HubPort and Channel overrides",
       "SerialNumber": 99415,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Close Servo" },
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Servo" },
@@ -137,7 +137,7 @@
       "Name": "RCServos 99415 - VelocityLimit (100) Acceleration (200)",
       "Description": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (100) Acceleration (200)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (100) Acceleration (200)" },
@@ -153,7 +153,7 @@
       "Name": "RCServos 99415 - VelocityLimit (250) Acceleration (500)",
       "Description": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (250) Acceleration (500)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (250) Acceleration (500)" },
@@ -169,7 +169,7 @@
       "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)",
       "Description": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (500) Acceleration (1000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (500) Acceleration (1000)" },
@@ -185,7 +185,7 @@
       "Name": "RCServos 99415 - VelocityLimit (1000) Acceleration (2000)",
       "Description": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (1000) Acceleration (2000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (1000) Acceleration (2000)" },
@@ -201,7 +201,7 @@
       "Name": "RCServos 99415 - VelocityLimit (2500) Acceleration (5000)",
       "Description": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (2500) Acceleration (5000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (2500) Acceleration (5000)" },
@@ -217,7 +217,7 @@
       "Name": "RCServos 99415 - VelocityLimit (5000) Acceleration (10000)",
       "Description": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (5000) Acceleration (10000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (5000) Acceleration (10000)" },
@@ -237,7 +237,7 @@
       "Description": "",
       "SerialNumber": 99415,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
@@ -350,7 +350,7 @@
       "Description": "",
       "SerialNumber": 99415,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
@@ -611,6 +611,7 @@
     //
     {
       "Name": "99415-Parallel Pairs 2 (PP2)", 
+      "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Open and Engage Servo" },

@@ -124,7 +124,7 @@
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
-                        <Label Content="PerformAction()" HorizontalAlignment="Center" />
+                        <Label Content="ExecuteAction()" HorizontalAlignment="Center" />
                         
                     </dxlc:LayoutGroup> 
 

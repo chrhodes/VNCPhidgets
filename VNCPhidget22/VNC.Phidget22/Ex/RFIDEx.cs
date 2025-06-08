@@ -512,7 +512,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(rfidSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -523,7 +523,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (RFIDAction action in rfidSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -589,7 +589,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(RFIDAction action)
+        private void ExecuteAction(RFIDAction action)
         {
             Int64 startTicks = 0;
 

@@ -809,7 +809,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(voltageInputSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -820,7 +820,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (VoltageInputAction action in voltageInputSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -862,7 +862,7 @@ namespace VNC.Phidget22.Ex
             VNCPhidgetConfig.Performance.Performance performance = new VNCPhidgetConfig.Performance.Performance();
             performance.Name = "Sequential Sequences InterfaceKit 124744";
 
-            _eventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            _eventAggregator.GetEvent<ExecutePerformanceEvent>().Publish(
                 new PerformanceEventArgs()
                 {
                     Performance = performance
@@ -902,7 +902,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(VoltageInputAction action)
+        private void ExecuteAction(VoltageInputAction action)
         {
             Int64 startTicks = 0;
 

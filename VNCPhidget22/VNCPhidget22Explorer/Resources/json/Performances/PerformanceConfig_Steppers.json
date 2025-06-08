@@ -9,7 +9,7 @@
       "Description": "",
       "SerialNumber": 268213,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open Stepper" },
       ],
@@ -20,7 +20,7 @@
       "Description": "",
       "SerialNumber": 268213,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Close Stepper" },
       ],
@@ -34,7 +34,7 @@
       "Description": "Rotate Stepper on HubPort 0 Channel 0",
       "UsageNotes": "Must specify SerialNumber override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Initialize Stepper SA 3.75" },
         { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open and Engage Stepper" },
@@ -50,7 +50,7 @@
       "Description": "Rotate Stepper 268213 on HubPort 0 Channel 0",
       "UsageNotes": "",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "Stepper", "SerialNumber": 268213, "HubPort": 0, "Channel": 0, "Name": "Initialize Stepper SA 3.75" },
         { "ChannelClass": "Stepper", "SerialNumber": 268213, "HubPort": 0, "Channel": 0, "Name": "Open and Engage Stepper" },
@@ -67,7 +67,7 @@
       "UsageNotes": "Uses Performance SerialNumber override",
       "SerialNumber": 268213,
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
         { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Initialize Stepper SA 3.75" },
         { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open and Engage Stepper" },

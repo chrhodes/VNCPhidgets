@@ -11,7 +11,7 @@
       "Description": "Initialize Skull 1",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Initialize Skull 1 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Initialize Skull 1 Y Axis" },
@@ -23,7 +23,7 @@
       "Description": "Initialize Skull 2",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Initialize Skull 2 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Initialize Skull 2 Y Axis" },
@@ -35,7 +35,7 @@
       "Description": "Initialize Skull 3",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Initialize Skull 3 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Initialize Skull 3 Y Axis" },
@@ -51,7 +51,7 @@
       "Description": "Engage and Center Skull 1",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Engage and Center Skull 1 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Engage and Center Skull 1 Y Axis" },
@@ -63,7 +63,7 @@
       "Description": "Engage and Center Skull 2",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Engage and Center Skull 2 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Engage and Center Skull 2 Y Axis" },
@@ -75,7 +75,7 @@
       "Description": "Engage and Center Skull 3",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Engage and Center Skull 3 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Engage and Center Skull 3 Y Axis" },
@@ -91,7 +91,7 @@
       "Description": "Center Skull 1",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Center Skull 1 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Center Skull 1 Y Axis" },
@@ -103,7 +103,7 @@
       "Description": "Center Skull 2",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Center Skull 2 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Center Skull 2 Y Axis" },
@@ -115,7 +115,7 @@
       "Description": "Center Skull 3",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": true,
+      "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Center Skull 3 X Axis" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Center Skull 3 Y Axis" },
@@ -131,7 +131,7 @@
       "Description": "Sleep Skull 1",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
@@ -143,7 +143,7 @@
       "Description": "Sleep Skull 2",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Disengage Servo" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Disengage Servo" },
@@ -155,7 +155,7 @@
       "Description": "Sleep Skull 3",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
-      "PlayDeviceChannelSequencesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Disengage Servo" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Disengage Servo" },

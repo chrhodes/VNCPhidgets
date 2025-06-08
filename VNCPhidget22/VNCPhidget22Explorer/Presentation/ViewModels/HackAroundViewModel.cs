@@ -1306,47 +1306,58 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 foreach (Performance performance in SelectedPerformances)
                 {
-                    Performance? nextPerformance = performance;
+                    Performance? selectedPerformance = performance;
 
                     if (SerialNumber is not null)
                     {
-                        if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{nextPerformance.Name}", Common.LOG_CATEGORY);
-                        nextPerformance.SerialNumber = SerialNumber;
+                        if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                        selectedPerformance.SerialNumber = SerialNumber;
                     }
 
                     // NOTE(crhodes)
                     // Run on another thread to keep UI active
                     await Task.Run(async () =>
                     {
-                        await performancePlayer.RunPerformanceLoops(nextPerformance);
+                        await performancePlayer.ExecutePerformance(selectedPerformance);
                     });
 
                     //await performancePlayer.RunPerformanceLoops(nextPerformance);
 
-                    nextPerformance = nextPerformance?.NextPerformance;
+                    // FIX(crhodes)
+                    // Don't think we need this as the foreach loop handles the selecting of muptile performances
+                    // and ExecutePerformance handles .NextPerformance
 
-                    while (nextPerformance is not null)
-                    {
-                        if (Common.PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
-                        {
-                            nextPerformance = Common.PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+                    //selectedPerformance = selectedPerformance?.NextPerformance;
 
-                            if (SerialNumber is not null)
-                            {
-                                if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{nextPerformance.Name}", Common.LOG_CATEGORY);
-                                nextPerformance.SerialNumber = SerialNumber;
-                            }
+                    //while (selectedPerformance is not null)
+                    //{
+                    //    if (Common.PerformanceLibrary.AvailablePerformances.ContainsKey(selectedPerformance.Name ?? ""))
+                    //    {
+                    //        selectedPerformance = Common.PerformanceLibrary.AvailablePerformances[selectedPerformance.Name];
 
-                            await performancePlayer.RunPerformanceLoops(nextPerformance);
+                    //        if (SerialNumber is not null)
+                    //        {
+                    //            if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                    //            selectedPerformance.SerialNumber = SerialNumber;
+                    //        }
 
-                            nextPerformance = nextPerformance?.NextPerformance;
-                        }
-                        else
-                        {
-                            Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
-                            nextPerformance = null;
-                        }
-                    }
+                    //        // NOTE(crhodes)
+                    //        // Run on another thread to keep UI active
+                    //        await Task.Run(async () =>
+                    //        {
+                    //            await performancePlayer.ExecutePerformance(selectedPerformance);
+                    //        });
+
+                    //        //await performancePlayer.RunPerformanceLoops(nextPerformance);
+
+                    //        selectedPerformance = selectedPerformance?.NextPerformance;
+                    //    }
+                    //    else
+                    //    {
+                    //        Log.Error($"Cannot find performance:>{selectedPerformance.Name}<", Common.LOG_CATEGORY);
+                    //        selectedPerformance = null;
+                    //    }
+                    //}
                 }
             }
 

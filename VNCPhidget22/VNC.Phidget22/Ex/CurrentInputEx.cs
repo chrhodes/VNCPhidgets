@@ -510,7 +510,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(currentInputSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -521,7 +521,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (CurrentInputAction action in currentInputSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -587,7 +587,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(CurrentInputAction action)
+        private void ExecuteAction(CurrentInputAction action)
         {
             Int64 startTicks = 0;
 

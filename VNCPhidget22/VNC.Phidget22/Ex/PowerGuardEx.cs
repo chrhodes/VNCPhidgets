@@ -513,7 +513,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(powerGuardSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -524,7 +524,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (PowerGuardAction action in powerGuardSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -590,7 +590,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(PowerGuardAction action)
+        private void ExecuteAction(PowerGuardAction action)
         {
             Int64 startTicks = 0;
 

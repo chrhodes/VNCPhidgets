@@ -513,7 +513,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(humiditySensorSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -524,7 +524,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (HumiditySensorAction action in humiditySensorSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -590,7 +590,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(HumiditySensorAction action)
+        private void ExecuteAction(HumiditySensorAction action)
         {
             Int64 startTicks = 0;
 

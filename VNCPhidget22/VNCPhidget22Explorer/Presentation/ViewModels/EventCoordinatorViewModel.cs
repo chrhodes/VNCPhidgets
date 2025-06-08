@@ -51,7 +51,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Put things here that initialize the ViewModel
             // Initialize EventHandlers, Commands, etc.
 
-            EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+            EventAggregator.GetEvent<ExecutePerformanceEvent>().Subscribe(PlayPerformance);
 
             SayHelloCommand = new DelegateCommand(
                 SayHello, SayHelloCanExecute);
@@ -149,7 +149,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        void PlayPerformance(PerformanceEventArgs eventArgs)
+        async void PlayPerformance(PerformanceEventArgs eventArgs)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.Info($"Enter", Common.LOG_CATEGORY);
@@ -158,7 +158,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator, Common.PerformanceLibrary);
 
-            performancePlayer.PlayPerformance(EventPerformance);
+            await performancePlayer.ExecutePerformance(EventPerformance);
 
             if (Common.VNCLogging.EventHandler) Log.Info($"Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -217,7 +217,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called RaisePlayPerformanceEvent";
             PublishStatusMessage(Message);
 
-            EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            EventAggregator.GetEvent<ExecutePerformanceEvent>().Publish(
                 new PerformanceEventArgs()
                 {
                     Performance = SelectedPerformance

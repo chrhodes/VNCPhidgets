@@ -512,7 +512,7 @@ namespace VNC.Phidget22.Ex
 
                             Parallel.ForEach(distanceSensorSequence.Actions, action =>
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
@@ -523,7 +523,7 @@ namespace VNC.Phidget22.Ex
 
                             foreach (DistanceSensorAction action in distanceSensorSequence.Actions)
                             {
-                                PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -589,7 +589,7 @@ namespace VNC.Phidget22.Ex
             return player;
         }
 
-        private void PerformAction(DistanceSensorAction action)
+        private void ExecuteAction(DistanceSensorAction action)
         {
             Int64 startTicks = 0;
 

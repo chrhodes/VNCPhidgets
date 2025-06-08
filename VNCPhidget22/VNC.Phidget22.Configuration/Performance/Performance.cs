@@ -15,9 +15,9 @@ namespace VNC.Phidget22.Configuration.Performance
             BeforePerformanceLoopPerformances = performance.BeforePerformanceLoopPerformances;
             SerialNumber = performance.SerialNumber;
             DeviceChannelSequences = performance.DeviceChannelSequences;
-            PlayDeviceChannelSequencesInParallel = performance.PlayDeviceChannelSequencesInParallel;
+            ExecuteDeviceChannelSequencesInParallel = performance.ExecuteDeviceChannelSequencesInParallel;
             Performances = performance.Performances;
-            PlayPerformancesInParallel = performance.PlayPerformancesInParallel;
+            ExecutePerformancesInParallel = performance.ExecutePerformancesInParallel;
             Duration = performance.Duration;
             PerformanceLoops = performance.PerformanceLoops;
             AfterPerformanceLoopPerformances = performance.AfterPerformanceLoopPerformances;
@@ -60,7 +60,7 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// Play DeviceChannelSequences in Parallel or Sequential (false)
         /// </summary>
-        public Boolean PlayDeviceChannelSequencesInParallel { get; set; } = false;
+        public Boolean ExecuteDeviceChannelSequencesInParallel { get; set; } = false;
 
         /// <summary>
         /// Performances to execute as part of this performance
@@ -70,7 +70,7 @@ namespace VNC.Phidget22.Configuration.Performance
         /// <summary>
         /// Play Performances in Parallel or Sequential (false)
         /// </summary>
-        public Boolean PlayPerformancesInParallel { get; set; } = false;
+        public Boolean ExecutePerformancesInParallel { get; set; } = false;
 
         /// <summary>
         /// Duration in ms of sleep time after DeviceChannelSequences[] or Performances[] completed
