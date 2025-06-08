@@ -149,6 +149,12 @@
     <None Update="Resources\json\Performances\PerformanceConfig_RCServos.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_MovementCharacteristics.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_OpenClose.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -204,6 +210,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Initialize.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Stepper\PerformanceConfig_Stepper_MovementCharacteristics.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Stepper\PerformanceConfig_Stepper_OpenClose.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequenceConfig_Skull Move.json">
@@ -284,6 +296,10 @@
     <None Update="vncloggingconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Folder Include="Resources\json\Performances\DigitalOutput\" />
   </ItemGroup>
     
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

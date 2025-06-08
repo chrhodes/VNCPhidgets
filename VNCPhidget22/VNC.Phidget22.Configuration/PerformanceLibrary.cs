@@ -712,7 +712,7 @@ namespace VNC.Phidget22.Configuration
 
                 @"Performances\PerformanceConfig_Movement Studies.json",
 
-                // Performaces\Skulls\                
+                // Performaces\Skulls\         
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
   
@@ -733,6 +733,16 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_TiltLeftRight.json",
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json",
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json",
+
+                // Performaces\RCServo\
+
+                @"Performances\RCServo\PerformanceConfig_RCServo_OpenClose.json",
+                @"Performances\RCServo\PerformanceConfig_RCServo_MovementCharacteristics.json",
+
+                // Performaces\Stepper\
+
+                @"Performances\Stepper\PerformanceConfig_Stepper_OpenClose.json",
+                @"Performances\Stepper\PerformanceConfig_Stepper_MovementCharacteristics.json",
 
             };
 
