@@ -722,7 +722,11 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    throw new Exception();
+                    throw new ArgumentException($"Error Invalid serialHubPortChannel" +
+                        $" serialNumber:>{serialNumber}<" +
+                        $" hubPort:>{hubPort}<" +
+                        $" channel:>{channel}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<)");
                 }
 
                 rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];

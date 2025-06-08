@@ -6,122 +6,20 @@
   //
   "RCServoSequences": [
     //
-    // Engage and Center Servos
-    //
-    { 
-      "Name": "Center Servos - 99415", 
-      "Description": "Center Servos 0,1,2 3,4,5,6,7 with 99415 Specific Values", 
-      "UsageNotes": "Tweak for exact postions as needed",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": 115 },
-        { "HubPort":0, "Channel":1, "TargetPosition": 113 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 123 },
-        { "HubPort":0, "Channel":3, "TargetPosition": 133 },
-        { "HubPort":0, "Channel":4, "TargetPosition": 115 },
-        { "HubPort":0, "Channel":5, "TargetPosition": 114 },
-        { "HubPort":0, "Channel":6, "TargetPosition": 119 },
-        { "HubPort":0, "Channel":7, "TargetPosition": 119 }
-      ]
-    },
-    //
-    // All Servos to PositionMin
-    //
-    { 
-      "Name": "All Servos to PositionMin - Sequential",
-      "Description": "Set all servos to PostionMin (-1) (based on TYPE)",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":1, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":2, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":3, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":4, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":5, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":6, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":7, "TargetPosition": -1 }
-      ]
-    },
-    { 
-      "Name": "All Servos to PositionMin - Parallel",
-      "Description": "Parallel Set all servos to PostionMin (-1) (based on TYPE)",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":1, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":2, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":3, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":4, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":5, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":6, "TargetPosition": -1 },
-        { "HubPort":0, "Channel":7, "TargetPosition": -1 }
-      ]
-    },
-    //
-    // All Servos to PositionMax
-    //
-    { 
-      "Name": "All Servos to PositionMax",
-      "Description": "Set all servos to PostionMax (-2) (based on TYPE) Sequentially",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":1, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":2, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":3, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":4, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":5, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":6, "TargetPosition": -2 },
-        { "HubPort":0, "Channel":7, "TargetPosition": -2 }
-      ]
-    },
-    //
-    // Center Servos
-    //
-    { 
-      "Name": "Center Servos",
-      "Description": "Center all servos (-3) (based on TYPE) Sequentially",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":1, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":2, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":3, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":4, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":5, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":6, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":7, "TargetPosition": -3 }
-      ]
-    },
-    { 
-      "Name": "Center Servos - Parallel",
-      "Description": "Center all servos (-3) (based on TYPE) in Parallel",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":1, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":2, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":3, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":4, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":5, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":6, "TargetPosition": -3 },
-        { "HubPort":0, "Channel":7, "TargetPosition": -3 }
-      ]
-    },
-    //
     // Servo0
     //
     {
       "Name": "Move Servo 0-1-2-3", 
-      "Description": "Moves Servo 0, then 1, then 2, then 3 using NextSequence - Three Loops", 
+      "Description": "Moves Servo 0, then 1, then 2, then 3 using NextSequence - Three Loops",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Loops": 3, 
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "HubPort":0, "Channel":0, "TargetPosition": 90 },
-        { "HubPort":0, "Channel":0, "TargetPosition": 100 },
-        { "HubPort":0, "Channel":0, "TargetPosition": 110 },
-        { "HubPort":0, "Channel":0, "TargetPosition": 100  },
-        { "HubPort":0, "Channel":0, "TargetPosition": 90 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
       "NextSequence": { "Name": "Move Servo1", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
@@ -130,12 +28,13 @@
     //
     {
       "Name": "Move Servo1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "HubPort":0, "Channel":1, "TargetPosition": 90 },
-        { "HubPort":0, "Channel":1, "TargetPosition": 100 },
-        { "HubPort":0, "Channel":1, "TargetPosition": 110 },
-        { "HubPort":0, "Channel":1, "TargetPosition": 100  },
-        { "HubPort":0, "Channel":1, "TargetPosition": 90 },
+        { "Channel":1, "TargetPosition": 90 },
+        { "Channel":1, "TargetPosition": 100 },
+        { "Channel":1, "TargetPosition": 110 },
+        { "Channel":1, "TargetPosition": 100  },
+        { "Channel":1, "TargetPosition": 90 },
       ],
       "NextSequence": { "Name": "Move Servo2", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
@@ -144,12 +43,13 @@
     //
     {
       "Name": "Move Servo2",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "HubPort":0, "Channel":2, "TargetPosition": 90 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 100 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 110 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 100  },
-        { "HubPort":0, "Channel":2, "TargetPosition": 90 },
+        { "Channel":2, "TargetPosition": 90 },
+        { "Channel":2, "TargetPosition": 100 },
+        { "Channel":2, "TargetPosition": 110 },
+        { "Channel":2, "TargetPosition": 100  },
+        { "Channel":2, "TargetPosition": 90 },
       ],
       "NextSequence": { "Name": "Move Servo3", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
@@ -158,12 +58,13 @@
     //
     {
       "Name": "Move Servo3",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "HubPort":0, "Channel":2, "TargetPosition": 90 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 100 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 110 },
-        { "HubPort":0, "Channel":2, "TargetPosition": 100  },
-        { "HubPort":0, "Channel":2, "TargetPosition": 90 },
+        { "Channel":2, "TargetPosition": 90 },
+        { "Channel":2, "TargetPosition": 100 },
+        { "Channel":2, "TargetPosition": 110 },
+        { "Channel":2, "TargetPosition": 100  },
+        { "Channel":2, "TargetPosition": 90 },
       ],
     },
 
@@ -171,7 +72,6 @@
     // TODO(crhodes)
     // Fix all these.  Use HubPort and Channel
     // Keep what's visually interesting, toss rest
-    // Consider moving some to performance
     //
 
     //********************************************************************************
@@ -756,100 +656,6 @@
       "ExecuteActionsInParallel": true,
       "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
     },
-    //
-    // Acceleration (10000) VelocityLimit(5000)
-    //
-    {
-
-      "Name": "99415-Acceleration (10000) VelocityLimit(5000)", 
-      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 10000, "VelocityLimit": 5000 },
-      ]
-    },
-    //
-    // Acceleration (5000) VelocityLimit(1000)
-    //
-    {
-
-      "Name": "99415-Acceleration (5000) VelocityLimit(1000)", 
-      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 5000, "VelocityLimit": 1000 },
-      ]
-    },
-    //
-    // Acceleration (500) VelocityLimit(100)
-    //
-    {
-
-      "Name": "99415-Acceleration (500) VelocityLimit(100)", 
-      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 500, "VelocityLimit": 100 }
-      ]
-    },
-    //
-    // Acceleration (50) VelocityLimit(25)
-    //
-    {
-
-      "Name": "99415-Acceleration (50) VelocityLimit(25)", 
-      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 50, "VelocityLimit": 25 }
-      ]
-    },
-    //
-    // Acceleration (25) VelocityLimit(10)
-    //
-    {
-
-      "Name": "99415-Acceleration (25) VelocityLimit(10)", 
-      "Description": "Set Initial Acceleration and VelocityLimit Servos 0-7",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 }
-      ]
-    },
+    
   ]
 }

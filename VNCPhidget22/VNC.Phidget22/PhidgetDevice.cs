@@ -71,7 +71,7 @@ namespace VNC.Phidget22
 
 
         // TODO(crhodes)
-        // Hos is this used.  Only place I see is in AddPhidgetDevice()
+        // How is this used.  Only place I see is in AddPhidgetDevice()
         public Int32 ChannelCount { get; set; }
 
         // FIX(crhodes)

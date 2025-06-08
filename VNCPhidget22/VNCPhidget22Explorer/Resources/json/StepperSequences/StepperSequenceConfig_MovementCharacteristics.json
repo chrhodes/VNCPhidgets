@@ -1,9 +1,38 @@
-// RCServoSequence_MovementCharacteristics
+// StepperSequenceConfig_MovementCharacteristics
 {
-  "RCServoSequences": [
+  "StepperSequences": [
+    //
+    // Initialize Stepper
+    //
+    {
+      "Name": "Initialize Stepper StepAngle 0.9", 
+      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 0.9",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 0.9 },
+      ]
+    },
+    {
+      "Name": "Initialize Stepper SA 1.8", 
+      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 500 StepAngle 1.8",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 5000, "VelocityLimit": 500, "StepAngle": 1.8 },
+      ]
+    },
+    {
+      "Name": "Initialize Stepper SA 3.75", 
+      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 500 StepAngle 3.75",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 5000, "VelocityLimit": 500, "StepAngle": 3.75 },
+      ]
+    },
     //
     // VelocityLimit and Acceleration Studies
-    // Need some way of specifying a range of Servos
     //
     { 
       "Name": "VelocityLimit (10) Acceleration (25)", 
@@ -66,15 +95,6 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "VelocityLimit": 1000, "Acceleration": 2000 }
-      ]
-    },
-    { 
-      "Name": "VelocityLimit (2500) Acceleration (5000)", 
-      "Description": "VelocityLimit (2500) Acceleration (5000)", 
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "VelocityLimit": 2500, "Acceleration": 5000 }
       ]
     },
     { 

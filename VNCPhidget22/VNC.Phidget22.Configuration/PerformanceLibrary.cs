@@ -181,7 +181,7 @@ namespace VNC.Phidget22.Configuration
 
             string configFile = "hostconfig.json";
 
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
@@ -212,8 +212,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadPerformances(bool reload = false)
         {
-            long startTicks = 0;
-            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitialize) startTicks 
+                    = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             if (reload)
             {
@@ -231,9 +232,16 @@ namespace VNC.Phidget22.Configuration
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        // NOTE(crhodes)
+        // This allows easier reloading of a single file
+        // TODO(crhodes)
+        // Need to create for other ConfigFiles
+
         public void LoadPerformancesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) startTicks = 
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
@@ -262,25 +270,6 @@ namespace VNC.Phidget22.Configuration
                             Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
-                    // NOTE(crhodes)
-                    // Not smart enough to understand ToDictionary compiler warning.  Ugh.
-                    //foreach (var performance in performanceConfig.Performances.ToDictionary(k => k.Name, v => v))
-                    //{
-                    //    try
-                    //    {
-                    //        if (performance.Key is not null)
-                    //        {
-                    //            if (reload) AvailablePerformances.Remove(performance.Key);                             
-
-                    //            AvailablePerformances.Add(performance.Key, performance.Value);
-                    //        }                            
-                    //    }
-                    //    catch (ArgumentException ax)
-                    //    {
-                    //        Log.Error($"Duplicate Key >{performance.Key}<", Common.LOG_CATEGORY);
-                    //        Log.Error($"{ax}", Common.LOG_CATEGORY);
-                    //    }
-                    //}
                 }
             }
             catch (FileNotFoundException fnfex)
@@ -304,7 +293,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfDigitalInputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -359,7 +348,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfDigitalOutputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -414,7 +403,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfRCServoConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -469,7 +458,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfStepperConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -524,7 +513,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfVoltageInputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -579,7 +568,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfVoltageRatioInputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -634,7 +623,7 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfVoltageOutputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
                 try
                 {
@@ -696,6 +685,7 @@ namespace VNC.Phidget22.Configuration
             // Read a directory and return files, perhaps with RegEx name match
             // for now just hard code
             // Would be nice to control order
+            // Maybe just put in ConfigFiles.json
 
             List<string> files = new List<string>
             {
@@ -707,19 +697,20 @@ namespace VNC.Phidget22.Configuration
                 // Top Level Routines
                 // These go first to get on top of dropdown
 
+                @"Performances\PerformanceConfig_Test.json",
+                @"Performances\PerformanceConfig_RCServos.json",
+                @"Performances\PerformanceConfig_Test AS Replacement.json",
+
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_Consulting.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json",
 
                 @"Performances\PerformanceConfig_DigitalOutputs.json",
-                @"Performances\PerformanceConfig_RCServos.json",
+                //@"Performances\PerformanceConfig_RCServos.json",
                 @"Performances\PerformanceConfig_Steppers.json",
 
                 @"Performances\PerformanceConfig_Movement Studies.json",
-
-                @"Performances\PerformanceConfig_Test AS Replacement.json",
-                @"Performances\PerformanceConfig_Test.json",
 
                 // Performaces\Skulls\                
 
@@ -757,7 +748,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalInputSequences\DigitalInputSequenceConfig_1.json"
+                @"DigitalInputSequences\DigitalInputSequenceConfig_1.json",
             };
 
             return files;
@@ -772,6 +763,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
+                @"DigitalOutputSequences\DigitalOutputSequenceConfig_OpenClose.json",
                 @"DigitalOutputSequences\DigitalOutputSequenceConfig_1.json",
             };
 
@@ -822,6 +814,8 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
+                @"StepperSequences\StepperSequenceConfig_OpenClose.json",
+                @"StepperSequences\StepperSequenceConfig_MovementCharacteristics.json",
                 @"StepperSequences\StepperSequenceConfig_1.json",
             };
             return files;

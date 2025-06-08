@@ -22,6 +22,7 @@
   /* Arch9011 */  "ApplicationServices": false,
   /* Arch9111 */  "ApplicationServicesLow": false,
   /* Arch9007 */  "DeviceInitialize": false,
+  /* Arch9107 */  "DeviceInitializeLow": false,
   /* Arch9012 */  "Domain": false,
   /* Arch9112 */  "DomainLow": false,
   /* Arch9013 */  "DomainServices": false,

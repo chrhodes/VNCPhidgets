@@ -324,7 +324,7 @@ namespace VNCPhidget22Explorer
         {
             Int64 startTicks = 0;
             //if (Common.VNCLogging.EventHandler) startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
-            if (Common.VNCLogging.ApplicationStart) Log.APPLICATION_START("Enter", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationStart) startTicks = Log.APPLICATION_START("Enter", Common.LOG_CATEGORY);
 
             try
             {

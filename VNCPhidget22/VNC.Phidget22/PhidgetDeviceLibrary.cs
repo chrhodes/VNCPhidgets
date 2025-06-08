@@ -13,6 +13,7 @@ using Phidgets = Phidget22;
 using Prism.Regions.Behaviors;
 using Phidget22;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Channels;
 
 namespace VNC.Phidget22
 {
@@ -476,16 +477,34 @@ namespace VNC.Phidget22
             phidgetDevice.ChannelSubclass = phidget.ChannelSubclass.ToString();
 
             // NOTE(crhodes)
-            // Switch from Dictionary to List
+            // Switched from Dictionary to List
             // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
 
             //ManagerAttachedPhidgetDevices.Add(serialHubChannel, phidgetDevice);
 
             try
             {
-                if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding AttachedPhidget {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+                if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding AttachedPhidget" +
+                    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+                // TODO(crhodes)
+                // Handle the case where device attaches for second time, e.g. after Close
 
                 ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+
+                // This will not work as a phidgetDevice can have different DeviceClasses
+                // at same SerialNumber, HubPort, Channel
+                //if (!ManagerAttachedPhidgetDevices.Contains(phidgetDevice))
+                //{
+                //  ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+                //}
+                //else
+                //{
+                //    Log.DEVICE_INITIALIZE_LOW($"Existing AttachedPhidget, skipping" +
+                //    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+                //    return;
+                //}
             }
             catch (Exception ex)
             {
@@ -505,6 +524,7 @@ namespace VNC.Phidget22
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
         }
+
         void AddDeviceChannel(Phidgets.Phidget phidget, PhidgetDevice phidgetDevice)
         {
             SerialHubPortChannel serialHubChannel = new SerialHubPortChannel()
@@ -520,32 +540,32 @@ namespace VNC.Phidget22
             switch (phidget.ChannelClass)
             {
                 case Phidgets.ChannelClass.Accelerometer:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.BLDCMotor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CapacitiveTouch:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CurrentInput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
-                    
+
                     CurrentInputChannels.Add(
                         serialHubChannel,
                         new CurrentInputEx(
@@ -564,21 +584,21 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.DCMotor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Dictionary:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.DigitalInput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -597,10 +617,12 @@ namespace VNC.Phidget22
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.DigitalInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.DigitalOutput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -609,69 +631,71 @@ namespace VNC.Phidget22
                         serialHubChannel,
                         new DigitalOutputEx(
                              new DigitalOutputConfiguration()
-                            {
-                                DeviceSerialNumber = phidget.DeviceSerialNumber,
-                                HubPortDevice = phidget.IsHubPortDevice,
-                                HubPort = phidget.HubPort,
-                                Channel = phidget.Channel
-                            },
+                             {
+                                 DeviceSerialNumber = phidget.DeviceSerialNumber,
+                                 HubPortDevice = phidget.IsHubPortDevice,
+                                 HubPort = phidget.HubPort,
+                                 Channel = phidget.Channel
+                             },
                             _eventAggregator
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.DigitalOutputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.DistanceSensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Encoder:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FirmwareUpgrade:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FrequencyCounter:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Generic:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
                        $" HubPort:{serialHubChannel.HubPort}" +
                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.GPS:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Gyroscope:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Hub:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -690,73 +714,75 @@ namespace VNC.Phidget22
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.HubCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.HumiditySensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.IR:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LCD:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LightSensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Magnetometer:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                       $" SerialNumber:{serialHubChannel.SerialNumber}" +
                       $" HubPort:{serialHubChannel.HubPort}" +
                       $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.None:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PHSensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PowerGuard:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PressureSensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber}" +
                         $" HubPort:{serialHubChannel.HubPort}" +
                         $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -776,38 +802,40 @@ namespace VNC.Phidget22
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.RCServoCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.ResistanceInput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RFID:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.SoundSensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Spatial:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Stepper:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -832,14 +860,14 @@ namespace VNC.Phidget22
                     break;
 
                 case Phidgets.ChannelClass.TemperatureSensor:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.VoltageInput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -858,10 +886,12 @@ namespace VNC.Phidget22
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.VoltageInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.VoltageRatioInput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -880,10 +910,12 @@ namespace VNC.Phidget22
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.VoltageRatioInputCount++;
+
                     break;
 
                 case Phidgets.ChannelClass.VoltageOutput:
-                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding new {channelClass}" +
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
                         $" SerialNumber:{serialHubChannel.SerialNumber} " +
                         $"HubPort:{serialHubChannel.HubPort} " +
                         $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
@@ -902,6 +934,8 @@ namespace VNC.Phidget22
                         )
                     );
 
+                    phidgetDevice.DeviceChannels.VoltageOutputCount++;
+
                     break;
 
                 default:
@@ -912,6 +946,21 @@ namespace VNC.Phidget22
 
         private void Manager_Detach(object sender, PhidgetEvents.ManagerDetachEventArgs e)
         {
+            // TODO(crhodes)
+            // Need to either tolerate an existing item in PhidgetDeviceLibrary or
+            // remove the item in the Manager_Detach handler.
+
+            // What to do about ManagerAttachedPhidgetDevices??
+            // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
+            //PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
+
+            // This will not work as a phidgetDevice can have different DeviceClasses
+            // at same SerialNumber, HubPort, Channel
+            //if (!ManagerAttachedPhidgetDevices.Contains(phidgetDevice))
+            //{
+            //    ManagerAttachedPhidgetDevices.Remove(phidgetDevice);
+            //}
+
             if (LogPhidgetEvents)
             {
                 try
@@ -922,6 +971,390 @@ namespace VNC.Phidget22
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            var phidget = e.Channel;
+
+            RemovePhidgetDevice(phidget);
+        }
+
+        private void RemovePhidgetDevice(Phidget phidget)
+        {
+            PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
+
+            phidgetDevice.IsLocal = phidget.IsLocal;
+            phidgetDevice.IsRemote = phidget.IsRemote;
+            phidgetDevice.GrandParent = phidget.Parent?.Parent?.ToString();
+            phidgetDevice.Parent = phidget.Parent?.ToString();
+
+            phidgetDevice.IsHubPortDevice = phidget.IsHubPortDevice;
+            phidgetDevice.HubPort = phidget.HubPort;
+
+            phidgetDevice.DeviceClass = phidget.DeviceClass.ToString();
+            phidgetDevice.DeviceName = phidget.DeviceName;
+            phidgetDevice.DeviceID = phidget.DeviceID.ToString();
+            phidgetDevice.DeviceVINTID = phidget.DeviceVINTID.ToString();
+            phidgetDevice.DeviceVersion = phidget.DeviceVersion.ToString();
+
+            phidgetDevice.IsChannel = phidget.IsChannel;
+            phidgetDevice.Channel = phidget.Channel;
+            phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+            phidgetDevice.ChannelName = phidget.ChannelName.ToString();
+            phidgetDevice.ChannelSubclass = phidget.ChannelSubclass.ToString();
+
+            // NOTE(crhodes)
+            // Switched from Dictionary to List
+            // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
+
+            //ManagerAttachedPhidgetDevices.Add(serialHubChannel, phidgetDevice);
+
+            try
+            {
+                if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing AttachedPhidget" +
+                    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+                // TODO(crhodes)
+                // Handle the case where device attaches for second time, e.g. after Close
+
+                // This will not work as a phidgetDevice can have different DeviceClasses
+                // at same SerialNumber, HubPort, Channel
+                //if (!ManagerAttachedPhidgetDevices.Contains(phidgetDevice))
+                //{
+                //    ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+                //}
+                //else
+                //{
+                //    Log.DEVICE_INITIALIZE_LOW($"Existing AttachedPhidget, skipping" +
+                //    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+                //    return;
+                //}
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            // NOTE(crhodes)
+            // Now Remove the Phidget from ChannelClass specific Dictionaries
+
+            try
+            {
+                RemoveDeviceChannel(phidget, phidgetDevice);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        void RemoveDeviceChannel(Phidgets.Phidget phidget, PhidgetDevice phidgetDevice)
+        {
+            SerialHubPortChannel serialHubChannel = new SerialHubPortChannel()
+            {
+                SerialNumber = phidget.DeviceSerialNumber,
+                HubPort = phidget.HubPort,
+                Channel = phidget.Channel,
+                IsHubPortDevice = phidget.IsHubPortDevice
+            };
+
+            var channelClass = phidget.ChannelClass;
+
+            switch (phidget.ChannelClass)
+            {
+                case Phidgets.ChannelClass.Accelerometer:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.BLDCMotor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.CapacitiveTouch:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.CurrentInput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    CurrentInputChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.CurrentInputCount++;
+
+                    break;
+
+                case Phidgets.ChannelClass.DCMotor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Dictionary:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.DigitalInput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    DigitalInputChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.DigitalInputCount--;
+
+                    break;
+
+                case Phidgets.ChannelClass.DigitalOutput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    DigitalOutputChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.DigitalOutputCount--;
+
+                    break;
+
+                case Phidgets.ChannelClass.DistanceSensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Encoder:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.FirmwareUpgrade:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.FrequencyCounter:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Generic:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                       $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                       $" HubPort:{serialHubChannel.HubPort}" +
+                       $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.GPS:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Gyroscope:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Hub:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    HubChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.HubCount--;
+
+                    break;
+
+                case Phidgets.ChannelClass.HumiditySensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.IR:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.LCD:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.LightSensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Magnetometer:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                      $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                      $" HubPort:{serialHubChannel.HubPort}" +
+                      $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.None:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.PHSensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.PowerGuard:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.PressureSensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.RCServo:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
+                        $" HubPort:{serialHubChannel.HubPort}" +
+                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    RCServoChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.RCServoCount--;
+
+                    break;
+
+                case Phidgets.ChannelClass.ResistanceInput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.RFID:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.SoundSensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Spatial:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.Stepper:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    StepperChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.StepperCount--;
+
+                    break;
+
+                case Phidgets.ChannelClass.TemperatureSensor:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                    break;
+
+                case Phidgets.ChannelClass.VoltageInput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    VoltageInputChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.VoltageInputCount++;
+
+                    break;
+
+                case Phidgets.ChannelClass.VoltageRatioInput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    VoltageRatioInputChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.VoltageRatioInputCount--;
+
+                    break;
+
+                case Phidgets.ChannelClass.VoltageOutput:
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Removing {channelClass}" +
+                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
+                        $"HubPort:{serialHubChannel.HubPort} " +
+                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+
+                    VoltageOutputChannels.Remove(serialHubChannel);
+
+                    phidgetDevice.DeviceChannels.VoltageOutputCount--;
+
+                    break;
+
+                default:
+                    Log.Error($"Unexpected ChannelClass:>{channelClass}<", Common.LOG_CATEGORY);
+                    break;
             }
         }
 

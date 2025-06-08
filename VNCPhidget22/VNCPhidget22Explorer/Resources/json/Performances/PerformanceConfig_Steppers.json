@@ -3,7 +3,31 @@
   "Description": "Performances for Steppers",
   "Performances": [
     //
-    // Sequential Sequences Stepper 263213
+    // Open / Close
+    {
+      "Name": "Stepper 268213 - Open",
+      "Description": "",
+      "SerialNumber": 268213,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open Stepper" },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Stepper 268213 - Close",
+      "Description": "",
+      "SerialNumber": 268213,
+      "Loops": 1,
+      "PlayDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Close Stepper" },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // Stepper Sequential Sequences
     //
     {
       "Name": "Stepper Sequential Sequences",
@@ -22,7 +46,7 @@
     // Sequential Sequences Stepper 263213
     //
     {
-      "Name": "Steper Sequential Sequences Stepper 268213",
+      "Name": "Stepper 268213 - Sequential Sequences",
       "Description": "Rotate Stepper 268213 on HubPort 0 Channel 0",
       "UsageNotes": "",
       "Loops": 1,
@@ -38,9 +62,9 @@
     // Sequential Sequences Stepper 263213 override
     //
     {
-      "Name": "Stepper Sequential Sequences Stepper 268213 override",
+      "Name": "Stepper 268213 - Sequential Sequences SerialNumber override",
       "Description": "Rotate Stepper 268213 on HubPort 0 Channel 0",
-      "UsageNotes": "Uses SerialNumber override",
+      "UsageNotes": "Uses Performance SerialNumber override",
       "SerialNumber": 268213,
       "Loops": 1,
       "PlayDeviceChannelSequencesInParallel": false,

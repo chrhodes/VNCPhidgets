@@ -12,7 +12,7 @@ namespace VNC.Phidget22.Configuration
         public Int32 HubPort { get; set; }
         public Int32 Channel { get; set; }
 
-        public Boolean LogPhidgetEvents { get; set; }
+        public Boolean LogPhidgetEvents { get; set; } = true;
         public Boolean LogErrorEvents { get; set; } = true;    // Probably always want to see errors
         public Boolean LogPropertyChangeEvents { get; set; }
 

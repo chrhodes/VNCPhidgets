@@ -1,23 +1,7 @@
 {
   "DigitalOutputSequences": [
     {
-      "Name": "Open DO",
-      "Description": "Open DigitalOutput",
-      "UsageNotes":  "Must specify HubPort and Channel",
-      "Actions": [
-        { "Open":  true },
-      ]
-    },
-    {
-      "Name": "Close DO",
-      "Description": "Close DigitalOutput",
-      "UsageNotes":  "Must specify HubPort and Channel",
-      "Actions": [
-        { "Close":  true },
-      ]
-    },
-    {
-      "Name": "Blink DO 500ms",
+      "Name": "Blink DigitalOutput 500ms",
       "Description": "Blink DigitalOutput every 500ms",
       "UsageNotes":  "Must specify HubPort and Channel",
       "Actions": [
@@ -28,7 +12,7 @@
       ]
     },
     {
-      "Name": "Blink DO 250ms",
+      "Name": "Blink DigitalOutput 250ms",
       "Description": "Blink DigitalOutput every 250ms",
       "UsageNotes":  "Must specify HubPort and Channel",
       "Actions": [
@@ -40,41 +24,6 @@
         { "DigitalOut": false, "Duration": 250 },
         { "DigitalOut": true, "Duration": 250 },
         { "DigitalOut": false, "Duration": 250 },
-      ]
-    },
-    {
-      "Name": "Open and Blink DO 500ms",
-      "Description": "Open and Blink DigitalOutput every 500ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
-      "Actions": [
-        { "Open":  true, "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
-      ]
-    },
-    {
-      "Name": "Open and Blink DO 250ms",
-      "Description": "Open and Blink DigitalOutput every 250ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
-      "Actions": [
-        { "Open":  true, "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-      ]
-    },
-    {
-      "Name": "Open DO-HP0-C0",
-      "HubPort": 0,
-      "Channel": 0,
-      "Description": "Open DigitalOutput 0",
-      "Actions": [
-        { "Open":  true },
       ]
     },
     {
@@ -90,25 +39,16 @@
       ]
     },
     {
-      "Name": "Open DO-HP1-C0",
-      "HubPort": 1,
-      "Channel": 0,
-      "Description": "Open DigitalOutput 0",
-      "Actions": [
-        { "Open":  true },
-      ]
-    },
-    {
       "Name": "Blink DO-HP1-C0",
+      "Description": "Blink DigitalOutput 0",
       "HubPort": 1,
       "Channel": 0,
-      "Description": "Blink DigitalOutput 0",
       "Actions": [
         { "DigitalOut": true, "Duration": 500 },
         { "DigitalOut": false, "Duration": 500 },
         { "DigitalOut": true, "Duration": 500 },
         { "DigitalOut": false, "Duration": 500 },
       ]
-    },
+    }, 
   ]
 }

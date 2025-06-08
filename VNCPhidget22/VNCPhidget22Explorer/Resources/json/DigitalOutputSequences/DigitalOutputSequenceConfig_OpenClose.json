@@ -1,0 +1,43 @@
+{
+  "DigitalOutputSequences": [
+    //
+    // Sequences to Open, Engage, Disenage, Close DigitalOutput
+    //
+    {
+      "Name": "Open DigitalOutput",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort, and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true }
+      ]
+    },
+    {
+      "Name": "Close DigitalOutput",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort. and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Close": true }
+      ]
+    },
+{
+      "Name": "Open DigitalOutput-HP0-C0",
+      "HubPort": 0,
+      "Channel": 0,
+      "Description": "Open DigitalOutput 0",
+      "Actions": [
+        { "Open":  true },
+      ]
+    },
+    {
+      "Name": "Open DigitalOutput-HP1-C0",
+      "HubPort": 1,
+      "Channel": 0,
+      "Description": "Open DigitalOutput 0",
+      "Actions": [
+        { "Open":  true },
+      ]
+    },   
+  ]
+}
