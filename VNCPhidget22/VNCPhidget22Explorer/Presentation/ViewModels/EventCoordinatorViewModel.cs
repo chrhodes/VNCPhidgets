@@ -13,6 +13,7 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
@@ -58,7 +59,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             RaisePlayPerformanceEventCommand = new DelegateCommand(RaisePlayPerformanceEvent, RaisePlayPerformanceEventCanExecute);
 
-            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             Message = "EventCoordinatorViewModel says hello";
 

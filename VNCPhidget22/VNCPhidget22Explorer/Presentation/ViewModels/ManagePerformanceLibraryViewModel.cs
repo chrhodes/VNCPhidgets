@@ -65,7 +65,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             PublishStatusMessage(Message);
 
             PerformanceConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigFiles();
-            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             DigitalInputSequenceConfigFiles = PerformanceLibrary.GetListOfDigitalInputConfigFiles();
             DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
@@ -84,7 +84,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             VoltageOutputSequenceConfigFiles = PerformanceLibrary.GetListOfVoltageOutputConfigFiles();
             VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
-
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -572,22 +571,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Private Methods
+        #region Private Methods (none)
 
 
 
         #endregion
-
-        //#region IInstanceCount
-
-        //private static Int32 _instanceCountVM;
-
-        //public Int32 InstanceCountVM
-        //{
-        //    get => _instanceCountVM;
-        //    set => _instanceCountVM = value;
-        //}
-
-        //#endregion
     }
 }

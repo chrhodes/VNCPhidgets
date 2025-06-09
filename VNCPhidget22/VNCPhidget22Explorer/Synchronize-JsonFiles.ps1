@@ -175,11 +175,15 @@ function ProcessFilesInFolder([string] $folderName)
 
 #endregion
 
+$currentDirectory = Get-Location
+
 Set-Location $PSScriptRoot\$jsonExecutionFolder
 
 WriteDelimitedMessage "Updating $jsonSourceFolder using files in $jsonExecutionFolder"
 
 ProcessFilesInFolder ""
+
+Set-Location $currentDirectory
 
 # ProcessProjectFiles
 

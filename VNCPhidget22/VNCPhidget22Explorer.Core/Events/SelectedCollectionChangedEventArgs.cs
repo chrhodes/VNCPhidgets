@@ -4,7 +4,8 @@ namespace VNCPhidget22Explorer.Core.Events
 {
     public class SelectedCollectionChangedEventArgs
     {
-        public AvailableCollection Collection;
+        public string Name { get; set; }
+        //public AvailableCollection Collection;
     }
 
     public class AvailableCollection

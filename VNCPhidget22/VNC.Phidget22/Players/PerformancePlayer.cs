@@ -288,7 +288,7 @@ namespace VNC.Phidget22.Players
 
                 if (performanceName != null)
                 {
-                    if (VNC.Phidget22.Configuration.Common.PerformanceLibrary.AvailablePerformances.ContainsKey(performanceName))
+                    if (PerformanceLibrary.AvailablePerformances.ContainsKey(performanceName))
                     {
                         nextPerformance = PerformanceLibrary.AvailablePerformances[performanceName];
 

@@ -26,6 +26,7 @@ using System.Collections.ObjectModel;
 using DevExpress.Mvvm.POCO;
 using DevExpress.Mvvm.Native;
 using DevExpress.Xpf.Editors.DateNavigator;
+using VNCPhidget22Explorer.Core.Events;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -78,6 +79,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             LoadChannelSequences();
 
+            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
+
+
             // Turn on logging of PropertyChanged from VNC.Core
             //LogOnPropertyChanged = false;
 
@@ -86,25 +90,66 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+
         private void LoadPerformances()
         {
-            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
             // TODO(crhodes)
             // Might be better to do this with an Event so gets called fewer times.
             // Currently called for each Performance in file.  Ideally just once per file.
 
-            Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
+            //Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
         }
 
         private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Log.Trace("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
 
-            // NOTE(crhodes)
-            // Trigger a PropertyChanged event on Performances so UI is updated.
 
-            Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToObservableCollection<Performance>();
+
+            //Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToObservableCollection<Performance>();
+            //Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+        }
+
+        private void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            Log.Trace($"HackAroundViewModel notified >{args.Name}< CollectionChanged", Common.LOG_CATEGORY);
+
+            switch (args.Name)
+            {
+                case "Performances":
+                    Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+                    break;
+
+                case "DigitalInputSequences":
+                    DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
+                    break;
+
+                case "DigitalOutputSequences":
+                    DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
+                    break;
+
+                case "RCServoSequences":
+                    RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
+                    break;
+
+                case "StepperSequences":
+                    StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
+                    break;
+
+                case "VoltageInputSequences":
+                    VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
+                    break;
+
+                case "VoltageOutputSequences":
+                    VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
+                    break;
+
+                default:
+                    Log.Error($"Unexpected Collection Name: >{args.Name}<", Common.LOG_CATEGORY);
+                    break;
+            }
         }
 
         void LoadChannelSequences()
@@ -122,7 +167,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadDigitalInputSequences()
         {
-            DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
+            //DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
 
             DigitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
                 .Keys
@@ -132,7 +177,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
         private void LoadDigitalOutputSequences()
         {
-            DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
+            //DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
 
             DigitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
                   .Keys
@@ -143,9 +188,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadRCServoSequences()
         {
-            RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
+            //RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
 
-            RCServoPhidgets = Common.PhidgetDeviceLibrary.RCServoChannels
+            RCServos = Common.PhidgetDeviceLibrary.RCServoChannels
                  .Keys
                  .DistinctBy(x => x.SerialNumber)
                  .Select(x => x.SerialNumber)
@@ -154,7 +199,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadStepperSequences()
         {
-            StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
+            //StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             Steppers = Common.PhidgetDeviceLibrary.StepperChannels
                  .Keys
@@ -165,7 +210,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadVolatageInputSequences()
         {
-            VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
+            //VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
 
             VoltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
                  .Keys
@@ -176,7 +221,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadVolatageOutputSequences()
         {
-            VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
+            //VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
 
             VoltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
                  .Keys
@@ -198,20 +243,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Fields and Properties
-
-        //private string _message = "Initial Message";
-
-        //public string Message
-        //{
-        //    get => _message;
-        //    set
-        //    {
-        //        if (_message == value)
-        //            return;
-        //        _message = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private Int32 _repeats = 1;
         public Int32 Repeats
@@ -741,17 +772,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RCServo
 
-        private IEnumerable<Int32>? _RCServoPhidgets;
-        public IEnumerable<Int32>? RCServoPhidgets
+        private IEnumerable<Int32>? _rcServos;
+        public IEnumerable<Int32>? RCServos
         {
             get
             {
-                return _RCServoPhidgets;
+                return _rcServos;
             }
 
             set
             {
-                _RCServoPhidgets = value;
+                _rcServos = value;
                 OnPropertyChanged();
             }
         }
@@ -1439,6 +1470,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // This has side effect of using current Logging Settings
 
             DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+            player.SerialNumber = SelectedRCServoPhidget;
 
             if (SelectedRCServoSequences is not null)
             {
@@ -1756,6 +1788,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // This has side effect of using current Logging Settings
 
             DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+            player.SerialNumber = SelectedDigitalOutputPhidget;
 
             if (SelectedDigitalOutputSequences is not null)
             {
@@ -1881,6 +1914,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // This has side effect of using current Logging Settings
 
             DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+            player.SerialNumber = SelectedStepperPhidget;
 
             if (SelectedStepperSequences is not null)
             {

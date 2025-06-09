@@ -36,7 +36,6 @@ namespace VNC.Phidget22
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             _eventAggregator = eventAggregator;
-            //BuildPhidgetDeviceDictionary();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }

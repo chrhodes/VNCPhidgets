@@ -103,7 +103,7 @@
 
                             <dxlc:LayoutItem Label="RCServo Phidgets" LabelPosition="Top" Width="150">
                                 <dxe:ComboBoxEdit  
-                                    ItemsSource="{Binding RCServoPhidgets}"
+                                    ItemsSource="{Binding RCServos}"
                                     SelectedItem="{Binding SelectedRCServoPhidget}" />
                             </dxlc:LayoutItem>
 

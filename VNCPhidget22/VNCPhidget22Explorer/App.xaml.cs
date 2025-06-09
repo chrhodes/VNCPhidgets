@@ -274,7 +274,7 @@ namespace VNCPhidget22Explorer
             // NOTE(crhodes)
             // This loads all the json config files
 
-            PerformanceLibrary performanceLibrary = new PerformanceLibrary();
+            PerformanceLibrary performanceLibrary = new PerformanceLibrary(Common.EventAggregator);
 
             performanceLibrary.LoadConfigFiles();
 

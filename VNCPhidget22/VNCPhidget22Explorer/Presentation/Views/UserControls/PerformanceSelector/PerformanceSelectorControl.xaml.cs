@@ -8,6 +8,7 @@ using DevExpress.XtraRichEdit.Import.OpenXml;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget22.Configuration;
 
 using VNCPhidget22Explorer.Presentation.ViewModels;
 
@@ -77,7 +78,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Log.Trace("PerformanceSelectorControl notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
-            cbePerformances.ItemsSource = new BindingSource(Common.PerformanceLibrary.AvailablePerformances, null);
+            cbePerformances.ItemsSource = new BindingSource(PerformanceLibrary.AvailablePerformances, null);
         }
 
         #endregion

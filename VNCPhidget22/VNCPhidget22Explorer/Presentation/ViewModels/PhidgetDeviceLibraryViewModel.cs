@@ -116,7 +116,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public virtual void CollectionChanged(SelectedCollectionChangedEventArgs args)
         {
-            OutputFileNameAndPath = $@"C:\temp\{args.Collection.Name}-TYPE";
+            OutputFileNameAndPath = $@"C:\temp\{args.Name}-TYPE";
         }
 
         #endregion

@@ -9,12 +9,15 @@ using System.Text.Json;
 
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 
+using Prism.Events;
 using Prism.Regions.Behaviors;
 
 using Unity.Interception.Utilities;
 
 using VNC.Core.Collections;
 using VNC.Phidget22.Configuration.Performance;
+
+using VNCPhidget22Explorer.Core.Events;
 
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -28,16 +31,18 @@ namespace VNC.Phidget22.Configuration
     /// </summary>
     public class PerformanceLibrary : INotifyPropertyChanged, INotifyCollectionChanged
     {
+        IEventAggregator _eventAggregator;
         #region Constructors, Initialization, and Load
 
         // TODO(crhodes)
         // Turn this into a singleton
 
-        public PerformanceLibrary()
+        public PerformanceLibrary(IEventAggregator eventAggregator)
         {
             long startTicks = 0;
             if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
+            _eventAggregator = eventAggregator;
             //LoadConfigFiles();
 
             //AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
@@ -98,20 +103,20 @@ namespace VNC.Phidget22.Configuration
 
         public static List<Host> Hosts { get; private set; } = new List<Host>();
 
-        private ObservableDictionary<string, Performance.Performance> _availablePerformances =
-            new ObservableDictionary<string, Performance.Performance>();
-        public ObservableDictionary<string, Performance.Performance> AvailablePerformances
-        {
-            get 
-            { 
-                return _availablePerformances; 
-            }
-            set
-            {
-                _availablePerformances = value;
-                OnPropertyChanged();
-            }
-        }
+        //private ObservableDictionary<string, Performance.Performance> _availablePerformances =
+        //    new ObservableDictionary<string, Performance.Performance>();
+        //public ObservableDictionary<string, Performance.Performance> AvailablePerformances
+        //{
+        //    get 
+        //    { 
+        //        return _availablePerformances; 
+        //    }
+        //    set
+        //    {
+        //        _availablePerformances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         //public event NotifyCollectionChangedEventHandler? CollectionChanged
         //{
@@ -138,23 +143,113 @@ namespace VNC.Phidget22.Configuration
         //    }
         //}
 
-        //public static Dictionary<string, Performance> AvailablePerformances { get; set; } =
-        //    new Dictionary<string, Performance>();
+        public static Dictionary<string, Performance.Performance> AvailablePerformances { get; set; } =
+            new Dictionary<string, Performance.Performance>();
+
+        //private ObservableDictionary<string, DigitalInputSequence> _availableDigitalInputSequences =
+        //    new ObservableDictionary<string, DigitalInputSequence>();
+        //public ObservableDictionary<string, DigitalInputSequence> AvailableDigitalInputSequences
+        //{
+        //    get
+        //    {
+        //        return _availableDigitalInputSequences;
+        //    }
+        //    set
+        //    {
+        //        _availableDigitalInputSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public static Dictionary<string, DigitalInputSequence> AvailableDigitalInputSequences { get; set; } =
              new Dictionary<string, DigitalInputSequence>();
 
+        //private ObservableDictionary<string, DigitalOutputSequence> _availableDigitalOutputSequences =
+        //    new ObservableDictionary<string, DigitalOutputSequence>();
+        //public ObservableDictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences
+        //{
+        //    get
+        //    {
+        //        return _availableDigitalOutputSequences;
+        //    }
+        //    set
+        //    {
+        //        _availableDigitalOutputSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         public static Dictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences { get; set; } =
             new Dictionary<string, DigitalOutputSequence>();
+
+        //private ObservableDictionary<string, RCServoSequence> _availableRCServoSequences =
+        //    new ObservableDictionary<string, RCServoSequence>();
+        //public ObservableDictionary<string, RCServoSequence> AvailableRCServoSequences
+        //{
+        //    get
+        //    {
+        //        return _availableRCServoSequences;
+        //    }
+        //    set
+        //    {
+        //        _availableRCServoSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
             new Dictionary<string, RCServoSequence>();
 
+        //private ObservableDictionary<string, StepperSequence> _availableStepperSequences =
+        //    new ObservableDictionary<string, StepperSequence>();
+        //public ObservableDictionary<string, StepperSequence> AvailableStepperSequences
+        //{
+        //    get
+        //    {
+        //        return _availableStepperSequences;
+        //    }
+        //    set
+        //    {
+        //        _availableStepperSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         public static Dictionary<string, StepperSequence> AvailableStepperSequences { get; set; } =
             new Dictionary<string, StepperSequence>();
 
+        //private ObservableDictionary<string, VoltageInputSequence> _availableVoltageInputSequences =
+        //    new ObservableDictionary<string, VoltageInputSequence>();
+        //public ObservableDictionary<string, VoltageInputSequence> AvailableVoltageInputSequences
+        //{
+        //    get
+        //    {
+        //        return _availableVoltageInputSequences;
+        //    }
+        //    set
+        //    {
+        //        _availableVoltageInputSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
         public static Dictionary<string, VoltageInputSequence> AvailableVoltageInputSequences { get; set; } =
              new Dictionary<string, VoltageInputSequence>();
+
+        //private ObservableDictionary<string, VoltageOutputSequence> _availableVoltageOutputSequences =
+        //    new ObservableDictionary<string, VoltageOutputSequence>();
+        //public ObservableDictionary<string, VoltageOutputSequence> AvailableVoltageOutputSequences
+        //{
+        //    get
+        //    {
+        //        return _availableVoltageOutputSequences;
+        //    }
+        //    set
+        //    {
+        //        _availableVoltageOutputSequences = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         public static Dictionary<string, VoltageOutputSequence> AvailableVoltageOutputSequences { get; set; } =
             new Dictionary<string, VoltageOutputSequence>();
@@ -227,7 +322,7 @@ namespace VNC.Phidget22.Configuration
                 LoadPerformancesFromConfigFile(configFile);
             }
 
-            AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
+            //AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -259,7 +354,10 @@ namespace VNC.Phidget22.Configuration
                         {
                             if (performance.Name is not null)
                             {
-                                if (reload) AvailablePerformances.Remove(performance.Name);
+                                if (reload)
+                                { 
+                                    AvailablePerformances.Remove(performance.Name);
+                                }
 
                                 AvailablePerformances.Add(performance.Name, performance);
                             }
@@ -270,6 +368,12 @@ namespace VNC.Phidget22.Configuration
                             Log.Error($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        { 
+                            Name = "Performances" 
+                        });
                 }
             }
             catch (FileNotFoundException fnfex)
@@ -289,54 +393,65 @@ namespace VNC.Phidget22.Configuration
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableDigitalInputSequences.Clear();
+            //AvailableDigitalInputSequences.Clear();
 
             foreach (string configFile in GetListOfDigitalInputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    DigitalInputSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<DigitalInputSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig != null && sequenceConfig.DigitalInputSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.DigitalInputSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableDigitalInputSequences.Remove(sequence.Name);
-
-                                    AvailableDigitalInputSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalInputConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadDigitalInputSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadDigitalInputSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                DigitalInputSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<DigitalInputSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig != null && sequenceConfig.DigitalInputSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.DigitalInputSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableDigitalInputSequences.Remove(sequence.Name);
+
+                                AvailableDigitalInputSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "DigitalInputSequences"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalInputConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         public void LoadDigitalOutputSequences(bool reload = false)
@@ -344,54 +459,65 @@ namespace VNC.Phidget22.Configuration
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableDigitalOutputSequences.Clear();
+            //AvailableDigitalOutputSequences.Clear();
 
             foreach (string configFile in GetListOfDigitalOutputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    DigitalOutputSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<DigitalOutputSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig is not null && sequenceConfig.DigitalOutputSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.DigitalOutputSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableDigitalOutputSequences.Remove(sequence.Name);
-
-                                    AvailableDigitalOutputSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadDigitalOutputSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadDigitalOutputSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                DigitalOutputSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<DigitalOutputSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig is not null && sequenceConfig.DigitalOutputSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.DigitalOutputSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableDigitalOutputSequences.Remove(sequence.Name);
+
+                                AvailableDigitalOutputSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "DigitalOutputSequences"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         public void LoadRCServoSequences(bool reload = false)
@@ -399,54 +525,65 @@ namespace VNC.Phidget22.Configuration
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableRCServoSequences.Clear();
+            //AvailableRCServoSequences.Clear();
 
             foreach (string configFile in GetListOfRCServoConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    RCServoSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<RCServoSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig != null && sequenceConfig.RCServoSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.RCServoSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableRCServoSequences.Remove(sequence.Name);
-
-                                    AvailableRCServoSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadRCServoSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadRCServoSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                RCServoSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<RCServoSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig != null && sequenceConfig.RCServoSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.RCServoSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableRCServoSequences.Remove(sequence.Name);
+
+                                AvailableRCServoSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "RCServoSequences"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         public void LoadStepperSequences(bool reload = false)
@@ -454,54 +591,65 @@ namespace VNC.Phidget22.Configuration
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableStepperSequences.Clear();
+            //AvailableStepperSequences.Clear();
 
             foreach (string configFile in GetListOfStepperConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    StepperSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<StepperSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig != null && sequenceConfig.StepperSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.StepperSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableStepperSequences.Remove(sequence.Name);
-
-                                    AvailableStepperSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadStepperSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadStepperSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                StepperSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<StepperSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig != null && sequenceConfig.StepperSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.StepperSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableStepperSequences.Remove(sequence.Name);
+
+                                AvailableStepperSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "StepperSequences"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         public void LoadVoltageInputSequences(bool reload = false)
@@ -509,54 +657,65 @@ namespace VNC.Phidget22.Configuration
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableVoltageInputSequences.Clear();
+            //AvailableVoltageInputSequences.Clear();
 
             foreach (string configFile in GetListOfVoltageInputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    VoltageInputSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig != null && sequenceConfig.VoltageInputSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.VoltageInputSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableVoltageInputSequences.Remove(sequence.Name);
-
-                                    AvailableVoltageInputSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageInputConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadVoltageInputSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadVoltageInputSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                VoltageInputSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig != null && sequenceConfig.VoltageInputSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.VoltageInputSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableVoltageInputSequences.Remove(sequence.Name);
+
+                                AvailableVoltageInputSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "VoltageInputSequences"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageInputConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         public void LoadVoltageRatioInputSequences(bool reload = false)
@@ -564,54 +723,59 @@ namespace VNC.Phidget22.Configuration
             long startTicks = 0;
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableVoltageInputSequences.Clear();
+            //AvailableVoltageInputSequences.Clear();
 
             foreach (string configFile in GetListOfVoltageRatioInputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    VoltageInputSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig != null && sequenceConfig.VoltageInputSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.VoltageInputSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableVoltageInputSequences.Remove(sequence.Name);
-
-                                    AvailableVoltageInputSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageRatioInputConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadVoltageRatioInputSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadVoltageRatioInputSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                VoltageInputSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig != null && sequenceConfig.VoltageInputSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.VoltageInputSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableVoltageInputSequences.Remove(sequence.Name);
+
+                                AvailableVoltageInputSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageRatioInputConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         public void LoadVoltageOutputSequences(bool reload = false)
@@ -623,50 +787,61 @@ namespace VNC.Phidget22.Configuration
 
             foreach (string configFile in GetListOfVoltageOutputConfigFiles())
             {
-                if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
-                try
-                {
-                    string jsonString = File.ReadAllText(configFile);
-
-                    VoltageOutputSequenceConfig? sequenceConfig
-                        = JsonSerializer.Deserialize<VoltageOutputSequenceConfig>
-                        (jsonString, GetJsonSerializerOptions());
-
-                    if (sequenceConfig != null && sequenceConfig.VoltageOutputSequences is not null)
-                    {
-                        foreach (var sequence in sequenceConfig.VoltageOutputSequences)
-                        {
-                            try
-                            {
-                                if (sequence.Name is not null)
-                                {
-                                    if (reload) AvailableVoltageOutputSequences.Remove(sequence.Name);
-
-                                    AvailableVoltageOutputSequences.Add(sequence.Name, sequence);
-                                }
-                            }
-                            catch (ArgumentException ax)
-                            {
-                                Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                                Log.Error($"{ax}", Common.LOG_CATEGORY);
-                            }
-                        }
-                    }
-                }
-                catch (FileNotFoundException fnfex)
-                {
-                    Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageOutputConfigFiles()", Common.LOG_CATEGORY);
-                    Log.Error($"{fnfex}", Common.LOG_CATEGORY);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                    Log.Error($"{ex}", Common.LOG_CATEGORY);
-                }
+                LoadVoltageOutputSequencesFromConfigFile(reload, configFile);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadVoltageOutputSequencesFromConfigFile(bool reload, string configFile)
+        {
+            if (Core.Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText(configFile);
+
+                VoltageOutputSequenceConfig? sequenceConfig
+                    = JsonSerializer.Deserialize<VoltageOutputSequenceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (sequenceConfig != null && sequenceConfig.VoltageOutputSequences is not null)
+                {
+                    foreach (var sequence in sequenceConfig.VoltageOutputSequences)
+                    {
+                        try
+                        {
+                            if (sequence.Name is not null)
+                            {
+                                if (reload) AvailableVoltageOutputSequences.Remove(sequence.Name);
+
+                                AvailableVoltageOutputSequences.Add(sequence.Name, sequence);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "VoltageOutputSequences"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageOutputConfigFiles()", Common.LOG_CATEGORY);
+                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.Error($"{ex}", Common.LOG_CATEGORY);
+            }
         }
 
         #endregion
@@ -698,7 +873,7 @@ namespace VNC.Phidget22.Configuration
                 // These go first to get on top of dropdown
 
                 @"Performances\PerformanceConfig_Test.json",
-                @"Performances\PerformanceConfig_RCServos.json",
+
                 @"Performances\PerformanceConfig_Test AS Replacement.json",
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
@@ -738,6 +913,11 @@ namespace VNC.Phidget22.Configuration
 
                 @"Performances\RCServo\PerformanceConfig_RCServo_OpenClose.json",
                 @"Performances\RCServo\PerformanceConfig_RCServo_MovementCharacteristics.json",
+                @"Performances\RCServo\PerformanceConfig_RCServos.json",
+                @"Performances\RCServo\PerformanceConfig_RCServo_PP1.json",
+                @"Performances\RCServo\PerformanceConfig_RCServo_PP2.json",
+                @"Performances\RCServo\PerformanceConfig_RCServo_PP3.json",
+                @"Performances\RCServo\PerformanceConfig_RCServo_PP4.json",
 
                 // Performaces\Stepper\
 
