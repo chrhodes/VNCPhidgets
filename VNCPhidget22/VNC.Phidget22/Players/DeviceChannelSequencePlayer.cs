@@ -351,11 +351,6 @@ namespace VNC.Phidget22.Players
                     rcServoSequence = CreateInlineRCServoSequence(deviceChannelSequence);
                 }
 
-                if (rcServoSequence is null)
-                {
-                    
-                }
-
                 if (LogDeviceChannelSequence)
                 {
                     startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
@@ -376,6 +371,13 @@ namespace VNC.Phidget22.Players
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
+                if (rcServoSequence is null)
+                {
+                    Log.Error($"Failed to Retrive/Create RCServoSequence, Aborting", Common.LOG_CATEGORY);
+
+                    return null;
+                }
+
                 phidgetHost = GetRCServoHost(
                     SerialNumber, 
                     rcServoSequence?.HubPort, 
@@ -386,47 +388,45 @@ namespace VNC.Phidget22.Players
                     Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence?.SerialNumber}" +
                         $" hubPort:{deviceChannelSequence?.HubPort} channel:{deviceChannelSequence?.Channel}", Common.LOG_CATEGORY);
 
-                    nextDeviceChannelSequence = null;
+                    return null;
                 }
 
-                if (phidgetHost is not null && rcServoSequence is not null)
+                if (rcServoSequence.BeforeActionLoopSequences is not null)
                 {
-                    if (rcServoSequence.BeforeActionLoopSequences is not null)
+                    foreach (DeviceChannelSequence sequence in rcServoSequence.BeforeActionLoopSequences)
                     {
-                        foreach (DeviceChannelSequence sequence in rcServoSequence.BeforeActionLoopSequences)
-                        {
-                            // NOTE(crhodes)
-                            // We do not pass in a SerialNumber override
+                        // NOTE(crhodes)
+                        // We do not pass in a SerialNumber override
 
-                            await ExecuteDeviceChannelSequence(sequence);
-                        }
+                        await ExecuteDeviceChannelSequence(sequence);
                     }
-
-                    await phidgetHost.RunActionLoops(rcServoSequence);
-
-                    if (rcServoSequence.AfterActionLoopSequences is not null)
-                    {
-                        foreach (DeviceChannelSequence sequence in rcServoSequence.AfterActionLoopSequences)
-                        {
-                            // NOTE(crhodes)
-                            // We do not pass in a SerialNumber override
-
-                            await ExecuteDeviceChannelSequence(sequence);
-                        }
-                    }
-
-                    if (rcServoSequence.SequenceDuration is not null)
-                    {
-                        if (LogDeviceChannelSequence)
-                        {
-                            Log.Trace($"Zzzz - End of RCServoSequence:>{rcServoSequence.Name}<" +
-                                $" Sleeping:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                        }
-                        Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
-                    }
-
-                    nextDeviceChannelSequence = rcServoSequence.NextSequence;
                 }
+
+                await phidgetHost.RunActionLoops(rcServoSequence);
+
+                if (rcServoSequence.AfterActionLoopSequences is not null)
+                {
+                    foreach (DeviceChannelSequence sequence in rcServoSequence.AfterActionLoopSequences)
+                    {
+                        // NOTE(crhodes)
+                        // We do not pass in a SerialNumber override
+
+                        await ExecuteDeviceChannelSequence(sequence);
+                    }
+                }
+
+                if (rcServoSequence.SequenceDuration is not null)
+                {
+                    if (LogDeviceChannelSequence)
+                    {
+                        Log.Trace($"Zzzz - End of RCServoSequence:>{rcServoSequence.Name}<" +
+                            $" Sleeping:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                    }
+
+                    Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
+                }
+
+                nextDeviceChannelSequence = rcServoSequence.NextSequence;
 
                 if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
