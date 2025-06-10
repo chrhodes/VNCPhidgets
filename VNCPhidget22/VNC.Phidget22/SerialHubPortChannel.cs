@@ -11,7 +11,7 @@ namespace VNC.Phidget22
 
         public override string ToString()
         {
-            return $"S#:{SerialNumber} HP:{HubPort} C:{Channel}";
+            return $"S#:{SerialNumber} IsHPD:{IsHubPortDevice} HP:{HubPort} C:{Channel}";
         }
     }
 

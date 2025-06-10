@@ -98,21 +98,15 @@ namespace VNC.Phidget22
 
         #region Fields and Properties
 
-        //public static Dictionary<Int32, PhidgetDevice> AvailablePhidget22 = new Dictionary<Int32, PhidgetDevice>();
-
-        //public Dictionary<SerialHubChannel, PhidgetDevice> _managerAttachedPhidgetDevices = new Dictionary<SerialHubChannel, PhidgetDevice>();
-        //public Dictionary<SerialHubChannel, PhidgetDevice> ManagerAttachedPhidgetDevices
-        //{
-        //    get => _managerAttachedPhidgetDevices;
-        //}
-
-        public List<PhidgetDevice> _managerAttachedPhidgetDevices = new List<PhidgetDevice>();
+        public List<PhidgetDevice> _managerAttachedPhidgetDevices 
+            = new List<PhidgetDevice>();
         public List<PhidgetDevice> ManagerAttachedPhidgetDevices
         {
             get => _managerAttachedPhidgetDevices;
         }
 
-        private Dictionary<SerialHubPortChannel, AccelerometerEx> _accelerometerChannels = new Dictionary<SerialHubPortChannel, AccelerometerEx>();
+        private Dictionary<SerialHubPortChannel, AccelerometerEx> _accelerometerChannels 
+            = new Dictionary<SerialHubPortChannel, AccelerometerEx>();
 
         public Dictionary<SerialHubPortChannel, AccelerometerEx> AccelerometerChannels
         {
@@ -120,7 +114,8 @@ namespace VNC.Phidget22
             set => _accelerometerChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, BLDCMotorEx> _bLDCMotorChannels = new Dictionary<SerialHubPortChannel, BLDCMotorEx>();
+        private Dictionary<SerialHubPortChannel, BLDCMotorEx> _bLDCMotorChannels 
+            = new Dictionary<SerialHubPortChannel, BLDCMotorEx>();
 
         public Dictionary<SerialHubPortChannel, BLDCMotorEx> BLDCMotorChannels
         {
@@ -128,7 +123,8 @@ namespace VNC.Phidget22
             set => _bLDCMotorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, CapacitiveTouchEx> _capacitiveTouchChannels = new Dictionary<SerialHubPortChannel, CapacitiveTouchEx>();
+        private Dictionary<SerialHubPortChannel, CapacitiveTouchEx> _capacitiveTouchChannels 
+            = new Dictionary<SerialHubPortChannel, CapacitiveTouchEx>();
 
         public Dictionary<SerialHubPortChannel, CapacitiveTouchEx> CapacitiveTouchChannels
         {
@@ -136,7 +132,8 @@ namespace VNC.Phidget22
             set => _capacitiveTouchChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, CurrentInputEx> _currentInputChannels = new Dictionary<SerialHubPortChannel, CurrentInputEx>();
+        private Dictionary<SerialHubPortChannel, CurrentInputEx> _currentInputChannels 
+            = new Dictionary<SerialHubPortChannel, CurrentInputEx>();
 
         public Dictionary<SerialHubPortChannel, CurrentInputEx> CurrentInputChannels
         {
@@ -144,21 +141,24 @@ namespace VNC.Phidget22
             set => _currentInputChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, DCMotorEx> _dCMotorChannels = new Dictionary<SerialHubPortChannel, DCMotorEx>();
+        private Dictionary<SerialHubPortChannel, DCMotorEx> _dCMotorChannels 
+            = new Dictionary<SerialHubPortChannel, DCMotorEx>();
         public Dictionary<SerialHubPortChannel, DCMotorEx> DCMotorChannels
         {
             get => _dCMotorChannels;
             set => _dCMotorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, DigitalInputEx> _digitalInputChannels = new Dictionary<SerialHubPortChannel, DigitalInputEx>();
+        private Dictionary<SerialHubPortChannel, DigitalInputEx> _digitalInputChannels 
+            = new Dictionary<SerialHubPortChannel, DigitalInputEx>();
         public Dictionary<SerialHubPortChannel, DigitalInputEx> DigitalInputChannels
         {
             get => _digitalInputChannels;
             set => _digitalInputChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, DigitalOutputEx> _digitalOutputChannels = new Dictionary<SerialHubPortChannel, DigitalOutputEx>();
+        private Dictionary<SerialHubPortChannel, DigitalOutputEx> _digitalOutputChannels 
+            = new Dictionary<SerialHubPortChannel, DigitalOutputEx>();
 
         public Dictionary<SerialHubPortChannel, DigitalOutputEx> DigitalOutputChannels
         {
@@ -166,7 +166,8 @@ namespace VNC.Phidget22
             set => _digitalOutputChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, DistanceSensorEx> _distanceSensorChannels = new Dictionary<SerialHubPortChannel, DistanceSensorEx>();
+        private Dictionary<SerialHubPortChannel, DistanceSensorEx> _distanceSensorChannels 
+            = new Dictionary<SerialHubPortChannel, DistanceSensorEx>();
 
         public Dictionary<SerialHubPortChannel, DistanceSensorEx> DistanceSensorChannels
         {
@@ -174,168 +175,192 @@ namespace VNC.Phidget22
             set => _distanceSensorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, EncoderEx> _encoderChannels = new Dictionary<SerialHubPortChannel, EncoderEx>();
+        private Dictionary<SerialHubPortChannel, EncoderEx> _encoderChannels 
+            = new Dictionary<SerialHubPortChannel, EncoderEx>();
         public Dictionary<SerialHubPortChannel, EncoderEx> EncoderChannels
         {
             get => _encoderChannels;
             set => _encoderChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, FrequencyCounterEx> _frequencyCounterChannels = new Dictionary<SerialHubPortChannel, FrequencyCounterEx>();
+        private Dictionary<SerialHubPortChannel, FrequencyCounterEx> _frequencyCounterChannels 
+            = new Dictionary<SerialHubPortChannel, FrequencyCounterEx>();
         public Dictionary<SerialHubPortChannel, FrequencyCounterEx> FrequencyCounterChannels
         {
             get => _frequencyCounterChannels;
             set => _frequencyCounterChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, GPSEx> _gPSChannels = new Dictionary<SerialHubPortChannel, GPSEx>();
+        private Dictionary<SerialHubPortChannel, GPSEx> _gPSChannels 
+            = new Dictionary<SerialHubPortChannel, GPSEx>();
         public Dictionary<SerialHubPortChannel, GPSEx> GPSChannels
         {
             get => _gPSChannels;
             set => _gPSChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, GyroscopeEx> _gyroscopeChannels = new Dictionary<SerialHubPortChannel, GyroscopeEx>();
+        private Dictionary<SerialHubPortChannel, GyroscopeEx> _gyroscopeChannels 
+            = new Dictionary<SerialHubPortChannel, GyroscopeEx>();
         public Dictionary<SerialHubPortChannel, GyroscopeEx> GyroscopeChannels
         {
             get => _gyroscopeChannels;
             set => _gyroscopeChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, HubEx> _hubChannels = new Dictionary<SerialHubPortChannel, HubEx>();
+        private Dictionary<SerialHubPortChannel, HubEx> _hubChannels 
+            = new Dictionary<SerialHubPortChannel, HubEx>();
         public Dictionary<SerialHubPortChannel, HubEx> HubChannels
         {
             get => _hubChannels;
             set => _hubChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, HumiditySensorEx> _humiditySensorChannels = new Dictionary<SerialHubPortChannel, HumiditySensorEx>();
+        private Dictionary<SerialHubPortChannel, HumiditySensorEx> _humiditySensorChannels 
+            = new Dictionary<SerialHubPortChannel, HumiditySensorEx>();
         public Dictionary<SerialHubPortChannel, HumiditySensorEx> HumiditySensorChannels
         {
             get => _humiditySensorChannels;
             set => _humiditySensorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, IREx> _iRChannels = new Dictionary<SerialHubPortChannel, IREx>();
+        private Dictionary<SerialHubPortChannel, IREx> _iRChannels 
+            = new Dictionary<SerialHubPortChannel, IREx>();
         public Dictionary<SerialHubPortChannel, IREx> IRChannels
         {
             get => _iRChannels;
             set => _iRChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, LCDEx> _lCDChannels = new Dictionary<SerialHubPortChannel, LCDEx>();
+        private Dictionary<SerialHubPortChannel, LCDEx> _lCDChannels 
+            = new Dictionary<SerialHubPortChannel, LCDEx>();
         public Dictionary<SerialHubPortChannel, LCDEx> LCDChannels
         {
             get => _lCDChannels;
             set => _lCDChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, LightSensorEx> _lightSensorChannels = new Dictionary<SerialHubPortChannel, LightSensorEx>();
+        private Dictionary<SerialHubPortChannel, LightSensorEx> _lightSensorChannels 
+            = new Dictionary<SerialHubPortChannel, LightSensorEx>();
         public Dictionary<SerialHubPortChannel, LightSensorEx> LightSensorChannels
         {
             get => _lightSensorChannels;
             set => _lightSensorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, MagnetometerEx> _magnetometerChannels = new Dictionary<SerialHubPortChannel, MagnetometerEx>();
+        private Dictionary<SerialHubPortChannel, MagnetometerEx> _magnetometerChannels 
+            = new Dictionary<SerialHubPortChannel, MagnetometerEx>();
         public Dictionary<SerialHubPortChannel, MagnetometerEx> MagnetometerChannels
         {
             get => _magnetometerChannels;
             set => _magnetometerChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, MotorPositionControllerEx> _motorPositionControllerChannels = new Dictionary<SerialHubPortChannel, MotorPositionControllerEx>();
+        private Dictionary<SerialHubPortChannel, MotorPositionControllerEx> _motorPositionControllerChannels 
+            = new Dictionary<SerialHubPortChannel, MotorPositionControllerEx>();
         public Dictionary<SerialHubPortChannel, MotorPositionControllerEx> MotorPositionControllerChannels
         {
             get => _motorPositionControllerChannels;
             set => _motorPositionControllerChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, PHSensorEx> _pHSensorChanels = new Dictionary<SerialHubPortChannel, PHSensorEx>();
+        private Dictionary<SerialHubPortChannel, PHSensorEx> _pHSensorChanels 
+            = new Dictionary<SerialHubPortChannel, PHSensorEx>();
         public Dictionary<SerialHubPortChannel, PHSensorEx> PHSensorChanels
         {
             get => _pHSensorChanels;
             set => _pHSensorChanels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, PowerGuardEx> _powerGuardChannels = new Dictionary<SerialHubPortChannel, PowerGuardEx>();
+        private Dictionary<SerialHubPortChannel, PowerGuardEx> _powerGuardChannels 
+            = new Dictionary<SerialHubPortChannel, PowerGuardEx>();
         public Dictionary<SerialHubPortChannel, PowerGuardEx> PowerGuardChannels
         {
             get => _powerGuardChannels;
             set => _powerGuardChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, PressureSensorEx> _pressureSensorChannels = new Dictionary<SerialHubPortChannel, PressureSensorEx>();
+        private Dictionary<SerialHubPortChannel, PressureSensorEx> _pressureSensorChannels 
+            = new Dictionary<SerialHubPortChannel, PressureSensorEx>();
         public Dictionary<SerialHubPortChannel, PressureSensorEx> PressureSensorChannels
         {
             get => _pressureSensorChannels;
             set => _pressureSensorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, RCServoEx> _rCServoChannels = new Dictionary<SerialHubPortChannel, RCServoEx>();
+        private Dictionary<SerialHubPortChannel, RCServoEx> _rCServoChannels 
+            = new Dictionary<SerialHubPortChannel, RCServoEx>();
         public Dictionary<SerialHubPortChannel, RCServoEx> RCServoChannels
         {
             get => _rCServoChannels;
             set => _rCServoChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, ResistanceInputEx> _resistanceInputChannels = new Dictionary<SerialHubPortChannel, ResistanceInputEx>();
+        private Dictionary<SerialHubPortChannel, ResistanceInputEx> _resistanceInputChannels 
+            = new Dictionary<SerialHubPortChannel, ResistanceInputEx>();
         public Dictionary<SerialHubPortChannel, ResistanceInputEx> ResistanceInputChannels
         {
             get => _resistanceInputChannels;
             set => _resistanceInputChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, RFIDEx> _rFIDChannels = new Dictionary<SerialHubPortChannel, RFIDEx>();
+        private Dictionary<SerialHubPortChannel, RFIDEx> _rFIDChannels 
+            = new Dictionary<SerialHubPortChannel, RFIDEx>();
         public Dictionary<SerialHubPortChannel, RFIDEx> RFIDChannels
         {
             get => _rFIDChannels;
             set => _rFIDChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, SoundSensorEx> _soundSensorChannels = new Dictionary<SerialHubPortChannel, SoundSensorEx>();
+        private Dictionary<SerialHubPortChannel, SoundSensorEx> _soundSensorChannels 
+            = new Dictionary<SerialHubPortChannel, SoundSensorEx>();
         public Dictionary<SerialHubPortChannel, SoundSensorEx> SoundSensorChannels
         {
             get => _soundSensorChannels;
             set => _soundSensorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, SpatialEx> _spatialChannels = new Dictionary<SerialHubPortChannel, SpatialEx>();
+        private Dictionary<SerialHubPortChannel, SpatialEx> _spatialChannels 
+            = new Dictionary<SerialHubPortChannel, SpatialEx>();
         public Dictionary<SerialHubPortChannel, SpatialEx> SpatialChannels
         {
             get => _spatialChannels;
             set => _spatialChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, StepperEx> _stepperChannels = new Dictionary<SerialHubPortChannel, StepperEx>();
+        private Dictionary<SerialHubPortChannel, StepperEx> _stepperChannels 
+            = new Dictionary<SerialHubPortChannel, StepperEx>();
         public Dictionary<SerialHubPortChannel, StepperEx> StepperChannels
         {
             get => _stepperChannels;
             set => _stepperChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, TemperatureSensorEx> _temperatureSensorChannels = new Dictionary<SerialHubPortChannel, TemperatureSensorEx>();
+        private Dictionary<SerialHubPortChannel, TemperatureSensorEx> _temperatureSensorChannels 
+            = new Dictionary<SerialHubPortChannel, TemperatureSensorEx>();
         public Dictionary<SerialHubPortChannel, TemperatureSensorEx> TemperatureSensorChannels
         {
             get => _temperatureSensorChannels;
             set => _temperatureSensorChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, VoltageInputEx> _voltageInputChannels = new Dictionary<SerialHubPortChannel, VoltageInputEx>();
+        private Dictionary<SerialHubPortChannel, VoltageInputEx> _voltageInputChannels 
+            = new Dictionary<SerialHubPortChannel, VoltageInputEx>();
         public Dictionary<SerialHubPortChannel, VoltageInputEx> VoltageInputChannels
         {
             get => _voltageInputChannels;
             set => _voltageInputChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, VoltageRatioInputEx> _voltageRatioInputChannels = new Dictionary<SerialHubPortChannel, VoltageRatioInputEx>();
+        private Dictionary<SerialHubPortChannel, VoltageRatioInputEx> _voltageRatioInputChannels 
+            = new Dictionary<SerialHubPortChannel, VoltageRatioInputEx>();
         public Dictionary<SerialHubPortChannel, VoltageRatioInputEx> VoltageRatioInputChannels
         {
             get => _voltageRatioInputChannels;
             set => _voltageRatioInputChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, VoltageOutputEx> _voltageOutputChannels = new Dictionary<SerialHubPortChannel, VoltageOutputEx>();
+        private Dictionary<SerialHubPortChannel, VoltageOutputEx> _voltageOutputChannels 
+            = new Dictionary<SerialHubPortChannel, VoltageOutputEx>();
         public Dictionary<SerialHubPortChannel, VoltageOutputEx> VoltageOutputChannels
         {
             get => _voltageOutputChannels;
@@ -346,7 +371,8 @@ namespace VNC.Phidget22
         // Populate this from ConfigFile
         // Also used info that came from Phidgets.  It is in OneNote
 
-        public static Dictionary<RCServoType, RCServoPulseWidths> RCServoTypes = new Dictionary<RCServoType, RCServoPulseWidths>()
+        public static Dictionary<RCServoType, RCServoPulseWidths> RCServoTypes 
+            = new Dictionary<RCServoType, RCServoPulseWidths>()
         {
             [VNC.Phidget22.Configuration.RCServoType.DEFAULT] = new RCServoPulseWidths
             {
@@ -510,12 +536,12 @@ namespace VNC.Phidget22
                 Log.Error(ex, Common.LOG_CATEGORY);
             }
 
-            // NOTE(crhodes)
-            // Now add the Phidget to ChannelClass specific Dictionaries
-            // that are used to find the right Phidget to use
-
             try
             {
+                // NOTE(crhodes)
+                // Now add the Phidget to ChannelClass specific Dictionaries
+                // that are used to find the right Phidget to use
+
                 AddDeviceChannel(phidget, phidgetDevice);
             }
             catch (Exception ex)
@@ -526,7 +552,7 @@ namespace VNC.Phidget22
 
         void AddDeviceChannel(Phidgets.Phidget phidget, PhidgetDevice phidgetDevice)
         {
-            SerialHubPortChannel serialHubChannel = new SerialHubPortChannel()
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel()
             {
                 SerialNumber = phidget.DeviceSerialNumber,
                 HubPort = phidget.HubPort,
@@ -540,33 +566,33 @@ namespace VNC.Phidget22
             {
                 case Phidgets.ChannelClass.Accelerometer:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.BLDCMotor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CapacitiveTouch:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.CurrentInput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
 
                     CurrentInputChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new CurrentInputEx(
                             new CurrentInputConfiguration()
                             {
@@ -584,26 +610,26 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.DCMotor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Dictionary:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.DigitalInput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
 
                     DigitalInputChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new DigitalInputEx(
                             new DigitalInputConfiguration()
                             {
@@ -622,12 +648,12 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.DigitalOutput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
 
                     DigitalOutputChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new DigitalOutputEx(
                              new DigitalOutputConfiguration()
                              {
@@ -646,61 +672,61 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.DistanceSensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Encoder:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FirmwareUpgrade:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.FrequencyCounter:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Generic:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                       $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                       $" HubPort:{serialHubChannel.HubPort}" +
-                       $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                       $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                       $" HubPort:{serialHubPortChannel.HubPort}" +
+                       $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.GPS:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Gyroscope:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Hub:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
 
                     HubChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new HubEx(
                             new HubConfiguration()
                             {
@@ -719,75 +745,75 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.HumiditySensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.IR:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LCD:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.LightSensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Magnetometer:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                      $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                      $" HubPort:{serialHubChannel.HubPort}" +
-                      $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                      $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                      $" HubPort:{serialHubPortChannel.HubPort}" +
+                      $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.None:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PHSensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PowerGuard:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.PressureSensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RCServo:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber}" +
-                        $" HubPort:{serialHubChannel.HubPort}" +
-                        $" Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber}" +
+                        $" HubPort:{serialHubPortChannel.HubPort}" +
+                        $" Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
 
                     RCServoChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new RCServoEx(
                             //phidget.DeviceSerialNumber,
                             new RCServoConfiguration()
@@ -807,40 +833,40 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.ResistanceInput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.RFID:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.SoundSensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Spatial:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.Stepper:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     
                     StepperChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new StepperEx(
                             phidget.DeviceSerialNumber,
                             new StepperConfiguration()
@@ -860,19 +886,19 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.TemperatureSensor:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     break;
 
                 case Phidgets.ChannelClass.VoltageInput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     
                     VoltageInputChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new VoltageInputEx(
                             new VoltageInputConfiguration()
                             {
@@ -891,12 +917,12 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.VoltageRatioInput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     
                     VoltageRatioInputChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new VoltageRatioInputEx(
                             new VoltageRatioInputConfiguration()
                             {
@@ -915,12 +941,12 @@ namespace VNC.Phidget22
 
                 case Phidgets.ChannelClass.VoltageOutput:
                     if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding New {channelClass}" +
-                        $" SerialNumber:{serialHubChannel.SerialNumber} " +
-                        $"HubPort:{serialHubChannel.HubPort} " +
-                        $"Channel:{serialHubChannel.Channel}", Common.LOG_CATEGORY);
+                        $" SerialNumber:{serialHubPortChannel.SerialNumber} " +
+                        $"HubPort:{serialHubPortChannel.HubPort} " +
+                        $"Channel:{serialHubPortChannel.Channel}", Common.LOG_CATEGORY);
                     
                     VoltageOutputChannels.Add(
-                        serialHubChannel,
+                        serialHubPortChannel,
                         new VoltageOutputEx(
                             new VoltageOutputConfiguration()
                             {

@@ -66,7 +66,8 @@ namespace VNC.Phidget22.Ex
             {
                 SerialNumber = DeviceSerialNumber,
                 HubPort = HubPort,
-                Channel = Channel
+                Channel = Channel,
+                IsHubPortDevice = IsHubPortDevice
             };
 
             IsRemote = true;
@@ -718,7 +719,7 @@ namespace VNC.Phidget22.Ex
             try
             {
                 // Set properties to values from Phidget
-                // We do not use Attach as some Phidgets do not provide values until Open
+                // We do not use Attach Event as some Phidgets do not provide values until Open
 
                 SensorValueChangeTrigger = base.SensorValueChangeTrigger;
 

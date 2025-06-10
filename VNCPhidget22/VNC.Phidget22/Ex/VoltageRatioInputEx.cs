@@ -311,7 +311,7 @@ namespace VNC.Phidget22.Ex
                     // Update values, SensorType changed
 
                     SensorUnit_Unit = base.SensorUnit.Unit;
-                    //SensorUnit_Name = base.SensorUnit.Name;
+                    SensorUnit_Name = base.SensorUnit.Name;
                     SensorUnit_Symbol = base.SensorUnit.Symbol;
                 }
 
@@ -330,16 +330,16 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        //private string _sensorUnit_Name;
-        //public string SensorUnit_Name
-        //{
-        //    get => _sensorUnit_Name;
-        //    set
-        //    {
-        //        _sensorUnit_Name = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private string _sensorUnit_Name;
+        public string SensorUnit_Name
+        {
+            get => _sensorUnit_Name;
+            set
+            {
+                _sensorUnit_Name = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string? _sensorUnit_Symbol;
         public string? SensorUnit_Symbol
@@ -576,7 +576,8 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageRatioInputEx_SensorChange: sender:{sender} {e.SensorValue} {e.SensorUnit}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageRatioInputEx_SensorChange: sender:{sender} {e.SensorValue}" +
+                        $" {e.SensorUnit.Name} {e.SensorUnit.Unit} {e.SensorUnit.Symbol}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -681,6 +682,8 @@ namespace VNC.Phidget22.Ex
             base.Open(timeout);
 
             Thread.Sleep(timeout);
+
+            Attached = base.Attached;
             RefreshProperties();
 
             if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
@@ -698,7 +701,7 @@ namespace VNC.Phidget22.Ex
             try
             {
                 // Set properties to values from Phidget
-                // We do not use Attach as some Phidgets do not provide values until Open
+                // We do not use Attach Event as some Phidgets do not provide values until Open
 
                 SensorType = base.SensorType;
 
@@ -723,6 +726,10 @@ namespace VNC.Phidget22.Ex
 
                 SensorValueChangeTrigger = base.SensorValueChangeTrigger;
                 SensorValue = base.SensorValue;
+
+                SensorUnit_Unit = base.SensorUnit.Unit;
+                SensorUnit_Name = base.SensorUnit.Name;
+                SensorUnit_Symbol = base.SensorUnit.Symbol;
             }
             catch (Phidgets.PhidgetException pex)
             {

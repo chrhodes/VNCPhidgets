@@ -16,7 +16,7 @@ using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class VoltageInputControl: ViewBase//, IInstanceCountV
+    public partial class VoltageInputControl: ViewBase
     {
         #region Constructors, Initialization, and Load
         
@@ -1828,7 +1828,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private void SensorType_EditValueChanged(object sender, EditValueChangedEventArgs e)
         {
-            var sensorType = e.NewValue;
+            var sensorType = e.NewValue?? e.OldValue;
 
             SensorDescription = ((Phidgets.VoltageSensorType)sensorType).AsString(EnumFormat.Description);
 

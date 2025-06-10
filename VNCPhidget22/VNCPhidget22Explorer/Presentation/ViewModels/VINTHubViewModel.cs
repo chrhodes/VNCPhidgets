@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
 
 using Prism.Commands;
 using Prism.Events;
@@ -16,13 +11,7 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
-using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
-
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using System.Threading.Channels;
-using DevExpress.Xpf.Editors.DateNavigator;
-using DevExpress.CodeParser;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -110,7 +99,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void LoadPhidgets()
         {
             // NOTE(crhodes)
-            // Load everything that can be used from VINTHub that has been detected
+            // Load the channels supported by a VINTHubPort natively.
+            // We do not have to load other Phidgets that can be connected to a VINTHub
+            // e.g RCServos, Steppers, etc.  Those use the Phidget Specific UI
 
             var digitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
@@ -124,16 +115,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             var voltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
                 .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
-
-            //var rcServos = Common.PhidgetDeviceLibrary.RCServoChannels
-            //    .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
-
-            //LoadRCServos(rcServos);
-
-            //var steppers = Common.PhidgetDeviceLibrary.StepperChannels
-            //    .Where(kv => kv.Key.SerialNumber == SelectedVINTHubPhidget);
-
-            //LoadSteppers(steppers);
 
             LoadVoltageInputs(voltageInputs);
 
@@ -178,46 +159,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 5:
                         DigitalInput5 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
                         break;
-
-                    case 6:
-                        DigitalInput6 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 7:
-                        DigitalInput7 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 8:
-                        DigitalInput8 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 9:
-                        DigitalInput9 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 10:
-                        DigitalInput10 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 11:
-                        DigitalInput11 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 12:
-                        DigitalInput12 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 13:
-                        DigitalInput13 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 14:
-                        DigitalInput14 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
-
-                    case 15:
-                        DigitalInput15 = Common.PhidgetDeviceLibrary.DigitalInputChannels[digitalInput.Key];
-                        break;
                 }
             }
         }
@@ -228,6 +169,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 // NOTE(crhodes)
                 // This is a bit tricky.  For VINT that support DI/DO/VI we use the Key.HubPort
+
                 switch (digitalOutput.Key.HubPort)
                 {
                     // TODO(crhodes)
@@ -256,52 +198,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 5:
                         DigitalOutput5 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
                         break;
-
-                    case 6:
-                        DigitalOutput6 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 7:
-                        DigitalOutput7 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 8:
-                        DigitalOutput8 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 9:
-                        DigitalOutput9 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 10:
-                        DigitalOutput10 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 11:
-                        DigitalOutput11 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 12:
-                        DigitalOutput12 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 13:
-                        DigitalOutput13 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 14:
-                        DigitalOutput14 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
-
-                    case 15:
-                        DigitalOutput15 = Common.PhidgetDeviceLibrary.DigitalOutputChannels[digitalOutput.Key];
-                        break;
                 }
             }
         }
-
- 
-        
+       
         void LoadVoltageInputs(IEnumerable<KeyValuePair<SerialHubPortChannel, VoltageInputEx>> voltageInputs)
         {
             foreach (var voltageInput in voltageInputs)
@@ -337,46 +237,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     case 5:
                         VoltageInput5 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
                         break;
-
-                    case 6:
-                        VoltageInput6 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 7:
-                        VoltageInput7 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 8:
-                        VoltageInput8 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 9:
-                        VoltageInput9 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 10:
-                        VoltageInput10 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 11:
-                        VoltageInput11 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 12:
-                        VoltageInput12 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 13:
-                        VoltageInput13 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 14:
-                        VoltageInput14 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
-
-                    case 15:
-                        VoltageInput15 = Common.PhidgetDeviceLibrary.VoltageInputChannels[voltageInput.Key];
-                        break;
                 }
             }
         }
@@ -385,6 +245,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             foreach (var voltageRatioInput in voltageRatioInputs)
             {
+                // NOTE(crhodes)
+                // This is a bit tricky.  For VINT that support DI/DO/VI we use the Key.HubPort
+
                 switch (voltageRatioInput.Key.HubPort)
                 {
                     // TODO(crhodes)
@@ -412,46 +275,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                     case 5:
                         VoltageRatioInput5 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 6:
-                        VoltageRatioInput6 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 7:
-                        VoltageRatioInput7 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 8:
-                        VoltageRatioInput8 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 9:
-                        VoltageRatioInput9 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 10:
-                        VoltageRatioInput10 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 11:
-                        VoltageRatioInput11 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 12:
-                        VoltageRatioInput12 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 13:
-                        VoltageRatioInput13 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 14:
-                        VoltageRatioInput14 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
-                        break;
-
-                    case 15:
-                        VoltageRatioInput15 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[voltageRatioInput.Key];
                         break;
                 }
             }
@@ -726,8 +549,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 DigitalInputsVisibility = Visibility.Visible;
                 DigitalOutputsVisibility = Visibility.Visible;
-                RCServosVisibility = Visibility.Visible;
-                SteppersVisibility = Visibility.Visible;
+                //RCServosVisibility = Visibility.Visible;
+                //SteppersVisibility = Visibility.Visible;
                 VoltageInputsVisibility = Visibility.Visible;
             }
         }
@@ -825,135 +648,135 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalInputEx? _digitalInput6;
-        public DigitalInputEx? DigitalInput6
-        {
-            get => _digitalInput6;
-            set
-            {
-                if (_digitalInput6 == value)
-                    return;
-                _digitalInput6 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput6;
+        //public DigitalInputEx? DigitalInput6
+        //{
+        //    get => _digitalInput6;
+        //    set
+        //    {
+        //        if (_digitalInput6 == value)
+        //            return;
+        //        _digitalInput6 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput7;
-        public DigitalInputEx? DigitalInput7
-        {
-            get => _digitalInput7;
-            set
-            {
-                if (_digitalInput7 == value)
-                    return;
-                _digitalInput7 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput7;
+        //public DigitalInputEx? DigitalInput7
+        //{
+        //    get => _digitalInput7;
+        //    set
+        //    {
+        //        if (_digitalInput7 == value)
+        //            return;
+        //        _digitalInput7 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput8;
-        public DigitalInputEx? DigitalInput8
-        {
-            get => _digitalInput8;
-            set
-            {
-                if (_digitalInput8 == value)
-                    return;
-                _digitalInput8 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput8;
+        //public DigitalInputEx? DigitalInput8
+        //{
+        //    get => _digitalInput8;
+        //    set
+        //    {
+        //        if (_digitalInput8 == value)
+        //            return;
+        //        _digitalInput8 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput9;
-        public DigitalInputEx? DigitalInput9
-        {
-            get => _digitalInput9;
-            set
-            {
-                if (_digitalInput9 == value)
-                    return;
-                _digitalInput9 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput9;
+        //public DigitalInputEx? DigitalInput9
+        //{
+        //    get => _digitalInput9;
+        //    set
+        //    {
+        //        if (_digitalInput9 == value)
+        //            return;
+        //        _digitalInput9 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput10;
-        public DigitalInputEx? DigitalInput10
-        {
-            get => _digitalInput10;
-            set
-            {
-                if (_digitalInput10 == value)
-                    return;
-                _digitalInput10 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput10;
+        //public DigitalInputEx? DigitalInput10
+        //{
+        //    get => _digitalInput10;
+        //    set
+        //    {
+        //        if (_digitalInput10 == value)
+        //            return;
+        //        _digitalInput10 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput11;
-        public DigitalInputEx? DigitalInput11
-        {
-            get => _digitalInput11;
-            set
-            {
-                if (_digitalInput11 == value)
-                    return;
-                _digitalInput11 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput11;
+        //public DigitalInputEx? DigitalInput11
+        //{
+        //    get => _digitalInput11;
+        //    set
+        //    {
+        //        if (_digitalInput11 == value)
+        //            return;
+        //        _digitalInput11 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput12;
-        public DigitalInputEx? DigitalInput12
-        {
-            get => _digitalInput12;
-            set
-            {
-                if (_digitalInput12 == value)
-                    return;
-                _digitalInput12 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput12;
+        //public DigitalInputEx? DigitalInput12
+        //{
+        //    get => _digitalInput12;
+        //    set
+        //    {
+        //        if (_digitalInput12 == value)
+        //            return;
+        //        _digitalInput12 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput13;
-        public DigitalInputEx? DigitalInput13
-        {
-            get => _digitalInput13;
-            set
-            {
-                if (_digitalInput13 == value)
-                    return;
-                _digitalInput13 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput13;
+        //public DigitalInputEx? DigitalInput13
+        //{
+        //    get => _digitalInput13;
+        //    set
+        //    {
+        //        if (_digitalInput13 == value)
+        //            return;
+        //        _digitalInput13 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput14;
-        public DigitalInputEx? DigitalInput14
-        {
-            get => _digitalInput14;
-            set
-            {
-                if (_digitalInput14 == value)
-                    return;
-                _digitalInput14 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput14;
+        //public DigitalInputEx? DigitalInput14
+        //{
+        //    get => _digitalInput14;
+        //    set
+        //    {
+        //        if (_digitalInput14 == value)
+        //            return;
+        //        _digitalInput14 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalInputEx? _digitalInput15;
-        public DigitalInputEx? DigitalInput15
-        {
-            get => _digitalInput15;
-            set
-            {
-                if (_digitalInput15 == value)
-                    return;
-                _digitalInput15 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalInputEx? _digitalInput15;
+        //public DigitalInputEx? DigitalInput15
+        //{
+        //    get => _digitalInput15;
+        //    set
+        //    {
+        //        if (_digitalInput15 == value)
+        //            return;
+        //        _digitalInput15 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -1050,585 +873,135 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private DigitalOutputEx? _digitalOutput6;
-        public DigitalOutputEx? DigitalOutput6
-        {
-            get => _digitalOutput6;
-            set
-            {
-                if (_digitalOutput6 == value)
-                    return;
-                _digitalOutput6 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput6;
+        //public DigitalOutputEx? DigitalOutput6
+        //{
+        //    get => _digitalOutput6;
+        //    set
+        //    {
+        //        if (_digitalOutput6 == value)
+        //            return;
+        //        _digitalOutput6 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput7;
-        public DigitalOutputEx? DigitalOutput7
-        {
-            get => _digitalOutput7;
-            set
-            {
-                if (_digitalOutput7 == value)
-                    return;
-                _digitalOutput7 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput7;
+        //public DigitalOutputEx? DigitalOutput7
+        //{
+        //    get => _digitalOutput7;
+        //    set
+        //    {
+        //        if (_digitalOutput7 == value)
+        //            return;
+        //        _digitalOutput7 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput8;
-        public DigitalOutputEx? DigitalOutput8
-        {
-            get => _digitalOutput8;
-            set
-            {
-                if (_digitalOutput8 == value)
-                    return;
-                _digitalOutput8 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput8;
+        //public DigitalOutputEx? DigitalOutput8
+        //{
+        //    get => _digitalOutput8;
+        //    set
+        //    {
+        //        if (_digitalOutput8 == value)
+        //            return;
+        //        _digitalOutput8 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput9;
-        public DigitalOutputEx? DigitalOutput9
-        {
-            get => _digitalOutput9;
-            set
-            {
-                if (_digitalOutput9 == value)
-                    return;
-                _digitalOutput9 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput9;
+        //public DigitalOutputEx? DigitalOutput9
+        //{
+        //    get => _digitalOutput9;
+        //    set
+        //    {
+        //        if (_digitalOutput9 == value)
+        //            return;
+        //        _digitalOutput9 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput10;
-        public DigitalOutputEx? DigitalOutput10
-        {
-            get => _digitalOutput10;
-            set
-            {
-                if (_digitalOutput10 == value)
-                    return;
-                _digitalOutput10 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput10;
+        //public DigitalOutputEx? DigitalOutput10
+        //{
+        //    get => _digitalOutput10;
+        //    set
+        //    {
+        //        if (_digitalOutput10 == value)
+        //            return;
+        //        _digitalOutput10 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput11;
-        public DigitalOutputEx? DigitalOutput11
-        {
-            get => _digitalOutput11;
-            set
-            {
-                if (_digitalOutput11 == value)
-                    return;
-                _digitalOutput11 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput11;
+        //public DigitalOutputEx? DigitalOutput11
+        //{
+        //    get => _digitalOutput11;
+        //    set
+        //    {
+        //        if (_digitalOutput11 == value)
+        //            return;
+        //        _digitalOutput11 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput12;
-        public DigitalOutputEx? DigitalOutput12
-        {
-            get => _digitalOutput12;
-            set
-            {
-                if (_digitalOutput12 == value)
-                    return;
-                _digitalOutput12 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput12;
+        //public DigitalOutputEx? DigitalOutput12
+        //{
+        //    get => _digitalOutput12;
+        //    set
+        //    {
+        //        if (_digitalOutput12 == value)
+        //            return;
+        //        _digitalOutput12 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput13;
-        public DigitalOutputEx? DigitalOutput13
-        {
-            get => _digitalOutput13;
-            set
-            {
-                if (_digitalOutput13 == value)
-                    return;
-                _digitalOutput13 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput13;
+        //public DigitalOutputEx? DigitalOutput13
+        //{
+        //    get => _digitalOutput13;
+        //    set
+        //    {
+        //        if (_digitalOutput13 == value)
+        //            return;
+        //        _digitalOutput13 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput14;
-        public DigitalOutputEx? DigitalOutput14
-        {
-            get => _digitalOutput14;
-            set
-            {
-                if (_digitalOutput14 == value)
-                    return;
-                _digitalOutput14 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput14;
+        //public DigitalOutputEx? DigitalOutput14
+        //{
+        //    get => _digitalOutput14;
+        //    set
+        //    {
+        //        if (_digitalOutput14 == value)
+        //            return;
+        //        _digitalOutput14 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private DigitalOutputEx? _digitalOutput15;
-        public DigitalOutputEx? DigitalOutput15
-        {
-            get => _digitalOutput15;
-            set
-            {
-                if (_digitalOutput15 == value)
-                    return;
-                _digitalOutput15 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #region RCServos
-
-        private Visibility? _rcServosVisibility = Visibility.Collapsed;
-        public Visibility? RCServosVisibility
-        {
-            get => _rcServosVisibility;
-            set
-            {
-                if (_rcServosVisibility == value)
-                    return;
-                _rcServosVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo0;
-        public RCServoEx? RCServo0
-        {
-            get => _rcServo0;
-            set
-            {
-                if (_rcServo0 == value)
-                    return;
-                _rcServo0 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo1;
-        public RCServoEx? RCServo1
-        {
-            get => _rcServo1;
-            set
-            {
-                if (_rcServo1 == value)
-                    return;
-                _rcServo1 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo2;
-        public RCServoEx? RCServo2
-        {
-            get => _rcServo2;
-            set
-            {
-                if (_rcServo2 == value)
-                    return;
-                _rcServo2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo3;
-        public RCServoEx? RCServo3
-        {
-            get => _rcServo3;
-            set
-            {
-                if (_rcServo3 == value)
-                    return;
-                _rcServo3 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo4;
-        public RCServoEx? RCServo4
-        {
-            get => _rcServo4;
-            set
-            {
-                if (_rcServo4 == value)
-                    return;
-                _rcServo4 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo5;
-        public RCServoEx? RCServo5
-        {
-            get => _rcServo5;
-            set
-            {
-                if (_rcServo5 == value)
-                    return;
-                _rcServo5 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo6;
-        public RCServoEx? RCServo6
-        {
-            get => _rcServo6;
-            set
-            {
-                if (_rcServo6 == value)
-                    return;
-                _rcServo6 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo7;
-        public RCServoEx? RCServo7
-        {
-            get => _rcServo7;
-            set
-            {
-                if (_rcServo7 == value)
-                    return;
-                _rcServo7 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo8;
-        public RCServoEx? RCServo8
-        {
-            get => _rcServo8;
-            set
-            {
-                if (_rcServo8 == value)
-                    return;
-                _rcServo8 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo9;
-        public RCServoEx? RCServo9
-        {
-            get => _rcServo9;
-            set
-            {
-                if (_rcServo9 == value)
-                    return;
-                _rcServo9 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo10;
-        public RCServoEx? RCServo10
-        {
-            get => _rcServo10;
-            set
-            {
-                if (_rcServo10 == value)
-                    return;
-                _rcServo10 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo11;
-        public RCServoEx? RCServo11
-        {
-            get => _rcServo11;
-            set
-            {
-                if (_rcServo11 == value)
-                    return;
-                _rcServo11 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo12;
-        public RCServoEx? RCServo12
-        {
-            get => _rcServo12;
-            set
-            {
-                if (_rcServo12 == value)
-                    return;
-                _rcServo12 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo13;
-        public RCServoEx? RCServo13
-        {
-            get => _rcServo13;
-            set
-            {
-                if (_rcServo13 == value)
-                    return;
-                _rcServo13 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo14;
-        public RCServoEx? RCServo14
-        {
-            get => _rcServo14;
-            set
-            {
-                if (_rcServo14 == value)
-                    return;
-                _rcServo14 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private RCServoEx? _rcServo15;
-        public RCServoEx? RCServo15
-        {
-            get => _rcServo15;
-            set
-            {
-                if (_rcServo15 == value)
-                    return;
-                _rcServo15 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #region Steppers
-
-        private Visibility? _steppersVisibility = Visibility.Collapsed;
-        public Visibility? SteppersVisibility
-        {
-            get => _steppersVisibility;
-            set
-            {
-                if (_steppersVisibility == value)
-                    return;
-                _steppersVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper0;
-        public StepperEx? Stepper0
-        {
-            get => _stepper0;
-            set
-            {
-                if (_stepper0 == value)
-                    return;
-                _stepper0 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper1;
-        public StepperEx? Stepper1
-        {
-            get => _stepper1;
-            set
-            {
-                if (_stepper1 == value)
-                    return;
-                _stepper1 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper2;
-        public StepperEx? Stepper2
-        {
-            get => _stepper2;
-            set
-            {
-                if (_stepper2 == value)
-                    return;
-                _stepper2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper3;
-        public StepperEx? Stepper3
-        {
-            get => _stepper3;
-            set
-            {
-                if (_stepper3 == value)
-                    return;
-                _stepper3 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper4;
-        public StepperEx? Stepper4
-        {
-            get => _stepper4;
-            set
-            {
-                if (_stepper4 == value)
-                    return;
-                _stepper4 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper5;
-        public StepperEx? Stepper5
-        {
-            get => _stepper5;
-            set
-            {
-                if (_stepper5 == value)
-                    return;
-                _stepper5 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper6;
-        public StepperEx? Stepper6
-        {
-            get => _stepper6;
-            set
-            {
-                if (_stepper6 == value)
-                    return;
-                _stepper6 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper7;
-        public StepperEx? Stepper7
-        {
-            get => _stepper7;
-            set
-            {
-                if (_stepper7 == value)
-                    return;
-                _stepper7 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper8;
-        public StepperEx? Stepper8
-        {
-            get => _stepper8;
-            set
-            {
-                if (_stepper8 == value)
-                    return;
-                _stepper8 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper9;
-        public StepperEx? Stepper9
-        {
-            get => _stepper9;
-            set
-            {
-                if (_stepper9 == value)
-                    return;
-                _stepper9 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper10;
-        public StepperEx? Stepper10
-        {
-            get => _stepper10;
-            set
-            {
-                if (_stepper10 == value)
-                    return;
-                _stepper10 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper11;
-        public StepperEx? Stepper11
-        {
-            get => _stepper11;
-            set
-            {
-                if (_stepper11 == value)
-                    return;
-                _stepper11 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper12;
-        public StepperEx? Stepper12
-        {
-            get => _stepper12;
-            set
-            {
-                if (_stepper12 == value)
-                    return;
-                _stepper12 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper13;
-        public StepperEx? Stepper13
-        {
-            get => _stepper13;
-            set
-            {
-                if (_stepper13 == value)
-                    return;
-                _stepper13 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper14;
-        public StepperEx? Stepper14
-        {
-            get => _stepper14;
-            set
-            {
-                if (_stepper14 == value)
-                    return;
-                _stepper14 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx? _stepper15;
-        public StepperEx? Stepper15
-        {
-            get => _stepper15;
-            set
-            {
-                if (_stepper15 == value)
-                    return;
-                _stepper15 = value;
-                OnPropertyChanged();
-            }
-        }
+        //private DigitalOutputEx? _digitalOutput15;
+        //public DigitalOutputEx? DigitalOutput15
+        //{
+        //    get => _digitalOutput15;
+        //    set
+        //    {
+        //        if (_digitalOutput15 == value)
+        //            return;
+        //        _digitalOutput15 = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         #endregion
 
@@ -1721,136 +1094,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_voltageInput5 == value)
                     return;
                 _voltageInput5 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput6;
-        public VoltageInputEx? VoltageInput6
-        {
-            get => _voltageInput6;
-            set
-            {
-                if (_voltageInput6 == value)
-                    return;
-                _voltageInput6 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput7;
-        public VoltageInputEx? VoltageInput7
-        {
-            get => _voltageInput7;
-            set
-            {
-                if (_voltageInput7 == value)
-                    return;
-                _voltageInput7 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput8;
-        public VoltageInputEx? VoltageInput8
-        {
-            get => _voltageInput8;
-            set
-            {
-                if (_voltageInput8 == value)
-                    return;
-                _voltageInput8 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput9;
-        public VoltageInputEx? VoltageInput9
-        {
-            get => _voltageInput9;
-            set
-            {
-                if (_voltageInput9 == value)
-                    return;
-                _voltageInput9 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput10;
-        public VoltageInputEx? VoltageInput10
-        {
-            get => _voltageInput10;
-            set
-            {
-                if (_voltageInput10 == value)
-                    return;
-                _voltageInput10 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput11;
-        public VoltageInputEx? VoltageInput11
-        {
-            get => _voltageInput11;
-            set
-            {
-                if (_voltageInput11 == value)
-                    return;
-                _voltageInput11 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput12;
-        public VoltageInputEx? VoltageInput12
-        {
-            get => _voltageInput12;
-            set
-            {
-                if (_voltageInput12 == value)
-                    return;
-                _voltageInput12 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput13;
-        public VoltageInputEx? VoltageInput13
-        {
-            get => _voltageInput13;
-            set
-            {
-                if (_voltageInput13 == value)
-                    return;
-                _voltageInput13 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput14;
-        public VoltageInputEx? VoltageInput14
-        {
-            get => _voltageInput14;
-            set
-            {
-                if (_voltageInput14 == value)
-                    return;
-                _voltageInput14 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageInputEx? _voltageInput15;
-        public VoltageInputEx? VoltageInput15
-        {
-            get => _voltageInput15;
-            set
-            {
-                if (_voltageInput15 == value)
-                    return;
-                _voltageInput15 = value;
                 OnPropertyChanged();
             }
         }
@@ -1950,136 +1193,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private VoltageRatioInputEx? _voltageRatioInput6;
-        public VoltageRatioInputEx? VoltageRatioInput6
-        {
-            get => _voltageRatioInput6;
-            set
-            {
-                if (_voltageRatioInput6 == value)
-                    return;
-                _voltageRatioInput6 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput7;
-        public VoltageRatioInputEx? VoltageRatioInput7
-        {
-            get => _voltageRatioInput7;
-            set
-            {
-                if (_voltageRatioInput7 == value)
-                    return;
-                _voltageRatioInput7 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput8;
-        public VoltageRatioInputEx? VoltageRatioInput8
-        {
-            get => _voltageRatioInput8;
-            set
-            {
-                if (_voltageRatioInput8 == value)
-                    return;
-                _voltageRatioInput8 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput9;
-        public VoltageRatioInputEx? VoltageRatioInput9
-        {
-            get => _voltageRatioInput9;
-            set
-            {
-                if (_voltageRatioInput9 == value)
-                    return;
-                _voltageRatioInput9 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput10;
-        public VoltageRatioInputEx? VoltageRatioInput10
-        {
-            get => _voltageRatioInput10;
-            set
-            {
-                if (_voltageRatioInput10 == value)
-                    return;
-                _voltageRatioInput10 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput11;
-        public VoltageRatioInputEx? VoltageRatioInput11
-        {
-            get => _voltageRatioInput11;
-            set
-            {
-                if (_voltageRatioInput11 == value)
-                    return;
-                _voltageRatioInput11 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput12;
-        public VoltageRatioInputEx? VoltageRatioInput12
-        {
-            get => _voltageRatioInput12;
-            set
-            {
-                if (_voltageRatioInput12 == value)
-                    return;
-                _voltageRatioInput12 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput13;
-        public VoltageRatioInputEx? VoltageRatioInput13
-        {
-            get => _voltageRatioInput13;
-            set
-            {
-                if (_voltageRatioInput13 == value)
-                    return;
-                _voltageRatioInput13 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput14;
-        public VoltageRatioInputEx? VoltageRatioInput14
-        {
-            get => _voltageRatioInput14;
-            set
-            {
-                if (_voltageRatioInput14 == value)
-                    return;
-                _voltageRatioInput14 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private VoltageRatioInputEx? _voltageRatioInput15;
-        public VoltageRatioInputEx? VoltageRatioInput15
-        {
-            get => _voltageRatioInput15;
-            set
-            {
-                if (_voltageRatioInput15 == value)
-                    return;
-                _voltageRatioInput15 = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         #endregion
@@ -2093,6 +1206,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #endregion
 
         #region Commands
+
+        // NOTE(crhodes)
+        // VINTHubPorts can only operate in one mode at a time, DigitalInput, DigitalOutput, VoltageInput, VoltageRatioInput
+        // Doesn't make sense to open in bulk
 
         #region OpenVINTHub Command
 
@@ -2296,13 +1413,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public Boolean CloseVINTHubCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
             // NOTE(crhodes)
             // Since Open/Close at VINTHub level operates in bulk,
             // We really don't care if anything is already Open or Closed
-            // once InterfactKit is selected
+            // once Phidget is selected
 
             if (SelectedVINTHubPhidget > 0)
             {
@@ -2346,35 +1460,32 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PublishStatusMessage(Message);
 
-            //DigitalInputEx? digitalInputHost = Common.PhidgetDeviceLibrary
-            //    .DigitalInputChannels[(SerialHubPortChannel)serialHubPortChannel];
+            switch (serialHubPortChannel?.HubPort)
+            {
+                case 0:
+                    await OpenDigitalInput(DigitalInput0);
+                    break;
 
-                switch (serialHubPortChannel?.HubPort)
-                {
-                    case 0:
-                        await OpenDigitalInput(DigitalInput0);
-                        break;
+                case 1:
+                    await OpenDigitalInput(DigitalInput1);
+                    break;
 
-                    case 1:
-                        await OpenDigitalInput(DigitalInput1);
-                        break;
+                case 2:
+                    await OpenDigitalInput(DigitalInput2);
+                    break;
 
-                    case 2:
-                        await OpenDigitalInput(DigitalInput2);
-                        break;
+                case 3:
+                    await OpenDigitalInput(DigitalInput3);
+                    break;
 
-                    case 3:
-                        await OpenDigitalInput(DigitalInput3);
-                        break;
+                case 4:
+                    await OpenDigitalInput(DigitalInput4);
+                    break;
 
-                    case 4:
-                        await OpenDigitalInput(DigitalInput4);
-                        break;
-
-                    case 5:
-                        await OpenDigitalInput(DigitalInput5);
-                        break;
-                }
+                case 5:
+                    await OpenDigitalInput(DigitalInput5);
+                    break;
+            }
 
             OpenDigitalInputCommand?.RaiseCanExecuteChanged();
             CloseDigitalInputCommand?.RaiseCanExecuteChanged();
@@ -2451,7 +1562,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (!Common.PhidgetDeviceLibrary.DigitalInputChannels
                 .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
             { 
-                return true; 
+                return false; 
             }
 
             if (host.Attached)
@@ -2471,9 +1582,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         public DelegateCommand<SerialHubPortChannel?>? CloseDigitalInputCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseDigitalInputHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseDigitalInputCommandParameter;
 
         public string CloseDigitalInputContent { get; set; } = "Close";
         public string CloseDigitalInputToolTip { get; set; } = "Close DigitalInput";
@@ -2545,19 +1653,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean CloseDigitalInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
-        //public Boolean CloseDigitalInputCanExecute()
         {
-            //// TODO(crhodes)
-            //// Add any before button is enabled logic.
-
             if (serialHubPortChannel is null) return false;
 
             DigitalInputEx? host;
 
             if (!Common.PhidgetDeviceLibrary.DigitalInputChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            {  
+                return false; 
+            }
 
             if (host.IsOpen)
             {
@@ -2721,9 +1827,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (serialHubPortChannel is null) return false;
 
             if (!Common.PhidgetDeviceLibrary.DigitalOutputChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out DigitalOutputEx? host))
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, 
+                out DigitalOutputEx? host))
             {
-                return true;
+                return false;
             }
 
             if (host.Attached)
@@ -2975,10 +2082,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public Boolean OpenVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
         {
+            if (SelectedVINTHubPhidget is null) return false;
+
             if (serialHubPortChannel is null) return false;
 
             if (!Common.PhidgetDeviceLibrary.VoltageInputChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out VoltageInputEx? host)) return false;
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, 
+                out VoltageInputEx? host))
+            {  
+                return false; 
+            }
 
             if (host.IsOpen)
             {
@@ -3045,46 +2158,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 case 5:
                     await RefreshVoltageInput(VoltageInput5);
                     break;
-
-                //case 6:
-                //    await RefreshVoltageInput(VoltageInput6);
-                //    break;
-
-                //case 7:
-                //    await RefreshVoltageInput(VoltageInput7);
-                //    break;
-
-                //case 8:
-                //    await RefreshVoltageInput(VoltageInput8);
-                //    break;
-
-                //case 9:
-                //    await RefreshVoltageInput(VoltageInput9);
-                //    break;
-
-                //case 10:
-                //    await RefreshVoltageInput(VoltageInput10);
-                //    break;
-
-                //case 11:
-                //    await RefreshVoltageInput(VoltageInput11);
-                //    break;
-
-                //case 12:
-                //    await RefreshVoltageInput(VoltageInput12);
-                //    break;
-
-                //case 13:
-                //    await RefreshVoltageInput(VoltageInput13);
-                //    break;
-
-                //case 14:
-                //    await RefreshVoltageInput(VoltageInput14);
-                //    break;
-
-                //case 15:
-                //    await RefreshVoltageInput(VoltageInput15);
-                //    break;
             }
 
             // Uncomment this if you are telling someone else to handle this
@@ -3294,86 +2367,28 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             switch (serialHubPortChannel?.HubPort)
             {
                 case 0:
-                    //// TODO(crhodes)
-                    //// Why do we initialize here.  We don't do that in InterfaceKit1018ViewModel
-                    //if (VoltageRatioInput0 is null) VoltageRatioInput0 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel];
-                    //await OpenVoltageRatioInput(VoltageRatioInput0);
+                    await OpenVoltageRatioInput(VoltageRatioInput0);
                     break;
 
                 case 1:
-                    //if (VoltageRatioInput1 is null) VoltageRatioInput1 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel];
                     await OpenVoltageRatioInput(VoltageRatioInput1);
                     break;
 
                 case 2:
-                    //if (VoltageRatioInput2 is null) VoltageRatioInput2 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel];
                     await OpenVoltageRatioInput(VoltageRatioInput2);
                     break;
 
                 case 3:
-                    //if (VoltageRatioInput3 is null) VoltageRatioInput3 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel];
                     await OpenVoltageRatioInput(VoltageRatioInput3);
                     break;
 
                 case 4:
-                    //if (VoltageRatioInput4 is null) VoltageRatioInput4 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel];
                     await OpenVoltageRatioInput(VoltageRatioInput4);
                     break;
 
                 case 5:
-                    if (VoltageRatioInput5 is null) VoltageRatioInput5 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[(SerialHubPortChannel)serialHubPortChannel];
                     await OpenVoltageRatioInput(VoltageRatioInput5);
                     break;
-
-                //case 6:
-                //    if (VoltageRatioInput6 is null) VoltageRatioInput6 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput6);
-                //    break;
-
-                //case 7:
-                //    if (VoltageRatioInput7 is null) VoltageRatioInput7 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput7);
-                //    break;
-
-                //case 8:
-                //    if (VoltageRatioInput8 is null) VoltageRatioInput8 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput8);
-                //    break;
-
-                //case 9:
-                //    if (VoltageRatioInput9 is null) VoltageRatioInput9 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput9);
-                //    break;
-
-                //case 10:
-                //    if (VoltageRatioInput10 is null) VoltageRatioInput10 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput10);
-                //    break;
-
-                //case 11:
-                //    if (VoltageRatioInput11 is null) VoltageRatioInput11 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput11);
-                //    break;
-
-                //case 12:
-                //    if (VoltageRatioInput12 is null) VoltageRatioInput12 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput12);
-                //    break;
-
-                //case 13:
-                //    if (VoltageRatioInput13 is null) VoltageRatioInput13 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput13);
-                //    break;
-
-                //case 14:
-                //    if (VoltageRatioInput14 is null) VoltageRatioInput14 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput14);
-                //    break;
-
-                //case 15:
-                //    if (VoltageRatioInput15 is null) VoltageRatioInput15 = Common.PhidgetDeviceLibrary.VoltageRatioInputChannels[serialHubPortChannel];
-                //    await OpenVoltageRatioInput(VoltageRatioInput15);
-                //    break;
             }
 
             OpenVoltageRatioInputCommand?.RaiseCanExecuteChanged();
@@ -3453,7 +2468,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
                 .TryGetValue((SerialHubPortChannel)serialHubPortChannel, 
-                out VoltageRatioInputEx? host)) return false;
+                out VoltageRatioInputEx? host))
+            {
+                return false; 
+            }
 
             if (host.IsOpen)
             {
@@ -3767,46 +2785,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                 case 5:
                     await RaisePerformanceEvent(VoltageInput5);
-                    break;
-
-                case 6:
-                    await RaisePerformanceEvent(VoltageInput6);
-                    break;
-
-                case 7:
-                    await RaisePerformanceEvent(VoltageInput7);
-                    break;
-
-                case 8:
-                    await RaisePerformanceEvent(VoltageInput8);
-                    break;
-
-                case 9:
-                    await RaisePerformanceEvent(VoltageInput9);
-                    break;
-
-                case 10:
-                    await RaisePerformanceEvent(VoltageInput10);
-                    break;
-
-                case 11:
-                    await RaisePerformanceEvent(VoltageInput11);
-                    break;
-
-                case 12:
-                    await RaisePerformanceEvent(VoltageInput12);
-                    break;
-
-                case 13:
-                    await RaisePerformanceEvent(VoltageInput13);
-                    break;
-
-                case 14:
-                    await RaisePerformanceEvent(VoltageInput14);
-                    break;
-
-                case 15:
-                    await RaisePerformanceEvent(VoltageInput15);
                     break;
             }
 

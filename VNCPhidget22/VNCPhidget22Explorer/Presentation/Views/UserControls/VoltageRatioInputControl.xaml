@@ -214,7 +214,7 @@
 
                 <TextBlock Text=" " Height="10" Width="10"
                            Background="{Binding SensorValueOutOfRange, Mode=OneWay, 
-                                        Converter={StaticResource InverseBooleanToColorConverter}}"/>
+                                        Converter={StaticResource InverseBooleanToColorConverter}}" RenderTransformOrigin="1403.547,-7.725"/>
 
             </dxlc:LayoutGroup>
 

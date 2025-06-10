@@ -76,7 +76,7 @@
                       HorizontalAlignment="Left" VerticalAlignment="Top">
 
         <Label Content="{Binding SerialHubPortChannel}" />
-        
+
         <!-- Logging -->
         
         <dxlc:LayoutGroup 

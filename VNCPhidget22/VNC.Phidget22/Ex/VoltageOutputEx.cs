@@ -45,8 +45,6 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-
-
         /// <summary>
         /// Configures VoltageOutput using VoltageOutputConfiguration
         /// and establishes event handlers

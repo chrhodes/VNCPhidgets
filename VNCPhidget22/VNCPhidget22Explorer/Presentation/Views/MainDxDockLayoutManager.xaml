@@ -125,11 +125,11 @@
                             -->
                             <!--Set AutoHidden to False if should initially be open-->
                             
-                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="False" ShowCloseButton="False" MinWidth="750" ItemWidth="750">
+                            <dxdo:LayoutPanel Caption="HackAround" AutoHidden="True" MinWidth="750" ItemWidth="750">
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.HackAroundRegion}" />
                             </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="ManagePerformanceLibrary" AutoHidden="False" ShowCloseButton="False" MinWidth="700" ItemWidth="700">
+                            <dxdo:LayoutPanel Caption="ManagePerformanceLibrary" AutoHidden="True" MinWidth="700" ItemWidth="700">
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.ManagePerformanceLibraryRegion}" />
                             </dxdo:LayoutPanel>
 
@@ -137,29 +137,29 @@
                              These LayoutPanels are loaded from the Views menu
                             -->
                             
-                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
-                            </dxdo:LayoutPanel>
+                            </dxdo:LayoutPanel>-->
 
-                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
                             </dxdo:LayoutPanel>
 
-                            <dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="True" ShowCloseButton="False" MinWidth="480" >
+                            <!--<dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="True" MinWidth="480" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
-                            </dxdo:LayoutPanel>
-
-                            <dxdo:LayoutPanel Caption="VINTHub-1" AutoHidden="True" ShowCloseButton="False" MinWidth="680" >
-                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.VINTHubRegion1}"/>
                             </dxdo:LayoutPanel>-->
 
+                            <dxdo:LayoutPanel Caption="VINTHub-1" AutoHidden="False" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.VINTHubRegion1}"/>
+                            </dxdo:LayoutPanel>
 
 
-                            <!--<dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="True" ShowCloseButton="False" MinWidth="700" >
+
+                            <!--<dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="True" MinWidth="700" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}"  />
                             </dxdo:LayoutPanel>-->
         
-                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="False" ShowCloseButton="False" MinWidth="680" >
+                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="False"  MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region2}"/>
                             </dxdo:LayoutPanel>
 

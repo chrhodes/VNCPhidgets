@@ -5,11 +5,20 @@
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
       <VersionSuffix>indevelopment-2025</VersionSuffix>
-      <FileVersion>2025.06.09</FileVersion>
+      <FileVersion>2025.06.10</FileVersion>
       <Description>Phidget22 Explorer Configuration</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AdvancedServo\**" />
+    <Compile Remove="InterfaceKit\**" />
+    <EmbeddedResource Remove="AdvancedServo\**" />
+    <EmbeddedResource Remove="InterfaceKit\**" />
+    <None Remove="AdvancedServo\**" />
+    <None Remove="InterfaceKit\**" />
+  </ItemGroup>
 
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
@@ -33,9 +42,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="AdvancedServo\" />
       <Folder Include="Dictionary\" />
-      <Folder Include="InterfaceKit\" />
     </ItemGroup>
 
     <ItemGroup>
