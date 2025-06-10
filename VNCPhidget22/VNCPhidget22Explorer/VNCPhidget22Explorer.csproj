@@ -140,10 +140,10 @@
     <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequenceConfig_OpenClose.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\PerformanceConfig_Steppers.json">
+    <None Update="Resources\json\Performances\Stepper\PerformanceConfig_Steppers.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\PerformanceConfig_DigitalOutputs.json">
+    <None Update="Resources\json\Performances\DigitalOutput\PerformanceConfig_DigitalOutputs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_PP1.json">
@@ -308,10 +308,6 @@
     <None Update="vncloggingconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-    
-  <ItemGroup>
-    <Folder Include="Resources\json\Performances\DigitalOutput\" />
   </ItemGroup>
     
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

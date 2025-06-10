@@ -864,11 +864,6 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                // Performances\
-
-                //@"Performances\PerformanceConfig_2.json",
-                //@"Performances\PerformanceConfig_3.json",
-
                 // Top Level Routines
                 // These go first to get on top of dropdown
 
@@ -879,15 +874,11 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_Consulting.json",
                 @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json",
-
-                @"Performances\PerformanceConfig_DigitalOutputs.json",
-                //@"Performances\PerformanceConfig_RCServos.json",
-                @"Performances\PerformanceConfig_Steppers.json",
+                @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json",             
 
                 @"Performances\PerformanceConfig_Movement Studies.json",
 
-                // Performaces\Skulls\         
+                // Performances\Skulls\         
 
                 @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
   
@@ -909,21 +900,27 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json",
                 @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json",
 
-                // Performaces\RCServo\
+                // Performances\DigitalOutput\
+
+                @"Performances\DigitalOutput\PerformanceConfig_DigitalOutputs.json",
+
+                // Performances\RCServo\
+
+                @"Performances\RCServo\PerformanceConfig_RCServos.json",
 
                 @"Performances\RCServo\PerformanceConfig_RCServo_OpenClose.json",
                 @"Performances\RCServo\PerformanceConfig_RCServo_MovementCharacteristics.json",
-                @"Performances\RCServo\PerformanceConfig_RCServos.json",
                 @"Performances\RCServo\PerformanceConfig_RCServo_PP1.json",
                 @"Performances\RCServo\PerformanceConfig_RCServo_PP2.json",
                 @"Performances\RCServo\PerformanceConfig_RCServo_PP3.json",
                 @"Performances\RCServo\PerformanceConfig_RCServo_PP4.json",
 
-                // Performaces\Stepper\
+                // Performances\Stepper\
+
+                @"Performances\Stepper\PerformanceConfig_Steppers.json",
 
                 @"Performances\Stepper\PerformanceConfig_Stepper_OpenClose.json",
                 @"Performances\Stepper\PerformanceConfig_Stepper_MovementCharacteristics.json",
-
             };
 
             return files;

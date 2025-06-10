@@ -81,7 +81,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
-
             // Turn on logging of PropertyChanged from VNC.Core
             //LogOnPropertyChanged = false;
 
@@ -167,7 +166,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadDigitalInputSequences()
         {
-            //DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
+            DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
 
             DigitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
                 .Keys
@@ -177,7 +176,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
         private void LoadDigitalOutputSequences()
         {
-            //DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
+            DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
 
             DigitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
                   .Keys
@@ -188,7 +187,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadRCServoSequences()
         {
-            //RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
+            RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
 
             RCServos = Common.PhidgetDeviceLibrary.RCServoChannels
                  .Keys
@@ -199,7 +198,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadStepperSequences()
         {
-            //StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
+            StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             Steppers = Common.PhidgetDeviceLibrary.StepperChannels
                  .Keys
@@ -210,7 +209,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadVolatageInputSequences()
         {
-            //VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
+            VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
 
             VoltageInputs = Common.PhidgetDeviceLibrary.VoltageInputChannels
                  .Keys
@@ -221,7 +220,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadVolatageOutputSequences()
         {
-            //VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
+            VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
 
             VoltageOutputs = Common.PhidgetDeviceLibrary.VoltageOutputChannels
                  .Keys
