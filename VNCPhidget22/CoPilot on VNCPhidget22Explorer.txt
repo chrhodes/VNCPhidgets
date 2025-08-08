@@ -1,0 +1,154 @@
+
+what is this application doing, how is it built, and what are the key components
+Here’s a concise breakdown of what this application is doing, how it’s built, and its key components:
+
+---
+
+## What is this application doing?
+
+This application manages and executes configurations for controlling Phidget devices (such as RC servos, steppers, digital/analog I/O, etc.) using a library of "performances" and "sequences" defined in JSON files. It loads these configurations at runtime, allowing for flexible, data-driven control of hardware devices.
+
+---
+
+## How is it built?
+
+- **Language & Frameworks:**  
+  - C# 12.0, targeting .NET 8.
+  - Uses Prism for event aggregation and possibly MVVM patterns.
+  - Utilizes JSON serialization/deserialization for configuration.
+- **Architecture:**  
+  - Central class: `PerformanceLibrary` (almost a singleton).
+  - Loads configuration files (JSON) for hosts, performances, and various device sequences.
+  - Populates static dictionaries/lists with these objects for runtime use.
+  - Publishes events when collections change (using Prism’s `IEventAggregator`).
+  - Designed for extensibility and modularity—new device types or sequences can be added via config files.
+
+---
+
+## Key Components
+
+1. **PerformanceLibrary (Core Manager)**
+   - Loads and manages all configuration data.
+   - Exposes static collections for:
+     - Hosts (`Host`)
+     - Performances (`Performance`)
+     - Device Sequences (e.g., `RCServoSequence`, `StepperSequence`, etc.)
+   - Methods like `LoadConfigFiles`, `LoadPerformances`, `LoadRCServoSequences`, etc., read JSON files and populate the collections.
+
+2. **Configuration Files (JSON)**
+   - Define the structure and behavior of performances and device sequences.
+   - Example: `PerformanceConfig_RCServos.json` describes how RC servos should be controlled in a given performance.
+
+3. **Domain Classes**
+   - `Performance`: Represents a high-level routine or behavior, possibly composed of other performances or device sequences.
+   - `DeviceChannelSequence` and its derivatives (`RCServoSequence`, `StepperSequence`, etc.): Define step-by-step actions for specific device channels.
+   - `Host`: Represents a network-connected device that provides access to Phidgets.
+
+4. **Event System**
+   - Uses Prism’s `IEventAggregator` to notify other parts of the application when collections are updated (e.g., new performances loaded).
+
+5. **Extensibility**
+   - New device types or behaviors can be added by creating new JSON config files and corresponding sequence/action classes.
+
+---
+
+## Summary
+
+**This application is a flexible, configuration-driven system for orchestrating complex behaviors across multiple Phidget devices.**  
+It achieves this by loading and managing a library of performances and device sequences from JSON files, allowing users to define and modify hardware control routines without changing code.
+
+If you need a deeper dive into a specific part (e.g., how performances are executed, or how a particular device is controlled), let me know!
+
+How are performances executed
+
+Performances in this application are **data-driven routines** that orchestrate the execution of device channel sequences and/or other performances, as defined in JSON configuration files. Here’s how the execution flow typically works, based on the provided code and class signatures:
+
+---
+
+## 1. **Definition and Loading**
+
+- **Performances** are defined in JSON files (e.g., `PerformanceConfig_RCServos.json`).
+- At startup or on demand, these files are loaded by `PerformanceLibrary.LoadPerformances()`, which deserializes them into `Performance` objects and stores them in the static dictionary `AvailablePerformances`.
+
+---
+
+## 2. **Performance Structure**
+
+A `Performance` object can contain:
+- **DeviceChannelSequences**: An array of device-specific sequences (e.g., RCServo, Stepper, DigitalOutput).
+- **Performances**: An array of nested performances (allowing for composition).
+- **Control Properties**: Such as `ExecuteDeviceChannelSequencesInParallel`, `ExecutePerformancesInParallel`, `PerformanceLoops`, `Duration`, and references to "before" and "after" performances.
+
+---
+
+## 3. **Execution Flow (Conceptual)**
+
+While the actual execution code is not shown in the provided file, the typical execution logic for a `Performance` would look like this:
+
+```csharp
+void ExecutePerformance(Performance performance)
+{
+    // 1. Run any "before" performances
+    if (performance.BeforePerformanceLoopPerformances != null)
+        foreach (var before in performance.BeforePerformanceLoopPerformances)
+            ExecutePerformance(before);
+
+    // 2. Loop as specified
+    for (int i = 0; i < performance.PerformanceLoops; i++)
+    {
+        // 3. Execute DeviceChannelSequences (in parallel or sequentially)
+        if (performance.DeviceChannelSequences != null)
+        {
+            if (performance.ExecuteDeviceChannelSequencesInParallel)
+                Parallel.ForEach(performance.DeviceChannelSequences, seq => ExecuteDeviceChannelSequence(seq));
+            else
+                foreach (var seq in performance.DeviceChannelSequences)
+                    ExecuteDeviceChannelSequence(seq);
+        }
+
+        // 4. Execute nested Performances (in parallel or sequentially)
+        if (performance.Performances != null)
+        {
+            if (performance.ExecutePerformancesInParallel)
+                Parallel.ForEach(performance.Performances, p => ExecutePerformance(p));
+            else
+                foreach (var p in performance.Performances)
+                    ExecutePerformance(p);
+        }
+
+        // 5. Optional delay after each loop
+        if (performance.Duration.HasValue)
+            Thread.Sleep(performance.Duration.Value);
+    }
+
+    // 6. Run any "after" performances
+    if (performance.AfterPerformanceLoopPerformances != null)
+        foreach (var after in performance.AfterPerformanceLoopPerformances)
+            ExecutePerformance(after);
+
+    // 7. Chain to next performance if specified
+    if (performance.NextPerformance != null)
+        ExecutePerformance(performance.NextPerformance);
+}
+```
+
+- **DeviceChannelSequences** are executed by looking up the appropriate sequence (e.g., `RCServoSequence`) and running its actions on the hardware.
+- **Parallel/Sequential Execution** is controlled by the boolean flags in the `Performance` object.
+- **Chaining and Looping** allow for complex, reusable, and modular routines.
+
+---
+
+## 4. **Where is Execution Triggered?**
+
+- The actual method that starts execution (e.g., `ExecutePerformance`) is not shown in the provided code, but it would typically be called by the application’s UI or a controller class when a user selects a performance to run.
+- The `PerformanceLibrary` is responsible for loading and providing access to the available performances, but not for executing them directly.
+
+---
+
+## **Summary**
+
+- **Performances are executed by recursively running their device sequences and/or nested performances, according to the structure and control flags defined in their configuration.**
+- **Execution is modular, supports parallelism, and can be chained or looped.**
+- **The actual execution logic is likely implemented elsewhere in the codebase, using the structure described above.**
+
+If you want to see the actual execution code, search for methods like `ExecutePerformance`, `RunPerformance`, or similar in your solution. Let me know if you want help locating or reviewing that code.
