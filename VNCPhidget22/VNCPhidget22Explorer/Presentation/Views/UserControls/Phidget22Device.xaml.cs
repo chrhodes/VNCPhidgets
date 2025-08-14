@@ -11,7 +11,7 @@ using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class Phidget22Device : ViewBase, IPhidget, IInstanceCountV
+    public partial class Phidget22Device : ViewBase, IPhidget//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -85,7 +85,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceLibraryVersion(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceLibraryVersion((string)value);
             else
@@ -94,7 +94,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDeviceLibraryVersionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceLibraryVersionChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -383,14 +383,14 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedPhidgetDeviceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnAttachedPhidgetDeviceChanged((Phidget22.Phidget)e.OldValue, (Phidget22.Phidget)e.NewValue);
         }
 
         private static object OnCoerceAttachedPhidgetDevice(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceAttachedPhidgetDevice((Phidget22.Phidget)value);
             else
@@ -399,7 +399,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceAddress(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceAddress((string)value);
             else
@@ -408,7 +408,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceAttached(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceAttached((Boolean?)value);
             else
@@ -417,7 +417,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         //private static object OnCoerceDeviceAttachedToServer(DependencyObject o, object value)
         //{
-        //    Phidget22Device phidget = o as Phidget22Device;
+        //    Phidget22Device phidget = (Phidget22Device)o;
         //    if (phidget != null)
         //        return phidget.OnCoerceDeviceAttachedToServer((Boolean?)value);
         //    else
@@ -426,7 +426,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceClass(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceClass((string)value);
             else
@@ -435,7 +435,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceID(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceID((string)value);
             else
@@ -444,7 +444,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceLabel(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceLabel((string)value);
             else
@@ -453,7 +453,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceName(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceName((string)value);
             else
@@ -462,7 +462,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDevicePort(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDevicePort((Int32?)value);
             else
@@ -471,7 +471,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceSerialNumber(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceSerialNumber((Int32?)value);
             else
@@ -480,7 +480,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceType(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceType((string)value);
             else
@@ -489,7 +489,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDeviceVersion(DependencyObject o, object value)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 return phidget.OnCoerceDeviceVersion((Int32?)value);
             else
@@ -498,75 +498,75 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDeviceAddressChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceAddressChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         private static void OnDeviceAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
 
         //private static void OnDeviceAttachedToServerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         //{
-        //    Phidget22Device phidget = o as Phidget22Device;
+        //    Phidget22Device phidget = (Phidget22Device)o;
         //    if (phidget != null)
         //        phidget.OnDeviceAttachedToServerChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         //}
 
         private static void OnDeviceClassChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceClassChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         private static void OnDeviceIDChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceIDChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         private static void OnDeviceLabelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceLabelChanged((string)e.OldValue, (string)e.NewValue);
         }
         private static void OnDeviceNameChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceNameChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         private static void OnDevicePortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDevicePortChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
         }
 
         private static void OnDeviceSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceSerialNumberChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
         }
         private static void OnDeviceTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceTypeChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         private static void OnDeviceVersionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            Phidget22Device phidget = o as Phidget22Device;
+            Phidget22Device phidget = (Phidget22Device)o;
             if (phidget != null)
                 phidget.OnDeviceVersionChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
         }
@@ -601,24 +601,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

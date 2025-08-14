@@ -1,0 +1,52 @@
+{
+  "StepperSequences": [
+    //
+    // Sequences to Open, Engage, Disenage, Close Stepper
+    //
+    {
+      "Name": "Open Stepper",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort, and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true }
+      ]
+    },
+    {
+      "Name": "Engage Stepper",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort, and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": true }
+      ]
+    },
+    {
+      "Name": "Open and Engage Stepper",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort, and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true, "Engaged": true }
+      ]
+    },
+    {
+      "Name": "Disengage Stepper",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort, and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Engaged": false }
+      ]
+    },
+    {
+      "Name": "Close Stepper",
+      "Description": "",
+      "UsageNotes": "Must provide SerialNumber, HubPort. and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Close": true }
+      ]
+    },
+  ]
+}

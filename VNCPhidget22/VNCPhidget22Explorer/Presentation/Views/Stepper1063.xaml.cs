@@ -7,6 +7,8 @@ using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.LayoutControl;
 using DevExpress.XtraRichEdit.Layout.Engine;
 
+using Prism.Services.Dialogs;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -14,10 +16,10 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class Stepper1063 : ViewBase, IStepper1063, IInstanceCountV
+    public partial class Stepper1063 : ViewBase, IStepper1063//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
-        
+
         public Stepper1063()
         {
             Int64 startTicks = 0;
@@ -35,11 +37,13 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Can create directly
             // ViewModel = Stepper1063ViewModel();
 
+            ViewModel = new Stepper1063ViewModel(Common.EventAggregator, (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
             InitializeView();
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR(String.Format("Exit"), Common.LOG_CATEGORY, startTicks);
         }
-        
+
         public Stepper1063(IStepper1063ViewModel viewModel)
         {
             Int64 startTicks = 0;
@@ -141,24 +145,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

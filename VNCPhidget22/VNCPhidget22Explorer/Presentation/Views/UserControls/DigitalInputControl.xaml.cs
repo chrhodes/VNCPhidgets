@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class DigitalInputControl: ViewBase, IInstanceCountV
+    public partial class DigitalInputControl: ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -109,7 +109,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceControlTitle((string)value);
             else
@@ -118,7 +118,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -130,6 +130,202 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         protected virtual void OnControlTitleChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(DigitalInputControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                return DigitalInputControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                DigitalInputControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialNumber
+
+        public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+            "SerialNumber",
+            typeof(Int32),
+            typeof(DigitalInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnSerialNumberChanged),
+                new CoerceValueCallback(OnCoerceSerialNumber)
+                )
+            );
+
+        public Int32 SerialNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(SerialNumberProperty);
+            set => SetValue(SerialNumberProperty, value);
+        }
+
+        private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                return DigitalInputControl.OnCoerceSerialNumber((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                DigitalInputControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region HubPort
+
+        public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+            "HubPort",
+            typeof(Int32),
+            typeof(DigitalInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnHubPortChanged),
+                new CoerceValueCallback(OnCoerceHubPort)
+                )
+            );
+
+        public Int32 HubPort
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(HubPortProperty);
+            set => SetValue(HubPortProperty, value);
+        }
+
+        private static object OnCoerceHubPort(DependencyObject o, object value)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                return DigitalInputControl.OnCoerceHubPort((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                DigitalInputControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceHubPort(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Channel
+
+        public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+            "Channel",
+            typeof(Int32),
+            typeof(DigitalInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnChannelChanged),
+                new CoerceValueCallback(OnCoerceChannel)
+                )
+            );
+
+        public Int32 Channel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(ChannelProperty);
+            set => SetValue(ChannelProperty, value);
+        }
+
+        private static object OnCoerceChannel(DependencyObject o, object value)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                return DigitalInputControl.OnCoerceChannel((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
+            if (DigitalInputControl != null)
+                DigitalInputControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceChannel(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -158,7 +354,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceChannelNumber(DependencyObject o, object value)
         {
-            DigitalInputControl DigitalInputControl = o as DigitalInputControl;
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
             if (DigitalInputControl != null)
                 return DigitalInputControl.OnCoerceChannelNumber((string)value);
             else
@@ -167,7 +363,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnChannelNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl DigitalInputControl = o as DigitalInputControl;
+            DigitalInputControl DigitalInputControl = (DigitalInputControl)o;
             if (DigitalInputControl != null)
                 DigitalInputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -198,7 +394,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
@@ -207,7 +403,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -238,7 +434,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceLogErrorEvents((Boolean)value);
             else
@@ -247,7 +443,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -278,7 +474,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
@@ -287,7 +483,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -317,7 +513,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogStateChangeEvents(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceLogStateChangeEvents((Boolean)value);
             else
@@ -326,7 +522,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogStateChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnLogStateChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -357,7 +553,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceAttached((Boolean)value);
             else
@@ -366,7 +562,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -396,7 +592,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceState(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceState((Boolean)value);
             else
@@ -405,7 +601,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnStateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnStateChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -445,7 +641,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceInputMode(DependencyObject o, object value)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 return digitalInputControl.OnCoerceInputMode((Phidgets.InputMode)value);
             else
@@ -454,7 +650,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnInputModeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalInputControl digitalInputControl = o as DigitalInputControl;
+            DigitalInputControl digitalInputControl = (DigitalInputControl)o;
             if (digitalInputControl != null)
                 digitalInputControl.OnInputModeChanged((Phidgets.InputMode)e.OldValue, (Phidgets.InputMode)e.NewValue);
         }
@@ -521,24 +717,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

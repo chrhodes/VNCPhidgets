@@ -6,10 +6,11 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 using VNC;
 using VNC.Core.Mvvm;
 using System.Linq;
+using Prism.Services.Dialogs;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary, IInstanceCountV
+    public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -30,6 +31,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Can create directly
             // ViewModel = ManagePerformanceLibraryViewModel();
+
+            ViewModel = new ManagePerformanceLibraryViewModel(
+                Common.EventAggregator, 
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
 
             InitializeView();
 
@@ -112,25 +118,25 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion   
         
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
 
     }
 }

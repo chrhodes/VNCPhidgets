@@ -13,7 +13,7 @@ using DevExpress.Xpf.LayoutControl;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class DigitalOutputControl: ViewBase, IInstanceCountV
+    public partial class DigitalOutputControl: ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -110,7 +110,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 return digitalOutputControl.OnCoerceControlTitle((string)value);
             else
@@ -119,7 +119,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 digitalOutputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -136,6 +136,204 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(DigitalOutputControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+            if (DigitalOutputControl != null)
+                return DigitalOutputControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+            if (DigitalOutputControl != null)
+                DigitalOutputControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+
+        //#region SerialNumber
+
+        //public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+        //    "SerialNumber",
+        //    typeof(Int32),
+        //    typeof(DigitalOutputControl),
+        //    new FrameworkPropertyMetadata(
+        //        0,
+        //        new PropertyChangedCallback(OnSerialNumberChanged),
+        //        new CoerceValueCallback(OnCoerceSerialNumber)
+        //        )
+        //    );
+
+        //public Int32 SerialNumber
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Int32)GetValue(SerialNumberProperty);
+        //    set => SetValue(SerialNumberProperty, value);
+        //}
+
+        //private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        //{
+        //    DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+        //    if (DigitalOutputControl != null)
+        //        return DigitalOutputControl.OnCoerceSerialNumber((Int32)value);
+        //    else
+        //        return value;
+        //}
+
+        //private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+        //    if (DigitalOutputControl != null)
+        //        DigitalOutputControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        //}
+
+        //protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
+
+        //protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
+
+        //#endregion
+
+        //#region HubPort
+
+        //public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+        //    "HubPort",
+        //    typeof(Int32),
+        //    typeof(DigitalOutputControl),
+        //    new FrameworkPropertyMetadata(
+        //        0,
+        //        new PropertyChangedCallback(OnHubPortChanged),
+        //        new CoerceValueCallback(OnCoerceHubPort)
+        //        )
+        //    );
+
+        //public Int32 HubPort
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Int32)GetValue(HubPortProperty);
+        //    set => SetValue(HubPortProperty, value);
+        //}
+
+        //private static object OnCoerceHubPort(DependencyObject o, object value)
+        //{
+        //    DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+        //    if (DigitalOutputControl != null)
+        //        return DigitalOutputControl.OnCoerceHubPort((Int32)value);
+        //    else
+        //        return value;
+        //}
+
+        //private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+        //    if (DigitalOutputControl != null)
+        //        DigitalOutputControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        //}
+
+        //protected virtual Int32 OnCoerceHubPort(Int32 value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
+
+        //protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
+
+        //#endregion
+
+        //#region Channel
+
+        //public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+        //    "Channel",
+        //    typeof(Int32),
+        //    typeof(DigitalOutputControl),
+        //    new FrameworkPropertyMetadata(
+        //        0,
+        //        new PropertyChangedCallback(OnChannelChanged),
+        //        new CoerceValueCallback(OnCoerceChannel)
+        //        )
+        //    );
+
+        //public Int32 Channel
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Int32)GetValue(ChannelProperty);
+        //    set => SetValue(ChannelProperty, value);
+        //}
+
+        //private static object OnCoerceChannel(DependencyObject o, object value)
+        //{
+        //    DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+        //    if (DigitalOutputControl != null)
+        //        return DigitalOutputControl.OnCoerceChannel((Int32)value);
+        //    else
+        //        return value;
+        //}
+
+        //private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
+        //    if (DigitalOutputControl != null)
+        //        DigitalOutputControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        //}
+
+        //protected virtual Int32 OnCoerceChannel(Int32 value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
+
+        //protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
+
+
+        //#endregion
 
         #region ChannelNumber
 
@@ -159,7 +357,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceChannelNumber(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 return DigitalOutputControl.OnCoerceChannelNumber((string)value);
             else
@@ -168,7 +366,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnChannelNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 DigitalOutputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -200,7 +398,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 return DigitalOutputControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
@@ -209,7 +407,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 DigitalOutputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -240,7 +438,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 return DigitalOutputControl.OnCoerceLogErrorEvents((Boolean)value);
             else
@@ -249,7 +447,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 DigitalOutputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -280,7 +478,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 return DigitalOutputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
@@ -289,7 +487,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 DigitalOutputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -319,7 +517,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 return DigitalOutputControl.OnCoerceAttached((Boolean)value);
             else
@@ -328,7 +526,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 DigitalOutputControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -345,7 +543,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
 
         #region State
 
@@ -367,7 +564,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceState(DependencyObject o, object value)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 return DigitalOutputControl.OnCoerceState((Boolean)value);
             else
@@ -376,7 +573,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnStateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl DigitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl DigitalOutputControl = (DigitalOutputControl)o;
             if (DigitalOutputControl != null)
                 DigitalOutputControl.OnStateChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -416,7 +613,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinDutyCycle(DependencyObject o, object value)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 return digitalOutputControl.OnCoerceMinDutyCycle((Double)value);
             else
@@ -425,7 +622,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDutyCycleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 digitalOutputControl.OnMinDutyCycleChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -465,7 +662,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDutyCycle(DependencyObject o, object value)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 return digitalOutputControl.OnCoerceDutyCycle((Double)value);
             else
@@ -474,7 +671,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDutyCycleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 digitalOutputControl.OnDutyCycleChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -514,7 +711,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDutyCycle(DependencyObject o, object value)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 return digitalOutputControl.OnCoerceMaxDutyCycle((Double)value);
             else
@@ -523,7 +720,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDutyCycleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            DigitalOutputControl digitalOutputControl = o as DigitalOutputControl;
+            DigitalOutputControl digitalOutputControl = (DigitalOutputControl)o;
             if (digitalOutputControl != null)
                 digitalOutputControl.OnMaxDutyCycleChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -590,25 +787,25 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
 
-        #endregion        
+        //#endregion        
     }
 }

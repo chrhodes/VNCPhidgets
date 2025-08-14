@@ -26,11 +26,14 @@ namespace VNCPhidget22Explorer.Core
         public static string Stepper1063Region2 = "Stepper1063Region2";
         public static string Stepper1063Region3 = "Stepper1063Region3";
 
+        public static string VINTHubRegion1 = "VINTHubRegion1";
+        public static string VINTHubRegion2 = "VINTHubRegion2";
+        public static string VINTHubRegion3 = "VINTHubRegion3";
+
         public static string HackAroundRegion = "HackAroundRegion";
         public static string ManagePerformanceLibraryRegion = "ManagePerformanceLibraryRegion";
         public static string PhidgetDeviceLibraryRegion = "PhidgetDeviceLibraryRegion";
         public static string EventCoordinatorRegion = "EventCoordinatorRegion";
-
 
         // public static string CombinedMainRegion = "CombinedMainRegion";
         // public static string CombinedNavigationRegion = "CombinedNavigationRegion";

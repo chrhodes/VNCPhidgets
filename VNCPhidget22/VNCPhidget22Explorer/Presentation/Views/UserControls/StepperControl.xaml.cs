@@ -8,13 +8,14 @@ using DevExpress.Xpf.LayoutControl;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget22;
 using VNC.Phidget22.Ex;
 
 using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class StepperControl : ViewBase, IInstanceCountV
+    public partial class StepperControl : ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
@@ -115,7 +116,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceControlTitle((string)value);
             else
@@ -124,7 +125,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -136,6 +137,202 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         protected virtual void OnControlTitleChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                StepperControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialNumber
+
+        public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+            "SerialNumber",
+            typeof(Int32),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnSerialNumberChanged),
+                new CoerceValueCallback(OnCoerceSerialNumber)
+                )
+            );
+
+        public Int32 SerialNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(SerialNumberProperty);
+            set => SetValue(SerialNumberProperty, value);
+        }
+
+        private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceSerialNumber((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                StepperControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region HubPort
+
+        public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+            "HubPort",
+            typeof(Int32),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnHubPortChanged),
+                new CoerceValueCallback(OnCoerceHubPort)
+                )
+            );
+
+        public Int32 HubPort
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(HubPortProperty);
+            set => SetValue(HubPortProperty, value);
+        }
+
+        private static object OnCoerceHubPort(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceHubPort((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                StepperControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceHubPort(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Channel
+
+        public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+            "Channel",
+            typeof(Int32),
+            typeof(StepperControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnChannelChanged),
+                new CoerceValueCallback(OnCoerceChannel)
+                )
+            );
+
+        public Int32 Channel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(ChannelProperty);
+            set => SetValue(ChannelProperty, value);
+        }
+
+        private static object OnCoerceChannel(DependencyObject o, object value)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                return StepperControl.OnCoerceChannel((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            StepperControl StepperControl = (StepperControl)o;
+            if (StepperControl != null)
+                StepperControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceChannel(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -164,7 +361,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceStepperNumber(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceStepperNumber((string)value);
             else
@@ -173,7 +370,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnStepperNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnStepperNumberChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -213,7 +410,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
@@ -222,7 +419,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -262,7 +459,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceLogErrorEvents((Boolean)value);
             else
@@ -271,7 +468,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -309,7 +506,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
@@ -318,7 +515,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -358,7 +555,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPositionChangeEvents(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceLogPositionChangeEvents((Boolean)value);
             else
@@ -367,7 +564,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPositionChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnLogPositionChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -407,7 +604,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogVelocityChangeEvents(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceLogVelocityChangeEvents((Boolean)value);
             else
@@ -416,7 +613,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogVelocityChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnLogVelocityChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -457,7 +654,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         private static object OnCoerceLogStoppedEvents(DependencyObject o, object value)
         {
 
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceLogStoppedEvents((Boolean)value);
             else
@@ -466,7 +663,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogStoppedEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnLogStoppedEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -506,7 +703,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceAttached((Boolean)value);
             else
@@ -515,7 +712,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -560,7 +757,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceStepperAttached(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceStepperAttached((Boolean)value);
             else
@@ -569,7 +766,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnStepperAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnStepperAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -609,7 +806,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceEngaged(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceEngaged((Boolean)value);
             else
@@ -618,7 +815,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnEngagedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -657,7 +854,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinCurrentLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinCurrentLimit((Double)value);
             else
@@ -666,7 +863,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinCurrentLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinCurrentLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -705,7 +902,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceCurrentLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceCurrentLimit((Double)value);
             else
@@ -714,7 +911,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnCurrentLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnCurrentLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -753,7 +950,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceHoldingCurrentLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceHoldingCurrentLimit((Double)value);
             else
@@ -762,7 +959,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnHoldingCurrentLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnHoldingCurrentLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -801,7 +998,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxCurrentLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxCurrentLimit((Double)value);
             else
@@ -810,7 +1007,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxCurrentLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxCurrentLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -850,7 +1047,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinDataInterval(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinDataInterval((Int32)value);
             else
@@ -859,7 +1056,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -899,7 +1096,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDataInterval(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceDataInterval((Int32)value);
             else
@@ -908,7 +1105,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -948,7 +1145,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDataInterval(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxDataInterval((Int32)value);
             else
@@ -957,7 +1154,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -996,7 +1193,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinDataRate(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinDataRate((Double)value);
             else
@@ -1005,7 +1202,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1045,7 +1242,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDataRate(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceDataRate((Double)value);
             else
@@ -1054,7 +1251,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1094,7 +1291,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDataRate(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxDataRate((Double)value);
             else
@@ -1103,7 +1300,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1140,23 +1337,23 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MinAccelerationProperty);
             set => SetValue(MinAccelerationProperty, value);
         }
-        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMinAcceleration (DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
-                return stepperControl.OnCoerceMinAcceleration((Double)value);
+                return stepperControl.OnCoerceMinAcceleration ((Double)value);
             else
                 return value;
         }
 
         private static void OnMinAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMinAcceleration(Double value)
+        protected virtual Double OnCoerceMinAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1188,23 +1385,23 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(AccelerationProperty);
             set => SetValue(AccelerationProperty, value);
         }
-        private static object OnCoerceAcceleration(DependencyObject o, object value)
+        private static object OnCoerceAcceleration (DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
-                return stepperControl.OnCoerceAcceleration((Double)value);
+                return stepperControl.OnCoerceAcceleration ((Double)value);
             else
                 return value;
         }
 
         private static void OnAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceAcceleration(Double value)
+        protected virtual Double OnCoerceAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1236,23 +1433,23 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MaxAccelerationProperty);
             set => SetValue(MaxAccelerationProperty, value);
         }
-        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMaxAcceleration (DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
-                return stepperControl.OnCoerceMaxAcceleration((Double)value);
+                return stepperControl.OnCoerceMaxAcceleration ((Double)value);
             else
                 return value;
         }
 
         private static void OnMaxAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMaxAcceleration(Double value)
+        protected virtual Double OnCoerceMaxAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1286,7 +1483,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinFailsafeTIme(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinFailsafeTIme((Double)value);
             else
@@ -1295,7 +1492,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinFailsafeTImeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinFailsafeTImeChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1334,7 +1531,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxFailsafeTIme(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxFailsafeTIme((Double)value);
             else
@@ -1343,7 +1540,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxFailsafeTImeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxFailsafeTImeChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1383,7 +1580,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceIsMoving(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceIsMoving((Boolean)value);
             else
@@ -1392,7 +1589,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnIsMovingChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -1431,7 +1628,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPositionStepper(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinPositionStepper((Double)value);
             else
@@ -1440,7 +1637,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionStepperChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinPositionStepperChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1479,7 +1676,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPosition(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinPosition((Double)value);
             else
@@ -1488,7 +1685,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1527,7 +1724,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPositionStop(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinPositionStop((Double)value);
             else
@@ -1536,7 +1733,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinPositionStopChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1575,7 +1772,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoercePosition(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoercePosition((Double)value);
             else
@@ -1584,7 +1781,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1623,7 +1820,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPositionStop(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxPositionStop((Double)value);
             else
@@ -1632,7 +1829,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxPositionStopChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1671,7 +1868,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPosition(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxPosition((Double)value);
             else
@@ -1680,7 +1877,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1719,7 +1916,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPositionStepper(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxPositionStepper((Double)value);
             else
@@ -1728,7 +1925,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionStepperChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxPositionStepperChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1767,7 +1964,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceTargetPosition(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceTargetPosition((Double)value);
             else
@@ -1776,7 +1973,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnTargetPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnTargetPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1815,7 +2012,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinTorque(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinTorque((Double)value);
             else
@@ -1824,7 +2021,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1863,7 +2060,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceVelocity(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceVelocity((Double)value);
             else
@@ -1872,7 +2069,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnVelocityChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1911,7 +2108,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinVelocityLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMinVelocityLimit((Double)value);
             else
@@ -1920,7 +2117,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMinVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1959,7 +2156,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceVelocityLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceVelocityLimit((Double)value);
             else
@@ -1968,7 +2165,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2007,7 +2204,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxVelocityLimit(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceMaxVelocityLimit((Double)value);
             else
@@ -2016,7 +2213,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnMaxVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2056,7 +2253,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceRescaleFactor(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceRescaleFactor((Double)value);
             else
@@ -2065,7 +2262,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnRescaleFactorChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnRescaleFactorChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2082,7 +2279,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
-
 
         #region StepAngle
 
@@ -2106,7 +2302,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceStepAngle(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceStepAngle((Double)value);
             else
@@ -2115,7 +2311,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnStepAngleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnStepAngleChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2155,7 +2351,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlMode(DependencyObject o, object value)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 return stepperControl.OnCoerceControlMode((Phidgets.StepperControlMode)value);
             else
@@ -2164,7 +2360,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnControlModeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl stepperControl = o as StepperControl;
+            StepperControl stepperControl = (StepperControl)o;
             if (stepperControl != null)
                 stepperControl.OnControlModeChanged((Phidgets.StepperControlMode)e.OldValue, (Phidgets.StepperControlMode)e.NewValue);
         }
@@ -2204,7 +2400,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePositionScaleRange(DependencyObject o, object value)
         {
-            StepperControl positionControl = o as StepperControl;
+            StepperControl positionControl = (StepperControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePositionScaleRange((Int32)value);
             else
@@ -2213,7 +2409,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionScaleRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl positionControl = o as StepperControl;
+            StepperControl positionControl = (StepperControl)o;
             if (positionControl != null)
                 positionControl.OnPositionScaleRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -2253,7 +2449,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePositionStopRange(DependencyObject o, object value)
         {
-            StepperControl positionControl = o as StepperControl;
+            StepperControl positionControl = (StepperControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePositionStopRange((Int32)value);
             else
@@ -2262,7 +2458,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionStopRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            StepperControl positionControl = o as StepperControl;
+            StepperControl positionControl = (StepperControl)o;
             if (positionControl != null)
                 positionControl.OnPositionStopRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -2341,24 +2537,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

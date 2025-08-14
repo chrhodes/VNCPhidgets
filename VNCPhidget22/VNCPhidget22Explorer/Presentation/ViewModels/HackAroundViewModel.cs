@@ -22,11 +22,16 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
 using DevExpress.CodeParser;
 using VNC.Phidget22;
+using System.Collections.ObjectModel;
+using DevExpress.Mvvm.POCO;
+using DevExpress.Mvvm.Native;
+using DevExpress.Xpf.Editors.DateNavigator;
+using VNCPhidget22Explorer.Core.Events;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public class HackAroundViewModel 
-        : EventViewModelBase, IMainViewModel, IInstanceCountVM
+        : EventViewModelBase, IMainViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -70,16 +75,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PlayStepperSequenceCommand = new DelegateCommand(PlayStepperSequence, PlayStepperSequenceCanExecute);
 
-            // TODO(crhodes)
-            // Fill out PlayStepperSequenceCommand
+            LoadPerformances();
 
-            //ActivePerformancePlayer = GetPerformancePlayer();
+            LoadChannelSequences();
 
-            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
-
-            //Hosts = PerformanceLibrary.Hosts.ToList();
-
-            LoadChannelClassSequences();
+            EventAggregator.GetEvent<SelectedCollectionChangedEvent>().Subscribe(CollectionChanged);
 
             // Turn on logging of PropertyChanged from VNC.Core
             //LogOnPropertyChanged = false;
@@ -88,7 +88,70 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        void LoadChannelClassSequences()
+
+
+        private void LoadPerformances()
+        {
+            Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+
+            // TODO(crhodes)
+            // Might be better to do this with an Event so gets called fewer times.
+            // Currently called for each Performance in file.  Ideally just once per file.
+
+            //Common.PerformanceLibrary.AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
+        }
+
+        private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            Log.Trace("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
+
+
+
+            //Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToObservableCollection<Performance>();
+            //Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
+        }
+
+        private void CollectionChanged(SelectedCollectionChangedEventArgs args)
+        {
+            Log.Trace($"HackAroundViewModel notified >{args.Name}< CollectionChanged", Common.LOG_CATEGORY);
+
+            switch (args.Name)
+            {
+                case "Performances":
+                    Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+                    break;
+
+                case "DigitalInputSequences":
+                    DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
+                    break;
+
+                case "DigitalOutputSequences":
+                    DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
+                    break;
+
+                case "RCServoSequences":
+                    RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
+                    break;
+
+                case "StepperSequences":
+                    StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
+                    break;
+
+                case "VoltageInputSequences":
+                    VoltageInputSequences = PerformanceLibrary.AvailableVoltageInputSequences.Values.ToList();
+                    break;
+
+                case "VoltageOutputSequences":
+                    VoltageOutputSequences = PerformanceLibrary.AvailableVoltageOutputSequences.Values.ToList();
+                    break;
+
+                default:
+                    Log.Error($"Unexpected Collection Name: >{args.Name}<", Common.LOG_CATEGORY);
+                    break;
+            }
+        }
+
+        void LoadChannelSequences()
         {
             // TODO(crhodes)
             // Add a method for each new supported ChannelClass
@@ -97,14 +160,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             LoadDigitalOutputSequences();
             LoadRCServoSequences();
             LoadStepperSequences();
+            LoadVolatageInputSequences();
+            LoadVolatageOutputSequences();
         }
 
         private void LoadDigitalInputSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
 
             DigitalInputs = Common.PhidgetDeviceLibrary.DigitalInputChannels
@@ -115,10 +176,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
         private void LoadDigitalOutputSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             DigitalOutputSequences = PerformanceLibrary.AvailableDigitalOutputSequences.Values.ToList();
 
             DigitalOutputs = Common.PhidgetDeviceLibrary.DigitalOutputChannels
@@ -130,13 +187,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadRCServoSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             RCServoSequences = PerformanceLibrary.AvailableRCServoSequences.Values.ToList();
 
-            RCServoPhidgets = Common.PhidgetDeviceLibrary.RCServoChannels
+            RCServos = Common.PhidgetDeviceLibrary.RCServoChannels
                  .Keys
                  .DistinctBy(x => x.SerialNumber)
                  .Select(x => x.SerialNumber)
@@ -145,10 +198,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadStepperSequences()
         {
-            // TODO(crhodes)
-            // Think through how to load all the DeviceClassSequences
-            // that can be performed by an Stepper PhidgetDevice
-
             StepperSequences = PerformanceLibrary.AvailableStepperSequences.Values.ToList();
 
             Steppers = Common.PhidgetDeviceLibrary.StepperChannels
@@ -194,20 +243,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private string _message = "Initial Message";
-
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
         private Int32 _repeats = 1;
         public Int32 Repeats
         {
@@ -221,8 +256,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string _hostConfigFileName;
-        public string HostConfigFileName
+        private string? _hostConfigFileName;
+        public string? HostConfigFileName
         {
             get => _hostConfigFileName;
             set
@@ -276,7 +311,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         #region AdvancedServo
 
@@ -334,7 +368,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-
         #region InterfaceKit
 
         private Boolean _displayInputChangeEvents = false;
@@ -380,7 +413,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         }
 
         #endregion
-
 
         private Boolean _logPerformance = false;
         public Boolean LogPerformance
@@ -440,13 +472,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        private PerformancePlayer ActivePerformancePlayer { get; set; }
+        //private PerformancePlayer ActivePerformancePlayer { get; set; }
         //private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
 
-        private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
+        //private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
 
-        private IEnumerable<Performance> _performances;
-        public IEnumerable<Performance> Performances
+        private IEnumerable<Performance>? _performances;
+        public IEnumerable<Performance>? Performances
         {
             get => _performances;
             set
@@ -455,6 +487,20 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // TODO(crhodes)
+        // Try this to see if it helps when PerformanceLibrary changes
+
+        //private ObservableCollection<Performance> _performances;
+        //public ObservableCollection<Performance> Performances
+        //{
+        //    get => _performances;
+        //    set
+        //    {
+        //        _performances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Performance? _selectedPerformance;
         public Performance? SelectedPerformance
@@ -470,15 +516,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedPerformance = value;
                 OnPropertyChanged();
 
-                PlayPerformanceCommand.RaiseCanExecuteChanged();
-                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
-                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
-                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
+                PlayPerformanceCommand?.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private List<Performance> _selectedPerformances;
-        public List<Performance> SelectedPerformances
+        private List<Performance>? _selectedPerformances;
+        public List<Performance>? SelectedPerformances
         {
             get => _selectedPerformances;
             set
@@ -491,10 +537,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedPerformances = value;
                 OnPropertyChanged();
 
-                PlayPerformanceCommand.RaiseCanExecuteChanged();
-                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
-                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
-                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
+                PlayPerformanceCommand?.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
+        private Int32? _serialNumber;
+        public Int32? SerialNumber
+        {
+            get => _serialNumber;
+            set
+            {
+                _serialNumber = value;
+                OnPropertyChanged();
             }
         }
 
@@ -504,6 +561,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private List<Int32> _hubPorts = new List<Int32>()
             { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+
         public List<Int32> HubPorts
         {
             get => _hubPorts;
@@ -516,8 +574,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
         
-        private Int32 _selectedHubPort;
-        public Int32 SelectedHubPort
+        private Int32? _selectedHubPort;
+        public Int32? SelectedHubPort
         {
             get => _selectedHubPort;
             set
@@ -529,6 +587,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private List<Int32> _channels = new List<Int32>()
             { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+
         public List<Int32> Channels
         {
             get => _channels;
@@ -541,8 +600,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedChannel;
-        public Int32 SelectedChannel
+        private Int32? _selectedChannel;
+        public Int32? SelectedChannel
         {
             get => _selectedChannel;
             set
@@ -554,8 +613,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region DigitalInput
 
-        private IEnumerable<Int32> _DigitalInputs;
-        public IEnumerable<Int32> DigitalInputs
+        private IEnumerable<Int32>? _DigitalInputs;
+        public IEnumerable<Int32>? DigitalInputs
         {
             get
             {
@@ -569,21 +628,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedDigitalInput;
-        public Int32 SelectedDigitalInput
+        private Int32? _selectedDigitalInputPhidget;
+        public Int32? SelectedDigitalInputPhidget
         {
-            get => _selectedDigitalInput;
+            get => _selectedDigitalInputPhidget;
             set
             {
-                _selectedDigitalInput = value;
+                _selectedDigitalInputPhidget = value;
                 OnPropertyChanged();
 
-                //PlayDigitalInputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayDigitalInputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private IEnumerable<ChannelSequence> _digitalInputSequences;
-        public IEnumerable<ChannelSequence> DigitalInputSequences
+        private IEnumerable<ChannelSequence>? _digitalInputSequences;
+        public IEnumerable<ChannelSequence>? DigitalInputSequences
         {
             get => _digitalInputSequences;
             set
@@ -592,6 +651,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedDigitalInputSequence;
         public ChannelSequence? SelectedDigitalInputSequence
@@ -604,12 +666,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedDigitalInputSequence = value;
                 OnPropertyChanged();
 
-                //PlayDigitalInputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayDigitalInputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private List<ChannelSequence> _selectedDigitalInputSequences;
-        public List<ChannelSequence> SelectedDigitalInputSequences
+        private List<ChannelSequence>? _selectedDigitalInputSequences;
+        public List<ChannelSequence>? SelectedDigitalInputSequences
         {
             get => _selectedDigitalInputSequences;
             set
@@ -622,7 +684,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedDigitalInputSequences = value;
                 OnPropertyChanged();
 
-                //PlayDigitalInputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayDigitalInputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -630,8 +692,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region DigitalOutput
 
-        private IEnumerable<Int32> _DigitalOutputs;
-        public IEnumerable<Int32> DigitalOutputs
+        private IEnumerable<Int32>? _DigitalOutputs;
+        public IEnumerable<Int32>? DigitalOutputs
         {
             get
             {
@@ -645,21 +707,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedDigitalOutput;
-        public Int32 SelectedDigitalOutput
+        private Int32? _selectedDigitalOutputPhidget;
+        public Int32? SelectedDigitalOutputPhidget
         {
-            get => _selectedDigitalOutput;
+            get => _selectedDigitalOutputPhidget;
             set
             {
-                _selectedDigitalOutput = value;
+                _selectedDigitalOutputPhidget = value;
                 OnPropertyChanged();
 
-                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private IEnumerable<ChannelSequence> _digitalOutputSequences;
-        public IEnumerable<ChannelSequence> DigitalOutputSequences
+        private IEnumerable<ChannelSequence>? _digitalOutputSequences;
+        public IEnumerable<ChannelSequence>? DigitalOutputSequences
         {
             get => _digitalOutputSequences;
             set
@@ -668,6 +730,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedDigitalOutputSequence;
         public ChannelSequence? SelectedDigitalOutputSequence
@@ -680,12 +745,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedDigitalOutputSequence = value;
                 OnPropertyChanged();
 
-                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private List<ChannelSequence> _selectedDigitalOutputSequences;
-        public List<ChannelSequence> SelectedDigitalOutputSequences
+        private List<ChannelSequence>? _selectedDigitalOutputSequences;
+        public List<ChannelSequence>? SelectedDigitalOutputSequences
         {
             get => _selectedDigitalOutputSequences;
             set
@@ -698,7 +763,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedDigitalOutputSequences = value;
                 OnPropertyChanged();
 
-                PlayDigitalOutputSequenceCommand.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -706,23 +771,23 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RCServo
 
-        private IEnumerable<Int32> _RCServoPhidgets;
-        public IEnumerable<Int32> RCServoPhidgets
+        private IEnumerable<Int32>? _rcServos;
+        public IEnumerable<Int32>? RCServos
         {
             get
             {
-                return _RCServoPhidgets;
+                return _rcServos;
             }
 
             set
             {
-                _RCServoPhidgets = value;
+                _rcServos = value;
                 OnPropertyChanged();
             }
         }
 
-        private Int32 _selectedRCServoPhidget;
-        public Int32 SelectedRCServoPhidget
+        private Int32? _selectedRCServoPhidget;
+        public Int32? SelectedRCServoPhidget
         {
             get => _selectedRCServoPhidget;
             set
@@ -730,12 +795,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedRCServoPhidget = value;
                 OnPropertyChanged();
 
-                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private IEnumerable<ChannelSequence> _rcServoSequences;
-        public IEnumerable<ChannelSequence> RCServoSequences
+        private IEnumerable<ChannelSequence>? _rcServoSequences;
+        public IEnumerable<ChannelSequence>? RCServoSequences
         {
             get => _rcServoSequences;
             set
@@ -744,6 +809,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedRCServoSequence;
         public ChannelSequence? SelectedRCServoSequence
@@ -756,12 +824,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedRCServoSequence = value;
                 OnPropertyChanged();
 
-                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private List<ChannelSequence> _selectedRCServoSequences;
-        public List<ChannelSequence> SelectedRCServoSequences
+        private List<ChannelSequence>? _selectedRCServoSequences;
+        public List<ChannelSequence>? SelectedRCServoSequences
         {
             get => _selectedRCServoSequences;
             set
@@ -774,7 +842,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedRCServoSequences = value;
                 OnPropertyChanged();
 
-                PlayRCServoSequenceCommand.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -782,8 +850,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Stepper
 
-        private IEnumerable<Int32> _Steppers;
-        public IEnumerable<Int32> Steppers
+        private IEnumerable<Int32>? _Steppers;
+        public IEnumerable<Int32>? Steppers
         {
             get
             {
@@ -797,21 +865,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedStepper;
-        public Int32 SelectedStepper
+        private Int32? _selectedStepperPhidget;
+        public Int32? SelectedStepperPhidget
         {
-            get => _selectedStepper;
+            get => _selectedStepperPhidget;
             set
             {
-                _selectedStepper = value;
+                _selectedStepperPhidget = value;
                 OnPropertyChanged();
 
-                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private IEnumerable<ChannelSequence> _stepperSequences;
-        public IEnumerable<ChannelSequence> StepperSequences
+        private IEnumerable<ChannelSequence>? _stepperSequences;
+        public IEnumerable<ChannelSequence>? StepperSequences
         {
             get => _stepperSequences;
             set
@@ -820,6 +888,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedStepperSequence;
         public ChannelSequence? SelectedStepperSequence
@@ -832,23 +903,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedStepperSequence = value;
                 OnPropertyChanged();
 
-                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private Dictionary<string, ChannelSequence> _availableStepperSequences;
-        public Dictionary<string, ChannelSequence> AvailableStepperSequences
-        {
-            get => _availableStepperSequences;
-            set
-            {
-                _availableStepperSequences = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private List<ChannelSequence> _selectedStepperSequences;
-        public List<ChannelSequence> SelectedStepperSequences
+        private List<ChannelSequence>? _selectedStepperSequences;
+        public List<ChannelSequence>? SelectedStepperSequences
         {
             get => _selectedStepperSequences;
             set
@@ -861,7 +921,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedStepperSequences = value;
                 OnPropertyChanged();
 
-                PlayStepperSequenceCommand.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -869,8 +929,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region VoltageInput
 
-        private IEnumerable<Int32> _VoltageInputs;
-        public IEnumerable<Int32> VoltageInputs
+        private IEnumerable<Int32>? _VoltageInputs;
+        public IEnumerable<Int32>? VoltageInputs
         {
             get
             {
@@ -884,21 +944,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedVoltageInput;
-        public Int32 SelectedVoltageInput
+        private Int32? _selectedVoltageInputPhidget;
+        public Int32? SelectedVoltageInputPhidget
         {
-            get => _selectedVoltageInput;
+            get => _selectedVoltageInputPhidget;
             set
             {
-                _selectedVoltageInput = value;
+                _selectedVoltageInputPhidget = value;
                 OnPropertyChanged();
 
-                //PlayVoltageInputCommand.RaiseCanExecuteChanged();
+                //PlayVoltageInputCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private IEnumerable<ChannelSequence> _voltageInputSequences;
-        public IEnumerable<ChannelSequence> VoltageInputSequences
+        private IEnumerable<ChannelSequence>? _voltageInputSequences;
+        public IEnumerable<ChannelSequence>? VoltageInputSequences
         {
             get => _voltageInputSequences;
             set
@@ -907,6 +967,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedVoltageInputSequence;
         public ChannelSequence? SelectedVoltageInputSequence
@@ -919,12 +982,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedVoltageInputSequence = value;
                 OnPropertyChanged();
 
-                //PlayVoltageInputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayVoltageInputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private List<ChannelSequence> _selectedVoltageInputSequences;
-        public List<ChannelSequence> SelectedVoltageInputSequences
+        private List<ChannelSequence>? _selectedVoltageInputSequences;
+        public List<ChannelSequence>? SelectedVoltageInputSequences
         {
             get => _selectedVoltageInputSequences;
             set
@@ -937,7 +1000,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedVoltageInputSequences = value;
                 OnPropertyChanged();
 
-                //PlayVoltageInputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayVoltageInputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -945,8 +1008,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region VoltageOutput
 
-        private IEnumerable<Int32> _VoltageOutputs;
-        public IEnumerable<Int32> VoltageOutputs
+        private IEnumerable<Int32>? _VoltageOutputs;
+        public IEnumerable<Int32>? VoltageOutputs
         {
             get
             {
@@ -960,21 +1023,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private Int32 _selectedVoltageOutput;
-        public Int32 SelectedVoltageOutput
+        private Int32? _selectedVoltageOutputPhidget;
+        public Int32? SelectedVoltageOutputPhidget
         {
-            get => _selectedVoltageOutput;
+            get => _selectedVoltageOutputPhidget;
             set
             {
-                _selectedVoltageOutput = value;
+                _selectedVoltageOutputPhidget = value;
                 OnPropertyChanged();
 
-                //PlayVoltageOutputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayVoltageOutputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private IEnumerable<ChannelSequence> _voltageOutputSequences;
-        public IEnumerable<ChannelSequence> VoltageOutputSequences
+        private IEnumerable<ChannelSequence>? _voltageOutputSequences;
+        public IEnumerable<ChannelSequence>? VoltageOutputSequences
         {
             get => _voltageOutputSequences;
             set
@@ -983,6 +1046,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        // NOTE(crhodes)
+        // This is for displaying info on the first sequence
 
         private ChannelSequence? _selectedVoltageOutputSequence;
         public ChannelSequence? SelectedVoltageOutputSequence
@@ -995,12 +1061,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedVoltageOutputSequence = value;
                 OnPropertyChanged();
 
-                //PlayVoltageOutputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayVoltageOutputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
-        private List<ChannelSequence> _selectedVoltageOutputSequences;
-        public List<ChannelSequence> SelectedVoltageOutputSequences
+        private List<ChannelSequence>? _selectedVoltageOutputSequences;
+        public List<ChannelSequence>? SelectedVoltageOutputSequences
         {
             get => _selectedVoltageOutputSequences;
             set
@@ -1013,7 +1079,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedVoltageOutputSequences = value;
                 OnPropertyChanged();
 
-                //PlayVoltageOutputSequenceCommand.RaiseCanExecuteChanged();
+                //PlayVoltageOutputSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -1027,7 +1093,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Command ConfigFileName DoubleClick
 
-        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
+        public DelegateCommand? ConfigFileName_DoubleClick_Command { get; set; }
 
         public void ConfigFileName_DoubleClick()
         {
@@ -1041,11 +1107,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        public ICommand Button1Command { get; private set; }
-        public ICommand Button2Command { get; private set; }
-        public ICommand Button3Command { get; private set; }
-        public ICommand Button4Command { get; private set; }
-        public ICommand Button5Command { get; private set; }
+        public ICommand? Button1Command { get; private set; }
+        public ICommand? Button2Command { get; private set; }
+        public ICommand? Button3Command { get; private set; }
+        public ICommand? Button4Command { get; private set; }
+        public ICommand? Button5Command { get; private set; }
 
         private void Button1Execute()
         {
@@ -1059,7 +1125,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button1Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private async void Button2Execute()
+        private void Button2Execute()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button2Execute) Enter", Common.LOG_CATEGORY);
@@ -1219,7 +1285,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PerformanceFileName DoubleClick
 
-        public DelegateCommand PerformanceFileName_DoubleClick_Command { get; set; }
+        public DelegateCommand? PerformanceFileName_DoubleClick_Command { get; set; }
 
         //private void PerformanceFileName_DoubleClick()
         //{
@@ -1232,7 +1298,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PlayPerformance Command
 
-        public DelegateCommand PlayPerformanceCommand { get; set; }
+        public DelegateCommand? PlayPerformanceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
@@ -1254,67 +1320,74 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         public async void PlayPerformance()
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(PlayPerformance) Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
             Message = "Cool, you called PlayPerformance";
 
+            PerformancePlayer performancePlayer = GetNewPerformancePlayer();
+
             // TODO(crhodes)
-            // This has sideffect of setting ActivePerformanceSequencePlayer.
-            // Think through whether this make sense.
+            // Maybe this should be a do / while loop
 
-            PerformancePlayer performancePlayer = GetPerformancePlayer();
+            if (LogPerformance) Log.Trace($"Selected Performances:{SelectedPerformances?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
 
-            foreach (Performance performance in SelectedPerformances)
+            if (SelectedPerformances is not null)
             {
-                //if (LogPerformance)
-                //{
-                //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
-                //        $"\nbeforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                //        $"\nperformanceSequences:{performance.DeviceClassSequences?.Count()}" +
-                //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                //        $"\nafterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
-                //}
-
-                Performance? nextPerformance = performance;
-
-                // NOTE(crhodes)
-                // Run on another thread to keep UI active
-                await Task.Run(async () =>
+                foreach (Performance performance in SelectedPerformances)
                 {
-                    await performancePlayer.RunPerformanceLoops(nextPerformance);
-                });
+                    Performance? selectedPerformance = performance;
 
-                //await performancePlayer.RunPerformanceLoops(nextPerformance);
+                    if (SerialNumber is not null)
+                    {
+                        if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                        selectedPerformance.SerialNumber = SerialNumber;
+                    }
 
-                nextPerformance = nextPerformance?.NextPerformance;
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
+                    {
+                        await performancePlayer.ExecutePerformance(selectedPerformance);
+                    });
 
-                while (nextPerformance is not null)
-                {
-                    //if (LogPerformance)
+                    //await performancePlayer.RunPerformanceLoops(nextPerformance);
+
+                    // FIX(crhodes)
+                    // Don't think we need this as the foreach loop handles the selecting of muptile performances
+                    // and ExecutePerformance handles .NextPerformance
+
+                    //selectedPerformance = selectedPerformance?.NextPerformance;
+
+                    //while (selectedPerformance is not null)
                     //{
-                    //    Log.Trace($"Playing performance:>{performance.Name}< description:>{performance.Description}<" +
-                    //        $" beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    //        $" deviceClassSequences:{performance.DeviceClassSequences?.Count()}" +
-                    //        $" loops:{performance.PerformanceLoops} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                    //        $" afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                    //        $" nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    //    if (Common.PerformanceLibrary.AvailablePerformances.ContainsKey(selectedPerformance.Name ?? ""))
+                    //    {
+                    //        selectedPerformance = Common.PerformanceLibrary.AvailablePerformances[selectedPerformance.Name];
+
+                    //        if (SerialNumber is not null)
+                    //        {
+                    //            if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                    //            selectedPerformance.SerialNumber = SerialNumber;
+                    //        }
+
+                    //        // NOTE(crhodes)
+                    //        // Run on another thread to keep UI active
+                    //        await Task.Run(async () =>
+                    //        {
+                    //            await performancePlayer.ExecutePerformance(selectedPerformance);
+                    //        });
+
+                    //        //await performancePlayer.RunPerformanceLoops(nextPerformance);
+
+                    //        selectedPerformance = selectedPerformance?.NextPerformance;
+                    //    }
+                    //    else
+                    //    {
+                    //        Log.Error($"Cannot find performance:>{selectedPerformance.Name}<", Common.LOG_CATEGORY);
+                    //        selectedPerformance = null;
+                    //    }
                     //}
-
-                    if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
-                    {
-                        nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
-
-                        await performancePlayer.RunPerformanceLoops(nextPerformance);
-
-                        nextPerformance = nextPerformance?.NextPerformance;
-                    }
-                    else
-                    {
-                        Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
-                        nextPerformance = null;
-                    }
                 }
             }
 
@@ -1345,7 +1418,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
 
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(PlayPerformance) Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public Boolean PlayPerformanceCanExecute()
@@ -1366,7 +1439,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PlayRCServoSequence Command
 
-        public DelegateCommand PlayRCServoSequenceCommand { get; set; }
+        public DelegateCommand? PlayRCServoSequenceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
@@ -1395,45 +1468,52 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This has side effect of using current Logging Settings
 
-            DeviceChannelSequencePlayer player = GetPhidgetDeviceSequencePlayer();
+            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+            player.SerialNumber = SelectedRCServoPhidget;
 
-            foreach (RCServoSequence sequence in SelectedRCServoSequences)
+            if (SelectedRCServoSequences is not null)
             {
-                if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
-
-                try
+                foreach (RCServoSequence sequence in SelectedRCServoSequences)
                 {
-                    DeviceChannelSequence? nextPhidgetDeviceSequence =
-                        new DeviceChannelSequence
+                    if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+
+                    try
+                    {
+                        DeviceChannelSequence? nextPhidgetDeviceSequence =
+                            new DeviceChannelSequence
+                            {
+                                Name = sequence.Name,
+                                SerialNumber = SelectedRCServoPhidget,
+                                ChannelClass = "RCServo",
+                                SequenceLoops = sequence.SequenceLoops
+                            };
+
+                        // NOTE(crhodes)
+                        // Apply ChannelSequence overrides if provided
+
+                        if (nextPhidgetDeviceSequence.HubPort is null)
                         {
-                            SerialNumber = SelectedRCServoPhidget,
-                            Name = sequence.Name,
-                            ChannelClass = "RCServo",
-                            SequenceLoops = sequence.SequenceLoops
-                        };
+                            nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                        }
 
-                    if (nextPhidgetDeviceSequence.HubPort is null)
-                    {
-                        nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                        if (nextPhidgetDeviceSequence.Channel is null)
+                        {
+                            nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                        }
+
+                        // NOTE(crhodes)
+                        // Run on another thread to keep UI active
+                        await Task.Run(async () =>
+                        {
+                            if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+
+                            await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
+                        });
                     }
-
-                    if (nextPhidgetDeviceSequence.Channel is null)
+                    catch (Exception ex)
                     {
-                        nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                        Log.Error(ex, Common.LOG_CATEGORY);
                     }
-
-                    // NOTE(crhodes)
-                    // Run on another thread to keep UI active
-                    await Task.Run(async () =>
-                    {
-                        if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
-
-                        await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -1471,7 +1551,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedRCServoSequences?.Count > 0)
+            if (SelectedRCServoPhidget > 0 && SelectedRCServoSequences?.Count > 0)
             {
                 return true;
             }
@@ -1677,7 +1757,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PlayDigitalOutputSequence Command
 
-        public DelegateCommand PlayDigitalOutputSequenceCommand { get; set; }
+        public DelegateCommand? PlayDigitalOutputSequenceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
@@ -1706,35 +1786,52 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This has side effect of using current Logging Settings
 
-            DeviceChannelSequencePlayer player = GetPhidgetDeviceSequencePlayer();
+            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+            player.SerialNumber = SelectedDigitalOutputPhidget;
 
-            foreach (DigitalOutputSequence sequence in SelectedDigitalOutputSequences)
+            if (SelectedDigitalOutputSequences is not null)
             {
-                if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
-
-                try
+                foreach (DigitalOutputSequence sequence in SelectedDigitalOutputSequences)
                 {
-                    DeviceChannelSequence? nextPhidgetDeviceSequence =
-                        new DeviceChannelSequence
-                        {
-                            SerialNumber = SelectedDigitalOutput,
-                            Name = sequence.Name,
-                            ChannelClass = "DigitalOutput",
-                            SequenceLoops = sequence.SequenceLoops
-                        };
+                    if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
-                    // NOTE(crhodes)
-                    // Run on another thread to keep UI active
-                    await Task.Run(async () =>
+                    try
                     {
-                        if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+                        DeviceChannelSequence? nextPhidgetDeviceSequence =
+                            new DeviceChannelSequence
+                            {
+                                SerialNumber = SelectedDigitalOutputPhidget,
+                                Name = sequence.Name,
+                                ChannelClass = "DigitalOutput",
+                                SequenceLoops = sequence.SequenceLoops
+                            };
 
-                        await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                        // NOTE(crhodes)
+                        // Apply ChannelSequence overrides if provided
+
+                        if (nextPhidgetDeviceSequence.HubPort is null)
+                        {
+                            nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                        }
+
+                        if (nextPhidgetDeviceSequence.Channel is null)
+                        {
+                            nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                        }
+
+                        // NOTE(crhodes)
+                        // Run on another thread to keep UI active
+                        await Task.Run(async () =>
+                        {
+                            if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+
+                            await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, Common.LOG_CATEGORY);
+                    }
                 }
             }
 
@@ -1786,7 +1883,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PlayStepperSequence Command
 
-        public DelegateCommand PlayStepperSequenceCommand { get; set; }
+        public DelegateCommand? PlayStepperSequenceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlaySequenceCommand { get; set; }
@@ -1815,35 +1912,52 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // NOTE(crhodes)
             // This has side effect of using current Logging Settings
 
-            DeviceChannelSequencePlayer player = GetPhidgetDeviceSequencePlayer();
+            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+            player.SerialNumber = SelectedStepperPhidget;
 
-            foreach (StepperSequence sequence in SelectedStepperSequences)
+            if (SelectedStepperSequences is not null)
             {
-                if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
-
-                try
+                foreach (StepperSequence sequence in SelectedStepperSequences)
                 {
-                    DeviceChannelSequence? nextPhidgetDeviceSequence =
-                        new DeviceChannelSequence
-                        {
-                            SerialNumber = SelectedStepper,
-                            Name = sequence.Name,
-                            ChannelClass = "Stepper",
-                            SequenceLoops = sequence.SequenceLoops
-                        };
+                    if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
-                    // NOTE(crhodes)
-                    // Run on another thread to keep UI active
-                    await Task.Run(async () =>
+                    try
                     {
-                        if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+                        DeviceChannelSequence? nextPhidgetDeviceSequence =
+                            new DeviceChannelSequence
+                            {
+                                SerialNumber = SelectedStepperPhidget,
+                                Name = sequence.Name,
+                                ChannelClass = "Stepper",
+                                SequenceLoops = sequence.SequenceLoops
+                            };
 
-                        await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                        // NOTE(crhodes)
+                        // Apply ChannelSequence overrides if provided
+
+                        if (nextPhidgetDeviceSequence.HubPort is null)
+                        {
+                            nextPhidgetDeviceSequence.HubPort = SelectedHubPort;
+                        }
+
+                        if (nextPhidgetDeviceSequence.Channel is null)
+                        {
+                            nextPhidgetDeviceSequence.Channel = SelectedChannel;
+                        }
+
+                        // NOTE(crhodes)
+                        // Run on another thread to keep UI active
+                        await Task.Run(async () =>
+                        {
+                            if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+
+                            await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, Common.LOG_CATEGORY);
+                    }
                 }
             }
 
@@ -1881,7 +1995,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedStepperSequences?.Count > 0)
+            if (SelectedStepperPhidget > 0 && SelectedStepperSequences?.Count > 0)
             {
                 return true;
             }
@@ -1915,48 +2029,44 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Private Methods
 
-        private PerformancePlayer GetPerformancePlayer()
+        private PerformancePlayer GetNewPerformancePlayer()
         {
-            if (ActivePerformancePlayer == null)
-            {
-                ActivePerformancePlayer = new PerformancePlayer(EventAggregator);
-            }
+            PerformancePlayer player = new PerformancePlayer(EventAggregator, Common.PerformanceLibrary);
 
             // HACK(crhodes)
             // Need a cleaner way of handing logging.  Maybe a LoggingConfiguration class that gets passed around.
 
-            ActivePerformancePlayer.LogPerformance = LogPerformance;
-            ActivePerformancePlayer.LogPhidgetEvents = LogPhidgetEvents;
-            ActivePerformancePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActivePerformancePlayer.LogChannelAction = LogChannelAction;
-            ActivePerformancePlayer.LogActionVerification = LogActionVerification;
+            player.LogPerformance = LogPerformance;
 
-            return ActivePerformancePlayer;
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            return player;
         }
 
-        private DeviceChannelSequencePlayer GetPhidgetDeviceSequencePlayer()
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
-            if (ActiveDeviceChannelSequencePlayer == null)
-            {
-                ActiveDeviceChannelSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
-            }
+            DeviceChannelSequencePlayer deviceChannelSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
 
-            ActiveDeviceChannelSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActiveDeviceChannelSequencePlayer.LogChannelAction = LogChannelAction;
-            ActiveDeviceChannelSequencePlayer.LogActionVerification = LogActionVerification;
+            deviceChannelSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            deviceChannelSequencePlayer.LogChannelAction = LogChannelAction;
+            deviceChannelSequencePlayer.LogActionVerification = LogActionVerification;
 
-            ActiveDeviceChannelSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+            deviceChannelSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
+            deviceChannelSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
+            deviceChannelSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            deviceChannelSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            ActiveDeviceChannelSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
-            ActiveDeviceChannelSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
+            deviceChannelSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
+            deviceChannelSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
+            deviceChannelSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
 
-            ActiveDeviceChannelSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
+            deviceChannelSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
 
-            return ActiveDeviceChannelSequencePlayer;
+            return deviceChannelSequencePlayer;
         }
 
         //private async Task PlayParty()
@@ -2094,16 +2204,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+    //    #region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+    //    private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+    //    public Int32 InstanceCountVM
+    //    {
+    //        get => _instanceCountVM;
+    //        set => _instanceCountVM = value;
+    //    }
 
-        #endregion
+    //    #endregion
     }
 }

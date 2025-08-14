@@ -7,7 +7,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class AccelerationControl : ViewBase, IInstanceCountV
+    public partial class AccelerationControl : ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -101,11 +101,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //    set => SetValue(MinAccelerationProperty, value);
         //}
 
-        //private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        //private static object OnCoerceMinAcceleration (DependencyObject o, object value)
         //{
         //    AccelerationControl accelerationControl = o as AccelerationControl;
         //    if (accelerationControl != null)
-        //        return accelerationControl.OnCoerceMinAcceleration((Double?)value);
+        //        return accelerationControl.OnCoerceMinAcceleration ((Double?)value);
         //    else
         //        return value;
         //}
@@ -117,7 +117,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //        accelerationControl.OnMinAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
         //}
 
-        //protected virtual Double? OnCoerceMinAcceleration(Double? value)
+        //protected virtual Double? OnCoerceMinAcceleration (Double? value)
         //{
         //    // TODO: Keep the proposed value within the desired range.
         //    return value;
@@ -150,11 +150,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //    set => SetValue(AccelerationProperty, value);
         //}
 
-        //private static object OnCoerceAcceleration(DependencyObject o, object value)
+        //private static object OnCoerceAcceleration (DependencyObject o, object value)
         //{
         //    AccelerationControl accelerationControl = o as AccelerationControl;
         //    if (accelerationControl != null)
-        //        return accelerationControl.OnCoerceAcceleration((Double?)value);
+        //        return accelerationControl.OnCoerceAcceleration ((Double?)value);
         //    else
         //        return value;
         //}
@@ -166,7 +166,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //        accelerationControl.OnAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
         //}
 
-        //protected virtual Double? OnCoerceAcceleration(Double? value)
+        //protected virtual Double? OnCoerceAcceleration (Double? value)
         //{
         //    // TODO: Keep the proposed value within the desired range.
         //    return value;
@@ -199,11 +199,11 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //    set => SetValue(MaxAccelerationProperty, value);
         //}
 
-        //private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        //private static object OnCoerceMaxAcceleration (DependencyObject o, object value)
         //{
         //    AccelerationControl accelerationControl = o as AccelerationControl;
         //    if (accelerationControl != null)
-        //        return accelerationControl.OnCoerceMaxAcceleration((Double?)value);
+        //        return accelerationControl.OnCoerceMaxAcceleration ((Double?)value);
         //    else
         //        return value;
         //}
@@ -215,7 +215,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //        accelerationControl.OnMaxAccelerationChanged((Double?)e.OldValue, (Double?)e.NewValue);
         //}
 
-        //protected virtual Double? OnCoerceMaxAcceleration(Double? value)
+        //protected virtual Double? OnCoerceMaxAcceleration (Double? value)
         //{
         //    // TODO: Keep the proposed value within the desired range.
         //    return value;
@@ -269,24 +269,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public SoundSensorSequence(SoundSensorSequence sequence) : base("SoundSensor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of SoundSensor actions in sequence
         /// </summary>
-        public SoundSensorAction[] Actions { get; set; }
+        public SoundSensorAction[]? Actions { get; set; }
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows.Input;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using System.Windows;
 
 using Prism.Commands;
 using Prism.Events;
@@ -16,16 +11,11 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
-
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
-using System.Windows;
-using DevExpress.Xpo.Logger.Transport;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class Stepper1063ViewModel : EventViewModelBase, IStepper1063ViewModel, IInstanceCountVM
+    public class Stepper1063ViewModel : EventViewModelBase, IStepper1063ViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -51,41 +41,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            // TODO(crhodes)
-            //
+            OpenAllSteppersCommand = new DelegateCommand(OpenAllSteppers, OpenAllSteppersCanExecute);
+            CloseAllSteppersCommand = new DelegateCommand(CloseAllSteppers, CloseAllSteppersCanExecute);
 
-            ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
+            OpenStepperCommand = new DelegateCommand<SerialHubPortChannel?>(OpenStepper, OpenStepperCanExecute);
+            CloseStepperCommand = new DelegateCommand<SerialHubPortChannel?>(CloseStepper, CloseStepperCanExecute);
 
-            OpenSteppersCommand = new DelegateCommand(OpenStepper, OpenStepperCanExecute);
-            CloseSteppersCommand = new DelegateCommand(CloseStepper, CloseSteppersCanExecute);
-
-            OpenStepperCommand = new DelegateCommand<string>(OpenStepper, OpenStepperCanExecute);
-            CloseStepperCommand = new DelegateCommand<string>(CloseStepper, CloseStepperCanExecute);
-
-            InitializeVelocityCommand = new DelegateCommand<string>(InitializeVelocity, InitializeVelocityCanExecute);
-            InitializeAccelerationCommand = new DelegateCommand<string>(InitializeAcceleration, InitializeAccelerationCanExecute);
-
-            //RotateCommand = new DelegateCommand<string>(Rotate, RotateCanExecute);
-
-            // If using CommandParameter, figure out TYPE here and below
-            // and remove above declaration
-            //RotateCommand = new DelegateCommand<TYPE>(Rotate, RotateCanExecute);
-
-
-            //ZeroCurrentPositionCommand = new DelegateCommand(ZeroCurrentPosition, ZeroCurrentPositionCanExecute);
-
-            // If using CommandParameter, figure out TYPE here and below
-            // and remove above declaration
             ZeroCurrentPositionCommand = new DelegateCommand<string>(ZeroCurrentPosition, ZeroCurrentPositionCanExecute);
 
-            // HACK(crhodes)
-            // For now just hard code this.  Can have UI let us choose later.
-            // This could also come from PerformanceLibrary.
-            // See HackAroundViewModel.InitializeViewModel()
-            // Or maybe a method on something else in VNCPhidget22.Configuration
-            
-
-            //HostConfigFileName = "hostconfig.json";
             LoadUIConfig();
                
             Message = "Stepper1063ViewModel says hello";
@@ -98,36 +61,59 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-            //string jsonString = File.ReadAllText(HostConfigFileName);
-
-            //VNCPhidgetConfig.HostConfig? hostConfig = 
-            //    JsonSerializer.Deserialize<VNCPhidgetConfig.HostConfig>
-            //    (jsonString, GetJsonSerializerOptions());
-
-            //Hosts = hostConfig.Hosts.ToList();
-
-            // TODO(crhodes)
-            // Make this smarter about going after the board not the channel
-            // For now, cheat, and use StepperChannels
-
-            StepperPhidgets = Common.PhidgetDeviceLibrary.StepperChannels
-                .Keys
-                .DistinctBy(x => x.SerialNumber)
-                .Select(x => x.SerialNumber)
-                .ToList();
+            StepperPhidgets = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices
+                .Where(x => x.ChannelClass == "Stepper")
+                .DistinctBy(x => x.DeviceSerialNumber)
+                .Select(x => x.DeviceSerialNumber);
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        JsonSerializerOptions GetJsonSerializerOptions()
+        void LoadPhidgets()
         {
-            var jsonOptions = new JsonSerializerOptions
-            {
-                ReadCommentHandling = JsonCommentHandling.Skip,
-                AllowTrailingCommas = true
-            };
+            var steppers = Common.PhidgetDeviceLibrary.StepperChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedStepperPhidget);
 
-            return jsonOptions;
+            LoadSteppers(steppers);
+
+            // TODO(crhodes)
+            // Figure out what else is available on phidget
+            // like Digital I/O and Current
+        }
+
+        private void LoadSteppers(IEnumerable<KeyValuePair<SerialHubPortChannel, StepperEx>> steppers)
+        {
+            // NOTE(crhodes)
+            // May be able to go back to Stepper[]
+            // Check if INPC get's messed up
+
+            foreach (var stepper in steppers)
+            {
+                switch (stepper.Key.Channel)
+                {
+                    // TODO(crhodes)
+                    // Add more cases if a board supports more channels
+                    // Not sure any board supports more than one
+
+                    case 0:
+                        Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                        break;
+
+                    case 1:
+                        Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                        break;
+
+                    case 2:
+                        Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                        break;
+
+                    case 3:
+                        Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[stepper.Key];
+                        break;
+
+
+                }
+            }
         }
 
         #endregion
@@ -135,87 +121,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
 
         #region Fields and Properties
 
-        private string _message;
-
-        public string Message
-        {
-            get => _message;
-            set
-            {
-                if (_message == value)
-                    return;
-                _message = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #region Host
-
-        //private string _hostConfigFileName;
-
-        //public string HostConfigFileName
-        //{
-        //    get => _hostConfigFileName;
-        //    set
-        //    {
-        //        if (_hostConfigFileName == value) return;
-        //        _hostConfigFileName = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //public string HostConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
-
-        //private IEnumerable<VNCPhidgetConfig.Host> _Hosts;
-        //public IEnumerable<VNCPhidgetConfig.Host> Hosts
-        //{
-        //    get => _Hosts;
-        //    set
-        //    {
-        //        _Hosts = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //private VNCPhidgetConfig.Host _selectedHost;
-        //public VNCPhidgetConfig.Host SelectedHost
-        //{
-        //    get => _selectedHost;
-        //    set
-        //    {
-        //        if (_selectedHost == value)
-        //            return;
-        //        _selectedHost = value;
-        //        Steppers = _selectedHost.Steppers?.ToList<VNCPhidgetConfig.Stepper>();
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        #endregion
-
-        #region Phidget
-
-        private Phidget22.Phidget _phidgetDevice;
-        public Phidget22.Phidget PhidgetDevice
-        {
-            get => _phidgetDevice;
-            set
-            {
-                if (_phidgetDevice == value)
-                    return;
-                _phidgetDevice = value;
-                OnPropertyChanged();
-            }
-        }
+        #region Logging
 
         private Boolean _logPhidgetEvents = true;
         public Boolean LogPhidgetEvents
@@ -255,179 +172,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Boolean _logDeviceChannelSequence = false;
-        public Boolean LogDeviceChannelSequence
-        {
-            get => _logDeviceChannelSequence;
-            set
-            {
-                if (_logDeviceChannelSequence == value)
-                    return;
-                _logPhidgetEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Boolean _logChannelAction = false;
-        public Boolean LogChannelAction
-        {
-            get => _logChannelAction;
-            set
-            {
-                if (_logChannelAction == value)
-                    return;
-                _logPhidgetEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Boolean _logActionVerification = false;
-        public Boolean LogActionVerification
-        {
-            get => _logActionVerification;
-            set
-            {
-                if (_logActionVerification == value)
-                    return;
-                _logPhidgetEvents = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Boolean? _deviceAttached;
-        public Boolean? DeviceAttached
-        {
-            get => _deviceAttached;
-            set
-            {
-                if (_deviceAttached == value)
-                    return;
-                _deviceAttached = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Boolean? _stepperAttached;
-        public Boolean? StepperAttached
-        {
-            get => _stepperAttached;
-            set
-            {
-                _stepperAttached = value;
-                OpenStepperCommand.RaiseCanExecuteChanged();
-                CloseStepperCommand.RaiseCanExecuteChanged();
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
-
-        #region Stepper
-
-
-        private IEnumerable<Int32> _SteperPhidgets;
-        public IEnumerable<Int32> StepperPhidgets
-        {
-            get
-            {
-                return _SteperPhidgets;
-            }
-
-            set
-            {
-                _SteperPhidgets = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Int32? _selectedSteperPhidgets = null;
-        public Int32? SelectedStepperPhidget
-        {
-            get => _selectedSteperPhidgets;
-            set
-            {
-                _selectedSteperPhidgets = value;
-                OnPropertyChanged();
-
-                OpenSteppersCommand.RaiseCanExecuteChanged();
-                OpenStepperCommand.RaiseCanExecuteChanged();
-
-                SteppersVisibility = Visibility.Visible;
-            }
-        }
-        #region Steppers
-
-        private StepperEx _stepper0;
-        public StepperEx Stepper0
-        {
-            get => _stepper0;
-            set
-            {
-                if (_stepper0 == value)
-                    return;
-                _stepper0 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        // TODO(crhodes)
-        // I think some boards support more than one Stepper
-        // Stub out four for now
-
-        private StepperEx _stepper1;
-        public StepperEx Stepper1
-        {
-            get => _stepper1;
-            set
-            {
-                if (_stepper1 == value)
-                    return;
-                _stepper1 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx _stepper2;
-        public StepperEx Stepper2
-        {
-            get => _stepper2;
-            set
-            {
-                if (_stepper2 == value)
-                    return;
-                _stepper2 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private StepperEx _stepper3;
-        public StepperEx Stepper3
-        {
-            get => _stepper3;
-            set
-            {
-                if (_stepper3 == value)
-                    return;
-                _stepper3 = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Visibility _steppersVisibility = Visibility.Collapsed;
-        public Visibility SteppersVisibility
-        {
-            get => _steppersVisibility;
-            set
-            {
-                if (_steppersVisibility == value)
-                    return;
-                _steppersVisibility = value;
-                OnPropertyChanged();
-            }
-        }
-
-        #endregion
 
         #region Stepper Events
 
@@ -486,121 +230,158 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        //private IEnumerable<VNCPhidgetConfig.Stepper> _Steppers;
-        //public IEnumerable<VNCPhidgetConfig.Stepper> Steppers
-        //{
-        //    get
-        //    {
-        //        if (null == _Steppers)
-        //        {
-        //            // TODO(crhodes)
-        //            // Load this like the sensors.xml for now
+        #region Performance Events
 
-        //            //_InterfaceKits =
-        //            //    from item in XDocument.Parse(_RawXML).Descendants("FxShow").Descendants("InterfaceKits").Elements("InterfaceKit")
-        //            //    select new InterfaceKit(
-        //            //        item.Attribute("Name").Value,
-        //            //        item.Attribute("IPAddress").Value,
-        //            //        item.Attribute("Port").Value,
-        //            //        Boolean.Parse(item.Attribute("Enable").Value)
-        //            //        );
-        //        }
+        private Boolean _logDeviceChannelSequence = false;
+        public Boolean LogDeviceChannelSequence
+        {
+            get => _logDeviceChannelSequence;
+            set
+            {
+                if (_logDeviceChannelSequence == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //        return _Steppers;
-        //    }
+        private Boolean _logChannelAction = false;
+        public Boolean LogChannelAction
+        {
+            get => _logChannelAction;
+            set
+            {
+                if (_logChannelAction == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //    set
-        //    {
-        //        _Steppers = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private Boolean _logActionVerification = false;
+        public Boolean LogActionVerification
+        {
+            get => _logActionVerification;
+            set
+            {
+                if (_logActionVerification == value)
+                    return;
+                _logPhidgetEvents = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //private VNCPhidgetConfig.Stepper _selectedStepper;
-        //public VNCPhidgetConfig.Stepper SelectedStepper
-        //{
-        //    get => _selectedStepper;
-        //    set
-        //    {
-        //        if (_selectedStepper == value)
-        //            return;
-        //        _selectedStepper = value;
+        #endregion
 
-        //        OpenSteppersCommand.RaiseCanExecuteChanged();
-        //        OpenStepperCommand.RaiseCanExecuteChanged();
+        #endregion
 
-        //        SteppersVisibility = Visibility.Visible;
+        #region Stepper
 
-        //        // Set to null when host changes
-        //        //if (value is not null)
-        //        //{
-        //        //    // FIX(crhodes)
-        //        //    // 
-        //        //    DeviceChannels deviceChannels = Common.PhidgetDeviceLibrary.ManagerAttachedPhidgetDevices[value.SerialNumber].DeviceChannels;
+        private IEnumerable<Int32>? _SteperPhidgets;
+        public IEnumerable<Int32>? StepperPhidgets
+        {
+            get
+            {
+                return _SteperPhidgets;
+            }
 
-        //        //    SteppersVisibility = deviceChannels.StepperCount > 0 ? Visibility.Visible : Visibility.Collapsed;
-        //        //}
-        //        //else
-        //        //{
-        //        //    SteppersVisibility = Visibility.Collapsed;
-        //        //}
+            set
+            {
+                _SteperPhidgets = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private Int32? _selectedSteperPhidgets = null;
+        public Int32? SelectedStepperPhidget
+        {
+            get => _selectedSteperPhidgets;
+            set
+            {
+                _selectedSteperPhidgets = value;
+                OnPropertyChanged();
 
-        //private StepperEx _activeStepper;
-        //public StepperEx ActiveStepper
-        //{
-        //    get => _activeStepper;
-        //    set
-        //    {
-        //        if (_activeStepper == value)
-        //            return;
-        //        _activeStepper = value;
+                LoadPhidgets();
 
+                OpenAllSteppersCommand?.RaiseCanExecuteChanged();
+                CloseAllSteppersCommand?.RaiseCanExecuteChanged();
 
-        //        //if (_activeStepper is not null)
-        //        //{
-        //        //    PhidgetDevice = _activeStepper.Stepper;
-        //        //}
-        //        //else
-        //        //{
-        //        //    // TODO(crhodes)
-        //        //    // PhidgetDevice = null ???
-        //        //    // Will need to declare Phidget22.Phidget?
-        //        //    PhidgetDevice = null;
-        //        //}
+                SteppersVisibility = Visibility.Visible;
+            }
+        }
 
-        //        OnPropertyChanged();
-        //    }
-        //}
+        #region Steppers
 
-        //private Int32? _stepperCount;
-        //public Int32? StepperCount
-        //{
-        //    get => _stepperCount;
-        //    set
-        //    {
-        //        if (_stepperCount == value)
-        //            return;
-        //        _stepperCount = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private Visibility _steppersVisibility = Visibility.Collapsed;
+        public Visibility SteppersVisibility
+        {
+            get => _steppersVisibility;
+            set
+            {
+                if (_steppersVisibility == value)
+                    return;
+                _steppersVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //private double _degrees;
-        //public double Degrees
-        //{
-        //    get => _degrees;
-        //    set
-        //    {
-        //        if (_degrees == value)
-        //            return;
-        //        _degrees = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private StepperEx? _stepper0;
+        public StepperEx? Stepper0
+        {
+            get => _stepper0;
+            set
+            {
+                if (_stepper0 == value)
+                    return;
+                _stepper0 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // I think some boards support more than one Stepper
+        // Stub out four for now
+
+        private StepperEx? _stepper1;
+        public StepperEx? Stepper1
+        {
+            get => _stepper1;
+            set
+            {
+                if (_stepper1 == value)
+                    return;
+                _stepper1 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx? _stepper2;
+        public StepperEx? Stepper2
+        {
+            get => _stepper2;
+            set
+            {
+                if (_stepper2 == value)
+                    return;
+                _stepper2 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private StepperEx? _stepper3;
+        public StepperEx? Stepper3
+        {
+            get => _stepper3;
+            set
+            {
+                if (_stepper3 == value)
+                    return;
+                _stepper3 = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -609,204 +390,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Event Handlers (none)
 
 
+
         #endregion
 
         #region Commands
 
-        #region Command ConfigFileName DoubleClick
+        #region OpenSteppers Command
 
-        public DelegateCommand ConfigFileName_DoubleClick_Command { get; set; }
-
-        public void ConfigFileName_DoubleClick()
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Enter", Common.LOG_CATEGORY);
-
-            Message = "ConfigFileName_DoubleClick";
-            PublishStatusMessage(Message);
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(ConfigFileName_DoubleClick) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-        #endregion
-
-        #region InitializeVelocityCommand
-
-        //public DelegateCommand InitializeVelocityCommand { get; set; }
-        public DelegateCommand<string> InitializeVelocityCommand { get; set; }
-        public string InitializeVelocityContent { get; set; } = "Initilize Velocity";
-        public string InitializeVelocityToolTip { get; set; } = "Initialize Velocity using Velocity Scale";
-
-        // Can get fancy and use Resources
-        //public string InitializeSlowStepperContent { get; set; } = "ViewName_InitializeSlowStepperContent";
-        //public string InitializeSlowStepperToolTip { get; set; } = "ViewName_InitializeSlowStepperContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_InitializeSlowStepperContent">InitializeSlowStepper</system:String>
-        //    <system:String x:Key="ViewName_InitializeSlowStepperContentToolTip">InitializeSlowStepper ToolTip</system:String>  
-
-        //public void InitializeSlowStepper()
-
-        public void InitializeVelocity(string speed)
-        {
-            Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeVelocity) Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called InitializeVelocity";
-            PublishStatusMessage(Message);
-
-            if ((Boolean)DeviceAttached)
-            {
-                //StepperServoCollection servos = ActiveStepper.Stepper.servos;
-
-                try
-                {
-                    //for (Int32 i = 0; i < servos.Count; i++)
-                    //{
-                    //    StepperProperties[i].InitializeVelocity(ConvertStringToInitializeMotion(speed));
-                    //}
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex, Common.LOG_CATEGORY);
-                }
-            }
-
-            // Uncomment this if you are telling someone else to handle this
-
-            // Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish();
-
-            // May want EventArgs
-
-            //  EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish(
-            //      new InitializeSlowStepperEventArgs()
-            //      {
-            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            //            Process = _contextMainViewModel.Context.SelectedProcess
-            //      });
-
-            // Start Cut Three - Put this in PrismEvents
-
-            // public class InitializeSlowStepperEvent : PubSubEvent { }
-
-            // End Cut Three
-
-            // Start Cut Four - Put this in places that listen for event
-
-            //Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Subscribe(InitializeSlowStepper);
-
-            // End Cut Four
-
-            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeVelocity) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-
-        //public Boolean InitializeSlowStepperCanExecute()
-        public Boolean InitializeVelocityCanExecute(string speed)
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
-            else
-                return false;
-        }
-
-        #endregion
-
-        #region InitializeAccelerationCommand
-
-        //public DelegateCommand InitializeVelocityCommand { get; set; }
-        public DelegateCommand<string> InitializeAccelerationCommand { get; set; }
-        public string InitializeAccelerationContent { get; set; } = "Initilize Acceleration";
-        public string InitializeAccelerationToolTip { get; set; } = "Initialize Acceleration using Acceleration Scale";
-
-        // Can get fancy and use Resources
-        //public string InitializeSlowStepperContent { get; set; } = "ViewName_InitializeSlowStepperContent";
-        //public string InitializeSlowStepperToolTip { get; set; } = "ViewName_InitializeSlowStepperContentToolTip";
-
-        // Put these in Resource File
-        //    <system:String x:Key="ViewName_InitializeSlowStepperContent">InitializeSlowStepper</system:String>
-        //    <system:String x:Key="ViewName_InitializeSlowStepperContentToolTip">InitializeSlowStepper ToolTip</system:String>  
-
-        //public void InitializeSlowStepper()
-
-        public void InitializeAcceleration(string speed)
-        {
-            //Int64 startTicks = 0;
-            //if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(InitializeAcceleration) Enter", Common.LOG_CATEGORY);
-            //// TODO(crhodes)
-            //// Do something amazing.
-            //Message = "Cool, you called InitializeAcceleration";
-            //PublishStatusMessage(Message);
-
-            //if ((Boolean)DeviceAttached)
-            //{
-            //    StepperStepperCollection steppers = ActiveStepper.Stepper.steppers;
-
-            //    try
-            //    {
-            //        for (Int32 i = 0; i < steppers.Count; i++)
-            //        {
-            //            StepperProperties[i].InitializeAcceleration(ConvertStringToInitializeMotion(speed));
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Log.Error(ex, Common.LOG_CATEGORY);
-            //    }
-            //}
-
-            //// Uncomment this if you are telling someone else to handle this
-
-            //// Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish();
-
-            //// May want EventArgs
-
-            ////  EventAggregator.GetEvent<InitializeSlowStepperEvent>().Publish(
-            ////      new InitializeSlowStepperEventArgs()
-            ////      {
-            ////            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-            ////            Process = _contextMainViewModel.Context.SelectedProcess
-            ////      });
-
-            //// Start Cut Three - Put this in PrismEvents
-
-            //// public class InitializeSlowStepperEvent : PubSubEvent { }
-
-            //// End Cut Three
-
-            //// Start Cut Four - Put this in places that listen for event
-
-            ////Common.EventAggregator.GetEvent<InitializeSlowStepperEvent>().Subscribe(InitializeSlowStepper);
-
-            //// End Cut Four
-
-            //if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(InitializeAcceleration) Exit", Common.LOG_CATEGORY, startTicks);
-        }
-
-
-        //public Boolean InitializeSlowStepperCanExecute()
-        public Boolean InitializeAccelerationCanExecute(string speed)
-        {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            //return true;
-            if (DeviceAttached is not null)
-                return (Boolean)DeviceAttached;
-            else
-                return false;
-        }
-
-        #endregion
-
-        #region OpenStepper Command
-
-        public DelegateCommand OpenSteppersCommand { get; set; }
-        public string OpenSteppersContent { get; set; } = "Open";
-        public string OpenSteppersToolTip { get; set; } = "OpenSteppers ToolTip";
+        public DelegateCommand? OpenAllSteppersCommand { get; set; }
+        public string OpenAllSteppersContent { get; set; } = "Open";
+        public string OpenAllSteppersToolTip { get; set; } = "OpenSteppers ToolTip";
 
         // Can get fancy and use Resources
         //public string OpenStepperContent { get; set; } = "ViewName_OpenStepperContent";
@@ -816,63 +409,25 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
         //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
 
-        public async void OpenStepper()
+        public void OpenAllSteppers()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(OpenSteppers) Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called OpenStepper";
+            Message = "Cool, you called OpenAllSteppers";
             PublishStatusMessage(Message);
 
-            var stepperCount = Common.PhidgetDeviceLibrary.StepperChannels
-                 .Keys
-                 .Where(x => (Int32)x.SerialNumber == SelectedStepperPhidget)
-                 .Select(x => x.SerialNumber).Count();
+            var steppers = Common.PhidgetDeviceLibrary.StepperChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedStepperPhidget);
 
-            for (Int32 channel = 0; channel < stepperCount; channel++)
+            foreach (var stepper in steppers)
             {
-                OpenStepper(channel.ToString());
+                OpenStepper(stepper.Key);
             }
 
-            DeviceAttached = true;  // To enable Close button
-
-            OpenSteppersCommand.RaiseCanExecuteChanged();
-            CloseSteppersCommand.RaiseCanExecuteChanged();
-
-            InitializeVelocityCommand.RaiseCanExecuteChanged();
-            InitializeAccelerationCommand.RaiseCanExecuteChanged();
-
-            //ActiveStepper = new StepperEx(
-            //    SelectedHost.IPAddress,
-            //    SelectedHost.Port,
-            //    SelectedStepperPhidget,
-            //    EventAggregator);
-
-            //ActiveStepper.Stepper.Attach += ActiveStepper_Attach;
-            //ActiveStepper.Stepper.Detach += ActiveStepper_Detach;
-
-            //ActiveStepper.Stepper.CurrentChange += ActiveStepper_CurrentChange;
-            //ActiveStepper.Stepper.InputChange += ActiveStepper_InputChange;
-            //ActiveStepper.Stepper.PositionChange += ActiveStepper_PositionChange;
-            //ActiveStepper.Stepper.VelocityChange += ActiveStepper_VelocityChange;
-
-            //// NOTE(crhodes)
-            //// Capture Digital Input and Output changes so we can update the UI
-            //// The StepperEx attaches to these events also.
-            //// Itlogs the changes if xxx is set to true.
-
-            ////ActiveStepper.OutputChange += ActiveStepper_OutputChange;
-            ////ActiveStepper.InputChange += ActiveStepper_InputChange;
-
-            ////// NOTE(crhodes)
-            ////// Let's do see if we can watch some analog data stream in.
-
-            ////ActiveStepper.SensorChange += ActiveStepper_SensorChange;
-
-            ////await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
-
-            //await Task.Run(() => ActiveStepper.Open(Common.PhidgetOpenTimeout));
+            OpenAllSteppersCommand?.RaiseCanExecuteChanged();
+            CloseAllSteppersCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -899,18 +454,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // End Cut Four
 
-            //OpenStepperCommand.RaiseCanExecuteChanged();
-            //CloseStepperCommand.RaiseCanExecuteChanged();
+            //OpenStepperCommand?.RaiseCanExecuteChanged();
+            //CloseStepperCommand?.RaiseCanExecuteChanged();
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(OpenSteppers) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean OpenStepperCanExecute()
+        public Boolean OpenAllSteppersCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
-            if (SelectedStepperPhidget > 0 && DeviceAttached is not null)
+            if (SelectedStepperPhidget > 0)
             {
                 return true;
             }
@@ -924,12 +476,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region OpenStepper Command
 
-        public DelegateCommand<string> OpenStepperCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? OpenStepperCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _OpenStepperHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE OpenStepperCommandParameter;
 
         public string OpenStepperContent { get; set; } = "Open";
         public string OpenStepperToolTip { get; set; } = "Open Stepper";
@@ -942,193 +491,41 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_OpenStepperContent">OpenStepper</system:String>
         //    <system:String x:Key="ViewName_OpenStepperContentToolTip">OpenStepper ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
-        void ConfigureInitialLogging(StepperEx stepper)
-        {
-            stepper.LogPhidgetEvents = LogPhidgetEvents;
-            stepper.LogErrorEvents = LogErrorEvents;
-            stepper.LogPropertyChangeEvents = LogPropertyChangeEvents;
-
-            stepper.LogPositionChangeEvents = LogPositionChangeEvents;
-            stepper.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            stepper.LogStoppedEvents = LogStoppedEvents;
-
-            stepper.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            stepper.LogChannelAction = LogChannelAction;
-            stepper.LogActionVerification = LogActionVerification;
-        }
-
-        public async void OpenStepper(string stepperNumber)
-        //public void OpenStepper()
+        public async void OpenStepper(SerialHubPortChannel? serialHubPortChannel)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);           
 
-            Message = "Cool, you called OpenStepper";
+            Message = $"Cool, you called OpenStepper on " +
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = (Int32)SelectedStepperPhidget;
-            Int32 channel;
-
-            if (Int32.TryParse(stepperNumber, out channel))
+            switch (serialHubPortChannel?.Channel)
             {
-                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+                case 0:
+                    await OpenStepper(Stepper0);
+                    break;
 
-                StepperEx stepperHost = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
+                case 1:
+                    await OpenStepper(Stepper1);
+                    break;
 
-                switch (channel)
-                {
-                    case 0:
+                case 2:
+                    await OpenStepper(Stepper2);
+                    break;
 
-                        if (Stepper0 is null)
-                        {
-                            // NOTE(crhodes)
-                            // Connect the UI to the Control so the UI is bound to the information
+                case 3:
+                    await OpenStepper(Stepper0);
+                    break;
 
-                            Stepper0 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-
-                            // NOTE(crhodes)
-                            // If this is the first time the channel is open use the global Logging settings
-                            // Can turn off what is not need in Channel UI once open before further interacitons
-
-                            ConfigureInitialLogging(Stepper0);
-                        }
-                        if (Stepper0.IsOpen is false)
-                        {
-                            await Task.Run(() => Stepper0.Open(500));
-                        }
-                        else
-                        {
-                            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper0 already open", Common.LOG_CATEGORY);
-                        }
-
-                        break;
-
-                    case 1:
-                        if (Stepper1 is null)
-                        {
-                            Stepper1 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                            ConfigureInitialLogging(Stepper1);
-                        }
-                        if (Stepper1.IsOpen is false)
-                        {
-                            await Task.Run(() => Stepper1.Open(500));
-                        }
-                        else
-                        {
-                            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper1 already open", Common.LOG_CATEGORY);
-                        }
-                        break;
-
-                    case 2:
-                        if (Stepper2 is null)
-                        {
-                            Stepper2 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                            ConfigureInitialLogging(Stepper2);
-                        }
-                        if (Stepper2.IsOpen is false)
-                        {
-                            await Task.Run(() => Stepper2.Open(500));
-                        }
-                        else
-                        {
-                            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper2 already open", Common.LOG_CATEGORY);
-                        }
-                        break;
-
-                    case 3:
-                        if (Stepper3 is null)
-                        {
-                            Stepper3 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                            ConfigureInitialLogging(Stepper3);
-                        }
-                        if (Stepper3.IsOpen is false)
-                        {
-                            await Task.Run(() => Stepper3.Open(500));
-                        }
-                        else
-                        {
-                            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper3 already open", Common.LOG_CATEGORY);
-                        }
-                        break;
-
-                    //case 4:
-                    //    if (Stepper4 is null)
-                    //    {
-                    //        Stepper4 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                    //        ConfigureInitialLogging(Stepper4);
-                    //    }
-                    //    if (Stepper4.IsOpen is false)
-                    //    {
-                    //        await Task.Run(() => Stepper4.Open(500));
-                    //    }
-                    //    else
-                    //    {
-                    //        if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper4 already open", Common.LOG_CATEGORY);
-                    //    }
-                    //    break;
-
-                    //case 5:
-                    //    if (Stepper5 is null)
-                    //    {
-                    //        Stepper5 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                    //        ConfigureInitialLogging(Stepper5);
-                    //    }
-                    //    if (Stepper5.IsOpen is false)
-                    //    {
-                    //        await Task.Run(() => Stepper5.Open(500));
-                    //    }
-                    //    else
-                    //    {
-                    //        if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper5 already open", Common.LOG_CATEGORY);
-                    //    }
-                    //    break;
-
-                    //case 6:
-                    //    if (Stepper6 is null)
-                    //    {
-                    //        Stepper6 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                    //        ConfigureInitialLogging(Stepper6);
-                    //    }
-                    //    if (Stepper6.IsOpen is false)
-                    //    {
-                    //        await Task.Run(() => Stepper6.Open(500));
-                    //    }
-                    //    else
-                    //    {
-                    //        if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper6 already open", Common.LOG_CATEGORY);
-                    //    }
-                    //    break;
-
-                    //case 7:
-                    //    if (Stepper7 is null)
-                    //    {
-                    //        Stepper7 = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
-                    //        ConfigureInitialLogging(Stepper7);
-                    //    }
-                    //    if (Stepper7.IsOpen is false)
-                    //    {
-                    //        await Task.Run(() => Stepper7.Open(500));
-                    //    }
-                    //    else
-                    //    {
-                    //        if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Stepper7 already open", Common.LOG_CATEGORY);
-                    //    }
-                    //    break;
-                }
-                //}
-
-                OpenStepperCommand.RaiseCanExecuteChanged();
-                CloseStepperCommand.RaiseCanExecuteChanged();
+                    // TODO(crhodes)
+                    // Add more cases if a board supports more channels
             }
-            else
-            {
-                Message = $"Cannot parse stepperNumber:>{stepperNumber}<";
-                Log.Error(Message, Common.LOG_CATEGORY);
-            }
+
+            OpenStepperCommand?.RaiseCanExecuteChanged();
+            CloseStepperCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -1172,25 +569,58 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
-        public Boolean OpenStepperCanExecute(string channelNumber)
-        //public Boolean OpenStepperCanExecute()
+        private async Task OpenStepper(StepperEx? stepper)
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            Int32 channel;
+            if (stepper is not null)
+            {
+                ConfigureInitialLogging(stepper);
 
-            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
+                if (stepper.IsOpen is false)
+                {
+                    await Task.Run(() => stepper.Open(10000));
+                }
+                else
+                {
+                    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER($"{stepper} already open", Common.LOG_CATEGORY);
+                }
+            }
+            else
+            {
+                Log.Error("Attempt to Open null StepperEx", Common.LOG_CATEGORY);
+            }
+        }
 
+        void ConfigureInitialLogging(StepperEx stepper)
+        {
+            stepper.LogPhidgetEvents = LogPhidgetEvents;
+            stepper.LogErrorEvents = LogErrorEvents;
+            stepper.LogPropertyChangeEvents = LogPropertyChangeEvents;
+
+            stepper.LogPositionChangeEvents = LogPositionChangeEvents;
+            stepper.LogVelocityChangeEvents = LogVelocityChangeEvents;
+
+            stepper.LogStoppedEvents = LogStoppedEvents;
+
+            stepper.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            stepper.LogChannelAction = LogChannelAction;
+            stepper.LogActionVerification = LogActionVerification;
+        }
+
+        public Boolean OpenStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)
+        {
             if (SelectedStepperPhidget is null) return false;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedStepperPhidget, Channel = channel };
+            if (serialHubPortChannel is null) return false;
 
             StepperEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.StepperChannels
+                    .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host))
+            { 
+                return true; 
+            }
 
-            if (host.Attached)
+            if (host.IsOpen)
             {
                 return false;
             }
@@ -1204,9 +634,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseSteppers Command
 
-        public DelegateCommand CloseSteppersCommand { get; set; }
-        public string CloseSteppersContent { get; set; } = "Close";
-        public string CloseSteppersToolTip { get; set; } = "CloseSteppers ToolTip";
+        public DelegateCommand? CloseAllSteppersCommand { get; set; }
+        public string CloseAllSteppersContent { get; set; } = "Close";
+        public string CloseAllSteppersToolTip { get; set; } = "CloseSteppers ToolTip";
 
         // Can get fancy and use Resources
         //public string CloseStepperContent { get; set; } = "ViewName_CloseStepperContent";
@@ -1216,32 +646,27 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseStepperContent">CloseStepper</system:String>
         //    <system:String x:Key="ViewName_CloseStepperContentToolTip">CloseStepper ToolTip</system:String>  
 
-        public async void CloseStepper()
+        public async void CloseAllSteppers()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(CloseStepper) Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-            Message = "Cool, you called CloseSteppers";
+
+            Message = "Cool, you called CloseAllSteppers";
             PublishStatusMessage(Message);
 
-            var stepperCount = Common.PhidgetDeviceLibrary.RCServoChannels
-                 .Keys
-                 .Where(x => (Int32)x.SerialNumber == SelectedStepperPhidget)
-                 .Select(x => x.SerialNumber).Count();
+            var steppers = Common.PhidgetDeviceLibrary.StepperChannels
+                .Where(kv => kv.Key.SerialNumber == SelectedStepperPhidget);
 
-            for (Int32 channel = 0; channel < stepperCount; channel++)
+            foreach (var stepper in steppers)
             {
-                CloseStepper(channel.ToString());
+                CloseStepper(stepper.Key);
             }
 
-            DeviceAttached = false; // To enable Open button
+            OpenAllSteppersCommand?.RaiseCanExecuteChanged();
+            CloseAllSteppersCommand?.RaiseCanExecuteChanged();
 
-            OpenSteppersCommand.RaiseCanExecuteChanged();
-            CloseSteppersCommand.RaiseCanExecuteChanged();
-
-            InitializeVelocityCommand.RaiseCanExecuteChanged();
-            InitializeAccelerationCommand.RaiseCanExecuteChanged();
+            //InitializeVelocityCommand?.RaiseCanExecuteChanged();
+            //InitializeAccelerationCommand?.RaiseCanExecuteChanged();
 
             //await Task.Run(() => ActiveStepper.Close());
 
@@ -1250,12 +675,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             //ActiveStepper = null;
             //ClearDigitalInputsAndOutputs();
 
-            //OpenStepperCommand.RaiseCanExecuteChanged();
-            //RefreshStepperCommand.RaiseCanExecuteChanged();
-            //CloseStepperCommand.RaiseCanExecuteChanged();
+            //OpenStepperCommand?.RaiseCanExecuteChanged();
+            //RefreshStepperCommand?.RaiseCanExecuteChanged();
+            //CloseStepperCommand?.RaiseCanExecuteChanged();
 
-            //InitializeAccelerationCommand.RaiseCanExecuteChanged();
-            //InitializeVelocityCommand.RaiseCanExecuteChanged();
+            //InitializeAccelerationCommand?.RaiseCanExecuteChanged();
+            //InitializeVelocityCommand?.RaiseCanExecuteChanged();
 
             // Uncomment this if you are telling someone else to handle this
 
@@ -1285,12 +710,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(CloseStepper) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean CloseSteppersCanExecute()
+        public Boolean CloseAllSteppersCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-
-            if (SelectedStepperPhidget > 0 && DeviceAttached is not null)
+            if (SelectedStepperPhidget > 0)
             {
                 return true;
             }
@@ -1304,12 +726,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region CloseStepper Command
 
-        public DelegateCommand<string> CloseStepperCommand { get; set; }
+        public DelegateCommand<SerialHubPortChannel?>? CloseStepperCommand { get; set; }
         // If displaying UserControl
         // public static WindowHost _CloseStepperHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE CloseStepperCommandParameter;
 
         public string CloseStepperContent { get; set; } = "Close";
         public string CloseStepperToolTip { get; set; } = "Close Stepper";
@@ -1322,35 +741,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_CloseStepperContent">CloseStepper</system:String>
         //    <system:String x:Key="ViewName_CloseStepperContentToolTip">CloseStepper ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
-        public async void CloseStepper(string servoNumber)
-        //public void CloseStepper()
+        public async void CloseStepper(SerialHubPortChannel? serialHubPortChannel)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);           
 
-            Message = "Cool, you called CloseStepper";
+            Message = $"Cool, you called CloseStepper on " +
+                $"serialHubPortChannel:{serialHubPortChannel?.SerialNumber}" +
+                $":{serialHubPortChannel?.HubPort}:{serialHubPortChannel?.Channel}";
+
             PublishStatusMessage(Message);
 
-            Int32 serialNumber = (Int32)SelectedStepperPhidget;
-            Int32 channel;
+            await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[(SerialHubPortChannel)serialHubPortChannel].Close());
 
-            if (Int32.TryParse(servoNumber, out channel))
-            {
-                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-                await Task.Run(() => Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel].Close());
-            }
-            else
-            {
-                Message = $"Cannot parse servoNumber:>{servoNumber}<";
-                Log.Error(Message, Common.LOG_CATEGORY);
-            }
-
-            OpenStepperCommand.RaiseCanExecuteChanged();
-            CloseStepperCommand.RaiseCanExecuteChanged();
+            OpenStepperCommand?.RaiseCanExecuteChanged();
+            CloseStepperCommand?.RaiseCanExecuteChanged();
 
             // If launching a UserControl
 
@@ -1394,25 +799,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
-        public Boolean CloseStepperCanExecute(string channelNumber)
-        //public Boolean CloseStepperCanExecute()
+        public Boolean CloseStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
-            Int32 channel;
-
-            if (!Int32.TryParse(channelNumber, out channel)) throw new Exception($"Cannot parse channelNumber:{channelNumber}");
-
-            if (SelectedStepperPhidget is null) return false;
-
-            // FIX(crhodes)
-            // Figure out how to handle non zero HubPort
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = (Int32)SelectedStepperPhidget, Channel = channel };
+            if (serialHubPortChannel is null) return false;
 
             StepperEx? host;
 
-            if (!Common.PhidgetDeviceLibrary.StepperChannels.TryGetValue(serialHubPortChannel, out host)) return false;
+            if (!Common.PhidgetDeviceLibrary.StepperChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
 
             if (host.IsOpen)
             {
@@ -1426,132 +820,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        //#region Rotate Command
-
-        // TODO(crhodes)
-        // I think this belongs in StepperPositionControl
-        // like the stuff in RCServoTargetPositionControl
-
-
-        // Start Cut Three - Put this in Fields and Properties
-
-        //public DelegateCommand<string> RotateCommand { get; set; }
-        //// If using CommandParameter, figure out TYPE here and above
-        //// and remove above declaration
-        ////public DelegateCommand<TYPE> RotateCommand { get; set; }
-
-        //// End Cut Three
-
-        //// If displaying UserControl
-        //// public static WindowHost _RotateHost = null;
-
-        //// If using CommandParameter, figure out TYPE here
-        ////public TYPE RotateCommandParameter;
-
-        //public string RotateContent { get; set; } = "Rotate";
-        //public string RotateToolTip { get; set; } = "Rotate ToolTip";
-
-        //// Can get fancy and use Resources
-        ////public string RotateContent { get; set; } = "ViewName_RotateContent";
-        ////public string RotateToolTip { get; set; } = "ViewName_RotateContentToolTip";
-
-        //// Put these in Resource File
-        ////    <system:String x:Key="ViewName_RotateContent">Rotate</system:String>
-        ////    <system:String x:Key="ViewName_RotateContentToolTip">Rotate ToolTip</system:String>  
-
-        //// If using CommandParameter, figure out TYPE here
-        ////public void Rotate(TYPE value)
-        //public void Rotate(string direction)
-        //{
-        //    // FIX(crhodes)
-        //    // 
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-        //    // TODO(crhodes)
-        //    // Do something amazing.
-
-        //    Message = "Cool, you called Rotate";
-        //PublishStatusMessage(Message);
-
-        //    PublishStatusMessage(Message);
-
-        //    //var sa = StepperProperties[0].StepAngle;
-
-        //    //Double circle = 360;
-        //    //var circleSteps = circle / sa;
-
-        //    //Int64 stepsToMove = (Int64)(Degrees / sa);
-
-        //    //stepsToMove = stepsToMove * 16; // 1/16 steps
-
-        //    //switch (direction)
-        //    //{
-        //    //    case "CW":
-        //    //        StepperProperties[0].TargetPosition += stepsToMove;
-        //    //        break;
-
-        //    //    case "CCW":
-        //    //        StepperProperties[0].TargetPosition -= stepsToMove;
-        //    //        break;
-
-        //    //    default:
-        //    //        Log.Error($"Unexpected direction:>{direction}", Common.LOG_CATEGORY);
-        //    //        break;
-        //    //}
-
-        //    // If launching a UserControl
-
-        //    // if (_RotateHost is null) _RotateHost = new WindowHost();
-        //    // var userControl = new USERCONTROL();
-
-        //    // _loggingConfigurationHost.DisplayUserControlInHost(
-        //    //     "TITLE GOES HERE",
-        //    //     //Common.DEFAULT_WINDOW_WIDTH,
-        //    //     //Common.DEFAULT_WINDOW_HEIGHT,
-        //    //     (Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
-        //    //     (Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
-        //    //     ShowWindowMode.Modeless_Show,
-        //    //     userControl);
-
-        //    // Uncomment this if you are telling someone else to handle this
-
-        //    // Common.EventAggregator.GetEvent<RotateEvent>().Publish();
-
-        //    // May want EventArgs
-
-        //    //  EventAggregator.GetEvent<RotateEvent>().Publish(
-        //    //      new RotateEventArgs()
-        //    //      {
-        //    //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
-        //    //            Process = _contextMainViewModel.Context.SelectedProcess
-        //    //      });
-
-        //    // Start Cut Four - Put this in PrismEvents
-
-        //    // public class RotateEvent : PubSubEvent { }
-
-        //    // End Cut Four
-
-        //    // Start Cut Five - Put this in places that listen for event
-
-        //    //Common.EventAggregator.GetEvent<RotateEvent>().Subscribe(Rotate);
-
-        //    // End Cut Five
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //// If using CommandParameter, figure out TYPE and fix above
-        ////public Boolean RotateCanExecute(TYPE value)
-        //public Boolean RotateCanExecute(string direction)
-        //{
-        //    // TODO(crhodes)
-        //    // Add any before button is enabled logic.
-        //    return true;
-        //}
-
-        //#endregion
-
         #region ZeroCurrentPosition Command
 
         // TODO(crhodes)
@@ -1561,13 +829,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //public DelegateCommand ZeroCurrentPositionCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
-        public DelegateCommand<string> ZeroCurrentPositionCommand { get; set; }
+        public DelegateCommand<string>? ZeroCurrentPositionCommand { get; set; }
 
         // If displaying UserControl
         // public static WindowHost _ZeroCurrentPositionHost = null;
-
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE ZeroCurrentPositionCommandParameter;
 
         public string ZeroCurrentPositionContent { get; set; } = "ZeroCurrentPosition";
         public string ZeroCurrentPositionToolTip { get; set; } = "ZeroCurrentPosition ToolTip";
@@ -1580,15 +845,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_ZeroCurrentPositionContent">ZeroCurrentPosition</system:String>
         //    <system:String x:Key="ViewName_ZeroCurrentPositionContentToolTip">ZeroCurrentPosition ToolTip</system:String>  
 
-        // If using CommandParameter, figure out TYPE here
         public void ZeroCurrentPosition(string stepperNumber)
-        //public void ZeroCurrentPosition()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-
-            // TODO(crhodes)
-            // Do something amazing.
 
             Message = "Cool, you called ZeroCurrentPosition";
             PublishStatusMessage(Message);
@@ -1604,15 +864,15 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
 
                 case 1:
-                    Stepper1.AddPositionOffset(-Stepper1.Position);
+                    Stepper1?.AddPositionOffset(-Stepper1.Position);
                     break;
 
                 case 2:
-                    Stepper2.AddPositionOffset(-Stepper2.Position);
+                    Stepper2?.AddPositionOffset(-Stepper2.Position);
                     break;
 
                 case 3:
-                    Stepper3.AddPositionOffset(-Stepper3.Position);
+                    Stepper3?.AddPositionOffset(-Stepper3.Position);
                     break;
 
                 //case 4:
@@ -1678,9 +938,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
         public Boolean ZeroCurrentPositionCanExecute(string stepperNumber)
-        //public Boolean ZeroCurrentPositionCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
@@ -1694,9 +952,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Public Methods (none)
 
 
+
         #endregion
 
         #region Protected Methods (none)
+
 
 
         #endregion
@@ -1704,17 +964,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         #region Private Methods (none)
 
 
-        #endregion
-
-        #region IInstanceCount
-
-        private static Int32 _instanceCountVM;
-
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
 
         #endregion
     }

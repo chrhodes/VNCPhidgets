@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public LCDSequence(LCDSequence sequence) : base("LCD", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of LCD actions in sequence
         /// </summary>
-        public LCDAction[] Actions { get; set; }
+        public LCDAction[]? Actions { get; set; }
     }
 }

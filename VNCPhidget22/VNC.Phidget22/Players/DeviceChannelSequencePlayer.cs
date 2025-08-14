@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using Prism.Events;
-using Prism.Regions.Behaviors;
 
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
@@ -16,19 +15,20 @@ namespace VNC.Phidget22.Players
     {
         #region Constructors, Initialization, and Load
 
+        private static readonly object _lock = new object();
+
         public IEventAggregator EventAggregator { get; set; }
 
-        public DeviceChannelSequencePlayer(IEventAggregator eventAggregator)
+        public DeviceChannelSequencePlayer(IEventAggregator eventAggregator, Int32? serialNumber = null)
         {
             
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
+            SerialNumber = serialNumber;
 
-            ActivePerformanceSequencePlayer = this;
-
-            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
+            //ActivePerformanceSequencePlayer = this;
         }
 
         #endregion
@@ -36,28 +36,20 @@ namespace VNC.Phidget22.Players
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
 
         #region Fields and Properties
 
-        public static DeviceChannelSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        public Int32? SerialNumber { get; set; } = null;
 
-        // TODO(crhodes)
-        //// 
-        //public AdvancedServoEx ActiveAdvancedServoHost { get; set; }
-        //public InterfaceKitEx ActiveInterfaceKitHost { get; set; }
-
-        // TODO(crhodes)
-        // This needs to be something fancier as we can have multiple RCServoHost per IP and multiple IP's
-        public RCServoEx ActiveRCServoHost { get; set; }
-        public StepperEx ActiveStepperHost { get; set; }
-
-        public DigitalOutputEx ActiveDigitalOutputHost { get; set; }
+        #region Logging
 
         public Boolean LogDeviceChannelSequence { get; set; }
         public Boolean LogChannelAction { get; set; }
@@ -82,11 +74,12 @@ namespace VNC.Phidget22.Players
         public Boolean LogOutputChangeEvents { get; set; }
         public Boolean LogSensorChangeEvents { get; set; }
 
-        //
+        #endregion
 
         #endregion
 
         #region Event Handlers (none)
+
 
 
         #endregion
@@ -105,70 +98,75 @@ namespace VNC.Phidget22.Players
         /// </summary>
         /// <param name="deviceChannelSequence"></param>
         /// <returns></returns>
-        public async Task ExecuteDeviceChannelSequence(DeviceChannelSequence deviceChannelSequence, Int32? performanceSerialNumber = null)
+        public async Task ExecuteDeviceChannelSequence(DeviceChannelSequence deviceChannelSequence)
+        //public async Task ExecuteDeviceChannelSequence(DeviceChannelSequence deviceChannelSequence, Int32? performanceSerialNumber = null)
         {
             Int64 startTicks = 0;
-
-            DeviceChannelSequence nextPhidgetDeviceClassSequence = null;
 
             try
             {
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Executing DeviceChannel Sequence:>{deviceChannelSequence?.Name}" +
-                        $"\r channelClass:>{deviceChannelSequence?.ChannelClass}<" +
-                        $" performanceSerialNumber:>{performanceSerialNumber}< serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                        $" hubPort:>{deviceChannelSequence?.HubPort}< channel:>{deviceChannelSequence?.Channel}<" +
-                        $"\r loops:>{deviceChannelSequence?.SequenceLoops}<" +
-                        $" duration:>{deviceChannelSequence?.Duration}<" +
-                        $"\r closePhidget:>{deviceChannelSequence?.ClosePhidget}<", Common.LOG_CATEGORY);
+                    startTicks = Log.Trace($"Enter ExecuteDeviceChannelSequence:(>{deviceChannelSequence.Name}<)" +
+                        $" channelClass:>{deviceChannelSequence.ChannelClass}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
+                        $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
+                        $" dcsHubPort:>{deviceChannelSequence.HubPort}<" +
+                        $" dcsChannel:>{deviceChannelSequence.Channel}<" +
+                        $" loops:>{deviceChannelSequence.SequenceLoops}<" +
+                        $" duration:>{deviceChannelSequence.Duration}<" +
+                        $" closePhidget:>{deviceChannelSequence.ClosePhidget}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 for (Int32 sequenceLoop = 0; sequenceLoop < deviceChannelSequence.SequenceLoops; sequenceLoop++)
                 {
-                    if (LogDeviceChannelSequence) Log.Trace($"Running DeviceChannelSequence Loop:{sequenceLoop + 1}", Common.LOG_CATEGORY);
-
                     // NOTE(crhodes)
                     // Each loop starts back at the initial sequence
-                    nextPhidgetDeviceClassSequence = deviceChannelSequence;
+                    DeviceChannelSequence? nextPhidgetDeviceChannelSequence = deviceChannelSequence;
 
-                    // NOTE(crhodes)
-                    // This allows reuse of a DeviceChannelSequence that only varies by SerialNumber
-
-                    if (performanceSerialNumber is not null)
+                    if (SerialNumber.HasValue)
                     {
-                        nextPhidgetDeviceClassSequence.SerialNumber = (Int32)performanceSerialNumber;
+                        nextPhidgetDeviceChannelSequence.SerialNumber = SerialNumber;
                     }
+
+                    if (LogDeviceChannelSequence) Log.Trace($"Running DeviceChannelSequence:>{nextPhidgetDeviceChannelSequence.Name}< on" +
+                        $" dcsSerialNumber:>{nextPhidgetDeviceChannelSequence.SerialNumber}<" +
+                        $" dcsHubPort:>{nextPhidgetDeviceChannelSequence.HubPort}<" +
+                        $" dcsChannel >{nextPhidgetDeviceChannelSequence.Channel}<" +
+                        $" Loop:{sequenceLoop + 1}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                     do
                     {
-                        switch (nextPhidgetDeviceClassSequence.ChannelClass)
+                        switch (nextPhidgetDeviceChannelSequence.ChannelClass)
                         {
                              case "DigitalOutput":
-                                nextPhidgetDeviceClassSequence = await ExecuteDigitalOutputChannelSequence(nextPhidgetDeviceClassSequence);
+                                nextPhidgetDeviceChannelSequence = await ExecuteDigitalOutputChannelSequence(nextPhidgetDeviceChannelSequence);
                                 break;
 
                             case "RCServo":
-                                nextPhidgetDeviceClassSequence = await ExecuteRCServoChannelSequence(nextPhidgetDeviceClassSequence);
+                                nextPhidgetDeviceChannelSequence = await ExecuteRCServoChannelSequence(nextPhidgetDeviceChannelSequence);
                                 break;
 
                             case "Stepper":
-                                nextPhidgetDeviceClassSequence = await ExecuteStepperChannelSequence(nextPhidgetDeviceClassSequence);
+                                nextPhidgetDeviceChannelSequence = await ExecuteStepperChannelSequence(nextPhidgetDeviceChannelSequence);
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceClassSequence.ChannelClass}<", Common.LOG_CATEGORY);
-                                nextPhidgetDeviceClassSequence = null;
+                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceChannelSequence.ChannelClass}<", Common.LOG_CATEGORY);
+                                nextPhidgetDeviceChannelSequence = null;
                                 break;
                         }
-                    } while (nextPhidgetDeviceClassSequence is not null);
+                    } while (nextPhidgetDeviceChannelSequence is not null);
                 }
 
-                if (deviceChannelSequence.Duration is not null)
+                if (deviceChannelSequence.Duration.HasValue)
                 {
                     if (LogDeviceChannelSequence)
                     {
-                        Log.Trace($"Zzzzz Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
+                        Log.Trace($"Zzzz - End of DeviceChannelSequence:>{deviceChannelSequence.Name}<" +
+                            $" Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
                     }
                     Thread.Sleep((Int32)deviceChannelSequence.Duration);
                 }
@@ -180,7 +178,8 @@ namespace VNC.Phidget22.Players
 
             if (LogDeviceChannelSequence)
             {
-                Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                Log.Trace($"Exit" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
             }
         }
 
@@ -199,98 +198,91 @@ namespace VNC.Phidget22.Players
         // TODO(crhodes)
         // Might be able to make generic
 
-        private async Task<DeviceChannelSequence> ExecuteDigitalOutputChannelSequence(DeviceChannelSequence deviceChannelSequence)
+        private async Task<DeviceChannelSequence?> ExecuteDigitalOutputChannelSequence(DeviceChannelSequence deviceChannelSequence)
         {
             Int64 startTicks = 0;
-            DeviceChannelSequence nextDeviceChannelSequence = null;
+            DeviceChannelSequence? nextDeviceChannelSequence = null;
 
             try
             {
-                DigitalOutputEx phidgetHost = null;
+                DigitalOutputEx? phidgetHost = null;
+                // TODO(crhodes)
+                // This is likely where to handle sequence without a name
+                DigitalOutputSequence? digitalOutputSequence = RetrieveDigitalOutputSequence(deviceChannelSequence);
 
-                if (PerformanceLibrary.AvailableDigitalOutputSequences.ContainsKey(deviceChannelSequence.Name))
+                if (LogDeviceChannelSequence)
                 {
-                    var digitalOutputSequence = PerformanceLibrary.AvailableDigitalOutputSequences[deviceChannelSequence.Name];
-
-                    if (LogDeviceChannelSequence)
-                    {
-                        startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
-                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{digitalOutputSequence.Channel}< " +
-                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
-
-                    // NOTE(crhodes)
-                    // This allows reuse of a ChannelSequence that only varies by Channel
-                    // Useful during initialization of common Channels on a Phidget Device
-
-                    if (deviceChannelSequence.Channel is not null)
-                    {
-                        digitalOutputSequence.Channel = deviceChannelSequence.Channel;
-                    }
-
-                    phidgetHost = GetDigitalOutputHost((Int32)deviceChannelSequence.SerialNumber, (Int32)digitalOutputSequence.Channel);
-
-                    if (phidgetHost == null)
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}", Common.LOG_CATEGORY);
-                        nextDeviceChannelSequence = null;
-                    }
-
-                    if (phidgetHost is not null)
-                    {
-                        if (digitalOutputSequence.BeforeActionLoopSequences is not null)
-                        {
-                            foreach (DeviceChannelSequence sequence in digitalOutputSequence.BeforeActionLoopSequences)
-                            {
-                                // NOTE(crhodes)
-                                // We do not pass in a SerialNumber override
-
-                                await ExecuteDeviceChannelSequence(sequence);
-                            }
-                        }
-
-                        await phidgetHost.RunActionLoops(digitalOutputSequence);
-
-                        if (digitalOutputSequence.AfterActionLoopSequences is not null)
-                        {
-                            foreach (DeviceChannelSequence sequence in digitalOutputSequence.AfterActionLoopSequences)
-                            {
-                                // NOTE(crhodes)
-                                // We do not pass in a SerialNumber override
-
-                                await ExecuteDeviceChannelSequence(sequence);
-                            }
-                        }
-
-                        if (digitalOutputSequence.SequenceDuration is not null)
-                        {
-                            if (LogDeviceChannelSequence)
-                            {
-                                Log.Trace($"Zzzzz Sequence:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)digitalOutputSequence.SequenceDuration);
-                        }
-
-                        nextDeviceChannelSequence = digitalOutputSequence.NextSequence;
-                    }
+                    startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
+                        $" serialNumber:>{deviceChannelSequence.SerialNumber}<" +
+                        $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
+                        $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{digitalOutputSequence?.Channel}< " +
+                        //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                        $" beforeActionLoopSequences:>{digitalOutputSequence?.BeforeActionLoopSequences?.Count()}<" +
+                        //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                        //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                        //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                        //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                        //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                        $" afterActionLoopSequences:>{digitalOutputSequence?.AfterActionLoopSequences?.Count()}<" +
+                        $" sequenceDuration:>{digitalOutputSequence?.SequenceDuration}<" +
+                        $" nextSequence:>{digitalOutputSequence?.NextSequence?.Name}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
-                else
+
+                phidgetHost = GetDigitalOutputHost(
+                    SerialNumber, 
+                    digitalOutputSequence?.HubPort, 
+                    digitalOutputSequence?.Channel);
+
+                if (phidgetHost is null)
                 {
-                    Log.Trace($"Cannot find deviceChannelSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                        $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
+
                     nextDeviceChannelSequence = null;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:{nextDeviceChannelSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+                if (phidgetHost is not null && digitalOutputSequence is not null)
+                {
+                    if (digitalOutputSequence.BeforeActionLoopSequences is not null)
+                    {
+                        foreach (DeviceChannelSequence sequence in digitalOutputSequence.BeforeActionLoopSequences)
+                        {
+                            // NOTE(crhodes)
+                            // We do not pass in a SerialNumber override
+
+                            await ExecuteDeviceChannelSequence(sequence);
+                        }
+                    }
+
+                    await phidgetHost.RunActionLoops(digitalOutputSequence);
+
+                    if (digitalOutputSequence.AfterActionLoopSequences is not null)
+                    {
+                        foreach (DeviceChannelSequence sequence in digitalOutputSequence.AfterActionLoopSequences)
+                        {
+                            // NOTE(crhodes)
+                            // We do not pass in a SerialNumber override
+
+                            await ExecuteDeviceChannelSequence(sequence);
+                        }
+                    }
+
+                    if (digitalOutputSequence.SequenceDuration is not null)
+                    {
+                        if (LogDeviceChannelSequence)
+                        {
+                            Log.Trace($"Zzzz - End of DigitalOutputSequence:>{digitalOutputSequence.Name}<" +
+                                $" Sleeping:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                        }
+                        Thread.Sleep((Int32)digitalOutputSequence.SequenceDuration);
+                    }
+
+                    nextDeviceChannelSequence = digitalOutputSequence.NextSequence;
+                }
+
+                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -300,106 +292,144 @@ namespace VNC.Phidget22.Players
             return nextDeviceChannelSequence;
         }
 
-        private async Task<DeviceChannelSequence> ExecuteRCServoChannelSequence(DeviceChannelSequence deviceChannelSequence)
+        private DigitalOutputSequence? RetrieveDigitalOutputSequence(DeviceChannelSequence deviceChannelSequence)
+        {
+            if (PerformanceLibrary.AvailableDigitalOutputSequences.TryGetValue(deviceChannelSequence.Name, out DigitalOutputSequence? retrievedSequence))
+            {
+                if (LogDeviceChannelSequence) Log.Trace($"Retrieved digitalOutputSequence:>{retrievedSequence.Name}<" +
+                    $" hubPort:>{retrievedSequence.HubPort}<" +
+                    $" channel:>{retrievedSequence.Channel}<" +
+                    $" for dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
+
+                DigitalOutputSequence updatedSequence = new DigitalOutputSequence(retrievedSequence);
+                // NOTE(crhodes)
+                // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
+                // Useful during initialization of common Channels on a Phidget Device
+
+                if (deviceChannelSequence.HubPort is not null)
+                {
+                    updatedSequence.HubPort = deviceChannelSequence.HubPort;
+                }
+
+                if (deviceChannelSequence.Channel is not null)
+                {
+                    updatedSequence.Channel = deviceChannelSequence.Channel;                  
+                }
+
+                if (LogDeviceChannelSequence) Log.Trace($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
+                    $" on digitalOutputSequence:>{updatedSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
+
+                return updatedSequence;
+            }
+            else
+            {
+                Log.Trace($"Cannot find digitalOutputSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                return null;
+            }
+        }
+
+        private async Task<DeviceChannelSequence?> ExecuteRCServoChannelSequence(DeviceChannelSequence deviceChannelSequence)
         {
             Int64 startTicks = 0;
-            DeviceChannelSequence nextDeviceChannelSequence = null;
+            DeviceChannelSequence? nextDeviceChannelSequence = null;
 
             try
             {
-                RCServoEx phidgetHost = null;
+                RCServoEx? phidgetHost = null;
 
-                RCServoSequence rcServoSequence;
+                RCServoSequence? rcServoSequence;
 
-                if (PerformanceLibrary.AvailableRCServoSequences.ContainsKey(deviceChannelSequence.Name ?? ""))
+                // TODO(crhodes)
+                // This is likely where to handle sequence without a name
+
+                if (deviceChannelSequence.Name is not null)
                 {
-                    rcServoSequence = PerformanceLibrary.AvailableRCServoSequences[deviceChannelSequence.Name];
-
-                    if (LogDeviceChannelSequence)
-                    {
-                        startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
-                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{rcServoSequence.Channel}< " +
-                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{rcServoSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
-
-                    // NOTE(crhodes)
-                    // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
-                    // Useful during initialization of common Channels on a Phidget Device
-
-                    if (deviceChannelSequence.HubPort is not null)
-                    {
-                        rcServoSequence.HubPort = deviceChannelSequence.HubPort;
-                    }
-
-                    if (deviceChannelSequence.Channel is not null)
-                    {
-                        rcServoSequence.Channel = deviceChannelSequence.Channel;
-                    }
-
-                    phidgetHost = GetRCServoHost(deviceChannelSequence.SerialNumber, (Int32)rcServoSequence.HubPort, (Int32)rcServoSequence.Channel);
-
-                    if (phidgetHost == null)
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}", Common.LOG_CATEGORY);
-                        nextDeviceChannelSequence = null;
-                    }
-
-                    if (phidgetHost is not null)
-                    {
-                        if (rcServoSequence.BeforeActionLoopSequences is not null)
-                        {
-                            foreach (DeviceChannelSequence sequence in rcServoSequence.BeforeActionLoopSequences)
-                            {
-                                // NOTE(crhodes)
-                                // We do not pass in a SerialNumber override
-
-                                await ExecuteDeviceChannelSequence(sequence);
-                            }
-                        }
-
-                        await phidgetHost.RunActionLoops(rcServoSequence);
-
-                        if (rcServoSequence.AfterActionLoopSequences is not null)
-                        {
-                            foreach (DeviceChannelSequence sequence in rcServoSequence.AfterActionLoopSequences)
-                            {
-                                // NOTE(crhodes)
-                                // We do not pass in a SerialNumber override
-
-                                await ExecuteDeviceChannelSequence(sequence);
-                            }
-                        }
-
-                        if (rcServoSequence.SequenceDuration is not null)
-                        {
-                            if (LogDeviceChannelSequence)
-                            {
-                                Log.Trace($"Zzzzz Sequence:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
-                        }
-
-                        nextDeviceChannelSequence = rcServoSequence.NextSequence;
-                    }
+                    rcServoSequence = RetrieveRCServoSequence(deviceChannelSequence);
                 }
                 else
                 {
-                    Log.Error($"Cannot find deviceChannelSequence:>{deviceChannelSequence.Name}<", Common.LOG_CATEGORY);
-                    nextDeviceChannelSequence = null;
+                    rcServoSequence = CreateInlineRCServoSequence(deviceChannelSequence);
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:{nextDeviceChannelSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+                if (LogDeviceChannelSequence)
+                {
+                    startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
+                        $" dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
+                        $" dcsHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
+                        $" dcsChannel:>{deviceChannelSequence?.Channel}< channel:>{rcServoSequence?.Channel}< " +
+                        //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                        $" beforeActionLoopSequences:>{rcServoSequence?.BeforeActionLoopSequences?.Count()}<" +
+                        //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                        //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                        //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                        //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                        //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                        $" afterActionLoopSequences:>{rcServoSequence?.AfterActionLoopSequences?.Count()}<" +
+                        $" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
+                        $" nextSequence:>{rcServoSequence?.NextSequence?.Name}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                }
+
+                if (rcServoSequence is null)
+                {
+                    Log.Error($"Failed to Retrive/Create RCServoSequence, Aborting", Common.LOG_CATEGORY);
+
+                    return null;
+                }
+
+                phidgetHost = GetRCServoHost(
+                    SerialNumber, 
+                    rcServoSequence?.HubPort, 
+                    rcServoSequence?.Channel);
+
+                if (phidgetHost is null)
+                {
+                    Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence?.SerialNumber}" +
+                        $" hubPort:{deviceChannelSequence?.HubPort} channel:{deviceChannelSequence?.Channel}", Common.LOG_CATEGORY);
+
+                    return null;
+                }
+
+                if (rcServoSequence.BeforeActionLoopSequences is not null)
+                {
+                    foreach (DeviceChannelSequence sequence in rcServoSequence.BeforeActionLoopSequences)
+                    {
+                        // NOTE(crhodes)
+                        // We do not pass in a SerialNumber override
+
+                        await ExecuteDeviceChannelSequence(sequence);
+                    }
+                }
+
+                await phidgetHost.RunActionLoops(rcServoSequence);
+
+                if (rcServoSequence.AfterActionLoopSequences is not null)
+                {
+                    foreach (DeviceChannelSequence sequence in rcServoSequence.AfterActionLoopSequences)
+                    {
+                        // NOTE(crhodes)
+                        // We do not pass in a SerialNumber override
+
+                        await ExecuteDeviceChannelSequence(sequence);
+                    }
+                }
+
+                if (rcServoSequence.SequenceDuration is not null)
+                {
+                    if (LogDeviceChannelSequence)
+                    {
+                        Log.Trace($"Zzzz - End of RCServoSequence:>{rcServoSequence.Name}<" +
+                            $" Sleeping:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                    }
+
+                    Thread.Sleep((Int32)rcServoSequence.SequenceDuration);
+                }
+
+                nextDeviceChannelSequence = rcServoSequence.NextSequence;
+
+                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -409,97 +439,148 @@ namespace VNC.Phidget22.Players
             return nextDeviceChannelSequence;
         }
 
-        private async Task<DeviceChannelSequence> ExecuteStepperChannelSequence(DeviceChannelSequence deviceChannelSequence)
+        private RCServoSequence CreateInlineRCServoSequence(DeviceChannelSequence deviceChannelSequence)
+        {
+            //Int64 startTicks = 0;
+
+            RCServoSequence rcServoSequence = new RCServoSequence(deviceChannelSequence.RCServoSequence);
+
+            return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, rcServoSequence);
+        }
+
+        private RCServoSequence? RetrieveRCServoSequence(DeviceChannelSequence deviceChannelSequence)
         {
             Int64 startTicks = 0;
-            DeviceChannelSequence nextDeviceChannelSequence = null;
+
+            // NOTE(crhodes)
+            // CA1854.  Use TryGetValue to avoid duplicate lookups
+            if (PerformanceLibrary.AvailableRCServoSequences.TryGetValue(deviceChannelSequence.Name, out RCServoSequence ? retrievedSequence))
+            {
+                if (LogDeviceChannelSequence) startTicks = Log.Trace1($"Retrieved rcServoSequence:>{retrievedSequence.Name}<" +
+                    $" hubPort:>{retrievedSequence.HubPort}<" +
+                    $" channel:>{retrievedSequence.Channel}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, retrievedSequence);
+            }
+            else
+            {
+                Log.Trace($"Cannot find rcServoSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                return null;
+            }
+        }
+
+        private ChannelSequence ApplyDeviceChannelSequenceOverrides(DeviceChannelSequence deviceChannelSequence, ChannelSequence channelSequence)
+        {
+            // NOTE(crhodes)
+            // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
+            // Useful during initialization of common Channels on a Phidget Device
+
+            // TODO(crhodes)
+            // Decide if we always want to override or only if no channelSequence value
+
+            if (deviceChannelSequence.HubPort is not null)
+            {
+                channelSequence.HubPort = deviceChannelSequence.HubPort;
+            }
+
+            if (deviceChannelSequence.Channel is not null)
+            {
+                channelSequence.Channel = deviceChannelSequence.Channel;
+            }
+
+            if (LogDeviceChannelSequence) Log.Trace1($"Configured channelSequence:>{channelSequence.Name}<" +
+                $" dcsHubPort:>{deviceChannelSequence.HubPort}> hubPort:>{channelSequence.HubPort}<" +
+                $" dcsHChannel:>{deviceChannelSequence.Channel}> channel:>{channelSequence.Channel}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+            return channelSequence;
+        }
+
+        private async Task<DeviceChannelSequence?> ExecuteStepperChannelSequence(DeviceChannelSequence deviceChannelSequence)
+        {
+            Int64 startTicks = 0;
+            DeviceChannelSequence? nextDeviceChannelSequence = null;
 
             try
             {
-                StepperEx phidgetHost = null;
+                StepperEx? phidgetHost = null;
+                // TODO(crhodes)
+                // This is likely where to handle sequence without a name
+                StepperSequence? stepperSequence = RetrieveStepperSequence(deviceChannelSequence);
 
-                if (PerformanceLibrary.AvailableStepperSequences.ContainsKey(deviceChannelSequence.Name ?? ""))
+                if (LogDeviceChannelSequence)
                 {
-                    var stepperSequence = PerformanceLibrary.AvailableStepperSequences[deviceChannelSequence.Name];
-
-                    if (LogDeviceChannelSequence)
-                    {
-                        startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
-                            $"\r serialNumber:>{deviceChannelSequence?.SerialNumber}<" +
-                            $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence.Channel}< " +
-                            //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
-                            $"\r beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
-                            //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
-                            //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
-                            //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
-                            //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
-                            //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
-                            $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
-                            //$" sequenceDuration:>{rcServoSequence?.SequenceDuration}<" +
-                            $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
-                    }
-
-                    // NOTE(crhodes)
-                    // This allows reuse of a ChannelSequence that only varies by Channel
-                    // Useful during initialization of common Channels on a Phidget Device
-
-                    if (deviceChannelSequence.Channel is not null)
-                    {
-                        stepperSequence.Channel = deviceChannelSequence.Channel;
-                    }
-
-                    phidgetHost = GetStepperHost((Int32)deviceChannelSequence.SerialNumber, (Int32)stepperSequence.Channel);
-
-                    if (phidgetHost == null)
-                    {
-                        Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}", Common.LOG_CATEGORY);
-                        nextDeviceChannelSequence = null;
-                    }
-
-                    if (phidgetHost is not null)
-                    {
-                        if (stepperSequence.BeforeActionLoopSequences is not null)
-                        {
-                            foreach (DeviceChannelSequence sequence in stepperSequence.BeforeActionLoopSequences)
-                            {
-                                // NOTE(crhodes)
-                                // We do not pass in a SerialNumber override
-
-                                await ExecuteDeviceChannelSequence(sequence);
-                            }
-                        }
-
-                        await phidgetHost.RunActionLoops(stepperSequence);
-
-                        if (stepperSequence.AfterActionLoopSequences is not null)
-                        {
-                            foreach (DeviceChannelSequence sequence in stepperSequence.AfterActionLoopSequences)
-                            {
-                                // NOTE(crhodes)
-                                // We do not pass in a SerialNumber override
-                                await ExecuteDeviceChannelSequence(sequence);
-                            }
-                        }
-
-                        if (stepperSequence.SequenceDuration is not null)
-                        {
-                            if (LogDeviceChannelSequence)
-                            {
-                                Log.Trace($"Zzzzz Sequence:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
-                            }
-                            Thread.Sleep((Int32)stepperSequence.SequenceDuration);
-                        }
-
-                        nextDeviceChannelSequence = stepperSequence.NextSequence;
-                    }
+                    startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
+                        $" playerSerialNumber:>{SerialNumber}<" +
+                        $" serialNumber:>{deviceChannelSequence.SerialNumber}<" +
+                        $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{stepperSequence?.HubPort}<" +
+                        $" deviceChannel:>{deviceChannelSequence.Channel}< channel:>{stepperSequence?.Channel}< " +
+                        //$" sequenceLoops:>{rcServoSequence?.SequenceLoops}<" +
+                        $" beforeActionLoopSequences:>{stepperSequence?.BeforeActionLoopSequences?.Count()}<" +
+                        //$" startActionLoopSequences:>{rcServoSequence?.StartActionLoopSequences?.Count()}<" +
+                        //$" actionLoops:>{rcServoSequence?.ActionLoops}<" +
+                        //$" executeActionsInParallel:>{rcServoSequence?.ExecuteActionsInParallel}<" +
+                        //$" actionDuration:>{rcServoSequence?.ActionsDuration}<" +
+                        //$" endActionLoopSequences:>{rcServoSequence?.EndActionLoopSequences?.Count()}<" +
+                        $" afterActionLoopSequences:>{stepperSequence?.AfterActionLoopSequences?.Count()}<" +
+                        $" sequenceDuration:>{stepperSequence?.SequenceDuration}<" +
+                        $" nextSequence:>{stepperSequence?.NextSequence?.Name}<", Common.LOG_CATEGORY);
                 }
-                else
+
+                phidgetHost = GetStepperHost(
+                    SerialNumber, 
+                    stepperSequence?.HubPort, 
+                    stepperSequence?.Channel);
+
+                if (phidgetHost == null)
                 {
-                    Log.Trace($"Cannot find deviceChannelSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                        $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
+
                     nextDeviceChannelSequence = null;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:{nextDeviceChannelSequence?.Name}", Common.LOG_CATEGORY, startTicks);
+                if (phidgetHost is not null && stepperSequence is not null)
+                {
+                    if (stepperSequence.BeforeActionLoopSequences is not null)
+                    {
+                        foreach (DeviceChannelSequence sequence in stepperSequence.BeforeActionLoopSequences)
+                        {
+                            // NOTE(crhodes)
+                            // We do not pass in a SerialNumber override
+
+                            await ExecuteDeviceChannelSequence(sequence);
+                        }
+                    }
+
+                    await phidgetHost.RunActionLoops(stepperSequence);
+
+                    if (stepperSequence.AfterActionLoopSequences is not null)
+                    {
+                        foreach (DeviceChannelSequence sequence in stepperSequence.AfterActionLoopSequences)
+                        {
+                            // NOTE(crhodes)
+                            // We do not pass in a SerialNumber override
+
+                            await ExecuteDeviceChannelSequence(sequence);
+                        }
+                    }
+
+                    if (stepperSequence.SequenceDuration is not null)
+                    {
+                        if (LogDeviceChannelSequence)
+                        {
+                            Log.Trace($"Zzzz - End of StepperSequence:>{stepperSequence.Name}<" +
+                                $" Sleeping:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
+                        }
+                        Thread.Sleep((Int32)stepperSequence.SequenceDuration);
+                    }
+
+                    nextDeviceChannelSequence = stepperSequence.NextSequence;
+                }
+
+                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
@@ -507,20 +588,70 @@ namespace VNC.Phidget22.Players
             }
 
             return nextDeviceChannelSequence;
+        }
+
+        private StepperSequence? RetrieveStepperSequence(DeviceChannelSequence deviceChannelSequence)
+        {
+            if (PerformanceLibrary.AvailableStepperSequences.TryGetValue(deviceChannelSequence.Name, out StepperSequence? retrievedSequence))
+            {
+                if (LogDeviceChannelSequence) Log.Trace($"Retrieved stepperSequence:>{retrievedSequence.Name}<" +
+                    $" hubPort:>{retrievedSequence.HubPort}<" +
+                    $" channel:>{retrievedSequence.Channel}<" +
+                    $"", Common.LOG_CATEGORY);
+
+                StepperSequence updatedSequence = new StepperSequence(retrievedSequence);
+
+                // NOTE(crhodes)
+                // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
+                // Useful during initialization of common Channels on a Phidget Device
+
+                if (deviceChannelSequence.HubPort is not null)
+                {
+                    updatedSequence.HubPort = deviceChannelSequence.HubPort;
+                }
+
+                if (deviceChannelSequence.Channel is not null)
+                {
+                    updatedSequence.Channel = deviceChannelSequence.Channel;
+                }
+
+                if (LogDeviceChannelSequence) Log.Trace($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
+                    $" on stepperSequence:>{updatedSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
+
+                return updatedSequence;
+            }
+            else
+            {
+                Log.Trace($"Cannot find stepperSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                return null;
+            }
         }
 
         #endregion
 
         #region Get<Channel>Host
 
-        private DigitalOutputEx GetDigitalOutputHost(Int32 serialNumber, Int32 channel)
+        private DigitalOutputEx GetDigitalOutputHost(Int32? serialNumber, Int32? hubPort, Int32? channel)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter" +
+                $" serialNumber:>{serialNumber}<" +
+                $" hubPort:>{hubPort}<" +
+                $" channel:>{channel}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-            //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel();
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
+            if (serialNumber is not null && hubPort is not null && channel is not null)
+            {
+                serialHubPortChannel.SerialNumber = (Int32)serialNumber;
+                serialHubPortChannel.HubPort = (Int32)hubPort;
+                serialHubPortChannel.Channel = (Int32)channel;
+            }
+            else
+            {
+                throw new Exception();
+            }
 
             DigitalOutputEx digitalOutputHost = Common.PhidgetDeviceLibrary.DigitalOutputChannels[serialHubPortChannel];
 
@@ -528,15 +659,12 @@ namespace VNC.Phidget22.Players
             digitalOutputHost.LogErrorEvents = LogErrorEvents;
             digitalOutputHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
 
-            //digitalOutputHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //digitalOutputHost.LogPositionChangeEvents = LogPositionChangeEvents;
-            //digitalOutputHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
-
-            //digitalOutputHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
-
             digitalOutputHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
             digitalOutputHost.LogChannelAction = LogChannelAction;
             digitalOutputHost.LogActionVerification = LogActionVerification;
+
+            // NOTE(crhodes)
+            // Opening is handled by the Performance/DeviceChannelSequence/ChannelSequence
 
             // TODO(crhodes)
             // Maybe we just let the Action.Open do the open
@@ -547,7 +675,7 @@ namespace VNC.Phidget22.Players
             // Things that work and things that don't
             //
             // This does work
-            digitalOutputHost.Open(500);
+            //digitalOutputHost.Open(500);
 
             // This does not work.
             //digitalOutputHost.Open();
@@ -562,79 +690,118 @@ namespace VNC.Phidget22.Players
 
             //}
 
-            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogDeviceChannelSequence) Log.Trace($"Exit" +
+                $" serialNumber:>{digitalOutputHost.SerialHubPortChannel.SerialNumber}<" +
+                $" hubPort:>{digitalOutputHost.SerialHubPortChannel.HubPort}<" +
+                $" channel:>{digitalOutputHost.SerialHubPortChannel.Channel}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
 
             return digitalOutputHost;
         }
 
-        private RCServoEx GetRCServoHost(Int32 serialNumber, Int32 hubPort, Int32 channel)
+        private RCServoEx GetRCServoHost(Int32? serialNumber, Int32? hubPort, Int32? channel)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            RCServoEx rcServoHost;
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel()
+            lock (_lock)
             {
-                SerialNumber = serialNumber, 
-                HubPort = hubPort,
-                Channel = channel 
-            };
+                if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter" +
+                    $" serialNumber:>{serialNumber}<" +
+                    $" hubPort:>{hubPort}<" +
+                    $" channel:>{channel}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-            RCServoEx rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
+                SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel();
 
-            rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
-            rcServoHost.LogErrorEvents = LogErrorEvents;
-            rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
+                if (serialNumber is not null && hubPort is not null && channel is not null )
+                {
+                    serialHubPortChannel.SerialNumber = (Int32)serialNumber;
+                    serialHubPortChannel.HubPort = (Int32)hubPort;
+                    serialHubPortChannel.Channel = (Int32)channel;
+                }
+                else
+                {
+                    throw new ArgumentException($"Error Invalid serialHubPortChannel" +
+                        $" serialNumber:>{serialNumber}<" +
+                        $" hubPort:>{hubPort}<" +
+                        $" channel:>{channel}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<)");
+                }
 
-            //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
-            rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
+                rcServoHost = Common.PhidgetDeviceLibrary.RCServoChannels[serialHubPortChannel];
 
-            rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+                rcServoHost.LogPhidgetEvents = LogPhidgetEvents;
+                rcServoHost.LogErrorEvents = LogErrorEvents;
+                rcServoHost.LogPropertyChangeEvents = LogPropertyChangeEvents;
 
-            rcServoHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            rcServoHost.LogChannelAction = LogChannelAction;
-            rcServoHost.LogActionVerification = LogActionVerification;
+                //rcServoHost.LogCurrentChangeEvents = LogCurrentChangeEvents;
+                rcServoHost.LogPositionChangeEvents = LogPositionChangeEvents;
+                rcServoHost.LogVelocityChangeEvents = LogVelocityChangeEvents;
 
-            // TODO(crhodes)
-            // Maybe we just let the Action.Open do the open
+                rcServoHost.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            //if (rcServoHost.Attached is false)
-            //{
-            // NOTE(crhodes)
-            // Things that work and things that don't
-            //
-            // This does work
-            rcServoHost.Open(500);
+                rcServoHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
+                rcServoHost.LogChannelAction = LogChannelAction;
+                rcServoHost.LogActionVerification = LogActionVerification;
 
-            // This does not work.
-            //rcServoHost.Open();
+                // NOTE(crhodes)
+                // Opening is handled by the Performance/DeviceChannelSequence/ChannelSequence
 
-            // This does work
+                // TODO(crhodes)
+                // Maybe we just let the Action.Open do the open
 
-            //rcServoHost.Open();
-            //Thread.Sleep(500);
+                //if (rcServoHost.Attached is false)
+                //{
+                // NOTE(crhodes)
+                // Things that work and things that don't
+                //
+                // This does work
+                //rcServoHost.Open(500);
 
-            // This does not work.
-            //await Task.Run(() => rcServoHost.Open());
+                // This does not work.
+                //rcServoHost.Open();
 
-            //}
+                // This does work
 
-            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+                //rcServoHost.Open();
+                //Thread.Sleep(500);
+
+                // This does not work.
+                //await Task.Run(() => rcServoHost.Open());
+
+                //}
+
+                if (LogDeviceChannelSequence) Log.Trace($"Exit" +
+                    $" serialNumber:>{rcServoHost.SerialHubPortChannel.SerialNumber}<" +
+                    $" hubPort:>{rcServoHost.SerialHubPortChannel.HubPort}<" +
+                    $" channel:>{rcServoHost.SerialHubPortChannel.Channel}" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+            }
 
             return rcServoHost;
         }
 
-        private StepperEx GetStepperHost(Int32 serialNumber, Int32 channel)
+        private StepperEx GetStepperHost(Int32? serialNumber, Int32? hubPort, Int32? channel)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter" +
+                $" serialNumber:>{serialNumber}<" +
+                $" hubPort:>{hubPort}<" +
+                $" channel:>{channel}<", Common.LOG_CATEGORY);
 
-            //PhidgetDevice phidgetDevice = Common.PhidgetDeviceLibrary.AvailablePhidgets[serialNumber];
+            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel();
 
-            SerialHubPortChannel serialHubPortChannel = new SerialHubPortChannel() { SerialNumber = serialNumber, Channel = channel };
-
-            // TODO(crhodes)
-            // This throws exception if serialHubPortChannel not found
+            if (serialNumber is not null && hubPort is not null && channel is not null)
+            {
+                serialHubPortChannel.SerialNumber = (Int32)serialNumber;
+                serialHubPortChannel.HubPort = (Int32)hubPort;
+                serialHubPortChannel.Channel = (Int32)channel;
+            }
+            else
+            {
+                throw new Exception();
+            }
 
             StepperEx stepperHost = Common.PhidgetDeviceLibrary.StepperChannels[serialHubPortChannel];
 
@@ -649,6 +816,9 @@ namespace VNC.Phidget22.Players
             stepperHost.LogDeviceChannelSequence = LogDeviceChannelSequence;
             stepperHost.LogChannelAction = LogChannelAction;
             stepperHost.LogActionVerification = LogActionVerification;
+
+            // NOTE(crhodes)
+            // Opening is handled by the Performance/DeviceChannelSequence/ChannelSequence
 
             // TODO(crhodes)
             // Maybe we just let the Action.Open do the open
@@ -674,7 +844,10 @@ namespace VNC.Phidget22.Players
 
             //}
 
-            if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Exit" +
+                $" serialNumber:>{stepperHost.SerialHubPortChannel.SerialNumber}<" +
+                $" hubPort:>{stepperHost.SerialHubPortChannel.HubPort}<" +
+                $" channel:>{stepperHost.SerialHubPortChannel.Channel}<", Common.LOG_CATEGORY);
 
             return stepperHost;
         }

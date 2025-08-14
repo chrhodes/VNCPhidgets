@@ -18,7 +18,7 @@ using VNC.WPF.Presentation.Views;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class RibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
+    public class RibbonViewModel : EventViewModelBase, IRibbonViewModel
     {
 
         #region Constructors, Initialization, and Load
@@ -85,14 +85,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region About Command
 
-        public static WindowHost _aboutHost = null;
-        public DelegateCommand AboutCommand { get; set; }
-        // If using CommandParameter, figure out TYPE here and above
-        // and remove above declaration
-        //public DelegateCommand<TYPE> About { get; set; }
+        public static WindowHost? _aboutHost = null;
+        public DelegateCommand? AboutCommand { get; set; }
 
-        // If using CommandParameter, figure out TYPE here
-        //public TYPE AboutParameter;
         public string AboutContent { get; set; } = "About";
         public string AboutToolTip { get; set; } = "Display About Information";
 
@@ -104,15 +99,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    <system:String x:Key="ViewName_AboutContent">About</system:String>
         //    <system:String x:Key="ViewName_AboutContentToolTip">About ToolTip</system:String>
 
-        // If using CommandParameter, figure out TYPE here
-        //public void About(TYPE value)
         public void About()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
-            // TODO(crhodes)
-            // Do something amazing.
-
+ 
             Message = "Cool, you called About";
             PublishStatusMessage(Message);
 
@@ -131,7 +122,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             _aboutHost.DisplayUserControlInHost(
                 "VNCPhidgets22Explorer About",
-                    Common.DEFAULT_WINDOW_WIDTH, Common.DEFAULT_WINDOW_HEIGHT,
+                    900, 600,
                 //(Int32)userControl.Width + Common.WINDOW_HOSTING_USER_CONTROL_WIDTH_PAD,
                 //(Int32)userControl.Height + Common.WINDOW_HOSTING_USER_CONTROL_HEIGHT_PAD,
                 ShowWindowMode.Modeless_Show,
@@ -194,8 +185,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // If using CommandParameter, figure out TYPE and fix above
-        //public Boolean AboutCanExecute(TYPE value)
         public Boolean AboutCanExecute()
         {
             // TODO(crhodes)
@@ -220,18 +209,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Private Methods (none)
 
-
-        #endregion
-
-        #region IInstanceCountVM
-
-        private static Int32 _instanceCountVM;
-
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
 
         #endregion
     }

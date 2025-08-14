@@ -10,9 +10,8 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class MainDxDockLayoutManagerViewModel : EventViewModelBase, IInstanceCountVM
+    public class MainDxDockLayoutManagerViewModel : EventViewModelBase//, IInstanceCountVM
     {
-
         #region Constructors, Initialization, and Load
 
         public MainDxDockLayoutManagerViewModel(
@@ -35,7 +34,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewModelLow) startTicks = Log.VIEWMODEL_LOW("Enter", Common.LOG_CATEGORY);
 
-
             DeveloperModeCommand = new DelegateCommand(DeveloperMode, DeveloperModeCanExecute);
 
             if (Common.VNCLogging.ViewModelLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
@@ -53,23 +51,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Fields and Properties
+        #region Fields and Properties (none)
 
-        private string _title = "VNCLogViewer - MainDxDockLayoutManager - ";
 
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                if (_title == value)
-                    return;
-                _title = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public DelegateCommand DeveloperModeCommand { get; set; }
 
         #endregion
 
@@ -82,6 +66,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region DeveloperMode Command
 
+        public DelegateCommand? DeveloperModeCommand { get; set; }
         //public TYPE DeveloperModeCommandParameter;
         public string DeveloperModeContent { get; set; } = "DeveloperMode";
         public string? DeveloperModeToolTip { get; set; } = "DeveloperMode ToolTip";
@@ -174,16 +159,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+        //private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+        //public Int32 InstanceCountVM
+        //{
+        //    get => _instanceCountVM;
+        //    set => _instanceCountVM = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

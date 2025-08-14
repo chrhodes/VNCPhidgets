@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public GyroscopeSequence(GyroscopeSequence sequence) : base("Gyroscope", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of Gyroscope actions in sequence
         /// </summary>
-        public GyroscopeAction[] Actions { get; set; }
+        public GyroscopeAction[]? Actions { get; set; }
     }
 }

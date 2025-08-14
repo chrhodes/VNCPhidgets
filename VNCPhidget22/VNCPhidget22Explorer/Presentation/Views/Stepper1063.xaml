@@ -89,9 +89,9 @@
 
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
-
         <dxlc:LayoutControl Orientation="Vertical" Padding="0">
+            
+            <!--Open / Close-->
             
             <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top">
 
@@ -110,108 +110,10 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch">
                     <Button 
-		                        Command="{Binding OpenSteppersCommand }"
-		                        Content="{Binding OpenSteppersContent, FallbackValue='Open' }"
-		                        ToolTip="{Binding OpenSteppersToolTip, FallbackValue='Open ToolTip' }" />
+		                        Command="{Binding OpenAllSteppersCommand }"
+		                        Content="{Binding OpenAllSteppersContent, FallbackValue='Open' }"
+		                        ToolTip="{Binding OpenAllSteppersToolTip, FallbackValue='Open ToolTip' }" />
                 </dxlc:LayoutItem>
-
-                <!--Velocity-->
-                
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
-                                  Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                    <dxlc:LayoutItem Label="Select Velocity"
-             	            LabelPosition="Left">
-                        <!--<dxe:ComboBoxEdit		                                 
-                                EditValue="{Binding
-                    	            Path=SelectedFileFormats,
-                                    Mode=TwoWay,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
-                        <dxe:ComboBoxEdit x:Name="cbeVelocityScale" 
-                                          IsEnabled="{Binding DeviceAttached, FallbackValue=false}">
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:ComboBoxStyleSettings />
-                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:TokenComboBoxStyleSettings/>-->
-                            </dxe:ComboBoxEdit.StyleSettings>
-                            <dxe:ComboBoxEditItem Content="Min" />
-                            <dxe:ComboBoxEditItem Content="01%" />
-                            <dxe:ComboBoxEditItem Content="02%" />
-                            <dxe:ComboBoxEditItem Content="03%" />
-                            <dxe:ComboBoxEditItem Content="04%" />
-                            <dxe:ComboBoxEditItem Content="05%" />
-                            <dxe:ComboBoxEditItem Content="10%" />
-                            <dxe:ComboBoxEditItem Content="15%" />
-                            <dxe:ComboBoxEditItem Content="20%" />
-                            <dxe:ComboBoxEditItem Content="25%" />
-                            <dxe:ComboBoxEditItem Content="35%" />
-                            <dxe:ComboBoxEditItem Content="50%" />
-                            <dxe:ComboBoxEditItem Content="75%" />
-                            <dxe:ComboBoxEditItem Content="Max" />
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
-                        <Button 
-		                        Command="{Binding InitializeVelocityCommand }"
-                                CommandParameter="{Binding ElementName=cbeVelocityScale, Path=EditValue}"
-		                        Content="{Binding InitializeVelocityContent, FallbackValue='Initialize Velocity' }"
-		                        ToolTip="{Binding InitializeVelocityToolTip, FallbackValue='Initialize Velocity' }" />
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
-
-                <!--Acceleration-->
-                
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center"
-                                  Visibility="{Binding DeviceAttached, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                    <dxlc:LayoutItem Label="Select Acceleration" LabelPosition="Left">
-                        <!--<dxe:ComboBoxEdit		                                 
-                            EditValue="{Binding
-       	                        Path=SelectedFileFormats,
-                                Mode=TwoWay,
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
-                        <dxe:ComboBoxEdit x:Name="cbeAccelerationScale">
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:ComboBoxStyleSettings />
-                                <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:CheckedComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioComboBoxStyleSettings/>-->
-                                <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
-                                <!--<dxe:TokenComboBoxStyleSettings/>-->
-                            </dxe:ComboBoxEdit.StyleSettings>
-                            <dxe:ComboBoxEditItem Content="Min" />
-                            <dxe:ComboBoxEditItem Content="01%" />
-                            <dxe:ComboBoxEditItem Content="02%" />
-                            <dxe:ComboBoxEditItem Content="03%" />
-                            <dxe:ComboBoxEditItem Content="04%" />
-                            <dxe:ComboBoxEditItem Content="05%" />
-                            <dxe:ComboBoxEditItem Content="10%" />
-                            <dxe:ComboBoxEditItem Content="15%" />
-                            <dxe:ComboBoxEditItem Content="20%" />
-                            <dxe:ComboBoxEditItem Content="25%" />
-                            <dxe:ComboBoxEditItem Content="35%" />
-                            <dxe:ComboBoxEditItem Content="50%" />
-                            <dxe:ComboBoxEditItem Content="75%" />
-                            <dxe:ComboBoxEditItem Content="Max" />
-                        </dxe:ComboBoxEdit>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem Margin="-5" VerticalAlignment="Stretch">
-                        <Button 
-                                Command="{Binding InitializeAccelerationCommand }"
-                                CommandParameter="{Binding ElementName=cbeAccelerationScale, Path=EditValue}"
-                                Content="{Binding InitializeAccelerationContent, FallbackValue='Initialize Acceleration' }"
-                                ToolTip="{Binding InitializeAccelerationToolTip, FallbackValue='Initialize Acceleration' }" />
-                    </dxlc:LayoutItem>
-
-                </dxlc:LayoutGroup>
 
                 <!--<dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button 
@@ -222,9 +124,9 @@
 
                 <dxlc:LayoutItem HorizontalAlignment="Right" VerticalAlignment="Stretch">
                     <Button 
-                		        Command="{Binding CloseSteppersCommand }"
-                		        Content="{Binding CloseSteppersContent, FallbackValue='Close' }"
-                		        ToolTip="{Binding CloseSteppersToolTip, FallbackValue='Close ToolTip' }" />
+                		        Command="{Binding CloseAllSteppersCommand }"
+                		        Content="{Binding CloseAllSteppersContent, FallbackValue='Close' }"
+                		        ToolTip="{Binding CloseAllSteppersToolTip, FallbackValue='Close ToolTip' }" />
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
@@ -236,6 +138,8 @@
                 <!--<views:PhidgetDevice x:Name="Phidget1" Margin="-5"
                                AttachedPhidgetDevice="{Binding PhidgetDevice, Mode=TwoWay}"
                                DeviceAttached="{Binding DeviceAttached, Mode=TwoWay}"/>-->
+
+                <!--Logging-->
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal"
                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
@@ -298,6 +202,7 @@
                               Padding="-10" >
                 <ScrollViewer HorizontalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Horizontal">
+                        
                         <views:StepperControl ControlTitle="Stepper S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding Stepper0.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding Stepper0.LogErrorEvents,Mode=TwoWay}"
@@ -306,10 +211,10 @@
                             LogVelocityChangeEvents="{Binding Stepper0.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogStoppedEvents="{Binding Stepper0.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
-                            StepperNumber="0"
+                            SerialHubPortChannel="{Binding Stepper0.SerialHubPortChannel, Mode=TwoWay}"
+
                             Attached="{Binding Stepper0.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper0.Engaged, Mode=TwoWay}"
-                            StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  
                             MinCurrentLimit="{Binding Stepper0.MinCurrentLimit,Mode=TwoWay}"
                             CurrentLimit="{Binding Stepper0.CurrentLimit,Mode=TwoWay}"
@@ -349,8 +254,8 @@
                             ControlMode="{Binding Stepper0.ControlMode,Mode=TwoWay}"                                                 
                             RescaleFactor="{Binding Stepper0.RescaleFactor,Mode=TwoWay}" 
                             StepAngle="{Binding Stepper0.StepAngle,Mode=TwoWay}" />
-
-                        <!--<views:StepperControl ControlTitle="Stepper S1" HorizontalAlignment="Left"
+                        
+                        <!--<views:StepperControl ControlTitle="Stepper S0" HorizontalAlignment="Left"
                             LogPhidgetEvents="{Binding Stepper1.LogPhidgetEvents,Mode=TwoWay}"
                             LogErrorEvents="{Binding Stepper1.LogErrorEvents,Mode=TwoWay}"
                             LogPropertyChangeEvents="{Binding Stepper1.LogPropertyChangeEvents,Mode=TwoWay}"
@@ -358,10 +263,10 @@
                             LogVelocityChangeEvents="{Binding Stepper1.LogVelocityChangeEvents,Mode=TwoWay}"
                             LogStoppedEvents="{Binding Stepper1.LogStoppedEvents,Mode=TwoWay}"                                                 
                                          
-                            StepperNumber="1"
+                            SerialHubPortChannel="{Binding Stepper1.SerialHubPortChannel, Mode=TwoWay}"
+                                              
                             Attached="{Binding Stepper1.Attached, Mode=TwoWay}"
                             Engaged="{Binding Stepper1.Engaged, Mode=TwoWay}"
-                            StepperAttached="{Binding StepperAttached, Mode=TwoWay}"
                                                  
                             MinCurrentLimit="{Binding Stepper1.MinCurrentLimit,Mode=TwoWay}"
                             CurrentLimit="{Binding Stepper1.CurrentLimit,Mode=TwoWay}"
@@ -398,7 +303,10 @@
                             VelocityLimit="{Binding Stepper1.VelocityLimit,Mode=TwoWay}"
                             MaxVelocityLimit="{Binding Stepper1.MaxVelocityLimit,Mode=TwoWay}" 
                               
-                            RescaleFactor="{Binding Stepper1.RescaleFactor,Mode=TwoWay}" />-->
+                            ControlMode="{Binding Stepper1.ControlMode,Mode=TwoWay}"                                                 
+                            RescaleFactor="{Binding Stepper1.RescaleFactor,Mode=TwoWay}" 
+                            StepAngle="{Binding Stepper1.StepAngle,Mode=TwoWay}" />-->
+
 
                     </StackPanel>
                     

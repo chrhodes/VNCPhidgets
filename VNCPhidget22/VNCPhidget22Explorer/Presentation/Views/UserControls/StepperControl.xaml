@@ -80,9 +80,13 @@
         <DockPanel>
             <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
             
-            <dxlc:LayoutGroup x:Name="lgMain" Header="{Binding ControlTitle}" View="GroupBox" Orientation="Vertical" 
-                              HorizontalAlignment="Left" Padding="-10" ScrollBars="Auto" >
+            <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" VerticalAlignment="Top"
+                              HorizontalAlignment="Left" ScrollBars="Auto" >
 
+                <Label Content="{Binding SerialHubPortChannel}" />
+                
+                <!--Logging-->
+                
                 <dxlc:LayoutGroup x:Name="lgLogging"  Header="Event Logging" View="GroupBox" Orientation="Vertical" 
                     VerticalAlignment="Top" HorizontalAlignment="Stretch"
                     IsCollapsible="True" IsCollapsed="False"                                     
@@ -113,7 +117,7 @@
                         HorizontalAlignment="Left"/>
                     <dxe:CheckEdit
                         Content="Stopped"
-                        IsChecked="{Binding StoppedEvents, Mode=TwoWay}"
+                        IsChecked="{Binding LogStoppedEvents, Mode=TwoWay}"
                         HorizontalAlignment="Left"/>
 
                 </dxlc:LayoutGroup>
@@ -126,7 +130,7 @@
                             DataContext="{Binding DataContext, 
                                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		            Command="{Binding OpenStepperCommand }"
-                            CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
+                            CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		            Content="{Binding OpenStepperContent, FallbackValue='OpenStepper' }"
         		            ToolTip="{Binding OpenStepperToolTip, FallbackValue='OpenStepper ToolTip' }" />
                     </dxlc:LayoutItem>
@@ -136,7 +140,7 @@
                         DataContext="{Binding DataContext, 
                                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
         		        Command="{Binding CloseStepperCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=StepperNumber}"                
+                        CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
         		        Content="{Binding CloseStepperContent, FallbackValue='CloseStepper' }"
         		        ToolTip="{Binding CloseStepperToolTip, FallbackValue='CloseStepperoolTip' }" />
                     </dxlc:LayoutItem>

@@ -10,7 +10,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
+    public partial class Ribbon : ViewBase, IRibbon//, IInstanceCountV
     {
         public Ribbon()
         {
@@ -77,7 +77,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region Fields and Properties
 
-        
+        private Boolean _isAdvancedMode;
         public Boolean IsAdvancedMode
         {
             get => _isAdvancedMode;
@@ -92,26 +92,26 @@ namespace VNCPhidget22Explorer.Presentation.Views
         
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private Boolean _isAdvancedMode;
-        private static Int32 _instanceCountV;
+        //private Boolean _isAdvancedMode;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
 
         #region Stuff from Code Behind.  Move to ViewModel
 

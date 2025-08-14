@@ -1,0 +1,78 @@
+{
+  "Name": "PerformanceConfig_Skull_99220_012",
+  "Description": "Performances Skull Routines",
+  "Performances": [
+    {
+      "Name": "Skull 99220 012 Hard Left",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "SerialNumber": 99220, "ChannelClass": "RCServo",
+         "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "RelativePosition": -75 }, ] },
+       },   
+      ],
+    },
+    {
+      "Name": "Skull 99220 012 Hard Right",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "SerialNumber": 99220, "ChannelClass": "RCServo",
+         "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "RelativePosition": 75 }, ] },
+       },   
+      ],
+    },
+    {
+      "Name": "Skull 99220 012 MinPosition",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "SerialNumber": 99220, "ChannelClass": "RCServo",
+         "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": -1 }, ] },
+       },   
+      ],
+    },
+    {
+      "Name": "Skull 99220 012 MinPositionStop",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "SerialNumber": 99220, "ChannelClass": "RCServo",
+         "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": -11 }, ] },
+       },   
+      ],
+    },  
+    {
+      "Name": "Skull 99220 012 MaxPositionStop",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "SerialNumber": 99220, "ChannelClass": "RCServo",
+         "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": -12 }, ] },
+       },   
+      ],
+    },  
+    {
+      "Name": "Skull 99220 012 MaxPosition",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "SerialNumber": 99220, "ChannelClass": "RCServo",
+         "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": -2 }, ] },
+       },   
+      ],
+    },
+  ]
+}

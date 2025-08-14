@@ -199,7 +199,7 @@
                     Mode=TwoWay,
                     UpdateSourceTrigger=PropertyChanged,
                     Converter={StaticResource SelectedItemsToListOfStringConverter} }" >-->
-                    <dxe:ComboBoxEdit x:Name="cbeStepAngle" IsEnabled="{Binding DeviceAttached}"
+                    <dxe:ComboBoxEdit x:Name="cbeStepAngle" IsEnabled="{Binding Attached}"
                         EditValueType="{x:Type sys:Double}"
                         EditValue="{Binding StepAngle}" >
                         <!--SelectedItem="{Binding StepAngle }" >-->

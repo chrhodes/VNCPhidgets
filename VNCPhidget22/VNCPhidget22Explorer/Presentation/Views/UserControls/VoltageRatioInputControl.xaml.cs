@@ -10,12 +10,13 @@ using EnumsNET;
 
 using VNC;
 using VNC.Core.Mvvm;
+using VNC.Phidget22;
 
 using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class VoltageRatioInputControl: ViewBase, IInstanceCountV
+    public partial class VoltageRatioInputControl: ViewBase
     {
         #region Constructors, Initialization, and Load
         
@@ -114,7 +115,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
@@ -123,7 +124,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -163,7 +164,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceLogErrorEvents((Boolean)value);
             else
@@ -172,7 +173,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -210,7 +211,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
@@ -219,7 +220,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -259,7 +260,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogSensorChangeEvents(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceLogSensorChangeEvents((Boolean)value);
             else
@@ -268,7 +269,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogSensorChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnLogSensorChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -308,7 +309,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogVoltageRatioChangeEvents(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceLogVoltageRatioChangeEvents((Boolean)value);
             else
@@ -317,7 +318,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogVoltageRatioChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnLogVoltageRatioChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -358,7 +359,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceControlTitle((string)value);
             else
@@ -367,7 +368,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -379,6 +380,202 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         protected virtual void OnControlTitleChanged(string oldValue, string newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region SerialNumber
+
+        public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+            "SerialNumber",
+            typeof(Int32),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnSerialNumberChanged),
+                new CoerceValueCallback(OnCoerceSerialNumber)
+                )
+            );
+
+        public Int32 SerialNumber
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(SerialNumberProperty);
+            set => SetValue(SerialNumberProperty, value);
+        }
+
+        private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceSerialNumber((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region Channel
+
+        public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+            "Channel",
+            typeof(Int32),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnChannelChanged),
+                new CoerceValueCallback(OnCoerceChannel)
+                )
+            );
+
+        public Int32 Channel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(ChannelProperty);
+            set => SetValue(ChannelProperty, value);
+        }
+
+        private static object OnCoerceChannel(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceChannel((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceChannel(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        #region HubPort
+
+        public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+            "HubPort",
+            typeof(Int32),
+            typeof(VoltageRatioInputControl),
+            new FrameworkPropertyMetadata(
+                0,
+                new PropertyChangedCallback(OnHubPortChanged),
+                new CoerceValueCallback(OnCoerceHubPort)
+                )
+            );
+
+        public Int32 HubPort
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (Int32)GetValue(HubPortProperty);
+            set => SetValue(HubPortProperty, value);
+        }
+
+        private static object OnCoerceHubPort(DependencyObject o, object value)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                return VoltageRatioInputControl.OnCoerceHubPort((Int32)value);
+            else
+                return value;
+        }
+
+        private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
+            if (VoltageRatioInputControl != null)
+                VoltageRatioInputControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        }
+
+        protected virtual Int32 OnCoerceHubPort(Int32 value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
         }
@@ -407,7 +604,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceChannelNumber(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceChannelNumber((string)value);
             else
@@ -416,7 +613,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnChannelNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -455,7 +652,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceAttached((Boolean)value);
             else
@@ -464,7 +661,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -511,7 +708,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorType(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceSensorType((Phidgets.VoltageRatioSensorType)value);
             else
@@ -520,7 +717,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnSensorTypeChanged((Phidgets.VoltageRatioSensorType)e.OldValue, (Phidgets.VoltageRatioSensorType)e.NewValue);
         }
@@ -559,7 +756,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorDescription(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceSensorDescription((string)value);
             else
@@ -568,7 +765,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorDescriptionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnSensorDescriptionChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -608,7 +805,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         //private static object OnCoerceRatioSensorType(DependencyObject o, object value)
         //{
-        //    VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+        //    VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
         //    if (voltageRatioInputControl != null)
         //        return voltageRatioInputControl.OnCoerceRatioSensorType((Phidgets.VoltageRatioSensorType)value);
         //    else
@@ -617,7 +814,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         //private static void OnRatioSensorTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         //{
-        //    VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+        //    VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
         //    if (voltageRatioInputControl != null)
         //        voltageRatioInputControl.OnRatioSensorTypeChanged((Phidgets.VoltageRatioSensorType)e.OldValue, (Phidgets.VoltageRatioSensorType)e.NewValue);
         //}
@@ -657,7 +854,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceSensorUnit((Phidgets.Unit)value);
             else
@@ -666,7 +863,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorUnitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnSensorUnitChanged((Phidgets.Unit)e.OldValue, (Phidgets.Unit)e.NewValue);
         }
@@ -705,7 +902,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit_Unit(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceSensorUnit_Unit((string)value);
             else
@@ -714,7 +911,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorUnit_UnitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnSensorUnit_UnitChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -753,7 +950,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit_Name(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceSensorUnit_Name((string)value);
             else
@@ -762,7 +959,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorUnit_NameChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnSensorUnit_NameChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -801,7 +998,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit_Symbol(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceSensorUnit_Symbol((string)value);
             else
@@ -810,7 +1007,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorUnit_SymbolChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnSensorUnit_SymbolChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -849,7 +1046,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePowerSupply(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoercePowerSupply((Phidgets.PowerSupply)value);
             else
@@ -858,7 +1055,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPowerSupplyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnPowerSupplyChanged((Phidgets.PowerSupply)e.OldValue, (Phidgets.PowerSupply)e.NewValue);
         }
@@ -897,7 +1094,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorValueChangeTrigger(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceSensorValueChangeTrigger((Double)value);
             else
@@ -906,7 +1103,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorValueChangeTriggerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnSensorValueChangeTriggerChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -947,7 +1144,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorValue(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceSensorValue((Double)value);
             else
@@ -956,7 +1153,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorValueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnSensorValueChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -996,7 +1193,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorValueOutOfRange(DependencyObject o, object value)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 return VoltageRatioInputControl.OnCoerceSensorValueOutOfRange((Boolean)value);
             else
@@ -1005,7 +1202,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSensorValueOutOfRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl VoltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl VoltageRatioInputControl = (VoltageRatioInputControl)o;
             if (VoltageRatioInputControl != null)
                 VoltageRatioInputControl.OnSensorValueOutOfRangeChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -1045,7 +1242,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinDataInterval(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMinDataInterval((Int32)value);
             else
@@ -1054,7 +1251,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMinDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -1094,7 +1291,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDataInterval(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceDataInterval((Int32)value);
             else
@@ -1103,7 +1300,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -1143,7 +1340,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDataInterval(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMaxDataInterval((Int32)value);
             else
@@ -1152,7 +1349,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMaxDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -1190,7 +1387,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinDataRate(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMinDataRate((Double)value);
             else
@@ -1199,7 +1396,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMinDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1239,7 +1436,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDataRate(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceDataRate((Double)value);
             else
@@ -1248,7 +1445,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1287,7 +1484,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDataRate(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMaxDataRate((Double)value);
             else
@@ -1296,7 +1493,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMaxDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1335,7 +1532,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinVoltageRatioChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMinVoltageRatioChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1353,7 +1550,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinVoltageRatio(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMinVoltageRatio((Double)value);
             else
@@ -1384,7 +1581,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVoltageRatioChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnVoltageRatioChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1424,7 +1621,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxVoltageRatio(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMaxVoltageRatio((Double)value);
             else
@@ -1433,7 +1630,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxVoltageRatioChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMaxVoltageRatioChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1450,7 +1647,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceVoltageRatio(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceVoltageRatio((Double)value);
             else
@@ -1482,7 +1679,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinVoltageRatioChangeTrigger(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMinVoltageRatioChangeTrigger((Double)value);
             else
@@ -1491,7 +1688,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinVoltageRatioChangeTriggerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMinVoltageRatioChangeTriggerChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1531,7 +1728,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceVoltageRatioChangeTrigger(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceVoltageRatioChangeTrigger((Double)value);
             else
@@ -1540,7 +1737,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVoltageRatioChangeTriggerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnVoltageRatioChangeTriggerChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1580,7 +1777,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxVoltageRatioChangeTrigger(DependencyObject o, object value)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 return voltageRatioInputControl.OnCoerceMaxVoltageRatioChangeTrigger((Double)value);
             else
@@ -1589,7 +1786,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxVoltageRatioChangeTriggerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+            VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
             if (voltageRatioInputControl != null)
                 voltageRatioInputControl.OnMaxVoltageRatioChangeTriggerChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1629,7 +1826,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         //private static object OnCoerceVoltageRange(DependencyObject o, object value)
         //{
-        //    VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+        //    VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
         //    if (voltageRatioInputControl != null)
         //        return voltageRatioInputControl.OnCoerceVoltageRange((Phidgets.VoltageRange)value);
         //    else
@@ -1638,7 +1835,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         //private static void OnVoltageRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         //{
-        //    VoltageRatioInputControl voltageRatioInputControl = o as VoltageRatioInputControl;
+        //    VoltageRatioInputControl voltageRatioInputControl = (VoltageRatioInputControl)o;
         //    if (voltageRatioInputControl != null)
         //        voltageRatioInputControl.OnVoltageRangeChanged((Phidgets.VoltageRange)e.OldValue, (Phidgets.VoltageRange)e.NewValue);
         //}
@@ -1724,27 +1921,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #endregion
 
         #region Private Methods (none)
-
-
-        #endregion
-
-        #region IInstanceCount
-
-        private static Int32 _instanceCountV;
-
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
-
-        private static Int32 _instanceCountVP;
-
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
 
 
         #endregion

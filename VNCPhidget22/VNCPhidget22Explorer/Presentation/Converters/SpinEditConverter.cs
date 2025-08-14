@@ -3,6 +3,8 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Markup;
 
+using VNC;
+
 namespace VNCPhidget22Explorer.Presentation.Converters
 {
     public class SpinEditConverter : MarkupExtension, IValueConverter
@@ -13,7 +15,7 @@ namespace VNCPhidget22Explorer.Presentation.Converters
         }
 
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
+        { 
             if (value != null)
                 return value;
 

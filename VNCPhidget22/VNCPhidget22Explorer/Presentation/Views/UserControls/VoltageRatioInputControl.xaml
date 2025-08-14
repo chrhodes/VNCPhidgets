@@ -74,8 +74,12 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
+    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top">
 
+
+        <Label Content="{Binding SerialHubPortChannel}" />
+        
         <!-- Logging -->
         
         <dxlc:LayoutGroup 
@@ -109,6 +113,8 @@
 
         </dxlc:LayoutGroup>
 
+        <!--Open/Close-->
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             
             <dxlc:LayoutItem>
@@ -116,7 +122,7 @@
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		            Command="{Binding OpenVoltageRatioInputCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                        CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		                Content="{Binding OpenVoltageRatioInputContent, FallbackValue='Open' }"
       		                ToolTip="{Binding OpenVoltageRatioInputToolTip, FallbackValue='OpenVoltageRatioInput ToolTip' }" />   
             </dxlc:LayoutItem>
@@ -126,7 +132,7 @@
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		            Command="{Binding RefreshVoltageRatioInputCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                        CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		                Content="{Binding RefreshVoltageRatioInputContent, FallbackValue='Refresh' }"
       		                ToolTip="{Binding RefreshVoltageRatioInputToolTip, FallbackValue='RefreshVoltageRatioInput Properties ToolTip' }" />
             </dxlc:LayoutItem>
@@ -136,7 +142,7 @@
                         DataContext="{Binding DataContext, 
                                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		            Command="{Binding CloseVoltageRatioInputCommand }"
-                        CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                        CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		                Content="{Binding CloseVoltageRatioInputContent, FallbackValue='Close' }"
       		                ToolTip="{Binding CloseVoltageRatioInputToolTip, FallbackValue='CloseVoltageRatioInput ToolTip' }" />
             </dxlc:LayoutItem>
@@ -147,8 +153,26 @@
 
         </dxlc:LayoutItem>-->
 
-        <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
-        
+        <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+            <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+
+            <!--<views:SerialHubPortControl />-->
+            
+            <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="SerialNumber" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding SerialNumber}" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="HubPort" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding HubPort}" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Center" Label="Channel" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding Channel}" />
+            </dxlc:LayoutItem>-->
+
+        </dxlc:LayoutGroup>        
+
         <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
             <dxe:ComboBoxEdit 
                 ItemsSource="{Binding Source={vncenum:EnumBindingSource {x:Type phidgets:VoltageRatioSensorType}}}"
@@ -190,7 +214,7 @@
 
                 <TextBlock Text=" " Height="10" Width="10"
                            Background="{Binding SensorValueOutOfRange, Mode=OneWay, 
-                                        Converter={StaticResource InverseBooleanToColorConverter}}"/>
+                                        Converter={StaticResource InverseBooleanToColorConverter}}" RenderTransformOrigin="1403.547,-7.725"/>
 
             </dxlc:LayoutGroup>
 
@@ -201,11 +225,11 @@
         </dxlc:LayoutGroup>
 
         <views:DataIntervalAndRateControl VerticalAlignment="Top" />
-        
+
         <dxlc:LayoutGroup x:Name="lgChangeTrigger"  Header="ChangeTrigger" View="GroupBox" Orientation="Vertical"  
                           VerticalAlignment="Top"
                           IsCollapsible="True" IsCollapsed="False" Padding="-10">
-            
+
             <dxlc:LayoutGroup View="GroupBox" Header="VoltageRatio Change" Orientation="Horizontal" >
 
                 <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left">
@@ -226,7 +250,7 @@
                 <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Right">
                     <dxe:TextEdit Text="{Binding MaxVoltageRatioChangeTrigger, Mode=OneWay}" IsReadOnly="True" />
                 </dxlc:LayoutItem>
-                
+
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup View="GroupBox" Header="Sensor Change" Orientation="Horizontal" HorizontalAlignment="Stretch"  >
@@ -245,8 +269,6 @@
             </dxlc:LayoutGroup>
 
         </dxlc:LayoutGroup>
-        
-
 
     </dxlc:LayoutGroup>
 

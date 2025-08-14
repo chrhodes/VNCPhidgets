@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Windows.Documents;
 
 using Prism.Events;
 
@@ -16,21 +16,19 @@ namespace VNC.Phidget22.Players
     public class PerformancePlayer : INPCBase
     {
         #region Constructors, Initialization, and Load
-        
+
+        private static readonly object _lock = new object();
+
         public IEventAggregator EventAggregator { get; set; }
 
-        public PerformancePlayer(IEventAggregator eventAggregator)
+        public PerformancePlayer(IEventAggregator eventAggregator, PerformanceLibrary performanceLibrary, Int32? serialNumber = null)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter", Common.LOG_CATEGORY);
 
             EventAggregator = eventAggregator;
-
-            //PerformanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
-            //PerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
-            //PerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            //PerformanceSequencePlayer.LogChannelAction = LogChannelAction;
-            //PerformanceSequencePlayer.LogActionVerification = LogActionVerification;
+            SerialNumber = serialNumber;
+            PerformanceLibrary = performanceLibrary;
 
             if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -51,7 +49,9 @@ namespace VNC.Phidget22.Players
 
         #region Fields and Properties
 
-        public DeviceChannelSequencePlayer ActivePerformanceSequencePlayer { get; set; }
+        public Int32? SerialNumber { get; set; } = null;
+
+        public PerformanceLibrary PerformanceLibrary { get; set; }
 
         #region Logging
 
@@ -257,6 +257,7 @@ namespace VNC.Phidget22.Players
         #endregion
 
         #region Public Methods
+
         /// <summary>
         /// Executes a Performance by calling RunPerformanceLoops() and calls NextPerformance if any
         /// </summary>
@@ -266,207 +267,297 @@ namespace VNC.Phidget22.Players
         {
             Performance? nextPerformance = performance;
 
-            // NOTE(crhodes)
-            // Why would we need to check given UI brought us here.
-            // Might be useful generally
-
-            //if (AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
-            //{ 
-
-            //}
-
             while (nextPerformance is not null)
             {
                 if (LogPerformance)
                 {
-                    Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
-                        $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                        $"\r deviceClassSequences:{performance.DeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                        $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
-                        $"\r loops:{performance.PerformanceLoops}" +
-                        $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                        $"\r nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+                    Log.Trace($"PlayPerformance(>{performance.Name}<) description:>{performance.Description}<" +
+                        $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
+                        $" deviceChannelSequences:>{performance.DeviceChannelSequences?.Count()}<" +
+                        $" playSequencesInParallel:>{performance.ExecuteDeviceChannelSequencesInParallel}<" +
+                        $" performances:>{performance.Performances?.Count()}<" +
+                        $" playPerformancesInParallel:>{performance.ExecutePerformancesInParallel}<" +
+                        $" loops:>{performance.PerformanceLoops}<" +
+                        $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
+                        $" duration:>{performance.Duration}<" +
+                        $" nextPerformance:>{performance.NextPerformance?.Name}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
-                if (PerformanceLibrary.AvailablePerformances.ContainsKey(nextPerformance.Name ?? ""))
+                string? performanceName = nextPerformance?.Name;
+
+                if (performanceName != null)
                 {
-                    nextPerformance = PerformanceLibrary.AvailablePerformances[nextPerformance.Name];
+                    if (PerformanceLibrary.AvailablePerformances.ContainsKey(performanceName))
+                    {
+                        nextPerformance = PerformanceLibrary.AvailablePerformances[performanceName];
 
-                    await RunPerformanceLoops(nextPerformance);
+                        await ExecutePerformance(nextPerformance);
 
-                    nextPerformance = nextPerformance?.NextPerformance;
+                        nextPerformance = nextPerformance?.NextPerformance;
+                    }
                 }
                 else
                 {
-                    Log.Error($"Cannot find performance:>{nextPerformance.Name}<", Common.LOG_CATEGORY);
+                    Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
                     nextPerformance = null;
                 }
             }
         }
 
-        public async Task RunPerformanceLoops(Performance performance)
+        public async Task ExecutePerformance(Performance performance)
         {
             long startTicks = 0;
 
             if (LogPerformance)
             {
-                startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+                startTicks = Log.Trace($"Enter RunPerformanceLoops(:>{performance.Name}<)" +
+                    $" description:>{performance.Description}<" +
+                    $" playerSerialNumber:>{SerialNumber}<" +
+                    $" serialNumber:>{performance.SerialNumber}<" +
+                    $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
+                    $" deviceClassSequences:>{performance.DeviceChannelSequences?.Count()}<" +
+                    $" playSequencesInParallel:>{performance.ExecuteDeviceChannelSequencesInParallel}<" +
+                    $" performances:>{performance.Performances?.Count()}<" +
+                    $" playPerformancesInParallel:>{performance.ExecutePerformancesInParallel}<" +
+                    $" performanceLoops:>{performance.PerformanceLoops}<" +
+                    $" afterPerformanceLoopPerformances:>{performance.AfterPerformanceLoopPerformances?.Count()}<" +
+                    $" duration:>{performance.Duration}<" +
+                    $" nextPerformance:>{performance.NextPerformance?.Name}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+            }
 
-                Log.Trace($"Running performance:>{performance.Name}< description:>{performance.Description}<" +
-                    $"\r beforePerformanceLoopPerformances:{performance.BeforePerformanceLoopPerformances?.Count()}" +
-                    $"\r deviceClassSequences:{performance.DeviceClassSequences?.Count()} playSequencesInParallel:{performance.PlaySequencesInParallel}" +
-                    $"\r performances:{performance.Performances?.Count()} playPerformancesInParallel:{performance.PlayPerformancesInParallel}" +
-                    $"\r loops:{performance.PerformanceLoops}" +
-                    $"\r afterPerformanceLoopPerformances:{performance.AfterPerformanceLoopPerformances?.Count()}" +
-                    $"\r nextPerformance:>{performance.NextPerformance?.Name}<", Common.LOG_CATEGORY);
+            Performance? configuredPerf;
+
+            if (performance.Name is not null)
+            {
+                configuredPerf = RetrieveAndConfigurePerformance(performance.Name, SerialNumber);
+            }
+            else
+            {
+                // Handle Performance without a name
+                configuredPerf = CreateInlinePerformance(performance, SerialNumber);
+            }
+
+            if (configuredPerf is null)
+            {
+                Log.Error("Aborting RunPerformanceLoops configuredPerf is null", Common.LOG_CATEGORY);
+                return;
             }
 
             // NOTE(crhodes)
-            // Execute BeforePerformanceLoopPerformances if any
+            // Execute BeforePerformanceLoopPerformances[] if any
 
-            if (performance.BeforePerformanceLoopPerformances is not null)
+            if (configuredPerf.BeforePerformanceLoopPerformances is not null)
             {
-                await ExecutePerfomanceSequences(performance.BeforePerformanceLoopPerformances);
+                await ExecutePerfomanceSequences(configuredPerf.BeforePerformanceLoopPerformances);
             }
 
             // NOTE(crhodes)
-            // Then Execute DeviceClassSequences loops if any
+            // Then Execute DeviceChannelSequences[] loops if any
 
-            if (performance.DeviceClassSequences is not null)
+            if (configuredPerf.DeviceChannelSequences is not null)
             {
-                for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                for (Int32 performanceLoop = 0; performanceLoop < configuredPerf.PerformanceLoops; performanceLoop++)
                 {
-                    if (performance.PlaySequencesInParallel)
-                    {
-                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-
-                        Parallel.ForEach(performance.DeviceClassSequences, async sequence =>
+                    if (configuredPerf.ExecuteDeviceChannelSequencesInParallel)
+                    {                       
+                        Parallel.ForEach(configuredPerf.DeviceChannelSequences, async deviceChannelSequence =>
                         {
                             // TODO(crhodes)
-                            // Maybe create a new DeviceChannelSequencePlayer
-                            // instead of reaching for the Property.  If we do that have to initialize all the logging.
-                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
+                            // If we have configured a SerialNumber override, we need to use that
+                            // Otherwise we use the sequence SerialNumber
 
-                            await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
+                            DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
+                                configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
+                            //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(configuredPerf.SerialNumber);
+
+                            if (LogPerformance) Log.Trace($"Parallel DeviceChannelSequences" +
+                                $" performance:>{deviceChannelSequence.Name}<" +
+                                $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +
+                                $" sequenceSerialNumber:>{deviceChannelSequence.SerialNumber}<" +   
+                                $" performancePlayerSerialNumber:>{SerialNumber}<" +
+                                $" hubPort:>{deviceChannelSequence.HubPort}<" +
+                                $" channel:>{deviceChannelSequence.Channel}<" +
+                                $" performanceLoop:>{performanceLoop + 1}<" +
+                                $" duration:>{deviceChannelSequence.Duration}<" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                            await deviceChannelSequencePlayer.ExecuteDeviceChannelSequence(deviceChannelSequence);
                         });
                     }
                     else
                     {
-                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-
-                        DeviceChannelSequencePlayer player = GetPerformanceSequencePlayer();
-
-                        foreach (DeviceChannelSequence sequence in performance.DeviceClassSequences)
+                        foreach (DeviceChannelSequence deviceChannelSequence in configuredPerf.DeviceChannelSequences)
                         {
-                            await player.ExecuteDeviceChannelSequence(sequence, performance.SerialNumber);
+                            // TODO(crhodes)
+                            // If we have configured a SerialNumber override, we need to use that
+                            // Otherwise we use the deviceChannelSequence SerialNumber
+
+                            DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
+                                configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
+                            //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(configuredPerf.SerialNumber);
+
+                            if (LogPerformance) Log.Trace($"Sequential DeviceChannelSequences" +
+                                $" performance:>{deviceChannelSequence.Name}<" +
+                                $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +
+                                $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
+                                $" performancePlayerSerialNumber:>{SerialNumber}<" +
+                                $" hubPort:>{deviceChannelSequence.HubPort}<" +
+                                $" channel:>{deviceChannelSequence.Channel}<" +
+                                $" performanceLoop:>{performanceLoop + 1}<" +
+                                $" duration:>{deviceChannelSequence.Duration}<" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                            await deviceChannelSequencePlayer.ExecuteDeviceChannelSequence(deviceChannelSequence);
                         }
                     }
                 }
-
-                // NOTE(crhodes)
-                // Then Sleep if necessary before next loop
-
-                if (performance.Duration is not null)
-                {
-                    if (LogPerformance)
-                    {
-                        Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
-                    }
-                    Thread.Sleep((Int32)performance.Duration);
-                }
             }
 
             // NOTE(crhodes)
-            // Then Execute Performances loops if any
+            // Then Execute Performances[] loops if any
 
-            if (performance.Performances is not null)
+            if (configuredPerf.Performances is not null)
             {
-                // TODO(crhodes)
-                // Maybe create a new PerformancePlayer
-                // instead of reaching for the Property.  If we do that have to initialize all the logging.
-
-                //PerformanceSequencePlayer performanceSequencePlayer = new PerformanceSequencePlayer(EventAggregator);
-
-                DeviceChannelSequencePlayer performanceSequencePlayer = GetPerformanceSequencePlayer();
-
-                for (Int32 performanceLoop = 0; performanceLoop < performance.PerformanceLoops; performanceLoop++)
+                for (Int32 performanceLoop = 0; performanceLoop < configuredPerf.PerformanceLoops; performanceLoop++)
                 {
-                    if (performance.PlayPerformancesInParallel)
+                    if (configuredPerf.ExecutePerformancesInParallel)
                     {
-                        if (LogPerformance) Log.Trace($"Parallel Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-
-                        Parallel.ForEach(performance.Performances, async perf =>
+                        Parallel.ForEach(configuredPerf.Performances, async perf =>
                         {
-                            if (PerformanceLibrary.AvailablePerformances.ContainsKey(perf.Name ?? ""))
-                            {
-                                Performance loadedPerf = PerformanceLibrary.AvailablePerformances[perf.Name];
+                            PerformancePlayer performancePlayer = GetNewPerformancePlayer(perf.SerialNumber);
 
-                                await RunPerformanceLoops(loadedPerf);
-                            }
-                            else
-                            {
-                                Log.Error($"Cannot find performance:>{perf.Name}<", Common.LOG_CATEGORY);
-                            }
+                            if (LogPerformance) Log.Trace($"Parallel RunPerformanceLoops(>{perf.Name}<)" +
+                                $" serialNumber:>{perf.SerialNumber}<" +
+                                $" performancePlayerSerialNumber:>{SerialNumber}<" +
+                                $" performanceLoop:>{performanceLoop + 1}<" +
+                                $" duration:>{perf.Duration}<" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                            await performancePlayer.ExecutePerformance(perf);
                         });
                     }
                     else
                     {
-                        if (LogPerformance) Log.Trace($"Sequential Actions performanceLoop:{performanceLoop + 1}", Common.LOG_CATEGORY);
-
-                        foreach (Performance perf in performance.Performances)
+                        foreach (Performance perf in configuredPerf.Performances)
                         {
-                            if (PerformanceLibrary.AvailablePerformances.ContainsKey(perf.Name ?? ""))
-                            {
-                                Performance loadedPerf = PerformanceLibrary.AvailablePerformances[perf.Name];
+                            // HACK(crhodes)
+                            // Ugh.  If playing sequentially, we need to set ourselves to the right serial number
 
-                                await RunPerformanceLoops(loadedPerf);
-                            }
-                            else
-                            {
-                                Log.Error($"Cannot find performance:>{perf.Name}<", Common.LOG_CATEGORY);
-                            }
-                       }
+                            SerialNumber = perf.SerialNumber;
+
+                            if (LogPerformance) Log.Trace($"Sequential RunPerformanceLoops(>{perf.Name}<)" +
+                                $" serialNumber:>{perf.SerialNumber}<" +
+                                $" performancePlayerSerialNumber:>{SerialNumber}<" +
+                                $" performanceLoop:>{performanceLoop + 1}<" +
+                                $" duration:>{perf.Duration}<" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                            await ExecutePerformance(perf);
+                        }
                     }
-                }
-
-                // NOTE(crhodes)
-                // Then Sleep if necessary before next loop
-
-                if (performance.Duration is not null)
-                {
-                    if (LogPerformance)
-                    {
-                        Log.Trace($"Zzzzz End of Performance Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
-                    }
-                    Thread.Sleep((Int32)performance.Duration);
                 }
             }
 
             // NOTE(crhodes)
-            // Then Execute AfterPerformanceLoopPerformances if any
+            // Then Execute AfterPerformanceLoopPerformances[] if any
 
-            if (performance.AfterPerformanceLoopPerformances is not null)
+            if (configuredPerf.AfterPerformanceLoopPerformances is not null)
             {
-                await ExecutePerfomanceSequences(performance.AfterPerformanceLoopPerformances);
+                await ExecutePerfomanceSequences(configuredPerf.AfterPerformanceLoopPerformances);
             }
 
-            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (performance.Duration is not null)
+            {
+                if (LogPerformance)
+                {
+                    Log.Trace($"Zzzz - End of Performance:>{performance.Name}<" +
+                        $" Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
+                }
+                Thread.Sleep((Int32)performance.Duration);
+            }
+
+            // NOTE(crhodes)
+            // Play the nextPerformance if any
+
+            if (configuredPerf.NextPerformance is not null)
+            {
+                await ExecutePerformance(configuredPerf.NextPerformance);
+            }
+
+            if (LogPerformance) Log.Trace($"Exit" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private Performance CreateInlinePerformance(Performance performance, int? serialNumber)
+        {
+            Int64 startTicks = 0;
+            if (LogPerformance) startTicks = Log.Trace($"Enter" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+            Performance createdPerformance = new Performance(performance);
+
+            if (serialNumber is not null)
+            {
+                createdPerformance.SerialNumber = serialNumber;
+            }
+
+            if (LogPerformance) Log.Trace($"Exit" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+
+            return createdPerformance;
+        }
+
+        private Performance? RetrieveAndConfigurePerformance(string performanceName, Int32? serialNumber)
+        {
+            Int64 startTicks = 0;
+
+            if (PerformanceLibrary.AvailablePerformances.TryGetValue(performanceName, out Performance? retrievedPerfrormance))
+            {
+                if (LogPerformance) startTicks = Log.Trace($"Retrieved performance:>{retrievedPerfrormance.Name}<" +
+                    $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
+                    $" duration:>{retrievedPerfrormance.Duration}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                Performance configuredPerformance = new Performance(retrievedPerfrormance);
+
+                if (serialNumber is not null)
+                {
+                    configuredPerformance.SerialNumber = serialNumber;
+                }
+
+                if (LogPerformance) Log.Trace($"Configured performance:>{retrievedPerfrormance.Name}<" +
+                    $" serialNumber:>{configuredPerformance.SerialNumber}<" +
+                    $" duration:>{configuredPerformance.Duration}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
+
+                return configuredPerformance;
+            }
+            else
+            {
+                Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
+                return null;
+            }
         }
 
         private async Task ExecutePerfomanceSequences(Performance[] performanceSequences)
         {
             Int64 startTicks = 0;
-            if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:{performanceSequences.Count()}", Common.LOG_CATEGORY);
+            if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:>{performanceSequences.Count()}<", Common.LOG_CATEGORY);
 
             foreach (Performance callPerformance in performanceSequences)
             {
-                Performance nextPerformance = null;
+                //Performance? nextPerformance = null;
 
-                if (PerformanceLibrary.AvailablePerformances.ContainsKey(callPerformance.Name ?? ""))
+                // TODO(crhodes)
+                // Do we want to handle embedded InLine Performance without a name?
+
+                if (PerformanceLibrary.AvailablePerformances.TryGetValue(callPerformance.Name, out Performance? nextPerformance))
                 {
-                    nextPerformance = PerformanceLibrary.AvailablePerformances[callPerformance.Name];
+                    //nextPerformance = value;
 
-                    await RunPerformanceLoops(nextPerformance);
+                    await ExecutePerformance(nextPerformance);
 
                     // TODO(crhodes)
                     // Should we process Next Performance if exists.
@@ -495,43 +586,34 @@ namespace VNC.Phidget22.Players
 
         #region Private Methods
 
-        private DeviceChannelSequencePlayer GetPerformanceSequencePlayer()
+        private PerformancePlayer GetNewPerformancePlayer(Int32? serialNumber = null)
         {
-            Int64 startTicks = 0;
-            if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            //Int64 startTicks = 0;
+            //if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            if (ActivePerformanceSequencePlayer == null)
-            {
-                ActivePerformanceSequencePlayer = new DeviceChannelSequencePlayer(EventAggregator);
-            }
+            PerformancePlayer player = new PerformancePlayer(EventAggregator, PerformanceLibrary, serialNumber);
 
-            ActivePerformanceSequencePlayer.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            ActivePerformanceSequencePlayer.LogChannelAction = LogChannelAction;
-            ActivePerformanceSequencePlayer.LogActionVerification = LogActionVerification;
+            player.LogPerformance = LogPerformance;
+            player.LogPhidgetEvents = LogPhidgetEvents;
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
 
-            ActivePerformanceSequencePlayer.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            ActivePerformanceSequencePlayer.LogPositionChangeEvents = LogPositionChangeEvents;
-            ActivePerformanceSequencePlayer.LogVelocityChangeEvents = LogVelocityChangeEvents;
-            ActivePerformanceSequencePlayer.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+            //if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            // NOTE(crhodes)
+            // We log so we can see ThreadID
+            if (LogPerformance) Log.Trace($"Enter/Exit serialNumber:>{serialNumber}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-            ActivePerformanceSequencePlayer.LogInputChangeEvents = LogInputChangeEvents;
-            ActivePerformanceSequencePlayer.LogOutputChangeEvents = LogOutputChangeEvents;
-
-            ActivePerformanceSequencePlayer.LogSensorChangeEvents = LogSensorChangeEvents;
-
-            ActivePerformanceSequencePlayer.LogPhidgetEvents = LogPhidgetEvents;
-
-            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
-
-            return ActivePerformanceSequencePlayer;
+            return player;
         }
 
-        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer(Int32? serialNumber = null)
         {
-            Int64 startTicks = 0;
-            if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            //Int64 startTicks = 0;
+            //if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(EventAggregator);
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(EventAggregator, serialNumber);
 
             player.LogDeviceChannelSequence = LogDeviceChannelSequence;
             player.LogChannelAction = LogChannelAction;
@@ -549,7 +631,11 @@ namespace VNC.Phidget22.Players
 
             player.LogPhidgetEvents = LogPhidgetEvents;
 
-            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            //if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            // NOTE(crhodes)
+            // We log so we can see ThreadID
+            if (LogPerformance) Log.Trace($"Enter/Exit serialNumber:>{serialNumber}<" +
+                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
             return player;
         }

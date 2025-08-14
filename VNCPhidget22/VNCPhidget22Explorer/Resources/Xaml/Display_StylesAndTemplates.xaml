@@ -43,9 +43,10 @@
 
     <SolidColorBrush x:Key="LoggingBackground" Color="#E0E0E0" />
 
-    <SolidColorBrush x:Key="InterfaceKitBackground" Color="#B0B0B0" />
     <SolidColorBrush x:Key="AdvancedServo1061Background" Color="#B0B0B0" />
+    <SolidColorBrush x:Key="InterfaceKitBackground" Color="#B0B0B0" />
     <SolidColorBrush x:Key="Stepper1063Background" Color="#B0B0B0" />
+    <SolidColorBrush x:Key="VINTHubBackground" Color="#B0B0B0" />
 
     <SolidColorBrush x:Key="HackAroundBackground" Color="#A0A0A0" />
     <SolidColorBrush x:Key="ManagePerformanceLibraryBackground" Color="#A0A0A0" />

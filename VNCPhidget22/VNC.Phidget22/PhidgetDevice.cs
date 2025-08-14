@@ -37,8 +37,7 @@ namespace VNC.Phidget22
         //public SerialHost SerialHostKey { get; set; }
 
 
-        public string HostComputer { get; set; }
-
+        public string? HostComputer { get; set; }
 
         public string IPAddress { get; set; } = "127.0.0.1";
 
@@ -49,30 +48,30 @@ namespace VNC.Phidget22
         public Boolean IsLocal { get; set; }
         public Boolean IsRemote { get; set; }
 
-        public string GrandParent { get; set; }
-        public string Parent { get; set; }
+        public string? GrandParent { get; set; }
+        public string? Parent { get; set; }
 
         public bool IsHubPortDevice { get; set; }
         public Int32 HubPort { get; set; }
 
-        public string DeviceClass { get; set; }
-        public string DeviceClassName { get; set; }
-        public string DeviceName { get; set; }
-        public string DeviceSKU { get; set; }
+        public string? DeviceClass { get; set; }
+        public string? DeviceClassName { get; set; }
+        public string? DeviceName { get; set; }
+        public string? DeviceSKU { get; set; }
 
-        public string DeviceID { get; set; }
-        public string DeviceVINTID { get; set; }
-        public string DeviceVersion { get; set; }
+        public string? DeviceID { get; set; }
+        public string? DeviceVINTID { get; set; }
+        public string? DeviceVersion { get; set; }
 
         public bool IsChannel { get; set; }
         public Int32 Channel { get; set; }
-        public string ChannelClass { get; set; }
-        public string ChannelName { get; set; }
-        public string ChannelSubclass { get; set; }
+        public string? ChannelClass { get; set; }
+        public string? ChannelName { get; set; }
+        public string? ChannelSubclass { get; set; }
 
 
         // TODO(crhodes)
-        // Hos is this used.  Only place I see is in AddPhidgetDevice()
+        // How is this used.  Only place I see is in AddPhidgetDevice()
         public Int32 ChannelCount { get; set; }
 
         // FIX(crhodes)

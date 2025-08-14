@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public HumiditySensorSequence(HumiditySensorSequence sequence) : base("HumiditySensor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of HumiditySensor actions in sequence
         /// </summary>
-        public HumiditySensorAction[] Actions { get; set; }
+        public HumiditySensorAction[]? Actions { get; set; }
     }
 }

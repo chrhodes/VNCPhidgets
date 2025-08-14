@@ -2,21 +2,13 @@
 
 namespace VNC.Phidget22.Configuration
 {
-    public class StepperAction
+    public class StepperAction : ActionBase
     {
         #region Logging
-
-        public Boolean? LogPhidgetEvents { get; set; }
-        public Boolean? LogErrorEvents { get; set; }
-        public Boolean? LogPropertyChangeEvents { get; set; }
 
         public Boolean? LogPositionChangeEvents { get; set; }
         public Boolean? LogVelocityChangeEvents { get; set; }
         public Boolean? LogStoppedEvents { get; set; }
-
-        public Boolean? LogDeviceChannelSequence { get; set; }
-        public Boolean? LogChannelAction { get; set; }
-        public Boolean? LogActionVerification { get; set; }
 
         #endregion
 
@@ -31,15 +23,15 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public Double? RescaleFactor { get; set; }
 
-        /// <summary>
-        /// Open RCServo (optional)
-        /// </summary>
-        public Boolean? Open { get; set; }
+        ///// <summary>
+        ///// Open RCServo (optional)
+        ///// </summary>
+        //public Boolean? Open { get; set; }
 
-        /// <summary>
-        /// Close RCServo (optional)
-        /// </summary>
-        public Boolean? Close { get; set; }
+        ///// <summary>
+        ///// Close RCServo (optional)
+        ///// </summary>
+        //public Boolean? Close { get; set; }
 
         /// <summary>
         /// Engage Stepper (optional)
@@ -103,9 +95,5 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         //public Double? PositionMax { get; set; }
 
-        /// <summary>
-        /// Duration of step in ms (sleep time after step)
-        /// </summary>
-        public Int32? Duration { get; set; } // ms
     }
 }

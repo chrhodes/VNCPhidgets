@@ -9,9 +9,14 @@ namespace VNC.Phidget22.Configuration
             //base.DeviceClass = "DigitalOutput";
         }
 
+        public DigitalOutputSequence(DigitalOutputSequence sequence) : base("DigitalOutput", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
-        /// Array of DigitalInput actions in sequence
+        /// Array of DigitalOutput actions in sequence
         /// </summary>
-        public DigitalOutputAction[] Actions { get; set; }
+        public DigitalOutputAction[]? Actions { get; set; }
     }
 }

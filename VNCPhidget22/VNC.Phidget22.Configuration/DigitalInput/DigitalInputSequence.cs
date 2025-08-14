@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public DigitalInputSequence(DigitalInputSequence sequence) : base("DigitalInput", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of DigitalInput actions in sequence
         /// </summary>
-        public DigitalInputAction[] Actions { get; set; }
+        public DigitalInputAction[]? Actions { get; set; }
     }
 }

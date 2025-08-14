@@ -8,6 +8,11 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public StepperSequence(StepperSequence sequence) : base("Stepper", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         //public string DeviceClass { get; } = "Stepper";
         /// <summary>
         /// Array of Stepper actions in sequence

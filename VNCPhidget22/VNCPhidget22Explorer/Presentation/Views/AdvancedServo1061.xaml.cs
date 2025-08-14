@@ -6,6 +6,8 @@ using System.Windows.Input;
 using DevExpress.Xpf.Editors;
 using DevExpress.Xpf.LayoutControl;
 
+using Prism.Services.Dialogs;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -13,7 +15,7 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class AdvancedServo1061 : ViewBase, IAdvancedServo1061, IInstanceCountV
+    public partial class AdvancedServo1061 : ViewBase, IAdvancedServo1061//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -33,6 +35,14 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // Can create directly
             // ViewModel = AdvancedServo1061ViewModel();
+
+            ViewModel = new AdvancedServo1061ViewModel(
+                Common.EventAggregator, 
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
+            // Can use ourselves for everything
+
+            //DataContext = this;
 
             InitializeView();
 
@@ -140,24 +150,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

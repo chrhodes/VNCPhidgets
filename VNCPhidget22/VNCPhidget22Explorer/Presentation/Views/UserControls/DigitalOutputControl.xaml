@@ -71,7 +71,10 @@
         <!-- <localvm:PositionControlViewModel /> -->
     <!-- </UserControl.DataContext> -->
 
-    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" HorizontalAlignment="Left">
+    <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" 
+                      HorizontalAlignment="Left" VerticalAlignment="Top">
+
+        <Label Content="{Binding SerialHubPortChannel}" />
         
         <!--Logging-->
         
@@ -98,13 +101,15 @@
                 HorizontalAlignment="Left"/>
         </dxlc:LayoutGroup>
 
+        <!--Open/Close-->
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
             <dxlc:LayoutItem>
                 <Button x:Name="btnOpenDigitalOutputCommand" 
                     DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		        Command="{Binding OpenDigitalOutputCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                    CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		        Content="{Binding OpenDigitalOutputContent, FallbackValue='OpenDigitalOutput' }"
       		        ToolTip="{Binding OpenDigitalOutputToolTip, FallbackValue='OpenDigitalOutput ToolTip' }" />
             </dxlc:LayoutItem>
@@ -114,22 +119,44 @@
                     DataContext="{Binding DataContext, 
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		        Command="{Binding CloseDigitalOutputCommand }"
-                    CommandParameter="{Binding ElementName=thisControl, Path=ChannelNumber}"                
+                    CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		        Content="{Binding CloseDigitalOutputContent, FallbackValue='CloseDigitalOutput' }"
       		        ToolTip="{Binding CloseDigitalOutputToolTip, FallbackValue='CloseDigitalOutput ToolTip' }" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>
-        
-        <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
-            <dxe:CheckEdit 
-                Tag="0"  
-                IsEnabled="{Binding Attached}" 
-                IsChecked="{Binding State}"
-                Background="{Binding State, Mode=OneWay, 
-                            Converter={StaticResource BooleanToColorConverter}}"/>
-        </dxlc:LayoutItem>
 
+        <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+            <dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
+                <dxe:CheckEdit 
+                    Tag="0"  
+                    IsEnabled="{Binding Attached}" 
+                    IsChecked="{Binding State}"
+                    Background="{Binding State, Mode=OneWay, 
+                                Converter={StaticResource BooleanToColorConverter}}"/>
+            </dxlc:LayoutItem>
+
+            <!--<views:SerialHubPortControl />-->
+            
+            <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="SerialNumber" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding SerialNumber}" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="HubPort" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding HubPort}" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem HorizontalAlignment="Center" Label="Channel" LabelPosition="Top">
+                <dxe:TextEdit Text="{Binding Channel}" />
+            </dxlc:LayoutItem>-->
+            
+        </dxlc:LayoutGroup>
+
+        <!--NOTE
+        This is only useful on devices supporting it.
+        Hide be default-->
+        
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal"  >
 
             <dxlc:LayoutItem HorizontalAlignment="Left" Label="Min" LabelPosition="Top">

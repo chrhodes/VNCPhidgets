@@ -9,30 +9,30 @@
       "Name": "Movement Studies",
       "Description": "",
       "BeforePerformanceLoopPerformances": [
-        { "Name": "Open and Engage Servos 99415" }
+        { "Name": "RCServos 99415 - Open and Engage A" }
       ],
       "Loops": 1,
-      "PlaySequencesInParallel": false,
-      "DeviceClassSequences": [
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (25) Acceleration(50)" },
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (25) Acceleration (50)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (50) Acceleration(100)" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (50) Acceleration (100)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (100) Acceleration(200)" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (100) Acceleration (200)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (250) Acceleration(500)" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (250) Acceleration (500)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (500) Acceleration(1000)" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (500) Acceleration (1000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (1000) Acceleration(2000)" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (1000) Acceleration (2000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (5000) Acceleration(10000)" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (5000) Acceleration (10000)" },
         { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" },
       ],
       "AfterPerformanceLoopPerformances": [
-        //{ "Name": "Parallel Sequences InterfaceKit 124744" }
+         { "Name": "RCServos 99415 - Close A" }
       ],
-      "NextPerformance": { "Name": "Close Servos 99415" }
+      //"NextPerformance": { "Name": "RCServos 99415 - Close" }
     },
   ]
 }

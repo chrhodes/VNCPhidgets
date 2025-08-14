@@ -40,7 +40,7 @@
     Background="{StaticResource PositionControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-    Height="205"
+    Height="250"
 >  
     <!-- TODO:(crhodes)
         Cut Add this to Xaml Resources, likely Display_StylesandTemplates.xaml -->
@@ -104,7 +104,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+            <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Left" >
 
                 <dxlc:LayoutItem Label="Min" LabelPosition="Top" LabelHorizontalAlignment="Center" 
                          HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
@@ -141,15 +141,18 @@
                     
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="+/- TargetPosition" LabelPosition="Top" LabelHorizontalAlignment="Center" HorizontalAlignment="Left">
+                <dxlc:LayoutItem Label="+/-" LabelPosition="Top" LabelHorizontalAlignment="Center" 
+                                 HorizontalAlignment="Left">
 
-                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Bottom" Margin="-2,0,-2,0" >
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" 
+                                      VerticalAlignment="Bottom"  HorizontalAlignment="Left" Margin="-2,0,-2,0" >
 
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                            <Label />
                             <RadioButton x:Name="rb50" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">50</RadioButton>
                             <RadioButton x:Name="rb10" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
-                            <RadioButton x:Name="rb5" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                         <RadioButton x:Name="rb5" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
                             <RadioButton x:Name="rb1" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
                         </dxlc:LayoutGroup>
 
@@ -174,11 +177,11 @@
                 </dxlc:LayoutItem>
 
                 <dxlc:LayoutItem Label="Max" LabelPosition="Top" LabelHorizontalAlignment="Center" 
-                        HorizontalContentAlignment="Left" VerticalAlignment="Bottom">
+                        HorizontalContentAlignment="Left" VerticalAlignment="Bottom"  HorizontalAlignment="Left">
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
 
-                        <dxlc:LayoutItem Label="Stop" LabelPosition="Top" HorizontalAlignment="Center">
+                        <dxlc:LayoutItem Label="Stop" LabelPosition="Top" HorizontalAlignment="Left">
                             <dxe:SpinEdit 
                                EditValue="{Binding MaxPositionStop, Mode=TwoWay, 
                                    TargetNullValue=0,
@@ -191,7 +194,7 @@
                                IsFloatValue="False" />
                         </dxlc:LayoutItem>
                         
-                        <dxlc:LayoutItem Label="Scale" LabelPosition="Top" HorizontalAlignment="Center">    
+                        <dxlc:LayoutItem Label="Scale" LabelPosition="Top" HorizontalAlignment="Left">    
                             <dxe:SpinEdit 
                                 EditValue="{Binding MaxPosition, Mode=TwoWay, 
                                     TargetNullValue=0,
@@ -220,7 +223,7 @@
 
         </dxlc:LayoutGroup>
 
-        <dxlc:LayoutGroup Orientation="Horizontal">
+        <dxlc:LayoutGroup Orientation="Horizontal" >
             
             <dxlc:LayoutItem HorizontalAlignment="Left" >
                 <Button Content="Min" CommandParameter="Min" Padding="2"
@@ -242,10 +245,32 @@
 
         </dxlc:LayoutGroup>
 
+        <dxlc:LayoutGroup Orientation="Horizontal" >
+
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <Button Content="MinStop" CommandParameter="MinStop" Padding="2"
+                        ToolTip="Tests full position range (recommend slowly)" 
+                        Click="SetTargetPosition"/>
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Center">
+                <Button Content="Center Stop" CommandParameter="CenterStop" Padding="2"
+                        ToolTip="Tests full position range (recommend slowly)" 
+                        Click="SetTargetPosition"/>
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem HorizontalAlignment="Right">
+                <Button Content="MaxStop" CommandParameter="MaxStop" Padding="2"
+                        ToolTip="Tests full position range (recommend slowly)" 
+                        Click="SetTargetPosition"/>
+            </dxlc:LayoutItem>
+
+        </dxlc:LayoutGroup>
+
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
             <dxlc:LayoutItem HorizontalAlignment="Left" >
-                <Button Content="+/- Scale" 
+                <Button Content="+/- Scale" Padding="2"
                         ToolTip="Set {Miin,Max}Position to Current +/- value" 
                         Click="SetPositionScale_Click"/>
             </dxlc:LayoutItem>
@@ -259,7 +284,7 @@
                     IsFloatValue="False" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem x:Name="liPositionStops" HorizontalAlignment="Right">
+            <dxlc:LayoutItem x:Name="liPositionStops" HorizontalAlignment="Left">
                 <dxe:SpinEdit 
                     Value="{Binding PositionStopRange, Mode=TwoWay}" 
                     Increment="5"
@@ -268,8 +293,8 @@
                     IsFloatValue="False" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem HorizontalAlignment="Right" >
-                <Button Content="+/- Stops" 
+            <dxlc:LayoutItem HorizontalAlignment="Left" >
+                <Button Content="+/- Stops" Padding="2"
                         ToolTip="Set {Min,Max}PositionStop Current +/- value" 
                         Click="SetPositionStops_Click"/>
             </dxlc:LayoutItem>

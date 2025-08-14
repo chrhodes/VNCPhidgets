@@ -1,71 +1,42 @@
 {
   "StepperSequences": [
     //
-    // Initialize Stepper
-    //
-    {
-      "Name": "Initialize Stepper StepAngle 0.9", 
-      "Channel": 0,
-      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 0.9",
-      "UsageNotes": "Does not Engage Stepper",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 0.9 },
-      ]
-    },
-    //
-    // Initialize Stepper
-    //
-    {
-      "Name": "Initialize Stepper SA 1.8", 
-      "Channel": 0,
-      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 1.8",
-      "UsageNotes": "Does not Engage Stepper",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 1.8 },
-      ]
-    },
-    //
-    // Initialize Stepper
-    //
-    {
-      "Name": "Initialize Stepper SA 3.75", 
-      "Channel": 0,
-      "Description": "Initialize Stepper Acceleration 5000 VelocityLimit 720 StepAngle 3.75",
-      "UsageNotes": "Does not Engage Stepper",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Acceleration": 5000, "VelocityLimit": 720, "StepAngle": 3.75 },
-      ]
-    },
-    //
-    // Engage Stepper
-    //
-    {
-      "Name": "Open and Engage Stepper", 
-      "Channel": 0,
-      "Description": "Open and Engage Stepper",
-      "UsageNotes": "Engages Stepper",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Open": true, "Engaged":  true },
-      ]
-    },
-    //
     // Rotate +/- 90
     //
     {
       "Name": "Rotate +/- 90", 
-      "Channel": 0,
       "Description": "Rotate +/- 90",
-      "UsageNotes": "Rotate +/- 90",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "RelativeTargetDegrees":  90, "Duration": 1000 },
         { "RelativeTargetDegrees":  -90, "Duration": 1000 },
         { "RelativeTargetDegrees":  -90, "Duration": 1000 },
         { "RelativeTargetDegrees":  90, "Duration": 1000 },
+      ]
+    },
+    {
+      "Name": "Rotate +/- 180", 
+      "Description": "Rotate +/- 180",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativeTargetDegrees":  180, "Duration": 1000 },
+        { "RelativeTargetDegrees":  -180, "Duration": 1000 },
+        { "RelativeTargetDegrees":  -180, "Duration": 1000 },
+        { "RelativeTargetDegrees":  180, "Duration": 1000 },
+      ]
+    },
+    {
+      "Name": "Rotate +/- 360", 
+      "Description": "Rotate +/- 360",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativeTargetDegrees":  360, "Duration": 1000 },
+        { "RelativeTargetDegrees":  -360, "Duration": 1000 },
+        { "RelativeTargetDegrees":  -360, "Duration": 1000 },
+        { "RelativeTargetDegrees":  360, "Duration": 1000 },
       ]
     },
   ]

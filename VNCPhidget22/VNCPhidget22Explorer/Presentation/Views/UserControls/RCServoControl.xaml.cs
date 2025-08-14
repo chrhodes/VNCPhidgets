@@ -16,7 +16,7 @@ using VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class RCServoControl : ViewBase, IInstanceCountV
+    public partial class RCServoControl : ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
@@ -55,7 +55,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         // Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         // }
-
 
         private void InitializeView()
         {
@@ -116,7 +115,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceControlTitle((string)value);
             else
@@ -125,7 +124,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -142,6 +141,202 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
+        #region SerialHubPortChannel
+
+        public static readonly DependencyProperty SerialHubPortChannelProperty = DependencyProperty.Register(
+            "SerialHubPortChannel",
+            typeof(SerialHubPortChannel),
+            typeof(RCServoControl),
+            new FrameworkPropertyMetadata(
+                new SerialHubPortChannel(),
+                new PropertyChangedCallback(OnSerialHubPortChannelChanged),
+                new CoerceValueCallback(OnCoerceSerialHubPortChannel)
+                )
+            );
+
+        public SerialHubPortChannel SerialHubPortChannel
+        {
+            // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+            get => (SerialHubPortChannel)GetValue(SerialHubPortChannelProperty);
+            set => SetValue(SerialHubPortChannelProperty, value);
+        }
+
+        private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
+        {
+            RCServoControl RCServoControl = (RCServoControl)o;
+            if (RCServoControl != null)
+                return RCServoControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            else
+                return value;
+        }
+
+        private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            RCServoControl RCServoControl = (RCServoControl)o;
+            if (RCServoControl != null)
+                RCServoControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+        }
+
+        protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
+        {
+            // TODO: Keep the proposed value within the desired range.
+            return value;
+        }
+
+        protected virtual void OnSerialHubPortChannelChanged(SerialHubPortChannel oldValue, SerialHubPortChannel newValue)
+        {
+            // TODO: Add your property changed side-effects. Descendants can override as well.
+        }
+
+        #endregion
+
+        //#region SerialNumber
+
+        //public static readonly DependencyProperty SerialNumberProperty = DependencyProperty.Register(
+        //    "SerialNumber",
+        //    typeof(Int32),
+        //    typeof(RCServoControl),
+        //    new FrameworkPropertyMetadata(
+        //        0,
+        //        new PropertyChangedCallback(OnSerialNumberChanged),
+        //        new CoerceValueCallback(OnCoerceSerialNumber)
+        //        )
+        //    );
+
+        //public Int32 SerialNumber
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Int32)GetValue(SerialNumberProperty);
+        //    set => SetValue(SerialNumberProperty, value);
+        //}
+
+        //private static object OnCoerceSerialNumber(DependencyObject o, object value)
+        //{
+        //    RCServoControl RCServoControl = (RCServoControl)o;
+        //    if (RCServoControl != null)
+        //        return RCServoControl.OnCoerceSerialNumber((Int32)value);
+        //    else
+        //        return value;
+        //}
+
+        //private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    RCServoControl RCServoControl = (RCServoControl)o;
+        //    if (RCServoControl != null)
+        //        RCServoControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        //}
+
+        //protected virtual Int32 OnCoerceSerialNumber(Int32 value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
+
+        //protected virtual void OnSerialNumberChanged(Int32 oldValue, Int32 newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
+
+        //#endregion
+
+        //#region HubPort
+
+        //public static readonly DependencyProperty HubPortProperty = DependencyProperty.Register(
+        //    "HubPort",
+        //    typeof(Int32),
+        //    typeof(RCServoControl),
+        //    new FrameworkPropertyMetadata(
+        //        0,
+        //        new PropertyChangedCallback(OnHubPortChanged),
+        //        new CoerceValueCallback(OnCoerceHubPort)
+        //        )
+        //    );
+
+        //public Int32 HubPort
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Int32)GetValue(HubPortProperty);
+        //    set => SetValue(HubPortProperty, value);
+        //}
+
+        //private static object OnCoerceHubPort(DependencyObject o, object value)
+        //{
+        //    RCServoControl RCServoControl = (RCServoControl)o;
+        //    if (RCServoControl != null)
+        //        return RCServoControl.OnCoerceHubPort((Int32)value);
+        //    else
+        //        return value;
+        //}
+
+        //private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    RCServoControl RCServoControl = (RCServoControl)o;
+        //    if (RCServoControl != null)
+        //        RCServoControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        //}
+
+        //protected virtual Int32 OnCoerceHubPort(Int32 value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
+
+        //protected virtual void OnHubPortChanged(Int32 oldValue, Int32 newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
+
+        //#endregion
+
+        //#region Channel
+
+        //public static readonly DependencyProperty ChannelProperty = DependencyProperty.Register(
+        //    "Channel",
+        //    typeof(Int32),
+        //    typeof(RCServoControl),
+        //    new FrameworkPropertyMetadata(
+        //        0,
+        //        new PropertyChangedCallback(OnChannelChanged),
+        //        new CoerceValueCallback(OnCoerceChannel)
+        //        )
+        //    );
+
+        //public Int32 Channel
+        //{
+        //    // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
+        //    get => (Int32)GetValue(ChannelProperty);
+        //    set => SetValue(ChannelProperty, value);
+        //}
+
+        //private static object OnCoerceChannel(DependencyObject o, object value)
+        //{
+        //    RCServoControl RCServoControl = (RCServoControl)o;
+        //    if (RCServoControl != null)
+        //        return RCServoControl.OnCoerceChannel((Int32)value);
+        //    else
+        //        return value;
+        //}
+
+        //private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        //{
+        //    RCServoControl RCServoControl = (RCServoControl)o;
+        //    if (RCServoControl != null)
+        //        RCServoControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+        //}
+
+        //protected virtual Int32 OnCoerceChannel(Int32 value)
+        //{
+        //    // TODO: Keep the proposed value within the desired range.
+        //    return value;
+        //}
+
+        //protected virtual void OnChannelChanged(Int32 oldValue, Int32 newValue)
+        //{
+        //    // TODO: Add your property changed side-effects. Descendants can override as well.
+        //}
+
+        //#endregion
 
         #region Attached
 
@@ -165,7 +360,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceAttached((Boolean)value);
             else
@@ -174,7 +369,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -219,7 +414,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceRCServoAttached(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceRCServoAttached((Boolean)value);
             else
@@ -228,7 +423,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnRCServoAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnRCServoAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -268,7 +463,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceEngaged(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceEngaged((Boolean)value);
             else
@@ -277,7 +472,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnEngagedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -317,7 +512,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
@@ -326,7 +521,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -366,7 +561,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogErrorEvents((Boolean)value);
             else
@@ -375,7 +570,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -413,7 +608,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
@@ -422,7 +617,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -462,7 +657,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPositionChangeEvents(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogPositionChangeEvents((Boolean)value);
             else
@@ -471,7 +666,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogPositionChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnLogPositionChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -511,7 +706,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogVelocityChangeEvents(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogVelocityChangeEvents((Boolean)value);
             else
@@ -520,7 +715,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogVelocityChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnLogVelocityChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -561,7 +756,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         private static object OnCoerceLogTargetPositionReachedEvents(DependencyObject o, object value)
         {
             
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceLogTargetPositionReachedEvents((Boolean)value);
             else
@@ -570,7 +765,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnLogTargetPositionReachedEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnLogTargetPositionReachedEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -588,54 +783,54 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region ServoType
+        #region RCServoType
 
-        public static readonly DependencyProperty ServoTypeProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty RCServoTypeProperty = DependencyProperty.Register(
             "RCServoType", 
             typeof(RCServoType), 
             typeof(RCServoControl), 
             new FrameworkPropertyMetadata(
                 RCServoType.DEFAULT, 
-                new PropertyChangedCallback(OnServoTypeChanged), 
-                new CoerceValueCallback(OnCoerceServoType)
+                new PropertyChangedCallback(OnRCServoTypeChanged), 
+                new CoerceValueCallback(OnCoerceRCServoType)
                 )
             );
 
-        public RCServoType ServoType
+        public RCServoType RCServoType
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (RCServoType)GetValue(ServoTypeProperty);
-            set => SetValue(ServoTypeProperty, value);
+            get => (RCServoType)GetValue(RCServoTypeProperty);
+            set => SetValue(RCServoTypeProperty, value);
         }
 
-        private static object OnCoerceServoType(DependencyObject o, object value)
+        private static object OnCoerceRCServoType(DependencyObject o, object value)
         {
-            RCServoControl rCServoControl = o as RCServoControl;
+            RCServoControl rCServoControl = (RCServoControl)o;
             if (rCServoControl != null)
-                return rCServoControl.OnCoerceServoType((RCServoType)value);
+                return rCServoControl.OnCoerceRCServoType((RCServoType)value);
             else
                 return value;
         }
 
-        private static void OnServoTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnRCServoTypeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rCServoControl = o as RCServoControl;
+            RCServoControl rCServoControl = (RCServoControl)o;
             if (rCServoControl != null)
-                rCServoControl.OnServoTypeChanged((RCServoType)e.OldValue, (RCServoType)e.NewValue);
+                rCServoControl.OnRCServoTypeChanged((RCServoType)e.OldValue, (RCServoType)e.NewValue);
         }
 
-        protected virtual RCServoType OnCoerceServoType(RCServoType value)
+        protected virtual RCServoType OnCoerceRCServoType(RCServoType value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnServoTypeChanged(RCServoType oldValue, RCServoType newValue)
+        protected virtual void OnRCServoTypeChanged(RCServoType oldValue, RCServoType newValue)
         {
             MinPulseWidth = VNC.Phidget22.PhidgetDeviceLibrary.RCServoTypes[newValue].MinPulseWidth;
             MaxPulseWidth = VNC.Phidget22.PhidgetDeviceLibrary.RCServoTypes[newValue].MaxPulseWidth;
             // TODO: Add your property changed side-effects. Descendants can override as well.
-            //RCServoEx.RCServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[ServoType];
+            //RCServoEx.RCServoConfiguration servoConfiguration = RCServoEx.RCServoTypes[RCServoType];
             //MinPulseWidth = servoConfiguration.MinPulseWidth;
             //MaxPulseWidth = servoConfiguration.MaxPulseWidth;
         }
@@ -664,7 +859,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceServoNumber(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceServoNumber((string)value);
             else
@@ -673,7 +868,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnServoNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnServoNumberChanged((string)e.OldValue, (string)e.NewValue);
         }
@@ -710,7 +905,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceCurrent((Double?)value);
             else
@@ -719,7 +914,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -760,7 +955,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinDataInterval(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinDataInterval((Int32)value);
             else
@@ -769,7 +964,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -809,7 +1004,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDataInterval(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceDataInterval((Int32)value);
             else
@@ -818,7 +1013,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -858,7 +1053,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDataInterval(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxDataInterval((Int32)value);
             else
@@ -867,7 +1062,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDataIntervalChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxDataIntervalChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -906,7 +1101,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinDataRate(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinDataRate((Double)value);
             else
@@ -915,7 +1110,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -955,7 +1150,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceDataRate(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceDataRate((Double)value);
             else
@@ -964,7 +1159,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1004,7 +1199,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxDataRate(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxDataRate((Double)value);
             else
@@ -1013,7 +1208,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxDataRateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxDataRateChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1050,23 +1245,23 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MinAccelerationProperty);
             set => SetValue(MinAccelerationProperty, value);
         }
-        private static object OnCoerceMinAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMinAcceleration (DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
-                return rcServoControl.OnCoerceMinAcceleration((Double)value);
+                return rcServoControl.OnCoerceMinAcceleration ((Double)value);
             else
                 return value;
         }
 
         private static void OnMinAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMinAcceleration(Double value)
+        protected virtual Double OnCoerceMinAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1098,23 +1293,23 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(AccelerationProperty);
             set => SetValue(AccelerationProperty, value);
         }
-        private static object OnCoerceAcceleration(DependencyObject o, object value)
+        private static object OnCoerceAcceleration (DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
-                return rcServoControl.OnCoerceAcceleration((Double)value);
+                return rcServoControl.OnCoerceAcceleration ((Double)value);
             else
                 return value;
         }
 
         private static void OnAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceAcceleration(Double value)
+        protected virtual Double OnCoerceAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1146,23 +1341,23 @@ namespace VNCPhidget22Explorer.Presentation.Views
             get => (Double)GetValue(MaxAccelerationProperty);
             set => SetValue(MaxAccelerationProperty, value);
         }
-        private static object OnCoerceMaxAcceleration(DependencyObject o, object value)
+        private static object OnCoerceMaxAcceleration (DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
-                return rcServoControl.OnCoerceMaxAcceleration((Double)value);
+                return rcServoControl.OnCoerceMaxAcceleration ((Double)value);
             else
                 return value;
         }
 
         private static void OnMaxAccelerationChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxAccelerationChanged((Double)e.OldValue, (Double)e.NewValue);
         }
 
-        protected virtual Double OnCoerceMaxAcceleration(Double value)
+        protected virtual Double OnCoerceMaxAcceleration (Double value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
@@ -1196,7 +1391,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinFailsafeTIme(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinFailsafeTIme((Double)value);
             else
@@ -1205,7 +1400,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinFailsafeTImeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinFailsafeTImeChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1244,7 +1439,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxFailsafeTIme(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxFailsafeTIme((Double)value);
             else
@@ -1253,7 +1448,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxFailsafeTImeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxFailsafeTImeChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1293,7 +1488,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceIsMoving(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceIsMoving((Boolean)value);
             else
@@ -1302,7 +1497,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnIsMovingChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -1341,7 +1536,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPositionServo(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinPositionServo((Double)value);
             else
@@ -1350,7 +1545,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionServoChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinPositionServoChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1389,7 +1584,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPosition(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinPosition((Double)value);
             else
@@ -1398,7 +1593,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1437,7 +1632,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPositionStop(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinPositionStop((Double)value);
             else
@@ -1446,7 +1641,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinPositionStopChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1485,7 +1680,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoercePosition(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoercePosition((Double)value);
             else
@@ -1494,7 +1689,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1533,7 +1728,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPositionStop(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxPositionStop((Double)value);
             else
@@ -1542,7 +1737,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxPositionStopChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1581,7 +1776,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPosition(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxPosition((Double)value);
             else
@@ -1590,7 +1785,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1629,7 +1824,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPositionServo(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxPositionServo((Double)value);
             else
@@ -1638,7 +1833,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionServoChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxPositionServoChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1677,7 +1872,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPulseWidth(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinPulseWidth((Double)value);
             else
@@ -1686,7 +1881,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPulseWidthChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinPulseWidthChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1725,7 +1920,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPulseWidth(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxPulseWidth((Double)value);
             else
@@ -1734,7 +1929,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPulseWidthChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxPulseWidthChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1773,7 +1968,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinPulseWidthLimit(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinPulseWidthLimit((Double)value);
             else
@@ -1782,7 +1977,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPulseWidthLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinPulseWidthLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1821,7 +2016,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxPulseWidthLimit(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxPulseWidthLimit((Double)value);
             else
@@ -1830,7 +2025,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPulseWidthLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxPulseWidthLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1870,7 +2065,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSpeedRampingState(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceSpeedRampingState((Boolean)value);
             else
@@ -1879,7 +2074,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSpeedRampingStateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnSpeedRampingStateChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
@@ -1918,7 +2113,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceTargetPosition(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceTargetPosition((Double)value);
             else
@@ -1927,7 +2122,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnTargetPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnTargetPositionChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -1966,7 +2161,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinTorque(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinTorque((Double)value);
             else
@@ -1975,7 +2170,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2014,7 +2209,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceTorque(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceTorque((Double)value);
             else
@@ -2023,7 +2218,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2062,7 +2257,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxTorque(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxTorque((Double)value);
             else
@@ -2071,7 +2266,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxTorqueChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxTorqueChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2110,7 +2305,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceVelocity(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceVelocity((Double)value);
             else
@@ -2119,7 +2314,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnVelocityChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2158,7 +2353,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMinVelocityLimit(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMinVelocityLimit((Double)value);
             else
@@ -2167,7 +2362,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMinVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2206,7 +2401,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceVelocityLimit(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceVelocityLimit((Double)value);
             else
@@ -2215,7 +2410,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2254,7 +2449,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceMaxVelocityLimit(DependencyObject o, object value)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 return rcServoControl.OnCoerceMaxVelocityLimit((Double)value);
             else
@@ -2263,7 +2458,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxVelocityLimitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl rcServoControl = o as RCServoControl;
+            RCServoControl rcServoControl = (RCServoControl)o;
             if (rcServoControl != null)
                 rcServoControl.OnMaxVelocityLimitChanged((Double)e.OldValue, (Double)e.NewValue);
         }
@@ -2303,7 +2498,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePositionScaleRange(DependencyObject o, object value)
         {
-            RCServoControl positionControl = o as RCServoControl;
+            RCServoControl positionControl = (RCServoControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePositionScaleRange((Int32)value);
             else
@@ -2312,7 +2507,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionScaleRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl positionControl = o as RCServoControl;
+            RCServoControl positionControl = (RCServoControl)o;
             if (positionControl != null)
                 positionControl.OnPositionScaleRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -2352,7 +2547,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePositionStopRange(DependencyObject o, object value)
         {
-            RCServoControl positionControl = o as RCServoControl;
+            RCServoControl positionControl = (RCServoControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePositionStopRange((Int32)value);
             else
@@ -2361,7 +2556,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionStopRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoControl positionControl = o as RCServoControl;
+            RCServoControl positionControl = (RCServoControl)o;
             if (positionControl != null)
                 positionControl.OnPositionStopRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -2433,24 +2628,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

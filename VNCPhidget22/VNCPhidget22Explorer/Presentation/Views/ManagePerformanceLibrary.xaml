@@ -139,58 +139,129 @@
                     <dxlc:LayoutItem Label="Performance" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" 
                             ItemsSource="{Binding PerformanceConfigFiles}"
-                            SelectedItem="{Binding PerformanceConfigFileName}" >
+                            SelectedItem="{Binding SelectedPerformanceConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
+                    <!-- TODO(crhodes)
+                     If make Reload generic, keep CommandParameter, otherwise not needed
+                    -->
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadPerformanceConfigFilesCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadPerformanceConfigFileCommand}"
+                        CommandParameter="Performance"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                    <dxlc:LayoutItem Label="AdvancedServo Sequence" HorizontalAlignment="Left" >
+                    <dxlc:LayoutItem Label="DigitalInput Sequences" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                            ItemsSource="{Binding AdvancedServoSequenceConfigFiles}"
-                            SelectedItem="{Binding AdvancedServoSequenceConfigFileName}" >
+                            ItemsSource="{Binding DigitalInputSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedDigitalInputSequenceConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
-                                    Command="{Binding ReloadAdvancedServoSequenceConfigFilesCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadDigitalInputSequenceConfigFileCommand}"
+                        CommandParameter="DigitalInputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                    <dxlc:LayoutItem Label="InterfaceKit Sequence" HorizontalAlignment="Left" >
+                    <dxlc:LayoutItem Label="DigitalOut Sequences" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                            ItemsSource="{Binding InterfaceKitSequenceConfigFiles}"
-                            SelectedItem="{Binding InterfaceKitSequenceConfigFileName}" >
+                                ItemsSource="{Binding DigitalOutputSequenceConfigFiles}"
+                                SelectedItem="{Binding SelectedDigitalOutputSequenceConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
-                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadInterfaceKitSequenceConfigFilesCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
+                        Command="{Binding ReloadDigitalOutputSequenceConfigFileCommand}"
+                        CommandParameter="DigitalOutputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                    <dxlc:LayoutItem Label="Stepper Sequence" HorizontalAlignment="Left" >
+                    <dxlc:LayoutItem Label="RCServo Sequences" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300"
-                                    ItemsSource="{Binding StepperSequenceConfigFiles}"
-                                    SelectedItem="{Binding StepperSequenceConfigFileName}" >
+                            ItemsSource="{Binding RCServoSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedRCServoSequenceConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                                    Command="{Binding ReloadStepperSequenceConfigFilesCommand}"
-                                    ToolTip="Reload Config File" Width="20"/>
+                        Command="{Binding ReloadRCServoSequenceConfigFileCommand}"
+                        CommandParameter="RCServoSequences"
+                        ToolTip="Reload Config File" Width="20"/>
+
+                </dxlc:LayoutGroup>
+                
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutItem Label="Stepper Sequences" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300"
+                            ItemsSource="{Binding StepperSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedStepperSequenceConfigFile}" >
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
+                        Command="{Binding ReloadStepperSequenceConfigFileCommand}"
+                        CommandParameter="StepperSequences"
+                        ToolTip="Reload Config File" Width="20"/>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutItem Label="VoltageInput Sequences" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300"
+                            ItemsSource="{Binding VoltageInputSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedVoltageInputSequenceConfigFile}" >
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
+                        Command="{Binding ReloadVoltageInputSequenceConfigFileCommand}"
+                        CommandParameter="VoltageInputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutItem Label="VoltageRatioInput Sequences" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300"
+                            ItemsSource="{Binding VoltageRatioInputSequenceConfigFiles}"
+                            SelectedItem="{Binding SelectedVoltageRatioInputSequenceConfigFile}" >
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
+                        Command="{Binding ReloadVoltageRatioInputSequenceConfigFileCommand}"
+                        CommandParameter="VoltageRatioInputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutItem Label="VoltageOutput Sequences" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300"
+                                ItemsSource="{Binding VoltageOutputSequenceConfigFiles}"
+                                SelectedItem="{Binding SelectedVoltageOutputSequenceConfigFile}" >
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red"
+                        Command="{Binding ReloadVoltageOutputSequenceConfigFileCommand}"
+                        CommandParameter="VoltageOutputSequences"
+                        ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>
 

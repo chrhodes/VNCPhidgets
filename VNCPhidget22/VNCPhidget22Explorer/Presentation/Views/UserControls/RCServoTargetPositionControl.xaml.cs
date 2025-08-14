@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class RCServoTargetPositionControl : ViewBase, IInstanceCountV
+    public partial class RCServoTargetPositionControl : ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -119,7 +119,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePositionScaleRange(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePositionScaleRange((Int32)value);
             else
@@ -128,7 +128,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionScaleRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnPositionScaleRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -168,7 +168,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePositionStopRange(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePositionStopRange((Int32)value);
             else
@@ -177,7 +177,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionStopRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnPositionStopRangeChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
@@ -217,7 +217,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceServoIndex(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceServoIndex((Int32?)value);
             else
@@ -226,7 +226,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnServoIndexChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnServoIndexChanged((Int32?)e.OldValue, (Int32?)e.NewValue);
         }
@@ -264,7 +264,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinPositionServo(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceMinPositionServo((Double?)value);
             else
@@ -273,7 +273,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionServoChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnMinPositionServoChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -314,7 +314,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinPosition(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceMinPosition((Double?)value);
             else
@@ -323,7 +323,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnMinPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -364,7 +364,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMinPositionStop(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceMinPositionStop((Double?)value);
             else
@@ -373,7 +373,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMinPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnMinPositionStopChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -413,7 +413,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceTargetPosition(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceTargetPosition((Double?)value);
             else
@@ -422,7 +422,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnTargetPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnTargetPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -463,7 +463,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxPositionStop(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceMaxPositionStop((Double?)value);
             else
@@ -472,7 +472,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionStopChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnMaxPositionStopChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -510,7 +510,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxPosition(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceMaxPosition((Double?)value);
             else
@@ -519,7 +519,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnMaxPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -559,7 +559,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceMaxPositionServo(DependencyObject o, object value)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceMaxPositionServo((Double?)value);
             else
@@ -568,7 +568,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnMaxPositionServoChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoTargetPositionControl positionControl = o as RCServoTargetPositionControl;
+            RCServoTargetPositionControl positionControl = (RCServoTargetPositionControl)o;
             if (positionControl != null)
                 positionControl.OnMaxPositionServoChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -656,6 +656,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     TargetPosition = MinPosition;
                     break;
 
+                case "MinStop":
+                    TargetPosition = MinPositionStop;
+                    break;
+
                 // NOTE(crhodes)
                 // This is now handled with TargetPostion Increment/Decrement
                 // and PositionIncrement Scale RadioButtons
@@ -668,6 +672,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     TargetPosition = (MaxPosition - MinPosition) / 2 + MinPosition;
                     break;
 
+                case "CenterStop":
+                    TargetPosition = (MaxPositionStop - MinPositionStop) / 2 + MinPositionStop;
+                    break;
+
                 // NOTE(crhodes)
                 // This is now handled with TargetPostion Increment/Decrement
                 // and PositionIncrement Scale RadioButtons
@@ -675,6 +683,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
                 //case "R+5":
                 //    TargetPosition = TargetPosition += 5;
                 //    break;
+
+                case "MaxStop":
+                    TargetPosition = MaxPositionStop;
+                    break;
 
                 case "Max":
                     TargetPosition = MaxPosition;
@@ -703,28 +715,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #endregion
 
         #region Private Methods (none)
-
-
-
-        #endregion
-
-        #region IInstanceCount
-
-        private static Int32 _instanceCountV;
-
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
-
-        private static Int32 _instanceCountVP;
-
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
 
 
 

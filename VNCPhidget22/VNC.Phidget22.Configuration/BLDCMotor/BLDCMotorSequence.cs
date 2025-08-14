@@ -7,10 +7,14 @@ namespace VNC.Phidget22.Configuration
         public BLDCMotorSequence() : base("BLDCMotor")
         {
         }
+        public BLDCMotorSequence(BLDCMotorSequence sequence) : base("BLDCMotor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
 
         /// <summary>
         /// Array of BLDCMotor actions in sequence
         /// </summary>
-        public BLDCMotorAction[] Actions { get; set; }
+        public BLDCMotorAction[]? Actions { get; set; }
     }
 }

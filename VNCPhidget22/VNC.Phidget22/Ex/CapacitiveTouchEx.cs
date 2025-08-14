@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -29,12 +31,11 @@ namespace VNC.Phidget22.Ex
         /// <param name="serialNumber"></param>
         /// <param name="CapacitiveTouchConfiguration"></param>
         /// <param name="eventAggregator"></param>
-        public CapacitiveTouchEx(Int32 serialNumber, CapacitiveTouchConfiguration configuration, IEventAggregator eventAggregator)
+        public CapacitiveTouchEx(CapacitiveTouchConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter:", Common.LOG_CATEGORY);
 
-            _serialNumber = serialNumber;
             _eventAggregator = eventAggregator;
 
             InitializePhidget(configuration);
@@ -44,11 +45,6 @@ namespace VNC.Phidget22.Ex
             if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void TriggerSequence(SequenceEventArgs args)
-        {
-            Log.EVENT_HANDLER("Called", Common.LOG_CATEGORY);
-        }
-
         /// <summary>
         /// Configures CapacitiveTouchEx using CapacitiveTouchConfiguration
         /// and establishes event handlers
@@ -56,20 +52,47 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(CapacitiveTouchConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) startTicks = Log.DEVICE_INITIALIZE_LOW($"Enter" +
+                $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
-            DeviceSerialNumber = SerialNumber;
+            DeviceSerialNumber = configuration.DeviceSerialNumber;
+            IsHubPortDevice = configuration.HubPortDevice;
             HubPort = configuration.HubPort;
             Channel = configuration.Channel;
 
+            SerialHubPortChannel = new SerialHubPortChannel
+            {
+                SerialNumber = DeviceSerialNumber,
+                HubPort = HubPort,
+                Channel = Channel,
+                IsHubPortDevice = IsHubPortDevice
+            };
+
             IsRemote = true;
 
-            Attach += CapacitiveTouchExEx_Attach;
-            Detach += CapacitiveTouchExEx_Detach;
-            Error += CapacitiveTouchExEx_Error;
-            PropertyChange += CapacitiveTouchExEx_PropertyChange;
+            // NOTE(crhodes)
+            // Having these passed in is handy for Performance stuff where there is no UI
 
-            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            LogPhidgetEvents = configuration.LogPhidgetEvents;
+            LogErrorEvents = configuration.LogErrorEvents;
+            LogPropertyChangeEvents = configuration.LogPropertyChangeEvents;
+
+            // TODO(crhodes)
+            // Add and device specific logging options
+
+            LogDeviceChannelSequence = configuration.LogDeviceChannelSequence;
+            LogChannelAction = configuration.LogChannelAction;
+            LogActionVerification = configuration.LogActionVerification;
+
+            Attach += CapacitiveTouchEx_Attach;
+            Detach += CapacitiveTouchEx_Detach;
+            Error += CapacitiveTouchEx_Error;
+            PropertyChange += CapacitiveTouchEx_PropertyChange;
+
+            // TODO(crhodes)
+            // Add any device specific events
+
+            if (Core.Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -138,22 +161,19 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
-        private Int32 _serialNumber;
-        public Int32 SerialNumber
+        private SerialHubPortChannel _serialHubPortChannel;
+        public SerialHubPortChannel SerialHubPortChannel
         {
-            get => _serialNumber;
+            get => _serialHubPortChannel;
             set
             {
-                if (_serialNumber == value)
-                    return;
-                _serialNumber = value;
-                DeviceSerialNumber = value;
+                _serialHubPortChannel = value;
                 OnPropertyChanged();
             }
         }
 
         private Boolean _attached;
-        public Boolean Attached
+        public new Boolean Attached
         {
             get => _attached;
             set
@@ -164,6 +184,93 @@ namespace VNC.Phidget22.Ex
                 OnPropertyChanged();
             }
         }
+
+        #region Data Interval and Rate
+
+        private Int32 _minDataInterval;
+        public new Int32 MinDataInterval
+        {
+            get => _minDataInterval;
+            set
+            {
+                _minDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _DataInterval;
+        public new Int32 DataInterval
+        {
+            get => _DataInterval;
+            set
+            {
+                if (_DataInterval == value)
+                    return;
+                _DataInterval = value;
+
+                if (Attached)
+                {
+                    base.DataInterval = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _maxDataInterval;
+        public new Int32 MaxDataInterval
+        {
+            get => _maxDataInterval;
+            set
+            {
+                _maxDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minDataRate;
+        public new Double MinDataRate
+        {
+            get => _minDataRate;
+            set
+            {
+                _minDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _DataRate;
+        public new Double DataRate
+        {
+            get => _DataRate;
+            set
+            {
+                if (_DataRate == value)
+                    return;
+                _DataRate = value;
+
+                if (Attached)
+                {
+                    base.DataRate = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxDataRate;
+        public new Double MaxDataRate
+        {
+            get => _maxDataRate;
+            set
+            {
+                _maxDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
 
         #region CapacitiveTouchEx
 
@@ -176,15 +283,15 @@ namespace VNC.Phidget22.Ex
 
         #region Event Handlers
 
-        private void CapacitiveTouchExEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
+        private void CapacitiveTouchEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.CapacitiveTouch CapacitiveTouch = sender as Phidgets.CapacitiveTouch;
+            Phidgets.CapacitiveTouch? CapacitiveTouch = sender as Phidgets.CapacitiveTouch;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"CapacitiveTouchExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CapacitiveTouchEx_Attach: sender:{sender} attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -192,25 +299,18 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
-
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
             try
             {
-
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration if need to pass things in
             }
             catch (Phidgets.PhidgetException pex)
             {
+                Log.Error(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
-                    throw pex;
+                    throw;
                 }
             }
             catch (Exception ex)
@@ -222,7 +322,7 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"Exit CapacitiveTouchExEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"Exit CapacitiveTouchEx_Attach: sender:{sender} attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -231,13 +331,13 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private void CapacitiveTouchExEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
+        private void CapacitiveTouchEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
         {
             if (LogPropertyChangeEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"CapacitiveTouchExEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CapacitiveTouchEx_PropertyChange: sender:{sender} {e.PropertyName}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -256,18 +356,18 @@ namespace VNC.Phidget22.Ex
                     break;
 
                 default:
-                    Log.EVENT_HANDLER($"CapacitiveTouchExEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CapacitiveTouchEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
                     break;
             }
         }
 
-        private void CapacitiveTouchExEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
+        private void CapacitiveTouchEx_Detach(object sender, PhidgetsEvents.DetachEventArgs e)
         {
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"CapacitiveTouchExEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"CapacitiveTouchEx_Detach: sender:{sender}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -278,7 +378,7 @@ namespace VNC.Phidget22.Ex
             Attached = false;
         }
 
-        private void CapacitiveTouchExEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
+        private void CapacitiveTouchEx_Error(object sender, PhidgetsEvents.ErrorEventArgs e)
         {
             if (LogErrorEvents)
             {
@@ -306,55 +406,89 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
             Attached = base.Attached;
+            RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen}  timeout:{timeout}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
             Attached = base.Attached;
+            RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
+        public void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+
+            try
+            {
+                // Set properties to values from Phidget
+                // We do not use Attach as some Phidgets do not provide values until Open
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 
             Attached = base.Attached;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(CapacitiveTouchSequence capacitiveTouchSequence)
         {
+            Int64 startTicks = 0;
+
             try
             {
-                Int64 startTicks = 0;
-
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                        $"Running Action Loops" +
-                        $" name:>{capacitiveTouchSequence.Name}<" +
+                        $"RunActionLoops(>{capacitiveTouchSequence.Name}<)" +
                         $" startActionLoopSequences:>{capacitiveTouchSequence.StartActionLoopSequences?.Count()}<" +
                         $" actionLoops:>{capacitiveTouchSequence.ActionLoops}<" +
-                        $" actions:>{capacitiveTouchSequence.Actions.Count()}<" +
-                        $" actionsDuration:>{capacitiveTouchSequence?.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{capacitiveTouchSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{capacitiveTouchSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{capacitiveTouchSequence.Channel}<" +
+                        $" actions:>{capacitiveTouchSequence.Actions?.Count()}<" +
+                        $" actionsDuration:>{capacitiveTouchSequence.ActionsDuration}<" +
+                        $" endActionLoopSequences:>{capacitiveTouchSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (capacitiveTouchSequence.Actions is not null)
@@ -363,12 +497,7 @@ namespace VNC.Phidget22.Ex
                     {
                         if (capacitiveTouchSequence.StartActionLoopSequences is not null)
                         {
-                            // TODO(crhodes)
-                            // May want to create a new player instead of reaching for the property.
-
-                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in capacitiveTouchSequence.StartActionLoopSequences)
                             {
@@ -378,20 +507,24 @@ namespace VNC.Phidget22.Ex
 
                         if (capacitiveTouchSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{capacitiveTouchSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(capacitiveTouchSequence.Actions, async action =>
+                            Parallel.ForEach(capacitiveTouchSequence.Actions, action =>
                             {
-                                await PerformAction(action);
+                                ExecuteAction(action);
                             });
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{capacitiveTouchSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             foreach (CapacitiveTouchAction action in capacitiveTouchSequence.Actions)
                             {
-                                await PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -399,7 +532,8 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{capacitiveTouchSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{capacitiveTouchSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
 
                             Thread.Sleep((Int32)capacitiveTouchSequence.ActionsDuration);
@@ -407,9 +541,7 @@ namespace VNC.Phidget22.Ex
 
                         if (capacitiveTouchSequence.EndActionLoopSequences is not null)
                         {
-                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in capacitiveTouchSequence.EndActionLoopSequences)
                             {
@@ -437,9 +569,28 @@ namespace VNC.Phidget22.Ex
 
         #region Private Methods
 
-        // FIX(crhodes)
-        // 
-        private async Task PerformAction(CapacitiveTouchAction action)
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
+        }
+
+        private void ExecuteAction(CapacitiveTouchAction action)
         {
             Int64 startTicks = 0;
 
@@ -447,8 +598,9 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter CapacitiveTouchEx:{Channel}", Common.LOG_CATEGORY);
-                actionMessage.Append($"CapacitiveTouchEx:{Channel}");
+                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                    $" hubPort:{HubPort} channel:{Channel}" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
 
             try
@@ -462,11 +614,31 @@ namespace VNC.Phidget22.Ex
                 if (action.LogErrorEvents is not null) LogErrorEvents = (Boolean)action.LogErrorEvents;
                 if (action.LogPropertyChangeEvents is not null) LogPropertyChangeEvents = (Boolean)action.LogPropertyChangeEvents;
 
+                // TODO(crhodes)
+                // Add Device specific logging options
+
                 if (action.LogDeviceChannelSequence is not null) LogDeviceChannelSequence = (Boolean)action.LogDeviceChannelSequence;
                 if (action.LogChannelAction is not null) LogChannelAction = (Boolean)action.LogChannelAction;
                 if (action.LogActionVerification is not null) LogActionVerification = (Boolean)action.LogActionVerification;
 
                 #endregion
+
+                if (action.Open is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" open:>{action.Open}<");
+
+                    // TODO(crhodes)
+                    // Do we need a delay here?
+                    // This is where a call back from Attach event would be great!
+                    Open(Phidget.DefaultTimeout);
+                }
+
+                if (action.Close is not null)
+                {
+                    if (LogChannelAction) actionMessage.Append($" close:>{action.Close}<");
+
+                    Close();
+                }
 
                 #region CapacitiveTouchEx Actions
 
@@ -477,10 +649,20 @@ namespace VNC.Phidget22.Ex
 
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($" Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                //Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
+                    $" hubPort:>{HubPort}< channel:>{Channel}<" +
+                    $" {actionMessage}" +
+                    $" source:{pex.Source}" +
+                    $" description:{pex.Description}" +
+                    $" inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -490,9 +672,22 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                        $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
             }
+        }
+
+        private async void TriggerSequence(SequenceEventArgs args)
+        {
+            long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            var sequence = args.CapacitiveTouchSequence;
+
+            if (sequence is not null) await RunActionLoops(sequence);
+
+            Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -501,21 +696,12 @@ namespace VNC.Phidget22.Ex
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // This is the traditional approach - requires string name to be passed in
-
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            long startTicks = 0;
 #if LOGGING
+            long startTicks = 0;
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
-            // This is the new CompilerServices attribute!
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);

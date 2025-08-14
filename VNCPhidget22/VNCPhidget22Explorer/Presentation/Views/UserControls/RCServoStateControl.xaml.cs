@@ -7,7 +7,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class RCServoStateControl : ViewBase, IInstanceCountV
+    public partial class RCServoStateControl : ViewBase//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -68,7 +68,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-
         #region Enums (none)
 
 
@@ -101,7 +100,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 return rcServoStateControl.OnCoerceAttached((Boolean?)value);
             else
@@ -110,7 +109,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 rcServoStateControl.OnAttachedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -151,7 +150,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSpeedRamping(DependencyObject o, object value)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 return rcServoStateControl.OnCoerceSpeedRamping((Boolean?)value);
             else
@@ -160,7 +159,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnSpeedRampingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 rcServoStateControl.OnSpeedRampingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -196,7 +195,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
         private static object OnCoerceCurrent(DependencyObject o, object value)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 return rcServoStateControl.OnCoerceCurrent((Double?)value);
             else
@@ -205,7 +204,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnCurrentChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 rcServoStateControl.OnCurrentChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -244,7 +243,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceIsMoving(DependencyObject o, object value)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 return rcServoStateControl.OnCoerceIsMoving((Boolean?)value);
             else
@@ -253,7 +252,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnIsMovingChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 rcServoStateControl.OnIsMovingChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -290,7 +289,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceEngaged(DependencyObject o, object value)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 return rcServoStateControl.OnCoerceEngaged((Boolean?)value);
             else
@@ -299,7 +298,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnEngagedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl rcServoStateControl = o as RCServoStateControl;
+            RCServoStateControl rcServoStateControl = (RCServoStateControl)o;
             if (rcServoStateControl != null)
                 rcServoStateControl.OnEngagedChanged((Boolean?)e.OldValue, (Boolean?)e.NewValue);
         }
@@ -339,7 +338,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoercePosition(DependencyObject o, object value)
         {
-            RCServoStateControl positionControl = o as RCServoStateControl;
+            RCServoStateControl positionControl = (RCServoStateControl)o;
             if (positionControl != null)
                 return positionControl.OnCoercePosition((Double?)value);
             else
@@ -348,7 +347,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnPositionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl positionControl = o as RCServoStateControl;
+            RCServoStateControl positionControl = (RCServoStateControl)o;
             if (positionControl != null)
                 positionControl.OnPositionChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -388,7 +387,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceVelocity(DependencyObject o, object value)
         {
-            RCServoStateControl positionControl = o as RCServoStateControl;
+            RCServoStateControl positionControl = (RCServoStateControl)o;
             if (positionControl != null)
                 return positionControl.OnCoerceVelocity((Double?)value);
             else
@@ -397,7 +396,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static void OnVelocityChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            RCServoStateControl positionControl = o as RCServoStateControl;
+            RCServoStateControl positionControl = (RCServoStateControl)o;
             if (positionControl != null)
                 positionControl.OnVelocityChanged((Double?)e.OldValue, (Double?)e.NewValue);
         }
@@ -441,24 +440,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

@@ -1,0 +1,92 @@
+{
+  "Name": "PerformanceConfig_Skull_012_TiltLeftRight",
+  "Description": "Performances Move Skulls",
+  "Performances": [
+   //
+    // Tilt Right
+    //
+    {
+      "Name": "Skull-012 Tilt Right 20",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -20" },   // Channel 1 - Y Axis  
+      ],
+    },
+    {
+      "Name": "Skull-012 Tilt Right 15",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -15" },  // Tilt Right(-)/Left(+)  
+      ],
+    },
+    {
+      "Name": "Skull-012 Tilt Right 10",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -10" },  // Tilt Right(-)/Left(+)  
+      ],
+    },
+    {
+      "Name": "Skull-012 Tilt Right 5",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -5" },  // Tilt Right(-)/Left(+)  
+      ],
+    },
+    //
+    // Tilt Left
+    //
+    {
+      "Name": "Skull-012 Tilt Left 5",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 5" },  // Tilt Right(-)/Left(+)  
+      ],
+    },
+    {
+      "Name": "Skull-012 Tilt Left 10",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 10" },  // Tilt Right(-)/Left(+)  
+      ],
+    },
+    {
+      "Name": "Skull-012 Tilt Left 15",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 15" },  // Tilt Right(-)/Left(+)  
+      ],
+    },
+    {
+      "Name": "Skull-012 Tilt Left 20",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 20" },  // Tilt Right(-)/Left(+)  
+      ],
+    },  
+  ]
+}

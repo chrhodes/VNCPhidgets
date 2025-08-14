@@ -1,15 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
-      <VersionSuffix>development-23</VersionSuffix>
-      <FileVersion>2025.03.15A</FileVersion>
+      <VersionSuffix>indevelopment-2025</VersionSuffix>
+      <FileVersion>2025.06.10</FileVersion>
       <Description>Phidget22 Explorer Configuration</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="AdvancedServo\**" />
+    <Compile Remove="InterfaceKit\**" />
+    <EmbeddedResource Remove="AdvancedServo\**" />
+    <EmbeddedResource Remove="InterfaceKit\**" />
+    <None Remove="AdvancedServo\**" />
+    <None Remove="InterfaceKit\**" />
+  </ItemGroup>
 
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
@@ -28,18 +37,16 @@
     <!-- <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> -->
     <!-- </PropertyGroup> -->    
 
-  <!--<ItemGroup>
-    <Reference Include="Phidget21.NET">
-      <HintPath>..\..\Libraries\Phidget21-windevel_2.1.8.20110615\phidget21-windevel\Phidget21.NET.dll</HintPath>
-    </Reference>
-  </ItemGroup>-->
-
     <ItemGroup>
-        <PackageReference Include="Phidget22.NET" Version="1.20.20240911" />
+        <PackageReference Include="Phidget22.NET" Version="1.22.20250324" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Dictionary\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VNCPhidget22Explorer.Core\VNCPhidget22Explorer.Core.csproj" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -52,7 +59,7 @@
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows|AnyCPU'">
         <!-- Uncoment next line to switch to ProjectReference(s) -->
-         <!--<DefineConstants>$(DefineConstants);VNCPROJECTREF</DefineConstants>--> 
+         <DefineConstants>$(DefineConstants);VNCPROJECTREF</DefineConstants> 
     </PropertyGroup>
 
     <Choose>
@@ -67,4 +74,12 @@
             </ItemGroup>
         </When>
     </Choose>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
+    </Target>
+
+    <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Release'">
+        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
+    </Target>-->
 </Project>

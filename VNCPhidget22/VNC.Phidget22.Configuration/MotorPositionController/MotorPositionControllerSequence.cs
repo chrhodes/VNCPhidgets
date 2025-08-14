@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public MotorPositionControllerSequence(MotorPositionControllerSequence sequence) : base("MotorPositionController", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of MotorPositionController actions in sequence
         /// </summary>
-        public MotorPositionControllerAction[] Actions { get; set; }
+        public MotorPositionControllerAction[]? Actions { get; set; }
     }
 }

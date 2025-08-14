@@ -2,6 +2,10 @@
 using System.Linq;
 using System.Windows;
 
+using DevExpress.Xpf.Grid;
+
+using Prism.Services.Dialogs;
+
 using VNC;
 using VNC.Core.Mvvm;
 
@@ -9,7 +13,7 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class PhidgetDeviceLibrary : ViewBase, IPhidgetDeviceLibrary, IInstanceCountV
+    public partial class PhidgetDeviceLibrary : ViewBase, IPhidgetDeviceLibrary//, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
@@ -32,6 +36,10 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             // ViewModel = Common.PhidgetDeviceLibraryViewModel();
 
+            ViewModel = new PhidgetDeviceLibraryViewModel(
+                Common.EventAggregator,
+                (DialogService)Common.Container.Resolve(typeof(DialogService)));
+
             // Can use ourselves for everything
 
             //DataContext = this;
@@ -43,7 +51,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         public PhidgetDeviceLibrary(IPhidgetDeviceLibraryViewModel viewModel)
         {
-            Int64 startTicks = Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()}", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.Constructor) Log.CONSTRUCTOR($"Enter viewModel({viewModel.GetType()})", Common.LOG_CATEGORY);
 
             InstanceCountVP++;
 
@@ -71,6 +80,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
             ViewType = this.GetType().ToString().Split('.').Last();
             ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
             ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
+
+            TargetGrid = grdResults;
 
             lgChannels.IsCollapsed = true;
 
@@ -105,8 +116,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region Fields and Properties (none)
+        #region Fields and Properties
 
+        private GridControl? _targetGrid;
+
+        public GridControl? TargetGrid
+        {
+            get => _targetGrid;
+            set => _targetGrid = value;
+        }
 
         #endregion
 
@@ -134,24 +152,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountV;
+        //private static Int32 _instanceCountV;
 
-        public Int32 InstanceCountV
-        {
-            get => _instanceCountV;
-            set => _instanceCountV = value;
-        }
+        //public Int32 InstanceCountV
+        //{
+        //    get => _instanceCountV;
+        //    set => _instanceCountV = value;
+        //}
 
-        private static Int32 _instanceCountVP;
+        //private static Int32 _instanceCountVP;
 
-        public Int32 InstanceCountVP
-        {
-            get => _instanceCountVP;
-            set => _instanceCountVP = value;
-        }
+        //public Int32 InstanceCountVP
+        //{
+        //    get => _instanceCountVP;
+        //    set => _instanceCountVP = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
@@ -34,14 +36,13 @@ namespace VNC.Phidget22.Ex
         public StepperEx(Int32 serialNumber, StepperConfiguration configuration, IEventAggregator eventAggregator)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter: serialNumber:{serialNumber}", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR($"Enter:", Common.LOG_CATEGORY);
 
-            _serialNumber = serialNumber;
             _eventAggregator = eventAggregator;
 
             InitializePhidget(configuration);
 
-            _eventAggregator.GetEvent<RCServoSequenceEvent>().Subscribe(TriggerSequence);
+            _eventAggregator.GetEvent<StepperSequenceEvent>().Subscribe(TriggerSequence);
 
             if (Core.Common.VNCLogging.Constructor) Log.CONSTRUCTOR("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -53,11 +54,21 @@ namespace VNC.Phidget22.Ex
         private void InitializePhidget(StepperConfiguration configuration)
         {
             long startTicks = 0;
-            if (Core.Common.VNCLogging.DeviceInitalize) startTicks = Log.DEVICE_INITIALIZE($"Enter", Common.LOG_CATEGORY);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) startTicks = Log.DEVICE_INITIALIZE_LOW($"Enter" +
+                $"s#:{configuration.DeviceSerialNumber} hp:{configuration.HubPort} c:{configuration.Channel}", Common.LOG_CATEGORY);
 
-            DeviceSerialNumber = SerialNumber;
+            DeviceSerialNumber = configuration.DeviceSerialNumber;
+            IsHubPortDevice = configuration.HubPortDevice;
             HubPort = configuration.HubPort;
             Channel = configuration.Channel;
+
+            SerialHubPortChannel = new SerialHubPortChannel
+            {
+                SerialNumber = DeviceSerialNumber,
+                HubPort = HubPort,
+                Channel = Channel,
+                IsHubPortDevice = IsHubPortDevice
+            };
 
             IsRemote = true;
 
@@ -85,7 +96,7 @@ namespace VNC.Phidget22.Ex
             Stopped += StepperEx_Stopped;
             VelocityChange += StepperEx_VelocityChange;
 
-            if (Core.Common.VNCLogging.DeviceInitalize) Log.DEVICE_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Core.Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
 
@@ -94,19 +105,22 @@ namespace VNC.Phidget22.Ex
         #region Enums (none)
 
 
+
         #endregion
 
         #region Structures (none)
+
 
 
         #endregion
 
         #region Fields and Properties
 
-        #region Logging
-
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
+        // as UI is bound before Attach fires to update properties from Phidget
+
+        #region Logging
 
         Boolean _logPhidgetEvents;
         public Boolean LogPhidgetEvents
@@ -173,22 +187,19 @@ namespace VNC.Phidget22.Ex
 
         #endregion
 
-        private Int32 _serialNumber;
-        public Int32 SerialNumber
+        private SerialHubPortChannel _serialHubPortChannel;
+        public SerialHubPortChannel SerialHubPortChannel
         {
-            get => _serialNumber;
+            get => _serialHubPortChannel;
             set
             {
-                if (_serialNumber == value)
-                    return;
-                _serialNumber = value;
-                DeviceSerialNumber = value;
+                _serialHubPortChannel = value;
                 OnPropertyChanged();
             }
         }
 
         private Boolean _attached;
-        public Boolean Attached
+        public new Boolean Attached
         {
             get => _attached;
             set
@@ -199,6 +210,94 @@ namespace VNC.Phidget22.Ex
                 OnPropertyChanged();
             }
         }
+
+        #region Data Interval and Rate
+
+        private Int32 _minDataInterval;
+        public new Int32 MinDataInterval
+        {
+            get => _minDataInterval;
+            set
+            {
+                _minDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _DataInterval;
+        public new Int32 DataInterval
+        {
+            get => _DataInterval;
+            set
+            {
+                if (_DataInterval == value)
+                    return;
+                _DataInterval = value;
+
+                if (Attached)
+                {
+                    base.DataInterval = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Int32 _maxDataInterval;
+        public new Int32 MaxDataInterval
+        {
+            get => _maxDataInterval;
+            set
+            {
+                _maxDataInterval = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _minDataRate;
+        public new Double MinDataRate
+        {
+            get => _minDataRate;
+            set
+            {
+                 _minDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _DataRate;
+        public new Double DataRate
+        {
+            get => _DataRate;
+            set
+            {
+                if (_DataRate == value)
+                    return;
+                _DataRate = value;
+
+                if (Attached)
+                {
+                    base.DataRate = (Int32)value;
+                }
+
+                OnPropertyChanged();
+            }
+        }
+
+        private Double _maxDataRate;
+        public new Double MaxDataRate
+        {
+            get => _maxDataRate;
+            set
+            {
+                _maxDataRate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region StepperEx
 
         private Boolean _engaged;
         public new Boolean Engaged
@@ -306,96 +405,6 @@ namespace VNC.Phidget22.Ex
             }
         }
 
-        private Int32 _minDataInterval;
-        public new Int32 MinDataInterval
-        {
-            get => _minDataInterval;
-            set
-            {
-                if (_minDataInterval == value)
-                    return;
-                _minDataInterval = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Int32 _DataInterval;
-        public new Int32 DataInterval
-        {
-            get => _DataInterval;
-            set
-            {
-                if (_DataInterval == value)
-                    return;
-                _DataInterval = value;
-
-                if (Attached)
-                {
-                    base.DataInterval = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Int32 _maxDataInterval;
-        public new Int32 MaxDataInterval
-        {
-            get => _maxDataInterval;
-            set
-            {
-                if (_maxDataInterval == value)
-                    return;
-                _maxDataInterval = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double _minDataRate;
-        public new Double MinDataRate
-        {
-            get => _minDataRate;
-            set
-            {
-                if (_minDataRate == value)
-                    return;
-                _minDataRate = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Double _DataRate;
-        public new Double DataRate
-        {
-            get => _DataRate;
-            set
-            {
-                if (_DataRate == value)
-                    return;
-                _DataRate = value;
-
-                if (Attached)
-                {
-                    base.DataRate = value;
-                }
-
-                OnPropertyChanged();
-            }
-        }
-
-        private Double _maxDataRate;
-        public new Double MaxDataRate
-        {
-            get => _maxDataRate;
-            set
-            {
-                if (_maxDataRate == value)
-                    return;
-                _maxDataRate = value;
-                OnPropertyChanged();
-            }
-        }
-
         private Double _minFailsafeTime;
         public new Double MinFailsafeTime
         {
@@ -462,7 +471,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (_minPositionStepper == value)
                     return;
-                _minPosition = value;
+                _minPositionStepper = value;
                 OnPropertyChanged();
             }
         }
@@ -572,7 +581,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _maxPositionStepper;
-        public new Double MaxPositionStepper
+        public Double MaxPositionStepper
         {
             get => _maxPositionStepper;
             set
@@ -586,7 +595,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _minVelocity;
-        public new Double MinVelocity
+        public Double MinVelocity
         {
             get => _minVelocity;
             set
@@ -599,7 +608,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Double _maxVelocity;
-        public new Double MaxVelocity
+        public Double MaxVelocity
         {
             get => _maxVelocity;
             set
@@ -681,7 +690,9 @@ namespace VNC.Phidget22.Ex
                 // NOTE(crhodes)
                 // Unfortunately no events are fired by setting new RescaleFactor
                 // Go get new values;
-                RefreshServoProperties();
+                MinPosition = base.MinPosition;
+                Position = base.Position;
+                MaxPosition = base.MaxPosition;
 
                 OnPropertyChanged();
             }
@@ -691,7 +702,7 @@ namespace VNC.Phidget22.Ex
         // This might go away once we better understand RescaleFactor
 
         private Double _stepAngle;
-        public new Double StepAngle
+        public Double StepAngle
         {
             get => _stepAngle;
             set
@@ -712,7 +723,7 @@ namespace VNC.Phidget22.Ex
         }
 
         private Phidgets.StepperControlMode _controlMode;
-        public Phidgets.StepperControlMode ControlMode
+        public new Phidgets.StepperControlMode ControlMode
         {
             get => _controlMode;
             set
@@ -725,7 +736,9 @@ namespace VNC.Phidget22.Ex
 
                 OnPropertyChanged();
             }
-        }        
+        }
+
+        #endregion
 
         #endregion
 
@@ -733,13 +746,13 @@ namespace VNC.Phidget22.Ex
 
         private void StepperEx_Attach(object sender, PhidgetsEvents.AttachEventArgs e)
         {
-            Phidgets.Stepper stepper = sender as Phidgets.Stepper;
+            Phidgets.Stepper stepper = (Phidgets.Stepper)sender;
 
             if (LogPhidgetEvents)
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"StepperEx_Attach: sender:{sender}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"StepperEx_Attach: sender:{sender} attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -747,77 +760,36 @@ namespace VNC.Phidget22.Ex
                 }
             }
 
-            // Set properties to values from Phidget
+            try
+            {
+                // TODO(crhodes)
+                // Put things here that need to be initialized
+                // Use constructor configuration if need to pass things in
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
+                {
+                    throw;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
 
-            // NOTE(crhodes)
-            // Shockingly, this is not set until after Attach Event
-
-            //Attached = dOutput.Attached;
-
-            // Just set it so UI behaves well
-            Attached = true;
-
-            Engaged = stepper.Engaged;
-
-            // TODO(crhodes)
-            // 
-            // This needs to be set before being read
-            //SensorUnit = stepper.SensorUnit;
-
-            MinAcceleration = stepper.MinAcceleration;
-            Acceleration = stepper.Acceleration;
-            MaxAcceleration = stepper.MaxAcceleration;
-
-            Velocity = stepper.Velocity;
-
-            MinVelocityLimit = stepper.MinVelocityLimit;
-            VelocityLimit = stepper.VelocityLimit;
-            MaxVelocityLimit = stepper.MaxVelocityLimit;
-
-            MinDataInterval = stepper.MinDataInterval;
-            DataInterval = stepper.DataInterval;
-            MaxDataInterval = stepper.MaxDataInterval;
-
-            MinDataRate = stepper.MinDataRate;
-            DataRate = stepper.DataRate;
-            MaxDataRate = stepper.MaxDataRate;
-
-            // MinPosition can be set.  Save initial limit
-            MinPositionStepper = MinPosition = MinPositionStop = stepper.MinPosition;
-
-            // MaxPosition can be set.  Save initial limit
-            MaxPositionStepper = MaxPosition = MaxPositionStop = stepper.MaxPosition;
-
-            //// NOTE(crhodes)
-            //// Position cannot be read until initially set
-            //// Initialize in middle of range
-            //Position = (rcServo.MaxPosition - stepper.MinPosition) / 2;
-            //// Have to set TargetPosition before engaging
-            //TargetPosition = Position;
-
-            MinCurrentLimit = stepper.MinCurrentLimit;
-            CurrentLimit = stepper.CurrentLimit;
-            MaxCurrentLimit = stepper.MaxCurrentLimit;
-
-            ControlMode = stepper.ControlMode;
-            RescaleFactor = stepper.RescaleFactor;
-
-            // Not all RCServo support all properties
-            // Maybe just ignore or protect behind an if or switch
-            // based on DeviceClass or DeviceID
-
-            //try
-            //{
-            //    MinFailsafeTime = stepper.MinFailsafeTime;
-            //    MaxFailsafeTime = stepper.MaxFailsafeTime;
-            //}
-            //catch (Phidgets.PhidgetException ex)
-            //{
-            //    if (ex.ErrorCode != Phidgets.ErrorCode.Unsupported)
-            //    {
-            //        throw ex;
-            //    }
-            //}
+            if (LogPhidgetEvents)
+            {
+                try
+                {
+                    Log.EVENT_HANDLER($"Exit StepperEx_Attach: sender:{sender} attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, Common.LOG_CATEGORY);
+                }
+            }
         }
 
         private void StepperEx_PropertyChange(object sender, PhidgetsEvents.PropertyChangeEventArgs e)
@@ -832,6 +804,21 @@ namespace VNC.Phidget22.Ex
                 {
                     Log.Error(ex, Common.LOG_CATEGORY);
                 }
+            }
+
+            switch (e.PropertyName)
+            {
+                case "DataRate":
+                    DataRate = base.DataRate;
+                    break;
+
+                case "DataInterval":
+                    DataInterval = base.DataInterval;
+                    break;
+
+                default:
+                    Log.EVENT_HANDLER($"StepperEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    break;
             }
         }
 
@@ -921,6 +908,7 @@ namespace VNC.Phidget22.Ex
         #region Commands (none)
 
 
+
         #endregion
 
         #region Public Methods
@@ -928,68 +916,133 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
 
             Attached = base.Attached;
+            RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen}  timeout:{timeout}" +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
 
             Attached = base.Attached;
+            RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+        }
+
+        /// <summary>
+        /// Gather properties from Open Phidget Device
+        /// </summary>
+        public void RefreshProperties()
+        {
+            Int64 startTicks = 0;
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
+
+            try
+            {
+                // Set properties to values from Phidget
+                // We do not use Attach as some Phidgets do not provide values until Open
+
+                Engaged = base.Engaged;
+
+                // TODO(crhodes)
+                // 
+                // This needs to be set before being read
+                //SensorUnit = stepper.SensorUnit;
+
+                MinAcceleration = base.MinAcceleration;
+                Acceleration = base.Acceleration;
+                MaxAcceleration = base.MaxAcceleration;
+
+                Velocity = base.Velocity;
+
+                MinVelocityLimit = base.MinVelocityLimit;
+                VelocityLimit = base.VelocityLimit;
+                MaxVelocityLimit = base.MaxVelocityLimit;
+
+                MinDataInterval = base.MinDataInterval;
+                DataInterval = base.DataInterval;
+                MaxDataInterval = base.MaxDataInterval;
+
+                MinDataRate = base.MinDataRate;
+                DataRate = base.DataRate;
+                MaxDataRate = base.MaxDataRate;
+
+                // MinPosition can be set.  Save initial limit
+                MinPositionStepper = MinPosition = MinPositionStop = base.MinPosition;
+
+                // MaxPosition can be set.  Save initial limit
+                MaxPositionStepper = MaxPosition = MaxPositionStop = base.MaxPosition;
+
+                //// NOTE(crhodes)
+                //// Position cannot be read until initially set
+                //// Initialize in middle of range
+                //Position = (rcServo.MaxPosition - stepper.MinPosition) / 2;
+                //// Have to set TargetPosition before engaging
+                //TargetPosition = Position;
+
+                MinCurrentLimit = base.MinCurrentLimit;
+                CurrentLimit = base.CurrentLimit;
+                MaxCurrentLimit = base.MaxCurrentLimit;
+
+                ControlMode = base.ControlMode;
+                RescaleFactor = base.RescaleFactor;
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+                $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 
             Attached = base.Attached;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{base.Attached}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void AddPositionOffset(Double offset)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter isOpen:{IsOpen} attached:{Attached} attached:{Attached}", Common.LOG_CATEGORY);
 
             base.AddPositionOffset(offset);
+
             // NOTE(crhodes)
             // Unfortunately no events are fired by AddPositionOffset()
             // Go get new values;
-            RefreshServoProperties();
-
-            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} isAttached:{Attached}", Common.LOG_CATEGORY, startTicks);
-        }
-
-        void RefreshServoProperties()
-        {
-            MinAcceleration = base.MinAcceleration;
-            Acceleration = base.Acceleration;
-            MaxAcceleration = base.MaxAcceleration;
-
-            MinVelocityLimit = base.MinVelocityLimit;
-            VelocityLimit = base.VelocityLimit;
-            MaxVelocityLimit = base.MaxVelocityLimit;
 
             MinPosition = base.MinPosition;
             Position = base.Position;
             MaxPosition = base.MaxPosition;
 
             TargetPosition = base.TargetPosition;
+
+            if (LogPhidgetEvents) Log.Trace($"Exit isOpen:{IsOpen} attached:{Attached} attached:{Attached}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(StepperSequence stepperSequence)
@@ -1001,13 +1054,16 @@ namespace VNC.Phidget22.Ex
                 if (LogChannelAction)
                 {
                     startTicks = Log.Trace(
-                        $"Running Action Loops" +
-                        $" name:>{stepperSequence.Name}<" +
+                        $"RunActionLoops(>{stepperSequence.Name}<)" +
                         $" startActionLoopSequences:>{stepperSequence.StartActionLoopSequences?.Count()}<" +
                         $" actionLoops:>{stepperSequence.ActionLoops}<" +
+                        $" serialNumber:>{DeviceSerialNumber}<" +
+                        $" hubPort:>{HubPort}< >{stepperSequence.HubPort}<" +
+                        $" channel:>{Channel}< >{stepperSequence.Channel}<" +
                         $" actions:>{stepperSequence.Actions?.Count()}<" +
                         $" actionsDuration:>{stepperSequence.ActionsDuration}<" +
-                        $" endActionLoopSequences:>{stepperSequence.EndActionLoopSequences?.Count()}<", Common.LOG_CATEGORY);
+                        $" endActionLoopSequences:>{stepperSequence.EndActionLoopSequences?.Count()}<" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                 }
 
                 if (stepperSequence.Actions is not null)
@@ -1016,12 +1072,7 @@ namespace VNC.Phidget22.Ex
                     {
                         if (stepperSequence.StartActionLoopSequences is not null)
                         {
-                            // TODO(crhodes)
-                            // May want to create a new player instead of reaching for the property.
-
-                            DeviceChannelSequencePlayer player = DeviceChannelSequencePlayer.ActivePerformanceSequencePlayer;
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in stepperSequence.StartActionLoopSequences)
                             {
@@ -1031,20 +1082,24 @@ namespace VNC.Phidget22.Ex
 
                         if (stepperSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{stepperSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(stepperSequence.Actions, async action =>
+                            Parallel.ForEach(stepperSequence.Actions, action =>
                             {
-                                 await PerformAction(action);
+                                 ExecuteAction(action);
                             });
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<", Common.LOG_CATEGORY);
+                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                                $" actions:{stepperSequence.Actions.Count()}" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
                             foreach (StepperAction action in stepperSequence.Actions)
                             {
-                                await PerformAction(action);
+                                ExecuteAction(action);
                             }
                         }
 
@@ -1052,16 +1107,15 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzzz Action:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
+                                Log.Trace($"Zzzz End of Actions" +
+                                    $" Sleeping:>{stepperSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)stepperSequence.ActionsDuration);
                         }
 
                         if (stepperSequence.EndActionLoopSequences is not null)
                         {
-                            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
-                            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
-                            player.LogChannelAction = LogChannelAction;
+                            DeviceChannelSequencePlayer player = GetNewDeviceChannelSequencePlayer();
 
                             foreach (DeviceChannelSequence sequence in stepperSequence.EndActionLoopSequences)
                             {
@@ -1079,386 +1133,6 @@ namespace VNC.Phidget22.Ex
             if (LogChannelAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        // FIX(crhodes)
-        // Ugh, lots to fix
-
-        /// <summary>
-        /// Bounds check and set acceleration
-        /// </summary>
-        /// <param name="acceleration"></param>
-        /// <param name="servo"></param>
-        public void SetAcceleration(Double acceleration)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    Log.Trace($"Begin acceleration:{acceleration}" +
-                        $" minAcceleration:{MinAcceleration}" +
-                        $" acceleration:{Acceleration}" +
-                        $" maxAcceleration:{MaxAcceleration}", Common.LOG_CATEGORY);
-                }
-
-                if (acceleration < MinAcceleration)
-                {
-                    Acceleration = MinAcceleration;
-                }
-                else if (acceleration > MaxAcceleration)
-                {
-                    Acceleration = MaxAcceleration;
-                }
-                else
-                {
-                    Acceleration = acceleration;
-                }
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End acceleration:{Acceleration}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"acceleration:{acceleration}" +
-                //    $" minAcceleration:{servo.AccelerationMin}" +
-                //    //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
-                //    $" maxAcceleration:{servo.AccelerationMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-
-        /// <summary>
-        /// Bounds check and set velocity
-        /// </summary>
-        /// <param name="velocityLimit"></param>
-        /// <param name="servo"></param>
-        public void SetVelocityLimit(Double velocityLimit)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    Log.Trace($"Begin velocityLimit:{velocityLimit}" +
-                        $" MinVelocityLimit:{MinVelocityLimit}" +
-                        $" VelocityLimit:{VelocityLimit}" +
-                        $" MaxVelocityLimit:{MaxVelocityLimit}", Common.LOG_CATEGORY);
-                }
-
-                if (velocityLimit < MinVelocityLimit)
-                {
-                    VelocityLimit = MinVelocityLimit;
-                }
-                else if (velocityLimit > MaxVelocityLimit)
-                {
-                    VelocityLimit = MaxVelocityLimit;
-                }
-                else
-                {
-                    VelocityLimit = velocityLimit;
-                }
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End velocityLimit:{VelocityLimit}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"index:{index}" +
-                //    $" velocity:{velocityLimit}" +
-                //    $" servo.velocityMin:{servo.VelocityMin}" +
-                //    $" servo.velocityLimit:{servo.VelocityLimit}" +
-                //    $" servo.velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="positionMin"></param>
-        /// <param name="servo"></param>
-        public void SetPositionScaleMin(Double positionMin)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin positionMin:{positionMin}" +
-                    //    $" PositionMin:{PositionMin}" +
-                    //    $" PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (positionMin < 0)
-                //{
-                //    positionMin = InitialServoLimits[index].DevicePositionMin;
-                //}
-                //else if (positionMin < InitialServoLimits[index].DevicePositionMin)
-                //{
-                //    positionMin = InitialServoLimits[index].DevicePositionMin;
-                //}
-                //else if (positionMin > servo.PositionMax)
-                //{
-                //    positionMin = servo.PositionMax;
-                //}
-
-                //if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
-
-                // TODO(crhodes)
-                // Figure out if we need any of the above
-
-                MinPosition = positionMin;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End positionMin:{positionMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"index:{index} positionMin:{positionMin}" +
-                //    $" servo.PositionMin:{servo.PositionMin}" +
-                //    $" servo.PositionMax:{servo.PositionMax}" +
-                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="positionMin"></param>
-        /// <param name="servo"></param>
-        public void SetPositionStopMin(Double positionStopMin)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin positionMin:{positionMin}" +
-                    //    $" PositionMin:{PositionMin}" +
-                    //    $" PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (positionMin < 0)
-                //{
-                //    positionMin = InitialServoLimits[index].DevicePositionMin;
-                //}
-                //else if (positionMin < InitialServoLimits[index].DevicePositionMin)
-                //{
-                //    positionMin = InitialServoLimits[index].DevicePositionMin;
-                //}
-                //else if (positionMin > servo.PositionMax)
-                //{
-                //    positionMin = servo.PositionMax;
-                //}
-
-                //if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
-
-                // TODO(crhodes)
-                // Figure out if we need any of the above
-
-                MinPositionStop = positionStopMin;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End positionMin:{positionStopMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"index:{index} positionMin:{positionMin}" +
-                //    $" servo.PositionMin:{servo.PositionMin}" +
-                //    $" servo.PositionMax:{servo.PositionMax}" +
-                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="servo"></param>
-        public Double SetPosition(Double position)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin servo:{index} position:{position}" +
-                    //    $" servo.PositionMin:{servo.PositionMin}" +
-                    //    $" servo.PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (position < servo.PositionMin)
-                //{
-                //    position = servo.PositionMin;
-                //}
-                //else if (position > servo.PositionMax)
-                //{
-                //    position = servo.PositionMax;
-                //}
-
-                //// TODO(crhodes)
-                //// Maybe save last position set and not bother checking servo.Position is same
-                //if (servo.Position != position) servo.Position = position;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End position:{position} servo.Position:{Position}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"servo:{index} servo.position:{servo.Position}" +
-                //    $" servo.PositionMin:{servo.PositionMin}" +
-                //    $" servo.PositionMax:{servo.PositionMax}" +
-                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-
-            return position;
-        }
-
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="positionMax"></param>
-        /// <param name="servo"></param>
-        public void SetPositionStopMax(Double positionMax)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
-                    //    $" servo.PositionMin:{servo.PositionMin}" +
-                    //    $" servo.PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (positionMax < 0)
-                //{
-                //    positionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-                //else if (positionMax < servo.PositionMin)
-                //{
-                //    positionMax = servo.PositionMin;
-                //}
-                //else if (positionMax > InitialServoLimits[index].DevicePositionMax)
-                //{
-                //    positionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-
-                //if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
-
-                MaxPosition = positionMax;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
-        /// <summary>
-        /// Bounds check and set position
-        /// </summary>
-        /// <param name="positionMax"></param>
-        /// <param name="servo"></param>
-        public void SetPositionScaleMax(Double positionMax)
-        {
-            try
-            {
-                if (LogChannelAction)
-                {
-                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
-                    //    $" servo.PositionMin:{servo.PositionMin}" +
-                    //    $" servo.PositionMax:{servo.PositionMax}" +
-                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
-                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
-                }
-
-                //if (positionMax < 0)
-                //{
-                //    positionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-                //else if (positionMax < servo.PositionMin)
-                //{
-                //    positionMax = servo.PositionMin;
-                //}
-                //else if (positionMax > InitialServoLimits[index].DevicePositionMax)
-                //{
-                //    positionMax = InitialServoLimits[index].DevicePositionMax;
-                //}
-
-                //if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
-
-                MaxPosition = positionMax;
-
-                if (LogChannelAction)
-                {
-                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
-                }
-            }
-            catch (Phidgets.PhidgetException pex)
-            {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex, Common.LOG_CATEGORY);
-            }
-        }
-
         #endregion
 
         #region Protected Methods (none)
@@ -1468,19 +1142,39 @@ namespace VNC.Phidget22.Ex
         #endregion
 
         #region Private Methods
+        
+        private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
+        {
+            Int64 startTicks = 0;
+            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
 
-        private async Task PerformAction(StepperAction action)
+            DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
+
+            player.LogDeviceChannelSequence = LogDeviceChannelSequence;
+            player.LogChannelAction = LogChannelAction;
+            player.LogActionVerification = LogActionVerification;
+
+            // TODO(crhodes)
+            // Add appropriate events for this device
+
+            player.LogPhidgetEvents = LogPhidgetEvents;
+
+            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+
+            return player;
+        }
+
+        private void ExecuteAction(StepperAction action)
         {
             Int64 startTicks = 0;
 
-            var channel = Channel;
-
-            StringBuilder actionMessage = new StringBuilder();
+             StringBuilder actionMessage = new StringBuilder();
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter servo:{Channel}", Common.LOG_CATEGORY);
-                actionMessage.Append($"servo:{Channel}");
+                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                    $" hubPort:{HubPort} channel:{Channel}" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
 
             try
@@ -1511,7 +1205,7 @@ namespace VNC.Phidget22.Ex
                     // TODO(crhodes)
                     // Do we need a delay here?
                     // This is where a call back from Attach event would be great!
-                    Open();
+                    Open(Phidget.DefaultTimeout);
                 }
 
                 if (action.Close is not null)
@@ -1520,6 +1214,8 @@ namespace VNC.Phidget22.Ex
 
                     Close();
                 }
+
+                #region StepperEx Actions
 
                 // NOTE(crhodes)
                 // Not sure if these can be done without Stepper engaged
@@ -1533,7 +1229,7 @@ namespace VNC.Phidget22.Ex
 
                 if (action.RescaleFactor is not null)
                 {
-                    if (LogChannelAction) actionMessage.Append($" rescaleFactor:>{action.StepAngle}<");
+                    if (LogChannelAction) actionMessage.Append($" rescaleFactor:>{action.RescaleFactor}<");
 
                     RescaleFactor = (Double)action.RescaleFactor;
                 }
@@ -1562,7 +1258,7 @@ namespace VNC.Phidget22.Ex
                         }
                     }
 
-                    SetAcceleration((Double)acceleration);
+                    SetAcceleration ((Double)acceleration);
                 }
 
                 if (action.VelocityLimit is not null)
@@ -1599,18 +1295,18 @@ namespace VNC.Phidget22.Ex
                 //    SetPositionScaleMax((Double)action.PositionScaleMax);
                 //}
 
-                //if (action.PositionStopMin is not null)
+                //if (action.MinPositionStop is not null)
                 //{
-                //    if (LogChannelAction) actionMessage.Append($" positionMin:>{action.PositionStopMin}<");
+                //    if (LogChannelAction) actionMessage.Append($" positionMin:>{action.MinPositionStop}<");
 
-                //    SetPositionScaleMin((Double)action.PositionStopMin);
+                //    SetPositionScaleMin((Double)action.MinPositionStop);
                 //}
 
-                //if (action.PositionStopMax is not null)
+                //if (action.MaxPositionStop is not null)
                 //{
-                //    if (LogChannelAction) actionMessage.Append($" positionMax:>{action.PositionStopMax}<");
+                //    if (LogChannelAction) actionMessage.Append($" positionMax:>{action.MaxPositionStop}<");
 
-                //    SetPositionStopMax((Double)action.PositionStopMax);
+                //    SetMaxPositionStop((Double)action.MaxPositionStop);
                 //}
 
                 //if (action.SpeedRampingState is not null)
@@ -1638,7 +1334,7 @@ namespace VNC.Phidget22.Ex
                     var newAcceleration = Acceleration + (Double)action.RelativeAcceleration;
                     if (LogChannelAction) actionMessage.Append($" relativeAcceleration:>{action.RelativeAcceleration}< ({newAcceleration})");
 
-                    SetAcceleration(newAcceleration);
+                    SetAcceleration (newAcceleration);
                 }
 
                 if (action.RelativeVelocityLimit is not null)
@@ -1754,18 +1450,24 @@ namespace VNC.Phidget22.Ex
                     AddPositionOffset((Double)action.AddPositionOffset);
                 }
 
+                #endregion
+
                 if (action.Duration > 0)
                 {
-                    if (LogChannelAction) actionMessage.Append($" duration:>{action.Duration}<");
+                    if (LogChannelAction) actionMessage.Append($" Zzzz - End of Action Sleeping:>{action.Duration}<");
 
                     Thread.Sleep((Int32)action.Duration);
                 }
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"servo:{Channel} source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                //Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
+                    $" hubPort:>{HubPort}< channel:>{Channel}<" +
+                    $" {actionMessage}" +
+                    $" source:{pex.Source}" +
+                    $" description:{pex.Description}" +
+                    $" inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
@@ -1775,7 +1477,9 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Exit {actionMessage}", Common.LOG_CATEGORY, startTicks);
+                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                        $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
+                        $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
             }
         }
@@ -1784,12 +1488,389 @@ namespace VNC.Phidget22.Ex
         {
             long startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            var stepperSequence = args.StepperSequence;
+            var sequence = args.StepperSequence;
 
-            await RunActionLoops(stepperSequence);
+            if (sequence is not null) await RunActionLoops(sequence);
 
             Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
-        }  
+        }
+
+        /// <summary>
+        /// Bounds check and set acceleration
+        /// </summary>
+        /// <param name="acceleration"></param>
+        /// <param name="servo"></param>
+        private void SetAcceleration(Double acceleration)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    Log.Trace($"Begin acceleration:{acceleration}" +
+                        $" minAcceleration:{MinAcceleration}" +
+                        $" acceleration:{Acceleration}" +
+                        $" maxAcceleration:{MaxAcceleration}", Common.LOG_CATEGORY);
+                }
+
+                if (acceleration < MinAcceleration)
+                {
+                    Acceleration = MinAcceleration;
+                }
+                else if (acceleration > MaxAcceleration)
+                {
+                    Acceleration = MaxAcceleration;
+                }
+                else
+                {
+                    Acceleration = acceleration;
+                }
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End acceleration:{Acceleration}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.Error($"acceleration:{acceleration}" +
+                //    $" minAcceleration:{servo.AccelerationMin}" +
+                //    //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
+                //    $" maxAcceleration:{servo.AccelerationMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+
+        /// <summary>
+        /// Bounds check and set velocity
+        /// </summary>
+        /// <param name="velocityLimit"></param>
+        /// <param name="servo"></param>
+        private void SetVelocityLimit(Double velocityLimit)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    Log.Trace($"Begin velocityLimit:{velocityLimit}" +
+                        $" MinVelocityLimit:{MinVelocityLimit}" +
+                        $" VelocityLimit:{VelocityLimit}" +
+                        $" MaxVelocityLimit:{MaxVelocityLimit}", Common.LOG_CATEGORY);
+                }
+
+                if (velocityLimit < MinVelocityLimit)
+                {
+                    VelocityLimit = MinVelocityLimit;
+                }
+                else if (velocityLimit > MaxVelocityLimit)
+                {
+                    VelocityLimit = MaxVelocityLimit;
+                }
+                else
+                {
+                    VelocityLimit = velocityLimit;
+                }
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End velocityLimit:{VelocityLimit}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.Error($"index:{index}" +
+                //    $" velocity:{velocityLimit}" +
+                //    $" servo.velocityMin:{servo.VelocityMin}" +
+                //    $" servo.velocityLimit:{servo.VelocityLimit}" +
+                //    $" servo.velocityMax:{servo.VelocityMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMin"></param>
+        /// <param name="servo"></param>
+        private void SetPositionScaleMin(Double positionMin)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    //Log.Trace($"Begin positionMin:{positionMin}" +
+                    //    $" PositionMin:{PositionMin}" +
+                    //    $" PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (positionMin < 0)
+                //{
+                //    positionMin = InitialServoLimits[index].DevicePositionMin;
+                //}
+                //else if (positionMin < InitialServoLimits[index].DevicePositionMin)
+                //{
+                //    positionMin = InitialServoLimits[index].DevicePositionMin;
+                //}
+                //else if (positionMin > servo.PositionMax)
+                //{
+                //    positionMin = servo.PositionMax;
+                //}
+
+                //if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
+
+                // TODO(crhodes)
+                // Figure out if we need any of the above
+
+                MinPosition = positionMin;
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End positionMin:{positionMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.Error($"index:{index} positionMin:{positionMin}" +
+                //    $" servo.PositionMin:{servo.PositionMin}" +
+                //    $" servo.PositionMax:{servo.PositionMax}" +
+                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMin"></param>
+        /// <param name="servo"></param>
+        private void SetMinPositionStop(Double positionStopMin)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    //Log.Trace($"Begin positionMin:{positionMin}" +
+                    //    $" PositionMin:{PositionMin}" +
+                    //    $" PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (positionMin < 0)
+                //{
+                //    positionMin = InitialServoLimits[index].DevicePositionMin;
+                //}
+                //else if (positionMin < InitialServoLimits[index].DevicePositionMin)
+                //{
+                //    positionMin = InitialServoLimits[index].DevicePositionMin;
+                //}
+                //else if (positionMin > servo.PositionMax)
+                //{
+                //    positionMin = servo.PositionMax;
+                //}
+
+                //if (servo.PositionMin != positionMin) servo.PositionMin = positionMin;
+
+                // TODO(crhodes)
+                // Figure out if we need any of the above
+
+                MinPositionStop = positionStopMin;
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End positionMin:{positionStopMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.Error($"index:{index} positionMin:{positionMin}" +
+                //    $" servo.PositionMin:{servo.PositionMin}" +
+                //    $" servo.PositionMax:{servo.PositionMax}" +
+                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="servo"></param>
+        private Double SetPosition(Double position)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    //Log.Trace($"Begin servo:{index} position:{position}" +
+                    //    $" servo.PositionMin:{servo.PositionMin}" +
+                    //    $" servo.PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (position < servo.PositionMin)
+                //{
+                //    position = servo.PositionMin;
+                //}
+                //else if (position > servo.PositionMax)
+                //{
+                //    position = servo.PositionMax;
+                //}
+
+                //// TODO(crhodes)
+                //// Maybe save last position set and not bother checking servo.Position is same
+                //if (servo.Position != position) servo.Position = position;
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End position:{position} servo.Position:{Position}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.Error($"servo:{index} servo.position:{servo.Position}" +
+                //    $" servo.PositionMin:{servo.PositionMin}" +
+                //    $" servo.PositionMax:{servo.PositionMax}" +
+                //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+
+            return position;
+        }
+
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMax"></param>
+        /// <param name="servo"></param>
+        private void SetMaxPositionStop(Double positionMax)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
+                    //    $" servo.PositionMin:{servo.PositionMin}" +
+                    //    $" servo.PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (positionMax < 0)
+                //{
+                //    positionMax = InitialServoLimits[index].DevicePositionMax;
+                //}
+                //else if (positionMax < servo.PositionMin)
+                //{
+                //    positionMax = servo.PositionMin;
+                //}
+                //else if (positionMax > InitialServoLimits[index].DevicePositionMax)
+                //{
+                //    positionMax = InitialServoLimits[index].DevicePositionMax;
+                //}
+
+                //if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
+
+                MaxPosition = positionMax;
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
+
+        /// <summary>
+        /// Bounds check and set position
+        /// </summary>
+        /// <param name="positionMax"></param>
+        /// <param name="servo"></param>
+        private void SetPositionScaleMax(Double positionMax)
+        {
+            try
+            {
+                if (LogChannelAction)
+                {
+                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
+                    //    $" servo.PositionMin:{servo.PositionMin}" +
+                    //    $" servo.PositionMax:{servo.PositionMax}" +
+                    //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
+                    //    $" DevicePositionMax:{InitialServoLimits[index].DevicePositionMax}", Common.LOG_CATEGORY);
+                }
+
+                //if (positionMax < 0)
+                //{
+                //    positionMax = InitialServoLimits[index].DevicePositionMax;
+                //}
+                //else if (positionMax < servo.PositionMin)
+                //{
+                //    positionMax = servo.PositionMin;
+                //}
+                //else if (positionMax > InitialServoLimits[index].DevicePositionMax)
+                //{
+                //    positionMax = InitialServoLimits[index].DevicePositionMax;
+                //}
+
+                //if (servo.PositionMax != positionMax) servo.PositionMax = positionMax;
+
+                MaxPosition = positionMax;
+
+                if (LogChannelAction)
+                {
+                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
+                }
+            }
+            catch (Phidgets.PhidgetException pex)
+            {
+                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, Common.LOG_CATEGORY);
+            }
+        }
 
         #endregion
 
@@ -1797,21 +1878,12 @@ namespace VNC.Phidget22.Ex
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        // This is the traditional approach - requires string name to be passed in
-
-        //private void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            long startTicks = 0;
 #if LOGGING
+            long startTicks = 0;
             if (Common.VNCCoreLogging.INPC) startTicks = Log.VIEWMODEL_LOW($"Enter ({propertyName})", Common.LOG_CATEGORY);
 #endif
-            // This is the new CompilerServices attribute!
-
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 #if LOGGING
             if (Common.VNCCoreLogging.INPC) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);

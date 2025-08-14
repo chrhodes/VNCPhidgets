@@ -8,9 +8,14 @@ namespace VNC.Phidget22.Configuration
         {
         }
 
+        public DistanceSensorSequence(DistanceSensorSequence sequence) : base("DistanceSensor", sequence)
+        {
+            Actions = sequence.Actions;
+        }
+
         /// <summary>
         /// Array of DistanceSensor actions in sequence
         /// </summary>
-        public DistanceSensorAction[] Actions { get; set; }
+        public DistanceSensorAction[]? Actions { get; set; }
     }
 }

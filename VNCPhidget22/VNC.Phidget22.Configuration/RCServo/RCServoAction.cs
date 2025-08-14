@@ -3,38 +3,21 @@ using System.Runtime.CompilerServices;
 
 namespace VNC.Phidget22.Configuration
 {
-    public class RCServoAction
+    public class RCServoAction : ActionBase
     {
         #region Logging
-
-        public Boolean? LogPhidgetEvents { get; set; }
-        public Boolean? LogErrorEvents { get; set; }
-        public Boolean? LogPropertyChangeEvents { get; set; }
 
         public Boolean? LogPositionChangeEvents { get; set; }
         public Boolean? LogVelocityChangeEvents { get; set; }
         public Boolean? LogTargetPositionReachedEvents { get; set; }
 
-        public Boolean? LogDeviceChannelSequence { get; set; }
-        public Boolean? LogChannelAction { get; set; }
-        public Boolean? LogActionVerification { get; set; }
-
         #endregion
+
 
         public RCServoType? RCServoType { get; set; }
 
         // TODO(crhodes)
         // Do we want to support changing MinPulseWidth and MaxPulseWidth?
-
-        /// <summary>
-        /// Open RCServo (optional)
-        /// </summary>
-        public Boolean? Open { get; set; }
-
-        /// <summary>
-        /// Close RCServo (optional)
-        /// </summary>
-        public Boolean? Close { get; set; }
 
         /// <summary>
         /// Engage Servo (optional)
@@ -69,7 +52,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Minimum TargetPosition (optional)
         /// </summary>
-        public Double? PositionStopMin { get; set; }
+        public Double? MinPositionStop { get; set; }
 
         /// <summary>
         /// TargetPosition (optional)
@@ -84,7 +67,7 @@ namespace VNC.Phidget22.Configuration
         /// <summary>
         /// Maximum TargetPosition (optional)
         /// </summary>
-        public Double? PositionStopMax { get; set; }
+        public Double? MaxPositionStop { get; set; }
 
         /// <summary>
         /// Scaled Maximum TargetPosition (optional)
@@ -93,9 +76,5 @@ namespace VNC.Phidget22.Configuration
 
         public Boolean? SpeedRampingState { get; set; }
 
-        /// <summary>
-        /// Duration of sleep in ms (sleep time after Action)
-        /// </summary>
-        public Int32? Duration { get; set; } // ms
     }
 }

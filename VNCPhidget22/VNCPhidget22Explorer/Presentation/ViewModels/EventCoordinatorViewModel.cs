@@ -13,6 +13,7 @@ using VNC;
 using VNC.Core.Events;
 using VNC.Core.Mvvm;
 using VNC.Core.Services;
+using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Configuration.Performance;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;
@@ -21,7 +22,7 @@ using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class EventCoordinatorViewModel : EventViewModelBase, IEventCoordinatorViewModel, IInstanceCountVM
+    public class EventCoordinatorViewModel : EventViewModelBase, IEventCoordinatorViewModel//, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -51,7 +52,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // Put things here that initialize the ViewModel
             // Initialize EventHandlers, Commands, etc.
 
-            EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+            EventAggregator.GetEvent<ExecutePerformanceEvent>().Subscribe(PlayPerformance);
 
             SayHelloCommand = new DelegateCommand(
                 SayHello, SayHelloCanExecute);
@@ -81,8 +82,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Fields and Properties
 
-        private IEnumerable<Performance> _performances;
-        public IEnumerable<Performance> Performances
+        private IEnumerable<Performance>? _performances;
+        public IEnumerable<Performance>? Performances
         {
             get => _performances;
             set
@@ -106,10 +107,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedPerformance = value;
                 OnPropertyChanged();
 
-                RaisePlayPerformanceEventCommand.RaiseCanExecuteChanged();
-                //PlayAdvancedServoSequenceCommand.RaiseCanExecuteChanged();
-                //EngageAndCenterCommand.RaiseCanExecuteChanged();
-                //PlayInterfaceKitSequenceCommand.RaiseCanExecuteChanged();
+                RaisePlayPerformanceEventCommand?.RaiseCanExecuteChanged();
+                //PlayAdvancedServoSequenceCommand?.RaiseCanExecuteChanged();
+                //EngageAndCenterCommand?.RaiseCanExecuteChanged();
+                //PlayInterfaceKitSequenceCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -149,16 +150,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Event Handlers
 
-        void PlayPerformance(PerformanceEventArgs eventArgs)
+        async void PlayPerformance(PerformanceEventArgs eventArgs)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.Info($"Enter", Common.LOG_CATEGORY);
 
             EventPerformance = eventArgs.Performance;
 
-            PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator);
+            PerformancePlayer performancePlayer = new PerformancePlayer(EventAggregator, Common.PerformanceLibrary);
 
-            performancePlayer.PlayPerformance(EventPerformance);
+            await performancePlayer.ExecutePerformance(EventPerformance);
 
             if (Common.VNCLogging.EventHandler) Log.Info($"Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -189,7 +190,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region RaisePlayPerformanceEvent Command
 
-        public DelegateCommand RaisePlayPerformanceEventCommand { get; set; }
+        public DelegateCommand? RaisePlayPerformanceEventCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> RaisePlayPerformanceEventCommand { get; set; }
@@ -208,7 +209,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // If using CommandParameter, figure out TYPE and fix above
         //public void RaisePlayPerformanceEvent(TYPE value)
 
-        public async void RaisePlayPerformanceEvent()
+        public void RaisePlayPerformanceEvent()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(RaisePlayPerformanceEvent) Enter", Common.LOG_CATEGORY);
@@ -217,7 +218,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "Cool, you called RaisePlayPerformanceEvent";
             PublishStatusMessage(Message);
 
-            EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            EventAggregator.GetEvent<ExecutePerformanceEvent>().Publish(
                 new PerformanceEventArgs()
                 {
                     Performance = SelectedPerformance
@@ -228,8 +229,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public Boolean RaisePlayPerformanceEventCanExecute()
         {
-            // TODO(crhodes)
-            // Add any before button is enabled logic.
             if (SelectedPerformance is not null)
             {
                 return true;
@@ -244,7 +243,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region SayHello Command
 
-        public ICommand SayHelloCommand { get; private set; }
+        public ICommand? SayHelloCommand { get; private set; }
 
         private void SayHello()
         {
@@ -277,16 +276,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region IInstanceCount
+        //#region IInstanceCount
 
-        private static Int32 _instanceCountVM;
+        //private static Int32 _instanceCountVM;
 
-        public Int32 InstanceCountVM
-        {
-            get => _instanceCountVM;
-            set => _instanceCountVM = value;
-        }
+        //public Int32 InstanceCountVM
+        //{
+        //    get => _instanceCountVM;
+        //    set => _instanceCountVM = value;
+        //}
 
-        #endregion
+        //#endregion
     }
 }
