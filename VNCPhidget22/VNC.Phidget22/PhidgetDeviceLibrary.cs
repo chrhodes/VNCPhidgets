@@ -473,7 +473,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -533,7 +533,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             try
@@ -546,7 +546,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -964,7 +964,7 @@ namespace VNC.Phidget22
                     break;
 
                 default:
-                    Log.Error($"Unexpected ChannelClass:>{channelClass}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Unexpected ChannelClass:>{channelClass}<", Common.LOG_CATEGORY);
                     break;
             }
         }
@@ -994,7 +994,7 @@ namespace VNC.Phidget22
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -1057,7 +1057,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             // NOTE(crhodes)
@@ -1069,7 +1069,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -1378,7 +1378,7 @@ namespace VNC.Phidget22
                     break;
 
                 default:
-                    Log.Error($"Unexpected ChannelClass:>{channelClass}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Unexpected ChannelClass:>{channelClass}<", Common.LOG_CATEGORY);
                     break;
             }
         }
@@ -1405,7 +1405,7 @@ namespace VNC.Phidget22
         //public RCServoEx OpenRCServoHost(Int32 serialNumber, Int32 channel, RCServoConfiguration configuration)
         //{
         //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.Trace00) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+        //    if (Common.VNCLogging.Trace00) startTicks = Log.TRACE($"Enter", Common.LOG_CATEGORY);
 
 
         //    //PhidgetDevice phidgetDevice = AvailablePhidgets[serialNumber];
@@ -1448,7 +1448,7 @@ namespace VNC.Phidget22
         //        rcServoHost.Open();
         //    }
 
-        //    if (Common.VNCLogging.Trace00) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+        //    if (Common.VNCLogging.Trace00) Log.TRACE($"Exit", Common.LOG_CATEGORY, startTicks);
 
         //    return rcServoHost;
         //}

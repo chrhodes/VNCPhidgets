@@ -107,7 +107,7 @@ namespace VNC.Phidget22.Players
             {
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Enter ExecuteDeviceChannelSequence:(>{deviceChannelSequence.Name}<)" +
+                    startTicks = Log.TRACE($"Enter ExecuteDeviceChannelSequence:(>{deviceChannelSequence.Name}<)" +
                         $" channelClass:>{deviceChannelSequence.ChannelClass}<" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
@@ -130,7 +130,7 @@ namespace VNC.Phidget22.Players
                         nextPhidgetDeviceChannelSequence.SerialNumber = SerialNumber;
                     }
 
-                    if (LogDeviceChannelSequence) Log.Trace($"Running DeviceChannelSequence:>{nextPhidgetDeviceChannelSequence.Name}< on" +
+                    if (LogDeviceChannelSequence) Log.TRACE($"Running DeviceChannelSequence:>{nextPhidgetDeviceChannelSequence.Name}< on" +
                         $" dcsSerialNumber:>{nextPhidgetDeviceChannelSequence.SerialNumber}<" +
                         $" dcsHubPort:>{nextPhidgetDeviceChannelSequence.HubPort}<" +
                         $" dcsChannel >{nextPhidgetDeviceChannelSequence.Channel}<" +
@@ -154,7 +154,7 @@ namespace VNC.Phidget22.Players
                                 break;
 
                             default:
-                                Log.Error($"Unsupported SequenceType:>{nextPhidgetDeviceChannelSequence.ChannelClass}<", Common.LOG_CATEGORY);
+                                Log.ERROR($"Unsupported SequenceType:>{nextPhidgetDeviceChannelSequence.ChannelClass}<", Common.LOG_CATEGORY);
                                 nextPhidgetDeviceChannelSequence = null;
                                 break;
                         }
@@ -165,7 +165,7 @@ namespace VNC.Phidget22.Players
                 {
                     if (LogDeviceChannelSequence)
                     {
-                        Log.Trace($"Zzzz - End of DeviceChannelSequence:>{deviceChannelSequence.Name}<" +
+                        Log.TRACE($"Zzzz - End of DeviceChannelSequence:>{deviceChannelSequence.Name}<" +
                             $" Sleeping:>{deviceChannelSequence.Duration}<", Common.LOG_CATEGORY);
                     }
                     Thread.Sleep((Int32)deviceChannelSequence.Duration);
@@ -173,12 +173,12 @@ namespace VNC.Phidget22.Players
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             if (LogDeviceChannelSequence)
             {
-                Log.Trace($"Exit" +
+                Log.TRACE($"Exit" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
             }
         }
@@ -212,7 +212,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
+                    startTicks = Log.TRACE($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" serialNumber:>{deviceChannelSequence.SerialNumber}<" +
                         $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
@@ -237,7 +237,7 @@ namespace VNC.Phidget22.Players
 
                 if (phidgetHost is null)
                 {
-                    Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                    Log.ERROR($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
                         $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
 
                     nextDeviceChannelSequence = null;
@@ -273,7 +273,7 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzz - End of DigitalOutputSequence:>{digitalOutputSequence.Name}<" +
+                            Log.TRACE($"Zzzz - End of DigitalOutputSequence:>{digitalOutputSequence.Name}<" +
                                 $" Sleeping:>{digitalOutputSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)digitalOutputSequence.SequenceDuration);
@@ -282,11 +282,11 @@ namespace VNC.Phidget22.Players
                     nextDeviceChannelSequence = digitalOutputSequence.NextSequence;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
+                if (LogDeviceChannelSequence) Log.TRACE($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             return nextDeviceChannelSequence;
@@ -296,7 +296,7 @@ namespace VNC.Phidget22.Players
         {
             if (PerformanceLibrary.AvailableDigitalOutputSequences.TryGetValue(deviceChannelSequence.Name, out DigitalOutputSequence? retrievedSequence))
             {
-                if (LogDeviceChannelSequence) Log.Trace($"Retrieved digitalOutputSequence:>{retrievedSequence.Name}<" +
+                if (LogDeviceChannelSequence) Log.TRACE($"Retrieved digitalOutputSequence:>{retrievedSequence.Name}<" +
                     $" hubPort:>{retrievedSequence.HubPort}<" +
                     $" channel:>{retrievedSequence.Channel}<" +
                     $" for dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
@@ -316,14 +316,14 @@ namespace VNC.Phidget22.Players
                     updatedSequence.Channel = deviceChannelSequence.Channel;                  
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
+                if (LogDeviceChannelSequence) Log.TRACE($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
                     $" on digitalOutputSequence:>{updatedSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
 
                 return updatedSequence;
             }
             else
             {
-                Log.Trace($"Cannot find digitalOutputSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                Log.TRACE($"Cannot find digitalOutputSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
                 return null;
             }
         }
@@ -353,7 +353,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
+                    startTicks = Log.TRACE($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" dcsHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
@@ -373,7 +373,7 @@ namespace VNC.Phidget22.Players
 
                 if (rcServoSequence is null)
                 {
-                    Log.Error($"Failed to Retrive/Create RCServoSequence, Aborting", Common.LOG_CATEGORY);
+                    Log.ERROR($"Failed to Retrive/Create RCServoSequence, Aborting", Common.LOG_CATEGORY);
 
                     return null;
                 }
@@ -385,7 +385,7 @@ namespace VNC.Phidget22.Players
 
                 if (phidgetHost is null)
                 {
-                    Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence?.SerialNumber}" +
+                    Log.ERROR($"Cannot locate host to execute SerialNumber:{deviceChannelSequence?.SerialNumber}" +
                         $" hubPort:{deviceChannelSequence?.HubPort} channel:{deviceChannelSequence?.Channel}", Common.LOG_CATEGORY);
 
                     return null;
@@ -419,7 +419,7 @@ namespace VNC.Phidget22.Players
                 {
                     if (LogDeviceChannelSequence)
                     {
-                        Log.Trace($"Zzzz - End of RCServoSequence:>{rcServoSequence.Name}<" +
+                        Log.TRACE($"Zzzz - End of RCServoSequence:>{rcServoSequence.Name}<" +
                             $" Sleeping:>{rcServoSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                     }
 
@@ -428,12 +428,12 @@ namespace VNC.Phidget22.Players
 
                 nextDeviceChannelSequence = rcServoSequence.NextSequence;
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<" +
+                if (LogDeviceChannelSequence) Log.TRACE($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             return nextDeviceChannelSequence;
@@ -456,7 +456,7 @@ namespace VNC.Phidget22.Players
             // CA1854.  Use TryGetValue to avoid duplicate lookups
             if (PerformanceLibrary.AvailableRCServoSequences.TryGetValue(deviceChannelSequence.Name, out RCServoSequence ? retrievedSequence))
             {
-                if (LogDeviceChannelSequence) startTicks = Log.Trace1($"Retrieved rcServoSequence:>{retrievedSequence.Name}<" +
+                if (LogDeviceChannelSequence) startTicks = Log.TRACE1($"Retrieved rcServoSequence:>{retrievedSequence.Name}<" +
                     $" hubPort:>{retrievedSequence.HubPort}<" +
                     $" channel:>{retrievedSequence.Channel}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
@@ -465,7 +465,7 @@ namespace VNC.Phidget22.Players
             }
             else
             {
-                Log.Trace($"Cannot find rcServoSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                Log.TRACE($"Cannot find rcServoSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
                 return null;
             }
         }
@@ -489,7 +489,7 @@ namespace VNC.Phidget22.Players
                 channelSequence.Channel = deviceChannelSequence.Channel;
             }
 
-            if (LogDeviceChannelSequence) Log.Trace1($"Configured channelSequence:>{channelSequence.Name}<" +
+            if (LogDeviceChannelSequence) Log.TRACE1($"Configured channelSequence:>{channelSequence.Name}<" +
                 $" dcsHubPort:>{deviceChannelSequence.HubPort}> hubPort:>{channelSequence.HubPort}<" +
                 $" dcsHChannel:>{deviceChannelSequence.Channel}> channel:>{channelSequence.Channel}<" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
@@ -511,7 +511,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.Trace($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
+                    startTicks = Log.TRACE($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" serialNumber:>{deviceChannelSequence.SerialNumber}<" +
                         $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{stepperSequence?.HubPort}<" +
@@ -535,7 +535,7 @@ namespace VNC.Phidget22.Players
 
                 if (phidgetHost == null)
                 {
-                    Log.Error($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
+                    Log.ERROR($"Cannot locate host to execute SerialNumber:{deviceChannelSequence.SerialNumber}" +
                         $" hubPort:{deviceChannelSequence.HubPort} channel:{deviceChannelSequence.Channel}", Common.LOG_CATEGORY);
 
                     nextDeviceChannelSequence = null;
@@ -571,7 +571,7 @@ namespace VNC.Phidget22.Players
                     {
                         if (LogDeviceChannelSequence)
                         {
-                            Log.Trace($"Zzzz - End of StepperSequence:>{stepperSequence.Name}<" +
+                            Log.TRACE($"Zzzz - End of StepperSequence:>{stepperSequence.Name}<" +
                                 $" Sleeping:>{stepperSequence.SequenceDuration}<", Common.LOG_CATEGORY);
                         }
                         Thread.Sleep((Int32)stepperSequence.SequenceDuration);
@@ -580,11 +580,11 @@ namespace VNC.Phidget22.Players
                     nextDeviceChannelSequence = stepperSequence.NextSequence;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
+                if (LogDeviceChannelSequence) Log.TRACE($"Exit nextDeviceChannelSequence:>{nextDeviceChannelSequence?.Name}<", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             return nextDeviceChannelSequence;
@@ -594,7 +594,7 @@ namespace VNC.Phidget22.Players
         {
             if (PerformanceLibrary.AvailableStepperSequences.TryGetValue(deviceChannelSequence.Name, out StepperSequence? retrievedSequence))
             {
-                if (LogDeviceChannelSequence) Log.Trace($"Retrieved stepperSequence:>{retrievedSequence.Name}<" +
+                if (LogDeviceChannelSequence) Log.TRACE($"Retrieved stepperSequence:>{retrievedSequence.Name}<" +
                     $" hubPort:>{retrievedSequence.HubPort}<" +
                     $" channel:>{retrievedSequence.Channel}<" +
                     $"", Common.LOG_CATEGORY);
@@ -615,14 +615,14 @@ namespace VNC.Phidget22.Players
                     updatedSequence.Channel = deviceChannelSequence.Channel;
                 }
 
-                if (LogDeviceChannelSequence) Log.Trace($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
+                if (LogDeviceChannelSequence) Log.TRACE($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
                     $" on stepperSequence:>{updatedSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
 
                 return updatedSequence;
             }
             else
             {
-                Log.Trace($"Cannot find stepperSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
+                Log.TRACE($"Cannot find stepperSequence:{deviceChannelSequence.Name}", Common.LOG_CATEGORY);
                 return null;
             }
         }
@@ -634,7 +634,7 @@ namespace VNC.Phidget22.Players
         private DigitalOutputEx GetDigitalOutputHost(Int32? serialNumber, Int32? hubPort, Int32? channel)
         {
             Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter" +
+            if (LogDeviceChannelSequence) startTicks = Log.TRACE($"Enter" +
                 $" serialNumber:>{serialNumber}<" +
                 $" hubPort:>{hubPort}<" +
                 $" channel:>{channel}<" +
@@ -690,7 +690,7 @@ namespace VNC.Phidget22.Players
 
             //}
 
-            if (LogDeviceChannelSequence) Log.Trace($"Exit" +
+            if (LogDeviceChannelSequence) Log.TRACE($"Exit" +
                 $" serialNumber:>{digitalOutputHost.SerialHubPortChannel.SerialNumber}<" +
                 $" hubPort:>{digitalOutputHost.SerialHubPortChannel.HubPort}<" +
                 $" channel:>{digitalOutputHost.SerialHubPortChannel.Channel}<" +
@@ -706,7 +706,7 @@ namespace VNC.Phidget22.Players
 
             lock (_lock)
             {
-                if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter" +
+                if (LogDeviceChannelSequence) startTicks = Log.TRACE($"Enter" +
                     $" serialNumber:>{serialNumber}<" +
                     $" hubPort:>{hubPort}<" +
                     $" channel:>{channel}<" +
@@ -772,7 +772,7 @@ namespace VNC.Phidget22.Players
 
                 //}
 
-                if (LogDeviceChannelSequence) Log.Trace($"Exit" +
+                if (LogDeviceChannelSequence) Log.TRACE($"Exit" +
                     $" serialNumber:>{rcServoHost.SerialHubPortChannel.SerialNumber}<" +
                     $" hubPort:>{rcServoHost.SerialHubPortChannel.HubPort}<" +
                     $" channel:>{rcServoHost.SerialHubPortChannel.Channel}" +
@@ -785,7 +785,7 @@ namespace VNC.Phidget22.Players
         private StepperEx GetStepperHost(Int32? serialNumber, Int32? hubPort, Int32? channel)
         {
             Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter" +
+            if (LogDeviceChannelSequence) startTicks = Log.TRACE($"Enter" +
                 $" serialNumber:>{serialNumber}<" +
                 $" hubPort:>{hubPort}<" +
                 $" channel:>{channel}<", Common.LOG_CATEGORY);
@@ -844,7 +844,7 @@ namespace VNC.Phidget22.Players
 
             //}
 
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Exit" +
+            if (LogDeviceChannelSequence) startTicks = Log.TRACE($"Exit" +
                 $" serialNumber:>{stepperHost.SerialHubPortChannel.SerialNumber}<" +
                 $" hubPort:>{stepperHost.SerialHubPortChannel.HubPort}<" +
                 $" channel:>{stepperHost.SerialHubPortChannel.Channel}<", Common.LOG_CATEGORY);

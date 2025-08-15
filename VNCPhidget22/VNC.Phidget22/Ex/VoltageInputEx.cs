@@ -537,7 +537,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -549,7 +549,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.ERROR(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
                     throw;
@@ -557,7 +557,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             if (LogPhidgetEvents)
@@ -568,7 +568,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
         }
@@ -583,7 +583,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -613,7 +613,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -630,7 +630,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -647,7 +647,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -664,7 +664,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
         }
@@ -682,7 +682,7 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open();
@@ -690,13 +690,13 @@ namespace VNC.Phidget22.Ex
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen}  timeout:{timeout}" +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen}  timeout:{timeout}" +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Open(timeout);
@@ -704,7 +704,7 @@ namespace VNC.Phidget22.Ex
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY);
         }
 
         /// <summary>
@@ -713,7 +713,7 @@ namespace VNC.Phidget22.Ex
         public void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             try
@@ -744,27 +744,27 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.ERROR(pex, Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogPhidgetEvents) Log.Trace($"Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.TRACE($"Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 
             Attached = base.Attached;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(VoltageInputSequence voltageInputSequence)
@@ -775,7 +775,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    startTicks = Log.Trace(
+                    startTicks = Log.TRACE(
                         $"RunActionLoops(>{voltageInputSequence.Name}<)" +
                         $" startActionLoopSequences:>{voltageInputSequence.StartActionLoopSequences?.Count()}<" +
                         $" actionLoops:>{voltageInputSequence.ActionLoops}<" +
@@ -804,7 +804,7 @@ namespace VNC.Phidget22.Ex
 
                         if (voltageInputSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                            if (LogChannelAction) Log.TRACE($"Parallel Actions Loop:>{actionLoop + 1}<" +
                                 $" actions:{voltageInputSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
@@ -815,7 +815,7 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                            if (LogChannelAction) Log.TRACE($"Sequential Actions Loop:>{actionLoop + 1}<" +
                                 $" actions:{voltageInputSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
@@ -829,7 +829,7 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzz End of Actions" +
+                                Log.TRACE($"Zzzz End of Actions" +
                                     $" Sleeping:>{voltageInputSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)voltageInputSequence.ActionsDuration);
@@ -847,11 +847,11 @@ namespace VNC.Phidget22.Ex
                     }
                 }
 
-                if (LogChannelAction) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+                if (LogChannelAction) Log.TRACE("Exit", Common.LOG_CATEGORY, startTicks);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -885,7 +885,7 @@ namespace VNC.Phidget22.Ex
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            if (LogDeviceChannelSequence) startTicks = Log.TRACE($"Enter", Common.LOG_CATEGORY);
 
             DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
 
@@ -898,7 +898,7 @@ namespace VNC.Phidget22.Ex
 
             player.LogPhidgetEvents = LogPhidgetEvents;
 
-            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogDeviceChannelSequence) Log.TRACE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return player;
         }
@@ -911,7 +911,7 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                startTicks = Log.TRACE($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
                     $" hubPort:{HubPort} channel:{Channel}" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
@@ -969,8 +969,8 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                //Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
+                //Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
                     $" hubPort:>{HubPort}< channel:>{Channel}<" +
                     $" {actionMessage}" +
                     $" source:{pex.Source}" +
@@ -979,13 +979,13 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
             finally
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                    Log.TRACE($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
                         $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }

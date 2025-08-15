@@ -77,7 +77,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Log.Trace("PerformanceSelectorControl notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
+            Log.TRACE("PerformanceSelectorControl notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
             cbePerformances.ItemsSource = new BindingSource(PerformanceLibrary.AvailablePerformances, null);
         }
 

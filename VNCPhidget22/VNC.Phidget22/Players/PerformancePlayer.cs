@@ -271,7 +271,7 @@ namespace VNC.Phidget22.Players
             {
                 if (LogPerformance)
                 {
-                    Log.Trace($"PlayPerformance(>{performance.Name}<) description:>{performance.Description}<" +
+                    Log.TRACE($"PlayPerformance(>{performance.Name}<) description:>{performance.Description}<" +
                         $" beforePerformanceLoopPerformances:>{performance.BeforePerformanceLoopPerformances?.Count()}<" +
                         $" deviceChannelSequences:>{performance.DeviceChannelSequences?.Count()}<" +
                         $" playSequencesInParallel:>{performance.ExecuteDeviceChannelSequencesInParallel}<" +
@@ -299,7 +299,7 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
                     nextPerformance = null;
                 }
             }
@@ -311,7 +311,7 @@ namespace VNC.Phidget22.Players
 
             if (LogPerformance)
             {
-                startTicks = Log.Trace($"Enter RunPerformanceLoops(:>{performance.Name}<)" +
+                startTicks = Log.TRACE($"Enter RunPerformanceLoops(:>{performance.Name}<)" +
                     $" description:>{performance.Description}<" +
                     $" playerSerialNumber:>{SerialNumber}<" +
                     $" serialNumber:>{performance.SerialNumber}<" +
@@ -341,7 +341,7 @@ namespace VNC.Phidget22.Players
 
             if (configuredPerf is null)
             {
-                Log.Error("Aborting RunPerformanceLoops configuredPerf is null", Common.LOG_CATEGORY);
+                Log.ERROR("Aborting RunPerformanceLoops configuredPerf is null", Common.LOG_CATEGORY);
                 return;
             }
 
@@ -372,7 +372,7 @@ namespace VNC.Phidget22.Players
                                 configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
                             //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(configuredPerf.SerialNumber);
 
-                            if (LogPerformance) Log.Trace($"Parallel DeviceChannelSequences" +
+                            if (LogPerformance) Log.TRACE($"Parallel DeviceChannelSequences" +
                                 $" performance:>{deviceChannelSequence.Name}<" +
                                 $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +
                                 $" sequenceSerialNumber:>{deviceChannelSequence.SerialNumber}<" +   
@@ -398,7 +398,7 @@ namespace VNC.Phidget22.Players
                                 configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
                             //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(configuredPerf.SerialNumber);
 
-                            if (LogPerformance) Log.Trace($"Sequential DeviceChannelSequences" +
+                            if (LogPerformance) Log.TRACE($"Sequential DeviceChannelSequences" +
                                 $" performance:>{deviceChannelSequence.Name}<" +
                                 $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +
                                 $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
@@ -428,7 +428,7 @@ namespace VNC.Phidget22.Players
                         {
                             PerformancePlayer performancePlayer = GetNewPerformancePlayer(perf.SerialNumber);
 
-                            if (LogPerformance) Log.Trace($"Parallel RunPerformanceLoops(>{perf.Name}<)" +
+                            if (LogPerformance) Log.TRACE($"Parallel RunPerformanceLoops(>{perf.Name}<)" +
                                 $" serialNumber:>{perf.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" performanceLoop:>{performanceLoop + 1}<" +
@@ -447,7 +447,7 @@ namespace VNC.Phidget22.Players
 
                             SerialNumber = perf.SerialNumber;
 
-                            if (LogPerformance) Log.Trace($"Sequential RunPerformanceLoops(>{perf.Name}<)" +
+                            if (LogPerformance) Log.TRACE($"Sequential RunPerformanceLoops(>{perf.Name}<)" +
                                 $" serialNumber:>{perf.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" performanceLoop:>{performanceLoop + 1}<" +
@@ -472,7 +472,7 @@ namespace VNC.Phidget22.Players
             {
                 if (LogPerformance)
                 {
-                    Log.Trace($"Zzzz - End of Performance:>{performance.Name}<" +
+                    Log.TRACE($"Zzzz - End of Performance:>{performance.Name}<" +
                         $" Sleeping:>{performance.Duration}<", Common.LOG_CATEGORY);
                 }
                 Thread.Sleep((Int32)performance.Duration);
@@ -486,14 +486,14 @@ namespace VNC.Phidget22.Players
                 await ExecutePerformance(configuredPerf.NextPerformance);
             }
 
-            if (LogPerformance) Log.Trace($"Exit" +
+            if (LogPerformance) Log.TRACE($"Exit" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
         }
 
         private Performance CreateInlinePerformance(Performance performance, int? serialNumber)
         {
             Int64 startTicks = 0;
-            if (LogPerformance) startTicks = Log.Trace($"Enter" +
+            if (LogPerformance) startTicks = Log.TRACE($"Enter" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
             Performance createdPerformance = new Performance(performance);
@@ -503,7 +503,7 @@ namespace VNC.Phidget22.Players
                 createdPerformance.SerialNumber = serialNumber;
             }
 
-            if (LogPerformance) Log.Trace($"Exit" +
+            if (LogPerformance) Log.TRACE($"Exit" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
 
             return createdPerformance;
@@ -515,7 +515,7 @@ namespace VNC.Phidget22.Players
 
             if (PerformanceLibrary.AvailablePerformances.TryGetValue(performanceName, out Performance? retrievedPerfrormance))
             {
-                if (LogPerformance) startTicks = Log.Trace($"Retrieved performance:>{retrievedPerfrormance.Name}<" +
+                if (LogPerformance) startTicks = Log.TRACE($"Retrieved performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
                     $" duration:>{retrievedPerfrormance.Duration}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
@@ -527,7 +527,7 @@ namespace VNC.Phidget22.Players
                     configuredPerformance.SerialNumber = serialNumber;
                 }
 
-                if (LogPerformance) Log.Trace($"Configured performance:>{retrievedPerfrormance.Name}<" +
+                if (LogPerformance) Log.TRACE($"Configured performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{configuredPerformance.SerialNumber}<" +
                     $" duration:>{configuredPerformance.Duration}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
@@ -536,7 +536,7 @@ namespace VNC.Phidget22.Players
             }
             else
             {
-                Log.Error($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find performance:>{performanceName}<", Common.LOG_CATEGORY);
                 return null;
             }
         }
@@ -544,7 +544,7 @@ namespace VNC.Phidget22.Players
         private async Task ExecutePerfomanceSequences(Performance[] performanceSequences)
         {
             Int64 startTicks = 0;
-            if (LogPerformance) startTicks = Log.Trace($"performanceSequences.Count:>{performanceSequences.Count()}<", Common.LOG_CATEGORY);
+            if (LogPerformance) startTicks = Log.TRACE($"performanceSequences.Count:>{performanceSequences.Count()}<", Common.LOG_CATEGORY);
 
             foreach (Performance callPerformance in performanceSequences)
             {
@@ -568,12 +568,12 @@ namespace VNC.Phidget22.Players
                 }
                 else
                 {
-                    Log.Error($"Cannot find performance:>{callPerformance?.Name}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Cannot find performance:>{callPerformance?.Name}<", Common.LOG_CATEGORY);
                     nextPerformance = null;
                 }
             }
 
-            if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogPerformance) Log.TRACE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion
@@ -589,7 +589,7 @@ namespace VNC.Phidget22.Players
         private PerformancePlayer GetNewPerformancePlayer(Int32? serialNumber = null)
         {
             //Int64 startTicks = 0;
-            //if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            //if (LogPerformance) startTicks = Log.TRACE($"Enter", Common.LOG_CATEGORY);
 
             PerformancePlayer player = new PerformancePlayer(EventAggregator, PerformanceLibrary, serialNumber);
 
@@ -599,10 +599,10 @@ namespace VNC.Phidget22.Players
             player.LogChannelAction = LogChannelAction;
             player.LogActionVerification = LogActionVerification;
 
-            //if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            //if (LogPerformance) Log.TRACE("Exit", Common.LOG_CATEGORY, startTicks);
             // NOTE(crhodes)
             // We log so we can see ThreadID
-            if (LogPerformance) Log.Trace($"Enter/Exit serialNumber:>{serialNumber}<" +
+            if (LogPerformance) Log.TRACE($"Enter/Exit serialNumber:>{serialNumber}<" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
             return player;
@@ -611,7 +611,7 @@ namespace VNC.Phidget22.Players
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer(Int32? serialNumber = null)
         {
             //Int64 startTicks = 0;
-            //if (LogPerformance) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            //if (LogPerformance) startTicks = Log.TRACE($"Enter", Common.LOG_CATEGORY);
 
             DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(EventAggregator, serialNumber);
 
@@ -631,10 +631,10 @@ namespace VNC.Phidget22.Players
 
             player.LogPhidgetEvents = LogPhidgetEvents;
 
-            //if (LogPerformance) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            //if (LogPerformance) Log.TRACE("Exit", Common.LOG_CATEGORY, startTicks);
             // NOTE(crhodes)
             // We log so we can see ThreadID
-            if (LogPerformance) Log.Trace($"Enter/Exit serialNumber:>{serialNumber}<" +
+            if (LogPerformance) Log.TRACE($"Enter/Exit serialNumber:>{serialNumber}<" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
             return player;

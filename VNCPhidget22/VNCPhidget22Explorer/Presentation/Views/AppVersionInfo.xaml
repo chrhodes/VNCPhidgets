@@ -39,17 +39,7 @@
 
         <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
-        <!--<Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>-->
-
-        <Border Grid.Row ="1" Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="2" Margin="2" DockPanel.Dock="Bottom"
+         <Border Grid.Row ="1" Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="2" Margin="2" DockPanel.Dock="Bottom"
                 VerticalAlignment="Top" HorizontalAlignment="Stretch">
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0">
@@ -82,8 +72,7 @@
                     <vncviews:FileInformation />
                 </StackPanel>
 
-            </Border>
-            
+            </Border>            
 
             <Border Grid.Column="1" BorderBrush="Red" BorderThickness="2" Margin="2" MinWidth="500" HorizontalAlignment="Stretch">
 

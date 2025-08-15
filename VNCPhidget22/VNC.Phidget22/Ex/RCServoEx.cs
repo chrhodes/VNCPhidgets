@@ -475,7 +475,7 @@ namespace VNC.Phidget22.Ex
             set
             {
                 // NOTE(crhodes)
-                // Always have to set TargetPostion before engaging.
+                // Always have to set TargetPosition before engaging.
                 // The wrapped property could also be reset on Close()
                 // decided to fix here
 
@@ -484,14 +484,14 @@ namespace VNC.Phidget22.Ex
 
                 if (value < MinPositionStop)
                 {
-                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
+                    Log.WARNING($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
                         $" Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MinPositionStop;
                 }
                 else if (value > MaxPositionStop)
                 {
-                    Log.Warning($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
+                    Log.WARNING($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
                         $" Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MaxPositionStop;
@@ -756,7 +756,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -768,7 +768,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.ERROR(pex, Common.LOG_CATEGORY);
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
                     throw;
@@ -776,7 +776,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             if (LogPhidgetEvents)
@@ -787,7 +787,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
         }
@@ -802,7 +802,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -834,7 +834,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -854,7 +854,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -874,7 +874,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -896,7 +896,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
 
@@ -913,7 +913,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
                 }
             }
         }
@@ -931,12 +931,12 @@ namespace VNC.Phidget22.Ex
         public new void Open()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             if (base.IsOpen)
             {
-                if (LogPhidgetEvents) startTicks = Log.Trace($"Channel already Open:{base.Attached} isOpen:{IsOpen} " +
+                if (LogPhidgetEvents) startTicks = Log.TRACE($"Channel already Open:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
             }
             {
@@ -946,18 +946,18 @@ namespace VNC.Phidget22.Ex
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Open(Int32 timeout)
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen}  timeout:{timeout}" +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen}  timeout:{timeout}" +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             if (base.IsOpen)
             {
-                if (LogPhidgetEvents) startTicks = Log.Trace($"Channel already Open:{base.Attached} isOpen:{IsOpen} " +
+                if (LogPhidgetEvents) startTicks = Log.TRACE($"Channel already Open:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
             }
             {
@@ -967,7 +967,7 @@ namespace VNC.Phidget22.Ex
             Attached = base.Attached;
             RefreshProperties();
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         /// <summary>
@@ -976,7 +976,7 @@ namespace VNC.Phidget22.Ex
         public void RefreshProperties()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             try
@@ -1048,27 +1048,27 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
+                Log.ERROR(pex, Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public new void Close()
         {
             Int64 startTicks = 0;
-            if (LogPhidgetEvents) startTicks = Log.Trace($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
+            if (LogPhidgetEvents) startTicks = Log.TRACE($"Enter attached:{base.Attached} isOpen:{IsOpen} " +
                 $" s#:{DeviceSerialNumber} hubport:{HubPort} channel:{Channel}", Common.LOG_CATEGORY);
 
             base.Close();
 
             Attached = base.Attached;
 
-            if (LogPhidgetEvents) Log.Trace($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
+            if (LogPhidgetEvents) Log.TRACE($"Exit attached:{base.Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
         }
 
         public async Task RunActionLoops(RCServoSequence rcServoSequence)
@@ -1079,7 +1079,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    startTicks = Log.Trace(
+                    startTicks = Log.TRACE(
                         $"RunActionLoops(>{rcServoSequence.Name}<)" +
                         $" startActionLoopSequences:>{rcServoSequence.StartActionLoopSequences?.Count()}<" +
                         $" actionLoops:>{rcServoSequence.ActionLoops}<" +
@@ -1108,7 +1108,7 @@ namespace VNC.Phidget22.Ex
 
                         if (rcServoSequence.ExecuteActionsInParallel)
                         {
-                            if (LogChannelAction) Log.Trace($"Parallel Actions Loop:>{actionLoop + 1}<" +
+                            if (LogChannelAction) Log.TRACE($"Parallel Actions Loop:>{actionLoop + 1}<" +
                                 $" actions:{rcServoSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
@@ -1120,7 +1120,7 @@ namespace VNC.Phidget22.Ex
                         }
                         else
                         {
-                            if (LogChannelAction) Log.Trace($"Sequential Actions Loop:>{actionLoop + 1}<" +
+                            if (LogChannelAction) Log.TRACE($"Sequential Actions Loop:>{actionLoop + 1}<" +
                                 $" actions:{rcServoSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
@@ -1135,7 +1135,7 @@ namespace VNC.Phidget22.Ex
                         {
                             if (LogChannelAction)
                             {
-                                Log.Trace($"Zzzz End of Actions" +
+                                Log.TRACE($"Zzzz End of Actions" +
                                     $" Sleeping:>{rcServoSequence.ActionsDuration}<", Common.LOG_CATEGORY);
                             }
                             Thread.Sleep((Int32)rcServoSequence.ActionsDuration);
@@ -1155,10 +1155,10 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
-            if (LogChannelAction) Log.Trace($"Exit" +
+            if (LogChannelAction) Log.TRACE($"Exit" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -1175,7 +1175,7 @@ namespace VNC.Phidget22.Ex
         private DeviceChannelSequencePlayer GetNewDeviceChannelSequencePlayer()
         {
             Int64 startTicks = 0;
-            if (LogDeviceChannelSequence) startTicks = Log.Trace($"Enter", Common.LOG_CATEGORY);
+            if (LogDeviceChannelSequence) startTicks = Log.TRACE($"Enter", Common.LOG_CATEGORY);
 
             DeviceChannelSequencePlayer player = new DeviceChannelSequencePlayer(_eventAggregator);
 
@@ -1189,7 +1189,7 @@ namespace VNC.Phidget22.Ex
 
             player.LogPhidgetEvents = LogPhidgetEvents;
 
-            if (LogDeviceChannelSequence) Log.Trace("Exit", Common.LOG_CATEGORY, startTicks);
+            if (LogDeviceChannelSequence) Log.TRACE("Exit", Common.LOG_CATEGORY, startTicks);
 
             return player;
         }
@@ -1202,7 +1202,7 @@ namespace VNC.Phidget22.Ex
 
             if (LogChannelAction)
             {
-                startTicks = Log.Trace($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
+                startTicks = Log.TRACE($"Enter DeviceSerialNumber:{DeviceSerialNumber}" +
                     $" hubPort:{HubPort} channel:{Channel}" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
             }
@@ -1431,7 +1431,7 @@ namespace VNC.Phidget22.Ex
 
                     //Boolean asyncCallComplete = false;
 
-                    //    Log.Trace($"Before currentp:{currentp} targetPosition:{targetPosition} newp:{newp} ", Common.LOG_CATEGORY);
+                    //    Log.TRACE($"Before currentp:{currentp} targetPosition:{targetPosition} newp:{newp} ", Common.LOG_CATEGORY);
 
                     //    IAsyncResult result = BeginSetTargetPosition(targetPosition, delegate (IAsyncResult result)
                     //    {
@@ -1440,15 +1440,15 @@ namespace VNC.Phidget22.Ex
                     //            EndSetTargetPosition(result);
                     //            newp = Position;
                     //            asyncCallComplete = true;
-                    //            Log.Trace($"IAsync currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted}", Common.LOG_CATEGORY);
+                    //            Log.TRACE($"IAsync currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted}", Common.LOG_CATEGORY);
                     //        }
                     //        catch (Exception ex)
                     //        {
-                    //            Log.Error(ex, Common.LOG_CATEGORY);
+                    //            Log.ERROR(ex, Common.LOG_CATEGORY);
                     //        }
                     //    }, null);
 
-                    //    Log.Trace($"After currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted}", Common.LOG_CATEGORY);
+                    //    Log.TRACE($"After currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted}", Common.LOG_CATEGORY);
 
                     //var msSleep = 0;
                     //while (! asyncCallComplete)
@@ -1457,7 +1457,7 @@ namespace VNC.Phidget22.Ex
                     //    msSleep++;
                     //}
 
-                    //Log.Trace($"After2 currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted} msSleep:{msSleep}", Common.LOG_CATEGORY);
+                    //Log.TRACE($"After2 currentp:{currentp} targetPosition:{targetPosition} newp:{newp} result:{result.IsCompleted} msSleep:{msSleep}", Common.LOG_CATEGORY);
 
                     //TargetPosition = targetPosition;
 
@@ -1468,7 +1468,7 @@ namespace VNC.Phidget22.Ex
                     StartTargetPositionTime = Stopwatch.GetTimestamp();
 
                     // NOTE(crhodes)
-                    // PositionStop{Min,Max} enforcement is in TargetPostion property.  Should it be here?
+                    // PositionStop{Min,Max} enforcement is in TargetPosition property.  Should it be here?
                     // What if changes don't come through ExecuteAction.  How could that occur.  Maybe UI
 
                     TargetPosition = targetPosition;
@@ -1507,8 +1507,8 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                //Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
+                //Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
                     $" hubPort:>{HubPort}< channel:>{Channel}<" +
                     $" {actionMessage}" +
                     $" source:{pex.Source}" +
@@ -1517,13 +1517,13 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
             finally
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
+                    Log.TRACE($"Exit deviceSerialNumber:{DeviceSerialNumber}" +
                         $" hubPort:{HubPort} channel:{Channel} {actionMessage}" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY, startTicks);
                 }
@@ -1541,7 +1541,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Begin acceleration:{acceleration}" +
+                    Log.TRACE($"Begin acceleration:{acceleration}" +
                         $" minAcceleration:{MinAcceleration}" +
                         $" acceleration:{Acceleration}" +
                         $" maxAcceleration:{MaxAcceleration}", Common.LOG_CATEGORY);
@@ -1562,21 +1562,21 @@ namespace VNC.Phidget22.Ex
 
                 if (LogChannelAction)
                 {
-                    Log.Trace($"End acceleration:{Acceleration}", Common.LOG_CATEGORY);
+                    Log.TRACE($"End acceleration:{Acceleration}", Common.LOG_CATEGORY);
                 }
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"acceleration:{acceleration}" +
+                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.ERROR($"acceleration:{acceleration}" +
                 //    $" minAcceleration:{servo.AccelerationMin}" +
                 //    //$" acceleration:{servo.Acceleration}" + // Can't check this as it may not have been set yet
                 //    $" maxAcceleration:{servo.AccelerationMax}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -1591,7 +1591,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    Log.Trace($"Begin velocityLimit:{velocityLimit}" +
+                    Log.TRACE($"Begin velocityLimit:{velocityLimit}" +
                         $" MinVelocityLimit:{MinVelocityLimit}" +
                         $" VelocityLimit:{VelocityLimit}" +
                         $" MaxVelocityLimit:{MaxVelocityLimit}", Common.LOG_CATEGORY);
@@ -1612,14 +1612,14 @@ namespace VNC.Phidget22.Ex
 
                 if (LogChannelAction)
                 {
-                    Log.Trace($"End velocityLimit:{VelocityLimit}", Common.LOG_CATEGORY);
+                    Log.TRACE($"End velocityLimit:{VelocityLimit}", Common.LOG_CATEGORY);
                 }
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"index:{index}" +
+                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.ERROR($"index:{index}" +
                 //    $" velocity:{velocityLimit}" +
                 //    $" servo.velocityMin:{servo.VelocityMin}" +
                 //    $" servo.velocityLimit:{servo.VelocityLimit}" +
@@ -1627,7 +1627,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -1642,7 +1642,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    //Log.Trace($"Begin positionMin:{positionMin}" +
+                    //Log.TRACE($"Begin positionMin:{positionMin}" +
                     //    $" PositionMin:{PositionMin}" +
                     //    $" PositionMax:{servo.PositionMax}" +
                     //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
@@ -1671,14 +1671,14 @@ namespace VNC.Phidget22.Ex
 
                 if (LogChannelAction)
                 {
-                    Log.Trace($"End positionMin:{positionMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
+                    Log.TRACE($"End positionMin:{positionMin} MinPosition:{MinPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
-                //Log.Error($"index:{index} positionMin:{positionMin}" +
+                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                //Log.ERROR($"index:{index} positionMin:{positionMin}" +
                 //    $" servo.PositionMin:{servo.PositionMin}" +
                 //    $" servo.PositionMax:{servo.PositionMax}" +
                 //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
@@ -1686,7 +1686,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -1701,7 +1701,7 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogChannelAction)
                 {
-                    //Log.Trace($"Begin servo:{index} positionMax:{positionMax}" +
+                    //Log.TRACE($"Begin servo:{index} positionMax:{positionMax}" +
                     //    $" servo.PositionMin:{servo.PositionMin}" +
                     //    $" servo.PositionMax:{servo.PositionMax}" +
                     //    $" DevicePositionMin:{InitialServoLimits[index].DevicePositionMin}" +
@@ -1727,17 +1727,17 @@ namespace VNC.Phidget22.Ex
 
                 if (LogChannelAction)
                 {
-                    Log.Trace($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
+                    Log.TRACE($"End positionMax:{positionMax} MaxPosition:{MaxPosition}", Common.LOG_CATEGORY);
                 }
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"source:{pex.Source} type:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 
@@ -1750,12 +1750,12 @@ namespace VNC.Phidget22.Ex
             {
                 if (LogActionVerification)
                 {
-                    startTicks = Log.Trace($"Enter targetPosition:{targetPosition}", Common.LOG_CATEGORY);
+                    startTicks = Log.TRACE($"Enter targetPosition:{targetPosition}", Common.LOG_CATEGORY);
                 }
 
                 do
                 {
-                    if (LogActionVerification) Log.Trace($"velocity:{Velocity,8:0.000} position:{Position,7:0.000}" +
+                    if (LogActionVerification) Log.TRACE($"velocity:{Velocity,8:0.000} position:{Position,7:0.000}" +
                         $" - isMoving:{IsMoving}", Common.LOG_CATEGORY);
                     Thread.Sleep(10);
                     msSleep++;
@@ -1764,17 +1764,17 @@ namespace VNC.Phidget22.Ex
 
                 if (LogActionVerification)
                 {
-                    Log.Trace($"Exit Position:{Position,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
+                    Log.TRACE($"Exit Position:{Position,7:0.000} ms:{msSleep}", Common.LOG_CATEGORY, startTicks);
                 }
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.Error(pex, Common.LOG_CATEGORY);
-                Log.Error($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR($"source:{pex.Source} description:{pex.Description} inner:{pex.InnerException}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
         }
 

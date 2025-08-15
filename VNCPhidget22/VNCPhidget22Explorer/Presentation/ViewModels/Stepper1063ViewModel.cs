@@ -586,7 +586,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to Open null StepperEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to Open null StepperEx", Common.LOG_CATEGORY);
             }
         }
 

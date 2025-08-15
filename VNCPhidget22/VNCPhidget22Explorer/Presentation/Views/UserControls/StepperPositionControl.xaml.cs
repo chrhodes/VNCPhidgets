@@ -2368,7 +2368,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             //        break;
 
             //    default:
-            //        Log.Error($"Unexpected direction:>{direction}", Common.LOG_CATEGORY);
+            //        Log.ERROR($"Unexpected direction:>{direction}", Common.LOG_CATEGORY);
             //        break;
             //}
 
@@ -2383,7 +2383,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     break;
 
                 default:
-                    Log.Error($"Unknown goToWhere >{direction}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Unknown goToWhere >{direction}<", Common.LOG_CATEGORY);
                     break;
             }
         }

@@ -103,7 +103,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Log.Trace("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
+            Log.TRACE("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
 
 
 
@@ -113,7 +113,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void CollectionChanged(SelectedCollectionChangedEventArgs args)
         {
-            Log.Trace($"HackAroundViewModel notified >{args.Name}< CollectionChanged", Common.LOG_CATEGORY);
+            Log.TRACE($"HackAroundViewModel notified >{args.Name}< CollectionChanged", Common.LOG_CATEGORY);
 
             switch (args.Name)
             {
@@ -146,7 +146,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
 
                 default:
-                    Log.Error($"Unexpected Collection Name: >{args.Name}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Unexpected Collection Name: >{args.Name}<", Common.LOG_CATEGORY);
                     break;
             }
         }
@@ -1230,18 +1230,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //private void ReloadPerformanceConfigFiles()
         //{
-        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
 
         //    Message = "ReloadPerformanceConfigFiles Clicked";
 
         //    //LoadPerformancesConfig();
 
-        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
         //}
 
         //private void ReloadAdvancedServoSequenceConfigFiles()
         //{
-        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
 
         //    Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
 
@@ -1250,12 +1250,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //    //LoadAdvanceServoConfig();
 
-        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
         //}
 
         //private void ReloadInterfaceKitSequenceConfigFiles()
         //{
-        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
 
         //    Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
 
@@ -1264,12 +1264,12 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //    //LoadInterfaceKitConfig();
 
-        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
         //}
 
         //private void ReloadStepperSequenceConfigFiles()
         //{
-        //    Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
 
         //    Message = "ReloadStepperSequenceConfigFiles Clicked";
 
@@ -1278,7 +1278,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         //    //LoadStepperConfig();
 
-        //    Log.Info("End", Common.LOG_CATEGORY, startTicks);
+        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
         //}
 
         //#endregion
@@ -1330,7 +1330,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Maybe this should be a do / while loop
 
-            if (LogPerformance) Log.Trace($"Selected Performances:{SelectedPerformances?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+            if (LogPerformance) Log.TRACE($"Selected Performances:{SelectedPerformances?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
 
             if (SelectedPerformances is not null)
             {
@@ -1340,7 +1340,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                     if (SerialNumber is not null)
                     {
-                        if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                        if (LogPerformance) Log.TRACE($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
                         selectedPerformance.SerialNumber = SerialNumber;
                     }
 
@@ -1367,7 +1367,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
                     //        if (SerialNumber is not null)
                     //        {
-                    //            if (LogPerformance) Log.Trace($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                    //            if (LogPerformance) Log.TRACE($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
                     //            selectedPerformance.SerialNumber = SerialNumber;
                     //        }
 
@@ -1384,7 +1384,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     //    }
                     //    else
                     //    {
-                    //        Log.Error($"Cannot find performance:>{selectedPerformance.Name}<", Common.LOG_CATEGORY);
+                    //        Log.ERROR($"Cannot find performance:>{selectedPerformance.Name}<", Common.LOG_CATEGORY);
                     //        selectedPerformance = null;
                     //    }
                     //}
@@ -1475,7 +1475,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 foreach (RCServoSequence sequence in SelectedRCServoSequences)
                 {
-                    if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+                    if (LogDeviceChannelSequence) Log.TRACE($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                     try
                     {
@@ -1505,14 +1505,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         // Run on another thread to keep UI active
                         await Task.Run(async () =>
                         {
-                            if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+                            if (LogDeviceChannelSequence) Log.TRACE($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
 
                             await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
                         });
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex, Common.LOG_CATEGORY);
+                        Log.ERROR(ex, Common.LOG_CATEGORY);
                     }
                 }
             }
@@ -1793,7 +1793,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 foreach (DigitalOutputSequence sequence in SelectedDigitalOutputSequences)
                 {
-                    if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+                    if (LogDeviceChannelSequence) Log.TRACE($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                     try
                     {
@@ -1823,14 +1823,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         // Run on another thread to keep UI active
                         await Task.Run(async () =>
                         {
-                            if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+                            if (LogDeviceChannelSequence) Log.TRACE($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
 
                             await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
                         });
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex, Common.LOG_CATEGORY);
+                        Log.ERROR(ex, Common.LOG_CATEGORY);
                     }
                 }
             }
@@ -1919,7 +1919,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             {
                 foreach (StepperSequence sequence in SelectedStepperSequences)
                 {
-                    if (LogDeviceChannelSequence) Log.Trace($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
+                    if (LogDeviceChannelSequence) Log.TRACE($"Playing sequence:{sequence.Name}", Common.LOG_CATEGORY);
 
                     try
                     {
@@ -1949,14 +1949,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                         // Run on another thread to keep UI active
                         await Task.Run(async () =>
                         {
-                            if (LogDeviceChannelSequence) Log.Trace($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
+                            if (LogDeviceChannelSequence) Log.TRACE($"Executing sequence:{nextPhidgetDeviceSequence.Name}", Common.LOG_CATEGORY);
 
                             await player.ExecuteDeviceChannelSequence(nextPhidgetDeviceSequence);
                         });
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(ex, Common.LOG_CATEGORY);
+                        Log.ERROR(ex, Common.LOG_CATEGORY);
                     }
                 }
             }
@@ -2130,7 +2130,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //    catch (Exception ex)
         //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //        Log.ERROR(ex, Common.LOG_CATEGORY);
         //    }
         //}
 
@@ -2162,44 +2162,44 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //    catch (Exception ex)
         //    {
-        //        Log.Error(ex, Common.LOG_CATEGORY);
+        //        Log.ERROR(ex, Common.LOG_CATEGORY);
         //    }
         //}
 
         //private void PhidgetManager_Error(object sender, Phidget22.Events.ErrorEventArgs e)
         //{
-        //    Log.Trace($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
+        //    Log.TRACE($"Error {e.Type} {e.Code}", Common.LOG_CATEGORY);
         //}
 
         //private void PhidgetManager_ServerDisconnect(object sender, Phidget22.Events.ServerDisconnectEventArgs e)
         //{
-        //    Log.Trace($"ServerDisconnect {e.Device}", Common.LOG_CATEGORY);
+        //    Log.TRACE($"ServerDisconnect {e.Device}", Common.LOG_CATEGORY);
         //}
 
         //private void PhidgetManager_ServerConnect(object sender, Phidget22.Events.ServerConnectEventArgs e)
         //{
-        //    Log.Trace($"ServerConnect {e.Device}", Common.LOG_CATEGORY);
+        //    Log.TRACE($"ServerConnect {e.Device}", Common.LOG_CATEGORY);
         //}
 
         //private void PhidgetManager_Detach(object sender, Phidget22.Events.DetachEventArgs e)
         //{
-        //    Log.Trace($"Detach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
+        //    Log.TRACE($"Detach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         //}
 
         //private void PhidgetManager_Attach(object sender, Phidget22.Events.AttachEventArgs e)
         //{
-        //    Log.Trace($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
+        //    Log.TRACE($"Attach {e.Device.Name} {e.Device.Address} {e.Device.ID} {e.Device.SerialNumber}", Common.LOG_CATEGORY);
         //}
 
         private void Button5Execute()
         {
-            Int64 startTicks = Log.Info("Enter", Common.LOG_CATEGORY);
+            Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
 
             Message = "Button5 Clicked";
 
             EventAggregator.GetEvent<VNC.Phidget22.Events.InterfaceKitSequenceEvent>().Publish(new VNC.Phidget22.Events.SequenceEventArgs());
 
-            Log.Info("End", Common.LOG_CATEGORY, startTicks);
+            Log.INFO("End", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

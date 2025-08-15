@@ -1536,7 +1536,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to open null DigitalInputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to open null DigitalInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -1799,7 +1799,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to open null DigitalOutputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to open null DigitalOutputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -1884,7 +1884,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to Close DigitalOutput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to Close DigitalOutput with null SerialHubPortChannel", Common.LOG_CATEGORY);
             }
 
             // If launching a UserControl
@@ -2059,7 +2059,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to open null VoltageInputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to open null VoltageInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2203,7 +2203,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to Refresh null VoltageInputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to Refresh null VoltageInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2268,7 +2268,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to Close VoltageInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to Close VoltageInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
             }
 
             // If launching a UserControl
@@ -2441,7 +2441,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to open null VoltageRatioInputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to open null VoltageRatioInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2582,7 +2582,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to Refresh null VoltageRatioInputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to Refresh null VoltageRatioInputEx", Common.LOG_CATEGORY);
             }
         }
 
@@ -2647,7 +2647,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to Close VoltageRatioInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to Close VoltageRatioInput with null SerialHubPortChannel", Common.LOG_CATEGORY);
             }
 
             // If launching a UserControl
@@ -2746,7 +2746,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             else
             {
-                Log.Error("Attempt to RaisePerformanceEvent on null VoltageInputEx", Common.LOG_CATEGORY);
+                Log.ERROR("Attempt to RaisePerformanceEvent on null VoltageInputEx", Common.LOG_CATEGORY);
             }
         }
 

@@ -52,7 +52,7 @@ namespace VNC.Phidget22.Configuration
 
         private void AvailablePerformances_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
-            Log.Trace("Collection Changed", Common.LOG_CATEGORY);
+            Log.TRACE("Collection Changed", Common.LOG_CATEGORY);
         }
 
         public void LoadConfigFiles()
@@ -81,7 +81,7 @@ namespace VNC.Phidget22.Configuration
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
@@ -292,8 +292,8 @@ namespace VNC.Phidget22.Configuration
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             if (Core.Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
@@ -364,8 +364,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -378,13 +378,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -430,8 +430,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -444,13 +444,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalInputConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfDigitalInputConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -496,8 +496,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -510,13 +510,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfDigitalOutputConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -562,8 +562,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -576,13 +576,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfAdvancedServoConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -628,8 +628,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -642,13 +642,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfStepperConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -694,8 +694,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -708,13 +708,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageInputConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfVoltageInputConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -760,21 +760,21 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
                 }
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageRatioInputConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfVoltageRatioInputConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 
@@ -820,8 +820,8 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.Error($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
-                            Log.Error($"{ax}", Common.LOG_CATEGORY);
+                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
 
@@ -834,13 +834,13 @@ namespace VNC.Phidget22.Configuration
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.Error($"Cannot find config file >{configFile}<  Check GetListOfVoltageOutputConfigFiles()", Common.LOG_CATEGORY);
-                Log.Error($"{fnfex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfVoltageOutputConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
             {
-                Log.Error($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.Error($"{ex}", Common.LOG_CATEGORY);
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
             }
         }
 

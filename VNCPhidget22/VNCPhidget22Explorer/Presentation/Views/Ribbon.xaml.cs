@@ -61,16 +61,19 @@ namespace VNCPhidget22Explorer.Presentation.Views
             Int64 startTicks = 0;
             if (Common.VNCLogging.ViewLow) startTicks = Log.VIEW_LOW("Enter", Common.LOG_CATEGORY);
 
+            // Store information about the View, DataContext, and ViewModel 
+            // for the DeveloperInfo control. Useful for debugging binding issues
+
             ViewType = this.GetType().ToString().Split('.').Last();
             ViewModelType = ViewModel.GetType().ToString().Split('.').Last();
             ViewDataContextType = this.DataContext?.GetType().ToString().Split('.').Last();
+
+            spDeveloperInfo.DataContext = this;
 
             // NOTE(crhodes)
             // Put things here that initialize the View
 
             // Establish any additional DataContext(s), e.g. to things held in this View
-
-            spDeveloperInfo.DataContext = this;
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -92,27 +95,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
         
         #endregion
 
-        //#region IInstanceCount
-
-        //private Boolean _isAdvancedMode;
-        //private static Int32 _instanceCountV;
-
-        //public Int32 InstanceCountV
-        //{
-        //    get => _instanceCountV;
-        //    set => _instanceCountV = value;
-        //}
-
-        //private static Int32 _instanceCountVP;
-
-        //public Int32 InstanceCountVP
-        //{
-        //    get => _instanceCountVP;
-        //    set => _instanceCountVP = value;
-        //}
-
-        //#endregion
-
         #region Stuff from Code Behind.  Move to ViewModel
 
 
@@ -121,7 +103,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //private void OnWindowLoaded(object sender, RoutedEventArgs e)
         //        {
         //#if TRACE
-        //            long startTicks = VNC.Log.Trace15("Enter", Common.LOG_CATEGORY, CLASS_BASE_ERRORNUMBER + 0);
+        //            long startTicks = VNC.Log.TRACE15("Enter", Common.LOG_CATEGORY, CLASS_BASE_ERRORNUMBER + 0);
         //#endif
         //            // Do not load your data at design time.
         //            if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
@@ -147,7 +129,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         //            Common.RowDetailMode = Data.Config.RowDetailMode;
 
         //#if TRACE
-        //            VNC.Log.Trace15("Exit", Common.LOG_CATEGORY, CLASS_BASE_ERRORNUMBER + 2, startTicks);
+        //            VNC.Log.TRACE15("Exit", Common.LOG_CATEGORY, CLASS_BASE_ERRORNUMBER + 2, startTicks);
         //#endif
         //}
 
@@ -437,7 +419,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             ////foreach (var item in loadedAssemblies)
             ////{
-            ////    AppLog.Info(item.FullName, LOG_CATEGORY);
+            ////    AppLog.INFO(item.FullName, LOG_CATEGORY);
             ////}
 
             ////System.Reflection.Assembly vncAssembly = System.Reflection.Assembly.GetAssembly(Type.GetType("VNC.WPFUserControls.wucUIOne"));

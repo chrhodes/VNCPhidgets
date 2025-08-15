@@ -1264,14 +1264,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 //        break;
 
                 //    default:
-                //        Log.Trace($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
+                //        Log.TRACE($"UpdateAdvancedServoProperties count:{servos.Count}", Common.LOG_CATEGORY);
                 //        break;
 
                 //}
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(SetPositionRange) Exit", Common.LOG_CATEGORY, startTicks);
@@ -1337,7 +1337,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
             catch (Exception ex)
             {
-                Log.Error(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
             // Uncomment this if you are telling someone else to handle this

@@ -195,7 +195,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
             else
             {
-                Log.Error($"Cannot find performance:>{emptyPerformance?.Name}<", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find performance:>{emptyPerformance?.Name}<", Common.LOG_CATEGORY);
             }
         }
     }

@@ -661,7 +661,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     break;
 
                 // NOTE(crhodes)
-                // This is now handled with TargetPostion Increment/Decrement
+                // This is now handled with TargetPosition Increment/Decrement
                 // and PositionIncrement Scale RadioButtons
 
                 //case "R-5":
@@ -677,7 +677,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     break;
 
                 // NOTE(crhodes)
-                // This is now handled with TargetPostion Increment/Decrement
+                // This is now handled with TargetPosition Increment/Decrement
                 // and PositionIncrement Scale RadioButtons
 
                 //case "R+5":
@@ -693,7 +693,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
                     break;
 
                 default:
-                    Log.Error($"Unknown goToWhere >{goToWhere}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Unknown goToWhere >{goToWhere}<", Common.LOG_CATEGORY);
                     break;
             }
         }

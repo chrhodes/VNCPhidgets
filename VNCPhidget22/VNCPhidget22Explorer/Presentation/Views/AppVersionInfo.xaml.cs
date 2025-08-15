@@ -83,7 +83,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // Need to think through this if we put anything in AppVersionInfoViewModel
 
             // TODO(crhodes)
-            // Maybe give a name to the control that contains everthing.
+            // Maybe give a name to the control that contains everything.
 
             DataContext = Common.CurrentShell.ViewModel;
 
@@ -140,24 +140,5 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        //#region IInstanceCount
-
-        //private static Int32 _instanceCountV;
-
-        //public Int32 InstanceCountV
-        //{
-        //    get => _instanceCountV;
-        //    set => _instanceCountV = value;
-        //}
-
-        //private static Int32 _instanceCountVP;
-
-        //public Int32 InstanceCountVP
-        //{
-        //    get => _instanceCountVP;
-        //    set => _instanceCountVP = value;
-        //}
-
-        //#endregion
     }
 }

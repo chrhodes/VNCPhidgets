@@ -493,7 +493,7 @@ namespace VNCPhidget22Explorer
         private void Application_DispatcherUnhandledException(object sender,
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            Log.Error("Unexpected error occurred. Please inform the admin."
+            Log.ERROR("Unexpected error occurred. Please inform the admin."
               + Environment.NewLine + e.Exception.Message, Common.LOG_CATEGORY);
 
             MessageBox.Show("Unexpected error occurred. Please inform the admin."

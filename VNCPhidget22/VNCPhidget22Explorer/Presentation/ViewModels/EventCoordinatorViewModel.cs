@@ -153,7 +153,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         async void PlayPerformance(PerformanceEventArgs eventArgs)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.Info($"Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.INFO($"Enter", Common.LOG_CATEGORY);
 
             EventPerformance = eventArgs.Performance;
 
@@ -161,13 +161,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             await performancePlayer.ExecutePerformance(EventPerformance);
 
-            if (Common.VNCLogging.EventHandler) Log.Info($"Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.INFO($"Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         void PlayPerformanceSequence(SequenceEventArgs eventArgs)
         {
             Int64 startTicks = 0;
-            if (Common.VNCLogging.EventHandler) startTicks = Log.Info($"Enter", Common.LOG_CATEGORY);
+            if (Common.VNCLogging.EventHandler) startTicks = Log.INFO($"Enter", Common.LOG_CATEGORY);
 
             //EventPerformanceSequence = eventArgs.DigitalOutputSequence;
 
@@ -175,7 +175,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             //performanceSequencePlayer.ExecutePerformanceSequence(eventArgs.DigitalOutputSequence);
 
-            if (Common.VNCLogging.EventHandler) Log.Info($"Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.EventHandler) Log.INFO($"Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         #endregion

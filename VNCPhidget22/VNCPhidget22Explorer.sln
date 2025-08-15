@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation.Dx", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VNC.WPF.Presentation", "..\..\VNCDevelopment\VNC.WPF.Presentation\VNC.WPF.Presentation.csproj", "{8B3EED43-67AC-4317-8362-DC26A2A6FDCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VNC.Logging", "..\..\VNCDevelopment\VNC.Logging\VNC.Logging\VNC.Logging.csproj", "{1396838B-1E2A-A2F4-BB0F-3E3848FE4C2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{8B3EED43-67AC-4317-8362-DC26A2A6FDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B3EED43-67AC-4317-8362-DC26A2A6FDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B3EED43-67AC-4317-8362-DC26A2A6FDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1396838B-1E2A-A2F4-BB0F-3E3848FE4C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1396838B-1E2A-A2F4-BB0F-3E3848FE4C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1396838B-1E2A-A2F4-BB0F-3E3848FE4C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1396838B-1E2A-A2F4-BB0F-3E3848FE4C2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

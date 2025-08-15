@@ -317,7 +317,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     break;
 
                 default:
-                    Log.Error($"Unsupported phidgetDeviceView:>{phidgetDeviceView}<", Common.LOG_CATEGORY);
+                    Log.ERROR($"Unsupported phidgetDeviceView:>{phidgetDeviceView}<", Common.LOG_CATEGORY);
                     break;
             }
 
