@@ -48,7 +48,7 @@
     </UserControl.Resources>
 
      <DockPanel>
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <!--<StackPanel DockPanel.Dock="Bottom" Orientation="Vertical" VerticalAlignment="Center"
                     Visibility="{Binding DeveloperUIMode,
                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" >

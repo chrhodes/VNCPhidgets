@@ -26,7 +26,7 @@ using System.Windows;
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
     public partial class AdvancedServo1061ViewModel 
-        : EventViewModelBase, IAdvancedServo1061ViewModel//, IInstanceCountVM
+        : EventViewModelBase, IAdvancedServo1061ViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -1399,16 +1399,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        //#region IInstanceCount
+        #region IInstanceCountVM
 
-        //private static Int32 _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        //public Int32 InstanceCountVM
-        //{
-        //    get => _instanceCountVM;
-        //    set => _instanceCountVM = value;
-        //}
+        public Int32 InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
 
-        //#endregion
+        #endregion
     }
 }

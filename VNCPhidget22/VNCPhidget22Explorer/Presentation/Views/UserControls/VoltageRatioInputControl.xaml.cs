@@ -16,7 +16,7 @@ using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class VoltageRatioInputControl: ViewBase
+    public partial class VoltageRatioInputControl: ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -1888,7 +1888,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             SensorDescription = ((Phidgets.VoltageSensorType)sensorType).AsString(EnumFormat.Description);
 
             // TODO(crhodes)
-            // Can get fance and use colors, etc.
+            // Can get fancy and use colors, etc.
 
             switch (sensorType)
             {
@@ -1922,6 +1922,26 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #region Private Methods (none)
 
+
+        #endregion
+
+        #region IInstanceCountV
+
+        private static Int32 _instanceCountV;
+
+        public Int32 InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        private static Int32 _instanceCountVP;
+
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
 
         #endregion
     }

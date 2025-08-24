@@ -44,7 +44,7 @@
     <!-- d:DesignWidth="1200" d:DesignHeight="800" -->
 
     <DockPanel>
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         <ContentControl DockPanel.Dock="Bottom" Grid.Row="2" prism:RegionManager.RegionName="{x:Static core:RegionNames.StatusBarRegion}" />
         
         <ContentControl DockPanel.Dock="Top" prism:RegionManager.RegionName="{x:Static core:RegionNames.RibbonRegion}" />

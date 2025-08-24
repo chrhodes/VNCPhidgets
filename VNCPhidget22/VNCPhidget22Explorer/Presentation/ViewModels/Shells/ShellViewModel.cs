@@ -7,7 +7,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class ShellViewModel : ViewModelBase//, IInstanceCountVM
+    public class ShellViewModel : ViewModelBase, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -88,6 +88,18 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Private Methods (none)
 
+
+        #endregion
+
+        #region IInstanceCountVM
+
+        private static Int32 _instanceCountVM;
+
+        public Int32 InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
 
         #endregion
     }

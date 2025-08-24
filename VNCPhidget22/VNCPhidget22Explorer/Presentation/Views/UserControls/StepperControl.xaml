@@ -78,7 +78,7 @@
 
     <ScrollViewer>
         <DockPanel>
-            <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+            <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
             
             <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" VerticalAlignment="Top"
                               HorizontalAlignment="Left" ScrollBars="Auto" >

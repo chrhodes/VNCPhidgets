@@ -71,7 +71,7 @@
     <!-- Use DockPanel if want DeveloperUIInfo -->
     <!-- <DockPanel> -->
         
-        <!-- <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/> -->
+        <!-- <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/> -->
         <dxlc:LayoutGroup x:Name="lgMain" Header="Data Rate / Interval" View="GroupBox" Orientation="Vertical"  
                       IsCollapsible="True" IsCollapsed="False" Padding="-10"  >
 

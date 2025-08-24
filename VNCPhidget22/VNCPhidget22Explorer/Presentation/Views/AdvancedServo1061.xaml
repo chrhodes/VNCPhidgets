@@ -86,7 +86,7 @@
 
     <DockPanel Margin="5" VerticalAlignment="Top">
         
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
         <dxlc:LayoutControl Orientation="Vertical" Padding="0" >
             

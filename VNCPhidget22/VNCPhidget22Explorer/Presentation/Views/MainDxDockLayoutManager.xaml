@@ -77,7 +77,7 @@
         </dxlc:LayoutControl.AvailableItems>-->
 
     <DockPanel>
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
         <dxlc:LayoutControl Name="lc_Root"
             HorizontalAlignment="Stretch"

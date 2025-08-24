@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Threading;
 
+using Phidget22;
+
 using Prism.Events;
 
 using VNC.Phidget22.Configuration;
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
 
 using PhidgetEvents = Phidget22.Events;
 using Phidgets = Phidget22;
-using Prism.Regions.Behaviors;
-using Phidget22;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Channels;
+using VNCPhidgetConfig = VNC.Phidget22.Configuration;
 
 namespace VNC.Phidget22
 {
@@ -22,7 +20,7 @@ namespace VNC.Phidget22
 
     /// <summary>
     /// Builds a PhidgetDevice Dictionary using the Phidgets.Manager class
-    /// Manually adds Servers(Hosts) based on entries in Hosts config file
+    /// Manually adds Servers(Hosts) based on entries in the hostconfig.json file
     /// </summary>
     public class PhidgetDeviceLibrary
     {

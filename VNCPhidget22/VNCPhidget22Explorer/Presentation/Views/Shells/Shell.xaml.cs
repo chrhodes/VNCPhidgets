@@ -229,7 +229,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region IInstanceCount
+        #region IInstanceCountV
 
         private static Int32 _instanceCountV;
 

@@ -10,7 +10,7 @@ using Prism.Services.Dialogs;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary//, IInstanceCountV
+    public partial class ManagePerformanceLibrary : ViewBase, IManagePerformanceLibrary, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -76,7 +76,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             if (Common.VNCLogging.ViewLow) Log.VIEW_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
-        
+
         #endregion
 
         #region Enums (none)
@@ -100,7 +100,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #endregion
 
         #region Commands (none)
-         
+
         #endregion
 
         #region Public Methods (none)
@@ -116,27 +116,26 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Private Methods (none)
 
 
-        #endregion   
-        
-        //#region IInstanceCount
+        #endregion
 
-        //private static Int32 _instanceCountV;
+        #region IInstanceCountV
 
-        //public Int32 InstanceCountV
-        //{
-        //    get => _instanceCountV;
-        //    set => _instanceCountV = value;
-        //}
+        private static Int32 _instanceCountV;
 
-        //private static Int32 _instanceCountVP;
+        public Int32 InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
 
-        //public Int32 InstanceCountVP
-        //{
-        //    get => _instanceCountVP;
-        //    set => _instanceCountVP = value;
-        //}
+        private static Int32 _instanceCountVP;
 
-        //#endregion
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
 
+        #endregion
     }
 }

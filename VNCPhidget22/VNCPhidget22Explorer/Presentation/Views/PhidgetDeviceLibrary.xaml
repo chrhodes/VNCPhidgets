@@ -78,7 +78,7 @@
 
     <DockPanel Margin="5">
 
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
         <!--<Grid>
             <Grid.RowDefinitions>

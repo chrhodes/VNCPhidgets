@@ -14,7 +14,7 @@ using VNCPhidget22Explorer.Presentation.ViewModels;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class PerformanceSelectorControl : ViewBase//, IInstanceCountV
+    public partial class PerformanceSelectorControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -98,8 +98,17 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        #region Event Handlers (none)
+        #region Event Handlers
 
+        private void TextEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var viewModel = (HackAroundViewModel)DataContext;
+
+            // TODO(crhodes)
+            // Figure out how to 
+
+            viewModel.SerialNumber = null;
+        }
 
         #endregion
 
@@ -122,34 +131,24 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        //#region IInstanceCount
+        #region IInstanceCountV
 
-        //private static Int32 _instanceCountV;
+        private static Int32 _instanceCountV;
 
-        //public Int32 InstanceCountV
-        //{
-        //    get => _instanceCountV;
-        //    set => _instanceCountV = value;
-        //}
-
-        //private static Int32 _instanceCountVP;
-
-        //public Int32 InstanceCountVP
-        //{
-        //    get => _instanceCountVP;
-        //    set => _instanceCountVP = value;
-        //}
-
-        //#endregion
-
-        private void TextEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        public Int32 InstanceCountV
         {
-            var viewModel = (HackAroundViewModel)DataContext;
-
-            // TODO(crhodes)
-            // Figure out how to 
-
-            viewModel.SerialNumber = null;
+            get => _instanceCountV;
+            set => _instanceCountV = value;
         }
+
+        private static Int32 _instanceCountVP;
+
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
+
+        #endregion
     }
 }

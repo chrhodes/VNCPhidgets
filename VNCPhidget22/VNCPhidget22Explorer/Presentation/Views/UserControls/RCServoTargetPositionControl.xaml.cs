@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class RCServoTargetPositionControl : ViewBase//, IInstanceCountV
+    public partial class RCServoTargetPositionControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -717,6 +717,26 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region Private Methods (none)
 
 
+
+        #endregion
+
+        #region IInstanceCountV
+
+        private static Int32 _instanceCountV;
+
+        public Int32 InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        private static Int32 _instanceCountVP;
+
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
 
         #endregion
     }

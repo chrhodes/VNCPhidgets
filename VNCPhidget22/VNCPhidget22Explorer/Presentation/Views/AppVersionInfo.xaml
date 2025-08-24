@@ -37,7 +37,7 @@
 
     <DockPanel>
 
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
          <Border Grid.Row ="1" Grid.ColumnSpan="2" BorderBrush="Red" BorderThickness="2" Margin="2" DockPanel.Dock="Bottom"
                 VerticalAlignment="Top" HorizontalAlignment="Stretch">

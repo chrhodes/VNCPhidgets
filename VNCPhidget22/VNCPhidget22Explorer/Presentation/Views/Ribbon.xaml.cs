@@ -10,7 +10,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class Ribbon : ViewBase, IRibbon//, IInstanceCountV
+    public partial class Ribbon : ViewBase, IRibbon, IInstanceCountV
     {
         public Ribbon()
         {
@@ -693,6 +693,26 @@ namespace VNCPhidget22Explorer.Presentation.Views
             //// Save it back to the config file.
 
             //Data.Config.DefaultUITheme = ApplicationThemeHelper.ApplicationThemeName;
+        }
+
+        #endregion
+
+        #region IInstanceCountV
+
+        private static Int32 _instanceCountV;
+
+        public Int32 InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        private static Int32 _instanceCountVP;
+
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
         }
 
         #endregion

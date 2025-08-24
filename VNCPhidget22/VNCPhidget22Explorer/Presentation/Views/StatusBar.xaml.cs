@@ -12,7 +12,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class StatusBar : ViewBase, IStatusBar
+    public partial class StatusBar : ViewBase, IStatusBar, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
 
@@ -253,6 +253,26 @@ namespace VNCPhidget22Explorer.Presentation.Views
             statusMessageEvent.Publish(message);
 
             if (Common.VNCLogging.Event) Log.EVENT("Enter", Common.LOG_CATEGORY, startTicks);
+        }
+
+        #endregion
+
+        #region IInstanceCountV
+
+        private static Int32 _instanceCountV;
+
+        public Int32 InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
+
+        private static Int32 _instanceCountVP;
+
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
         }
 
         #endregion

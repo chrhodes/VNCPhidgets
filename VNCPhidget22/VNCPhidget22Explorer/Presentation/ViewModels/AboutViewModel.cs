@@ -10,7 +10,7 @@ using VNC.Core.Mvvm;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class AboutViewModel : EventViewModelBase, IAboutViewModel//, IInstanceCountVM
+    public class AboutViewModel : EventViewModelBase, IAboutViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
@@ -23,7 +23,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             // TODO(crhodes)
             // Save constructor parameters here
-
+            
             InstanceCountVM++;
 
             InitializeViewModel();
@@ -85,16 +85,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        //#region IInstanceCount
+        #region IInstanceCountVM
 
-        //private static Int32 _instanceCountVM;
+        private static Int32 _instanceCountVM;
 
-        //public Int32 InstanceCountVM
-        //{
-        //    get => _instanceCountVM;
-        //    set => _instanceCountVM = value;
-        //}
+        public Int32 InstanceCountVM
+        {
+            get => _instanceCountVM;
+            set => _instanceCountVM = value;
+        }
 
-        //#endregion
+        #endregion
     }
 }

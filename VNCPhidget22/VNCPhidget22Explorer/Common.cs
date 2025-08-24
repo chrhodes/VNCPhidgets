@@ -37,7 +37,7 @@ namespace VNCPhidget22Explorer
         //
         // Update ShellViewModel
         //  Add new properties
-        //  Update InitialzeViewModel()
+        //  Update InitializeViewModel()
 
         //public static VNC.Core.Information? InformationApplicationCore;
         public static VNC.Core.Information? InformationVNCPhidget;

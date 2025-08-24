@@ -79,7 +79,7 @@
     <!-- </UserControl.DataContext> -->
 
     <DockPanel>
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         
         <dxlc:LayoutGroup x:Name="lgPosition" Header="Position" View="GroupBox" Orientation="Horizontal" 
                         Padding="-10">

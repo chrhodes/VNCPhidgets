@@ -14,7 +14,7 @@ using Phidgets = Phidget22;
 
 namespace VNCPhidget22Explorer.Presentation.Views
 {
-    public partial class StepperPositionControl : ViewBase//, IInstanceCountV
+    public partial class StepperPositionControl : ViewBase, IInstanceCountV
     {
         #region Constructors, Initialization, and Load
         
@@ -2414,25 +2414,25 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         #endregion
 
-        //#region IInstanceCount
+        #region IInstanceCountV
 
-        //private static Int32 _instanceCountV;
+        private static Int32 _instanceCountV;
 
-        //public Int32 InstanceCountV
-        //{
-        //    get => _instanceCountV;
-        //    set => _instanceCountV = value;
-        //}
+        public Int32 InstanceCountV
+        {
+            get => _instanceCountV;
+            set => _instanceCountV = value;
+        }
 
-        //private static Int32 _instanceCountVP;
+        private static Int32 _instanceCountVP;
 
-        //public Int32 InstanceCountVP
-        //{
-        //    get => _instanceCountVP;
-        //    set => _instanceCountVP = value;
-        //}
+        public Int32 InstanceCountVP
+        {
+            get => _instanceCountVP;
+            set => _instanceCountVP = value;
+        }
 
-        //#endregion
+        #endregion
     }
 }
 

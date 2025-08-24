@@ -52,7 +52,7 @@
     </UserControl.Resources>
 
     <DockPanel Margin="5">
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         
         <TextBlock DockPanel.Dock="Top"
             Text="{Binding Message}"

@@ -88,7 +88,7 @@
 
     <DockPanel Margin="5">
         
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
 
         <!--<views:HostSelectorControl DockPanel.Dock="Top" />-->
 

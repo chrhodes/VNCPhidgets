@@ -56,7 +56,7 @@
 
     <DockPanel>
 
-        <views:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
+        <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/>
         
         <Button DockPanel.Dock="Right"
             Command="{Binding AboutCommand }"
