@@ -70,7 +70,17 @@
                 <!-- <Label Content="{Binding Name}" /> -->
             <!-- </StackPanel> -->
         <!-- </DataTemplate> -->
-     </vncmvvm:ViewBase.Resources> 
+        <!--<Style x:Key="CustomTrackBarEdit" TargetType="dxe:TrackBarEdit">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="CustomThumbStyle" TargetType="Thumb">
+            <Setter Property="Width" Value="18"/>
+            <Setter Property="Height" Value="18"/>
+            --><!--<Setter Property="Foreground" Value="Red" />--><!--
+            <Setter Property="Background" Value="Red" />
+        </Style>-->
+    </vncmvvm:ViewBase.Resources> 
     
     <!-- Can declare ViewModel in Xaml -->
     <!-- <UserControl.DataContext> -->
@@ -113,11 +123,12 @@
                         
                         <dxlc:LayoutItem Label="Scale" LabelPosition="Top" HorizontalAlignment="Left">
                             <dxe:SpinEdit 
+                                x:Name="seMinPositionScale"
                                 EditValue="{Binding MinPosition, Mode=TwoWay, 
                                     TargetNullValue=0,
                                     UpdateSourceTrigger=PropertyChanged,
                                     Converter={StaticResource SpinEditConverter}}"
-                                Increment="10"
+                                Increment="1"
                                 MinValue="{Binding MinPositionServo, TargetNullValue=0}"
                                 MaxValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}" 
                                 Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
@@ -126,6 +137,7 @@
 
                         <dxlc:LayoutItem Label="Stop" LabelPosition="Top" HorizontalAlignment="Center">
                             <dxe:SpinEdit 
+                                x:Name="seMinPositionStop"
                                 EditValue="{Binding MinPositionStop, Mode=TwoWay, 
                                     TargetNullValue=0,
                                     UpdateSourceTrigger=PropertyChanged,
@@ -151,8 +163,9 @@
                             <RadioButton x:Name="rb50" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">50</RadioButton>
                             <RadioButton x:Name="rb10" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">10</RadioButton>
                         </dxlc:LayoutGroup>
+                        
                         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                         <RadioButton x:Name="rb5" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
+                            <RadioButton x:Name="rb5" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="False">5</RadioButton>
                             <RadioButton x:Name="rb1" GroupName="PositionIncrement" Click="PositionIncrement_Click" FlowDirection="LeftToRight" IsChecked="True">1</RadioButton>
                         </dxlc:LayoutGroup>
 
@@ -183,6 +196,7 @@
 
                         <dxlc:LayoutItem Label="Stop" LabelPosition="Top" HorizontalAlignment="Left">
                             <dxe:SpinEdit 
+                                x:Name="seMaxPositionStop"
                                EditValue="{Binding MaxPositionStop, Mode=TwoWay, 
                                    TargetNullValue=0,
                                    UpdateSourceTrigger=PropertyChanged,
@@ -196,11 +210,12 @@
                         
                         <dxlc:LayoutItem Label="Scale" LabelPosition="Top" HorizontalAlignment="Left">    
                             <dxe:SpinEdit 
+                                x:Name="seMaxPositionScale"
                                 EditValue="{Binding MaxPosition, Mode=TwoWay, 
                                     TargetNullValue=0,
                                     UpdateSourceTrigger=PropertyChanged,
                                     Converter={StaticResource SpinEditConverter}}" 
-                                Increment="10"
+                                Increment="1"
                                 MinValue="{Binding TargetPosition, Mode=OneWay, TargetNullValue=0}"
                                 MaxValue="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}" 
                                 Mask="d" MaskType="Numeric" MaskUseAsDisplayFormat="True"
@@ -217,9 +232,12 @@
                 Value="{Binding TargetPosition, Mode=TwoWay, TargetNullValue=0}" 
                 Minimum="{Binding MinPosition, Mode=OneWay, TargetNullValue=0}" 
                 Maximum="{Binding MaxPosition, Mode=OneWay, TargetNullValue=0}"
+                Style="{StaticResource TrackBarEditStyle}"
+                ThumbStyle="{StaticResource ThumbStyle}"
                 MouseDoubleClick="TrackBarEdit_MouseDoubleClick"
                 EditValueType="{x:Type sys:Decimal}"
-                ToolTip="Double Click to Center" />
+                ToolTip="Double Click to Center" >
+            </dxe:TrackBarEdit>
 
         </dxlc:LayoutGroup>
 

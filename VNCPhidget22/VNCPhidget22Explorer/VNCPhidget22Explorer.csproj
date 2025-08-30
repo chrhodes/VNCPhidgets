@@ -7,7 +7,7 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix>indevelopment-2025</VersionSuffix>
-    <FileVersion>2025.08.24</FileVersion>
+    <FileVersion>2025.08.30</FileVersion>
     <Description>Phidget22 Explorer</Description>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
@@ -140,160 +140,193 @@
     <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequenceConfig_OpenClose.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Stepper\PerformanceConfig_Steppers.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_Consulting.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\DigitalOutput\PerformanceConfig_DigitalOutputs.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_Initialize.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_PP1.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_MoveAll.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_PP2.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_MoveAllAxes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_PP3.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_MoveAngles.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_PP4.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_MovementCharacteristics.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServos.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_MovementCharacteristics_All.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_MovementCharacteristics.json">
+    <None Update="Resources\json\Performances\Hands\Performance_Skulls_Routines.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\RCServo\PerformanceConfig_RCServo_OpenClose.json">
+    <None Update="Resources\json\Performances\Stepper\Performance_Steppers.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json">
+    <None Update="Resources\json\Performances\DigitalOutput\Performance_DigitalOutputs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Consulting.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServo_PP1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServo_PP2.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_TiltLeftRight.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServo_PP3.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_LeftRight.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServo_PP4.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_LeftRight.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServos.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServo_MovementCharacteristics.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Device\PerformanceConfig_99220_Skull_456.json">
+    <None Update="Resources\json\Performances\RCServo\Performance_RCServo_OpenClose.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Device\PerformanceConfig_169501_Skull_012.json">
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Device\PerformanceConfig_99220_Skull_012.json">
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_Consulting.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_YesNoMaybe.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_456_UpDown.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Routines.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_TiltLeftRight.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Skull\PerformanceConfig_Skull_012_UpDown.json">
+    <None Update="Resources\json\Performances\Skulls\Device\Performance_99220_Skull_456.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json">
+    <None Update="Resources\json\Performances\Skulls\Device\Performance_169501_Skull_012.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json">
+    <None Update="Resources\json\Performances\Skulls\Device\Performance_99220_Skull_012.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\PerformanceConfig_Skulls_Initialize.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybe.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Stepper\PerformanceConfig_Stepper_MovementCharacteristics.json">
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_Routines.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Stepper\PerformanceConfig_Stepper_OpenClose.json">
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_MoveAllAxes.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequenceConfig_Skull Move.json">
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_MoveAll.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequenceConfig_Skull 2 Initialization.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequenceConfig_Skull 3 Initialization.json">
+    <None Update="Resources\json\Performances\Skulls\Skull\Performance_Skull_012_UpDown.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequenceConfig_Skull 1 Initialization.json">
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_MovementCharacteristics.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_MoveAngles.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Skulls\Performance_Skulls_Initialize.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Stepper\Performance_Stepper_MovementCharacteristics.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Stepper\Performance_Stepper_OpenClose.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Hands\RCServoSequence_Hand Move.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequence_Skull Move.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Skulls\RCServoSequence_Skull 1 Initialization.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\RCServoSequences\AdvancedServoSequenceConfig_Skulls.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_99415.json">
+    <None Update="Resources\json\RCServoSequences\RCServoSequence_99415.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json">
+    <None Update="Resources\json\RCServoSequences\AdvancedServoSequence_Test A+B+C.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\DigitalInputSequences\DigitalInputSequenceConfig_1.json">
+    <None Update="Resources\json\DigitalInputSequences\DigitalInputSequence_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequenceConfig_1.json">
+    <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequence_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\hostconfig.json">
+    <None Update="Resources\json\Hosts.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\PerformanceConfig_Movement Studies.json">
+    <None Update="Resources\json\Performances\Performance_Movement Studies.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\PerformanceConfig_Test AS Replacement.json">
+    <None Update="Resources\json\Performances\Performance_Test AS Replacement.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\PerformanceConfig_Test.json">
+    <None Update="Resources\json\Performances\Performance_Test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\Performances\Skulls\Legacy\PerformanceConfig_Skulls_3.json">
+    <None Update="Resources\json\Performances\Skulls\Legacy\Performance_Skulls_3.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json">
+    <None Update="Resources\json\RCServoSequences\RCServoSequence_MovementCharacteristics.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_Move.json">
+    <None Update="Resources\json\RCServoSequences\RCServoSequence_Move.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\RCServoSequences\RCServoSequenceConfig_OpenClose.json">
+    <None Update="Resources\json\RCServoSequences\RCServoSequence_OpenClose.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\StepperSequences\StepperSequenceConfig_MovementCharacteristics.json">
+    <None Update="Resources\json\StepperSequences\StepperSequence_MovementCharacteristics.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\StepperSequences\StepperSequenceConfig_OpenClose.json">
+    <None Update="Resources\json\StepperSequences\StepperSequence_OpenClose.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\StepperSequences\StepperSequenceConfig_1.json">
+    <None Update="Resources\json\StepperSequences\StepperSequence_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\VoltageInputSequences\VoltageInputSequenceConfig_1.json">
+    <None Update="Resources\json\VoltageInputSequences\VoltageInputSequence_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\json\VoltageOutputSequences\VoltageOutputSequenceConfig_1.json">
+    <None Update="Resources\json\VoltageOutputSequences\VoltageOutputSequence_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="vnccoreloggingconfig-Debug.json">
@@ -308,6 +341,11 @@
     <None Update="vncloggingconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Folder Include="Resources\json\Performances\Hands\Left Hand\" />
+    <Folder Include="Resources\json\Performances\Hands\Right Hand\" />
   </ItemGroup>
 
     <!--This updates the file version to the current date.-->

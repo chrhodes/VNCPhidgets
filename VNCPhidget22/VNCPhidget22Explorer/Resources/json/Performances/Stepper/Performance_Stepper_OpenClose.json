@@ -1,0 +1,30 @@
+{
+  "Name": "Performance_Stepper_OpenClose",
+  "Description": "Performances for Steppers",
+  "Performances": [
+    //
+    // Open / Close
+    {
+      "Name": "Stepper 268213 - Open",
+      "Description": "",
+      "SerialNumber": 268213,
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open Stepper" },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Stepper 268213 - Close",
+      "Description": "",
+      "SerialNumber": 268213,
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Close Stepper" },
+      ],
+      "NextPerformance": null
+    },
+  ]
+}

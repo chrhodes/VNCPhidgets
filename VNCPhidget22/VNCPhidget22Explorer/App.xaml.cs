@@ -289,7 +289,7 @@ namespace VNCPhidget22Explorer
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
             // NOTE(crhodes)
-            // This will read hostconfig to know what servers we have
+            // This will read Hosts.json to know what servers we have
             // This uses a Phidget Manager to determine what Phidgets are attached.
 
             VNC.Phidget22.PhidgetDeviceLibrary phidgetDeviceLibrary = new VNC.Phidget22.PhidgetDeviceLibrary(Common.EventAggregator);

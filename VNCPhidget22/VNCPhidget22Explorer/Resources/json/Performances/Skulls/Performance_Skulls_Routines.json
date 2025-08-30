@@ -1,0 +1,654 @@
+{
+  "Name": "Performance_Move_Routines",
+  "Description": "Performances Skull Routines",
+  "Performances": [
+    //
+    // Initialize All Skulls
+    //
+    {
+      "Name": "Initialize All Skulls",
+      "Description": "Initialize All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
+       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
+       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
+       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
+       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },
+      ],
+    },
+    //
+    // Wake up All Skulls
+    //
+    {
+      "Name": "Wake up All Skulls",
+      "Description": "Engage and Center All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
+       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
+       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // Center All Skulls
+    //
+    {
+      "Name": "Center All Skulls",
+      "Description": "Center All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Center Skull 1", "SerialNumber": 99220 },
+       { "Name": "Center Skull 2", "SerialNumber": 169501 },
+       { "Name": "Center Skull 3", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // Sleep All Skulls
+    //
+    {
+      "Name": "Sleep All Skulls",
+      "Description": "Sleep All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Sleep Skull 1", "SerialNumber": 99220 },
+       { "Name": "Sleep Skull 2", "SerialNumber": 169501 },
+       { "Name": "Sleep Skull 3", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // Main Performance
+    //
+    {
+      "Name": "Main Show",
+      "Description": "Play everything we have",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      //"ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls Yes and Laugh and No", "Duration": 0 },
+       { "Name": "Move All Skulls on Axes", "Duration": 0 },
+       { "Name": "Sounds on Left and Right", "SerialNumber": 0, "Duration": 0 }
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    //
+    // All Skulls Yes and Laugh and No
+    //
+    {
+      "Name": "All Skulls Yes and Laugh and No",
+      "Description": "All Skulls Yes and Laugh and No",
+      "Loops": 1, "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       { "Name": "All Skulls Yes", "Duration": 1002 },
+       { "Name": "All Skulls Big Yes", "Duration": 1000 },
+       { "Name": "All Skulls Laugh", "Duration": 1000 },
+       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
+       { "Name": "All Skulls No", "Duration": 1000 },
+       { "Name": "All Skulls Big No", "Duration": 1000 },
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "All Skulls Yes", "Duration": 1000 },
+       { "Name": "All Skulls Big Yes", "Duration": 1000 },
+       { "Name": "All Skulls Laugh", "Duration": 1000 },
+       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
+       { "Name": "All Skulls No", "Duration": 1000 },
+       { "Name": "All Skulls Big No", "Duration": 1000 },
+      ],
+    },
+    //
+    // All Skulls Yes
+    //
+    {
+      "Name": "All Skulls Yes",
+      "Description": "All Skulls Yes",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Yes", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
+      ],
+    },
+    {
+      "Name": "All Skulls Big Yes",
+      "Description": "All Skulls Big Yes",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Big Yes", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Big Yes", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Big Yes", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // All Skulls No
+    //
+    {
+      "Name": "All Skulls No",
+      "Description": "All Skulls No",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 No", "SerialNumber": 99220 },
+       { "Name": "Skull-012 No", "SerialNumber": 169501 },
+       { "Name": "Skull-456 No", "SerialNumber": 99220 },
+      ],
+    },
+    {
+      "Name": "All Skulls Big No",
+      "Description": "All Skulls Big No",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Big No", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Big No", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Big No", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // All Skulls Laugh
+    //
+    {
+      "Name": "All Skulls Laugh",
+      "Description": "All Skulls Laugh",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Laugh", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Laugh", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Laugh", "SerialNumber": 99220 },
+      ],
+    },
+    {
+      "Name": "All Skulls Big Laugh",
+      "Description": "All Skulls Laugh",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Big Laugh", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Big Laugh", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Big Laugh", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    //Move All Skulls on Axes
+    //
+    {
+      "Name": "Move All Skulls on Axes",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       { "Name": "Move All Skulls - Performances Sequential DCS Sequential"},
+       { "Name": "Move All Skulls 5" },
+       { "Name": "Move All Skulls 10" },
+       { "Name": "Move All Skulls 15" },
+       { "Name": "Move All Skulls 20" },
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "Move All Skulls - Performances Sequential DCS Sequential"},
+       { "Name": "Move All Skulls 5" },
+       { "Name": "Move All Skulls 10" },
+       { "Name": "Move All Skulls 15" },
+       { "Name": "Move All Skulls 20" },
+      ],
+    },
+    {
+      "Name": "Rock Out",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  jaddP
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // jaddDCS
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Rock Tilt Left/Right" },
+       { "Name": "Rock Up/Down" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  jaddP
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Tilt Left/Right",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Out 2",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (250)" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Out 3",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+      ],
+    },
+    {
+      "Name": "Rock Out 4",
+      "Description": "",
+      "UsageNotes": "",
+      "PerformanceLoops": 10,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "All Tilt Left/Right" },
+        { "Name": "All Up/Down" },
+      ],
+    },
+    {
+      "Name": "All Tilt Right and Up/Down",
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "All Up/Down" }
+      ],
+    },
+    {
+      "Name": "All Tilt Left and Up/Down",
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "All Up/Down" }
+      ],
+    },
+    {
+      "Name": "All Up/Down",
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+      ],
+    },
+    {
+      "Name": "All Tilt Left/Right",
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+      ],
+    },
+    {
+      "Name": "Rock Up/Down",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Sounds on Left and Right",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Center All Skulls"},
+       { "Name": "Move All Skulls - Sound to Left", "Duration": 2003},
+       { "Name": "Center All Skulls", "Duration": 1000},
+       { "Name": "Move All Skulls - Sound to Right", "Duration": 2002 },
+       { "Name": "Center All Skulls"},
+      ],
+    },
+    {
+      "Name": "Consulting Skulls",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Consulting Skulls Say Yes"},
+       { "Name": "Consulting Skulls Say No"},
+      ],
+    },
+    //
+    // Move All Skulls - Sound to Right
+    //
+    {
+      "Name": "Move All Skulls - Sound to Right",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+        { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220, "Duration": 1502 }, // Look at sound
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+        { // Move back to talk to others
+          "DeviceChannelSequences": [
+            { "SerialNumber": 99220, "ChannelClass": "RCServo",
+              "RCServoSequence": { "HubPort": 0, "Channel": 6,
+                                   "Actions": [ { "RelativePosition": -110 } ], "SequenceDuration": 502 } // Rotate Left(-)/Right(+)
+            }
+          ],
+        },
+        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
+        { "Name": "All Skulls MaxPositionStop", "Duration": 1022 }
+      ],
+      // If use NextPerformance, the Duration specified in any performance that called us
+      // is used before NextPerformance is called.
+      //"NextPerformance": { "Name": "All Skulls MaxPositionStop", "Duration":  1022 }
+    },
+    //
+    // Move All Skulls - Sound to Left
+    //
+    {
+      "Name": "Move All Skulls - Sound to Left",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+        { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1503 }, // Look at sound
+        { // Move back to talk to others
+          "DeviceChannelSequences": [
+            { "SerialNumber": 99220, "ChannelClass": "RCServo",
+              "RCServoSequence": { "HubPort": 0, "Channel": 2,
+                                   "Actions": [ { "RelativePosition": 110 } ], "SequenceDuration": 503 } // Rotate Left(-)/Right(+)
+            }
+          ],
+        },
+        { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No", "Duration": 533 },
+        { "Name": "Nothing to See There" },
+        { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }
+        //{ "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+        //{ "Name": "Center Skull 2", "SerialNumber": 169501 },
+        //{ "Name": "Center Skull 3", "SerialNumber": 99220 },
+        // Need to center Skull 99220 456 and Skull 169501 012
+        // and Dip Skull 99220 012 then either look back at sound and then center or just look back at sound
+      ],
+      // If use NextPerformance, the Duration specified in any performance that called us
+      // is used before NextPerformance is called.
+      //"NextPerformance": { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }, // Look back at sound
+      //"NextPerformance": { "Name": "All Skulls MinPositionStop", "Duration":  2033 }
+    },
+    {
+      "Name": "Nothing to See There",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+        { "Name": "Center Skull 2", "SerialNumber": 169501 },
+        { "Name": "Center Skull 3", "SerialNumber": 99220 },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    //
+    // All Skulls {Min,Max}PositionStop
+    //
+    {
+      "Name": "All Skulls MinPositionStop",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "Skull 99220 456 MinPositionStop", "SerialNumber": 99220  },
+       { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220 },
+       { "Name": "Skull 169501 012 MinPositionStop", "SerialNumber": 169501  },
+      ],
+    },
+    {
+      "Name": "All Skulls MaxPositionStop",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
+       { "Name": "Skull 99220 456 MaxPositionStop", "SerialNumber": 99220  },
+       { "Name": "Skull 99220 012 MaxPositionStop", "SerialNumber": 99220 },
+       { "Name": "Skull 169501 012 MaxPositionStop", "SerialNumber": 169501  },
+      ],
+    },
+    //
+    // Move All Skulls - Test Inline
+    //
+    {
+      "Name": "Move All Skulls - Test InlLine",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+       { "Name": "Skull 99220 456 Hard Right"  },
+       { "Name": "Center All Skulls"  },
+       { "Name": "Skull 99220 456 Hard Left - Inline Actions HubPort Channel override"  },
+       { "Name": "Center All Skulls"  },
+       { "Name": "Skull 99220 456 Hard Left - Inline Actions"  },
+       { "Name": "Center All Skulls"  },
+      ],
+    },
+  ]
+}

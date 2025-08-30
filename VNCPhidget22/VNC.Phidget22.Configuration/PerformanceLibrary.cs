@@ -274,7 +274,7 @@ namespace VNC.Phidget22.Configuration
         {
             long startTicks = 0;
 
-            string configFile = "hostconfig.json";
+            string configFile = "Hosts.json";
 
             if (Core.Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
@@ -867,60 +867,60 @@ namespace VNC.Phidget22.Configuration
                 // Top Level Routines
                 // These go first to get on top of dropdown
 
-                @"Performances\PerformanceConfig_Test.json",
+                @"Performances\Performance_Test.json",
 
-                @"Performances\PerformanceConfig_Test AS Replacement.json",
+                @"Performances\Performance_Test AS Replacement.json",
 
-                @"Performances\Skulls\PerformanceConfig_Skulls_Routines.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_Consulting.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAll.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics_All.json",             
+                @"Performances\Skulls\Performance_Skulls_Routines.json",
+                @"Performances\Skulls\Performance_Skulls_Consulting.json",
+                @"Performances\Skulls\Performance_Skulls_MoveAll.json",
+                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",             
 
-                @"Performances\PerformanceConfig_Movement Studies.json",
+                @"Performances\Performance_Movement Studies.json",
 
                 // Performances\Skulls\         
 
-                @"Performances\Skulls\PerformanceConfig_Skulls_Initialize.json",
+                @"Performances\Skulls\Performance_Skulls_Initialize.json",
   
-                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAllAxes.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MovementCharacteristics.json",
-                @"Performances\Skulls\PerformanceConfig_Skulls_MoveAngles.json",
+                @"Performances\Skulls\Performance_Skulls_MoveAllAxes.json",
+                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics.json",
+                @"Performances\Skulls\Performance_Skulls_MoveAngles.json",
 
-                @"Performances\Skulls\Device\PerformanceConfig_99220_Skull_012.json",
-                @"Performances\Skulls\Device\PerformanceConfig_99220_Skull_456.json",
-                @"Performances\Skulls\Device\PerformanceConfig_169501_Skull_012.json",
+                @"Performances\Skulls\Device\Performance_99220_Skull_012.json",
+                @"Performances\Skulls\Device\Performance_99220_Skull_456.json",
+                @"Performances\Skulls\Device\Performance_169501_Skull_012.json",
 
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_LeftRight.json",
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_TiltLeftRight.json",
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_UpDown.json",
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_012_YesNoMaybe.json",
+                @"Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json",
+                @"Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json",
+                @"Performances\Skulls\Skull\Performance_Skull_012_UpDown.json",
+                @"Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybe.json",
 
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_LeftRight.json",
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_TiltLeftRight.json",
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_UpDown.json",
-                @"Performances\Skulls\Skull\PerformanceConfig_Skull_456_YesNoMaybe.json",
+                @"Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json",
+                @"Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json",
+                @"Performances\Skulls\Skull\Performance_Skull_456_UpDown.json",
+                @"Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybe.json",
 
                 // Performances\DigitalOutput\
 
-                @"Performances\DigitalOutput\PerformanceConfig_DigitalOutputs.json",
+                @"Performances\DigitalOutput\Performance_DigitalOutputs.json",
 
                 // Performances\RCServo\
 
-                @"Performances\RCServo\PerformanceConfig_RCServos.json",
+                @"Performances\RCServo\Performance_RCServos.json",
 
-                @"Performances\RCServo\PerformanceConfig_RCServo_OpenClose.json",
-                @"Performances\RCServo\PerformanceConfig_RCServo_MovementCharacteristics.json",
-                @"Performances\RCServo\PerformanceConfig_RCServo_PP1.json",
-                @"Performances\RCServo\PerformanceConfig_RCServo_PP2.json",
-                @"Performances\RCServo\PerformanceConfig_RCServo_PP3.json",
-                @"Performances\RCServo\PerformanceConfig_RCServo_PP4.json",
+                @"Performances\RCServo\Performance_RCServo_OpenClose.json",
+                @"Performances\RCServo\Performance_RCServo_MovementCharacteristics.json",
+                @"Performances\RCServo\Performance_RCServo_PP1.json",
+                @"Performances\RCServo\Performance_RCServo_PP2.json",
+                @"Performances\RCServo\Performance_RCServo_PP3.json",
+                @"Performances\RCServo\Performance_RCServo_PP4.json",
 
                 // Performances\Stepper\
 
-                @"Performances\Stepper\PerformanceConfig_Steppers.json",
+                @"Performances\Stepper\Performance_Steppers.json",
 
-                @"Performances\Stepper\PerformanceConfig_Stepper_OpenClose.json",
-                @"Performances\Stepper\PerformanceConfig_Stepper_MovementCharacteristics.json",
+                @"Performances\Stepper\Performance_Stepper_OpenClose.json",
+                @"Performances\Stepper\Performance_Stepper_MovementCharacteristics.json",
             };
 
             return files;
@@ -935,7 +935,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalInputSequences\DigitalInputSequenceConfig_1.json",
+                @"DigitalInputSequences\DigitalInputSequence_1.json",
             };
 
             return files;
@@ -950,8 +950,8 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalOutputSequences\DigitalOutputSequenceConfig_OpenClose.json",
-                @"DigitalOutputSequences\DigitalOutputSequenceConfig_1.json",
+                @"DigitalOutputSequences\DigitalOutputSequence_OpenClose.json",
+                @"DigitalOutputSequences\DigitalOutputSequence_1.json",
             };
 
             return files;
@@ -971,23 +971,23 @@ namespace VNC.Phidget22.Configuration
                 // The ServoIndex is wrong, should be Channel
                 // Probably more
 
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Skulls.json",
-                //@"AdvancedServoSequences\AdvancedServoSequenceConfig_Test A+B+C.json",
+                //@"AdvancedServoSequences\AdvancedServoSequence_Skulls.json",
+                //@"AdvancedServoSequences\AdvancedServoSequence_Test A+B+C.json",
                 
-                @"RCServoSequences\RCServoSequenceConfig_99415.json",
+                @"RCServoSequences\RCServoSequence_99415.json",
 
-                //@"RCServoSequences\RCServoSequenceConfig_Initialize.json",
+                //@"RCServoSequences\RCServoSequence_Initialize.json",
 
-                @"RCServoSequences\RCServoSequenceConfig_Move.json",
-                @"RCServoSequences\RCServoSequenceConfig_MovementCharacteristics.json",
-                @"RCServoSequences\RCServoSequenceConfig_OpenClose.json",
+                @"RCServoSequences\RCServoSequence_Move.json",
+                @"RCServoSequences\RCServoSequence_MovementCharacteristics.json",
+                @"RCServoSequences\RCServoSequence_OpenClose.json",
 
                 // RCServoSequences\Skulls\
 
-                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 1 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 2 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull 3 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequenceConfig_Skull Move.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull 1 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull Move.json",
             };
 
             return files;
@@ -1001,9 +1001,9 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"StepperSequences\StepperSequenceConfig_OpenClose.json",
-                @"StepperSequences\StepperSequenceConfig_MovementCharacteristics.json",
-                @"StepperSequences\StepperSequenceConfig_1.json",
+                @"StepperSequences\StepperSequence_OpenClose.json",
+                @"StepperSequences\StepperSequence_MovementCharacteristics.json",
+                @"StepperSequences\StepperSequence_1.json",
             };
             return files;
         }
@@ -1017,7 +1017,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageInputSequences\VoltageInputSequenceConfig_1.json"
+                @"VoltageInputSequences\VoltageInputSequence_1.json"
             };
 
             return files;
@@ -1034,7 +1034,7 @@ namespace VNC.Phidget22.Configuration
             {
                 // TODO(crhodes)
                 // Implement
-                //@"VoltageRatioInputSequences\VoltageRatioInputSequenceConfig_1.json"
+                //@"VoltageRatioInputSequences\VoltageRatioInputSequence_1.json"
             };
 
             return files;
@@ -1049,7 +1049,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageOutputSequences\VoltageOutputSequenceConfig_1.json"
+                @"VoltageOutputSequences\VoltageOutputSequence_1.json"
             };
 
             return files;

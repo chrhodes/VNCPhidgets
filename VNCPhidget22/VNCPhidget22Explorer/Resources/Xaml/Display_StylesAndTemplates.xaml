@@ -89,13 +89,24 @@
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="FontSize" Value="20" />
     </Style>
-    
+
     <Style x:Key="CloseTabButtonStyle" TargetType="Button">
         <Setter Property="FontSize" Value="12" />
         <Setter Property="Margin" Value="5,1,-5,0" />
         <Setter Property="Padding" Value="2,-2,2,0" />
         <Setter Property="VerticalAlignment" Value="Top" />
-    </Style>    
+    </Style>
+
+    <Style x:Key="TrackBarEditStyle" TargetType="dxe:TrackBarEdit">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    <Style x:Key="ThumbStyle" TargetType="Thumb">
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Height" Value="18"/>
+        <!--<Setter Property="Foreground" Value="Red" />-->
+        <Setter Property="Background" Value="Red" />
+    </Style>
 
     <Style TargetType="TextBox">
         <Setter Property="Validation.ErrorTemplate">

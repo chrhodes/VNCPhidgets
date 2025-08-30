@@ -1,0 +1,8 @@
+{
+  "Name": "Performance_Stepper_MovementCharacteristics",
+  "Description": "Performances for Steppers",
+  "Performances": [
+    // TODO(crhodes)
+    // Add things to change Velocity, Acceleration, Maybe that fancy thing
+  ]
+}

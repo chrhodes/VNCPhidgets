@@ -612,7 +612,15 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             System.Windows.Controls.RadioButton radioButton = sender as System.Windows.Controls.RadioButton;
 
-            seTargetPosition.Increment = Int32.Parse(radioButton.Content.ToString());
+            //var gn = radioButton.GroupName
+
+            Int32 increment = Int32.Parse(radioButton.Content.ToString());
+
+            seMinPositionScale.Increment = increment;
+            seMinPositionStop.Increment = increment;
+            seTargetPosition.Increment = increment;
+            seMaxPositionStop.Increment = increment;
+            seMaxPositionScale.Increment = increment;
         }
 
         private void TrackBarEdit_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

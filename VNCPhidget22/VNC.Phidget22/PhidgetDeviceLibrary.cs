@@ -20,7 +20,7 @@ namespace VNC.Phidget22
 
     /// <summary>
     /// Builds a PhidgetDevice Dictionary using the Phidgets.Manager class
-    /// Manually adds Servers(Hosts) based on entries in the hostconfig.json file
+    /// Manually adds Servers(Hosts) based on entries in the Hosts.json file
     /// </summary>
     public class PhidgetDeviceLibrary
     {

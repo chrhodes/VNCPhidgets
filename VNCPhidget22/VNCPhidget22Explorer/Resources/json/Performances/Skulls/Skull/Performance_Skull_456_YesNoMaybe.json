@@ -1,0 +1,76 @@
+{
+  "Name": "Performance_Skull_456_YesNoMaybe",
+  "Description": "Performances Move Skulls",
+  "Performances": [
+     {
+      "Name": "Skull-456 Yes",
+      "Description": "Skull-456 Yes",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Yes" },  // Channel 4 - X Axis  
+      ],
+    },
+     {
+      "Name": "Skull-456 Sigh",
+      "Description": "Skull-456 Sigh",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Sigh" },  // Channel 4 - X Axis  
+      ],
+    },
+    {
+      "Name": "Skull-456 Big Yes",
+      "Description": "Skull-456 Big Yes",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Big Yes" },  // Channel 4 - X Axis    
+      ],
+    },
+    {
+      "Name": "Skull-456 No",
+      "Description": "Skull-456 No",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Skull No" },  // Channel 6 - Z Axis   
+      ],
+    },
+    {
+      "Name": "Skull-456 Big No",
+      "Description": "Skull-456 Big No",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Skull Big No" },  // Channel 6 - Z Axis    
+      ],
+    },
+    {
+      "Name": "Skull-456 Laugh",
+      "Description": "Skull-456 Laugh",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Laugh" },  // Channel 4 - X Axis   
+      ],
+    },
+    {
+      "Name": "Skull-456 Big Laugh",
+      "Description": "Skull-456 Big Laugh",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Big Laugh" },  // Channel 4 - X Axis  
+      ],
+    },
+  ]
+}
