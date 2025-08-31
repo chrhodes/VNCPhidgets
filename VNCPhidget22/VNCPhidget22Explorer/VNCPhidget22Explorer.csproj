@@ -9,8 +9,10 @@
     <VersionSuffix>indevelopment-2025</VersionSuffix>
     <FileVersion>2025.08.31</FileVersion>
     <Description>Phidget22 Explorer</Description>
+    <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
+    <SatelliteResourceLanguages>XXX</SatelliteResourceLanguages>
   </PropertyGroup>
     
   <!-- This is for NuGet Packages -->
