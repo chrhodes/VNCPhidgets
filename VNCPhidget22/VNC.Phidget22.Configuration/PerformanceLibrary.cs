@@ -871,6 +871,7 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Hands\Performance_Hands_Initialize.json",
                 @"Performances\Hands\Performance_Hands_Routines.json",
 
+                @"Performances\Hands\Performance_Hands_Gestures.json",
                 @"Performances\Hands\Performance_Hands_Move.json",
                 @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
 

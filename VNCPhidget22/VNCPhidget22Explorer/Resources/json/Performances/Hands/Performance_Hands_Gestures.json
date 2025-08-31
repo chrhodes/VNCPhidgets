@@ -1,0 +1,68 @@
+{
+  "Name": "Performance_Hands_Gestures",
+  "Description": "Performances to Move Hands",
+  "Performances": [
+    //
+    // ILY Hands
+    //
+    {
+      "Name": "ILY Hand Left 1",
+      "Description": "ILY Hand Left 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Open Hand Left 1 Thumb" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Left 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Open Hand Left 1 Pinky Finger" },
+      ],
+    },
+    {
+      "Name": "ILY Hand Right 1",
+      "Description": "ILY Hand Right 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Open Hand Rght 1 Thumb" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Rght 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Open Hand Rght 1 Pinky Finger" },
+      ],
+    },
+        //
+    // ILY Hands
+    //
+    {
+      "Name": "Attention Hand Left 1",
+      "Description": "Attention Hand Left 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Thumb" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Left 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Close Hand Left 1 Pinky Finger" },
+      ],
+    },
+    {
+      "Name": "Attention Hand Right 1",
+      "Description": "Attention Hand Right 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Rght 1 Thumb" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Rght 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Close Hand Rght 1 Pinky Finger" },
+      ],
+    },
+  ]
+}

@@ -106,7 +106,25 @@
       </ItemGroup>
     </When>
   </Choose>
+  
+<!--Keep a copy as Visual Studio will remove things when doing Release builds.-->   
     
+  <!-- <Choose> -->
+    <!-- <When Condition="'$(DefineConstants.Contains(VNCPROJECTREF))'"> -->
+      <!-- <ItemGroup> -->
+        <!-- <ProjectReference Include="..\..\..\VNCDevelopment\VNC.Core\VNC.Core.csproj" /> -->
+        <!-- <ProjectReference Include="..\..\..\VNCDevelopment\VNC.WPF.Presentation.Dx\VNC.WPF.Presentation.Dx.csproj" /> -->
+        <!-- <ProjectReference Include="..\..\..\VNCDevelopment\VNC.WPF.Presentation\VNC.WPF.Presentation.csproj" /> -->
+      <!-- </ItemGroup> -->
+    <!-- </When> -->
+    <!-- <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'"> -->
+      <!-- <ItemGroup> -->
+        <!-- <PackageReference Include="VNC.Core" Version="3.1.0" /> -->
+        <!-- <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.1.0" /> -->
+      <!-- </ItemGroup> -->
+    <!-- </When> -->
+  <!-- </Choose>     -->
+  
   <ItemGroup>
     <Resource Include="Resources\Images\FilterEditor.png" />
     <Resource Include="Resources\Images\ToolBox.png" />
@@ -114,29 +132,29 @@
     <Resource Include="Resources\Images\WatchWindow.bmp" />
   </ItemGroup>
     
-  <ItemGroup>
-    <Compile Update="Presentation\Views\HackAround_Layout.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Presentation\Views\ManagePerformanceLibrary_LayoutPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Presentation\Views\PhidgetDeviceLibrary_LayoutPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Presentation\Views\VINTHub_LayoutPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Presentation\Views\VINTHubHorizontal_LayoutPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Presentation\Views\Stepper1063_LayoutPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Presentation\Views\InterfaceKit1018_LayoutPanel.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+  <!-- <ItemGroup> -->
+    <!-- <Compile Update="Presentation\Views\HackAround_Layout.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+    <!-- <Compile Update="Presentation\Views\ManagePerformanceLibrary_LayoutPanel.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+    <!-- <Compile Update="Presentation\Views\PhidgetDeviceLibrary_LayoutPanel.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+    <!-- <Compile Update="Presentation\Views\VINTHub_LayoutPanel.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+    <!-- <Compile Update="Presentation\Views\VINTHubHorizontal_LayoutPanel.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+    <!-- <Compile Update="Presentation\Views\Stepper1063_LayoutPanel.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+    <!-- <Compile Update="Presentation\Views\InterfaceKit1018_LayoutPanel.xaml.cs"> -->
+      <!-- <SubType>Code</SubType> -->
+    <!-- </Compile> -->
+  <!-- </ItemGroup> -->
     
   <ItemGroup>
     <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequenceConfig_OpenClose.json">
@@ -167,6 +185,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\Hands\Performance_Hand Lefts_Routines.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Hands\Performance_Hands_Gestures.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\Hands\Performance_Hands_Move.json">
