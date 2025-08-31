@@ -32,6 +32,7 @@ namespace VNC.Phidget22.Configuration
     public class PerformanceLibrary : INotifyPropertyChanged, INotifyCollectionChanged
     {
         IEventAggregator _eventAggregator;
+
         #region Constructors, Initialization, and Load
 
         // TODO(crhodes)
@@ -878,17 +879,42 @@ namespace VNC.Phidget22.Configuration
 
                 @"Performances\Performance_Movement Studies.json",
 
+                // Performances\Hands\
+
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+
+                //@"Performances\Hands\Performance_Hands_Consulting.json",
+
+                @"Performances\Hands\Performance_Hands_MoveAll.json",
+                @"Performances\Hands\Performance_Hands_MoveAllAxes.json",
+                @"Performances\Hands\Performance_Hands_MoveAngles.json",
+                @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
+                @"Performances\Hands\Performance_Hands_MovementCharacteristics_All.json",
+
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+
                 // Performances\Skulls\         
 
                 @"Performances\Skulls\Performance_Skulls_Initialize.json",
-  
+
+                //@"Performances\Skulls\Performance_Skulls_Consulting.json",
+                //@"Performances\Skulls\Performance_Skulls_MoveAll.json",
                 @"Performances\Skulls\Performance_Skulls_MoveAllAxes.json",
                 @"Performances\Skulls\Performance_Skulls_MovementCharacteristics.json",
                 @"Performances\Skulls\Performance_Skulls_MoveAngles.json",
+                //@"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",
+
+                // Performances\Skulls\Device\
 
                 @"Performances\Skulls\Device\Performance_99220_Skull_012.json",
                 @"Performances\Skulls\Device\Performance_99220_Skull_456.json",
                 @"Performances\Skulls\Device\Performance_169501_Skull_012.json",
+
+                // Performances\Skulls\Skull\
 
                 @"Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json",
                 @"Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json",
@@ -981,6 +1007,12 @@ namespace VNC.Phidget22.Configuration
                 @"RCServoSequences\RCServoSequence_Move.json",
                 @"RCServoSequences\RCServoSequence_MovementCharacteristics.json",
                 @"RCServoSequences\RCServoSequence_OpenClose.json",
+
+                // Hands
+
+                @"RCServoSequences\Skulls\RCServoSequence_Hand_Left 1 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Hand_Right 1 Initialization.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull Move.json",
 
                 // RCServoSequences\Skulls\
 
@@ -1101,6 +1133,5 @@ namespace VNC.Phidget22.Configuration
         }
 
         #endregion
-
     }
 }

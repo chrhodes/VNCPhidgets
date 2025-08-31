@@ -4,10 +4,10 @@
 {
   "RCServoSequences": [
     //
-    // Skull 2
+    // Hand Left 2
     //
     { 
-      "Name": "Initialize Skull 2 X Axis", 
+      "Name": "Initialize Hand Left 2 X Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "",
       //"HubPort": 0, "Channel": 0,
@@ -19,7 +19,7 @@
       ]
     },
     { 
-      "Name": "Initialize Skull 2 Y Axis", 
+      "Name": "Initialize Hand Left 2 Y Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "",
       //"HubPort": 0, "Channel": 1,
@@ -31,7 +31,7 @@
       ]
     },
     { 
-      "Name": "Initialize Skull 2 Z Axis", 
+      "Name": "Initialize Hand Left 2 Z Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "",
       //"HubPort": 0, "Channel": 2,
@@ -45,7 +45,7 @@
     // TODO(crhodes)
     // Maybe combine this with above
     { 
-      "Name": "Engage and Center Skull 2 X Axis", 
+      "Name": "Engage and Center Hand Left 2 X Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, "Channel": 0,
@@ -55,7 +55,7 @@
       ]
     },
     { 
-      "Name": "Engage and Center Skull 2 Y Axis", 
+      "Name": "Engage and Center Hand Left 2 Y Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, "Channel": 1,
@@ -65,7 +65,7 @@
       ]
     },
     { 
-      "Name": "Engage and Center Skull 2 Z Axis", 
+      "Name": "Engage and Center Hand Left 2 Z Axis", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, "Channel": 2,
@@ -75,7 +75,7 @@
       ]
     }, 
     { 
-      "Name": "Center Skull 2 X Axis", 
+      "Name": "Center Hand Left 2 X Axis", 
       "Description": "Center X Axis",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
@@ -83,7 +83,7 @@
       ]
     },
     { 
-      "Name": "Center Skull 2 Y Axis", 
+      "Name": "Center Hand Left 2 Y Axis", 
       "Description": "Center Y Axis",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
@@ -91,7 +91,7 @@
       ]
     },
     { 
-      "Name": "Center Skull 2 Z Axis", 
+      "Name": "Center Hand Left 2 Z Axis", 
       "Description": "Center Z Axis",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [

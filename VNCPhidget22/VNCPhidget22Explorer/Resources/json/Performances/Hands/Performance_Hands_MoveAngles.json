@@ -1,13 +1,13 @@
 {
   "Name": "Performance_Hands_MoveAngles",
-  "Description": "Performances Move Skulls Look Up/Down Left/Right",
+  "Description": "Performances Move Hands Look Up/Down Left/Right",
   "Performances": [
     //
-    // Skull-012 Look Down Left
+    // Hand-012 Look Down Left
     //
     {
-      "Name": "Skull-012 Look Down Left - DCS Sequential",
-      "Description": "Skull Look Down Left - DCS Sequential",
+      "Name": "Hand-012 Look Down Left - DCS Sequential",
+      "Description": "Hand Look Down Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -18,8 +18,8 @@
       ],
     },
     {
-      "Name": "Skull-012 Look Down Left - DCS Parallel",
-      "Description": "Skull Look Down Left - DCS Parallel",
+      "Name": "Hand-012 Look Down Left - DCS Parallel",
+      "Description": "Hand Look Down Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -30,11 +30,11 @@
       ],
     },
     //
-    // Skull-456 Look Down Left
+    // Hand-456 Look Down Left
     //
     {
-      "Name": "Skull-456 Look Down Left - DCS Sequential",
-      "Description": "Skull Look Down Left - DCS Sequential",
+      "Name": "Hand-456 Look Down Left - DCS Sequential",
+      "Description": "Hand Look Down Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -45,8 +45,8 @@
       ],
     },
     {
-      "Name": "Skull-456 Look Down Left - DCS Parallel",
-      "Description": "Skull Look Down Left - DCS Parallel",
+      "Name": "Hand-456 Look Down Left - DCS Parallel",
+      "Description": "Hand Look Down Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -57,11 +57,11 @@
       ],
     }, 
     //
-    // Skull-012 Look Down Right
+    // Hand-012 Look Down Right
     //
     {
-      "Name": "Skull-012 Look Down Right - DCS Sequential",
-      "Description": "Skull Look Down Right - DCS Sequential",
+      "Name": "Hand-012 Look Down Right - DCS Sequential",
+      "Description": "Hand Look Down Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -72,8 +72,8 @@
       ],
     },
     {
-      "Name": "Skull-012 Look Down Right - DCS Parallel",
-      "Description": "Skull Look Down Right - DCS Parallel",
+      "Name": "Hand-012 Look Down Right - DCS Parallel",
+      "Description": "Hand Look Down Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -84,11 +84,11 @@
       ],
     },
     //
-    // Skull-456 Look Down Right
+    // Hand-456 Look Down Right
     //
     {
-      "Name": "Skull-456 Look Down Right - DCS Sequential",
-      "Description": "Skull Look Down Right - DCS Sequential",
+      "Name": "Hand-456 Look Down Right - DCS Sequential",
+      "Description": "Hand Look Down Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -99,8 +99,8 @@
       ],
     },
     {
-      "Name": "Skull-456 Look Down Right - DCS Parallel",
-      "Description": "Skull Look Down Right - DCS Parallel",
+      "Name": "Hand-456 Look Down Right - DCS Parallel",
+      "Description": "Hand Look Down Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -111,11 +111,11 @@
       ],
     },
     //
-    // Skull-012 Look Up Left
+    // Hand-012 Look Up Left
     //
     {
-      "Name": "Skull-012 Look Up Left - DCS Sequential",
-      "Description": "Skull Look Up Left - DCS Sequential",
+      "Name": "Hand-012 Look Up Left - DCS Sequential",
+      "Description": "Hand Look Up Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -126,11 +126,11 @@
       ],
     },
     //
-    // Skull-012 Look Up Left Parallel
+    // Hand-012 Look Up Left Parallel
     //
     {
-      "Name": "Skull-012 Look Up Left - DCS Parallel",
-      "Description": "Skull Look Up Left - DCS Parallel",
+      "Name": "Hand-012 Look Up Left - DCS Parallel",
+      "Description": "Hand Look Up Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -141,11 +141,11 @@
       ],
     },
     //
-    // Skull-456 Look Up Left
+    // Hand-456 Look Up Left
     //
     {
-      "Name": "Skull-456 Look Up Left - DCS Sequential",
-      "Description": "Skull Look Up Left - DCS Sequential",
+      "Name": "Hand-456 Look Up Left - DCS Sequential",
+      "Description": "Hand Look Up Left - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -156,8 +156,8 @@
       ],
     },
     {
-      "Name": "Skull-456 Look Up Left - DCS Parallel",
-      "Description": "Skull Look Up Left - DCS Parallel",
+      "Name": "Hand-456 Look Up Left - DCS Parallel",
+      "Description": "Hand Look Up Left - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -168,11 +168,11 @@
       ],
     },  
     //
-    // Skull-012 Look Up Right
+    // Hand-012 Look Up Right
     //
     {
-      "Name": "Skull-012 Look Up Right - DCS Sequential",
-      "Description": "Skull Look Up Right - DCS Sequential",
+      "Name": "Hand-012 Look Up Right - DCS Sequential",
+      "Description": "Hand Look Up Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -183,8 +183,8 @@
       ],
     },
     {
-      "Name": "Skull-012 Look Up Right - DCS Parallel",
-      "Description": "Skull Look Up Right - DCS Parallel",
+      "Name": "Hand-012 Look Up Right - DCS Parallel",
+      "Description": "Hand Look Up Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -195,11 +195,11 @@
       ],
     },
     //
-    // Skull-456 Look Up Right
+    // Hand-456 Look Up Right
     //
     {
-      "Name": "Skull-456 Look Up Right - DCS Sequential",
-      "Description": "Skull Look Up Right - DCS Sequential",
+      "Name": "Hand-456 Look Up Right - DCS Sequential",
+      "Description": "Hand Look Up Right - DCS Sequential",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -210,11 +210,11 @@
       ],
     },       
     //
-    // Skull-456 Look Up Right Parallel
+    // Hand-456 Look Up Right Parallel
     //
     {
-      "Name": "Skull-456 Look Up Right - DCS Parallel",
-      "Description": "Skull Look Up Right - DCS Parallel",
+      "Name": "Hand-456 Look Up Right - DCS Parallel",
+      "Description": "Hand Look Up Right - DCS Parallel",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,

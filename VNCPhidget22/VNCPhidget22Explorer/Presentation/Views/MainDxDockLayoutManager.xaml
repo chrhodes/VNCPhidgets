@@ -137,23 +137,21 @@
                              These LayoutPanels are loaded from the Views menu
                             -->
                             
-                            <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
-                            </dxdo:LayoutPanel>-->
-
-                            <dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="False" MinWidth="680" >
-                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
                             </dxdo:LayoutPanel>
+
+                            <!--<dxdo:LayoutPanel Caption="InterfaceKit888-1" AutoHidden="True" MinWidth="680" >
+                                <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.InterfaceKit1018Region1}"/>
+                            </dxdo:LayoutPanel>-->
 
                             <!--<dxdo:LayoutPanel Caption="Stepper1063-1" AutoHidden="True" MinWidth="480" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.Stepper1063Region1}"/>
                             </dxdo:LayoutPanel>-->
 
-                            <dxdo:LayoutPanel Caption="VINTHub-1" AutoHidden="False" MinWidth="680" >
+                            <!--<dxdo:LayoutPanel Caption="VINTHub-1" AutoHidden="True" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.VINTHubRegion1}"/>
-                            </dxdo:LayoutPanel>
-
-
+                            </dxdo:LayoutPanel>-->
 
                             <!--<dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="True" MinWidth="700" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}"  />

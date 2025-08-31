@@ -3,251 +3,106 @@
   "Description": "Performances to adjust Hand MovementCharacteristics",
   "Performances": [
     //
-    // Skull HP0 C012 - VelocityLimit (10) Acceleration (25)
+    // Hand Left 1 - VelocityLimit (10) Acceleration (25)
     //
     {
-      "Name": "Skull HP0 C012 - VelocityLimit (10) Acceleration (25)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (10) Acceleration (25)",
+      "Name": "Hand Left 1 - VelocityLimit (10) Acceleration (25)",
+      "Description": "Hand Left 1 - VelocityLimit (10) Acceleration (25)",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (10) Acceleration (25)" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (10) Acceleration (25)" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (10) Acceleration (25)" },      
-      ],
-    },
-    //
-    // Skull HP0 C456 - VelocityLimit (10) Acceleration (25)
-    //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (10) Acceleration (25)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (10) Acceleration (25)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (10) Acceleration (25)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (10) Acceleration (25)" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (10) Acceleration (25)" },      
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (10) Acceleration (25)" },      
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (10) Acceleration (25)" },      
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (10) Acceleration (25)" },      
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (10) Acceleration (25)" },      
       ],
     },
+    //
+    // Hand Right 1 - VelocityLimit (10) Acceleration (25)
+    //
+    //{
+    //  "Name": "RIght Hand 1 - VelocityLimit (10) Acceleration (25)",
+    //  "Description": "Hand Right 1 - VelocityLimit (10) Acceleration (25)",
+    //  "UsageNotes": "Must use SerialNumber Override",
+    //  "Loops": 1,
+    //  "ExecuteDeviceChannelSequencesInParallel": false,
+    //  "DeviceChannelSequences": [
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (10) Acceleration (25)" },
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (10) Acceleration (25)" },      
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (10) Acceleration (25)" },      
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (10) Acceleration (25)" },      
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (10) Acceleration (25)" },      
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (10) Acceleration (25)" },      
+    //   { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (10) Acceleration (25)" },      
+    //  ],
+    //},
+    //
+    // Hand Left 1 - VelocityLimit (25) Acceleration (50)
+    //
 
     //
-    // Skull HP0 C012 - VelocityLimit (25) Acceleration (50)
+    // Hand Right 1 - VelocityLimit (25) Acceleration (50)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (25) Acceleration (50)",
-      "Description": "Skull NubPort 0 Channels 012 - VelocityLimit (25) Acceleration (50)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (25) Acceleration (50)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (25) Acceleration (50)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (25) Acceleration (50)" },      
-      ],
-    },
-    //
-    // Skull HP0 C456 - VelocityLimit (25) Acceleration (50)
-    //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (25) Acceleration (50)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (25) Acceleration (50)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (25) Acceleration (50)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (25) Acceleration (50)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (25) Acceleration (50)" },      
-      ],
-    },
 
     //
-    // Skull HP0 C012 - VelocityLimit (50) Acceleration (100)
+    // Hand Left 1 - VelocityLimit (50) Acceleration (100)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (50) Acceleration (100)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (50) Acceleration (100)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (50) Acceleration (100)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (50) Acceleration (100)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (50) Acceleration (100)" },      
-      ],
-    },
+
     //
-    // Skull HP0 C456 - VelocityLimit (50) Acceleration (100)
+    // Hand Right 1 - VelocityLimit (50) Acceleration (100)
     //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (50) Acceleration (100)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (50) Acceleration (100)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (50) Acceleration (100)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (50) Acceleration (100)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (50) Acceleration (100)" },      
-      ],
-    },
   
     //
-    // Skull HP0 C012 - VelocityLimit (100) Acceleration (200)
+    // Hand Left 1 - VelocityLimit (100) Acceleration (200)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (100) Acceleration (200)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (100) Acceleration (200)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (100) Acceleration (200)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (100) Acceleration (200)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (100) Acceleration (200)" },      
-      ],
-    },
-    //
-    // Skull HP0 C456 - VelocityLimit (100) Acceleration (200)
-    //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (100) Acceleration (200)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (100) Acceleration (200)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (100) Acceleration (200)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (100) Acceleration (200)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (100) Acceleration (200)" },      
-      ],
-    },
 
     //
-    // Skull HP0 C012 - VelocityLimit (250) Acceleration (500)
+    // Hand Right 1 - VelocityLimit (100) Acceleration (200)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (250) Acceleration (500)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (250) Acceleration (500)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (250) Acceleration (500)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (250) Acceleration (500)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (250) Acceleration (500)" },      
-      ],
-    },
-    //
-    // Skull HP0 C456 - VelocityLimit (250) Acceleration (500)
-    //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (250) Acceleration (500)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (250) Acceleration (500)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (250) Acceleration (500)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (250) Acceleration (500)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (250) Acceleration (500)" },      
-      ],
-    },
 
     //
-    // Skull HP0 C012 - VelocityLimit (500) Acceleration (1000)
+    // Hand Left 1 - VelocityLimit (250) Acceleration (500)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (500) Acceleration (1000)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (500) Acceleration (1000)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (500) Acceleration (1000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (500) Acceleration (1000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-      ],
-    },
-    //
-    // Skull HP0 C456 - VelocityLimit (500) Acceleration (1000)
-    //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (500) Acceleration (1000)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (500) Acceleration (1000)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (500) Acceleration (1000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (500) Acceleration (1000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-      ],
-    },
 
     //
-    // Skull HP0 C012 - VelocityLimit (1000) Acceleration (2000)
+    // Hand Right 1 - VelocityLimit (250) Acceleration (500)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (1000) Acceleration (2000)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (1000) Acceleration (2000)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (1000) Acceleration (2000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (1000) Acceleration (2000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-      ],
-    },
-    //
-    // Skull HP0 C456 - VelocityLimit (20000) Acceleration (2000)
-    //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (1000) Acceleration (2000)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (1000) Acceleration (2000)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (1000) Acceleration (2000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (1000) Acceleration (2000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-      ],
-    },
 
     //
-    // Skull HP0 C012 - VelocityLimit (5000) Acceleration (10000)
+    // Hand Left 1 - VelocityLimit (500) Acceleration (1000)
     //
-    {
-      "Name": "Skull HP0 C012 - VelocityLimit (5000) Acceleration (10000)",
-      "Description": "Skull HubPort 0 Channels 012 - VelocityLimit (5000) Acceleration (10000)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "VelocityLimit (5000) Acceleration (10000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (5000) Acceleration (10000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-      ],
-    },
+
     //
-    // Skull HP0 C456 - VelocityLimit (5000) Acceleration (10000)
+    // Hand Right 1 - VelocityLimit (500) Acceleration (1000)
     //
-    {
-      "Name": "Skull HP0 C456 - VelocityLimit (5000) Acceleration (10000)",
-      "Description": "Skull HubPort 0 Channels 456 - VelocityLimit (5000) Acceleration (10000)",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (5000) Acceleration (10000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (5000) Acceleration (10000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-      ],
-    },
+
+    //
+    // Hand Left 1 - VelocityLimit (1000) Acceleration (2000)
+    //
+
+    //
+    // Hand Right 1 - VelocityLimit (1000) Acceleration (2000)
+    //
+
+    //
+    // Hand Left 1 - VelocityLimit (2000) Acceleration (2000)
+    //
+
+    //
+    // Hand Right 1 - VelocityLimit (2000) Acceleration (2000)
+    //
+
+    //
+    // Hand Left 1 - VelocityLimit (5000) Acceleration (10000)
+    //
+
+    //
+    // Hand Right 1 - VelocityLimit (5000) Acceleration (10000)
+    //
+
   ]
 }
