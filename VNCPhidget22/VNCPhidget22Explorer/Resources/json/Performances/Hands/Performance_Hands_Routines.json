@@ -91,7 +91,7 @@
        { "Name": "Open Hand Left 1", "SerialNumber": 593480 },
        { "Name": "Close Hand Left 1", "SerialNumber": 593480 },
 
-       { "Name": "Hand Left 1 - VelocityLimit (2000) Acceleration (5000)", "SerialNumber": 593480 },
+       { "Name": "Hand Left 1 - VelocityLimit (2500) Acceleration (5000)", "SerialNumber": 593480 },
        { "Name": "Open Hand Left 1", "SerialNumber": 593480 },
        { "Name": "Close Hand Left 1", "SerialNumber": 593480 },
 
@@ -115,7 +115,7 @@
        { "Name": "Open Hand Left 1 Parallel", "SerialNumber": 593480 },
        { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 593480 },
 
-       { "Name": "Hand Left 1 - VelocityLimit (2000) Acceleration (5000)", "SerialNumber": 593480 },
+       { "Name": "Hand Left 1 - VelocityLimit (2500) Acceleration (5000)", "SerialNumber": 593480 },
        { "Name": "Open Hand Left 1 Parallel", "SerialNumber": 593480 },
        { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 593480 },
 
