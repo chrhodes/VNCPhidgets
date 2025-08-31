@@ -13,7 +13,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 105, "MaxPositionStop": 130,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
@@ -24,7 +24,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 105, "MaxPositionStop": 140,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
@@ -35,7 +35,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 105, "MaxPositionStop": 140,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
@@ -46,7 +46,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 105, "MaxPositionStop": 140,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
@@ -57,7 +57,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 65, "TargetPosition": 105, "MaxPositionStop": 140,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
@@ -68,7 +68,7 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 10, "TargetPosition": 90, "MaxPositionStop": 100,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
@@ -79,211 +79,155 @@
       //"HubPort": 0, "Channel": 0,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 80, "TargetPosition": 105, "MaxPositionStop": 130,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 10, "TargetPosition": 70, "MaxPositionStop": 130,
           "Acceleration": 250, "VelocityLimit": 50 },
       ]
     },
-    //
-    // Engage Hand Left 1
-    //
-    { 
-      "Name": "Engage Hand Left 1 Thumb", 
-      "Description": "Engages Thumb",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    { 
-      "Name": "Engage Hand Left 1 Index Finger", 
-      "Description": "Engages Index Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    { 
-      "Name": "Engage Hand Left 1 Middle Finger", 
-      "Description": "Engages Middle Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    { 
-      "Name": "Engage Hand Left 1 Ring Finger", 
-      "Description": "Engages Ring Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    { 
-      "Name": "Engage Hand Left 1 Pinky Finger", 
-      "Description": "Engages Pinky Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    { 
-      "Name": "Engage Hand Left 1 Wrist", 
-      "Description": "Engages Wrist",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    { 
-      "Name": "Engage Hand Left 1 Forearm", 
-      "Description": "Engages Forearm",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      //"HubPort": 0, "Channel": 0,
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        { "Engaged": true },
-      ]
-    },
-    //
-    // Center Hand Left 1
-    //
-    { 
-      "Name": "Center Hand Left 1 Thumb", 
-      "Description": "Center THumb",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": 105 },
-      ]
-    },
-    { 
-      "Name": "Center Hand Left 1 Index Finger", 
-      "Description": "Center Index Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": 105 },
-      ]
-    },
-    { 
-      "Name": "Center Hand Left 1 Middle Finger", 
-      "Description": "Center Middle Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": 105 },
-      ]
-    },
-    { 
-      "Name": "Center Hand Left 1 Ring Finger", 
-      "Description": "Center Ring Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": 105 },
-      ]
-    },
-    { 
-      "Name": "Center Hand Left 1 Pinky Finger", 
-      "Description": "Center Pinky Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": 105 },
-      ]
-    },
-    //
-    // Open Hand Left 1
-    //
-    { 
-      "Name": "Open Hand Left 1 Thumb", 
-      "Description": "Open Thumb",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -2 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Left 1 Index Finger", 
-      "Description": "Open Index Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -2 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Left 1 Middle Finger", 
-      "Description": "Open Middle Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -2 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Left 1 Ring Finger", 
-      "Description": "Open Ring Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -2 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Left 1 Pinky Finger", 
-      "Description": "Open Pinky Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -2 },
-      ]
-    },
-    //
-    // Close Hand Left 1
-    //
-    { 
-      "Name": "Close Hand Left 1 Thumb", 
-      "Description": "Close Thumb",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -1 },
-      ]
-    },
-    { 
-      "Name": "Close Hand Left 1 Index Finger", 
-      "Description": "Close Index Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -1 },
-      ]
-    },
-    { 
-      "Name": "Close Hand Left 1 Middle Finger", 
-      "Description": "Close Middle Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -1 },
-      ]
-    },
-    { 
-      "Name": "Close Hand Left 1 Ring Finger", 
-      "Description": "Close Ring Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -1 },
-      ]
-    },
-    { 
-      "Name": "Close Hand Left 1 Pinky Finger", 
-      "Description": "Close Pinky Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -1 },
-      ]
-    },
+    ////
+    //// Engage Hand Left 1
+    ////
+    //{ 
+    //  "Name": "Engage Hand Left 1 Thumb", 
+    //  "Description": "Engages Thumb",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Engage Hand Left 1 Index Finger", 
+    //  "Description": "Engages Index Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Engage Hand Left 1 Middle Finger", 
+    //  "Description": "Engages Middle Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Engage Hand Left 1 Ring Finger", 
+    //  "Description": "Engages Ring Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Engage Hand Left 1 Pinky Finger", 
+    //  "Description": "Engages Pinky Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Engage Hand Left 1 Wrist", 
+    //  "Description": "Engages Wrist",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Engage Hand Left 1 Forearm", 
+    //  "Description": "Engages Forearm",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Engaged": true },
+    //  ]
+    //},
+    ////
+    //// Sleep Hand Left 1
+    ////
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Thumb", 
+    //  "Description": "Sleeps Thumb",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Index Finger", 
+    //  "Description": "Sleeps Index Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Middle Finger", 
+    //  "Description": "Sleeps Middle Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Ring Finger", 
+    //  "Description": "Sleeps Ring Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Pinky Finger", 
+    //  "Description": "Sleeps Pinky Finger",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Wrist", 
+    //  "Description": "Sleeps Wrist",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
+    //{ 
+    //  "Name": "Sleep Hand Left 1 Forearm", 
+    //  "Description": "Sleeps Forearm",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  //"HubPort": 0, "Channel": 0,
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    { "Sleepd": true },
+    //  ]
+    //},
   ]
 }

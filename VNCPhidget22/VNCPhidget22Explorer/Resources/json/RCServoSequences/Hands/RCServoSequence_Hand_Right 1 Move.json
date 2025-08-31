@@ -1,0 +1,152 @@
+// RCServoSequence_Hand_Right 1 Move
+// TODO(crhodes)
+// Need to set specific values for each axis
+{
+  "RCServoSequences": [
+    //
+    // Center Hand Right 1
+    //
+    { 
+      "Name": "Center Hand Right 1 Thumb", 
+      "Description": "Center THumb",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 105 },
+      ]
+    },
+    { 
+      "Name": "Center Hand Right 1 Index Finger", 
+      "Description": "Center Index Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 105 },
+      ]
+    },
+    { 
+      "Name": "Center Hand Right 1 Middle Finger", 
+      "Description": "Center Middle Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 105 },
+      ]
+    },
+    { 
+      "Name": "Center Hand Right 1 Ring Finger", 
+      "Description": "Center Ring Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 105 },
+      ]
+    },
+    { 
+      "Name": "Center Hand Right 1 Pinky Finger", 
+      "Description": "Center Pinky Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 105 },
+      ]
+    },
+    { 
+      "Name": "Center Hand Right 1 Wrist", 
+      "Description": "Center Wrist",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 90 },
+      ]
+    },
+    { 
+      "Name": "Center Hand Right 1 Forearm", 
+      "Description": "Center Pinky Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": 70 },
+      ]
+    },
+    //
+    // Open Hand Right 1
+    //
+    { 
+      "Name": "Open Hand Right 1 Thumb", 
+      "Description": "Open Thumb",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -2 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Index Finger", 
+      "Description": "Open Index Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -2 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Middle Finger", 
+      "Description": "Open Middle Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -2 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Ring Finger", 
+      "Description": "Open Ring Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -2 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Pinky Finger", 
+      "Description": "Open Pinky Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -2 },
+      ]
+    },
+    //
+    // Close Hand Right 1
+    //
+    { 
+      "Name": "Close Hand Right 1 Thumb", 
+      "Description": "Close Thumb",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -1 },
+      ]
+    },
+    { 
+      "Name": "Close Hand Right 1 Index Finger", 
+      "Description": "Close Index Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -1 },
+      ]
+    },
+    { 
+      "Name": "Close Hand Right 1 Middle Finger", 
+      "Description": "Close Middle Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -1 },
+      ]
+    },
+    { 
+      "Name": "Close Hand Right 1 Ring Finger", 
+      "Description": "Close Ring Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -1 },
+      ]
+    },
+    { 
+      "Name": "Close Hand Right 1 Pinky Finger", 
+      "Description": "Close Pinky Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -1 },
+      ]
+    },
+  ]
+}

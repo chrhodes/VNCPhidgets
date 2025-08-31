@@ -63,7 +63,7 @@ namespace VNC.Phidget22.Configuration
 
             try
             {
-                LoadHostsConfig();
+                LoadHosts();
 
                 LoadPerformances();
 
@@ -271,7 +271,7 @@ namespace VNC.Phidget22.Configuration
 
         #region Public Methods
 
-        public void LoadHostsConfig()
+        public void LoadHosts()
         {
             long startTicks = 0;
 
@@ -365,7 +365,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -431,7 +431,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -497,7 +497,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -563,7 +563,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -629,7 +629,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -695,7 +695,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -761,7 +761,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -821,7 +821,7 @@ namespace VNC.Phidget22.Configuration
                         }
                         catch (ArgumentException ax)
                         {
-                            Log.ERROR($"Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{sequence.Name}<", Common.LOG_CATEGORY);
                             Log.ERROR($"{ax}", Common.LOG_CATEGORY);
                         }
                     }
@@ -868,6 +868,10 @@ namespace VNC.Phidget22.Configuration
                 // Top Level Routines
                 // These go first to get on top of dropdown
 
+                @"Performances\Hands\Performance_Hands_Initialize.json",
+                @"Performances\Hands\Performance_Hands_Move.json",
+                @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
+
                 @"Performances\Performance_Test.json",
 
                 @"Performances\Performance_Test AS Replacement.json",
@@ -881,21 +885,12 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\Hands\
 
-                @"Performances\Hands\Performance_Hands_Initialize.json",
+                //@"Performances\Hands\Performance_Hands_Initialize.json",
 
-                //@"Performances\Hands\Performance_Hands_Consulting.json",
+                //@"Performances\Hands\Performance_Hands_Move.json",
 
-                @"Performances\Hands\Performance_Hands_MoveAll.json",
-                @"Performances\Hands\Performance_Hands_MoveAllAxes.json",
-                @"Performances\Hands\Performance_Hands_MoveAngles.json",
-                @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
+                //@"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
                 @"Performances\Hands\Performance_Hands_MovementCharacteristics_All.json",
-
-                @"Performances\Hands\Performance_Hands_Initialize.json",
-                @"Performances\Hands\Performance_Hands_Initialize.json",
-                @"Performances\Hands\Performance_Hands_Initialize.json",
-                @"Performances\Hands\Performance_Hands_Initialize.json",
-                @"Performances\Hands\Performance_Hands_Initialize.json",
 
                 // Performances\Skulls\         
 
@@ -1010,9 +1005,10 @@ namespace VNC.Phidget22.Configuration
 
                 // Hands
 
-                @"RCServoSequences\Skulls\RCServoSequence_Hand_Left 1 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Hand_Right 1 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull Move.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Initialization.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Initialization.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Move.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Move.json",
 
                 // RCServoSequences\Skulls\
 
