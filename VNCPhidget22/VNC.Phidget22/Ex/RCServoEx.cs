@@ -1322,9 +1322,9 @@ namespace VNC.Phidget22.Ex
                 }
 
                 // TODO(crhodes)
-                // Figure out what these actually are intented to do.
-                // Where is bounds checking occuring?
-                // What is diference between Scale and Stop
+                // Figure out what these actually are intended to do.
+                // Where is bounds checking occurring?
+                // What is difference between Scale and Stop
 
                 if (action.PositionScaleMin is not null)
                 {
@@ -1409,7 +1409,7 @@ namespace VNC.Phidget22.Ex
                                 break;
 
                             case -3:
-                                targetPosition = (MaxPosition - MinPosition) / 2;
+                                targetPosition = MinPosition + ((MaxPosition - MinPosition) / 2);
                                 break;
 
                             case -11:
@@ -1421,7 +1421,7 @@ namespace VNC.Phidget22.Ex
                                 break;
 
                             case -13:
-                                targetPosition = (MaxPositionStop - MinPositionStop) / 2;
+                                targetPosition = MinPositionStop + ((MaxPositionStop - MinPositionStop) / 2);
                                 break;
                         }
                     }

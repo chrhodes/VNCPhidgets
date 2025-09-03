@@ -11,7 +11,7 @@
       "Description": "Center THumb",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 105 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
@@ -19,7 +19,7 @@
       "Description": "Center Index Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 105 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
@@ -27,7 +27,7 @@
       "Description": "Center Middle Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 105 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
@@ -35,7 +35,7 @@
       "Description": "Center Ring Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 105 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
@@ -43,7 +43,7 @@
       "Description": "Center Pinky Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 105 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
@@ -70,7 +70,7 @@
       "Description": "Open Thumb",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -12 },
+        { "TargetPosition": -11 },
       ]
     },
     { 
@@ -78,7 +78,7 @@
       "Description": "Open Index Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -11 },
+        { "TargetPosition": -12 },
       ]
     },
     { 
@@ -86,7 +86,7 @@
       "Description": "Open Middle Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -11 },
+        { "TargetPosition": -12 },
       ]
     },
     { 
@@ -94,7 +94,7 @@
       "Description": "Open Ring Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -11 },
+        { "TargetPosition": -12 },
       ]
     },
     { 
@@ -102,7 +102,7 @@
       "Description": "Open Pinky Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -11 },
+        { "TargetPosition": -12 },
       ]
     },
     //
@@ -113,7 +113,7 @@
       "Description": "Close Thumb",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -11 },
+        { "TargetPosition": -12 },
       ]
     },
     { 
@@ -121,7 +121,7 @@
       "Description": "Close Index Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -12 },
+        { "TargetPosition": -11 },
       ]
     },
     { 
@@ -129,7 +129,7 @@
       "Description": "Close Middle Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -12 },
+        { "TargetPosition": -11 },
       ]
     },
     { 
@@ -137,7 +137,7 @@
       "Description": "Close Ring Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -12 },
+        { "TargetPosition": -11 },
       ]
     },
     { 
@@ -145,7 +145,7 @@
       "Description": "Close Pinky Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": -12 },
+        { "TargetPosition": -11 },
       ]
     },
   ]

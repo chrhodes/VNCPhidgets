@@ -14,8 +14,8 @@
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Open Hand Left 1 Thumb" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Left 1 Index Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Middle Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Close Hand Left 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Close Hand Left 1 Ring Finger" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Open Hand Left 1 Pinky Finger" },
       ],
     },
@@ -26,15 +26,15 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Open Hand Rght 1 Thumb" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Rght 1 Index Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Middle Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Ring Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Open Hand Rght 1 Pinky Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "Open Hand Right 1 Thumb" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "Open Hand Right 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "Close Hand Right 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "Close Hand Right 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "Open Hand Right 1 Pinky Finger" },
       ],
     },
-        //
-    // ILY Hands
+    //
+    // Attention Hands
     //
     {
       "Name": "Attention Hand Left 1",
@@ -45,8 +45,8 @@
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Thumb" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Left 1 Index Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Middle Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Left 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Close Hand Left 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Close Hand Left 1 Ring Finger" },
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Close Hand Left 1 Pinky Finger" },
       ],
     },
@@ -57,11 +57,11 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Rght 1 Thumb" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open Hand Rght 1 Index Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Middle Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Hand Right 1 Ring Finger" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Close Hand Rght 1 Pinky Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "Close Hand Right 1 Thumb" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "Open Hand Right 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "Close Hand Right 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "Close Hand Right 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "Close Hand Right 1 Pinky Finger" },
       ],
     },
   ]
