@@ -14,7 +14,7 @@
       "Channel": 9,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 105, "MaxPositionStop": 140,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },
@@ -26,7 +26,7 @@
       "Channel": 10,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 105, "MaxPositionStop": 140,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },
@@ -38,7 +38,7 @@
       "Channel": 11,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 105, "MaxPositionStop": 140,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },
@@ -50,7 +50,7 @@
       "Channel": 12,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 105, "MaxPositionStop": 140,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },
@@ -62,7 +62,7 @@
       "Channel": 13,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 105, "MaxPositionStop": 140,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },
@@ -74,7 +74,7 @@
       "Channel": 14,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 50, "TargetPosition": 90, "MaxPositionStop": 120,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 70, "MaxPositionStop": 180,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },

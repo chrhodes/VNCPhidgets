@@ -59,7 +59,7 @@
       "Description": "Center Pinky Finger",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 70 },
+        { "TargetPosition": 90 },
       ]
     },
     //
