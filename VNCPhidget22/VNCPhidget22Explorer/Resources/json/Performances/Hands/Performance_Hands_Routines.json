@@ -24,8 +24,8 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-       { "Name": "Engage and Center Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Engage and Center Hand Right 1", "SerialNumber": 624728 },
+       { "Name": "Engage Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Engage Hand Right 1", "SerialNumber": 624728 },
       ],
     },
     //
