@@ -13,7 +13,7 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "RCServoType": 1, "MinPositionStop": 110, "TargetPosition": 135, "MaxPositionStop": 160,
-          "Acceleration": 250, "VelocityLimit": 50 },
+          "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
     { 
@@ -23,7 +23,7 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110,
-          "Acceleration": 250, "VelocityLimit": 50 },
+          "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
     { 
@@ -33,7 +33,7 @@
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "RCServoType": 1, "MinPositionStop": 5, "TargetPosition": 80, "MaxPositionStop": 155,
-          "Acceleration": 250, "VelocityLimit": 50 },
+          "Acceleration": 100, "VelocityLimit": 50 },
       ]
     },
     // TODO(crhodes)

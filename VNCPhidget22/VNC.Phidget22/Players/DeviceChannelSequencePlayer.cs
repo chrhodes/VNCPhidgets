@@ -294,32 +294,40 @@ namespace VNC.Phidget22.Players
 
         private DigitalOutputSequence? RetrieveDigitalOutputSequence(DeviceChannelSequence deviceChannelSequence)
         {
+            // NOTE(crhodes)
+            // CA1854.  Use TryGetValue to avoid duplicate lookups
+
             if (PerformanceLibrary.AvailableDigitalOutputSequences.TryGetValue(deviceChannelSequence.Name, out DigitalOutputSequence? retrievedSequence))
             {
                 if (LogDeviceChannelSequence) Log.TRACE($"Retrieved digitalOutputSequence:>{retrievedSequence.Name}<" +
                     $" hubPort:>{retrievedSequence.HubPort}<" +
                     $" channel:>{retrievedSequence.Channel}<" +
-                    $" for dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
+                    $" for dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
+                    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                DigitalOutputSequence updatedSequence = new DigitalOutputSequence(retrievedSequence);
+                // NOTE(crhodes)
+                // Create a new sequence so we do not modify the one in the dictionary.
+
+                DigitalOutputSequence configuredSequence = new DigitalOutputSequence(retrievedSequence);
+
                 // NOTE(crhodes)
                 // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
                 // Useful during initialization of common Channels on a Phidget Device
 
                 if (deviceChannelSequence.HubPort is not null)
                 {
-                    updatedSequence.HubPort = deviceChannelSequence.HubPort;
+                    configuredSequence.HubPort = deviceChannelSequence.HubPort;
                 }
 
                 if (deviceChannelSequence.Channel is not null)
                 {
-                    updatedSequence.Channel = deviceChannelSequence.Channel;                  
+                    configuredSequence.Channel = deviceChannelSequence.Channel;                  
                 }
 
-                if (LogDeviceChannelSequence) Log.TRACE($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
-                    $" on digitalOutputSequence:>{updatedSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
+                if (LogDeviceChannelSequence) Log.TRACE($"Set hubPort:>{configuredSequence.HubPort}< channel:>{configuredSequence.Channel}<" +
+                    $" on digitalOutputSequence:>{configuredSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
 
-                return updatedSequence;
+                return configuredSequence;
             }
             else
             {
@@ -342,6 +350,9 @@ namespace VNC.Phidget22.Players
                 // TODO(crhodes)
                 // This is likely where to handle sequence without a name
 
+                // HACK(crhodes)
+                // Maybe we have to lock from here down to past GetRCServoHost
+
                 if (deviceChannelSequence.Name is not null)
                 {
                     rcServoSequence = RetrieveRCServoSequence(deviceChannelSequence);
@@ -353,7 +364,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.TRACE($"Enter ({rcServoSequence?.Name})" +
+                    startTicks = Log.TRACE($"ExecuteRCServoChannelSequence ({rcServoSequence?.Name})" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" dcsHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
@@ -454,14 +465,21 @@ namespace VNC.Phidget22.Players
 
             // NOTE(crhodes)
             // CA1854.  Use TryGetValue to avoid duplicate lookups
+
             if (PerformanceLibrary.AvailableRCServoSequences.TryGetValue(deviceChannelSequence.Name, out RCServoSequence ? retrievedSequence))
             {
                 if (LogDeviceChannelSequence) startTicks = Log.TRACE1($"Retrieved rcServoSequence:>{retrievedSequence.Name}<" +
                     $" hubPort:>{retrievedSequence.HubPort}<" +
                     $" channel:>{retrievedSequence.Channel}<" +
+                    $" for dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, retrievedSequence);
+                // NOTE(crhodes)
+                // Create a new sequence so we do not modify the one in the dictionary.
+
+                RCServoSequence configuredRCServoSequence = new RCServoSequence(retrievedSequence);
+
+                return (RCServoSequence)ApplyDeviceChannelSequenceOverrides(deviceChannelSequence, configuredRCServoSequence);
             }
             else
             {
@@ -489,7 +507,7 @@ namespace VNC.Phidget22.Players
                 channelSequence.Channel = deviceChannelSequence.Channel;
             }
 
-            if (LogDeviceChannelSequence) Log.TRACE1($"Configured channelSequence:>{channelSequence.Name}<" +
+            if (LogDeviceChannelSequence) Log.TRACE1($"ApplyDeviceChannelSequenceOverrides channelSequence:>{channelSequence.Name}<" +
                 $" dcsHubPort:>{deviceChannelSequence.HubPort}> hubPort:>{channelSequence.HubPort}<" +
                 $" dcsHChannel:>{deviceChannelSequence.Channel}> channel:>{channelSequence.Channel}<" +
                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
@@ -592,6 +610,9 @@ namespace VNC.Phidget22.Players
 
         private StepperSequence? RetrieveStepperSequence(DeviceChannelSequence deviceChannelSequence)
         {
+            // NOTE(crhodes)
+            // CA1854.  Use TryGetValue to avoid duplicate lookups
+
             if (PerformanceLibrary.AvailableStepperSequences.TryGetValue(deviceChannelSequence.Name, out StepperSequence? retrievedSequence))
             {
                 if (LogDeviceChannelSequence) Log.TRACE($"Retrieved stepperSequence:>{retrievedSequence.Name}<" +
@@ -599,7 +620,10 @@ namespace VNC.Phidget22.Players
                     $" channel:>{retrievedSequence.Channel}<" +
                     $"", Common.LOG_CATEGORY);
 
-                StepperSequence updatedSequence = new StepperSequence(retrievedSequence);
+                // NOTE(crhodes)
+                // Create a new sequence so we do not modify the one in the dictionary.
+
+                StepperSequence configuredSequence = new StepperSequence(retrievedSequence);
 
                 // NOTE(crhodes)
                 // This allows reuse of a ChannelSequence that only varies by HubPort or Channel
@@ -607,18 +631,18 @@ namespace VNC.Phidget22.Players
 
                 if (deviceChannelSequence.HubPort is not null)
                 {
-                    updatedSequence.HubPort = deviceChannelSequence.HubPort;
+                    configuredSequence.HubPort = deviceChannelSequence.HubPort;
                 }
 
                 if (deviceChannelSequence.Channel is not null)
                 {
-                    updatedSequence.Channel = deviceChannelSequence.Channel;
+                    configuredSequence.Channel = deviceChannelSequence.Channel;
                 }
 
-                if (LogDeviceChannelSequence) Log.TRACE($"Set hubPort:>{updatedSequence.HubPort}< channel:>{updatedSequence.Channel}<" +
-                    $" on stepperSequence:>{updatedSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
+                if (LogDeviceChannelSequence) Log.TRACE($"Set hubPort:>{configuredSequence.HubPort}< channel:>{configuredSequence.Channel}<" +
+                    $" on stepperSequence:>{configuredSequence.Name}< serialNumber:>{deviceChannelSequence.SerialNumber}<", Common.LOG_CATEGORY);
 
-                return updatedSequence;
+                return configuredSequence;
             }
             else
             {

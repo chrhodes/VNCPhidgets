@@ -58,13 +58,13 @@ namespace VNC.Phidget22.Configuration.Performance
 
         /// <summary>
         /// HubPort on Phidget Device.
-        /// If null, must be overriden in DeviceChannelSequence
+        /// If null, must be overridden in DeviceChannelSequence
         /// </summary>
         public Int32? HubPort { get; set; } = null;
 
         /// <summary>
         /// Channel on Phidget Device.
-        /// If null, must be overriden in DeviceChannelSequence 
+        /// If null, must be overridden in DeviceChannelSequence 
         /// </summary>
         public Int32? Channel { get; set; } = null;
 

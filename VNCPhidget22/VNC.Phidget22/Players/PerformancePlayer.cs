@@ -311,7 +311,7 @@ namespace VNC.Phidget22.Players
 
             if (LogPerformance)
             {
-                startTicks = Log.TRACE($"Enter RunPerformanceLoops(:>{performance.Name}<)" +
+                startTicks = Log.TRACE($"Enter ExecutePerformance(:>{performance.Name}<)" +
                     $" description:>{performance.Description}<" +
                     $" playerSerialNumber:>{SerialNumber}<" +
                     $" serialNumber:>{performance.SerialNumber}<" +
@@ -428,7 +428,7 @@ namespace VNC.Phidget22.Players
                         {
                             PerformancePlayer performancePlayer = GetNewPerformancePlayer(perf.SerialNumber);
 
-                            if (LogPerformance) Log.TRACE($"Parallel RunPerformanceLoops(>{perf.Name}<)" +
+                            if (LogPerformance) Log.TRACE($"Parallel ExecutePerformance(>{perf.Name}<)" +
                                 $" serialNumber:>{perf.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" performanceLoop:>{performanceLoop + 1}<" +
@@ -447,7 +447,7 @@ namespace VNC.Phidget22.Players
 
                             SerialNumber = perf.SerialNumber;
 
-                            if (LogPerformance) Log.TRACE($"Sequential RunPerformanceLoops(>{perf.Name}<)" +
+                            if (LogPerformance) Log.TRACE($"Sequential ExecutePerformance(>{perf.Name}<)" +
                                 $" serialNumber:>{perf.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" performanceLoop:>{performanceLoop + 1}<" +
@@ -519,6 +519,9 @@ namespace VNC.Phidget22.Players
                     $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
                     $" duration:>{retrievedPerfrormance.Duration}<" +
                     $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+
+                // NOTE(crhodes)
+                // Create a new performance so we do not modify the one in the dictionary.
 
                 Performance configuredPerformance = new Performance(retrievedPerfrormance);
 
