@@ -3,36 +3,6 @@
   "Description": "Performances Skull Routines",
   "Performances": [
     //
-    // Initialize All Skulls
-    //
-    {
-      "Name": "Initialize All Skulls",
-      "Description": "Initialize All Skulls",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
-       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
-       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
-       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },
-      ],
-    },
-    //
-    // Wake up All Skulls
-    //
-    {
-      "Name": "Wake up All Skulls",
-      "Description": "Engage and Center All Skulls",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
-       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
-       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },
-      ],
-    },
-    //
     // Center All Skulls
     //
     {
@@ -59,36 +29,6 @@
        { "Name": "Sleep Skull 2", "SerialNumber": 169501 },
        { "Name": "Sleep Skull 3", "SerialNumber": 99220 },
       ],
-    },
-    //
-    // Main Performance
-    //
-    {
-      "Name": "Main Show",
-      "Description": "Play everything we have",
-      "UsageNotes": "",
-      "Loops": 1,
-      //"BeforePerformanceLoopPerformances": [
-      //  { "Name": "" },
-      //],
-      // Use this if calling DeviceChannelSequences
-      //"ExecuteDeviceChannelSequencesInParallel": false,
-      //"DeviceChannelSequences": [
-      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
-      //],
-      // Use this if calling Performances
-      //"ExecutePerformancesInParallel": false,
-      "Performances": [
-        { "Name": "All Skulls Yes, No, Maybe, Sigh, and Laugh", "Duration": 2000 },
-        { "Name": "Move All Skulls on Axes", "Duration": 2000 },
-        { "Name": "Sounds on Left and Right", "Duration": 2000 },
-        { "Name": "Rock Out", "Duration": 2000 }
-      ],
-      //"AfterPerformanceLoopPerformances": [
-      //  { "Name": "" },
-      //],
-      //"Duration": 0
-      //"NextPerformance": { "Name": "" }
     },
     //
     // All Skulls Yes, No, Maybe, Sigh, and Laugh

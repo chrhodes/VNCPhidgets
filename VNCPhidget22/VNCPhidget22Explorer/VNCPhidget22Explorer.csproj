@@ -38,6 +38,17 @@
   </PropertyGroup>
     
   <ItemGroup>
+    <Compile Remove="Resources\json\Performances\Hands\Hand Left\**" />
+    <Compile Remove="Resources\json\Performances\Hands\Hand Right\**" />
+    <EmbeddedResource Remove="Resources\json\Performances\Hands\Hand Left\**" />
+    <EmbeddedResource Remove="Resources\json\Performances\Hands\Hand Right\**" />
+    <None Remove="Resources\json\Performances\Hands\Hand Left\**" />
+    <None Remove="Resources\json\Performances\Hands\Hand Right\**" />
+    <Page Remove="Resources\json\Performances\Hands\Hand Left\**" />
+    <Page Remove="Resources\json\Performances\Hands\Hand Right\**" />
+  </ItemGroup>
+    
+  <ItemGroup>
     <PackageReference Include="CalcBinding" Version="2.5.2" />
     <PackageReference Include="DevExpress.Wpf.Core" Version="24.1.3" />
     <PackageReference Include="DevExpress.Wpf.Core.Extensions" Version="24.1.3" />
@@ -203,6 +214,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\Hands\Performance_Hands_Routines.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Performance_Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Performance_MainShow.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\Skulls\Device\Performance_169501_Skull_012.json">
@@ -457,11 +474,6 @@
     <None Update="vncloggingconfig.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-    
-  <ItemGroup>
-    <Folder Include="Resources\json\Performances\Hands\Hand Left\" />
-    <Folder Include="Resources\json\Performances\Hands\Hand Right\" />
   </ItemGroup>
 
     <!--This updates the file version to the current date.-->

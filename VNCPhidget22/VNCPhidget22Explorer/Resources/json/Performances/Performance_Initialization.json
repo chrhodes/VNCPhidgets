@@ -1,0 +1,62 @@
+{
+  "Name": "Performance_Hands_Routines",
+  "Description": "Performances Hands Routines",
+  "Performances": [
+    //
+    // Initialize All Skulls
+    //
+    {
+      "Name": "Initialize All Skulls",
+      "Description": "Initialize All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
+       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
+       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
+       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
+       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },
+      ],
+    },
+    //
+    // Wake up All Skulls
+    //
+    {
+      "Name": "Wake up All Skulls",
+      "Description": "Engage and Center All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
+       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
+       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // Initialize All Hands
+    //
+    {
+      "Name": "Initialize All Hands",
+      "Description": "Initialize All Hands",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Initialize Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Initialize Hand Right 1", "SerialNumber": 624728 },
+      ],
+    },
+    //
+    // Wake up All Hands
+    //
+    {
+      "Name": "Wake up All Hands",
+      "Description": "Engage and Center All Hands",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Engage Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Engage Hand Right 1", "SerialNumber": 624728 },
+      ],
+    },
+  ]
+}

@@ -868,49 +868,42 @@ namespace VNC.Phidget22.Configuration
                 // Top Level Routines
                 // These go first to get on top of dropdown
 
-                @"Performances\Hands\Performance_Hands_Initialize.json",
+                @"Performances\Performance_Initialization.json",
+                @"Performances\Performance_MainShow.json",
+
+                // Performances\Skulls\
+
+                @"Performances\Skulls\Performance_Skulls_Routines.json",
+
+                // Performances\Hands\
+
                 @"Performances\Hands\Performance_Hands_Routines.json",
+
+                // These are the base routines used in the above Routines.
+                // They typically require a SerialNumber override
+
+                @"Performances\Skulls\Performance_Skulls_Initialize.json",
+
+                @"Performances\Skulls\Performance_Skulls_Consulting.json",
+                @"Performances\Skulls\Performance_Skulls_MoveAll.json",
+                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",
+
+                @"Performances\Hands\Performance_Hands_Initialize.json",
 
                 @"Performances\Hands\Performance_Hands_Gestures.json",
                 @"Performances\Hands\Performance_Hands_Move.json",
+                @"Performances\Hands\Performance_Hands_MovementCharacteristics_All.json",
                 @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
 
                 @"Performances\Performance_Test.json",
 
-                @"Performances\Performance_Test AS Replacement.json",
+                @"Performances\Performance_Test AS Replacement.json",             
 
-                @"Performances\Skulls\Performance_Skulls_Routines.json",
-                @"Performances\Skulls\Performance_Skulls_Consulting.json",
-                @"Performances\Skulls\Performance_Skulls_MoveAll.json",
-                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",             
+                @"Performances\Performance_Movement Studies.json", 
 
-                @"Performances\Performance_Movement Studies.json",
-
-                // Performances\Hands\
-
-                //@"Performances\Hands\Performance_Hands_Initialize.json",
-
-                //@"Performances\Hands\Performance_Hands_Move.json",
-
-                //@"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
-                @"Performances\Hands\Performance_Hands_MovementCharacteristics_All.json",
-
-                // Performances\Skulls\         
-
-                @"Performances\Skulls\Performance_Skulls_Initialize.json",
-
-                //@"Performances\Skulls\Performance_Skulls_Consulting.json",
-                //@"Performances\Skulls\Performance_Skulls_MoveAll.json",
                 @"Performances\Skulls\Performance_Skulls_MoveAllAxes.json",
                 @"Performances\Skulls\Performance_Skulls_MovementCharacteristics.json",
                 @"Performances\Skulls\Performance_Skulls_MoveAngles.json",
-                //@"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",
-
-                // Performances\Skulls\Device\
-
-                @"Performances\Skulls\Device\Performance_99220_Skull_012.json",
-                @"Performances\Skulls\Device\Performance_99220_Skull_456.json",
-                @"Performances\Skulls\Device\Performance_169501_Skull_012.json",
 
                 // Performances\Skulls\Skull\
 
@@ -923,6 +916,12 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json",
                 @"Performances\Skulls\Skull\Performance_Skull_456_UpDown.json",
                 @"Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybe.json",
+
+                // Performances\Skulls\Device\
+
+                @"Performances\Skulls\Device\Performance_99220_Skull_012.json",
+                @"Performances\Skulls\Device\Performance_99220_Skull_456.json",
+                @"Performances\Skulls\Device\Performance_169501_Skull_012.json",
 
                 // Performances\DigitalOutput\
 

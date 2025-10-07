@@ -1,33 +1,7 @@
 {
   "Name": "Performance_Hands_Routines",
   "Description": "Performances Hands Routines",
-  "Performances": [
-    //
-    // Initialize All Hands
-    //
-    {
-      "Name": "Initialize All Hands",
-      "Description": "Initialize All Hands",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Initialize Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Initialize Hand Right 1", "SerialNumber": 624728 },
-      ],
-    },
-    //
-    // Wake up All Hands
-    //
-    {
-      "Name": "Wake up All Hands",
-      "Description": "Engage and Center All Hands",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-       { "Name": "Engage Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Engage Hand Right 1", "SerialNumber": 624728 },
-      ],
-    },
+  "Performances": [   
     //
     // Center All Hands
     //
@@ -145,102 +119,7 @@
        { "Name": "Attention Hand Right 1", "SerialNumber": 624728 },
       ],
     },
-    //
-    // Hand Demo
-    //
-    {
-      "Name": "Hand Demo",
-      "Description": "Hand Demo",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-       //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       { "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-
-       { "Name": "Close All Hands", "SerialNumber": 624728 },
-       { "Name": "Open All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728 },
-       { "Name": "ILY All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728 },
-       { "Name": "Attention All Hands", "SerialNumber": 624728 },
-
-       { "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728 },
-
-       //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       { "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-
-       { "Name": "Open All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "ILY All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "Attention All Hands", "SerialNumber": 624728 },
-
-       { "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728 },
-
-       { "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-
-       { "Name": "Count 1 Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 1 Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Count 2A Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 2B Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Count 3A Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 3B Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Count 4 Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 4 Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Count 5 Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 5 Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Count 1 Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 2A Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 3A Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 4 Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 5 Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Count 1 Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 2B Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 3B Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 4 Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Count 5 Hand Right 1", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
-
-       { "Name": "ILY All Hands", "SerialNumber": 624728 },
-
-       //{ "Name": "Thumbs Up Hand Left 1", "SerialNumber": 624728 },
-       //{ "Name": "Thumbs Up Hand Right 1", "SerialNumber": 624728 },
-      ],
-    },
+    
     
     //
     // Open and Close Hands - Movement Characteristics
@@ -279,13 +158,13 @@
        //{ "Name": "Open Hand Right 1", "SerialNumber": 624728 },
        //{ "Name": "Close Hand Right 1", "SerialNumber": 624728 },
 
-       //{ "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-       //{ "Name": "Open Hand Left 1", "SerialNumber": 624728 },
-       //{ "Name": "Close Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
+       { "Name": "Open Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Close Hand Left 1", "SerialNumber": 624728 },
 
-       //{ "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-       //{ "Name": "Open Hand Right 1", "SerialNumber": 624728 },
-       //{ "Name": "Close Hand Right 1", "SerialNumber": 624728 },
+       { "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
+       { "Name": "Open Hand Right 1", "SerialNumber": 624728 },
+       { "Name": "Close Hand Right 1", "SerialNumber": 624728 },
 
        { "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
        { "Name": "Open Hand Left 1", "SerialNumber": 624728 },
@@ -313,23 +192,23 @@
 
        //
        // Now in Parallel
-        //
+       //
 
-       { "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Open Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
+       //{ "Name": "Open Hand Left 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
 
-       { "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Open Hand Right 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
+       //{ "Name": "Open Hand Right 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
 
-       { "Name": "Hand Left 1 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 624728 },
-       { "Name": "Open Hand Left 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Hand Left 1 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 624728 },
+       //{ "Name": "Open Hand Left 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Close Hand Left 1 Parallel", "SerialNumber": 624728 },
 
-       { "Name": "Hand Right 1 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 624728 },
-       { "Name": "Open Hand Right 1 Parallel", "SerialNumber": 624728 },
-       { "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Hand Right 1 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 624728 },
+       //{ "Name": "Open Hand Right 1 Parallel", "SerialNumber": 624728 },
+       //{ "Name": "Close Hand Right 1 Parallel", "SerialNumber": 624728 },
 
        { "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
        { "Name": "Open Hand Left 1 Parallel", "SerialNumber": 624728 },
