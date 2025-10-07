@@ -107,7 +107,7 @@ namespace VNC.Phidget22.Players
             {
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.TRACE($"Enter ExecuteDeviceChannelSequence:(>{deviceChannelSequence.Name}<)" +
+                    startTicks = Log.TRACE($"Enter (>{deviceChannelSequence.Name}<)" +
                         $" channelClass:>{deviceChannelSequence.ChannelClass}<" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
@@ -212,7 +212,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.TRACE($"Executing DigitalOutput Channel Sequence:>{digitalOutputSequence?.Name}<" +
+                    startTicks = Log.TRACE($"Enter ({digitalOutputSequence?.Name})" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" serialNumber:>{deviceChannelSequence.SerialNumber}<" +
                         $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{digitalOutputSequence?.HubPort}<" +
@@ -353,7 +353,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.TRACE($"Executing RCServo Channel Sequence:>{rcServoSequence?.Name}<" +
+                    startTicks = Log.TRACE($"Enter ({rcServoSequence?.Name})" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence?.SerialNumber}<" +
                         $" dcsHubPort:>{deviceChannelSequence?.HubPort}< hubPort:>{rcServoSequence?.HubPort}<" +
@@ -373,7 +373,7 @@ namespace VNC.Phidget22.Players
 
                 if (rcServoSequence is null)
                 {
-                    Log.ERROR($"Failed to Retrive/Create RCServoSequence, Aborting", Common.LOG_CATEGORY);
+                    Log.ERROR($"Failed to Retrieve/Create RCServoSequence, Aborting", Common.LOG_CATEGORY);
 
                     return null;
                 }
@@ -511,7 +511,7 @@ namespace VNC.Phidget22.Players
 
                 if (LogDeviceChannelSequence)
                 {
-                    startTicks = Log.TRACE($"Executing Stepper Channel Sequence:>{stepperSequence?.Name}<" +
+                    startTicks = Log.TRACE($"Enter ({stepperSequence?.Name})" +
                         $" playerSerialNumber:>{SerialNumber}<" +
                         $" serialNumber:>{deviceChannelSequence.SerialNumber}<" +
                         $" deviceHubPort:>{deviceChannelSequence.HubPort}< hubPort:>{stepperSequence?.HubPort}<" +

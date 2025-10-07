@@ -13,16 +13,6 @@
       ],
     },
     {
-      "Name": "Skull-012 Sigh",
-      "Description": "Skull-012 Sigh",
-      "UsageNotes": "Must use SerialNumber Override",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Sigh" },  // Channel 0 - X Axis  
-      ],
-    },
-    {
       "Name": "Skull-012 Big Yes",
       "Description": "Skull-012 Big Yes",
       "UsageNotes": "Must use SerialNumber Override",
@@ -50,6 +40,26 @@
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Skull Big No" },  // Channel 2 - Z Axis  
+      ],
+    },
+    {
+      "Name": "Skull-012 Maybe",
+      "Description": "Skull-012 Maybe",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Skull Maybe" },  // Channel 1 - Y Axis    
+      ],
+    },
+    {
+      "Name": "Skull-012 Sigh",
+      "Description": "Skull-012 Sigh",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Skull Sigh" },  // Channel 0 - X Axis  
       ],
     },
     {

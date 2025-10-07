@@ -2,30 +2,43 @@
   "Name": "Performance_Skull_99220_456",
   "Description": "Performances Skull Routines",
   "Performances": [
-      {
-      "Name": "Skull 99220 456 Hard Left - Named Action",
-      "Description": "",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "SerialNumber": 99220,  "HubPort": 0, "Channel": 6, "Name": "Move Relative -20" },   
-      ],
-    },
+    //These need to move to test routines somewhere, likely 99415
+    //  {
+    //  "Name": "Skull 99220 456 Hard Left - Named Action",
+    //  "Description": "",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "ExecuteDeviceChannelSequencesInParallel": false,
+    //  "DeviceChannelSequences": [
+    //   { "ChannelClass": "RCServo", "SerialNumber": 99220,  "HubPort": 0, "Channel": 6, "Name": "Move Relative -75" },   
+    //  ],
+    //},
+    //{
+    //  "Name": "Skull 99220 456 Hard Left - Inline Actions HubPort Channel override",
+    //  "Description": "",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "ExecuteDeviceChannelSequencesInParallel": false,
+    //  "DeviceChannelSequences": [
+    //   { "SerialNumber": 99220, "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6,
+    //     "RCServoSequence": { "Actions": [ { "RelativePosition": -75 }, ] },
+    //   },   
+    //  ],
+    //},
+    //{
+    //  "Name": "Skull 99220 456 Hard Left - Inline Actions",
+    //  "Description": "",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "ExecuteDeviceChannelSequencesInParallel": false,
+    //  "DeviceChannelSequences": [
+    //   { "SerialNumber": 99220, "ChannelClass": "RCServo",
+    //     "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "RelativePosition": -75 }, ] },
+    //   },   
+    //  ],
+    //},
     {
-      "Name": "Skull 99220 456 Hard Left - Inline Actions HubPort Channel override",
-      "Description": "",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6,
-         "RCServoSequence": { "Actions": [ { "RelativePosition": -75 }, ] },
-       },   
-      ],
-    },
-    {
-      "Name": "Skull 99220 456 Hard Left - Inline Actions",
+      "Name": "Skull 99220 456 Hard Left",
       "Description": "",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,

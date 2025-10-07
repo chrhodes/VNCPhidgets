@@ -79,9 +79,10 @@
       // Use this if calling Performances
       //"ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "All Skulls Yes and Laugh and No", "Duration": 0 },
-       { "Name": "Move All Skulls on Axes", "Duration": 0 },
-       { "Name": "Sounds on Left and Right", "SerialNumber": 0, "Duration": 0 }
+        { "Name": "All Skulls Yes, No, Maybe, Sigh, and Laugh", "Duration": 2000 },
+        { "Name": "Move All Skulls on Axes", "Duration": 2000 },
+        { "Name": "Sounds on Left and Right", "Duration": 2000 },
+        { "Name": "Rock Out", "Duration": 2000 }
       ],
       //"AfterPerformanceLoopPerformances": [
       //  { "Name": "" },
@@ -90,27 +91,32 @@
       //"NextPerformance": { "Name": "" }
     },
     //
-    // All Skulls Yes and Laugh and No
+    // All Skulls Yes, No, Maybe, Sigh, and Laugh
     //
     {
-      "Name": "All Skulls Yes and Laugh and No",
-      "Description": "All Skulls Yes and Laugh and No",
+      "Name": "All Skulls Yes, No, Maybe, Sigh, and Laugh",
+      "Description": "All Skulls Yes, No, Maybe, Sigh, and Laugh",
       "Loops": 1, "ExecutePerformancesInParallel": false,
       "Performances": [
        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
        { "Name": "All Skulls Yes", "Duration": 1002 },
        { "Name": "All Skulls Big Yes", "Duration": 1000 },
-       { "Name": "All Skulls Laugh", "Duration": 1000 },
-       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
        { "Name": "All Skulls No", "Duration": 1000 },
        { "Name": "All Skulls Big No", "Duration": 1000 },
+       { "Name": "All Skulls Maybe", "Duration": 1000 },
+       { "Name": "All Skulls Sigh", "Duration": 1000 },
+       { "Name": "All Skulls Laugh", "Duration": 1000 },
+       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
+
        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "All Skulls Yes", "Duration": 1000 },
+       { "Name": "All Skulls Yes", "Duration": 1002 },
        { "Name": "All Skulls Big Yes", "Duration": 1000 },
-       { "Name": "All Skulls Laugh", "Duration": 1000 },
-       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
        { "Name": "All Skulls No", "Duration": 1000 },
        { "Name": "All Skulls Big No", "Duration": 1000 },
+       { "Name": "All Skulls Maybe", "Duration": 1000 },
+       { "Name": "All Skulls Sigh", "Duration": 1000 },
+       { "Name": "All Skulls Laugh", "Duration": 1000 },
+       { "Name": "All Skulls Big Laugh", "Duration": 1000 },
       ],
     },
     //
@@ -161,6 +167,34 @@
        { "Name": "Skull-012 Big No", "SerialNumber": 99220 },
        { "Name": "Skull-012 Big No", "SerialNumber": 169501 },
        { "Name": "Skull-456 Big No", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // All Skulls Maybe
+    //
+    {
+      "Name": "All Skulls Maybe",
+      "Description": "All Skulls Maybe",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Maybe", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Maybe", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Maybe", "SerialNumber": 99220 },
+      ],
+    },
+    //
+    // All Skulls Sigh
+    //
+    {
+      "Name": "All Skulls Sigh",
+      "Description": "All Skulls Sigh",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+       { "Name": "Skull-012 Sigh", "SerialNumber": 169501 },
+       { "Name": "Skull-456 Sigh", "SerialNumber": 99220 },
       ],
     },
     //
@@ -635,20 +669,22 @@
     //
     // Move All Skulls - Test Inline
     //
-    {
-      "Name": "Move All Skulls - Test InlLine",
-      "Description": "",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-       { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
-       { "Name": "Skull 99220 456 Hard Right"  },
-       { "Name": "Center All Skulls"  },
-       { "Name": "Skull 99220 456 Hard Left - Inline Actions HubPort Channel override"  },
-       { "Name": "Center All Skulls"  },
-       { "Name": "Skull 99220 456 Hard Left - Inline Actions"  },
-       { "Name": "Center All Skulls"  },
-      ],
-    },
+    //This needs to move to test routines and decouple from skulls.
+    //  Skulls should use best practices and be consistent across skulls.
+    //{
+    //  "Name": "Move All Skulls - Test InlLine",
+    //  "Description": "",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "Performances": [
+    //   { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+    //   { "Name": "Skull 99220 456 Hard Right"  },
+    //   { "Name": "Center All Skulls"  },
+    //   { "Name": "Skull 99220 456 Hard Left - Inline Actions HubPort Channel override"  },
+    //   { "Name": "Center All Skulls"  },
+    //   { "Name": "Skull 99220 456 Hard Left - Inline Actions"  },
+    //   { "Name": "Center All Skulls"  },
+    //  ],
+    //},
   ]
 }
