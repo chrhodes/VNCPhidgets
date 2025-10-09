@@ -871,6 +871,7 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Performance_Initialization.json",
                 @"Performances\Performance_MainShow.json",
 
+
                 // Performances\Skulls\
 
                 @"Performances\Skulls\Performance_Skulls_Routines.json",
@@ -878,6 +879,8 @@ namespace VNC.Phidget22.Configuration
                 // Performances\Hands\
 
                 @"Performances\Hands\Performance_Hands_Routines.json",
+
+                @"Performances\RCServo\Performance_RCServos_Music.json",
 
                 // These are the base routines used in the above Routines.
                 // They typically require a SerialNumber override

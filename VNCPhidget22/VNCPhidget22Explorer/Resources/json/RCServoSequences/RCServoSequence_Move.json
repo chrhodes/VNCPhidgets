@@ -44,6 +44,37 @@
       ]
     },
     { 
+      "Name": "Move Servo MinStop to MaxStop", 
+      "Description": "Move Servo MinStop to MaxStop", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "TargetPosition": -11 }, // MinStop
+        { "TargetPosition": -12 }, // MaxStop
+      ]
+    },
+    { 
+      "Name": "Move Servo MaxStop to MinStop", 
+      "Description": "Move Servo MaxStop to MinStop", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "TargetPosition": -12 }, // MaxStop
+        { "TargetPosition": -11 }, // MinStop
+      ]
+    },
+    { 
+      "Name": "Move Servo MinStop to MaxStop to Center", 
+      "Description": "Move Servo MinStop to MaxStop", 
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "TargetPosition": -11 }, // MinStop
+        { "TargetPosition": -12 }, // MaxStop
+        { "TargetPosition": -13 }, // CenterStop
+      ]
+    },
+    { 
       "Name": "Move Left/Right in 30 unit steps",
       "Description": "", 
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",

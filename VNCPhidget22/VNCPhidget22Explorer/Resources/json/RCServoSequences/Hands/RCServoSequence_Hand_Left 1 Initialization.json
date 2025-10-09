@@ -1,6 +1,4 @@
 // RCServoSequence_Hand_Left 1 Initialize
-// TODO(crhodes)
-// Need to set specific values for each axis
 {
   "RCServoSequences": [
     //
@@ -74,7 +72,7 @@
       "Channel": 6,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 0, "TargetPosition": 110, "MaxPositionStop": 120,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 20, "TargetPosition": 110, "MaxPositionStop": 150,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },

@@ -74,7 +74,7 @@
       "Channel": 14,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 60, "TargetPosition": 70, "MaxPositionStop": 180,
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 30, "TargetPosition": 70, "MaxPositionStop": 150,
           "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },

@@ -119,8 +119,99 @@
        { "Name": "Attention Hand Right 1", "SerialNumber": 624728 },
       ],
     },
-    
-    
+    //
+    // Count All Hands
+    //
+    {
+      "Name": "Count All Hands",
+      "Description": "Count All Hands",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Count 1 to 5 A", "SerialNumber": 624728 },
+       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
+       { "Name": "Count 1 to 5 B", "SerialNumber": 624728 },
+       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
+      ],
+    },
+    //
+    // Count 1 to 5 A
+    //
+    {
+      "Name": "Count 1 to 5 A",
+      "Description": "Count 1 to 5 A",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Count 1to5 A Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Count 1to5 A Hand Right 1", "SerialNumber": 624728 },
+      ],
+    },
+    //
+    // Count 1 to 5 B
+    //
+    {
+      "Name": "Count 1 to 5 B",
+      "Description": "Count 1 to 5 B",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+       { "Name": "Count 1to5 B Hand Left 1", "SerialNumber": 624728 },
+       { "Name": "Count 1to5 B Hand Right 1", "SerialNumber": 624728 },
+      ],
+    },
+    {
+      "Name": "Count 1to5 A Hand Right 1",
+      "Description": "Count 1to5 Hand Right 1",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+         { "Name": "Count 1 Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 2A Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 3A Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 4 Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 5 Hand Right 1", "SerialNumber": 624728 },
+       ]
+    },
+    {
+      "Name": "Count 1to5 B Hand Right 1",
+      "Description": "Count 1to5 Hand Right 1",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+         { "Name": "Count 1 Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 2B Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 3B Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 4 Hand Right 1", "SerialNumber": 624728 },
+         { "Name": "Count 5 Hand Right 1", "SerialNumber": 624728 },
+       ]
+    },
+    {
+      "Name": "Count 1to5 A Hand Left 1",
+      "Description": "Count 1to5 Hand Left 1",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+         { "Name": "Count 1 Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 2A Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 3A Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 4 Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 5 Hand Left 1", "SerialNumber": 624728 },
+       ]
+    },
+    {
+      "Name": "Count 1to5 B Hand Left 1",
+      "Description": "Count 1to5 Hand Left 1",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+         { "Name": "Count 1 Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 2B Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 3B Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 4 Hand Left 1", "SerialNumber": 624728 },
+         { "Name": "Count 5 Hand Left 1", "SerialNumber": 624728 },
+       ]
+    },
     //
     // Open and Close Hands - Movement Characteristics
     //
