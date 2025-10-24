@@ -1,0 +1,35 @@
+// RCServoSequence_Xylophone Initialization
+{
+  "RCServoSequences": [
+    //
+    // Initialize Xylophone
+    //
+    { 
+      "Name": "Initialize Xylophone Arm", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      //"HubPort": 0, 
+      "Channel": 1,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true, "RCServoType": 1,
+          "Acceleration": 200, "VelocityLimit": 100 },
+      ]
+    },
+    { 
+      "Name": "Initialize Xylophone Mallet", 
+      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      //"HubPort": 0, 
+      "Channel": 2,
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Open": true, "RCServoType": 2, 
+          "MinPositionStop": 78, "TargetPosition": 85, "MaxPositionStop": 92,
+          "SpeedRampingState": false
+          //"Acceleration": 200, "VelocityLimit": 100
+        },
+      ]
+    },   
+  ]
+}

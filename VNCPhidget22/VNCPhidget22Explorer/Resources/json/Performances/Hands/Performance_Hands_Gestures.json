@@ -3,6 +3,35 @@
   "Description": "Performances to Move Hands",
   "Performances": [
     //
+    // Flex Hands
+    //
+    {
+      "Name": "Flex Hand Left 1",
+      "Description": "Come Here Hand Left 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Flex Hand Left 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Flex Hand Left 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Flex Hand Left 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Flex Hand Left 1 Pinky Finger" },
+      ],
+    },
+    {
+      "Name": "Flex Hand Right 1",
+      "Description": "Come Here Hand Right 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "Flex Hand Right 1 Index Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "Flex Hand Right 1 Middle Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "Flex Hand Right 1 Ring Finger" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "Flex Hand Right 1 Pinky Finger" },
+      ],
+    },
+    //
     // ILY Hands
     //
     {

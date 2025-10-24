@@ -3,6 +3,93 @@
 // Need to set specific values for each axis
 {
   "RCServoSequences": [
+
+    //
+    // Open Hand Right 1
+    //
+    { 
+      "Name": "Open Hand Right 1 Thumb", 
+      "Description": "Open Thumb",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Index Finger", 
+      "Description": "Open Index Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Middle Finger", 
+      "Description": "Open Middle Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Ring Finger", 
+      "Description": "Open Ring Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Open Hand Right 1 Pinky Finger", 
+      "Description": "Open Pinky Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    //
+    // Flex Hand Right 1
+    //
+    { 
+      "Name": "Flex Hand Right 1 Thumb", 
+      "Description": "Flex Thumb",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Flex Hand Right 1 Index Finger", 
+      "Description": "Flex Index Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Flex Hand Right 1 Middle Finger", 
+      "Description": "Flex Middle Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Flex Hand Right 1 Ring Finger", 
+      "Description": "Flex Ring Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Flex Hand Right 1 Pinky Finger", 
+      "Description": "Flex Pinky Finger",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
     //
     // Center Hand Right 1
     //
@@ -60,49 +147,6 @@
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": 90 },
-      ]
-    },
-    //
-    // Open Hand Right 1
-    //
-    { 
-      "Name": "Open Hand Right 1 Thumb", 
-      "Description": "Open Thumb",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -11 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Right 1 Index Finger", 
-      "Description": "Open Index Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -12 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Right 1 Middle Finger", 
-      "Description": "Open Middle Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -12 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Right 1 Ring Finger", 
-      "Description": "Open Ring Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -12 },
-      ]
-    },
-    { 
-      "Name": "Open Hand Right 1 Pinky Finger", 
-      "Description": "Open Pinky Finger",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "Actions": [
-        { "TargetPosition": -12 },
       ]
     },
     //

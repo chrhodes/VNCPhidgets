@@ -23,6 +23,7 @@
       "Performances": [
         { "Name": "Skull Main Show" },
         { "Name": "Hand Main Show" },
+        { "Name": "Play All Notes"  },
       ],
       //"AfterPerformanceLoopPerformances": [
       //  { "Name": "" },

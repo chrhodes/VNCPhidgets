@@ -871,6 +871,9 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Performance_Initialization.json",
                 @"Performances\Performance_MainShow.json",
 
+                // Performances\Music\
+
+                @"Performances\Music\Performance_Xylophone.json",
 
                 // Performances\Skulls\
 
@@ -879,8 +882,6 @@ namespace VNC.Phidget22.Configuration
                 // Performances\Hands\
 
                 @"Performances\Hands\Performance_Hands_Routines.json",
-
-                @"Performances\RCServo\Performance_RCServos_Music.json",
 
                 // These are the base routines used in the above Routines.
                 // They typically require a SerialNumber override
@@ -1021,7 +1022,11 @@ namespace VNC.Phidget22.Configuration
                 @"RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json",
                 @"RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json",
                 @"RCServoSequences\Skulls\RCServoSequence_Skull Move.json",
-            };
+
+                // RCServoSequences\Music\
+
+                @"RCServoSequences\Music\RCServoSequence_Xylophone Initialization.json",
+            };                     
 
             return files;
         }

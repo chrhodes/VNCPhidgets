@@ -24,7 +24,7 @@ namespace VNC.Phidget22.Configuration
         public string? UsageNotes { get; set; }
 
         /// <summary>
-        /// SerialNumber of PhidgetDevice that will run sequencee
+        /// SerialNumber of PhidgetDevice that will run sequence
         /// </summary>
         public Int32? SerialNumber { get; set; }
 

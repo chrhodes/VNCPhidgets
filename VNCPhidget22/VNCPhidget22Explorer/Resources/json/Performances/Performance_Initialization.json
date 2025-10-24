@@ -58,5 +58,31 @@
        { "Name": "Engage Hand Right 1", "SerialNumber": 624728 },
       ],
     },
+    //
+    // Initialize Xylophone
+    //
+    {
+      "Name": "Initialize Xylophone",
+      "Description": "Initialize Xylophone",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Initialize Xylophone Arm" },
+       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Initialize Xylophone Mallet" }
+      ]
+    },
+    //
+    // Enable Xylophone
+    //
+    {
+      "Name": "Enable Xylophone",
+      "Description": "Enable Xylophone",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Engage Servo" },
+       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Engage Servo" }
+      ]
+    },
   ]
 }
