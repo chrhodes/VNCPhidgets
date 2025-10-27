@@ -1,9 +1,8 @@
 // RCServoSequence_Hand_Right 1 Move
-// TODO(crhodes)
-// Need to set specific values for each axis
+// Contains
+//  
 {
   "RCServoSequences": [
-
     //
     // Open Hand Right 1
     //
@@ -90,6 +89,38 @@
         { "TargetPosition": -12 },
       ]
     },
+    { 
+      "Name": "Flex Wrist Hand Right 1", 
+      "Description": "Flex Wrist Hand Right 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Extend Wrist Hand Right 1", 
+      "Description": "Extend Wrist Hand Right 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Pronate Forearm Hand Right 1", 
+      "Description": "Pronate Forearm Hand Right 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Supanate Forearm Hand Right 1", 
+      "Description": "Supanate Forearm Hand Right 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 }
+      ]
+    },
     //
     // Center Hand Right 1
     //
@@ -134,19 +165,19 @@
       ]
     },
     { 
-      "Name": "Center Hand Right 1 Wrist", 
-      "Description": "Center Wrist",
+      "Name": "Center Wrist Hand Right 1", 
+      "Description": "Center Wrist Hand Right 1",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 90 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
-      "Name": "Center Hand Right 1 Forearm", 
-      "Description": "Center Pinky Finger",
+      "Name": "Center Forearm Hand Right 1", 
+      "Description": "Center Forearm Hand Right 1",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 90 },
+        { "TargetPosition": -13 },
       ]
     },
     //

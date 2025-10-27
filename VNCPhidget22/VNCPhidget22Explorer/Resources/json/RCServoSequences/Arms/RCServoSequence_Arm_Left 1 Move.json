@@ -1,0 +1,53 @@
+// RCServoSequence_Arm_Left 1 Move
+{
+  "RCServoSequences": [
+    { 
+      "Name": "Flex Arm Left 1 Wrist", 
+      "Description": "Flex Arm Left 1 Wrist",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Center Arm Left 1 Wrist", 
+      "Description": "Center Arm Left 1 Wrist",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -13 },
+      ]
+    },
+    { 
+      "Name": "Extend Arm Left 1 Wrist", 
+      "Description": "Extend Arm Left 1 Wrist",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Pronate Arm Left 1 Forearm", 
+      "Description": "Pronate Arm Left 1 Forearm",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Center Arm Left 1 Forearm", 
+      "Description": "Center Arm Left 1 Forearm",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -13 },
+      ]
+    },
+    { 
+      "Name": "Supanate Arm Left 1 Forearm", 
+      "Description": "Supanate Arm Left 1 Forearm",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 }
+      ]
+    },
+  ]
+}

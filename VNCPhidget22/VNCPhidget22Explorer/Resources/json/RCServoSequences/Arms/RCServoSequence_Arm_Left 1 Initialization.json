@@ -1,35 +1,29 @@
-// RCServoSequence_Xylophone Initialization
+// RCServoSequence_Arm_Left 1 Initialize
 {
   "RCServoSequences": [
-    //
-    // Initialize Xylophone
-    //
     { 
-      "Name": "Initialize Xylophone Arm", 
+      "Name": "Initialize Arm Left 1 Wrist", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
-      "Channel": 1,
+      "Channel": 6,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1,
-          "Acceleration": 100, "VelocityLimit": 50 },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 20, "TargetPosition": 110, "MaxPositionStop": 150,
+          "Acceleration": 200, "VelocityLimit": 100 },
       ]
     },
     { 
-      "Name": "Initialize Xylophone Mallet", 
+      "Name": "Initialize Arm Left 1 Forearm", 
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
-      "Channel": 2,
+      "Channel": 7,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 2, 
-          "MinPositionStop": 80, "TargetPosition": 85, "MaxPositionStop": 94,
-          "SpeedRampingState": false
-          //"Acceleration": 200, "VelocityLimit": 100
-        },
+        { "Open": true, "RCServoType": 1, "MinPositionStop": 0, "TargetPosition": 90, "MaxPositionStop": 180,
+          "Acceleration": 200, "VelocityLimit": 100 },
       ]
-    },   
+    },
   ]
 }

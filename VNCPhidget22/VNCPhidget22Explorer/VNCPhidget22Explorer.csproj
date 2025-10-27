@@ -7,7 +7,7 @@
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix>indevelopment-2025</VersionSuffix>
-    <FileVersion>2025.10.24</FileVersion>
+    <FileVersion>2025.10.27</FileVersion>
     <Description>Phidget22 Explorer</Description>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
@@ -172,6 +172,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\DigitalOutputSequences\DigitalOutputSequence_OpenClose.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\Performances\Arms\Performance_Arms_Routines.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\Performances\Hands\Performance_Hand Lefts_Consulting.json">
@@ -373,6 +376,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\RCServoSequences\AdvancedServoSequence_Skulls.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Move.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Initialization.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\json\RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Move.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Resources\json\RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Move.json">

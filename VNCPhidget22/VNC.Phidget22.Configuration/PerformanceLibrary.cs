@@ -879,6 +879,10 @@ namespace VNC.Phidget22.Configuration
 
                 @"Performances\Skulls\Performance_Skulls_Routines.json",
 
+                // Performances\Arms\
+
+                @"Performances\Arms\Performance_Arms_Routines.json",
+
                 // Performances\Hands\
 
                 @"Performances\Hands\Performance_Hands_Routines.json",
@@ -1008,6 +1012,13 @@ namespace VNC.Phidget22.Configuration
                 @"RCServoSequences\RCServoSequence_Move.json",
                 @"RCServoSequences\RCServoSequence_MovementCharacteristics.json",
                 @"RCServoSequences\RCServoSequence_OpenClose.json",
+
+                // Arms
+
+                @"RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Initialization.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Initialization.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Move.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Move.json",
 
                 // Hands
 

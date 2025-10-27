@@ -89,6 +89,38 @@
         { "TargetPosition": -11 },
       ]
     },
+    { 
+      "Name": "Flex Wrist Hand Left 1", 
+      "Description": "Flex Wrist Hand Left 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Extend Wrist Hand Left 1", 
+      "Description": "Extend Wrist Hand Left 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    { 
+      "Name": "Pronate Forearm Hand Left 1", 
+      "Description": "Pronate Forearm Hand Left 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
+    { 
+      "Name": "Supanate Forearm Hand Left 1", 
+      "Description": "Supanate Forearm Hand Left 1",
+      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "Actions": [
+        { "TargetPosition": -12 }
+      ]
+    },
     //
     // Center Hand Left 1
     //
@@ -133,19 +165,19 @@
       ]
     },
     { 
-      "Name": "Center Hand Left 1 Wrist", 
-      "Description": "Center Wrist",
+      "Name": "Center Wrist Hand Left 1", 
+      "Description": "Center Wrist  Hand Left 1",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 90 },
+        { "TargetPosition": -13 },
       ]
     },
     { 
-      "Name": "Center Hand Left 1 Forearm", 
-      "Description": "Center Pinky Finger",
+      "Name": "Center Forearm Hand Left 1", 
+      "Description": "Center Forearm Hand Left 1",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "TargetPosition": 90 },
+        { "TargetPosition": -13 },
       ]
     },
     //

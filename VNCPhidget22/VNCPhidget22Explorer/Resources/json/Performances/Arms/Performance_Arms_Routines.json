@@ -1,0 +1,131 @@
+// Performance_Arms_Routines.json
+// Contains
+//
+//  Extend Wrists
+//  Center Wrists
+//  Flex Wrists
+
+//  Pronate Forearms
+//  Center Forearms
+//  Supanate Forearms
+{
+  "Name": "Performance_Arms_Routines",
+  "Description": "Performances Arms Routines",
+  "Performances": [
+    //
+    // Extend Wrists
+    //
+    {
+      "Name": "Extend Wrists All Arms",
+      "Description": "Extend Wrists All Arms",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 6,
+          "Name": "Extend Arm Left 1 Wrist",
+        },
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 14,
+          "Name": "Extend Arm Right 1 Wrist",
+        },
+      ],
+    },
+    //
+    // Center Wrists
+    //
+    {
+      "Name": "Center Wrists All Arms",
+      "Description": "Center Wrists All Arms",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 6,
+          "Name": "Center Arm Left 1 Wrist",
+        },
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 14,
+          "Name": "Center Arm Right 1 Wrist",
+        },
+      ],
+    },
+    //
+    // Flex Wrists
+    //
+    {
+      "Name": "Flex Wrists All Arms",
+      "Description": "Flex Wrists All Arms",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 6,
+          "Name": "Flex Arm Left 1 Wrist",
+        },
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 14,
+          "Name": "Flex Arm Right 1 Wrist",
+        },
+      ],
+    },
+    //
+    // Pronate Forearms
+    //
+    {
+      "Name": "Pronate Forearms All Arms",
+      "Description": "Pronate Forearms All Arms",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 7,
+          "Name": "Pronate Arm Left 1 Forearm",
+        },
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 15,
+          "Name": "Pronate Arm Right 1 Forearm",
+        },
+      ],
+    },
+    //
+    // Center Forearms
+    //
+    {
+      "Name": "Center Forearms All Arms",
+      "Description": "Center Forearms All Arms",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 7,
+          "Name": "Center Arm Left 1 Forearm",
+          
+        },
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 15,
+          "Name": "Center Arm Right 1 Forearm",
+        },
+      ],
+    },
+    //
+    // Supanate Forearms
+    //
+    {
+      "Name": "Supanate Forearms All Arms",
+      "Description": "Supanate Forearms All Arms",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 7,
+          "Name": "Supanate Arm Left 1 Forearm",
+        },
+        {
+          "ChannelClass": "RCServo", "SerialNumber": 624728, "HubPort": 0, "Channel": 15,
+          "Name": "Supanate Arm Right 1 Forearm",
+        },
+      ],
+    },
+  ]
+}
