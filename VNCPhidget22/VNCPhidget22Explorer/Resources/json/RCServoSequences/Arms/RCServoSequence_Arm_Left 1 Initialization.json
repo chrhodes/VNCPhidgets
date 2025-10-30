@@ -1,4 +1,6 @@
-// RCServoSequence_Arm_Left 1 Initialize
+// RCServoSequence_Arm_Left 1 Initialization
+// TODO(crhodes)
+// Need to set specific values for each axis
 {
   "RCServoSequences": [
     { 
@@ -6,7 +8,7 @@
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
-      "Channel": 6,
+      //"Channel": 6,
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "RCServoType": 1, "MinPositionStop": 20, "TargetPosition": 110, "MaxPositionStop": 150,
@@ -18,7 +20,7 @@
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
-      "Channel": 7,
+      //"Channel": 7,
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "Open": true, "RCServoType": 1, "MinPositionStop": 0, "TargetPosition": 90, "MaxPositionStop": 180,

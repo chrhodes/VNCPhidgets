@@ -32,6 +32,31 @@
       //"Duration": 0
       //"NextPerformance": { "Name": "" }
     },
+    {
+      "Name": "Arms and Hands Show",
+      "Description": "Arms and Hands Show",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Hands Main Show" },
+        { "Name": "Arms Main Show" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
     //
     // Skulls Main Show
     //
@@ -106,7 +131,7 @@
 
        { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
 
-       { "Name": "Center Wrists All Hands", "SerialNumber": 624728, "Duration": 1000 },
+       { "Name": "Center Wrists All Arms", "SerialNumber": 624728, "Duration": 1000 },
 
        //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
        //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },

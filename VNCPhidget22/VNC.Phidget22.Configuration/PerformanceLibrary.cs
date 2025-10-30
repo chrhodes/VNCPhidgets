@@ -868,7 +868,12 @@ namespace VNC.Phidget22.Configuration
                 // Top Level Routines
                 // These go first to get on top of dropdown
 
+                // This contains the Performance that initializes all devices
+
                 @"Performances\Performance_Initialization.json",
+
+                // This is the Main Show
+
                 @"Performances\Performance_MainShow.json",
 
                 // Performances\Music\
@@ -890,11 +895,23 @@ namespace VNC.Phidget22.Configuration
                 // These are the base routines used in the above Routines.
                 // They typically require a SerialNumber override
 
+                // Performances\Skulls\
+
                 @"Performances\Skulls\Performance_Skulls_Initialize.json",
 
                 @"Performances\Skulls\Performance_Skulls_Consulting.json",
                 @"Performances\Skulls\Performance_Skulls_MoveAll.json",
                 @"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",
+
+                @"Performances\Skulls\Performance_Skulls_MoveAllAxes.json",
+                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics.json",
+                @"Performances\Skulls\Performance_Skulls_MoveAngles.json",
+
+                // Performances\Arms\
+
+                @"Performances\Arms\Performance_Arms_Initialize.json",
+
+                // Performances\Hands\
 
                 @"Performances\Hands\Performance_Hands_Initialize.json",
 
@@ -903,15 +920,13 @@ namespace VNC.Phidget22.Configuration
                 @"Performances\Hands\Performance_Hands_MovementCharacteristics_All.json",
                 @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
 
+                // Performances\
+
                 @"Performances\Performance_Test.json",
 
                 @"Performances\Performance_Test AS Replacement.json",             
 
                 @"Performances\Performance_Movement Studies.json", 
-
-                @"Performances\Skulls\Performance_Skulls_MoveAllAxes.json",
-                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics.json",
-                @"Performances\Skulls\Performance_Skulls_MoveAngles.json",
 
                 // Performances\Skulls\Skull\
 

@@ -1,6 +1,6 @@
 {
-  "Name": "Performance_Hands_Routines",
-  "Description": "Performances Hands Routines",
+  "Name": "Performance_Initialization",
+  "Description": "Performances to Intialize Devices",
   "Performances": [
     //
     // Initialize All Skulls
@@ -14,8 +14,6 @@
        { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
        { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
        { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
-       //{ "Name": "Initialize Skull 2", "SerialNumber": 99415 },
-       //{ "Name": "Initialize Skull 3", "SerialNumber": 99415 },
       ],
     },
     //
@@ -56,6 +54,32 @@
       "Performances": [
        { "Name": "Engage Hand Left 1", "SerialNumber": 624728 },
        { "Name": "Engage Hand Right 1", "SerialNumber": 624728 },
+      ],
+    },
+    //
+    // Initialize All Arms
+    //
+    {
+      "Name": "Initialize All Arms",
+      "Description": "Initialize All Arms",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Initialize Arm Left 1", "SerialNumber": 624728 },
+       { "Name": "Initialize Arm Right 1", "SerialNumber": 624728 },
+      ],
+    },
+    //
+    // Wake up All Arms
+    //
+    {
+      "Name": "Wake up All Arms",
+      "Description": "Engage and Center All Arms",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+       { "Name": "Engage Arm Left 1", "SerialNumber": 624728 },
+       { "Name": "Engage Arm Right 1", "SerialNumber": 624728 },
       ],
     },
     //

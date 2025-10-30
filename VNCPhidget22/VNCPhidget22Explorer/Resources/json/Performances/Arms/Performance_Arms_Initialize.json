@@ -1,0 +1,81 @@
+{
+  "Name": "Performance_Arms_Initialize",
+  "Description": "Performances to Initialize, WakeUp and Sleep Arms",
+  "Performances": [
+    //
+    // Initialize Arms
+    //
+    {
+      "Name": "Initialize Arm Left 1",
+      "Description": "Initialize Arm and Wrist Left 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Initialize Arm Left 1 Wrist" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Initialize Arm Left 1 Forearm" },
+      ],
+    },
+    {
+      "Name": "Initialize Arm Right 1",
+      "Description": "Initialize Arm and Wrist Right 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "Initialize Arm Right 1 Wrist" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "Initialize Arm Right 1 Forearm" },
+      ],
+    },
+    //
+    // Engage Arms
+    //
+    {
+      "Name": "Engage Arm Left 1",
+      "Description": "Engage Arm and Wrist Left 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Engage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Engage Servo" },
+      ],
+    },
+    {
+      "Name": "Engage Arm Right 1",
+      "Description": "Engage Arm and Wrist Right 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "Engage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "Engage Servo" },
+      ],
+    },
+    //
+    // Sleep Arms
+    //
+    {
+      "Name": "Sleep Arm Left 1",
+      "Description": "Sleep Arm Left 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Disengage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Disengage Servo" },
+      ],
+    },
+    {
+      "Name": "Sleep Arm Right 1",
+      "Description": "Sleep Arm Right 1",
+      "UsageNotes": "Must use SerialNumber Override",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "Disengage Servo" },
+       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "Disengage Servo" },
+      ],
+    },
+  ]
+}
