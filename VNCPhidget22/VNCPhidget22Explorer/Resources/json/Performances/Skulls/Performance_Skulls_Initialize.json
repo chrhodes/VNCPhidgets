@@ -1,3 +1,17 @@
+// Performance_Skulls_Initialize.json
+// Contains
+//  Initialize Skull 1
+//  Initialize Skull 2
+//  Initialize Skull 3
+//  Engage and Center Skull 1
+//  Engage and Center Skull 2
+//  Engage and Center Skull 3
+//  Center Skull 1
+//  Center Skull 2
+//  Center Skull 3
+//  Sleep Skull 1
+//  Sleep Skull 2
+//  Sleep Skull 3
 {
   "Name": "Performance_InitializeSkulls",
   "Description": "Performances to Initialize, WakeUp and Sleep Skulls",

@@ -1,15 +1,30 @@
+// Performance_Skull_456_YesNoMaybeSighLaugh.json
+// Contains
+//  Skull-456 Yes
+//  Skull-456 Big Yes
+//  Skull-456 No
+//  Skull-456 Big No
+//  Skull-456 Maybe
+//  Skull-456 Sigh
+//  Skull-456 Laugh
+//  Skull-456 Big Laugh
 {
   "Name": "Performance_Skull_456_YesNoMaybe",
   "Description": "Performances Move Skulls",
   "Performances": [
-     {
+    {
       "Name": "Skull-456 Yes",
       "Description": "Skull-456 Yes",
       "UsageNotes": "Must use SerialNumber Override",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Yes" },  // Channel 4 - X Axis  
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Skull Yes"
+        }, // Channel 4 - X Axis  
       ],
     },
     {
@@ -19,7 +34,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Big Yes" },  // Channel 4 - X Axis    
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Skull Big Yes"
+        }, // Channel 4 - X Axis    
       ],
     },
     {
@@ -29,7 +49,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Skull No" },  // Channel 6 - Z Axis   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "Skull No"
+        }, // Channel 6 - Z Axis   
       ],
     },
     {
@@ -39,7 +64,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Skull Big No" },  // Channel 6 - Z Axis    
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "Skull Big No"
+        }, // Channel 6 - Z Axis    
       ],
     },
     {
@@ -49,7 +79,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Skull Maybe" },  // Channel 5 - Y Axis    
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "Skull Maybe"
+        }, // Channel 5 - Y Axis    
       ],
     },
     {
@@ -59,7 +94,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Sigh" },  // Channel 4 - X Axis  
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Skull Sigh"
+        }, // Channel 4 - X Axis  
       ],
     },
     {
@@ -69,7 +109,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Laugh" },  // Channel 4 - X Axis   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Skull Laugh"
+        }, // Channel 4 - X Axis   
       ],
     },
     {
@@ -79,7 +124,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Big Laugh" },  // Channel 4 - X Axis  
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Skull Big Laugh"
+        }, // Channel 4 - X Axis  
       ],
     },
   ]

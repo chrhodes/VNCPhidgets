@@ -1,3 +1,13 @@
+// Performance_Initialization.json
+// Contains
+//  Test replace AS Test A Engage and Center Servos and Call Sequences
+//  Initialize Servos 0123 4567
+//  Initialize Servos 0123 4567 Use Channel
+//  RCServos 99415 - Parallel Sequences 04 15 26 37
+//  RCServos 99415 - Parallel Sequences 04
+//  RCServos 99415 - Parallel Sequences 15
+//  RCServos 99415 - Parallel Sequences 26
+//  RCServos 99415 - Parallel Sequences 37
 {
   "Name": "Performance_Test AS Replacement",
   "Description": "Testing",

@@ -1,3 +1,13 @@
+// Performance_Skull_456_UpDown.json
+// Contains
+//  Skull-456 Look Down 20
+//  Skull-456 Look Down 15
+//  Skull-456 Look Down 10
+//  Skull-456 Look Down 5
+//  Skull-456 Look Up 5
+//  Skull-456 Look Up 10
+//  Skull-456 Look Up 15
+//  Skull-456 Look Up 20
 {
   "Name": "Performance_Skull_456_UpDown",
   "Description": "Performances Move Skulls",
@@ -12,7 +22,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative -20"
+        }, // Look Down(-)/Up(+)   
       ],
     },
     {
@@ -22,7 +37,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -15" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative -15"
+        }, // Look Down(-)/Up(+)   
       ],
     },
     {
@@ -32,7 +52,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -10" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative -10"
+        }, // Look Down(-)/Up(+)   
       ],
     },
     {
@@ -42,7 +67,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -5" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative -5"
+        }, // Look Down(-)/Up(+)   
       ],
     },
     //
@@ -55,7 +85,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 5" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative 5"
+        }, // Look Down(-)/Up(+)   
       ],
     },
     {
@@ -65,9 +100,14 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 10" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative 10"
+        }, // Look Down(-)/Up(+)   
       ],
-    },    
+    },
     {
       "Name": "Skull-456 Look Up 15",
       "Description": "Skull Look Up",
@@ -75,7 +115,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 15" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative 15"
+        }, // Look Down(-)/Up(+)   
       ],
     },
     {
@@ -85,9 +130,14 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },  // Look Down(-)/Up(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "Move Relative 20"
+        }, // Look Down(-)/Up(+)   
       ],
     },
-    
+
   ]
 }

@@ -1,3 +1,10 @@
+// Performance_Initialization.json
+// Contains
+//  Main Show
+//  Arms and Hands Show
+//  Skulls Main Show
+//  Hands Main Show
+//  Arms Main Show
 {
   "Name": "Performance_Move_Routines",
   "Description": "Performances Skull Routines",
@@ -76,10 +83,22 @@
       // Use this if calling Performances
       //"ExecutePerformancesInParallel": false,
       "Performances": [
-        { "Name": "All Skulls Yes, No, Maybe, Sigh, and Laugh", "Duration": 2000 },
-        { "Name": "Move All Skulls on Axes", "Duration": 2000 },
-        { "Name": "Sounds on Left and Right", "Duration": 2000 },
-        { "Name": "Rock Out", "Duration": 2000 }
+        {
+          "Name": "All Skulls Yes, No, Maybe, Sigh, and Laugh",
+          "Duration": 2000
+        },
+        {
+          "Name": "Move All Skulls on Axes",
+          "Duration": 2000
+        },
+        {
+          "Name": "Sounds on Left and Right",
+          "Duration": 2000
+        },
+        {
+          "Name": "Rock Out",
+          "Duration": 2000
+        }
       ],
       //"AfterPerformanceLoopPerformances": [
       //  { "Name": "" },
@@ -96,69 +115,176 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       { "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
+        //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
+        //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
+        {
+          "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 624728
+        },
 
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
+        {
+          "Name": "Open All Hands Parallel",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
+        {
+          "Name": "Open All Hands",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
+        {
+          "Name": "Open All Hands",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Reverse",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
+        {
+          "Name": "Open All Hands Reverse",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Reverse",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
+        {
+          "Name": "Open All Hands Reverse",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
+        {
+          "Name": "ILY All Hands",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Open All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "ILY All Hands Parallel",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Open All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728, "Duration": 1000},
+        {
+          "Name": "Attention All Hands",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Open All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Reverse", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Center Wrists All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Open All Hands Reverse", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Reverse", "SerialNumber": 624728, "Duration": 1000 },
+        //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
+        //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
+        {
+          "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Open All Hands Parallel",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "ILY All Hands",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Attention All Hands",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728
+        },
 
-       { "Name": "Open All Hands Reverse", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728, "Duration": 1000 },
+        //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
+        //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
 
-       { "Name": "ILY All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Count All Hands",
+          "SerialNumber": 624728
+        },
 
-       { "Name": "ILY All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 624728
+        },
 
-       { "Name": "Attention All Hands", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Close All Hands Parallel",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
+        {
+          "Name": "ILY All Hands",
+          "SerialNumber": 624728
+        },
 
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
-
-       { "Name": "Center Wrists All Arms", "SerialNumber": 624728, "Duration": 1000 },
-
-       //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       { "Name": "Hand Left 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 624728 },
-
-       { "Name": "Open All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "ILY All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
-       { "Name": "Attention All Hands", "SerialNumber": 624728 },
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728 },
-
-       //{ "Name": "Hand Left 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-       //{ "Name": "Hand Right 1 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 624728 },
-
-       { "Name": "Count All Hands", "SerialNumber": 624728 },
-
-       { "Name": "Hand Left 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-       { "Name": "Hand Right 1 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 624728 },
-
-       { "Name": "Close All Hands Parallel", "SerialNumber": 624728, "Duration": 1000 },
-
-       { "Name": "ILY All Hands", "SerialNumber": 624728 },
-
-       //{ "Name": "Thumbs Up Hand Left 1", "SerialNumber": 624728 },
-       //{ "Name": "Thumbs Up Hand Right 1", "SerialNumber": 624728 },
+        //{ "Name": "Thumbs Up Hand Left 1", "SerialNumber": 624728 },
+        //{ "Name": "Thumbs Up Hand Right 1", "SerialNumber": 624728 },
       ],
     },
     //
@@ -170,19 +296,49 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Center Wrists All Arms", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Center Wrists All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Flex Wrists All Arms", "SerialNumber": 624728 },
-       { "Name": "Extend Wrists All Arms", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Flex Wrists All Arms",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Extend Wrists All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Center Wrists All Arms", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Center Wrists All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Center Forearms All Arms", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Center Forearms All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Pronate Forearms All Arms", "SerialNumber": 624728},
-       { "Name": "Supanate Forearms All Arms", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Pronate Forearms All Arms",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Supanate Forearms All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
 
-       { "Name": "Center Forearms All Arms", "SerialNumber": 624728, "Duration": 1000 },
+        {
+          "Name": "Center Forearms All Arms",
+          "SerialNumber": 624728,
+          "Duration": 1000
+        },
       ],
     },
   ]

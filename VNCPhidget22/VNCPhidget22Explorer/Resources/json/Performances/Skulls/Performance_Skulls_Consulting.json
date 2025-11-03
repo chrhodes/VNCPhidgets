@@ -1,3 +1,15 @@
+// Performance_Skulls_Consulting.json
+// Contains
+//  Consulting Skulls Say Yes
+//  Consulting Skulls Say No
+//  Skull 99220 012 and Skull 169501 012 Consult and Say Yes
+//  Skull 99220-012 and Skull 169501-012 Say Yes
+//  Skull 99220 456 and Skull 169501 012 Consult and Say Yes
+//  Skull 99220-456 and Skull 169501-012 Say Yes
+//  Skull 99220 012 and Skull 169501 012 Consult and Say No
+//  Skull 99220-456 and Skull 169501-012 Say No
+//  Skull 99220 456 and Skull 169501 012 Consult and Say No
+//  Skull 99220-012 and Skull 169501-012 Say No
 {
   "Name": "Performance_Skulls_Consulting",
   "Description": "Skulls Consulting Routines",
@@ -8,12 +20,15 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Center All Skulls"},
-       { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
-       { "Name": "Center All Skulls", "Duration": 1000},
-       { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes"   },
-       { "Name": "Center All Skulls"},
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Center All Skulls" },
+        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
+        {
+          "Name": "Center All Skulls",
+          "Duration": 1000
+        },
+        { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes" },
+        { "Name": "Center All Skulls" },
       ],
     },
     {
@@ -22,12 +37,15 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)"},
-       { "Name": "Center All Skulls"},
-       { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say No" },
-       { "Name": "Center All Skulls", "Duration": 1000},
-       { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No" },
-       { "Name": "Center All Skulls"},
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Center All Skulls" },
+        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say No" },
+        {
+          "Name": "Center All Skulls",
+          "Duration": 1000
+        },
+        { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No" },
+        { "Name": "Center All Skulls" },
       ],
     },
     ///
@@ -40,11 +58,17 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501 }
+        {
+          "Name": "Skull-012 Look Right 10",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 Look Left 10",
+          "SerialNumber": 169501
+        }
       ],
       "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say Yes" }
-    }, 
+    },
     {
       "Name": "Skull 99220-012 and Skull 169501-012 Say Yes",
       "Description": "",
@@ -52,8 +76,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Skull-012 Yes", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
+        {
+          "Name": "Skull-012 Yes",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 Yes",
+          "SerialNumber": 169501
+        }
       ],
     },
     ///
@@ -66,8 +96,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501 },
+        {
+          "Name": "Skull-456 Look Left 10",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 Look Right 10",
+          "SerialNumber": 169501
+        },
       ],
       "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say Yes" }
     },
@@ -78,8 +114,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Yes", "SerialNumber": 169501 }
+        {
+          "Name": "Skull-456 Yes",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 Yes",
+          "SerialNumber": 169501
+        }
       ],
     },
     ///
@@ -92,8 +134,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Look Left 10", "SerialNumber": 169501 }
+        {
+          "Name": "Skull-012 Look Right 10",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 Look Left 10",
+          "SerialNumber": 169501
+        }
       ],
       "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say No" }
     },
@@ -104,8 +152,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Skull-456 No", "SerialNumber": 99220 },
-        { "Name": "Skull-012 No", "SerialNumber": 169501 }
+        {
+          "Name": "Skull-456 No",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 No",
+          "SerialNumber": 169501
+        }
       ],
     },
     {
@@ -115,8 +169,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Skull-456 Look Left 10", "SerialNumber": 99220 },
-        { "Name": "Skull-012 Look Right 10", "SerialNumber": 169501 },
+        {
+          "Name": "Skull-456 Look Left 10",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 Look Right 10",
+          "SerialNumber": 169501
+        },
       ],
       "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say No" }
     },
@@ -127,8 +187,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        { "Name": "Skull-012 No", "SerialNumber": 99220 },
-        { "Name": "Skull-012 No", "SerialNumber": 169501 }
+        {
+          "Name": "Skull-012 No",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Skull-012 No",
+          "SerialNumber": 169501
+        }
       ],
     },
   ]

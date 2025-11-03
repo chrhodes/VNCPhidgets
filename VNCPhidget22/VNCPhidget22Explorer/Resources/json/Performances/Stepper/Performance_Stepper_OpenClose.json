@@ -1,3 +1,7 @@
+// Performance_RFCServos_OpenClose.json
+// Contains
+//  Stepper 268213 - Open
+//  Stepper 268213 - Close
 {
   "Name": "Performance_Stepper_OpenClose",
   "Description": "Performances for Steppers",
@@ -11,7 +15,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open Stepper" },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Open Stepper"
+        },
       ],
       "NextPerformance": null
     },
@@ -22,7 +31,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Close Stepper" },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Close Stepper"
+        },
       ],
       "NextPerformance": null
     },

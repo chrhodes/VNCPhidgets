@@ -1,3 +1,12 @@
+// Performance_992220_Skull_456.json
+// Contains
+//  Skull 99220 456 Hard Left
+//  Skull 99220 456 Hard Right
+//  Skull 99220 456 MinPosition
+//  Skull 99220 456 MinPositionStop
+//  Skull 99220 456 MaxPosition
+//  Skull 99220 456 MaxPositionStop
+//
 {
   "Name": "Performance_Skull_99220_456",
   "Description": "Performances Skull Routines",
@@ -44,9 +53,15 @@
       "ExecutePerformancesInParallel": false,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo",
-         "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "RelativePosition": -75 }, ] },
-       },   
+        {
+          "SerialNumber": 99220,
+          "ChannelClass": "RCServo",
+          "RCServoSequence": {
+            "HubPort": 0,
+            "Channel": 6,
+            "Actions": [ { "RelativePosition": -75 }, ]
+          },
+        },
       ],
     },
     {
@@ -56,9 +71,15 @@
       "ExecutePerformancesInParallel": false,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo",
-         "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "RelativePosition": 75 }, ] },
-       },   
+        {
+          "SerialNumber": 99220,
+          "ChannelClass": "RCServo",
+          "RCServoSequence": {
+            "HubPort": 0,
+            "Channel": 6,
+            "Actions": [ { "RelativePosition": 75 }, ]
+          },
+        },
       ],
     },
     {
@@ -68,9 +89,15 @@
       "ExecutePerformancesInParallel": false,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo",
-         "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "TargetPosition": -1 }, ] },
-       },   
+        {
+          "SerialNumber": 99220,
+          "ChannelClass": "RCServo",
+          "RCServoSequence": {
+            "HubPort": 0,
+            "Channel": 6,
+            "Actions": [ { "TargetPosition": -1 }, ]
+          },
+        },
       ],
     },
     {
@@ -80,9 +107,33 @@
       "ExecutePerformancesInParallel": false,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo",
-         "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "TargetPosition": -11 }, ] },
-       },   
+        {
+          "SerialNumber": 99220,
+          "ChannelClass": "RCServo",
+          "RCServoSequence": {
+            "HubPort": 0,
+            "Channel": 6,
+            "Actions": [ { "TargetPosition": -11 }, ]
+          },
+        },
+      ],
+    },
+    {
+      "Name": "Skull 99220 456 MaxPosition",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "SerialNumber": 99220,
+          "ChannelClass": "RCServo",
+          "RCServoSequence": {
+            "HubPort": 0,
+            "Channel": 6,
+            "Actions": [ { "TargetPosition": -2 }, ]
+          },
+        },
       ],
     },
     {
@@ -92,21 +143,15 @@
       "ExecutePerformancesInParallel": false,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo",
-         "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "TargetPosition": -12 }, ] },
-       },   
-      ],
-    },  
-    {
-      "Name": "Skull 99220 456 MaxPosition",
-      "Description": "",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-       { "SerialNumber": 99220, "ChannelClass": "RCServo",
-         "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "TargetPosition": -2 }, ] },
-       },   
+        {
+          "SerialNumber": 99220,
+          "ChannelClass": "RCServo",
+          "RCServoSequence": {
+            "HubPort": 0,
+            "Channel": 6,
+            "Actions": [ { "TargetPosition": -12 }, ]
+          },
+        },
       ],
     },
   ]

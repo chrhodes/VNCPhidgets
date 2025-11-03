@@ -1,3 +1,21 @@
+// Performance_Skulls_MoveAngles.json
+// Contains
+//  Skull-012 Look Down Left - DCS Sequential
+//  Skull-012 Look Down Left - DCS Parallel
+//  Skull-456 Look Down Left - DCS Sequential
+//  Skull-456 Look Down Left - DCS Parallel
+//  Skull-012 Look Down Right - DCS Sequential
+//  Skull-012 Look Down Right - DCS Parallel
+//  Skull-456 Look Down Right - DCS Sequential
+//  Skull-456 Look Down Right - DCS Parallel
+//  Skull-012 Look Up Left - DCS Sequential
+//  Skull-012 Look Up Left - DCS Parallel
+//  Skull-456 Look Up Left - DCS Sequential
+//  Skull-456 Look Up Left - DCS Parallel
+//  Skull-012 Look Up Right - DCS Sequential
+//  Skull-012 Look Up Right - DCS Parallel
+//  Skull-456 Look Up Right - DCS Sequential
+//  Skull-456 Look Up Right - DCS Parallel
 {
   "Name": "Performance_Skulls_MoveAngles",
   "Description": "Performances Move Skulls Look Up/Down Left/Right",

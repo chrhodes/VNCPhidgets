@@ -2,7 +2,7 @@
 // Contains
 //  RCServos 99415 - VelocityLimit (100) Acceleration (200)
 //  RCServos 99415 - VelocityLimit (250) Acceleration (500)
-//  RCServos 99415 - VelocityLimit (500) Acceleration (1-00)
+//  RCServos 99415 - VelocityLimit (500) Acceleration (1000)
 //  RCServos 99415 - VelocityLimit (1000) Acceleration (2000)
 //  RCServos 99415 - VelocityLimit (2500) Acceleration (5000)
 //  RCServos 99415 - VelocityLimit (5000) Acceleration (10000)

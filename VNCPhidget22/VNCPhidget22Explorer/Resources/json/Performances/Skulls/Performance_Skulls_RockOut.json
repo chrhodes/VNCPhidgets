@@ -1,0 +1,312 @@
+// Performance_Skulls_RockOut.json
+// Contains
+//  Rock Out
+//  Rock Tilt Left/Right
+//  Rock Up/Down
+//  Rock Out 2
+//  Rock Out 3
+//  Rock Out 4
+//  All Tilt Right and Up/Down
+//  All Tilt Left and Up/Down
+//  All Up/Down
+//  All Tilt Left/Right
+//
+{
+  "Name": "Performance_Move_Routines",
+  "Description": "Performances Skull Routines",
+  "Performances": [
+    {
+      "Name": "Rock Out",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  jaddP
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // jaddDCS
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Rock Tilt Left/Right" },
+        { "Name": "Rock Up/Down" },
+        { "Name": "Rock Out 2" },
+        { "Name": "Rock Out 3" },
+        { "Name": "Rock Out 4" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  jaddP
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Tilt Left/Right",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Up/Down",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 10" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Out 2",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (250)" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+    {
+      "Name": "Rock Out 3",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Left and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+        { "Name": "All Tilt Right and Up/Down" },
+      ],
+    },
+    {
+      "Name": "Rock Out 4",
+      "Description": "",
+      "UsageNotes": "",
+      "PerformanceLoops": 10,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "All Tilt Left/Right" },
+        { "Name": "All Up/Down" },
+      ],
+    },
+    {
+      "Name": "All Tilt Right and Up/Down",
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "All Up/Down" }
+      ],
+    },
+    {
+      "Name": "All Tilt Left and Up/Down",
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "All Up/Down" }
+      ],
+    },
+    {
+      "Name": "All Up/Down",
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 5" },
+      ],
+    },
+    {
+      "Name": "All Tilt Left/Right",
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+      ],
+    },
+  ]
+}

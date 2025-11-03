@@ -891,6 +891,7 @@ namespace VNC.Phidget22.Configuration
                 // Performances\Hands\
 
                 @"Performances\Hands\Performance_Hands_Routines.json",
+                @"Performances\Hands\Performance_Hands_Count.json",
 
                 // These are the base routines used in the above Routines.
                 // They typically require a SerialNumber override
@@ -898,6 +899,9 @@ namespace VNC.Phidget22.Configuration
                 // Performances\Skulls\
 
                 @"Performances\Skulls\Performance_Skulls_Initialize.json",
+
+                @"Performances\Skulls\Performance_Skulls_Yes_No_Maybe_Sigh_Laugh.json",
+                @"Performances\Skulls\Performance_Skulls_RockOut.json",
 
                 @"Performances\Skulls\Performance_Skulls_Consulting.json",
                 @"Performances\Skulls\Performance_Skulls_MoveAll.json",

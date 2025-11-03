@@ -1,3 +1,13 @@
+// Performance_Skull_012_LeftRight.json
+// Contains
+//  Skull-012 Look Left 20
+//  Skull-012 Look Left 15
+//  Skull-012 Look Left 10
+//  Skull-012 Look Left 5
+//  Skull-012 Look Right 5
+//  Skull-012 Look Right 10
+//  Skull-012 Look Right 15
+//  Skull-012 Look Right 20
 {
   "Name": "Performance_Skull_012_LeftRight",
   "Description": "Performances Move Skulls",
@@ -12,7 +22,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -20" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative -20"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     {
@@ -22,7 +37,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -15" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative -15"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     {
@@ -32,7 +52,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -10" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative -10"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     {
@@ -42,7 +67,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -5" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative -5"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     //
@@ -55,7 +85,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 5" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative 5"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     {
@@ -65,7 +100,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 10" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative 10"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     {
@@ -75,7 +115,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 15" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative 15"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
     {
@@ -85,7 +130,12 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 20" },  // Rotate Left(-)/Right(+)   
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Relative 20"
+        }, // Rotate Left(-)/Right(+)   
       ],
     },
   ]

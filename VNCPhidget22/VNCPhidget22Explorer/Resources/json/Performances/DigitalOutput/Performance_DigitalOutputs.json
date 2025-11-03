@@ -1,3 +1,11 @@
+// Performance_DigitalOutputs.json
+// Contains
+//  DigitalOutput 124744 - Open
+//  DigitalOutput 124744 - Close
+//  DigitalOutput 124744 - Sequential Sequences 1
+//  DigitalOutput 124744 - Sequential Sequences 2
+//  DigitalOutput 124744 - Parallel Sequences
+//
 {
   "Name": "Performance_DigitalOutputs",
   "Description": "Performances for DigitalOutputs",
@@ -11,9 +19,24 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Open DigitalOutput" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Open DigitalOutput" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Open DigitalOutput" },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Open DigitalOutput"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Open DigitalOutput"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Open DigitalOutput"
+        },
       ],
       "NextPerformance": null
     },
@@ -24,9 +47,24 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Close DigitalOutput" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Close DigitalOutput" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Close DigitalOutput" },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Close DigitalOutput"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Close DigitalOutput"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Close DigitalOutput"
+        },
       ],
       "NextPerformance": null
     },
@@ -40,12 +78,42 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Blink DigitalOutput 500ms" },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Blink DigitalOutput 500ms"
+        },
       ],
       "NextPerformance": null
     },
@@ -59,11 +127,36 @@
       "Loops": 2,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Blink DigitalOutput 250ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 250ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Blink DigitalOutput 250ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 250ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Blink DigitalOutput 250ms" },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Blink DigitalOutput 250ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Blink DigitalOutput 250ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Blink DigitalOutput 250ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Blink DigitalOutput 250ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Blink DigitalOutput 250ms"
+        },
       ],
       "NextPerformance": null
     },
@@ -77,12 +170,27 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 0, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 1, "Name": "Blink DigitalOutput 500ms" },
-        { "ChannelClass": "DigitalOutput", "HubPort": 0, "Channel": 2, "Name": "Blink DigitalOutput 500ms" },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Blink DigitalOutput 500ms"
+        },
 
       ],
       "NextPerformance": null
-    },  
+    },
   ]
 }

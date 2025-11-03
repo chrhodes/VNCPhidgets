@@ -1,3 +1,9 @@
+// Performance_RFCServos_OpenClose.json
+// Contains
+//  Stepper Sequential Sequences
+//  Sequential Sequences Stepper 263213
+//  Sequential Sequences Stepper 263213 SerialNumber override
+//
 {
   "Name": "Performance_Steppers",
   "Description": "Performances for Steppers",
@@ -12,9 +18,24 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Initialize Stepper SA 3.75" },
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open and Engage Stepper" },
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Rotate +/- 90" },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Initialize Stepper SA 3.75"
+        },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Open and Engage Stepper"
+        },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Rotate +/- 90"
+        },
       ],
       "NextPerformance": null
     },
@@ -28,9 +49,27 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "Stepper", "SerialNumber": 268213, "HubPort": 0, "Channel": 0, "Name": "Initialize Stepper SA 3.75" },
-        { "ChannelClass": "Stepper", "SerialNumber": 268213, "HubPort": 0, "Channel": 0, "Name": "Open and Engage Stepper" },
-        { "ChannelClass": "Stepper", "SerialNumber": 268213, "HubPort": 0, "Channel": 0, "Name": "Rotate +/- 90" },
+        {
+          "ChannelClass": "Stepper",
+          "SerialNumber": 268213,
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Initialize Stepper SA 3.75"
+        },
+        {
+          "ChannelClass": "Stepper",
+          "SerialNumber": 268213,
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Open and Engage Stepper"
+        },
+        {
+          "ChannelClass": "Stepper",
+          "SerialNumber": 268213,
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Rotate +/- 90"
+        },
       ],
       "NextPerformance": null
     },
@@ -42,9 +81,24 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Initialize Stepper SA 3.75" },
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Open and Engage Stepper" },
-        { "ChannelClass": "Stepper", "HubPort": 0, "Channel": 0, "Name": "Rotate +/- 90" },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Initialize Stepper SA 3.75"
+        },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Open and Engage Stepper"
+        },
+        {
+          "ChannelClass": "Stepper",
+          "HubPort": 0,
+          "Channel": 0,
+          "Name": "Rotate +/- 90"
+        },
       ],
       "NextPerformance": null
     },

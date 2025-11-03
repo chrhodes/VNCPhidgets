@@ -1,3 +1,9 @@
+// Performance_Initialization.json
+// Contains
+//  Open Test Phidgets
+//  Test Before, After, and Next Performance Sequences
+//  Close Test Phidgets
+//  99415 - Test Open, Engage, Move, Close Sequences
 {
   "Name": "Performance_Test",
   "Description": "Testing all the different things a Performance supports",

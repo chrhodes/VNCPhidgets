@@ -1,3 +1,14 @@
+// Performance_Initialization.json
+// Contains
+//  Initialize All Skulls
+//  Wake up All Skulls
+//  Initialize All Hands
+//  Wake up All Hands
+//  Initialize All Arms
+//  Wake up All Arms
+//  Initialize Xylophone
+//  Enable Xylophone
+//
 {
   "Name": "Performance_Initialization",
   "Description": "Performances to Intialize Devices",
@@ -11,9 +22,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Initialize Skull 1", "SerialNumber": 99220 },
-       { "Name": "Initialize Skull 2", "SerialNumber": 169501 },
-       { "Name": "Initialize Skull 3", "SerialNumber": 99220 },
+        {
+          "Name": "Initialize Skull 1",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Initialize Skull 2",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Initialize Skull 3",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -25,9 +45,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-       { "Name": "Engage and Center Skull 1", "SerialNumber": 99220 },
-       { "Name": "Engage and Center Skull 2", "SerialNumber": 169501 },
-       { "Name": "Engage and Center Skull 3", "SerialNumber": 99220 },
+        {
+          "Name": "Engage and Center Skull 1",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Engage and Center Skull 2",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Engage and Center Skull 3",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -39,8 +68,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Initialize Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Initialize Hand Right 1", "SerialNumber": 624728 },
+        {
+          "Name": "Initialize Hand Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Initialize Hand Right 1",
+          "SerialNumber": 624728
+        },
       ],
     },
     //
@@ -52,8 +87,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Engage Hand Left 1", "SerialNumber": 624728 },
-       { "Name": "Engage Hand Right 1", "SerialNumber": 624728 },
+        {
+          "Name": "Engage Hand Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Engage Hand Right 1",
+          "SerialNumber": 624728
+        },
       ],
     },
     //
@@ -65,8 +106,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Initialize Arm Left 1", "SerialNumber": 624728 },
-       { "Name": "Initialize Arm Right 1", "SerialNumber": 624728 },
+        {
+          "Name": "Initialize Arm Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Initialize Arm Right 1",
+          "SerialNumber": 624728
+        },
       ],
     },
     //
@@ -78,8 +125,14 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Engage Arm Left 1", "SerialNumber": 624728 },
-       { "Name": "Engage Arm Right 1", "SerialNumber": 624728 },
+        {
+          "Name": "Engage Arm Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Engage Arm Right 1",
+          "SerialNumber": 624728
+        },
       ],
     },
     //
@@ -91,8 +144,20 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Initialize Xylophone Arm" },
-       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Initialize Xylophone Mallet" }
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Initialize Xylophone Arm"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Initialize Xylophone Mallet"
+        }
       ]
     },
     //
@@ -104,8 +169,20 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Engage Servo" },
-       { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Engage Servo" }
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Engage Servo"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Engage Servo"
+        }
       ]
     },
   ]
