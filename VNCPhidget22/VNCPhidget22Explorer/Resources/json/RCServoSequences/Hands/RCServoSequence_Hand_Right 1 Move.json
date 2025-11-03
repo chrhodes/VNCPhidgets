@@ -1,6 +1,31 @@
-// RCServoSequence_Hand_Right 1 Move
+// RCServoSequence_Hand_Right 1 Move.json
 // Contains
-//  
+//  Open Hand Right 1 Thumb
+//  Open Hand Right 1 Index Finger
+//  Open Hand Right 1 Middle Finger
+//  Open Hand Right 1 Ring Finger
+//  Open Hand Right 1 Pinky Finger
+//  Flex Hand Right 1 Thumb
+//  Flex Hand Right 1 Index Finger
+//  Flex Hand Right 1 Middle Finger
+//  Flex Hand Right 1 Ring Finger
+//  Flex Hand Right 1 Pinky Finger
+//  Flex Wrist Hand Right 1
+//  Extend Wrist Hand Right 1
+//  Pronate Forearm Hand Right 1
+//  Supanate Forearm Hand Right 1
+//  Center Hand Right 1 Thumb
+//  Center Hand Right 1 Index Finger
+//  Center Hand Right 1 Middle Finger
+//  Center Hand Right 1 Ring Finger
+//  Center Hand Right 1 Pinky Finger
+//  Center Wrist Hand Right 1
+//  Center Forearm Hand Right 1
+//  Close Hand Right 1 Thumb
+//  Close Hand Right 1 Index Finger
+//  Close Hand Right 1 Middle Finger
+//  Close Hand Right 1 Ring Finger
+//  Close Hand Right 1 Pinky Finger
 {
   "RCServoSequences": [
     //

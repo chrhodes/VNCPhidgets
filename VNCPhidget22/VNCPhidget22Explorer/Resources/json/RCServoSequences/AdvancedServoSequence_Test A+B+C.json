@@ -1,9 +1,15 @@
+// AdvancedServoSequence_Test A+B+C.json
+// Contains
+//  99415-Test A+B+C Engage and Center Servos and Call Sequences
+//  99415-Test A+B+C All Servos to PositionMin
+//  99415-Test A+B+C Re-Center Servos
 {
     // This is leagacy.
   // Decide how to do this in new approach.
   "AdvancedServoSequences": [
     //
     // Test A+B+C Engage and Center Servos and CallSequences
+    //  99415-Test A+B+C All Servos to PositionMax
     //
     { 
       "SerialNumber": 99415,

@@ -1,4 +1,7 @@
-// RCServoSequence_Arm_Left 1 Initialization
+// RCServoSequence_Arm_Left 1 Initialization.json
+// Contains
+//   Initialize Arm Left 1 Wrist
+//   Initialize Arm Left 1 Forearm
 // TODO(crhodes)
 // Need to set specific values for each axis
 {

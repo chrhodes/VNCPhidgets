@@ -1,4 +1,12 @@
-// RCServoSequence_Hand_Left 1 Initialize
+// RCServoSequence_Hand_Left 1 Initialize.json
+// Contains
+//  Initialize Hand Left 1 Thumb
+//  Initialize Hand Left 1 Index Finger
+//  Initialize Hand Left 1 Middle Finger
+//  Initialize Hand Left 1 Ring Finger
+//  Initialize Hand Left 1 Pinky Finger
+//  Initialize Hand Left 1 Wrist
+//  Initialize Hand Left 1 Forearm
 {
   "RCServoSequences": [
     //

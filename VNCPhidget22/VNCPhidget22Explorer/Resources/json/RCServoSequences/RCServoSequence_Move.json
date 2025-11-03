@@ -1,39 +1,86 @@
-// RCServoSequence_Move
+// RCServoSequence_Move.json
+// Contains
+//  RCServo - Move to Min
+//  RCServo - Move to Center
+//  RCServo - Move to Max
+//  Move Servo Min/Max
+//  Move Servo MinStop to MaxStop
+//  Move Servo MaxStop to MinStop
+//  Move Servo MinStop to MaxStop to Center
+//  Move Left/Right in 30 unit steps
+//  Move Left/Right in 30 unit steps using Relative
+//  Move Relative 90
+//  Move Relative 85
+//  Move Relative 80
+//  Move Relative 75
+//  Move Relative 70
+//  Move Relative 65
+//  Move Relative 60
+//  Move Relative 55
+//  Move Relative 50
+//  Move Relative 45
+//  Move Relative 40
+//  Move Relative 35
+//  Move Relative 30
+//  Move Relative 25
+//  Move Relative 20
+//  Move Relative 15
+//  Move Relative 10
+//  Move Relative 5
+//  Move Relative -5
+//  Move Relative -10
+//  Move Relative -15
+//  Move Relative -20
+//  Move Relative -25
+//  Move Relative -30
+//  Move Relative -35
+//  Move Relative -40
+//  Move Relative -45
+//  Move Relative -50
+//  Move Relative -55
+//  Move Relative -60
+//  Move Relative -65
+//  Move Relative -70
+//  Move Relative -75
+//  Move Relative -80
+//  Move Relative -85
+//  Move Relative -90
+//
 {
   "RCServoSequences": [
     //
     // Move Servos in different ways
     //
-    { 
-      "Name": "RCServo - Move to Min", 
-      "Description": "Moves to Min", 
+    {
+      "Name": "RCServo - Move to Min",
+      "Description": "Moves to Min",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "TargetPosition": -1 }, // Min
       ]
     },
-        { 
-      "Name": "RCServo - Move to Center", 
-      "Description": "Moves to Center", 
+    {
+      "Name": "RCServo - Move to Center",
+      "Description": "Moves to Center",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "TargetPosition": -3 } // Center
       ]
     },
-    { 
-      "Name": "RCServo - Move to Max", 
-      "Description": "Moves to Max", 
+    {
+      "Name": "RCServo - Move to Max",
+      "Description": "Moves to Max",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "TargetPosition": -2 } // Max
       ]
     },
-    { 
-      "Name": "Move Servo Min/Max", 
-      "Description": "Centers Servo then Moves Min/Max then back to Center", 
+    {
+      "Name": "Move Servo Min/Max",
+      "Description": "Centers Servo then Moves Min/Max then back to Center",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -43,9 +90,9 @@
         { "TargetPosition": -3 }, // Center
       ]
     },
-    { 
-      "Name": "Move Servo MinStop to MaxStop", 
-      "Description": "Move Servo MinStop to MaxStop", 
+    {
+      "Name": "Move Servo MinStop to MaxStop",
+      "Description": "Move Servo MinStop to MaxStop",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -53,9 +100,9 @@
         { "TargetPosition": -12 }, // MaxStop
       ]
     },
-    { 
-      "Name": "Move Servo MaxStop to MinStop", 
-      "Description": "Move Servo MaxStop to MinStop", 
+    {
+      "Name": "Move Servo MaxStop to MinStop",
+      "Description": "Move Servo MaxStop to MinStop",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -63,9 +110,9 @@
         { "TargetPosition": -11 }, // MinStop
       ]
     },
-    { 
-      "Name": "Move Servo MinStop to MaxStop to Center", 
-      "Description": "Move Servo MinStop to MaxStop", 
+    {
+      "Name": "Move Servo MinStop to MaxStop to Center",
+      "Description": "Move Servo MinStop to MaxStop",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -74,13 +121,16 @@
         { "TargetPosition": -13 }, // CenterStop
       ]
     },
-    { 
+    {
       "Name": "Move Left/Right in 30 unit steps",
-      "Description": "", 
+      "Description": "",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "TargetPosition": 90, "LogTargetPositionReachedEvents": true },
+        {
+          "TargetPosition": 90,
+          "LogTargetPositionReachedEvents": true
+        },
         { "TargetPosition": 120 },
         { "TargetPosition": 150 },
         { "TargetPosition": 120 },
@@ -91,270 +141,270 @@
         { "TargetPosition": 90 },
       ]
     },
-    { 
+    {
       "Name": "Move Left/Right in 30 unit steps using Relative",
-      "Description": "", 
+      "Description": "",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "TargetPosition": 90, },
-        { "RelativePosition": 30  },
-        { "RelativePosition": 30  },
-        { "RelativePosition": -30  },
-        { "RelativePosition": -30  },
-        { "RelativePosition": 30  },
-        { "RelativePosition": 30  },
-        { "RelativePosition": -30  },
-        { "RelativePosition": -30  },
+        { "RelativePosition": 30 },
+        { "RelativePosition": 30 },
+        { "RelativePosition": -30 },
+        { "RelativePosition": -30 },
+        { "RelativePosition": 30 },
+        { "RelativePosition": 30 },
+        { "RelativePosition": -30 },
+        { "RelativePosition": -30 },
       ]
     },
-    { 
-      "Name": "Move Relative 90", 
+    {
+      "Name": "Move Relative 90",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 90 }
       ]
     },
-    { 
-      "Name": "Move Relative 85", 
+    {
+      "Name": "Move Relative 85",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 85 }
       ]
     },
-    { 
-      "Name": "Move Relative 80", 
+    {
+      "Name": "Move Relative 80",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 80 }
       ]
     },
-    { 
-      "Name": "Move Relative 75", 
+    {
+      "Name": "Move Relative 75",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 75 }
       ]
     },
-    { 
-      "Name": "Move Relative 70", 
+    {
+      "Name": "Move Relative 70",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 70 }
       ]
     },
-    { 
-      "Name": "Move Relative 65", 
+    {
+      "Name": "Move Relative 65",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 65 }
       ]
     },
-    { 
-      "Name": "Move Relative 60", 
+    {
+      "Name": "Move Relative 60",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 60 }
       ]
     },
-    { 
-      "Name": "Move Relative 55", 
+    {
+      "Name": "Move Relative 55",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 55 }
       ]
     },
-    { 
-      "Name": "Move Relative 50", 
+    {
+      "Name": "Move Relative 50",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 50 }
       ]
     },
-    { 
-      "Name": "Move Relative 45", 
+    {
+      "Name": "Move Relative 45",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 45 }
       ]
     },
-    { 
-      "Name": "Move Relative 40", 
+    {
+      "Name": "Move Relative 40",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 40 }
       ]
     },
-    { 
-      "Name": "Move Relative 35", 
+    {
+      "Name": "Move Relative 35",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 35 }
       ]
     },
-    { 
-      "Name": "Move Relative 30", 
+    {
+      "Name": "Move Relative 30",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 30 }
       ]
     },
-    { 
-      "Name": "Move Relative 25", 
+    {
+      "Name": "Move Relative 25",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 25 }
       ]
     },
-    { 
-      "Name": "Move Relative 20", 
+    {
+      "Name": "Move Relative 20",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 20 }
       ]
     },
-    { 
-      "Name": "Move Relative 15", 
+    {
+      "Name": "Move Relative 15",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 15 }
       ]
     },
-    { 
-      "Name": "Move Relative 10", 
+    {
+      "Name": "Move Relative 10",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 10 }
       ]
     },
-    { 
-      "Name": "Move Relative 5", 
+    {
+      "Name": "Move Relative 5",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": 5 }
       ]
     },
-    { 
-      "Name": "Move Relative -5", 
+    {
+      "Name": "Move Relative -5",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -5 }
       ]
     },
-    { 
-      "Name": "Move Relative -10", 
+    {
+      "Name": "Move Relative -10",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -10 }
       ]
     },
-    { 
-      "Name": "Move Relative -15", 
+    {
+      "Name": "Move Relative -15",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "RelativePosition": -15 } 
+        { "RelativePosition": -15 }
       ]
     },
-    { 
-      "Name": "Move Relative -20", 
+    {
+      "Name": "Move Relative -20",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -20 }
       ]
     },
-    { 
-      "Name": "Move Relative -25", 
+    {
+      "Name": "Move Relative -25",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -25 }
       ]
     },
-    { 
-      "Name": "Move Relative -30", 
+    {
+      "Name": "Move Relative -30",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -30 }
       ]
     },
-    { 
-      "Name": "Move Relative -35", 
+    {
+      "Name": "Move Relative -35",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -35 }
       ]
     },
-    { 
-      "Name": "Move Relative -40", 
+    {
+      "Name": "Move Relative -40",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -40 }
       ]
     },
-    { 
-      "Name": "Move Relative -45", 
+    {
+      "Name": "Move Relative -45",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -45 }
       ]
     },
-    { 
-      "Name": "Move Relative -50", 
+    {
+      "Name": "Move Relative -50",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -50 }
       ]
     },
-    { 
-      "Name": "Move Relative -55", 
+    {
+      "Name": "Move Relative -55",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -55 }
       ]
     },
-    { 
-      "Name": "Move Relative -60", 
+    {
+      "Name": "Move Relative -60",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -60 }
       ]
     },
-    { 
-      "Name": "Move Relative -65", 
+    {
+      "Name": "Move Relative -65",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -65 }
       ]
     },
-    { 
-      "Name": "Move Relative -70", 
+    {
+      "Name": "Move Relative -70",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -70 }
       ]
     },
-    { 
-      "Name": "Move Relative -75", 
+    {
+      "Name": "Move Relative -75",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
-        { "RelativePosition": -75 }, 
+        { "RelativePosition": -75 },
       ]
     },
-    { 
-      "Name": "Move Relative -80", 
+    {
+      "Name": "Move Relative -80",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -80 }
       ]
     },
-    { 
-      "Name": "Move Relative -85", 
+    {
+      "Name": "Move Relative -85",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -85 }
       ]
     },
-    { 
-      "Name": "Move Relative -90", 
+    {
+      "Name": "Move Relative -90",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "RelativePosition": -90 }

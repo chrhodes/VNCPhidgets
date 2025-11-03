@@ -1,4 +1,13 @@
 // RCServoSequence_Skull 3 Initialize
+//  Initialize Skull 3 X Axis
+//  Initialize Skull 3 Y Axis
+//  Initialize Skull 3 Z Axis
+//  Engage and Center Skull 3 X Axis
+//  Engage and Center Skull 3 Y Axis
+//  Engage and Center Skull 3 Z Axis
+//  Center Skull 3 X Axis
+//  Center Skull 3 Y Axis
+//  Center Skull 3 Z Axis
 // TODO(crhodes)
 // Need to set specific values for each axis
 {

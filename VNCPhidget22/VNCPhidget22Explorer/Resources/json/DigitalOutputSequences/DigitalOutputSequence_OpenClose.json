@@ -1,3 +1,9 @@
+// DigitalOutputSequence_OpenClose.json
+// Contains
+//  Open DigitalOutput
+//  Close DigitalOutput
+//  Open DigitalOutput-HP0-C0
+//  Open DigitalOutput-HP1-C0
 {
   "DigitalOutputSequences": [
     //
@@ -21,13 +27,13 @@
         { "Close": true }
       ]
     },
-{
+    {
       "Name": "Open DigitalOutput-HP0-C0",
       "HubPort": 0,
       "Channel": 0,
       "Description": "Open DigitalOutput 0",
       "Actions": [
-        { "Open":  true },
+        { "Open": true },
       ]
     },
     {
@@ -36,8 +42,8 @@
       "Channel": 0,
       "Description": "Open DigitalOutput 0",
       "Actions": [
-        { "Open":  true },
+        { "Open": true },
       ]
-    },   
+    },
   ]
 }

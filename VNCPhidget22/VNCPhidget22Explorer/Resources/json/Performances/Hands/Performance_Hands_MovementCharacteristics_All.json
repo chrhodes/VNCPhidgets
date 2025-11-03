@@ -1,3 +1,14 @@
+// Performance_Hands_MovementCharacteristics_All.json
+// Contains
+//  All Hands - VelocityLimit (10) Acceleration (25)
+//  All Hands - VelocityLimit (25) Acceleration (50)
+//  All Hands - VelocityLimit (50) Acceleration (100)
+//  All Hands - VelocityLimit (100) Acceleration (200)
+//  All Hands - VelocityLimit (250) Acceleration (500)
+//  All Hands - VelocityLimit (500) Acceleration (1000)
+//  All Hands - VelocityLimit (1000) Acceleration (2000)
+//  All Hands - VelocityLimit (5000) Acceleration (10000)
+//
 {
   "Name": "Performance_Hands_MovementCharacteristics_All",
   "Description": "Performances to adjust Hand MovementCharacteristics",
@@ -11,9 +22,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (10) Acceleration (25)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (10) Acceleration (25)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (10) Acceleration (25)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (10) Acceleration (25)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (10) Acceleration (25)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (10) Acceleration (25)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -25,9 +45,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (25) Acceleration (50)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (25) Acceleration (50)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (25) Acceleration (50)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (25) Acceleration (50)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (25) Acceleration (50)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (25) Acceleration (50)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -39,9 +68,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (50) Acceleration (100)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (50) Acceleration (100)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (50) Acceleration (100)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (50) Acceleration (100)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (50) Acceleration (100)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (50) Acceleration (100)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -53,9 +91,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (100) Acceleration (200)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (100) Acceleration (200)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -67,9 +114,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (250) Acceleration (500)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (250) Acceleration (500)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (250) Acceleration (500)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (250) Acceleration (500)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -81,9 +137,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (500) Acceleration (1000)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (500) Acceleration (1000)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -95,9 +160,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (1000) Acceleration (2000)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (1000) Acceleration (2000)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (1000) Acceleration (2000)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (1000) Acceleration (2000)",
+          "SerialNumber": 99220
+        },
       ],
     },
     //
@@ -109,9 +183,18 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Hand HP0 C012 - VelocityLimit (5000) Acceleration (10000)", "SerialNumber": 99220 },
-       { "Name": "Hand HP0 C012 - VelocityLimit (5000) Acceleration (10000)", "SerialNumber": 169501 },
-       { "Name": "Hand HP0 C456 - VelocityLimit (5000) Acceleration (10000)", "SerialNumber": 99220 },  
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (5000) Acceleration (10000)",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Hand HP0 C012 - VelocityLimit (5000) Acceleration (10000)",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Hand HP0 C456 - VelocityLimit (5000) Acceleration (10000)",
+          "SerialNumber": 99220
+        },
       ],
     },
   ]

@@ -1,30 +1,47 @@
-// RCServoSequence_Arm_Right 1 Initialization
+// RCServoSequence_Arm_Right 1 Initialization.json
+// Contains
+//   Initialize Arm Right 1 Wrist
+//   Initialize Arm Right 1 Forearm
 // TODO(crhodes)
 // Need to set specific values for each axis
 {
   "RCServoSequences": [
-    { 
-      "Name": "Initialize Arm Right 1 Wrist", 
+    {
+      "Name": "Initialize Arm Right 1 Wrist",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       //"Channel": 14,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 30, "TargetPosition": 70, "MaxPositionStop": 150,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 30,
+          "TargetPosition": 70,
+          "MaxPositionStop": 150,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Arm Right 1 Forearm", 
+    {
+      "Name": "Initialize Arm Right 1 Forearm",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       //"Channel": 15,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 0, "TargetPosition": 90, "MaxPositionStop": 180,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 0,
+          "TargetPosition": 90,
+          "MaxPositionStop": 180,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
   ]

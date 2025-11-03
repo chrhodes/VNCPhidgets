@@ -1,4 +1,7 @@
-// RCServoSequence_Xylophone Initialization
+// RCServoSequence_Xylophone Initialization.json
+// Contains
+//  Initialize Xylophone Arm
+//  Initialize Xylophone Mallet
 {
   "RCServoSequences": [
     //

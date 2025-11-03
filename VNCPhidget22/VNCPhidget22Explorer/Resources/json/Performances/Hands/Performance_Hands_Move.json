@@ -1,9 +1,17 @@
 // Performance_Hands_Move.json
 // Contains
-//  Open Hand {Left,Right} 1, Open Hand {Left,Right} 1 Reverse,  Open Hand {Left,Right} 1 Parallel
-//  Center Hand {Left,Right} 1, Center Hand {Left,Right} 1 Reverse,  Center Hand {Left,Right} 1 Parallel
-//  Flex Hand {Left,Right} 1, Flex Hand {Left,Right} 1 Reverse,  Flex Hand {Left,Right} 1 Parallel
-//  Close Hand {Left,Right} 1, Close Hand {Left,Right} 1 Reverse,  Close Hand {Left,Right} 1 Parallel
+//  Open Hand {Left,Right} 1
+//  Open Hand {Left,Right} 1 Reverse
+//  Open Hand {Left,Right} 1 Parallel
+//  Center Hand {Left,Right} 1
+//  Center Hand {Left,Right} 1 Reverse
+//  Center Hand {Left,Right} 1 Parallel
+//  Flex Hand {Left,Right} 1
+//  Flex Hand {Left,Right} 1 Reverse
+//  Flex Hand {Left,Right} 1 Parallel
+//  Close Hand {Left,Right} 1
+//  Close Hand {Left,Right} 1 Reverse
+//  Close Hand {Left,Right} 1 Parallel
 {
   "Name": "Performance_Hands_Move",
   "Description": "Performances to Move Hands",

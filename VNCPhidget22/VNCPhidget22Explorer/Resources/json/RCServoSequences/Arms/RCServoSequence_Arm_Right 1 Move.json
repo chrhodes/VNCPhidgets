@@ -1,50 +1,56 @@
-// RCServoSequence_Arm_Right 1 Move
+// RCServoSequence_Arm_Right 1 Move.json
 // Contains
+//  Flex Arm Right 1 Wrist
+//  Center Arm Right 1 Wrist
+//  Extend Arm Right 1 Wrist
+//  Pronate Arm Right 1 Forearm
+//  Center Arm Right 1 Forearm
+//  Supanate Arm Right 1 Forearm
 //  
 {
   "RCServoSequences": [
-    { 
-      "Name": "Flex Arm Right 1 Wrist", 
+    {
+      "Name": "Flex Arm Right 1 Wrist",
       "Description": "Flex Arm Right 1 Wrist",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": -12 },
       ]
     },
-    { 
-      "Name": "Center Arm Right 1 Wrist", 
+    {
+      "Name": "Center Arm Right 1 Wrist",
       "Description": "Center Arm Right 1 Wrist",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": -13 },
       ]
     },
-    { 
-      "Name": "Extend Arm Right 1 Wrist", 
+    {
+      "Name": "Extend Arm Right 1 Wrist",
       "Description": "Extend Arm Right 1 Wrist",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": -11 },
       ]
     },
-    { 
-      "Name": "Pronate Arm Right 1 Forearm", 
+    {
+      "Name": "Pronate Arm Right 1 Forearm",
       "Description": "Pronate Arm Right 1 Forearm",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": -12 },
       ]
     },
-    { 
-      "Name": "Center Arm Right 1 Forearm", 
+    {
+      "Name": "Center Arm Right 1 Forearm",
       "Description": "Center Arm Right 1 Forearm",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [
         { "TargetPosition": -13 },
       ]
     },
-    { 
-      "Name": "Supanate Arm Right 1 Forearm", 
+    {
+      "Name": "Supanate Arm Right 1 Forearm",
       "Description": "Supanate Arm Right 1 Forearm",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "Actions": [

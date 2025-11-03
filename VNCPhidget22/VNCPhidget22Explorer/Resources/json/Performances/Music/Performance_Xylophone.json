@@ -1,3 +1,16 @@
+// Performance_Xylophone.json
+// Contains
+//  Play All Notes
+//  Move To Note 1
+//  Move To Note 2
+//  Move To Note 3
+//  Move To Note 4
+//  Move To Note 5
+//  Move To Note 6
+//  Move To Note 7
+//  Move To Note 8
+//  Play Note MinToMaxToMin
+//  Play Note Actions
 {
   "Name": "Performance_RCServos_Music",
   "Description": "Performances for RCServos",
@@ -8,37 +21,88 @@
       "PerformanceLoops": 2,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-       { "Name": "Move To Note 1", "Duration": 250 },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 2", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 3", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 4", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 5", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 6", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 7", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 8", "Duration": 250  },
-       { "Name": "Play Note Actions", "Duration": 1000 },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 7", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 6", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 5", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 4", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 3", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 2", "Duration": 250  },
-       { "Name": "Play Note Actions" },
-       { "Name": "Move To Note 1", "Duration": 250  },
-       { "Name": "Play Note Actions", "Duration": 1000 },
+        {
+          "Name": "Move To Note 1",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 2",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 3",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 4",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 5",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 6",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 7",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 8",
+          "Duration": 250
+        },
+        {
+          "Name": "Play Note Actions",
+          "Duration": 1000
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 7",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 6",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 5",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 4",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 3",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 2",
+          "Duration": 250
+        },
+        { "Name": "Play Note Actions" },
+        {
+          "Name": "Move To Note 1",
+          "Duration": 250
+        },
+        {
+          "Name": "Play Note Actions",
+          "Duration": 1000
+        },
       ],
     },
     //
@@ -51,10 +115,15 @@
       "Loops": 3,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 93 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 93 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -66,10 +135,15 @@
       "Loops": 3,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 89 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 89 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -80,10 +154,15 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 85 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 85 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -94,10 +173,15 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 81 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 81 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -108,10 +192,15 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 77 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 77 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -122,10 +211,15 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 73 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 73 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -136,10 +230,15 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 70 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 70 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -150,10 +249,15 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": 66 },
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 66 },
+            ]
+          }
         },
       ],
       "NextPerformance": null
@@ -164,7 +268,12 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Servo MinStop to MaxStop to Center" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Servo MinStop to MaxStop to Center"
+        },
       ],
       "NextPerformance": null
     },
@@ -174,12 +283,17 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "RCServoSequence": 
-          { "Actions": [
-            { "TargetPosition": -11 }, // MinStop
-            { "TargetPosition": -12 }, // MaxStop
-            { "TargetPosition": -13 }, // CenterStop
-          ] }
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": -11 }, // MinStop
+              { "TargetPosition": -12 }, // MaxStop
+              { "TargetPosition": -13 }, // CenterStop
+            ]
+          }
         },
       ],
       "NextPerformance": null

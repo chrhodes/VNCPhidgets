@@ -1,4 +1,13 @@
-// RCServoSequence_Hand_Right 1 Initialize
+// RCServoSequence_Hand_Right 1 Initialize.json
+// Contains
+//  Initialize Hand Right 1 Thumb
+//  Initialize Hand Right 1 Index Finger
+//  Initialize Hand Right 1 Middle Finger
+//  Initialize Hand Right 1 Ring Finger
+//  Initialize Hand Right 1 Pinky Finger
+//  Initialize Hand Right 1 Wrist
+//  Initialize Hand Right 1 Forearm
+//
 // TODO(crhodes)
 // Need to set specific values for each axis
 {
@@ -6,88 +15,137 @@
     //
     // Initialize Hand Right 1
     //
-    { 
-      "Name": "Initialize Hand Right 1 Thumb", 
+    {
+      "Name": "Initialize Hand Right 1 Thumb",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 9,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 45,
+          "TargetPosition": 92,
+          "MaxPositionStop": 140,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Hand Right 1 Index Finger", 
+    {
+      "Name": "Initialize Hand Right 1 Index Finger",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 10,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 45,
+          "TargetPosition": 92,
+          "MaxPositionStop": 140,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Hand Right 1 Middle Finger", 
+    {
+      "Name": "Initialize Hand Right 1 Middle Finger",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 11,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 45,
+          "TargetPosition": 92,
+          "MaxPositionStop": 140,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Hand Right 1 Ring Finger", 
+    {
+      "Name": "Initialize Hand Right 1 Ring Finger",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 12,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 45,
+          "TargetPosition": 92,
+          "MaxPositionStop": 140,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Hand Right 1 Pinky Finger", 
+    {
+      "Name": "Initialize Hand Right 1 Pinky Finger",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 13,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 45, "TargetPosition": 92, "MaxPositionStop": 140,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 45,
+          "TargetPosition": 92,
+          "MaxPositionStop": 140,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Hand Right 1 Wrist", 
+    {
+      "Name": "Initialize Hand Right 1 Wrist",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 14,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 30, "TargetPosition": 70, "MaxPositionStop": 150,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 30,
+          "TargetPosition": 70,
+          "MaxPositionStop": 150,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
-    { 
-      "Name": "Initialize Hand Right 1 Forearm", 
+    {
+      "Name": "Initialize Hand Right 1 Forearm",
       "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       //"HubPort": 0, 
       "Channel": 15,
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "RCServoType": 1, "MinPositionStop": 0, "TargetPosition": 90, "MaxPositionStop": 180,
-          "Acceleration": 200, "VelocityLimit": 100 },
+        {
+          "Open": true,
+          "RCServoType": 1,
+          "MinPositionStop": 0,
+          "TargetPosition": 90,
+          "MaxPositionStop": 180,
+          "Acceleration": 200,
+          "VelocityLimit": 100
+        },
       ]
     },
   ]

@@ -1,4 +1,13 @@
 // RCServoSequence_Skull 2 Initialize
+//  Initialize Skull 2 X Axis
+//  Initialize Skull 2 Y Axis
+//  Initialize Skull 2 Z Axis
+//  Engage and Center Skull 2 X Axis
+//  Engage and Center Skull 2 Y Axis
+//  Engage and Center Skull 2 Z Axis
+//  Center Skull 2 X Axis
+//  Center Skull 2 Y Axis
+//  Center Skull 2 Z Axis
 // TODO(crhodes)
 // Need to set specific values for each axis
 {

@@ -1,3 +1,12 @@
+// Performance_Arms_Initialize.json
+// Contains
+//  Initialize Arm Left 1
+//  Initialize Arm Right 1
+//  Engage Arm Left 1
+//  Engage Arm Right 1
+//  Sleep Arm Left 1
+//  Sleep Arm Right 1
+//
 {
   "Name": "Performance_Arms_Initialize",
   "Description": "Performances to Initialize, WakeUp and Sleep Arms",
@@ -12,8 +21,18 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Initialize Arm Left 1 Wrist" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Initialize Arm Left 1 Forearm" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "Initialize Arm Left 1 Wrist"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "Initialize Arm Left 1 Forearm"
+        },
       ],
     },
     {
@@ -23,8 +42,18 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "Initialize Arm Right 1 Wrist" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "Initialize Arm Right 1 Forearm" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "Initialize Arm Right 1 Wrist"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "Initialize Arm Right 1 Forearm"
+        },
       ],
     },
     //
@@ -37,8 +66,18 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Engage Servo" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Engage Servo" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "Engage Servo"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "Engage Servo"
+        },
       ],
     },
     {
@@ -48,8 +87,18 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "Engage Servo" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "Engage Servo" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "Engage Servo"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "Engage Servo"
+        },
       ],
     },
     //
@@ -62,8 +111,18 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Disengage Servo" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "Disengage Servo"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "Disengage Servo"
+        },
       ],
     },
     {
@@ -73,8 +132,18 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "Disengage Servo" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "Disengage Servo" },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "Disengage Servo"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "Disengage Servo"
+        },
       ],
     },
   ]

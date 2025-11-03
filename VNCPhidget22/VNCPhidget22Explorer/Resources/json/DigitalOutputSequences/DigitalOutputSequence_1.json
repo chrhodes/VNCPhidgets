@@ -1,135 +1,416 @@
+// DigitalOutputSequence_1.json
+// Contains
+//  Blink DigitalOutput 1000ms
+//  Blink DigitalOutput 500ms
+//  Blink DigitalOutput 250ms
+//  Blink DigitalOutput 125ms
+//  Blink DigitalOutput 100ms
+//  Blink DigitalOutput 50ms
+//  Blink DO-HP0-C0
+//  Blink DO-HP1-C0
+//
 {
   "DigitalOutputSequences": [
     {
       "Name": "Blink DigitalOutput 1000ms",
       "Description": "Blink DigitalOutput every 1000ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
+      "UsageNotes": "Must specify HubPort and Channel",
       "Actions": [
-        { "DigitalOut": true, "Duration": 1000 },
-        { "DigitalOut": false, "Duration": 1000 },
+        {
+          "DigitalOut": true,
+          "Duration": 1000
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 1000
+        },
       ]
     },
     {
       "Name": "Blink DigitalOutput 500ms",
       "Description": "Blink DigitalOutput every 500ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
+      "UsageNotes": "Must specify HubPort and Channel",
       "Actions": [
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
+        {
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 500
+        },
       ]
     },
     {
       "Name": "Blink DigitalOutput 250ms",
       "Description": "Blink DigitalOutput every 250ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
+      "UsageNotes": "Must specify HubPort and Channel",
       "Actions": [
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
-        { "DigitalOut": true, "Duration": 250 },
-        { "DigitalOut": false, "Duration": 250 },
+        {
+          "DigitalOut": true,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 250
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 250
+        },
       ]
     },
     {
       "Name": "Blink DigitalOutput 125ms",
       "Description": "Blink DigitalOutput every 125ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
+      "UsageNotes": "Must specify HubPort and Channel",
       "Actions": [
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
-        { "DigitalOut": true, "Duration": 125 },
-        { "DigitalOut": false, "Duration": 125 },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 125
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 125
+        },
       ]
     },
     {
       "Name": "Blink DigitalOutput 100ms",
       "Description": "Blink DigitalOutput every 100ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
+      "UsageNotes": "Must specify HubPort and Channel",
       "Actions": [
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
-        { "DigitalOut": true, "Duration": 100 },
-        { "DigitalOut": false, "Duration": 100 },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 100
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 100
+        },
       ]
     },
     {
       "Name": "Blink DigitalOutput 50ms",
       "Description": "Blink DigitalOutput every 50ms",
-      "UsageNotes":  "Must specify HubPort and Channel",
+      "UsageNotes": "Must specify HubPort and Channel",
       "Actions": [
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
-        { "DigitalOut": true, "Duration": 50 },
-        { "DigitalOut": false, "Duration": 50 },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 50
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 50
+        },
       ]
     },
     {
@@ -138,10 +419,22 @@
       "Channel": 0,
       "Description": "Blink DigitalOutput 0",
       "Actions": [
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
+        {
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 500
+        },
       ]
     },
     {
@@ -150,11 +443,23 @@
       "HubPort": 1,
       "Channel": 0,
       "Actions": [
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
-        { "DigitalOut": true, "Duration": 500 },
-        { "DigitalOut": false, "Duration": 500 },
+        {
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": true,
+          "Duration": 500
+        },
+        {
+          "DigitalOut": false,
+          "Duration": 500
+        },
       ]
-    }, 
+    },
   ]
 }

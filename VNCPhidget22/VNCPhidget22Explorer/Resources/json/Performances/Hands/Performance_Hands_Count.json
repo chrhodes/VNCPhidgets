@@ -3,6 +3,11 @@
 //  Count All Hands
 //  Count 1 to 5 A
 //  Count 1 to 5 B
+//  Count 1to5 A Hand Right 1
+//  Count 1to5 B Hand Right 1
+//  Count 1to5 A Hand Left 1
+//  Count 1to5 B Hand Left 1
+//
 {
   "Name": "Performance_Hands_Count",
   "Description": "Performances Hands Counting",

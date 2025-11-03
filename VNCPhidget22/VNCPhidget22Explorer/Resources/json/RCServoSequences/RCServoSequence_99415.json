@@ -1,3 +1,65 @@
+// RCServoSequence_OpenClose.json
+// Contains
+//  Move Servo 0-1-2-3
+//  Move Servo 1
+//  Move Servo 2
+//  Move Servo 3
+//  99415-Parallel All (PA)
+//  99415-PA Step2
+//  99415-PA Step3
+//  99415-PA Step4
+//  99415-PA Step5
+//  99415-PA Step6
+//  99415-PA Step7
+//  99415-PA Step8
+//  99415-Debug Sequence
+//  99415-Debug Sequence Step1
+//  99415-Parallel Pairs 1 (PP1)
+//  99415-PP1 Step2
+//  99415-PP1 Step3
+//  99415-PP1 Step4
+//  99415-PP1 Step5
+//  99415-PP1 Step6
+//  99415-PP1 Step7
+//  99415-PP1 Step8
+//  99415-PP1 Step9
+//  99415-PP1 Step10
+//  99415-Parallel Pairs 2 (PP2)
+//  99415-PP2 Step2
+//  99415-PP2 Step3
+//  99415-PP2 Step4
+//  99415-PP2 Step5
+//  99415-PP2 Step6
+//  99415-PP2 Step7
+//  99415-PP2 Step8
+//  99415-PP2 Step9
+//  99415-PP2 Step10
+//  99415-Parallel Pairs 3 (PP3)
+//  99415-PP3 Step2
+//  99415-PP3 Step3
+//  99415-PP3 Step4
+//  99415-PP3 Step5
+//  99415-PP3 Step6
+//  99415-PP3 Step7
+//  99415-PP3 Step8
+//  99415-PP3 Step9
+//  99415-PP3 Step10
+//  99415-PP3 Step11
+//  99415-PP3 Step12
+//  99415-PP3 Step13
+//  99415-Parallel Pairs 4 (PP4)
+//  99415-PP4 Step2
+//  99415-PP4 Step3
+//  99415-PP4 Step4
+//  99415-PP4 Step5
+//  99415-PP4 Step6
+//  99415-PP4 Step7
+//  99415-PP4 Step8
+//  99415-PP4 Step9
+//  99415-PP4 Step10
+//  99415-PP4 Step11
+//  99415-PP4 LastStep
+//
 {
   //
   // TODO(crhodes)

@@ -1,4 +1,13 @@
-// RCServoSequence_Skull Move
+// RCServoSequence_Skull Move.json
+// Contains
+//  Skull Big Yes
+//  Skull Yes
+//  Skull Sigh
+//  Skull Laugh
+//  Skull Big Laugh
+//  Skull No
+//  Skull Big No
+//  Skull Maybe
 {
   "RCServoSequences": [
     //
@@ -6,8 +15,8 @@
     // Move skulls
     // Get stuff from AdvancedServoConfig_Skulls
     //
-    { 
-      "Name": "Skull Big Yes", 
+    {
+      "Name": "Skull Big Yes",
       "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -18,8 +27,8 @@
         { "RelativePosition": 10 },
       ]
     },
-    { 
-      "Name": "Skull Yes", 
+    {
+      "Name": "Skull Yes",
       "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -30,17 +39,20 @@
         { "RelativePosition": 5 },
       ]
     },
-    { 
-      "Name": "Skull Sigh", 
+    {
+      "Name": "Skull Sigh",
       "Description": "Move down, wait, then back up",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "RelativePosition": -15, "Duration": 1000 },
+        {
+          "RelativePosition": -15,
+          "Duration": 1000
+        },
         { "RelativePosition": 15 },
       ]
     },
-    { 
-      "Name": "Skull Laugh", 
+    {
+      "Name": "Skull Laugh",
       "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -51,8 +63,8 @@
         { "RelativePosition": -5 },
       ]
     },
-    { 
-      "Name": "Skull Big Laugh", 
+    {
+      "Name": "Skull Big Laugh",
       "Description": "Move up and down X axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -63,8 +75,8 @@
         { "RelativePosition": -10 },
       ]
     },
-    { 
-      "Name": "Skull No", 
+    {
+      "Name": "Skull No",
       "Description": "Move left and right Z axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -75,8 +87,8 @@
         { "RelativePosition": -5 },
       ]
     },
-    { 
-      "Name": "Skull Big No", 
+    {
+      "Name": "Skull Big No",
       "Description": "Move left and right Z axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [
@@ -87,8 +99,8 @@
         { "RelativePosition": -10 },
       ]
     },
-    { 
-      "Name": "Skull Maybe", 
+    {
+      "Name": "Skull Maybe",
       "Description": "Move Y axis 2 times",
       "ExecuteActionsInParallel": false,
       "Actions": [

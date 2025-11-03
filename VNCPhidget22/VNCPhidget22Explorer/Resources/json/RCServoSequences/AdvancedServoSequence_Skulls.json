@@ -1,3 +1,21 @@
+// AdvancedeServoSequence_Skulls.json
+// Contains
+//  Skull-012 Yes
+//  Skull-456 Yes
+//  Skull-012 No
+//  Skull-456 No
+//  Skull Maybe 1
+//  Skull Maybe 2
+//  Skull-456 Skull Laugh 1
+//  Left Skull Laugh2
+//  Left Skull Laugh3
+//  Right Skull Laugh
+//  Right Skull Laugh2
+//  Right Skull Laugh3
+//  Skull-012 Sigh 1
+//  Skull-012 Sigh 2
+//  Skull-012 Sigh 3
+//
 {
   // This is leagacy.
   // Decide how to do this in new approach.

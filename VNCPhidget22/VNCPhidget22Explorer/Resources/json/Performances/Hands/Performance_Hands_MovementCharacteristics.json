@@ -1,3 +1,24 @@
+// Performance_Hands_MovementCharacteristics.json
+// Contains
+//  Hand Left 1 - VelocityLimit (10) Acceleration (25)
+//  Hand Right 1 - VelocityLimit (10) Acceleration (25)
+//  Hand Left 1 - VelocityLimit (25) Acceleration (50)
+//  Hand Right 1 - VelocityLimit (25) Acceleration (50)
+//  Hand Left 1 - VelocityLimit (50) Acceleration (100)
+//  Hand Right 1 - VelocityLimit (50) Acceleration (100)
+//  Hand Left 1 - VelocityLimit (100) Acceleration (200)
+//  Hand Right 1 - VelocityLimit (100) Acceleration (200)
+//  Hand Left 1 - VelocityLimit (250) Acceleration (500)
+//  Hand Right 1 - VelocityLimit (250) Acceleration (500)
+//  Hand Left 1 - VelocityLimit (500) Acceleration (1000)
+//  Hand Right 1 - VelocityLimit (500) Acceleration (1000)
+//  Hand Left 1 - VelocityLimit (1000) Acceleration (2000)
+//  Hand Right 1 - VelocityLimit (1000) Acceleration (2000)
+//  Hand Left 1 - VelocityLimit (2500) Acceleration (5000)
+//  Hand Right 1 - VelocityLimit (2500) Acceleration (5000)
+//  Hand Left 1 - VelocityLimit (5000) Acceleration (10000)
+//  Hand Right 1 - VelocityLimit (5000) Acceleration (10000)
+//
 {
   "Name": "PerformanceHands_MovementCharacteristics",
   "Description": "Performances to adjust Hand MovementCharacteristics",
@@ -12,13 +33,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (10) Acceleration (25)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (10) Acceleration (25)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
       ],
     },
     //
@@ -31,13 +87,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (10) Acceleration (25)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (10) Acceleration (25)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (10) Acceleration (25)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (10) Acceleration (25)"
+        },
       ],
     },
     //
@@ -50,13 +141,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (25) Acceleration (50)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (25) Acceleration (50)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
       ],
     },
     //
@@ -69,13 +195,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (25) Acceleration (50)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (25) Acceleration (50)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (25) Acceleration (50)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (25) Acceleration (50)"
+        },
       ],
     },
     //
@@ -88,13 +249,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (50) Acceleration (100)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (50) Acceleration (100)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
       ],
     },
     //
@@ -107,15 +303,50 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (50) Acceleration (100)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (50) Acceleration (100)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (50) Acceleration (100)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (50) Acceleration (100)"
+        },
       ],
-    },  
+    },
     //
     // Hand Left 1 - VelocityLimit (100) Acceleration (200)
     //
@@ -126,13 +357,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (100) Acceleration (200)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (100) Acceleration (200)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
       ],
     },
     //
@@ -145,13 +411,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (100) Acceleration (200)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (100) Acceleration (200)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (100) Acceleration (200)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (100) Acceleration (200)"
+        },
       ],
     },
     //
@@ -164,13 +465,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (250) Acceleration (500)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (250) Acceleration (500)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
       ],
     },
     //
@@ -183,13 +519,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (250) Acceleration (500)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (250) Acceleration (500)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (250) Acceleration (500)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (250) Acceleration (500)"
+        },
       ],
     },
     //
@@ -202,13 +573,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (500) Acceleration (1000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (500) Acceleration (1000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
       ],
     },
     //
@@ -221,13 +627,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (500) Acceleration (1000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (500) Acceleration (1000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (500) Acceleration (1000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (500) Acceleration (1000)"
+        },
       ],
     },
     //
@@ -240,13 +681,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (1000) Acceleration (2000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
       ],
     },
     //
@@ -259,13 +735,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (1000) Acceleration (2000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (1000) Acceleration (2000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (1000) Acceleration (2000)"
+        },
       ],
     },
     //
@@ -278,13 +789,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (2500) Acceleration (5000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
       ],
     },
     //
@@ -297,13 +843,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (2500) Acceleration (5000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (2500) Acceleration (5000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (2500) Acceleration (5000)"
+        },
       ],
     },
     //
@@ -316,13 +897,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "VelocityLimit (5000) Acceleration (10000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 3,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 4,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 5,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 6,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 7,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
       ],
     },
     //
@@ -335,13 +951,48 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel":  9, "Name": "VelocityLimit (5000) Acceleration (10000)" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 10, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 11, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 12, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 13, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 14, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 15, "Name": "VelocityLimit (5000) Acceleration (10000)" },      
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 9,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 10,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 11,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 12,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 13,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 14,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 15,
+          "Name": "VelocityLimit (5000) Acceleration (10000)"
+        },
       ],
     },
   ]

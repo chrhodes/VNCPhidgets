@@ -1,4 +1,12 @@
 // RCServoSequence_Arm_Left 1 Move
+// Contains
+// Contains
+//  Flex Arm Left 1 Wrist
+//  Center Arm Left 1 Wrist
+//  Extend Arm Left 1 Wrist
+//  Pronate Arm Left 1 Forearm
+//  Center Arm Left 1 Forearm
+//  Supanate Arm Left 1 Forearm
 {
   "RCServoSequences": [
     { 
