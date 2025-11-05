@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3A8B9B53-1112-4E35-AD49-ECBA35FF8455}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>VNCPhidget_PerformanceJson</RootNamespace>
     <AssemblyName>VNCPhidget_PerformanceJson</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
@@ -32,230 +32,87 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DigitalInputSequences\DigitalInputSequence_1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="DigitalOutputSequences\DigitalOutputSequence_1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="DigitalOutputSequences\DigitalOutputSequence_OpenClose.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Arms\Performance_Arms_Initialize.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Arms\Performance_Arms_Routines.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\DigitalOutput\Performance_DigitalOutputs.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_Count.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_Gestures.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_Initialize.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_MovementCharacteristics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_MovementCharacteristics_All.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Hands\Performance_Hands_Routines.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="DigitalInputSequences\DigitalInputSequence_1.json" />
+    <None Include="DigitalOutputSequences\DigitalOutputSequence_1.json" />
+    <None Include="DigitalOutputSequences\DigitalOutputSequence_OpenClose.json" />
+    <None Include="Performances\Arms\Performance_Arms_Initialize.json" />
+    <None Include="Performances\Arms\Performance_Arms_Routines.json" />
+    <None Include="Performances\DigitalOutput\Performance_DigitalOutputs.json" />
+    <None Include="Performances\Hands\Performance_Hands_Count.json" />
+    <None Include="Performances\Hands\Performance_Hands_Gestures.json" />
+    <None Include="Performances\Hands\Performance_Hands_Initialize.json" />
+    <None Include="Performances\Hands\Performance_Hands_Move.json" />
+    <None Include="Performances\Hands\Performance_Hands_MovementCharacteristics.json" />
+    <None Include="Performances\Hands\Performance_Hands_MovementCharacteristics_All.json" />
+    <None Include="Performances\Hands\Performance_Hands_Routines.json" />
     <None Include="Performances\Music\Performance_Xylophone.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Performances\Performance_Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Performance_MainShow.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Performance_Movement Studies.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Performance_Test AS Replacement.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Performance_Test.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServos.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServo_MovementCharacteristics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServo_OpenClose.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServo_PP1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServo_PP2.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServo_PP3.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\RCServo\Performance_RCServo_PP4.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Device\Performance_169501_Skull_012.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Device\Performance_99220_Skull_012.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Device\Performance_99220_Skull_456.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_Consulting.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_Initialize.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_MoveAll.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_MoveAllAxes.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_MoveAngles.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_MovementCharacteristics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_RockOut.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_Routines.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Performance_Skulls_Yes_No_Maybe_Sigh_Laugh.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_012_UpDown.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybeSighLaugh.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_456_UpDown.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybeSighLaugh.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Stepper\Performance_Steppers.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Stepper\Performance_Stepper_MovementCharacteristics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Performances\Stepper\Performance_Stepper_OpenClose.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\AdvancedServoSequence_Skulls.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\AdvancedServoSequence_Test A+B+C.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Music\RCServoSequence_Xylophone Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\RCServoSequence_99415.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\RCServoSequence_Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\RCServoSequence_MovementCharacteristics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\RCServoSequence_OpenClose.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 1 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull Move.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="StepperSequences\StepperSequence_1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="StepperSequences\StepperSequence_MovementCharacteristics.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="StepperSequences\StepperSequence_OpenClose.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="VoltageInputSequences\VoltageInputSequence_1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="VoltageOutputSequences\VoltageOutputSequence_1.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Performances\Performance_Initialization.json" />
+    <None Include="Performances\Performance_MainShow.json" />
+    <None Include="Performances\Performance_Movement Studies.json" />
+    <None Include="Performances\Performance_Test AS Replacement.json" />
+    <None Include="Performances\Performance_Test.json" />
+    <None Include="Performances\RCServo\Performance_RCServos.json" />
+    <None Include="Performances\RCServo\Performance_RCServo_MovementCharacteristics.json" />
+    <None Include="Performances\RCServo\Performance_RCServo_OpenClose.json" />
+    <None Include="Performances\RCServo\Performance_RCServo_PP1.json" />
+    <None Include="Performances\RCServo\Performance_RCServo_PP2.json" />
+    <None Include="Performances\RCServo\Performance_RCServo_PP3.json" />
+    <None Include="Performances\RCServo\Performance_RCServo_PP4.json" />
+    <None Include="Performances\Skulls\Device\Performance_169501_Skull_012.json" />
+    <None Include="Performances\Skulls\Device\Performance_99220_Skull_012.json" />
+    <None Include="Performances\Skulls\Device\Performance_99220_Skull_456.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_Consulting.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_Initialize.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_MoveAll.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_MoveAllAxes.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_MoveAngles.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_MovementCharacteristics.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_RockOut.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_Routines.json" />
+    <None Include="Performances\Skulls\Performance_Skulls_Yes_No_Maybe_Sigh_Laugh.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_012_UpDown.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybeSighLaugh.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_456_UpDown.json" />
+    <None Include="Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybeSighLaugh.json" />
+    <None Include="Performances\Stepper\Performance_Steppers.json" />
+    <None Include="Performances\Stepper\Performance_Stepper_MovementCharacteristics.json" />
+    <None Include="Performances\Stepper\Performance_Stepper_OpenClose.json" />
+    <None Include="RCServoSequences\AdvancedServoSequence_Skulls.json" />
+    <None Include="RCServoSequences\AdvancedServoSequence_Test A+B+C.json" />
+    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Initialization.json" />
+    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Move.json" />
+    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Initialization.json" />
+    <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Move.json" />
+    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Initialization.json" />
+    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Move.json" />
+    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Initialization.json" />
+    <None Include="RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Move.json" />
+    <None Include="RCServoSequences\Music\RCServoSequence_Xylophone Initialization.json" />
+    <None Include="RCServoSequences\RCServoSequence_99415.json" />
+    <None Include="RCServoSequences\RCServoSequence_Move.json" />
+    <None Include="RCServoSequences\RCServoSequence_MovementCharacteristics.json" />
+    <None Include="RCServoSequences\RCServoSequence_OpenClose.json" />
+    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 1 Initialization.json" />
+    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json" />
+    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json" />
+    <None Include="RCServoSequences\Skulls\RCServoSequence_Skull Move.json" />
+    <None Include="StepperSequences\StepperSequence_1.json" />
+    <None Include="StepperSequences\StepperSequence_MovementCharacteristics.json" />
+    <None Include="StepperSequences\StepperSequence_OpenClose.json" />
+    <None Include="VoltageInputSequences\VoltageInputSequence_1.json" />
+    <None Include="VoltageOutputSequences\VoltageOutputSequence_1.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -266,6 +267,11 @@ namespace VNCPhidget22Explorer
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        private string GetSettingValue(string key)
+        {
+            return ConfigurationManager.AppSettings[key] ?? string.Empty;
+        }
+
         private void InitializePerformanceLibrary()
         {
             Int64 startTicks = 0;
@@ -274,7 +280,9 @@ namespace VNCPhidget22Explorer
             // NOTE(crhodes)
             // This loads all the json config files
 
-            PerformanceLibrary performanceLibrary = new PerformanceLibrary(Common.EventAggregator);
+            string performanceJsonPath = GetSettingValue("VNCPhidget_PerformanceJsonPath");
+
+            PerformanceLibrary performanceLibrary = new PerformanceLibrary(performanceJsonPath, Common.EventAggregator);
 
             performanceLibrary.LoadConfigFiles();
 

@@ -28,6 +28,8 @@ namespace VNCPhidget22Explorer
 
         public const string cCONFIG_FILE = @"C:\temp\VNCPhidget22Explorer_Config.xml";
 
+        public static string PERFORMANCEJSONPATH = string.Empty;
+
         // NOTE(crhodes)
         // Add new VNC.Core.Information InformationXXX
         // for other Assemblies that should provide Info
