@@ -1,0 +1,91 @@
+{
+  //
+  // jnewP
+  //
+
+  {
+    "Name": "",
+    "Description": "",
+    "UsageNotes": "",
+    //"BeforePerformanceLoopPerformances": [
+    //  jaddP
+    //],
+    "Loops": 1,
+    // Use this if calling DeviceChannelSequences
+    //"PlayDeviceChannelSequencesInParallel": false,
+    //"DeviceChannelSequences": [
+    // jaddDCS
+    //],
+    // Use this if calling Performances
+    //"PlayPerformancesInParallel": false,
+    //"Performances": [
+    // jaddP
+    //],
+    //"AfterPerformanceLoopPerformances": [
+    //  jaddP
+    //],
+    //"Duration": 0
+    //"NextPerformance": { "Name": "" }
+  },
+
+  //
+  //jaddP
+  //
+
+  { "Name": "", "SerialNumber": 0, "Duration": 0 }
+
+  //
+  // jnewDCS
+  //
+
+  { 
+    "Name": "", 
+    "Description": "",
+    "UsageNotes": "",
+    // Remove HubPort, Channel if using Overrides
+    "HubPort":0, "Channel":0,
+    // "Loops": 1,
+    //"BeforeActionLoopSequences": [
+    //  { <DeviceChannelSequence> },
+    //]
+    //"StartActionLoopSequences": [
+    //  { <DeviceChannelSequence> },
+    //]
+    "ExecuteActionsInParallel": false,
+    "Actions": [
+      { "" },
+    ]
+    //"EndActionLoopSequences": [
+    //  { <DeviceChannelSequence> },
+    //]
+    //"AfterActionLoopSequences": [
+    //  { <DeviceChannelSequence> },
+    //]
+  },
+
+  //
+  // jaddNamedDCS
+  //
+
+  { "ChannelClass": "", 
+    "SerialNumber": , "HubPort": 0, "Channel": 0, 
+    "Name": "", 
+    "Duration": 0 },
+  
+  //
+  // jaddRCServoDCS
+  //
+
+  { "ChannelClass": "RCServo", 
+    // Remove if overridden in Performance
+    // "SerialNumber": 0, 
+    "HubPort": 0, "Channel": 0, 
+    "RCServoSequence": {
+  	"Actions": [
+  		{ "TargetPosition": 90", }
+  	]
+    // Duration": 0 
+  }, 
+  
+  
+}
