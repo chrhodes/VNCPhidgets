@@ -16,57 +16,57 @@
     //
     // Skull 1
     //
-    {
-      "Name": "Initialize Skull 1 X Axis",
-      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        {
-          "Open": true,
-          "RCServoType": 1,
-          "MinPositionStop": 110,
-          "TargetPosition": 135,
-          "MaxPositionStop": 160,
-          "Acceleration": 100,
-          "VelocityLimit": 50
-        },
-      ]
-    },
-    {
-      "Name": "Initialize Skull 1 Y Axis",
-      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        {
-          "Open": true,
-          "RCServoType": 1,
-          "MinPositionStop": 60,
-          "TargetPosition": 85,
-          "MaxPositionStop": 110,
-          "Acceleration": 100,
-          "VelocityLimit": 50
-        },
-      ]
-    },
-    {
-      "Name": "Initialize Skull 1 Z Axis",
-      "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
-      "ExecuteActionsInParallel": false,
-      "Actions": [
-        {
-          "Open": true,
-          "RCServoType": 1,
-          "MinPositionStop": 5,
-          "TargetPosition": 80,
-          "MaxPositionStop": 155,
-          "Acceleration": 100,
-          "VelocityLimit": 50
-        },
-      ]
-    },
+    //{
+    //  "Name": "Initialize Skull 1 X Axis",
+    //  "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    {
+    //      "Open": true,
+    //      "RCServoType": 1,
+    //      "MinPositionStop": 110,
+    //      "TargetPosition": 135,
+    //      "MaxPositionStop": 160,
+    //      "Acceleration": 100,
+    //      "VelocityLimit": 50
+    //    },
+    //  ]
+    //},
+    //{
+    //  "Name": "Initialize Skull 1 Y Axis",
+    //  "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    {
+    //      "Open": true,
+    //      "RCServoType": 1,
+    //      "MinPositionStop": 60,
+    //      "TargetPosition": 85,
+    //      "MaxPositionStop": 110,
+    //      "Acceleration": 100,
+    //      "VelocityLimit": 50
+    //    },
+    //  ]
+    //},
+    //{
+    //  "Name": "Initialize Skull 1 Z Axis",
+    //  "Description": "Sets ServoType, PositionMin/PositionMax, Acceleration, VelocityLimit",
+    //  "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+    //  "ExecuteActionsInParallel": false,
+    //  "Actions": [
+    //    {
+    //      "Open": true,
+    //      "RCServoType": 1,
+    //      "MinPositionStop": 5,
+    //      "TargetPosition": 80,
+    //      "MaxPositionStop": 155,
+    //      "Acceleration": 100,
+    //      "VelocityLimit": 50
+    //    },
+    //  ]
+    //},
     // TODO(crhodes)
     // Maybe combine this with above
     {

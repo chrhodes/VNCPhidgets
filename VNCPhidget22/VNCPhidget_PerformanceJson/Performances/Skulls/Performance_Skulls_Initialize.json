@@ -22,40 +22,123 @@
     {
       "Name": "Initialize Skull 1",
       "Description": "Initialize Skull 1",
-      "UsageNotes": "Must use SerialNumber Override",
+      //"UsageNotes": "Must use SerialNumber Override",
+      "SerialNumber": 99220,
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Initialize Skull 1 X Axis" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Initialize Skull 1 Y Axis" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Initialize Skull 1 Z Axis" },      
-      ],
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Initialize Skull 1 X Axis" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Initialize Skull 1 Y Axis" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Initialize Skull 1 Z Axis" },      
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0,
+          "Actions": [
+            {
+              "Open": true, "RCServoType": 1,
+              "MinPositionStop": 110, "TargetPosition": 135, "MaxPositionStop": 160,
+              "Acceleration": 100, "VelocityLimit": 50
+            }
+          ]
+        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, 
+          "Actions": [
+            {
+              "Open": true, "RCServoType": 1,
+              "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110, 
+              "Acceleration": 100, "VelocityLimit": 50
+            }
+          ]
+        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2,
+          "Actions": [
+          {
+            "Open": true, "RCServoType": 1,
+            "MinPositionStop": 5, "TargetPosition": 80, "MaxPositionStop": 155,
+            "Acceleration": 100, "VelocityLimit": 50
+          }
+        ]
+       }
+      ]
     },
     {
       "Name": "Initialize Skull 2",
       "Description": "Initialize Skull 2",
-      "UsageNotes": "Must use SerialNumber Override",
+      //"UsageNotes": "Must use SerialNumber Override",
+      "SerialNumber": 169501,
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Initialize Skull 2 X Axis" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Initialize Skull 2 Y Axis" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Initialize Skull 2 Z Axis" },      
-      ],
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Initialize Skull 2 X Axis" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Initialize Skull 2 Y Axis" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Initialize Skull 2 Z Axis" },   
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, 
+          "Actions": [
+            { 
+              "Open": true, "RCServoType": 1, 
+              "MinPositionStop": 110, "TargetPosition": 135, "MaxPositionStop": 160,
+              "Acceleration": 100, "VelocityLimit": 50 
+            },
+          ]
+        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, 
+          "Actions": [
+            { 
+              "Open": true, "RCServoType": 1, 
+              "MinPositionStop": 60, "TargetPosition": 85, "MaxPositionStop": 110,
+              "Acceleration": 100, "VelocityLimit": 50
+            },
+          ]
+        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, 
+          "Actions": [
+            { 
+              "Open": true, "RCServoType": 1, 
+              "MinPositionStop": 10, "TargetPosition": 85, "MaxPositionStop": 160,
+              "Acceleration": 100, "VelocityLimit": 50
+            },
+          ]
+        }      
+      ]
     },
     {
       "Name": "Initialize Skull 3",
       "Description": "Initialize Skull 3",
-      "UsageNotes": "Must use SerialNumber Override",
+      //"UsageNotes": "Must use SerialNumber Override",
+      "SerialNumber": 99220,
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Initialize Skull 3 X Axis" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Initialize Skull 3 Y Axis" },
-       { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Initialize Skull 3 Z Axis" },      
-      ],
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Initialize Skull 3 X Axis" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Initialize Skull 3 Y Axis" },
+       //{ "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Initialize Skull 3 Z Axis" },      
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4,
+          "Actions": [
+            { 
+              "Open": true, "RCServoType": 1, 
+              "MinPositionStop": 65, "TargetPosition": 90, "MaxPositionStop": 115, 
+              "Acceleration": 100, "VelocityLimit": 50
+            },
+          ]
+        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5,
+          "Actions": [
+            { 
+              "Open": true, "RCServoType": 1, 
+              "MinPositionStop": 55, "TargetPosition": 80, "MaxPositionStop": 105,
+              "Acceleration": 100, "VelocityLimit": 50
+            },
+          ]
+        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6,
+          "Actions": [
+            { 
+              "Open": true, "RCServoType": 1, 
+              "MinPositionStop": 10, "TargetPosition": 85, "MaxPositionStop": 160,
+              "Acceleration": 100, "VelocityLimit": 50
+            },
+          ]
+        }      
+      ]
     },
-
     //
     // Engage and Center Skulls
     //
