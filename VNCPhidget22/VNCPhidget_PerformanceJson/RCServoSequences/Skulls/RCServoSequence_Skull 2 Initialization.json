@@ -53,7 +53,10 @@
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 135 },
+        { 
+          "Engaged": true, 
+          "TargetPosition": 135 
+        },
       ]
     },
     { 
@@ -62,7 +65,10 @@
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 85 },
+        { 
+          "Engaged": true, 
+          "TargetPosition": 85
+        },
       ]
     },
     { 
@@ -71,7 +77,10 @@
       "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Engaged": true, "TargetPosition": 85 },
+        { 
+          "Engaged": true, 
+          "TargetPosition": 85 
+        },
       ]
     }, 
     { 
