@@ -706,6 +706,16 @@ namespace VNCPhidget22Explorer.Presentation.Views
             }
         }
 
+        private void seMinPositionStop_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MinPositionStop = MinPositionServo;
+        }
+
+        private void seMaxPositionStop_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MaxPositionStop = MaxPositionServo;
+        }
+
         #endregion
 
         #region Commands (none)
@@ -747,6 +757,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         }
 
         #endregion
+
     }
 }
 

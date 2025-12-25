@@ -1,7 +1,6 @@
 // Performance_Initialization.json
 // Contains
 //  Initialize All Skulls
-//  Wake up All Skulls
 //  Initialize All Hands
 //  Wake up All Hands
 //  Initialize All Arms
@@ -22,41 +21,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Initialize Skull 1",
-          //"SerialNumber": 99220
-        },
-        {
-          "Name": "Initialize Skull 2",
-          //"SerialNumber": 169501
-        },
-        {
-          "Name": "Initialize Skull 3",
-          //"SerialNumber": 99220
-        },
-      ],
-    },
-    //
-    // Wake up All Skulls
-    //
-    {
-      "Name": "Wake up All Skulls",
-      "Description": "Engage and Center All Skulls",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-        {
-          "Name": "Engage and Center Skull 1",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Engage and Center Skull 2",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Engage and Center Skull 3",
-          "SerialNumber": 99220
-        },
+        { "Name": "Initialize Skull 1" },
+        { "Name": "Initialize Skull 2" },
+        { "Name": "Initialize Skull 3" }
       ],
     },
     //

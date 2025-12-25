@@ -412,9 +412,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"ReloadPerformanceConfigFile Clicked - >{SelectedPerformanceConfigFile}<";
             PublishStatusMessage(Message);
 
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
-
             Common.PerformanceLibrary.LoadPerformancesFromConfigFile(SelectedPerformanceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
@@ -428,10 +425,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadDigitalInputConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadDigitalInputSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadDigitalInputSequencesFromConfigFile(SelectedDigitalInputSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -443,10 +437,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadDigitalOutputSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadDigitalOutputSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadDigitalOutputSequencesFromConfigFile(SelectedDigitalOutputSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -459,10 +450,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadRCServoSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadRCServoSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadRCServoSequencesFromConfigFile(SelectedRCServoSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -475,10 +463,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadStepperSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadStepperSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadStepperSequencesFromConfigFile(SelectedStepperSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -491,10 +476,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadVoltageInputConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadVoltageInputSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadVoltageInputSequencesFromConfigFile(SelectedVoltageInputSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -507,10 +489,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadVoltageRatioInputConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadVoltageRatioInputSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadVoltageRatioInputSequencesFromConfigFile(SelectedVoltageRatioInputSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -523,10 +502,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ReloadVoltageOutputSequenceConfigFile Clicked";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadVoltageOutputSequences(reload: true);
-
-            // TODO(crhodes)
-            // Reload config file and update PerformanceLibrary
+            Common.PerformanceLibrary.LoadVoltageOutputSequencesFromConfigFile(SelectedVoltageOutputSequenceConfigFile, reload: true);
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

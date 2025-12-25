@@ -8,6 +8,7 @@ namespace VNC.Phidget22.Configuration
         DEFAULT,
         HITEC_HS422,
         SG90,
+        DS3218,
         USER_DEFINED
     }
 

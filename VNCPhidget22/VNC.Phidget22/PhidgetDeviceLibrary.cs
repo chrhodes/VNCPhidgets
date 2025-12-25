@@ -390,6 +390,12 @@ namespace VNC.Phidget22
                 MinPulseWidth = 650,
                 MaxPulseWidth = 2450
             },
+            [VNC.Phidget22.Configuration.RCServoType.DS3218] = new RCServoPulseWidths
+            {
+                RCServoType = VNC.Phidget22.Configuration.RCServoType.DS3218,
+                MinPulseWidth = 500,
+                MaxPulseWidth = 2500
+            },
             [VNC.Phidget22.Configuration.RCServoType.USER_DEFINED] = new RCServoPulseWidths
             {
                 RCServoType = VNC.Phidget22.Configuration.RCServoType.USER_DEFINED,

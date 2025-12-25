@@ -485,14 +485,14 @@ namespace VNC.Phidget22.Ex
                 if (value < MinPositionStop)
                 {
                     Log.WARNING($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
-                        $" Attempt to set targetPostion:{value} below MinPositionStop:{MinPositionStop}" +
+                        $" Attempt to set targetPosition:{value} below MinPositionStop:{MinPositionStop}" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MinPositionStop;
                 }
                 else if (value > MaxPositionStop)
                 {
                     Log.WARNING($"DeviceSerialNumber:{DeviceSerialNumber} HubPort:{HubPort} Channel:{Channel}" +
-                        $" Attempt to set targetPostion:{value} above MaxPositionStop:{MaxPositionStop}" +
+                        $" Attempt to set targetPosition:{value} above MaxPositionStop:{MaxPositionStop}" +
                         $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
                     base.TargetPosition = _targetPosition = MaxPositionStop;
                 }

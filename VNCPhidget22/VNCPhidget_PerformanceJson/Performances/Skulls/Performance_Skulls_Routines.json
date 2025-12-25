@@ -1,5 +1,6 @@
 // Performance_Skulls_Routines.json
 // Contains
+//  Wake All Skulls
 //  Center All Skulls
 //  Sleep All Skulls
 //  All Skulls Yes, No, Maybe, Sigh, and Laugh
@@ -20,23 +21,28 @@
     // Center All Skulls
     //
     {
+      "Name": "Wake All Skulls",
+      "Description": "Wake All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Wake Skull 1" },
+        { "Name": "Wake Skull 2" },
+        { "Name": "Wake Skull 3" }
+      ],
+    },
+    //
+    // Center All Skulls
+    //
+    {
       "Name": "Center All Skulls",
       "Description": "Center All Skulls",
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        {
-          "Name": "Center Skull 1",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Center Skull 2",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Center Skull 3",
-          "SerialNumber": 99220
-        },
+        { "Name": "Center Skull 1" },
+        { "Name": "Center Skull 2" },
+        { "Name": "Center Skull 3" }
       ],
     },
     //
@@ -48,18 +54,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        {
-          "Name": "Sleep Skull 1",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Sleep Skull 2",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Sleep Skull 3",
-          "SerialNumber": 99220
-        },
+        { "Name": "Sleep Skull 1" },
+        { "Name": "Sleep Skull 2" },
+        { "Name": "Sleep Skull 3" }
       ],
     },
     //

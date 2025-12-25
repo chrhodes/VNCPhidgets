@@ -318,22 +318,18 @@ namespace VNC.Phidget22.Configuration
         // Looks like identical code
         // Method that gets a list of files,
         // Add to AvailableTYPE
+        // Remove reload parameter
+        // reload is handled in LoadTYPEFromConfigFile
 
-        public void LoadPerformances(bool reload = false)
+        public void LoadPerformances()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks 
                     = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            if (reload)
-            {
-                //AvailablePerformances.Clear();
-                //AvailablePerformances = new ObservableDictionary<string, Performance>();
-            }            
-
             foreach (string configFile in GetListOfPerformanceConfigFiles())
             {
-                LoadPerformancesFromConfigFile($"{_performanceJsonPath}\\{ configFile}");
+                LoadPerformancesFromConfigFile(configFile);
             }
 
             //AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
@@ -354,7 +350,7 @@ namespace VNC.Phidget22.Configuration
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 PerformanceConfig? performanceConfig
                     = JsonSerializer.Deserialize<PerformanceConfig>
@@ -402,28 +398,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadDigitalInputSequences(bool reload = false)
+        public void LoadDigitalInputSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            //AvailableDigitalInputSequences.Clear();
-
             foreach (string configFile in GetListOfDigitalInputConfigFiles())
             {
-                LoadDigitalInputSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadDigitalInputSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadDigitalInputSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadDigitalInputSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 DigitalInputSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<DigitalInputSequenceConfig>
@@ -468,28 +462,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadDigitalOutputSequences(bool reload = false)
+        public void LoadDigitalOutputSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            //AvailableDigitalOutputSequences.Clear();
-
             foreach (string configFile in GetListOfDigitalOutputConfigFiles())
             {
-                LoadDigitalOutputSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadDigitalOutputSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadDigitalOutputSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadDigitalOutputSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 DigitalOutputSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<DigitalOutputSequenceConfig>
@@ -534,28 +526,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadRCServoSequences(bool reload = false)
+        public void LoadRCServoSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            //AvailableRCServoSequences.Clear();
-
             foreach (string configFile in GetListOfRCServoConfigFiles())
             {
-                LoadRCServoSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadRCServoSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadRCServoSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadRCServoSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 RCServoSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<RCServoSequenceConfig>
@@ -600,28 +590,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadStepperSequences(bool reload = false)
+        public void LoadStepperSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            //AvailableStepperSequences.Clear();
-
             foreach (string configFile in GetListOfStepperConfigFiles())
             {
-                LoadStepperSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadStepperSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadStepperSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadStepperSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 StepperSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<StepperSequenceConfig>
@@ -666,28 +654,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadVoltageInputSequences(bool reload = false)
+        public void LoadVoltageInputSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            //AvailableVoltageInputSequences.Clear();
-
             foreach (string configFile in GetListOfVoltageInputConfigFiles())
             {
-                LoadVoltageInputSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadVoltageInputSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadVoltageInputSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadVoltageInputSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 VoltageInputSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
@@ -732,28 +718,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadVoltageRatioInputSequences(bool reload = false)
+        public void LoadVoltageRatioInputSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            //AvailableVoltageInputSequences.Clear();
-
             foreach (string configFile in GetListOfVoltageRatioInputConfigFiles())
             {
-                LoadVoltageRatioInputSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadVoltageRatioInputSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadVoltageRatioInputSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadVoltageRatioInputSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 VoltageInputSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<VoltageInputSequenceConfig>
@@ -792,28 +776,26 @@ namespace VNC.Phidget22.Configuration
             }
         }
 
-        public void LoadVoltageOutputSequences(bool reload = false)
+        public void LoadVoltageOutputSequences()
         {
             long startTicks = 0;
             if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
 
-            AvailableVoltageOutputSequences.Clear();
-
             foreach (string configFile in GetListOfVoltageOutputConfigFiles())
             {
-                LoadVoltageOutputSequencesFromConfigFile(reload, $"{_performanceJsonPath}\\{configFile}");
+                LoadVoltageOutputSequencesFromConfigFile(configFile);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        private void LoadVoltageOutputSequencesFromConfigFile(bool reload, string configFile)
+        public void LoadVoltageOutputSequencesFromConfigFile(string configFile, bool reload = false)
         {
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
-                string jsonString = File.ReadAllText(configFile);
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
 
                 VoltageOutputSequenceConfig? sequenceConfig
                     = JsonSerializer.Deserialize<VoltageOutputSequenceConfig>
