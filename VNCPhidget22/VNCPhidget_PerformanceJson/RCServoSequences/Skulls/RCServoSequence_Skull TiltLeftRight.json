@@ -1,0 +1,81 @@
+// RCServoSequence_Skull TiltLeftRight.json
+// Contains
+//  Skull Tilt Tilt Left 20
+//  Skull Tilt Tilt Left 15
+//  Skull Tilt Tilt Left 10
+//  Skull Tilt Tilt Left 5
+//  Skull Tilt Tilt Right 5
+//  Skull Tilt Tilt Right 10
+//  Skull Tilt Tilt Right 15
+//  Skull Tilt Tilt Right 20
+
+// Tilt Left(-)/Right(+) - Y Axis
+{
+
+  "RCServoSequences": [
+    {
+      "Name": "Skull Tilt Left 20",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -20 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Left 15",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -15 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Left 10",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -10 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Left 5",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -5 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Right 5",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 5 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Right 10",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 10 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Right 15",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 15 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Right 20",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 20 },
+      ]
+    },
+  ]
+}

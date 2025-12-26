@@ -1,7 +1,8 @@
 // Performance_Skulls_Routines.json
 // Contains
 //  Center All Skulls
-//  Sleep All Skulls
+//  Disengage All Skulls
+//  Close All Skulls
 //  All Skulls Yes, No, Maybe, Sigh, and Laugh
 //  Move All Skulls on Axes
 //  Sounds on Left and Right
@@ -32,17 +33,31 @@
       ],
     },
     //
-    // Sleep All Skulls
+    // Disengage All Skulls
     //
     {
-      "Name": "Sleep All Skulls",
-      "Description": "Sleep All Skulls",
+      "Name": "Disengage All Skulls",
+      "Description": "Disengage All Skulls",
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Sleep Skull 1" },
-        { "Name": "Sleep Skull 2" },
-        { "Name": "Sleep Skull 3" }
+        { "Name": "Disengage Skull 1" },
+        { "Name": "Disengage Skull 2" },
+        { "Name": "Disengage Skull 3" }
+      ],
+    },
+    //
+    // Close All Skulls
+    //
+    {
+      "Name": "Close All Skulls",
+      "Description": "Close All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Close Skull 1" },
+        { "Name": "Close Skull 2" },
+        { "Name": "Close Skull 3" }
       ],
     },
     //
@@ -54,46 +69,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
-
         {
           "Name": "All Skulls Yes",
           "Duration": 1000
-        },
-        {
-          "Name": "All Skulls Big Yes",
-          "Duration": 1000
-        },
-        {
-          "Name": "All Skulls No",
-          "Duration": 1000
-        },
-        {
-          "Name": "All Skulls Big No",
-          "Duration": 1000
-        },
-        {
-          "Name": "All Skulls Maybe",
-          "Duration": 1000
-        },
-        {
-          "Name": "All Skulls Sigh",
-          "Duration": 1000
-        },
-        {
-          "Name": "All Skulls Laugh",
-          "Duration": 1000
-        },
-        {
-          "Name": "All Skulls Big Laugh",
-          "Duration": 1000
-        },
-
-        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
-
-        {
-          "Name": "All Skulls Yes",
-          "Duration": 1002
         },
         {
           "Name": "All Skulls Big Yes",

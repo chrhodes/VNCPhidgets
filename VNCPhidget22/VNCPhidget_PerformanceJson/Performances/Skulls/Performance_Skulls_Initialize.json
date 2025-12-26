@@ -3,15 +3,18 @@
 //  Initialize Skull 1
 //  Initialize Skull 2
 //  Initialize Skull 3
-//  Enable Skull 1
-//  Enable Skull 2
-//  Enable Skull 3
+//  Engage Skull 1
+//  Engage Skull 2
+//  Engage Skull 3
 //  Center Skull 1
 //  Center Skull 2
 //  Center Skull 3
-//  Sleep Skull 1
-//  Sleep Skull 2
-//  Sleep Skull 3
+//  Disengage Skull 1
+//  Disengage Skull 2
+//  Disengage Skull 3
+//  Close Skull 1
+//  Close Skull 2
+//  Close Skull 3
 {
   "Name": "Performance_InitializeSkulls",
   "Description": "Performances to Initialize, EnableUp and Sleep Skulls",
@@ -144,11 +147,14 @@
       ]
     },
     //
-    // Enable Skulls
+    // Engage Skulls
     //
+    // NOTE (crhodes)
+    // These use an inline RCServoSequence with Actions
+    // Compare to Disegage Skull infra which uses Named RCServoSequences
     {
-      "Name": "Enable Skull 1",
-      "Description": "Enable Skull 1",
+      "Name": "Engage Skull 1",
+      "Description": "Engage Skull 1",
       "SerialNumber": 99220,
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -159,8 +165,8 @@
       ]
     },
     {
-      "Name": "Enable Skull 2",
-      "Description": "Enable Skull 2",
+      "Name": "Engage Skull 2",
+      "Description": "Engage Skull 2",
       "SerialNumber": 169501,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
@@ -170,8 +176,8 @@
       ]
     },
     {
-      "Name": "Enable Skull 3",
-      "Description": "Enable Skull 3",
+      "Name": "Engage Skull 3",
+      "Description": "Engage Skull 3",
       "SerialNumber": 99220,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
@@ -180,8 +186,9 @@
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "Engaged": true } ] } }
       ]
     },
-    // TODO(crhodes)
-    // Not sure this should be here.
+    // NOTE(crhodes)
+    // Left this here so can easily compare TargetPositions for Centering Skulls
+    // to values from Intialize Skull sequences above.
     //
     // Center Skulls
     //
@@ -220,11 +227,14 @@
       ]
     },
     //
-    // Sleep Skulls
+    // Disengage Skulls
     //
+    // NOTE (crhodes)
+    // These use a named RCServoSequence "Disengage Servo"
+    // Compare to Engage Skull supra which uses inline RCServoSequences
     {
-      "Name": "Sleep Skull 1",
-      "Description": "Sleep Skull 1",
+      "Name": "Disengage Skull 1",
+      "Description": "Disengage Skull 1",
       "SerialNumber": 99220,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
@@ -234,8 +244,8 @@
       ],
     },
     {
-      "Name": "Sleep Skull 2",
-      "Description": "Sleep Skull 2",
+      "Name": "Disengage Skull 2",
+      "Description": "Disengage Skull 2",
       "SerialNumber": 169501,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
@@ -245,8 +255,8 @@
       ],
     },
     {
-      "Name": "Sleep Skull 3",
-      "Description": "Sleep Skull 3",
+      "Name": "Disengage Skull 3",
+      "Description": "Disengage Skull 3",
       "SerialNumber": 99220,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
@@ -255,6 +265,41 @@
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Disengage Servo" },
       ],
     },
-
+    //
+    // Close Skulls
+    //
+    {
+      "Name": "Close Skull 1",
+      "Description": "Close Skull 1",
+      "SerialNumber": 99220,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Close Servo" },
+      ],
+    },
+    {
+      "Name": "Close Skull 2",
+      "Description": "Close Skull 2",
+      "SerialNumber": 169501,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Close Servo" },
+      ],
+    },
+    {
+      "Name": "Close Skull 3",
+      "Description": "Close Skull 3",
+      "SerialNumber": 99220,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Close Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Close Servo" },
+      ],
+    },
   ]
 }

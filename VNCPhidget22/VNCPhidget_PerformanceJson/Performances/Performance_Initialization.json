@@ -1,13 +1,13 @@
 // Performance_Initialization.json
 // Contains
 //  Initialize All Skulls
-//  Enable All Skulls
+//  Engage All Skulls
 //  Initialize All Hands
-//  Enable All Hands
+//  Engage All Hands
 //  Initialize All Arms
-//  Enable All Arms
+//  Engage All Arms
 //  Initialize Xylophone
-//  Enable Xylophone
+//  Engage Xylophone
 //
 {
   "Name": "Performance_Initialization",
@@ -28,17 +28,17 @@
       ],
     },
     //
-    // Enable All Skulls
+    // Engage All Skulls
     //
     {
-      "Name": "Enable All Skulls",
-      "Description": "Enable All Skulls",
+      "Name": "Engage All Skulls",
+      "Description": "Engage All Skulls",
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
       "Performances": [
-        { "Name": "Enable Skull 1" },
-        { "Name": "Enable Skull 2" },
-        { "Name": "Enable Skull 3" }
+        { "Name": "Engage Skull 1" },
+        { "Name": "Engage Skull 2" },
+        { "Name": "Engage Skull 3" }
       ],
     },
     //
@@ -61,10 +61,10 @@
       ],
     },
     //
-    // Enable All Hands
+    // Engage All Hands
     //
     {
-      "Name": "Enable All Hands",
+      "Name": "Engage All Hands",
       "Description": "Engage and Center All Hands",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
@@ -99,10 +99,10 @@
       ],
     },
     //
-    // Enable All Arms
+    // Engage All Arms
     //
     {
-      "Name": "Enable All Arms",
+      "Name": "Engage All Arms",
       "Description": "Engage and Center All Arms",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
@@ -143,11 +143,11 @@
       ]
     },
     //
-    // Enable Xylophone
+    // Engage Xylophone
     //
     {
-      "Name": "Enable Xylophone",
-      "Description": "Enable Xylophone",
+      "Name": "Engage Xylophone",
+      "Description": "Engage Xylophone",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "DeviceChannelSequences": [

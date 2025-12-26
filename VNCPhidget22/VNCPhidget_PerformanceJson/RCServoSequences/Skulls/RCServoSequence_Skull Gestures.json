@@ -1,0 +1,137 @@
+// RCServoSequence_Skull Gestures.json
+// Contains
+//  Skull Yes
+//  Skull Big Yes
+//  Skull No
+//  Skull Big No
+//  Skull Maybe
+//  Skull Big Maybe
+//  Skull Sigh
+//  Skull Laugh
+//  Skull Big Laugh
+  {
+
+  "RCServoSequences": [
+    //
+    // TODO(crhodes)
+    // Move skulls
+    // Get stuff from AdvancedServoConfig_Skulls
+    //
+    // Skull Gestures only move one axis
+    {
+      "Name": "Skull Yes",
+      "Description": "Move up and down X axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": 5 },
+        { "RelativePosition": -10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -10 },
+        { "RelativePosition": 5 },
+      ]
+    },
+    {
+      "Name": "Skull Big Yes",
+      "Description": "Move up and down X axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": 10 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 10 },
+      ]
+    },
+    {
+      "Name": "Skull No",
+      "Description": "Move left and right Z axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -5 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -5 },
+      ]
+    },
+    {
+      "Name": "Skull Big No",
+      "Description": "Move left and right Z axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -10 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -10 },
+      ]
+    },
+    {
+      "Name": "Skull Maybe",
+      "Description": "Move Y axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -5 },
+        { "RelativePosition": 5 },
+        { "RelativePosition": 5 },
+        { "RelativePosition": -5 },
+      ]
+    },
+    {
+      "Name": "Skull Big Maybe",
+      "Description": "Move Y axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -10 },
+      ]
+    },
+    {
+      "Name": "Skull Sigh",
+      "Description": "Move down X axis, wait, then back up",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        {
+          "RelativePosition": -15,
+          "Duration": 1000
+        },
+        { "RelativePosition": 15 },
+      ]
+    },
+    {
+      "Name": "Skull Laugh",
+      "Description": "Move up and down X axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -5 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -10 },
+        { "RelativePosition": 10 },
+        { "RelativePosition": -5 },
+      ]
+    },
+    {
+      "Name": "Skull Big Laugh",
+      "Description": "Move up and down X axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "RelativePosition": -10 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -20 },
+        { "RelativePosition": 20 },
+        { "RelativePosition": -10 },
+      ]
+    },
+  ]
+}

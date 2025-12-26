@@ -7,6 +7,7 @@
 //  All Skulls - VelocityLimit (250) Acceleration (500)
 //  All Skulls - VelocityLimit (500) Acceleration (1000)
 //  All Skulls - VelocityLimit (1000) Acceleration (2000)
+//  All Skulls - VelocityLimit (2500) Acceleration (5000)
 //  All Skulls - VelocityLimit (5000) Acceleration (10000)
 {
   "Name": "Performance_Skulls_MovementCharacteristics_All",
@@ -21,18 +22,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (10) Acceleration (25)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (10) Acceleration (25)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (10) Acceleration (25)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (10) Acceleration (25)" },
+        { "Name": "Skull 2 - VelocityLimit (10) Acceleration (25)" },
+        { "Name": "Skull 3 - VelocityLimit (10) Acceleration (25)" },
       ],
     },
     //
@@ -44,18 +36,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (25) Acceleration (50)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (25) Acceleration (50)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (25) Acceleration (50)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (25) Acceleration (50)" },
+        { "Name": "Skull 2 - VelocityLimit (25) Acceleration (50)" },
+        { "Name": "Skull 3 - VelocityLimit (25) Acceleration (50)" },
       ],
     },
     //
@@ -67,18 +50,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (50) Acceleration (100)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (50) Acceleration (100)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (50) Acceleration (100)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (50) Acceleration (100)" },
+        { "Name": "Skull 2 - VelocityLimit (50) Acceleration (100)" },
+        { "Name": "Skull 3 - VelocityLimit (50) Acceleration (100)" },
       ],
     },
     //
@@ -90,18 +64,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (100) Acceleration (200)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (100) Acceleration (200)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (100) Acceleration (200)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Skull 2 - VelocityLimit (100) Acceleration (200)" },
+        { "Name": "Skull 3 - VelocityLimit (100) Acceleration (200)" },
       ],
     },
     //
@@ -113,18 +78,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (250) Acceleration (500)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (250) Acceleration (500)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (250) Acceleration (500)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Skull 2 - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Skull 3 - VelocityLimit (250) Acceleration (500)" },
       ],
     },
     //
@@ -136,18 +92,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (500) Acceleration (1000)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (500) Acceleration (1000)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (500) Acceleration (1000)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Skull 2 - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Skull 3 - VelocityLimit (500) Acceleration (1000)" },
       ],
     },
     //
@@ -159,18 +106,23 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (1000) Acceleration (2000)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (1000) Acceleration (2000)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (1000) Acceleration (2000)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (1000) Acceleration (2000)" },
+        { "Name": "Skull 2 - VelocityLimit (1000) Acceleration (2000)" },
+        { "Name": "Skull 3 - VelocityLimit (1000) Acceleration (2000)" },
+      ],
+    },
+    //
+    // All Skulls - VelocityLimit (2500) Acceleration (5000)
+    //
+    {
+      "Name": "All Skulls - VelocityLimit (2500) Acceleration (5000)",
+      "Description": "All Skulls - VelocityLimit (2500) Acceleration (5000)",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 - VelocityLimit (2500) Acceleration (5000)" },
+        { "Name": "Skull 2 - VelocityLimit (2500) Acceleration (5000)" },
+        { "Name": "Skull 3 - VelocityLimit (2500) Acceleration (5000)" },
       ],
     },
     //
@@ -182,18 +134,9 @@
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (5000) Acceleration (10000)",
-          "SerialNumber": 99220
-        },
-        {
-          "Name": "Skull HP0 C012 - VelocityLimit (5000) Acceleration (10000)",
-          "SerialNumber": 169501
-        },
-        {
-          "Name": "Skull HP0 C456 - VelocityLimit (5000) Acceleration (10000)",
-          "SerialNumber": 99220
-        },
+        { "Name": "Skull 1 - VelocityLimit (5000) Acceleration (10000)" },
+        { "Name": "Skull 2 - VelocityLimit (5000) Acceleration (10000)" },
+        { "Name": "Skull 3 - VelocityLimit (5000) Acceleration (10000)" },
       ],
     },
   ]

@@ -877,15 +877,21 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\Skulls\Skull\
 
-                @"Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json",
-                @"Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json",
-                @"Performances\Skulls\Skull\Performance_Skull_012_UpDown.json",
-                @"Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybeSighLaugh.json",
+                @"Performances\Skulls\Skull\Performance_Skull_LeftRight.json",
+                @"Performances\Skulls\Skull\Performance_Skull_TiltLeftRight.json",
+                @"Performances\Skulls\Skull\Performance_Skull_UpDown.json",
 
-                @"Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json",
-                @"Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json",
-                @"Performances\Skulls\Skull\Performance_Skull_456_UpDown.json",
-                @"Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybeSighLaugh.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_012_UpDown.json",
+
+                //@"Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybeSighLaugh.json",
+
+                //@"Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_456_UpDown.json",
+
+                //@"Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybeSighLaugh.json",
 
                 // Performances\Skulls\Device\
 
@@ -990,10 +996,10 @@ namespace VNC.Phidget22.Configuration
 
                 // RCServoSequences\Skulls\
 
-                @"RCServoSequences\Skulls\RCServoSequence_Skull 1 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull Move.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull Gestures.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull LeftRight.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull TiltLeftRight.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skull UpDown.json",
 
                 // RCServoSequences\Music\
 

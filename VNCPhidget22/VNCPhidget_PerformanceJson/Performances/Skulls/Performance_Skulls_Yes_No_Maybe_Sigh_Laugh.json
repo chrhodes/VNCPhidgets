@@ -16,7 +16,7 @@
     // All Skulls Yes
     //
     {
-      "Name": "All Skulls Yes",
+      "Name": "All Skulls Yes Old",
       "Description": "All Skulls Yes",
       "Loops": 1,
       "ExecutePerformancesInParallel": true,
@@ -28,170 +28,296 @@
     },
     // NOTE(crhodes)
     // This is new approach
+    // Two Routines to test sequential and parallel
     //
     // All Skulls Yes
     //
     {
-      "Name": "New All Skulls Yes",
-      "Description": "All Skulls Yes using DCS and SHPC",
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": false,
-      "DeviceChannelSequences": [
-        //{
-        //  "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [
-        //      {
-        //        "Open": true, "RCServoType": 3,
-        //        "MinPositionStop": 70, "TargetPosition": 90, "MaxPositionStop": 110,
-        //        "Acceleration": 100, "VelocityLimit": 50
-        //      }
-        //    ]
-        //  }
-        //},
-        { 
-          "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
-          "Name": "Skull Yes"
-        },
-        { 
-          "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
-          "Name": "Skull Yes"
-        },
-        { 
-          "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
-          "Name": "Skull Yes"
-        }
-      ]
-    },
-    //
-    {
-      "Name": "New All Skulls Yes Parallel",
-      "Description": "All Skulls Yes using DCS and SHPC",
+      "Name": "All Skulls Yes Parallel",
+      "Description": "All Skulls Yes parallel using DCS and SNHPC",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        //{
-        //  "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [
-        //      {
-        //        "Open": true, "RCServoType": 3,
-        //        "MinPositionStop": 70, "TargetPosition": 90, "MaxPositionStop": 110,
-        //        "Acceleration": 100, "VelocityLimit": 50
-        //      }
-        //    ]
-        //  }
-        //},
-        { 
-          "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
-          "Name": "Skull Yes"
-        },
-        { 
-          "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
-          "Name": "Skull Yes"
-        },
-        { 
-          "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
-          "Name": "Skull Yes"
-        }
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Yes" }
       ]
     },
     {
-      "Name": "All Skulls Big Yes",
-      "Description": "All Skulls Big Yes",
+      "Name": "All Skulls Yes Sequential",
+      "Description": "All Skulls Yes sequential using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Big Yes", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Big Yes", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Big Yes", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Yes" }
+      ]
     },
+    {
+      "Name": "All Skulls Big Yes Parallel",
+      "Description": "All Skulls Yes parallel using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Big Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Big Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Big Yes" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big Yes Sequential",
+      "Description": "All Skulls Yes parallel using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Big Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Big Yes" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Big Yes" }
+      ]
+    },
+    //{
+    //  "Name": "All Skulls Big Yes",
+    //  "Description": "All Skulls Big Yes",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 Big Yes", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 Big Yes", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 Big Yes", "SerialNumber": 99220 },
+    //  ],
+    //},
     //
     // All Skulls No
     //
+    //{
+    //  "Name": "All Skulls No",
+    //  "Description": "All Skulls No",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 No", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 No", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 No", "SerialNumber": 99220 },
+    //  ],
+    //},
+    //{
+    //  "Name": "All Skulls Big No",
+    //  "Description": "All Skulls Big No",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 Big No", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 Big No", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 Big No", "SerialNumber": 99220 },
+    //  ],
+    //},
     {
-      "Name": "All Skulls No",
-      "Description": "All Skulls No",
+      "Name": "All Skulls No Parallel",
+      "Description": "All Skulls No parallel using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 No", "SerialNumber": 99220 },
-       { "Name": "Skull-012 No", "SerialNumber": 169501 },
-       { "Name": "Skull-456 No", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Z Axis", "Name": "Skull No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Z Axis", "Name": "Skull No" }
+      ]
     },
     {
-      "Name": "All Skulls Big No",
-      "Description": "All Skulls Big No",
+      "Name": "All Skulls No Sequential",
+      "Description": "All Skulls No sequential using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Big No", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Big No", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Big No", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Z Axis", "Name": "Skull No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Z Axis", "Name": "Skull No" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big No Parallel",
+      "Description": "All Skulls Big No parallel using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Z Axis", "Name": "Skull Big No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull Big No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Z Axis", "Name": "Skull Big No" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big No Sequential",
+      "Description": "All Skulls Big No sequential using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Z Axis", "Name": "Skull Big No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull Big No" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Z Axis", "Name": "Skull Big No" }
+      ]
     },
     //
     // All Skulls Maybe
     //
+    //{
+    //  "Name": "All Skulls Maybe",
+    //  "Description": "All Skulls Maybe",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 Maybe", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 Maybe", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 Maybe", "SerialNumber": 99220 },
+    //  ],
+    //},
     {
-      "Name": "All Skulls Maybe",
-      "Description": "All Skulls Maybe",
+      "Name": "All Skulls Maybe Parallel",
+      "Description": "All Skulls Maybe parallel using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Maybe", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Maybe", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Maybe", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Y Axis", "Name": "Skull Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Y Axis", "Name": "Skull Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Y Axis", "Name": "Skull Maybe" }
+      ]
+    },
+    {
+      "Name": "All Skulls Maybe Sequential",
+      "Description": "All Skulls Maybe sequential using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Y Axis", "Name": "Skull Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Y Axis", "Name": "Skull Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Y Axis", "Name": "Skull Maybe" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big Maybe Parallel",
+      "Description": "All Skulls Big Maybe parallel using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Y Axis", "Name": "Skull Big Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Y Axis", "Name": "Skull Big Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Y Axis", "Name": "Skull Big Maybe" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big Maybe Sequential",
+      "Description": "All Skulls Big Maybe sequential using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 Y Axis", "Name": "Skull Big Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 Y Axis", "Name": "Skull Big Maybe" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 Y Axis", "Name": "Skull Big Maybe" }
+      ]
     },
     //
     // All Skulls Sigh
     //
+    //{
+    //  "Name": "All Skulls Sigh",
+    //  "Description": "All Skulls Sigh",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 Sigh", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 Sigh", "SerialNumber": 99220 },
+    //  ],
+    //},
     {
-      "Name": "All Skulls Sigh",
-      "Description": "All Skulls Sigh",
+      "Name": "All Skulls Sigh Parallel",
+      "Description": "All Skulls Sigh parallel using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Sigh", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Sigh", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Sigh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Sigh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Sigh" }
+      ]
+    },
+    {
+      "Name": "All Skulls Sigh Sequential",
+      "Description": "All Skulls Sigh sequential using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Sigh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Sigh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Sigh" }
+      ]
     },
     //
     // All Skulls Laugh
     //
+    //{
+    //  "Name": "All Skulls Laugh",
+    //  "Description": "All Skulls Laugh",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 Laugh", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 Laugh", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 Laugh", "SerialNumber": 99220 },
+    //  ],
+    //},
+    //{
+    //  "Name": "All Skulls Big Laugh",
+    //  "Description": "All Skulls Laugh",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": true,
+    //  "Performances": [
+    //   { "Name": "Skull-012 Big Laugh", "SerialNumber": 99220 },
+    //   { "Name": "Skull-012 Big Laugh", "SerialNumber": 169501 },
+    //   { "Name": "Skull-456 Big Laugh", "SerialNumber": 99220 },
+    //  ],
+    //},
     {
-      "Name": "All Skulls Laugh",
-      "Description": "All Skulls Laugh",
+      "Name": "All Skulls Laugh Parallel",
+      "Description": "All Skulls Laugh parallel using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Laugh", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Laugh", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Laugh", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Laugh" }
+      ]
     },
     {
-      "Name": "All Skulls Big Laugh",
-      "Description": "All Skulls Laugh",
+      "Name": "All Skulls Laugh Sequential",
+      "Description": "All Skulls Laugh sequential using DCS and SNHPC",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-       { "Name": "Skull-012 Big Laugh", "SerialNumber": 99220 },
-       { "Name": "Skull-012 Big Laugh", "SerialNumber": 169501 },
-       { "Name": "Skull-456 Big Laugh", "SerialNumber": 99220 },
-      ],
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Laugh" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big Laugh Parallel",
+      "Description": "All Skulls Laugh parallel using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Big Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Big Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Big Laugh" }
+      ]
+    },
+    {
+      "Name": "All Skulls Big Laugh Sequential",
+      "Description": "All Skulls Laugh parallel using DCS and SNHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull Big Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull Big Laugh" },
+        { "ChannelClass": "RCServo", "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull Big Laugh" }
+      ]
     },
   ]
 }
