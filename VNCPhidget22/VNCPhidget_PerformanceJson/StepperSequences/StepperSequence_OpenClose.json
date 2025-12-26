@@ -1,3 +1,10 @@
+// StepperSequence_OpenClose.json
+// Contains
+//  Open Stepper
+//  Engage Stepper
+//  Open and Engage Stepper
+//  Disengage Stepper
+//  Close Stepper
 {
   "StepperSequences": [
     //
@@ -27,7 +34,10 @@
       "UsageNotes": "Must provide SerialNumber, HubPort, and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        { "Open": true, "Engaged": true }
+        {
+          "Open": true,
+          "Engaged": true
+        }
       ]
     },
     {

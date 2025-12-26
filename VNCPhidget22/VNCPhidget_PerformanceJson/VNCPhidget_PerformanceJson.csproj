@@ -40,6 +40,9 @@
     <None Include="DigitalInputSequences\DigitalInputSequence_1.json" />
     <None Include="DigitalOutputSequences\DigitalOutputSequence_1.json" />
     <None Include="DigitalOutputSequences\DigitalOutputSequence_OpenClose.json" />
+    <None Include="Hosts.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Performances\Arms\Performance_Arms_Initialize.json" />
     <None Include="Performances\Arms\Performance_Arms_Routines.json" />
     <None Include="Performances\DigitalOutput\Performance_DigitalOutputs.json" />
@@ -89,7 +92,6 @@
     <None Include="Performances\Stepper\Performance_Steppers.json" />
     <None Include="Performances\Stepper\Performance_Stepper_MovementCharacteristics.json" />
     <None Include="Performances\Stepper\Performance_Stepper_OpenClose.json" />
-    <None Include="RCServoSequences\AdvancedServoSequence_Skulls.json" />
     <None Include="RCServoSequences\AdvancedServoSequence_Test A+B+C.json" />
     <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Initialization.json" />
     <None Include="RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Move.json" />
@@ -108,6 +110,7 @@
     <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 2 Initialization.json" />
     <None Include="RCServoSequences\Skulls\RCServoSequence_Skull 3 Initialization.json" />
     <None Include="RCServoSequences\Skulls\RCServoSequence_Skull Move.json" />
+    <None Include="SerialNumberHubPortChannels.json" />
     <None Include="StepperSequences\StepperSequence_1.json" />
     <None Include="StepperSequences\StepperSequence_MovementCharacteristics.json" />
     <None Include="StepperSequences\StepperSequence_OpenClose.json" />

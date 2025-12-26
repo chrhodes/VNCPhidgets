@@ -30,6 +30,7 @@
     {
       "Name": "Skull Yes",
       "Description": "Move up and down X axis 2 times",
+      "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
       "Actions": [
         { "RelativePosition": 5 },

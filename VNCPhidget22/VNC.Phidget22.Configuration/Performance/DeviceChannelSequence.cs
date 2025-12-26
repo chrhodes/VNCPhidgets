@@ -5,6 +5,7 @@ using VNC.Phidget22.Configuration.Performance;
 
 namespace VNC.Phidget22.Configuration
 {
+
     public class DeviceChannelSequence
     {
         /// <summary>
@@ -22,6 +23,15 @@ namespace VNC.Phidget22.Configuration
         /// Notes on using DeviceChannelSequence (optional)
         /// </summary>
         public string? UsageNotes { get; set; }
+
+        /// <summary>
+        /// Name of SerialNumberHubPortChannel of PhidgetDevice that will run sequence
+        /// Can be used instead of individual SerialNumber, HubPort, Channel
+        /// 
+        public string? SerialNumberHubPortChannelName { get; set; } = null;
+
+        // TODO(crhodes)
+        // Decide if need to keep these individual parameters
 
         /// <summary>
         /// SerialNumber of PhidgetDevice that will run sequence
@@ -53,6 +63,7 @@ namespace VNC.Phidget22.Configuration
 
         // NOTE(crhodes)
         // These are used for embedded sequences - Name not used for lookup
+        // Only one should be set.  Needs to match ChannelClass.
 
         public DigitalInputSequence? DigitalInputSequence { get; set; } = null;
         public DigitalOutputSequence? DigitalOutputSequence { get; set; } = null;

@@ -2,6 +2,10 @@
 {
     public class HostConfig
     {
+        // TODO(crhodes)
+        // Don't see any reason to initialize Hosts here.
+        // It is populated from configuration file. Hosts.json
+
         public Host[] Hosts { get; set; } = new[]
         {
             new Host

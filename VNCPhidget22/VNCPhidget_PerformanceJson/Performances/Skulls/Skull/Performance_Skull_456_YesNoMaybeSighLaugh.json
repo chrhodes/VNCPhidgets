@@ -19,12 +19,7 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "Skull Yes"
-        }, // Channel 4 - X Axis  
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Skull Yes" }, // Channel 4 - X Axis  
       ],
     },
     {

@@ -110,6 +110,7 @@ namespace VNC.Phidget22.Players
                     startTicks = Log.TRACE($"Enter (>{deviceChannelSequence.Name}<)" +
                         $" channelClass:>{deviceChannelSequence.ChannelClass}<" +
                         $" playerSerialNumber:>{SerialNumber}<" +
+                        $" serialNumberHubPortChannelName:>{deviceChannelSequence.SerialNumberHubPortChannelName}<" +
                         $" dcsSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
                         $" dcsHubPort:>{deviceChannelSequence.HubPort}<" +
                         $" dcsChannel:>{deviceChannelSequence.Channel}<" +
@@ -125,7 +126,30 @@ namespace VNC.Phidget22.Players
                     // Each loop starts back at the initial sequence
                     DeviceChannelSequence? nextPhidgetDeviceChannelSequence = deviceChannelSequence;
 
-                    if (SerialNumber.HasValue)
+                    // TODO(crhodes)
+                    // Starting to implement SerialNumberHubPortChannelName override
+
+                    if (deviceChannelSequence.SerialNumberHubPortChannelName is not null)
+                    {
+                        if (PerformanceLibrary.SerialNumberHubPortChannels.TryGetValue(deviceChannelSequence.SerialNumberHubPortChannelName,
+                            out SerialNumberHubPortChannel? serialNumberHubPortChannel))
+                        {
+                            nextPhidgetDeviceChannelSequence.SerialNumber = serialNumberHubPortChannel.SerialNumber;
+                            nextPhidgetDeviceChannelSequence.HubPort = serialNumberHubPortChannel.HubPort;
+                            nextPhidgetDeviceChannelSequence.Channel = serialNumberHubPortChannel.Channel;
+
+                            if (LogDeviceChannelSequence) Log.TRACE($"Set from SerialNumberHubPortChannel:>{deviceChannelSequence.SerialNumberHubPortChannelName}<" +
+                                $" dcsSerialNumber:>{nextPhidgetDeviceChannelSequence.SerialNumber}<" +
+                                $" dcsHubPort:>{nextPhidgetDeviceChannelSequence.HubPort}<" +
+                                $" dcsChannel:>{nextPhidgetDeviceChannelSequence.Channel}<" +
+                                $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                        }
+                        else
+                        {
+                            Log.ERROR($"Cannot find SerialNumberHubPortChannel:>{deviceChannelSequence.SerialNumberHubPortChannelName}<", Common.LOG_CATEGORY);
+                        }
+                    }
+                    else if (SerialNumber.HasValue)
                     {
                         nextPhidgetDeviceChannelSequence.SerialNumber = SerialNumber;
                     }

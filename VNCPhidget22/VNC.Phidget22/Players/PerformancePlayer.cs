@@ -368,14 +368,49 @@ namespace VNC.Phidget22.Players
                             // If we have configured a SerialNumber override, we need to use that
                             // Otherwise we use the sequence SerialNumber
 
+                            //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
+                            //    configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
+
+                            // TODO(crhodes)
+                            // Need to handle case with SerialNumberHupPortChannel 
+
+                            Int32? serialNumber = configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber;
+
+                            if (serialNumber is null && deviceChannelSequence.SerialNumberHubPortChannelName is not null)
+                            {
+
+                                if (PerformanceLibrary.SerialNumberHubPortChannels.TryGetValue(
+                                        deviceChannelSequence.SerialNumberHubPortChannelName,
+                                        out SerialNumberHubPortChannel? serialNumberHubPortChannel))
+                                {
+                                    serialNumber = serialNumberHubPortChannel.SerialNumber;
+                                    //nextPhidgetDeviceChannelSequence.HubPort = serialNumberHubPortChannel.HubPort;
+                                    //nextPhidgetDeviceChannelSequence.Channel = serialNumberHubPortChannel.Channel;
+
+                                    //if (LogDeviceChannelSequence) Log.TRACE($"Set from SerialNumberHubPortChannel:>{deviceChannelSequence.SerialNumberHubPortChannelName}<" +
+                                    //    $" dcsSerialNumber:>{nextPhidgetDeviceChannelSequence.SerialNumber}<" +
+                                    //    $" dcsHubPort:>{nextPhidgetDeviceChannelSequence.HubPort}<" +
+                                    //    $" dcsChannel:>{nextPhidgetDeviceChannelSequence.Channel}<" +
+                                    //    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                                }
+                                else
+                                {
+                                    Log.ERROR($"Cannot find SerialNumberHubPortChannel:>{deviceChannelSequence.SerialNumberHubPortChannelName}<", Common.LOG_CATEGORY);
+                                }
+                            }
+                            else
+                            {
+                                // TODO(crhodes)
+                                // Throw error no serial number
+                            }
+
                             DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
-                                configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
-                            //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(configuredPerf.SerialNumber);
+                                serialNumber);
 
                             if (LogPerformance) Log.TRACE($"Parallel DeviceChannelSequences" +
                                 $" performance:>{deviceChannelSequence.Name}<" +
                                 $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +
-                                $" sequenceSerialNumber:>{deviceChannelSequence.SerialNumber}<" +   
+                                $" sequenceSerialNumber:>{deviceChannelSequence.SerialNumber}<" +
                                 $" performancePlayerSerialNumber:>{SerialNumber}<" +
                                 $" hubPort:>{deviceChannelSequence.HubPort}<" +
                                 $" channel:>{deviceChannelSequence.Channel}<" +
@@ -392,12 +427,46 @@ namespace VNC.Phidget22.Players
                         {
                             // TODO(crhodes)
                             // If we have configured a SerialNumber override, we need to use that
-                            // Otherwise we use the deviceChannelSequence SerialNumber
+                            // Otherwise we use the sequence SerialNumber
+
+                            //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
+                            //    configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
+
+                            // TODO(crhodes)
+                            // Need to handle case with SerialNumberHubPortChannel 
+
+                            Int32? serialNumber = configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber;
+
+                            if (serialNumber is null && deviceChannelSequence.SerialNumberHubPortChannelName is not null)
+                            {
+
+                                if (PerformanceLibrary.SerialNumberHubPortChannels.TryGetValue(
+                                        deviceChannelSequence.SerialNumberHubPortChannelName,
+                                        out SerialNumberHubPortChannel? serialNumberHubPortChannel))
+                                {
+                                    serialNumber = serialNumberHubPortChannel.SerialNumber;
+                                    //nextPhidgetDeviceChannelSequence.HubPort = serialNumberHubPortChannel.HubPort;
+                                    //nextPhidgetDeviceChannelSequence.Channel = serialNumberHubPortChannel.Channel;
+
+                                    //if (LogDeviceChannelSequence) Log.TRACE($"Set from SerialNumberHubPortChannel:>{deviceChannelSequence.SerialNumberHubPortChannelName}<" +
+                                    //    $" dcsSerialNumber:>{nextPhidgetDeviceChannelSequence.SerialNumber}<" +
+                                    //    $" dcsHubPort:>{nextPhidgetDeviceChannelSequence.HubPort}<" +
+                                    //    $" dcsChannel:>{nextPhidgetDeviceChannelSequence.Channel}<" +
+                                    //    $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                                }
+                                else
+                                {
+                                    Log.ERROR($"Cannot find SerialNumberHubPortChannel:>{deviceChannelSequence.SerialNumberHubPortChannelName}<", Common.LOG_CATEGORY);
+                                }
+                            }
+                            else
+                            {
+                                // TODO(crhodes)
+                                // Throw error no serial number
+                            }
 
                             DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
-                                configuredPerf.SerialNumber.HasValue ? configuredPerf.SerialNumber : deviceChannelSequence.SerialNumber);
-                            //DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(configuredPerf.SerialNumber);
-
+                                serialNumber);
                             if (LogPerformance) Log.TRACE($"Sequential DeviceChannelSequences" +
                                 $" performance:>{deviceChannelSequence.Name}<" +
                                 $" configuredPerfSerialNumber:>{configuredPerf.SerialNumber}<" +

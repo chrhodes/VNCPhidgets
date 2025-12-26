@@ -1,10 +1,11 @@
 // Performance_Initialization.json
 // Contains
 //  Initialize All Skulls
+//  Enable All Skulls
 //  Initialize All Hands
-//  Wake up All Hands
+//  Enable All Hands
 //  Initialize All Arms
-//  Wake up All Arms
+//  Enable All Arms
 //  Initialize Xylophone
 //  Enable Xylophone
 //
@@ -27,6 +28,20 @@
       ],
     },
     //
+    // Enable All Skulls
+    //
+    {
+      "Name": "Enable All Skulls",
+      "Description": "Enable All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Enable Skull 1" },
+        { "Name": "Enable Skull 2" },
+        { "Name": "Enable Skull 3" }
+      ],
+    },
+    //
     // Initialize All Hands
     //
     {
@@ -46,10 +61,10 @@
       ],
     },
     //
-    // Wake up All Hands
+    // Enable All Hands
     //
     {
-      "Name": "Wake up All Hands",
+      "Name": "Enable All Hands",
       "Description": "Engage and Center All Hands",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
@@ -84,10 +99,10 @@
       ],
     },
     //
-    // Wake up All Arms
+    // Enable All Arms
     //
     {
-      "Name": "Wake up All Arms",
+      "Name": "Enable All Arms",
       "Description": "Engage and Center All Arms",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,

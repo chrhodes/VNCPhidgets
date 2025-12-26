@@ -26,6 +26,84 @@
        { "Name": "Skull-456 Yes", "SerialNumber": 99220 },
       ],
     },
+    // NOTE(crhodes)
+    // This is new approach
+    //
+    // All Skulls Yes
+    //
+    {
+      "Name": "New All Skulls Yes",
+      "Description": "All Skulls Yes using DCS and SHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        //{
+        //  "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [
+        //      {
+        //        "Open": true, "RCServoType": 3,
+        //        "MinPositionStop": 70, "TargetPosition": 90, "MaxPositionStop": 110,
+        //        "Acceleration": 100, "VelocityLimit": 50
+        //      }
+        //    ]
+        //  }
+        //},
+        { 
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
+          "Name": "Skull Yes"
+        },
+        { 
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
+          "Name": "Skull Yes"
+        },
+        { 
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
+          "Name": "Skull Yes"
+        }
+      ]
+    },
+    //
+    {
+      "Name": "New All Skulls Yes Parallel",
+      "Description": "All Skulls Yes using DCS and SHPC",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        //{
+        //  "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [
+        //      {
+        //        "Open": true, "RCServoType": 3,
+        //        "MinPositionStop": 70, "TargetPosition": 90, "MaxPositionStop": 110,
+        //        "Acceleration": 100, "VelocityLimit": 50
+        //      }
+        //    ]
+        //  }
+        //},
+        { 
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
+          "Name": "Skull Yes"
+        },
+        { 
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
+          "Name": "Skull Yes"
+        },
+        { 
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          //"SerialNumber": 1, "HubPort": 0, "Channel": 0, 
+          "Name": "Skull Yes"
+        }
+      ]
+    },
     {
       "Name": "All Skulls Big Yes",
       "Description": "All Skulls Big Yes",

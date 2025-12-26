@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
@@ -69,14 +70,11 @@ namespace VNC.Phidget22.Configuration
 
             try
             {
-                // NOTE(crhodes)
-                // This is loaded from application Resources\Json folder
-
-                LoadHosts();
-
-                // TODO(crhodes)
                 // These are loaded from VNCPhidget22_PerformanceJson project folder
                 // via _performanceJsonPath passed to constructor
+
+                LoadHosts();
+                LoadSerialNumberHubPortChannels();
 
                 LoadPerformances();
 
@@ -115,155 +113,29 @@ namespace VNC.Phidget22.Configuration
 
         #region Fields and Properties
 
-        public static List<Host> Hosts { get; private set; } = new List<Host>();
+        public static List<Host> Hosts { get; private set; } = 
+            new List<Host>();
 
-        //private ObservableDictionary<string, Performance.Performance> _availablePerformances =
-        //    new ObservableDictionary<string, Performance.Performance>();
-        //public ObservableDictionary<string, Performance.Performance> AvailablePerformances
-        //{
-        //    get 
-        //    { 
-        //        return _availablePerformances; 
-        //    }
-        //    set
-        //    {
-        //        _availablePerformances = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        //public event NotifyCollectionChangedEventHandler? CollectionChanged
-        //{
-        //    add
-        //    {
-        //        ((INotifyCollectionChanged)AvailablePerformances).CollectionChanged += value;
-        //    }
-
-        //    remove
-        //    {
-        //        ((INotifyCollectionChanged)AvailablePerformances).CollectionChanged -= value;
-        //    }
-        //}
-
-        //private Dictionary<string, Performance> _availablePerformances =
-        //    new Dictionary<string, Performance>();
-        //public Dictionary<string, Performance> AvailablePerformances
-        //{
-        //    get { return _availablePerformances; }
-        //    set
-        //    {
-        //        _availablePerformances = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        public static Dictionary<string, SerialNumberHubPortChannel> SerialNumberHubPortChannels { get; private set; } = 
+            new Dictionary<string, SerialNumberHubPortChannel>();
 
         public static Dictionary<string, Performance.Performance> AvailablePerformances { get; set; } =
             new Dictionary<string, Performance.Performance>();
 
-        //private ObservableDictionary<string, DigitalInputSequence> _availableDigitalInputSequences =
-        //    new ObservableDictionary<string, DigitalInputSequence>();
-        //public ObservableDictionary<string, DigitalInputSequence> AvailableDigitalInputSequences
-        //{
-        //    get
-        //    {
-        //        return _availableDigitalInputSequences;
-        //    }
-        //    set
-        //    {
-        //        _availableDigitalInputSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public static Dictionary<string, DigitalInputSequence> AvailableDigitalInputSequences { get; set; } =
              new Dictionary<string, DigitalInputSequence>();
-
-        //private ObservableDictionary<string, DigitalOutputSequence> _availableDigitalOutputSequences =
-        //    new ObservableDictionary<string, DigitalOutputSequence>();
-        //public ObservableDictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences
-        //{
-        //    get
-        //    {
-        //        return _availableDigitalOutputSequences;
-        //    }
-        //    set
-        //    {
-        //        _availableDigitalOutputSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         public static Dictionary<string, DigitalOutputSequence> AvailableDigitalOutputSequences { get; set; } =
             new Dictionary<string, DigitalOutputSequence>();
 
-        //private ObservableDictionary<string, RCServoSequence> _availableRCServoSequences =
-        //    new ObservableDictionary<string, RCServoSequence>();
-        //public ObservableDictionary<string, RCServoSequence> AvailableRCServoSequences
-        //{
-        //    get
-        //    {
-        //        return _availableRCServoSequences;
-        //    }
-        //    set
-        //    {
-        //        _availableRCServoSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public static Dictionary<string, RCServoSequence> AvailableRCServoSequences { get; set; } =
             new Dictionary<string, RCServoSequence>();
-
-        //private ObservableDictionary<string, StepperSequence> _availableStepperSequences =
-        //    new ObservableDictionary<string, StepperSequence>();
-        //public ObservableDictionary<string, StepperSequence> AvailableStepperSequences
-        //{
-        //    get
-        //    {
-        //        return _availableStepperSequences;
-        //    }
-        //    set
-        //    {
-        //        _availableStepperSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         public static Dictionary<string, StepperSequence> AvailableStepperSequences { get; set; } =
             new Dictionary<string, StepperSequence>();
 
-        //private ObservableDictionary<string, VoltageInputSequence> _availableVoltageInputSequences =
-        //    new ObservableDictionary<string, VoltageInputSequence>();
-        //public ObservableDictionary<string, VoltageInputSequence> AvailableVoltageInputSequences
-        //{
-        //    get
-        //    {
-        //        return _availableVoltageInputSequences;
-        //    }
-        //    set
-        //    {
-        //        _availableVoltageInputSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
         public static Dictionary<string, VoltageInputSequence> AvailableVoltageInputSequences { get; set; } =
              new Dictionary<string, VoltageInputSequence>();
-
-        //private ObservableDictionary<string, VoltageOutputSequence> _availableVoltageOutputSequences =
-        //    new ObservableDictionary<string, VoltageOutputSequence>();
-        //public ObservableDictionary<string, VoltageOutputSequence> AvailableVoltageOutputSequences
-        //{
-        //    get
-        //    {
-        //        return _availableVoltageOutputSequences;
-        //    }
-        //    set
-        //    {
-        //        _availableVoltageOutputSequences = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         public static Dictionary<string, VoltageOutputSequence> AvailableVoltageOutputSequences { get; set; } =
             new Dictionary<string, VoltageOutputSequence>();
@@ -301,8 +173,67 @@ namespace VNC.Phidget22.Configuration
                     (jsonString, GetJsonSerializerOptions());
 
                 if (hostConfig is not null) Hosts = hostConfig.Hosts.ToList();
+            }
+            catch (Exception ex)
+            {
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR(ex, Common.LOG_CATEGORY);
+            }
 
-                //LoadNetworkHosts(Hosts);
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public void LoadSerialNumberHubPortChannels()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks
+                    = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            foreach (string configFile in GetListOfSerialNumberHubPortChannelConfigFiles())
+            {
+                LoadSerialNumberHubPortChannelsFromConfigFile(configFile);
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        private void LoadSerialNumberHubPortChannelsFromConfigFile(string configFile, bool reload = false)
+        {
+            long startTicks = 0;
+
+            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
+
+                SerialNumberHubPortChannelConfig? serialNumberHubPortChannelConfig
+                    = JsonSerializer.Deserialize<SerialNumberHubPortChannelConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (serialNumberHubPortChannelConfig != null && serialNumberHubPortChannelConfig.SerialNumberHubPortChannels is not null)
+                {                     
+                    foreach (var snhpc in serialNumberHubPortChannelConfig.SerialNumberHubPortChannels)
+                    {
+                        try
+                        {
+                            if (snhpc.Name is not null)
+                            {
+                                if(reload)
+                                {   
+                                    SerialNumberHubPortChannels.Remove(snhpc.Name); 
+                                }
+
+                                SerialNumberHubPortChannels.Add(snhpc.Name, snhpc);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{snhpc.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR(ax, Common.LOG_CATEGORY);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -331,8 +262,6 @@ namespace VNC.Phidget22.Configuration
             {
                 LoadPerformancesFromConfigFile(configFile);
             }
-
-            //AvailablePerformances.CollectionChanged += AvailablePerformances_CollectionChanged;
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -850,6 +779,25 @@ namespace VNC.Phidget22.Configuration
 
         #region Private Methods
 
+        private static IEnumerable<string> GetListOfSerialNumberHubPortChannelConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+            // Maybe just put in ConfigFiles.json
+
+            List<string> files = new List<string>
+            {
+                // TODO(crhodes)
+                // Likely this will be multiple files as needed
+
+                @"SerialNumberHubPortChannels.json"
+            };
+
+            return files;
+        }
+
         public static IEnumerable<string> GetListOfPerformanceConfigFiles()
         {
             // HACK(crhodes)
@@ -1016,7 +964,6 @@ namespace VNC.Phidget22.Configuration
                 // The ServoIndex is wrong, should be Channel
                 // Probably more
 
-                //@"AdvancedServoSequences\AdvancedServoSequence_Skulls.json",
                 //@"AdvancedServoSequences\AdvancedServoSequence_Test A+B+C.json",
                 
                 @"RCServoSequences\RCServoSequence_99415.json",

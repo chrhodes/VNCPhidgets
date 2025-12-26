@@ -1,0 +1,33 @@
+{
+  "Name": "SerialNumberHubPortChannel",
+  "Description": "",
+  "SerialNumberHubPortChannels": [
+    {
+      "Name": "Skull 1 X Axis", "SerialNumber": 99220, "HubPort": 0, "Channel": 0
+    },
+    {
+      "Name": "Skull 1 Y Axis", "SerialNumber": 99220, "HubPort": 0, "Channel": 1
+    },
+    {
+      "Name": "Skull 1 Z Axis", "SerialNumber": 99220, "HubPort": 0, "Channel": 2
+    },
+    {
+      "Name": "Skull 2 X Axis", "SerialNumber": 169501, "HubPort": 0, "Channel": 0
+    },
+    {
+      "Name": "Skull 2 Y Axis", "SerialNumber": 169501, "HubPort": 0, "Channel": 1
+    },
+    {
+      "Name": "Skull 2 Z Axis", "SerialNumber": 169501, "HubPort": 0, "Channel": 2
+    },
+    {
+      "Name": "Skull 3 X Axis", "SerialNumber": 99220, "HubPort": 0, "Channel": 4
+    },
+    {
+      "Name": "Skull 3 Y Axis", "SerialNumber": 99220, "HubPort": 0, "Channel": 5
+    },
+    {
+      "Name": "Skull 3 Z Axis", "SerialNumber": 99220, "HubPort": 0, "Channel": 6
+    },
+  ]
+}
