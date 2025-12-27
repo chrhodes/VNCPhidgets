@@ -68,9 +68,6 @@
     <None Include="Performances\RCServo\Performance_RCServo_PP2.json" />
     <None Include="Performances\RCServo\Performance_RCServo_PP3.json" />
     <None Include="Performances\RCServo\Performance_RCServo_PP4.json" />
-    <None Include="Performances\Skulls\Device\Performance_169501_Skull_012.json" />
-    <None Include="Performances\Skulls\Device\Performance_99220_Skull_012.json" />
-    <None Include="Performances\Skulls\Device\Performance_99220_Skull_456.json" />
     <None Include="Performances\Skulls\Performance_Skulls_Consulting.json" />
     <None Include="Performances\Skulls\Performance_Skulls_Initialize.json" />
     <None Include="Performances\Skulls\Performance_Skulls_MoveAll.json" />
@@ -81,9 +78,6 @@
     <None Include="Performances\Skulls\Performance_Skulls_RockOut.json" />
     <None Include="Performances\Skulls\Performance_Skulls_Routines.json" />
     <None Include="Performances\Skulls\Performance_Skulls_Yes_No_Maybe_Sigh_Laugh.json" />
-    <None Include="Performances\Skulls\Skull\Performance_Skull_LeftRight.json" />
-    <None Include="Performances\Skulls\Skull\Performance_Skull_TiltLeftRight.json" />
-    <None Include="Performances\Skulls\Skull\Performance_Skull_UpDown.json" />
     <None Include="Performances\Stepper\Performance_Steppers.json" />
     <None Include="Performances\Stepper\Performance_Stepper_MovementCharacteristics.json" />
     <None Include="Performances\Stepper\Performance_Stepper_OpenClose.json" />
@@ -112,5 +106,6 @@
     <None Include="VoltageInputSequences\VoltageInputSequence_1.json" />
     <None Include="VoltageOutputSequences\VoltageOutputSequence_1.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

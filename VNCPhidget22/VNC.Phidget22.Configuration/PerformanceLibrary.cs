@@ -2,26 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 
-using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
-
 using Prism.Events;
-using Prism.Regions.Behaviors;
-
-using Unity.Interception.Utilities;
-
-using VNC.Core.Collections;
-using VNC.Phidget22.Configuration.Performance;
 
 using VNCPhidget22Explorer.Core.Events;
-
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VNC.Phidget22.Configuration
 {
@@ -877,9 +865,9 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\Skulls\Skull\
 
-                @"Performances\Skulls\Skull\Performance_Skull_LeftRight.json",
-                @"Performances\Skulls\Skull\Performance_Skull_TiltLeftRight.json",
-                @"Performances\Skulls\Skull\Performance_Skull_UpDown.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_LeftRight.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_TiltLeftRight.json",
+                //@"Performances\Skulls\Skull\Performance_Skull_UpDown.json",
 
                 //@"Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json",
                 //@"Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json",
@@ -895,9 +883,9 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\Skulls\Device\
 
-                @"Performances\Skulls\Device\Performance_99220_Skull_012.json",
-                @"Performances\Skulls\Device\Performance_99220_Skull_456.json",
-                @"Performances\Skulls\Device\Performance_169501_Skull_012.json",
+                //@"Performances\Skulls\Device\Performance_99220_Skull_012.json",
+                //@"Performances\Skulls\Device\Performance_99220_Skull_456.json",
+                //@"Performances\Skulls\Device\Performance_169501_Skull_012.json",
 
                 // Performances\DigitalOutput\
 

@@ -221,9 +221,9 @@
       "SerialNumber": 99220,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [ { "TargetPosition": 90, } ] } },
-        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [ { "TargetPosition": 85, } ] } },
-        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": 90, } ] } }
+        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 4, "Actions": [ { "TargetPosition": 90, } ] } },
+        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 5, "Actions": [ { "TargetPosition": 85, } ] } },
+        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "TargetPosition": 90, } ] } }
       ]
     },
     //

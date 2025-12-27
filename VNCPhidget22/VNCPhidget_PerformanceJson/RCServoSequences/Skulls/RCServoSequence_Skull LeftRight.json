@@ -1,5 +1,10 @@
 // RCServoSequence_Skull LeftRight.json
 // Contains
+//  Skull Look Left Stop
+//  Skull Look Left 75
+//  Skull Look Left 60
+//  Skull Look Left 45
+//  Skull Look Left 30
 //  Skull Look Left 20
 //  Skull Look Left 15
 //  Skull Look Left 10
@@ -8,11 +13,56 @@
 //  Skull Look Right 10
 //  Skull Look Right 15
 //  Skull Look Right 20
+//  Skull Look Right 30
+//  Skull Look Right 45
+//  Skull Look Right 60
+//  Skull Look Right 75 
+//  Skull Look Right Stop
 
 // Rotate Left(-)/Right(+) - Z Axis
 {
 
   "RCServoSequences": [
+    {
+      "Name": "Skull Look Left Stop",
+      "Description": "Skull Look Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
+    {
+      "Name": "Skull Look Left 75",
+      "Description": "Skull Look Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -75 },
+      ]
+    },
+    {
+      "Name": "Skull Look Left 60",
+      "Description": "Skull Look Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -60 },
+      ]
+    },
+    {
+      "Name": "Skull Look Left 45",
+      "Description": "Skull Look Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -45 },
+      ]
+    },
+    {
+      "Name": "Skull Look Left 30",
+      "Description": "Skull Look Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": -30 },
+      ]
+    },
     {
       "Name": "Skull Look Left 20",
       "Description": "Skull Look Left",
@@ -75,6 +125,46 @@
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 20 },
+      ]
+    },
+    {
+      "Name": "Skull Look Right 30",
+      "Description": "Skull Look Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 30 },
+      ]
+    },
+    {
+      "Name": "Skull Look Right 45",
+      "Description": "Skull Look Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 45 },
+      ]
+    },
+    {
+      "Name": "Skull Look Right 60",
+      "Description": "Skull Look Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 60 },
+      ]
+    },
+    {
+      "Name": "Skull Look Right 75",
+      "Description": "Skull Look Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "RelativePosition": 75 },
+      ]
+    },
+    {
+      "Name": "Skull Look Right Stop",
+      "Description": "Skull Look Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "TargetPosition": -11 },
       ]
     },
   ]

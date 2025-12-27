@@ -1,5 +1,6 @@
 // RCServoSequence_Skull UpDown.json
 // Contains
+// Skull Loop Up Stop
 //  Skull Look Up 20
 //  Skull Look Up 15
 //  Skull Look Up 10
@@ -8,11 +9,19 @@
 //  Skull Look Down 10
 //  Skull Look Down 15
 //  Skull Look Down 20
+// Skull Look Down Stop
 
 // Rotate Up(-)/Down(+) - X Axis
 {
-
   "RCServoSequences": [
+    {
+      "Name": "Skull Look Up Stop",
+      "Description": "Skull Look Up",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "TargetPosition": -11 },
+      ]
+    },
     {
       "Name": "Skull Look Up 20",
       "Description": "Skull Look Up",
@@ -75,6 +84,14 @@
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 20 },
+      ]
+    },
+    {
+      "Name": "Skull Look Down Stop",
+      "Description": "Skull Look Up",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "TargetPosition": -12 },
       ]
     },
   ]

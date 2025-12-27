@@ -1,6 +1,5 @@
 // Performance_Skulls_Routines.json
 // Contains
-//  Center All Skulls
 //  Disengage All Skulls
 //  Close All Skulls
 //  All Skulls Yes, No, Maybe, Sigh, and Laugh
@@ -17,21 +16,6 @@
   "Name": "Performance_Skulls_Routines",
   "Description": "Performances Skull Routines",
   "Performances": [
-
-    //
-    // Center All Skulls
-    //
-    {
-      "Name": "Center All Skulls",
-      "Description": "Center All Skulls",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
-        { "Name": "Center Skull 1" },
-        { "Name": "Center Skull 2" },
-        { "Name": "Center Skull 3" }
-      ],
-    },
     //
     // Disengage All Skulls
     //

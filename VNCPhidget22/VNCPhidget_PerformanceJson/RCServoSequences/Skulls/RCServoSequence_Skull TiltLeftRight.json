@@ -1,18 +1,28 @@
 // RCServoSequence_Skull TiltLeftRight.json
 // Contains
-//  Skull Tilt Tilt Left 20
-//  Skull Tilt Tilt Left 15
-//  Skull Tilt Tilt Left 10
-//  Skull Tilt Tilt Left 5
-//  Skull Tilt Tilt Right 5
-//  Skull Tilt Tilt Right 10
-//  Skull Tilt Tilt Right 15
-//  Skull Tilt Tilt Right 20
+//  Skull Tilt Left Stop
+//  Skull Tilt Left 20
+//  Skull Tilt Left 20
+//  Skull Tilt Left 15
+//  Skull Tilt Left 10
+//  Skull Tilt Left 5
+//  Skull Tilt Right 5
+//  Skull Tilt Right 10
+//  Skull Tilt Right 15
+//  Skull Tilt Right 20
+//  Skull Tilt Right Stop
 
 // Tilt Left(-)/Right(+) - Y Axis
 {
-
   "RCServoSequences": [
+    {
+      "Name": "Skull Tilt Left Stop",
+      "Description": "Skull Tilt Left",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "TargetPosition": -12 },
+      ]
+    },
     {
       "Name": "Skull Tilt Left 20",
       "Description": "Skull Tilt Left",
@@ -75,6 +85,14 @@
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 20 },
+      ]
+    },
+    {
+      "Name": "Skull Tilt Right Stop",
+      "Description": "Skull Tilt Right",
+      "UsageNotes": "Must Specify HubPort and Channel",
+      "Actions": [
+        { "TargetPosition": -11 },
       ]
     },
   ]
