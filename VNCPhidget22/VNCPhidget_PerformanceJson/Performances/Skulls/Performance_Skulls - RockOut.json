@@ -235,7 +235,7 @@
       "Name": "Rock Out 4",
       "Description": "",
       "UsageNotes": "",
-      "PerformanceLoops": 10,
+      "PerformanceLoops": 2,
       "ExecutePerformancesInParallel": true,
       "Performances": [
         { "Name": "All Tilt Left/Right" },

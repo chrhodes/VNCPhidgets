@@ -10,6 +10,14 @@
 //  Skull 99220-456 and Skull 169501-012 Say No
 //  Skull 99220 456 and Skull 169501 012 Consult and Say No
 //  Skull 99220-012 and Skull 169501-012 Say No
+//  Skull 1 and Skull 2 Consult and Say Yes
+//  Skull 1 and Skull 2 Say Yes
+//  Skull 3 and Skull 2 Consult and Say Yes
+//  Skull 3 and Skull 2 Say Yes
+//  Skull 3 and Skull 2 Consult and Say No
+//  Skull 3 and Skull 2 Say No
+//  Skull 3 and Skull 2 Consult and Say No
+//  Skull 3 and Skull 2 Say No
 {
   "Name": "Performance_Skulls_Consulting",
   "Description": "Skulls Consulting Routines",
@@ -22,13 +30,10 @@
       "Performances": [
         { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
         { "Name": "Center All Skulls" },
-        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
-        {
-          "Name": "Center All Skulls",
-          "Duration": 1000
-        },
-        { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes" },
-        { "Name": "Center All Skulls" },
+        { "Name": "Skull 1 and Skull 2 Consult and Say Yes" },
+        { "Name": "Center All Skulls", "Duration": 1000 },
+        { "Name": "Skull 3 and Skull 2 Consult and Say Yes" },
+        { "Name": "Center All Skulls", "Duration": 1000 },
       ],
     },
     {
@@ -39,88 +44,96 @@
       "Performances": [
         { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
         { "Name": "Center All Skulls" },
-        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say No" },
-        {
-          "Name": "Center All Skulls",
-          "Duration": 1000
-        },
-        { "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No" },
-        { "Name": "Center All Skulls" },
+        { "Name": "Skull 1 and Skull 2 Consult and Say No" },
+        { "Name": "Center All Skulls", "Duration": 1000 },
+        { "Name": "Skull 3 and Skull 2 Consult and Say No" },
+        { "Name": "Center All Skulls", "Duration": 1000 },
       ],
     },
     ///
-    /// Skull 99220 012 and Skull 169501 012 Consult and Say Yes
+    /// Skull 1 and Skull 2 Consult and Say Yes
     ///
     {
-      "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes",
+      "Name": "Skull 1 and Skull 2 Consult and Say Yes",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
+      //"ExecutePerformancesInParallel": true,
+      //"Performances": [
+      //  {
+      //    "Name": "Skull-012 Look Right 10",
+      //    "SerialNumber": 99220
+      //  },
+      //  {
+      //    "Name": "Skull-012 Look Left 10",
+      //    "SerialNumber": 169501
+      //  }
+      //],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-012 Look Right 10",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis", "Name": "Skull(Z) Look Left 15"
         },
         {
-          "Name": "Skull-012 Look Left 10",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull(Z) Look Right 15"
         }
       ],
-      "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say Yes" }
+      "NextPerformance": { "Name": "Skull 1 and Skull 2 Say Yes" }
     },
     {
-      "Name": "Skull 99220-012 and Skull 169501-012 Say Yes",
+      "Name": "Skull 1 and Skull 2 Say Yes",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-012 Yes",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull(X) Yes"
         },
         {
-          "Name": "Skull-012 Yes",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull(X) Yes"
         }
       ],
     },
     ///
-    /// Skull 99220 456 and Skull 169501 012 Consult and Say Yes
+    /// Skull 3 and Skull 2 Consult and Say Yes
     ///
     {
-      "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say Yes",
+      "Name": "Skull 3 and Skull 2 Consult and Say Yes",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-456 Look Left 10",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis", "Name": "Skull(Z) Look Right 10",
         },
         {
-          "Name": "Skull-012 Look Right 10",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull(Z) Look Left 10",
         },
       ],
-      "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say Yes" }
+      "NextPerformance": { "Name": "Skull 3 and Skull 2 Say Yes" }
     },
     {
-      "Name": "Skull 99220-456 and Skull 169501-012 Say Yes",
+      "Name": "Skull 3 and Skull 2 Say Yes",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-456 Yes",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull(X) Yes",
         },
         {
-          "Name": "Skull-012 Yes",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull(X) Yes",
         }
       ],
     },
@@ -128,72 +141,72 @@
     /// Consulting Skulls say No
     ///
     {
-      "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say No",
+      "Name": "Skull 1 and Skull 2 Consult and Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-012 Look Right 10",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis", "Name": "Skull(Z) Look Left 10",
         },
         {
-          "Name": "Skull-012 Look Left 10",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull(Z) Look Right 10",
         }
       ],
-      "NextPerformance": { "Name": "Skull 99220-012 and Skull 169501-012 Say No" }
+      "NextPerformance": { "Name": "Skull 3 and Skull 2 Say No" }
     },
     {
-      "Name": "Skull 99220-456 and Skull 169501-012 Say No",
+      "Name": "Skull 3 and Skull 2 Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-456 No",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull(X) No",
         },
         {
-          "Name": "Skull-012 No",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull(X) No",
         }
       ],
     },
     {
-      "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No",
+      "Name": "Skull 3 and Skull 2 Consult and Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": true,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-456 Look Left 10",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis", "Name": "Skull(Z) Look Right 10",
         },
         {
-          "Name": "Skull-012 Look Right 10",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis", "Name": "Skull(Z) Look Left 10",
         },
       ],
-      "NextPerformance": { "Name": "Skull 99220-456 and Skull 169501-012 Say No" }
+      "NextPerformance": { "Name": "Skull 3 and Skull 2 Say No" }
     },
     {
-      "Name": "Skull 99220-012 and Skull 169501-012 Say No",
+      "Name": "Skull 1 and Skull 2 Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
         {
-          "Name": "Skull-012 No",
-          "SerialNumber": 99220
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull(X) No",
         },
         {
-          "Name": "Skull-012 No",
-          "SerialNumber": 169501
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis", "Name": "Skull(X) No",
         }
       ],
     },

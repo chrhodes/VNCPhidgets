@@ -50,7 +50,7 @@
           "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [
               {
                 "Open": true, "RCServoType": 3,
-                "MinPositionStop": 65, "TargetPosition": 85, "MaxPositionStop": 105,
+                "MinPositionStop": 64, "TargetPosition": 84, "MaxPositionStop": 104,
                 "Acceleration": 100, "VelocityLimit": 50
               }
             ]
@@ -89,7 +89,7 @@
           "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [
               {
                 "Open": true, "RCServoType": 3,
-                "MinPositionStop": 70, "TargetPosition": 90, "MaxPositionStop": 110,
+                "MinPositionStop": 71, "TargetPosition": 91, "MaxPositionStop": 111,
                 "Acceleration": 100, "VelocityLimit": 50
               }
             ]
@@ -128,7 +128,7 @@
           "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 5, "Actions": [
               {
                 "Open": true, "RCServoType": 3,
-                "MinPositionStop": 65, "TargetPosition": 85, "MaxPositionStop": 105,
+                "MinPositionStop": 64, "TargetPosition": 84, "MaxPositionStop": 104,
                 "Acceleration": 100, "VelocityLimit": 50
               }
             ]
@@ -200,7 +200,7 @@
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [ { "TargetPosition": 90, } ] } },
-        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [ { "TargetPosition": 85, } ] } },
+        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [ { "TargetPosition": 84, } ] } },
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": 90, } ] } }
       ]
     },
@@ -211,7 +211,7 @@
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 0, "Actions": [ { "TargetPosition": 90, } ] } },
-        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [ { "TargetPosition": 85, } ] } },
+        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 1, "Actions": [ { "TargetPosition": 91, } ] } },
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 2, "Actions": [ { "TargetPosition": 90, } ] } }
       ]
     },
@@ -222,7 +222,7 @@
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 4, "Actions": [ { "TargetPosition": 90, } ] } },
-        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 5, "Actions": [ { "TargetPosition": 85, } ] } },
+        { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 5, "Actions": [ { "TargetPosition": 84, } ] } },
         { "ChannelClass": "RCServo", "RCServoSequence": { "HubPort": 0, "Channel": 6, "Actions": [ { "TargetPosition": 90, } ] } }
       ]
     },

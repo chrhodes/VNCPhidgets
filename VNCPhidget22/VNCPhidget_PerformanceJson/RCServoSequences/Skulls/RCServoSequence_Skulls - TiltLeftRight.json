@@ -16,80 +16,80 @@
 {
   "RCServoSequences": [
     {
-      "Name": "Skull Tilt Left Stop",
-      "Description": "Skull Tilt Left",
+      "Name": "Skull(Y) Tilt Left Stop",
+      "Description": "Skull(Y) Tilt Left",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "TargetPosition": -12 },
       ]
     },
     {
-      "Name": "Skull Tilt Left 20",
-      "Description": "Skull Tilt Left",
+      "Name": "Skull(Y) Tilt Left 20",
+      "Description": "Skull(Y) Tilt Left",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": -20 },
       ]
     },
     {
-      "Name": "Skull Tilt Left 15",
-      "Description": "Skull Tilt Left",
+      "Name": "Skull(Y) Tilt Left 15",
+      "Description": "Skull(Y) Tilt Left",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": -15 },
       ]
     },
     {
-      "Name": "Skull Tilt Left 10",
-      "Description": "Skull Tilt Left",
+      "Name": "Skull(Y) Tilt Left 10",
+      "Description": "Skull(Y) Tilt Left",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": -10 },
       ]
     },
     {
-      "Name": "Skull Tilt Left 5",
-      "Description": "Skull Tilt Left",
+      "Name": "Skull(Y) Tilt Left 5",
+      "Description": "Skull(Y) Tilt Left",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": -5 },
       ]
     },
     {
-      "Name": "Skull Tilt Right 5",
-      "Description": "Skull Tilt Right",
+      "Name": "Skull(Y) Tilt Right 5",
+      "Description": "Skull(Y) Tilt Right",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 5 },
       ]
     },
     {
-      "Name": "Skull Tilt Right 10",
-      "Description": "Skull Tilt Right",
+      "Name": "Skull(Y) Tilt Right 10",
+      "Description": "Skull(Y) Tilt Right",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 10 },
       ]
     },
     {
-      "Name": "Skull Tilt Right 15",
-      "Description": "Skull Tilt Right",
+      "Name": "Skull(Y) Tilt Right 15",
+      "Description": "Skull(Y) Tilt Right",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 15 },
       ]
     },
     {
-      "Name": "Skull Tilt Right 20",
-      "Description": "Skull Tilt Right",
+      "Name": "Skull(Y) Tilt Right 20",
+      "Description": "Skull(Y) Tilt Right",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "RelativePosition": 20 },
       ]
     },
     {
-      "Name": "Skull Tilt Right Stop",
-      "Description": "Skull Tilt Right",
+      "Name": "Skull(Y) Tilt Right Stop",
+      "Description": "Skull(Y) Tilt Right",
       "UsageNotes": "Must Specify HubPort and Channel",
       "Actions": [
         { "TargetPosition": -11 },

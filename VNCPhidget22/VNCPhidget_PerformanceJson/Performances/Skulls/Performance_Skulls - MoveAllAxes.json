@@ -167,17 +167,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Up 5"
+          "Name": "Skull(X) Look Up 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Up 5"
+          "Name": "Skull(X) Look Up 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Up 5"
+          "Name": "Skull(X) Look Up 5"
         }
       ],
     },
@@ -190,17 +190,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Down 5"
+          "Name": "Skull(X) Look Down 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Down 5"
+          "Name": "Skull(X) Look Down 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Down 5"
+          "Name": "Skull(X) Look Down 5"
         }
       ],
     },
@@ -213,17 +213,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Right 5"
+          "Name": "Skull(Z) Look Right 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Right 5"
+          "Name": "Skull(Z) Look Right 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Right 5"
+          "Name": "Skull(Z) Look Right 5"
         }
       ],
     },
@@ -236,17 +236,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Left 5"
+          "Name": "Skull(Z) Look Left 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Left 5"
+          "Name": "Skull(Z) Look Left 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Left 5"
+          "Name": "Skull(Z) Look Left 5"
         }
       ],
     },
@@ -259,17 +259,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Left 5"
+          "Name": "Skull(Y) Tilt Left 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Left 5"
+          "Name": "Skull(Y) Tilt Left 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Left 5"
+          "Name": "Skull(Y) Tilt Left 5"
         }
       ],
     },
@@ -282,17 +282,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Right 5"
+          "Name": "Skull(Y) Tilt Right 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Right 5"
+          "Name": "Skull(Y) Tilt Right 5"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Right 5"
+          "Name": "Skull(Y) Tilt Right 5"
         }
       ],
     },
@@ -308,17 +308,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Up 10"
+          "Name": "Skull(X) Look Up 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Up 10"
+          "Name": "Skull(X) Look Up 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Up 10"
+          "Name": "Skull(X) Look Up 10"
         }
       ],
     },
@@ -331,17 +331,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Down 10"
+          "Name": "Skull(X) Look Down 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Down 10"
+          "Name": "Skull(X) Look Down 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Down 10"
+          "Name": "Skull(X) Look Down 10"
         }
       ],
     },
@@ -354,17 +354,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Right 10"
+          "Name": "Skull(Z) Look Right 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Right 10"
+          "Name": "Skull(Z) Look Right 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Right 10"
+          "Name": "Skull(Z) Look Right 10"
         }
       ],
     },
@@ -377,17 +377,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Left 10"
+          "Name": "Skull(Z) Look Left 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Left 10"
+          "Name": "Skull(Z) Look Left 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Left 10"
+          "Name": "Skull(Z) Look Left 10"
         }
       ],
     },
@@ -400,17 +400,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Left 10"
+          "Name": "Skull(Y) Tilt Left 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Left 10"
+          "Name": "Skull(Y) Tilt Left 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Left 10"
+          "Name": "Skull(Y) Tilt Left 10"
         }
       ],
     },
@@ -423,17 +423,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Right 10"
+          "Name": "Skull(Y) Tilt Right 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Right 10"
+          "Name": "Skull(Y) Tilt Right 10"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Right 10"
+          "Name": "Skull(Y) Tilt Right 10"
         }
       ],
     },
@@ -449,17 +449,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Up 15"
+          "Name": "Skull(X) Look Up 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Up 15"
+          "Name": "Skull(X) Look Up 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Up 15"
+          "Name": "Skull(X) Look Up 15"
         }
       ],
     },
@@ -472,17 +472,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Down 15"
+          "Name": "Skull(X) Look Down 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Down 15"
+          "Name": "Skull(X) Look Down 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Down 15"
+          "Name": "Skull(X) Look Down 15"
         }
       ],
     },
@@ -495,17 +495,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Right 15"
+          "Name": "Skull(Z) Look Right 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Right 15"
+          "Name": "Skull(Z) Look Right 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Right 15"
+          "Name": "Skull(Z) Look Right 15"
         }
       ],
     },
@@ -518,17 +518,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Left 15"
+          "Name": "Skull(Z) Look Left 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Left 15"
+          "Name": "Skull(Z) Look Left 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Left 15"
+          "Name": "Skull(Z) Look Left 15"
         }
       ],
     },
@@ -541,17 +541,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Left 15"
+          "Name": "Skull(Y) Tilt Left 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Left 15"
+          "Name": "Skull(Y) Tilt Left 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Left 15"
+          "Name": "Skull(Y) Tilt Left 15"
         }
       ],
     },
@@ -564,17 +564,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Right 15"
+          "Name": "Skull(Y) Tilt Right 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Right 15"
+          "Name": "Skull(Y) Tilt Right 15"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Right 15"
+          "Name": "Skull(Y) Tilt Right 15"
         }
       ],
     },
@@ -590,17 +590,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Up 20"
+          "Name": "Skull(X) Look Up 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Up 20"
+          "Name": "Skull(X) Look Up 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Up 20"
+          "Name": "Skull(X) Look Up 20"
         }
       ],
     },
@@ -613,17 +613,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Down 20"
+          "Name": "Skull(X) Look Down 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Down 20"
+          "Name": "Skull(X) Look Down 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Down 20"
+          "Name": "Skull(X) Look Down 20"
         }
       ],
     },
@@ -636,17 +636,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Right 20"
+          "Name": "Skull(Z) Look Right 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Right 20"
+          "Name": "Skull(Z) Look Right 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Right 20"
+          "Name": "Skull(Z) Look Right 20"
         }
       ],
     },
@@ -659,17 +659,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Left 20"
+          "Name": "Skull(Z) Look Left 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Left 20"
+          "Name": "Skull(Z) Look Left 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Left 20"
+          "Name": "Skull(Z) Look Left 20"
         }
       ],
     },
@@ -682,17 +682,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Left 20"
+          "Name": "Skull(Y) Tilt Left 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Left 20"
+          "Name": "Skull(Y) Tilt Left 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Left 20"
+          "Name": "Skull(Y) Tilt Left 20"
         }
       ],
     },
@@ -705,17 +705,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Right 20"
+          "Name": "Skull(Y) Tilt Right 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Right 20"
+          "Name": "Skull(Y) Tilt Right 20"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Right 20"
+          "Name": "Skull(Y) Tilt Right 20"
         }
       ],
     },
@@ -734,17 +734,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Right Stop"
+          "Name": "Skull(Z) Look Right Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Right Stop"
+          "Name": "Skull(Z) Look Right Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Right Stop"
+          "Name": "Skull(Z) Look Right Stop"
         }
       ],
     },
@@ -757,17 +757,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
-          "Name": "Skull Look Left Stop"
+          "Name": "Skull(Z) Look Left Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
-          "Name": "Skull Look Left Stop"
+          "Name": "Skull(Z) Look Left Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
-          "Name": "Skull Look Left Stop"
+          "Name": "Skull(Z) Look Left Stop"
         }
       ],
     },
@@ -783,17 +783,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Up Stop"
+          "Name": "Skull(X) Look Up Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Up Stop"
+          "Name": "Skull(X) Look Up Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Up Stop"
+          "Name": "Skull(X) Look Up Stop"
         }
       ],
     },
@@ -806,17 +806,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 X Axis",
-          "Name": "Skull Look Down Stop"
+          "Name": "Skull(X) Look Down Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 X Axis",
-          "Name": "Skull Look Down Stop"
+          "Name": "Skull(X) Look Down Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 X Axis",
-          "Name": "Skull Look Down Stop"
+          "Name": "Skull(X) Look Down Stop"
         }
       ],
     },
@@ -832,17 +832,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Right Stop"
+          "Name": "Skull(Y) Tilt Right Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Right Stop"
+          "Name": "Skull(Y) Tilt Right Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Right Stop"
+          "Name": "Skull(Y) Tilt Right Stop"
         }
       ],
     },
@@ -855,17 +855,17 @@
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
-          "Name": "Skull Tilt Left Stop"
+          "Name": "Skull(Y) Tilt Left Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
-          "Name": "Skull Tilt Left Stop"
+          "Name": "Skull(Y) Tilt Left Stop"
         },
         {
           "ChannelClass": "RCServo",
           "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
-          "Name": "Skull Tilt Left Stop"
+          "Name": "Skull(Y) Tilt Left Stop"
         }
       ],
     },

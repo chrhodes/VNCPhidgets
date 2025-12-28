@@ -19,7 +19,7 @@
     //
     // Skull Gestures only move one axis
     {
-      "Name": "Skull Yes",
+      "Name": "Skull(X) Yes",
       "Description": "Move up and down X axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "Name": "Skull Big Yes",
+      "Name": "Skull(X) Big Yes",
       "Description": "Move up and down X axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "Name": "Skull No",
+      "Name": "Skull(X) No",
       "Description": "Move left and right Z axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "Name": "Skull Big No",
+      "Name": "Skull(X) Big No",
       "Description": "Move left and right Z axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "Name": "Skull Maybe",
+      "Name": "Skull(Y) Maybe",
       "Description": "Move Y axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "Name": "Skull Big Maybe",
+      "Name": "Skull(Y) Big Maybe",
       "Description": "Move Y axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -95,7 +95,7 @@
       ]
     },
     {
-      "Name": "Skull Sigh",
+      "Name": "Skull(X) Sigh",
       "Description": "Move down X axis, wait, then back up",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "Name": "Skull Laugh",
+      "Name": "Skull(X) Laugh",
       "Description": "Move up and down X axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "Name": "Skull Big Laugh",
+      "Name": "Skull(X) Big Laugh",
       "Description": "Move up and down X axis 2 times",
       "UsageNotes": "Must Specify HubPort and Channel",
       "ExecuteActionsInParallel": false,
