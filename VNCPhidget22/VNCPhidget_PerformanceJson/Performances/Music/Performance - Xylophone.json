@@ -1,0 +1,212 @@
+// Performance_Xylophone.json
+// Contains
+//  Play All Notes
+//  Move To Note 1
+//  Move To Note 2
+//  Move To Note 3
+//  Move To Note 4
+//  Move To Note 5
+//  Move To Note 6
+//  Move To Note 7
+//  Move To Note 8
+//  Play Note MinToMaxToMin
+//  Play Note Actions
+{
+  "Name": "Performance - Xylophone",
+  "Description": "Performances for RCServos",
+  "Performances": [
+    //
+    // RCServos 99415 - Sequential Sequences
+    //
+    {
+      "Name": "Move To Note 1",
+      "Description": "",
+      "SerialNumber": 99415,
+      "Loops": 3,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 93 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 2",
+      "Description": "",
+      "SerialNumber": 99415,
+      "Loops": 3,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 89 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 3",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 85 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 4",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 81 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 5",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 77 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 6",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 73 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 7",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 70 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Move To Note 8",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 1,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": 66 },
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Play Note MinToMaxToMin",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Move Servo MinStop to MaxStop to Center"
+        },
+      ],
+      "NextPerformance": null
+    },
+    {
+      "Name": "Play Note Actions",
+      "Description": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "HubPort": 0,
+          "Channel": 2,
+          "RCServoSequence": {
+            "Actions": [
+              { "TargetPosition": -11 }, // MinStop
+              { "TargetPosition": -12 }, // MaxStop
+              { "TargetPosition": -13 }, // CenterStop
+            ]
+          }
+        },
+      ],
+      "NextPerformance": null
+    },
+  ]
+}

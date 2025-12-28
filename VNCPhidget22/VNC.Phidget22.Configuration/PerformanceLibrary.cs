@@ -187,9 +187,9 @@ namespace VNC.Phidget22.Configuration
 
         private void LoadSerialNumberHubPortChannelsFromConfigFile(string configFile, bool reload = false)
         {
-            long startTicks = 0;
-
-            if (Common.VNCLogging.ApplicationInitialize) startTicks = Log.APPLICATION_INITIALIZE($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
@@ -229,7 +229,7 @@ namespace VNC.Phidget22.Configuration
                 Log.ERROR(ex, Common.LOG_CATEGORY);
             }
 
-            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
         // TODO(crhodes)
@@ -330,8 +330,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadDigitalInputSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
             try
             {
                 string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
@@ -394,8 +395,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadDigitalOutputSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
             try
             {
                 string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
@@ -458,8 +460,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadRCServoSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
             try
             {
                 string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
@@ -522,8 +525,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadStepperSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
             try
             {
                 string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
@@ -586,8 +590,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadVoltageInputSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
             try
             {
                 string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
@@ -650,7 +655,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadVoltageRatioInputSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
 
             try
             {
@@ -708,8 +715,9 @@ namespace VNC.Phidget22.Configuration
 
         public void LoadVoltageOutputSequencesFromConfigFile(string configFile, bool reload = false)
         {
-            if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
-
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
             try
             {
                 string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
@@ -801,67 +809,66 @@ namespace VNC.Phidget22.Configuration
 
                 // This contains the Performance that initializes all devices
 
-                @"Performances\Performance_Initialization.json",
+                @"Performances\Performance - Initialization.json",
 
                 // This is the Main Show
 
-                @"Performances\Performance_MainShow.json",
-
+                @"Performances\Performance - MainShow.json",
                 // Performances\Music\
 
-                @"Performances\Music\Performance_Xylophone.json",
+                @"Performances\Music\Performance - Xylophone.json",
 
                 // Performances\Skulls\
 
-                @"Performances\Skulls\Performance_Skulls_Routines.json",
+                @"Performances\Skulls\Performance_Skulls - Routines.json",
 
                 // Performances\Arms\
 
-                @"Performances\Arms\Performance_Arms_Routines.json",
+                @"Performances\Arms\Performance_Arms - Routines.json",
 
                 // Performances\Hands\
 
-                @"Performances\Hands\Performance_Hands_Routines.json",
-                @"Performances\Hands\Performance_Hands_Count.json",
+                @"Performances\Hands\Performance_Hands - Routines.json",
+                @"Performances\Hands\Performance_Hands - Count.json",
 
                 // These are the base routines used in the above Routines.
                 // They typically require a SerialNumber override
 
                 // Performances\Skulls\
 
-                @"Performances\Skulls\Performance_Skulls_Initialize.json",
+                @"Performances\Skulls\Performance_Skulls - Initialize.json",
+                                                          
+                @"Performances\Skulls\Performance_Skulls - Yes_No_Maybe_Sigh_Laugh.json",
+                @"Performances\Skulls\Performance_Skulls - RockOut.json",
+                                                         
+                @"Performances\Skulls\Performance_Skulls - Consulting.json",
+               @"Performances\Skulls\Performance_Skulls - MoveAllAxes.json",
 
-                @"Performances\Skulls\Performance_Skulls_Yes_No_Maybe_Sigh_Laugh.json",
-                @"Performances\Skulls\Performance_Skulls_RockOut.json",
-
-                @"Performances\Skulls\Performance_Skulls_Consulting.json",
-                @"Performances\Skulls\Performance_Skulls_MoveAll.json",
-                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics_All.json",
-
-                @"Performances\Skulls\Performance_Skulls_MoveAllAxes.json",
-                @"Performances\Skulls\Performance_Skulls_MovementCharacteristics.json",
-                @"Performances\Skulls\Performance_Skulls_MoveAngles.json",
+                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics Progression.json",
+                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics_All.json",                                                          
+ 
+                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics.json",
+                @"Performances\Skulls\Performance_Skulls - MoveAngles.json",
 
                 // Performances\Arms\
 
-                @"Performances\Arms\Performance_Arms_Initialize.json",
+                @"Performances\Arms\Performance_Arms - Initialize.json",
 
                 // Performances\Hands\
 
-                @"Performances\Hands\Performance_Hands_Initialize.json",
-
-                @"Performances\Hands\Performance_Hands_Gestures.json",
-                @"Performances\Hands\Performance_Hands_Move.json",
-                @"Performances\Hands\Performance_Hands_MovementCharacteristics_All.json",
-                @"Performances\Hands\Performance_Hands_MovementCharacteristics.json",
+                @"Performances\Hands\Performance_Hands - Initialize.json",
+                @"Performances\Hands\Performance_Hands - Gestures.json",
+                @"Performances\Hands\Performance_Hands - Move.json",
+                @"Performances\Hands\Performance_Hands - MovementCharacteristics_All.json",
+                @"Performances\Hands\Performance_Hands - MovementCharacteristics.json",
 
                 // Performances\
 
-                @"Performances\Performance_Test.json",
+                @"Performances\Performance - Test.json",
 
-                @"Performances\Performance_Test AS Replacement.json",             
+                @"Performances\Performance - Test AS Replacement.json",             
 
-                @"Performances\Performance_Movement Studies.json", 
+                @"Performances\Performance - Movement Studies.json", 
 
                 // Performances\Skulls\Skull\
 
@@ -889,25 +896,26 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\DigitalOutput\
 
-                @"Performances\DigitalOutput\Performance_DigitalOutputs.json",
+                @"Performances\DigitalOutput\Performance_DigitalOutput - Routines.json",
 
                 // Performances\RCServo\
 
-                @"Performances\RCServo\Performance_RCServos.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 Routines.json",
 
-                @"Performances\RCServo\Performance_RCServo_OpenClose.json",
-                @"Performances\RCServo\Performance_RCServo_MovementCharacteristics.json",
-                @"Performances\RCServo\Performance_RCServo_PP1.json",
-                @"Performances\RCServo\Performance_RCServo_PP2.json",
-                @"Performances\RCServo\Performance_RCServo_PP3.json",
-                @"Performances\RCServo\Performance_RCServo_PP4.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 MovementCharacteristics.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 OpenEngageDisengageClose.json",
+
+                @"Performances\RCServo\Performance_RCServo - 99415 PP1.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 PP2.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 PP3.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 PP4.json",
 
                 // Performances\Stepper\
 
-                @"Performances\Stepper\Performance_Steppers.json",
+                @"Performances\Stepper\Performance_Stepper - Routines.json",
 
-                @"Performances\Stepper\Performance_Stepper_OpenClose.json",
-                @"Performances\Stepper\Performance_Stepper_MovementCharacteristics.json",
+                @"Performances\Stepper\Performance_Stepper - OpenEngageDisengageClose.json",
+                @"Performances\Stepper\Performance_Stepper - MovementCharacteristics.json",
             };
 
             return files;
@@ -922,7 +930,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalInputSequences\DigitalInputSequence_1.json",
+                @"DigitalInputSequences\DigitalInputSequence - Routines.json",
             };
 
             return files;
@@ -937,8 +945,8 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalOutputSequences\DigitalOutputSequence_OpenClose.json",
-                @"DigitalOutputSequences\DigitalOutputSequence_1.json",
+                @"DigitalOutputSequences\DigitalOutputSequence - OpenEngageDisengageClose.json",
+                @"DigitalOutputSequences\DigitalOutputSequence - Routines.json",
             };
 
             return files;
@@ -960,38 +968,38 @@ namespace VNC.Phidget22.Configuration
 
                 //@"AdvancedServoSequences\AdvancedServoSequence_Test A+B+C.json",
                 
-                @"RCServoSequences\RCServoSequence_99415.json",
+                @"RCServoSequences\RCServoSequence - 99415 Routines.json",
 
                 //@"RCServoSequences\RCServoSequence_Initialize.json",
 
-                @"RCServoSequences\RCServoSequence_Move.json",
-                @"RCServoSequences\RCServoSequence_MovementCharacteristics.json",
-                @"RCServoSequences\RCServoSequence_OpenClose.json",
+                @"RCServoSequences\RCServoSequence - Move.json",
+                @"RCServoSequences\RCServoSequence - MovementCharacteristics.json",
+                @"RCServoSequences\RCServoSequence - OpenEngageDisengageClose.json",
 
                 // Arms
 
-                @"RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Initialization.json",
-                @"RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Initialization.json",
-                @"RCServoSequences\Arms\RCServoSequence_Arm_Left 1 Move.json",
-                @"RCServoSequences\Arms\RCServoSequence_Arm_Right 1 Move.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arms - Left 1 Initialization.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arms - Right 1 Initialization.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arms - Left 1 Move.json",
+                @"RCServoSequences\Arms\RCServoSequence_Arms - Right 1 Move.json",
 
                 // Hands
 
-                @"RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Initialization.json",
-                @"RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Initialization.json",
-                @"RCServoSequences\Hands\RCServoSequence_Hand_Left 1 Move.json",
-                @"RCServoSequences\Hands\RCServoSequence_Hand_Right 1 Move.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hands - Left 1 Initialization.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hands - Right 1 Initialization.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hands - Left 1 Move.json",
+                @"RCServoSequences\Hands\RCServoSequence_Hands - Right 1 Move.json",
 
-                // RCServoSequences\Skulls\
+                // Skulls
 
-                @"RCServoSequences\Skulls\RCServoSequence_Skull Gestures.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull LeftRight.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull TiltLeftRight.json",
-                @"RCServoSequences\Skulls\RCServoSequence_Skull UpDown.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skulls - Gestures.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skulls - LeftRight.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skulls - TiltLeftRight.json",
+                @"RCServoSequences\Skulls\RCServoSequence_Skulls - UpDown.json",
 
-                // RCServoSequences\Music\
+                // Music
 
-                @"RCServoSequences\Music\RCServoSequence_Xylophone Initialization.json",
+                @"RCServoSequences\Music\RCServoSequence_Music - Xylophone Initialization.json",
             };                     
 
             return files;
@@ -1005,9 +1013,9 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"StepperSequences\StepperSequence_OpenClose.json",
-                @"StepperSequences\StepperSequence_MovementCharacteristics.json",
-                @"StepperSequences\StepperSequence_1.json",
+                @"StepperSequences\StepperSequence - OpenEngageDisengageClose.json",
+                @"StepperSequences\StepperSequence - MovementCharacteristics.json",
+                @"StepperSequences\StepperSequence - Routines.json",
             };
             return files;
         }
@@ -1021,7 +1029,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageInputSequences\VoltageInputSequence_1.json"
+                @"VoltageInputSequences\VoltageInputSequence - Routines.json"
             };
 
             return files;
@@ -1053,7 +1061,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"VoltageOutputSequences\VoltageOutputSequence_1.json"
+                @"VoltageOutputSequences\VoltageOutputSequence - Routines.json"
             };
 
             return files;

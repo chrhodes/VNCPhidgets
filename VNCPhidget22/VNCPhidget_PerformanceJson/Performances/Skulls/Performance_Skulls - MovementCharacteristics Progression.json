@@ -1,0 +1,423 @@
+// Performance_Skulls - MovementCharacteristics Progression.json
+// Contains
+//  Move All Skulls on Angles - MovementCharacteristics Progression
+
+//  Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Sequential DCS Sequential
+//  Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Sequential DCS Parallel
+//  Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Parallel DCS Sequential
+//  Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Parallel DCS Parallel
+
+//  Move All Skulls on Angles - Look Down Left - Skulls Parallel DCS Parallel 
+//  Move All Skulls on Angles - Look Down Right - Skulls Parallel DCS Parallel
+//  Move All Skulls on Angles - Look Up Left - Skulls Parallel DCS Parallel 
+//  Move All Skulls on Angles - Look Up Right - Skulls Parallel DCS Parallel
+
+//  Move All Skulls on Angles - Look Down Left - Skulls Sequential DCS Parallel
+//  Move All Skulls on Angles - Look Down Right - Skulls Sequential DCS Parallel
+//  Move All Skulls on Angles - Look Up Left - Skulls Sequential DCS Parallel
+//  Move All Skulls on Angles - Look Up Right - Skulls Sequential DCS Parallel
+
+//  Move All Skulls on Angles - Look Down Left - Skulls Parallel DCS Sequential
+//  Move All Skulls on Angles - Look Down Right - Skulls Parallel DCS Sequential
+//  Move All Skulls on Angles - Look Up Left - Skulls Parallel DCS Sequential
+//  Move All Skulls on Angles - Look Up Right - Skulls Parallel DCS Sequential
+
+//  Move All Skulls on Angles - Look Down Left - Skulls Sequential DCS Sequential
+//  Move All Skulls on Angles - Look Down Right - Skulls Sequential DCS Sequential
+//  Move All Skulls on Angles - Look Up Left - Skulls Sequential DCS Sequential
+//  Move All Skulls on Angles - Look Up Right - Skulls Sequential DCS Sequential
+//
+{
+  "Name": "Performance_Skulls - MovementCharacteristics Progression",
+  "Description": "Performances Move Skulls explore MovementCharacteristics and Parallelism",
+  "Performances": [
+    //
+    // Move All Skulls on Angles MovementCharacteristics Progression
+    //
+    {
+      "Name": "Move All Skulls on Angles - MovementCharacteristics Progression",
+      "Description": "Move All Skulls on Angles with increasing MovementCharacteristics and Parallelism",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        {
+          "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Sequential DCS Sequential",
+          "Duration": 2000
+        },
+        {
+          "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Sequential DCS Parallel",
+          "Duration": 2000
+        },
+        {
+          "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Parallel DCS Sequential",
+          "Duration": 2000
+        },
+        { "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Parallel DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Sequential DCS Sequential",
+      "Description": "Move All Skulls on Angles with increasing MovementCharacteristics",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
+        //{ "Name": "Move All Skulls on Angles"},
+        //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
+        //{ "Name": "Move All Skulls on Angles"},
+        //{ "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential"},
+        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+        //{ "Name": "Move All Skulls on Angles"},
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential", "Duration": 1000 },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential", "Duration": 1000 },
+        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential"},
+      ],
+      //"Duration": 2000
+    },
+    {
+      "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Sequential DCS Parallel",
+      "Description": "Move All Skulls on Angles with increasing MovementCharacteristics",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
+        //{ "Name": "Move All Skulls on Angles"},
+        //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
+        //{ "Name": "Move All Skulls on Angles"},
+        //{ "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential"},
+        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+        //{ "Name": "Move All Skulls on Angles"},
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { "Name": "Move All Skulls on Angles - Skulls Sequential DCS Parallel", "Duration": 1000 },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls on Angles - Skulls Sequential DCS Parallel", "Duration": 1000 },
+        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Sequential DCS Parallel"},
+      ],
+      //"Duration": 2000
+    },
+    {
+      "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Parallel DCS Sequential",
+      "Description": "Move All Skulls on Angles with increasing MovementCharacteristics",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
+        //{ "Name": "Move All Skulls on Angles Parallel"},
+        //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
+        //{ "Name": "Move All Skulls on Angles Parallel"},
+        //{ "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Parallel DCS Sequential"},
+        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+        //{ "Name": "Move All Skulls on Angles Parallel"},
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        {
+          "Name": "Move All Skulls on Angles - Skulls Parallel DCS Sequential", "Duration": 1000
+        },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "Move All Skulls on Angles - Skulls Parallel DCS Sequential", "Duration": 1000
+        },
+        //{ "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Parallel DCS Sequential"},
+      ],
+      //"Duration": 2000
+    },
+    {
+      "Name": "Move All Skulls on Angles - MovementCharacteristics Progression - Skulls Parallel DCS Parallel",
+      "Description": "Move All Skulls on Angles with increasing MovementCharacteristics",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        //{ "Name": "All Skulls - VelocityLimit (10) Acceleration (25)"},
+        //{ "Name": "Move All Skulls on Angles Parallel"},
+        //{ "Name": "All Skulls - VelocityLimit (25) Acceleration (50)"},
+        //{ "Name": "Move All Skulls on Angles Parallel"},
+        //{ "Name": "All Skulls - VelocityLimit (50) Acceleration (100)"},
+        //{ "Name": "Move All Skulls on Angles - Skulls Parallel DCS Parallel"},
+        //{ "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+        //{ "Name": "Move All Skulls on Angles Parallel"},
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        {
+          "Name": "Move All Skulls on Angles - Skulls Parallel DCS Parallel", "Duration": 1000
+        },
+        { "Name": "All Skulls - VelocityLimit (500) Acceleration (1000)", },
+        {
+          "Name": "Move All Skulls on Angles - Skulls Parallel DCS Parallel", "Duration": 1000
+        },
+        { "Name": "All Skulls - VelocityLimit (1000) Acceleration (2000)", },
+        {
+          "Name": "Move All Skulls on Angles - Skulls Parallel DCS Parallel", "Duration": 1000
+        },
+      ],
+      //"Duration": 2000
+    },
+    ////
+    //// Move All Skulls on Angles
+    ////
+    //{
+    //  "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential",
+    //  "Description": "Move All Skulls on Angles - Skulls Sequential DCS Sequential",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "Performances": [
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Left - Skulls Sequential DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Right - Skulls Sequential DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Right - Skulls Sequential DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Left - Skulls Sequential DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //  ],
+    //  //"Duration": 1000
+    //},
+    //{
+    //  "Name": "Move All Skulls on Angles - Skulls Sequential DCS Parallel",
+    //  "Description": "Move All Skulls on Angles - Skulls Sequential DCS Parallel",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "Performances": [
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Left - Skulls Sequential DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Right - Skulls Sequential DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Right - Skulls Sequential DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Left - Skulls Sequential DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //  ],
+    //  //"Duration": 1000
+    //},
+    //{
+    //  "Name": "Move All Skulls on Angles - Skulls Parallel DCS Sequential",
+    //  "Description": "Move All Skulls on Angles",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "Performances": [
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Left - Skulls Parallel DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Right - Skulls Parallel DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Right - Skulls Parallel DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Left - Skulls Parallel DCS Sequential" },
+    //    { "Name": "Center All Skulls" },
+    //  ],
+    //  //"Duration": 1000
+    //},
+    //{
+    //  "Name": "Move All Skulls on Angles - Skulls Parallel DCS Parallel",
+    //  "Description": "Move All Skulls on Angles",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "Performances": [
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Left - Skulls Parallel DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Right - Skulls Parallel DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Down Right - Skulls Parallel DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //    { "Name": "All Skulls - Look Up Left - Skulls Parallel DCS Parallel" },
+    //    { "Name": "Center All Skulls" },
+    //  ],
+    //  //"Duration": 1000
+    //},
+    //
+    // Move All Skulls on Angles - Skulls Parallel DCS Parallel
+    //
+    {
+      "Name": "Move All Skulls on Angles - Look Down Left - Skulls Parallel DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Left - DCS Parallel" },
+        { "Name": "Skull 2 Look Down Left - DCS Parallel" },
+        { "Name": "Skull 3 Look Down Left - DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Down Right - Skulls Parallel DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Right - DCS Parallel" },
+        { "Name": "Skull 2 Look Down Right - DCS Parallel" },
+        { "Name": "Skull 3 Look Down Right - DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Left - Skulls Parallel DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Left - DCS Parallel" },
+        { "Name": "Skull 2 Look Up Left - DCS Parallel" },
+        { "Name": "Skull 3 Look Up Left - DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Right - Skulls Parallel DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Right - DCS Parallel" },
+        { "Name": "Skull 2 Look Up Right - DCS Parallel" },
+        { "Name": "Skull 3 Look Up Right - DCS Parallel" },
+      ],
+    },
+    //
+    // Move All Skulls on Angles - Skulls Sequential DCS Parallel
+    //
+    {
+      "Name": "Move All Skulls on Angles - Look Down Left - Skulls Sequential DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Left - DCS Parallel" },
+        { "Name": "Skull 2 Look Down Left - DCS Parallel" },
+        { "Name": "Skull 3 Look Down Left - DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Down Right - Skulls Sequential DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Right - DCS Parallel" },
+        { "Name": "Skull 2 Look Down Right - DCS Parallel" },
+        { "Name": "Skull 3 Look Down Right - DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Left - Skulls Sequential DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Left - DCS Parallel" },
+        { "Name": "Skull 2 Look Up Left - DCS Parallel" },
+        { "Name": "Skull 3 Look Up Left - DCS Parallel" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Right - Skulls Sequential DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Right - DCS Parallel" },
+        { "Name": "Skull 2 Look Up Right - DCS Parallel" },
+        { "Name": "Skull 3 Look Up Right - DCS Parallel" },
+      ],
+    },
+    //
+    // Move All Skulls on Angles - Skulls Parallel DCS Sequential
+    //
+    {
+      "Name": "Move All Skulls on Angles - Look Down Left - Skulls Parallel DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Left - DCS Sequential" },
+        { "Name": "Skull 2 Look Down Left - DCS Sequential" },
+        { "Name": "Skull 3 Look Down Left - DCS Sequential" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Down Right - Skulls Parallel DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Right - DCS Sequential" },
+        { "Name": "Skull 2 Look Down Right - DCS Sequential" },
+        { "Name": "Skull 3 Look Down Right - DCS Sequential" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Left - Skulls Parallel DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Left - DCS Sequential" },
+        { "Name": "Skull 2 Look Up Left - DCS Sequential" },
+        { "Name": "Skull 3 Look Up Left - DCS Sequential" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Right - Skulls Parallel DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Right - DCS Sequential" },
+        { "Name": "Skull 2 Look Up Right - DCS Sequential" },
+        { "Name": "Skull 3 Look Up Right - DCS Sequential" },
+      ],
+    },
+    //
+    // Move All Skulls on Angles - Skulls Sequential DCS Sequential
+    //
+    {
+      "Name": "Move All Skulls on Angles - Look Down Left - Skulls Sequential DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Left - DCS Sequential" },
+        { "Name": "Skull 2 Look Down Left - DCS Sequential" },
+        { "Name": "Skull 3 Look Down Left - DCS Sequential" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Down Right - Skulls Sequential DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Down Right - DCS Sequential" },
+        { "Name": "Skull 2 Look Down Right - DCS Sequential" },
+        { "Name": "Skull 3 Look Down Right - DCS Sequential" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Left - Skulls Sequential DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Left - DCS Sequential" },
+        { "Name": "Skull 2 Look Up Left - DCS Sequential" },
+        { "Name": "Skull 3 Look Up Left - DCS Sequential" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Look Up Right - Skulls Sequential DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Skull 1 Look Up Right - DCS Sequential" },
+        { "Name": "Skull 2 Look Up Right - DCS Sequential" },
+        { "Name": "Skull 3 Look Up Right - DCS Sequential" },
+      ],
+    },
+  ]
+}

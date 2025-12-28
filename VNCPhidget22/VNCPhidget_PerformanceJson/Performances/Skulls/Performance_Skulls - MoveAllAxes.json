@@ -1,0 +1,873 @@
+// Performance_Skulls_MoveAllAxes.json
+// Contains
+//  Center All Skulls
+//  Move All Skulls 5
+//  Move All Skulls 10
+//  Move All Skulls 15
+//  Move All Skulls 20
+//  Move All Skulls Stops
+//  Move All Skulls - Up 5
+//  Move All Skulls - Down 5
+//  Move All Skulls - Right 5
+//  Move All Skulls - Left 5
+//  Move All Skulls - Tilt Left 5
+//  Move All Skulls - Tilt Right 5
+//  Move All Skulls - Up 5
+//  Move All Skulls - Down 10
+//  Move All Skulls - Right 10
+//  Move All Skulls - Left 10
+//  Move All Skulls - Tilt Left 10
+//  Move All Skulls - Tilt Right 10
+//  Move All Skulls - Up 15
+//  Move All Skulls - Down 15
+//  Move All Skulls - Right 15
+//  Move All Skulls - Left 15
+//  Move All Skulls - Tilt Left 15
+//  Move All Skulls - Tilt Right 15
+//  Move All Skulls - Up 20
+//  Move All Skulls - Down 20
+//  Move All Skulls - Right 20
+//  Move All Skulls - Left 20
+//  Move All Skulls - Tilt Left 20
+//  Move All Skulls - Tilt Right 20
+//  Move All Skulls - Right Stop
+//  Move All Skulls - Left Stop
+//  Move All Skulls - Up Stop
+//  Move All Skulls - Down Stop
+//  Move All Skulls - Tilt Right Stop
+//  Move All Skulls - Tilt Left Stop
+{
+  "Name": "Performance_MoveAllAxis",
+  "Description": "Performances Move Skulls X Y Z AXIS",
+  "Performances": [
+    //
+    // Center All Skulls
+    //
+    {
+      "Name": "Center All Skulls",
+      "Description": "Center All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Center Skull 1" },
+        { "Name": "Center Skull 2" },
+        { "Name": "Center Skull 3" }
+      ],
+    },
+    {
+      "Name": "Move All Skulls 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Down 5" },
+        { "Name": "Move All Skulls - Down 5" },
+        { "Name": "Move All Skulls - Up 5" },
+        { "Name": "Move All Skulls - Right 5" },
+        { "Name": "Move All Skulls - Left 5" },
+        { "Name": "Move All Skulls - Left 5" },
+        { "Name": "Move All Skulls - Right 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Left 5" },
+        { "Name": "Move All Skulls - Tilt Right 5" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Down 10" },
+        { "Name": "Move All Skulls - Up 10" },
+        { "Name": "Move All Skulls - Right 10" },
+        { "Name": "Move All Skulls - Left 10" },
+        { "Name": "Move All Skulls - Left 10" },
+        { "Name": "Move All Skulls - Right 10" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+        { "Name": "Move All Skulls - Tilt Left 10" },
+        { "Name": "Move All Skulls - Tilt Left 10" },
+        { "Name": "Move All Skulls - Tilt Right 10" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Move All Skulls - Up 15" },
+        { "Name": "Move All Skulls - Down 15" },
+        { "Name": "Move All Skulls - Down 15" },
+        { "Name": "Move All Skulls - Up 15" },
+        { "Name": "Move All Skulls - Right 15" },
+        { "Name": "Move All Skulls - Left 15" },
+        { "Name": "Move All Skulls - Left 15" },
+        { "Name": "Move All Skulls - Right 15" },
+        { "Name": "Move All Skulls - Tilt Right 15" },
+        { "Name": "Move All Skulls - Tilt Left 15" },
+        { "Name": "Move All Skulls - Tilt Left 15" },
+        { "Name": "Move All Skulls - Tilt Right 15" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Down 20" },
+        { "Name": "Move All Skulls - Up 20" },
+        { "Name": "Move All Skulls - Right 20" },
+        { "Name": "Move All Skulls - Left 20" },
+        { "Name": "Move All Skulls - Left 20" },
+        { "Name": "Move All Skulls - Right 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Left 20" },
+        { "Name": "Move All Skulls - Tilt Right 20" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls Stops",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls - Right Stop", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls - Left Stop", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls - Up Stop", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls - Down Stop", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls - Tilt Right Stop", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls - Tilt Left Stop", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+      ],
+    },
+    //
+    // Move All Skulls 5
+    //
+    {
+      "Name": "Move All Skulls - Up 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Up 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Up 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Up 5"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Down 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Down 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Down 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Down 5"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Right 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Right 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Right 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Right 5"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Left 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Left 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Left 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Left 5"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Left 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Left 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Left 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Left 5"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Right 5",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Right 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Right 5"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Right 5"
+        }
+      ],
+    },
+    //
+    // Move All Skulls 10
+    //
+    {
+      "Name": "Move All Skulls - Up 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Up 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Up 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Up 10"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Down 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Down 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Down 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Down 10"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Right 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Right 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Right 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Right 10"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Left 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Left 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Left 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Left 10"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Left 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Left 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Left 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Left 10"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Right 10",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Right 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Right 10"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Right 10"
+        }
+      ],
+    },
+    //
+    // Move All Skulls 15
+    //
+    {
+      "Name": "Move All Skulls - Up 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Up 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Up 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Up 15"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Down 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Down 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Down 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Down 15"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Right 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Right 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Right 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Right 15"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Left 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Left 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Left 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Left 15"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Left 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Left 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Left 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Left 15"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Right 15",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Right 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Right 15"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Right 15"
+        }
+      ],
+    },
+    //
+    // Move All Skulls 20
+    //
+    {
+      "Name": "Move All Skulls - Up 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Up 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Up 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Up 20"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Down 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Down 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Down 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Down 20"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Right 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Right 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Right 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Right 20"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Left 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Left 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Left 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Left 20"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Left 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Left 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Left 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Left 20"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Right 20",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Right 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Right 20"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Right 20"
+        }
+      ],
+    },
+    //
+    // Tilting the Skull and Looking Up and Down are more limited than Left and Right
+    // so we only go to 20 degrees for those movements
+    //
+    // Move All Skulls Right Left Stop
+    //
+    {
+      "Name": "Move All Skulls - Right Stop",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Right Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Right Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Right Stop"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Left Stop",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Z Axis",
+          "Name": "Skull Look Left Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Z Axis",
+          "Name": "Skull Look Left Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Z Axis",
+          "Name": "Skull Look Left Stop"
+        }
+      ],
+    },
+    //
+    // Move All Skulls Up Down Stop
+    //
+    {
+      "Name": "Move All Skulls - Up Stop",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Up Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Up Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Up Stop"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Down Stop",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis",
+          "Name": "Skull Look Down Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 X Axis",
+          "Name": "Skull Look Down Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis",
+          "Name": "Skull Look Down Stop"
+        }
+      ],
+    },
+    //
+    // Move All Skulls Tilt Right Left Stop
+    //
+    {
+      "Name": "Move All Skulls - Tilt Right Stop",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Right Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Right Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Right Stop"
+        }
+      ],
+    },
+    {
+      "Name": "Move All Skulls - Tilt Left Stop",
+      "Description": "",
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 1 Y Axis",
+          "Name": "Skull Tilt Left Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 2 Y Axis",
+          "Name": "Skull Tilt Left Stop"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumberHubPortChannelName": "Skull 3 Y Axis",
+          "Name": "Skull Tilt Left Stop"
+        }
+      ],
+    },
+  ]
+}

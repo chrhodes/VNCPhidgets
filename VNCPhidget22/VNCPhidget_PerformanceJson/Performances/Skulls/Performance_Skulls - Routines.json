@@ -1,0 +1,347 @@
+// Performance_Skulls_Routines.json
+// Contains
+//  Disengage All Skulls
+//  Close All Skulls
+//  All Skulls Yes, No, Maybe, Sigh, and Laugh
+//  Move All Skulls on Axes
+//  Move Skulls on Angles DCS Sequential
+//  Move Skulls on Angles DCS Parallel
+//  Move All Skulls on Angles DCS Parallel
+//  Move All Skulls Look Down Left DCS Parallel
+//  Move All Skulls Look Down Right DCS Parallel
+//  Move All Skulls Look Up Left DCS Parallel
+//  Move All Skulls Look Up RIght DCS Parallel
+//  Sounds on Left and Right
+//  Consulting Skulls
+//  Move All Skulls - Sound to Right
+//  Move All Skulls - Sound to Left
+//  Nothing to See There
+//  Move All Skulls - Test Inline
+{
+  "Name": "Performance_Skulls_Routines",
+  "Description": "Performances Skull Routines",
+  "Performances": [
+    //
+    // Disengage All Skulls
+    //
+    {
+      "Name": "Disengage All Skulls",
+      "Description": "Disengage All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Disengage Skull 1" },
+        { "Name": "Disengage Skull 2" },
+        { "Name": "Disengage Skull 3" }
+      ],
+    },
+    //
+    // Close All Skulls
+    //
+    {
+      "Name": "Close All Skulls",
+      "Description": "Close All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Close Skull 1" },
+        { "Name": "Close Skull 2" },
+        { "Name": "Close Skull 3" }
+      ],
+    },
+    //
+    // All Skulls Yes, No, Maybe, Sigh, and Laugh
+    //
+    {
+      "Name": "All Skulls Yes, No, Maybe, Sigh, and Laugh",
+      "Description": "All Skulls Yes, No, Maybe, Sigh, and Laugh",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls Yes", "Duration": 1000 },
+        { "Name": "All Skulls Big Yes", "Duration": 1000 },
+        { "Name": "All Skulls No", "Duration": 1000 },
+        { "Name": "All Skulls Big No", "Duration": 1000 },
+        { "Name": "All Skulls Maybe", "Duration": 1000 },
+        { "Name": "All Skulls Sigh", "Duration": 1000 },
+        { "Name": "All Skulls Laugh", "Duration": 1000 },
+        { "Name": "All Skulls Big Laugh", "Duration": 1000 },
+      ],
+    },
+    //
+    // Move All Skulls on Axes
+    //
+    {
+      "Name": "Move All Skulls on Axes",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls 5", "Duration": 1000 },
+        { "Name": "Move All Skulls 10", "Duration": 1000 },
+        { "Name": "Move All Skulls 15", "Duration": 1000 },
+        { "Name": "Move All Skulls 20", "Duration": 1000 },
+        { "Name": "Move All Skulls Stops", "Duration": 1000 },
+      ],
+    },
+    //
+    // Move All Skulls on Angles
+    //
+    {
+      "Name": "Move All Skulls on Angles - Skulls Parallel DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Left - Skulls Parallel DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Right - Skulls Parallel DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Left - Skulls Parallel DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Right - Skulls Parallel DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Skulls Sequential DCS Parallel",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Left - Skulls Sequential DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Right - Skulls Sequential DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Left - Skulls Sequential DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Right - Skulls Sequential DCS Parallel", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Skulls Parallel DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Left - Skulls Parallel DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Right - Skulls Parallel DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Left - Skulls Parallel DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Right - Skulls Parallel DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+      ],
+    },
+    {
+      "Name": "Move All Skulls on Angles - Skulls Sequential DCS Sequential",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Left - Skulls Sequential DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Down Right - Skulls Sequential DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Left - Skulls Sequential DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+        { "Name": "Move All Skulls on Angles - Look Up Right - Skulls Sequential DCS Sequential", "Duration": 1000 },
+        { "Name": "Center All Skulls" },
+      ],
+    },   
+    //
+    // Sounds on Left and Right
+    //
+    {
+      "Name": "Sounds on Left and Right",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Center All Skulls" },
+        {
+          "Name": "Move All Skulls - Sound to Left",
+          "Duration": 2003
+        },
+        {
+          "Name": "Center All Skulls",
+          "Duration": 1000
+        },
+        {
+          "Name": "Move All Skulls - Sound to Right",
+          "Duration": 2002
+        },
+        { "Name": "Center All Skulls" },
+      ],
+    },
+    //
+    // Consulting Skulls
+    //
+    {
+      "Name": "Consulting Skulls",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Consulting Skulls Say Yes" },
+        { "Name": "Consulting Skulls Say No" },
+      ],
+    },
+    //
+    // Move All Skulls - Sound to Right
+    //
+    {
+      "Name": "Move All Skulls - Sound to Right",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        {
+          "Name": "Skull 99220 456 MaxPositionStop",
+          "SerialNumber": 99220,
+          "Duration": 1502
+        }, // Look at sound
+        { "Name": "All Skulls - VelocityLimit (250) Acceleration (500)" },
+        { // Move back to talk to others
+          "DeviceChannelSequences": [
+            {
+              "SerialNumber": 99220,
+              "ChannelClass": "RCServo",
+              "RCServoSequence": {
+                "HubPort": 0,
+                "Channel": 6,
+                "Actions": [ { "RelativePosition": -110 } ],
+                "SequenceDuration": 502
+              } // Rotate Left(-)/Right(+)
+            }
+          ],
+        },
+        { "Name": "Skull 99220 012 and Skull 169501 012 Consult and Say Yes" },
+        {
+          "Name": "All Skulls MaxPositionStop",
+          "Duration": 1022
+        }
+      ],
+      // If use NextPerformance, the Duration specified in any performance that called us
+      // is used before NextPerformance is called.
+      //"NextPerformance": { "Name": "All Skulls MaxPositionStop", "Duration":  1022 }
+    },
+    //
+    // Move All Skulls - Sound to Left
+    //
+    {
+      "Name": "Move All Skulls - Sound to Left",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)" },
+        {
+          "Name": "Skull 99220 012 MinPositionStop",
+          "SerialNumber": 99220,
+          "Duration": 1503
+        }, // Look at sound
+        { // Move back to talk to others
+          "DeviceChannelSequences": [
+            {
+              "SerialNumber": 99220,
+              "ChannelClass": "RCServo",
+              "RCServoSequence": {
+                "HubPort": 0,
+                "Channel": 2,
+                "Actions": [ { "RelativePosition": 110 } ],
+                "SequenceDuration": 503
+              } // Rotate Left(-)/Right(+)
+            }
+          ],
+        },
+        {
+          "Name": "Skull 99220 456 and Skull 169501 012 Consult and Say No",
+          "Duration": 533
+        },
+        { "Name": "Nothing to See There" },
+        {
+          "Name": "Skull 99220 012 MinPositionStop",
+          "SerialNumber": 99220,
+          "Duration": 1033
+        }
+        //{ "Name": "Skull-012 Sigh", "SerialNumber": 99220 },
+        //{ "Name": "Center Skull 2", "SerialNumber": 169501 },
+        //{ "Name": "Center Skull 3", "SerialNumber": 99220 },
+        // Need to center Skull 99220 456 and Skull 169501 012
+        // and Dip Skull 99220 012 then either look back at sound and then center or just look back at sound
+      ],
+      // If use NextPerformance, the Duration specified in any performance that called us
+      // is used before NextPerformance is called.
+      //"NextPerformance": { "Name": "Skull 99220 012 MinPositionStop", "SerialNumber": 99220, "Duration": 1033 }, // Look back at sound
+      //"NextPerformance": { "Name": "All Skulls MinPositionStop", "Duration":  2033 }
+    },
+    //
+    // Nothing to See There
+    //
+    {
+      "Name": "Nothing to See There",
+      "Description": "",
+      "UsageNotes": "",
+      "Loops": 1,
+      //"BeforePerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      // Use this if calling DeviceChannelSequences
+      //"ExecuteDeviceChannelSequencesInParallel": false,
+      //"DeviceChannelSequences": [
+      // { "ChannelClass": "<ChannelClass>", "SerialNumber": 12345, "HubPort": 0, "Channel": 0, "Name": "<Name>" },
+      //],
+      // Use this if calling Performances
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        {
+          "Name": "Skull-012 Sigh",
+          "SerialNumber": 99220
+        },
+        {
+          "Name": "Center Skull 2",
+          "SerialNumber": 169501
+        },
+        {
+          "Name": "Center Skull 3",
+          "SerialNumber": 99220
+        },
+      ],
+      //"AfterPerformanceLoopPerformances": [
+      //  { "Name": "" },
+      //],
+      //"Duration": 0
+      //"NextPerformance": { "Name": "" }
+    },
+
+    //
+    // Move All Skulls - Test Inline
+    //
+    //This needs to move to test routines and decouple from skulls.
+    //  Skulls should use best practices and be consistent across skulls.
+    //{
+    //  "Name": "Move All Skulls - Test InlLine",
+    //  "Description": "",
+    //  "Loops": 1,
+    //  "ExecutePerformancesInParallel": false,
+    //  "Performances": [
+    //   { "Name": "All Skulls - VelocityLimit (100) Acceleration (200)"},
+    //   { "Name": "Skull 99220 456 Hard Right"  },
+    //   { "Name": "Center All Skulls"  },
+    //   { "Name": "Skull 99220 456 Hard Left - Inline Actions HubPort Channel override"  },
+    //   { "Name": "Center All Skulls"  },
+    //   { "Name": "Skull 99220 456 Hard Left - Inline Actions"  },
+    //   { "Name": "Center All Skulls"  },
+    //  ],
+    //},
+  ]
+}

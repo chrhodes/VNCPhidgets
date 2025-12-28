@@ -1,0 +1,171 @@
+// Performance - Initialization.json
+// Contains
+//  Initialize All Skulls
+//  Engage All Skulls
+//  Initialize All Hands
+//  Engage All Hands
+//  Initialize All Arms
+//  Engage All Arms
+//  Initialize Xylophone
+//  Engage Xylophone
+//
+{
+  "Name": "Performance_Initialization",
+  "Description": "Performances to Intialize Devices",
+  "Performances": [
+    //
+    // Initialize All Skulls
+    //
+    {
+      "Name": "Initialize All Skulls",
+      "Description": "Initialize All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "Initialize Skull 1" },
+        { "Name": "Initialize Skull 2" },
+        { "Name": "Initialize Skull 3" }
+      ],
+    },
+    //
+    // Engage All Skulls
+    //
+    {
+      "Name": "Engage All Skulls",
+      "Description": "Engage All Skulls",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "Name": "Engage Skull 1" },
+        { "Name": "Engage Skull 2" },
+        { "Name": "Engage Skull 3" }
+      ],
+    },
+    //
+    // Initialize All Hands
+    //
+    {
+      "Name": "Initialize All Hands",
+      "Description": "Initialize All Hands",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        {
+          "Name": "Initialize Hand Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Initialize Hand Right 1",
+          "SerialNumber": 624728
+        },
+      ],
+    },
+    //
+    // Engage All Hands
+    //
+    {
+      "Name": "Engage All Hands",
+      "Description": "Engage and Center All Hands",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        {
+          "Name": "Engage Hand Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Engage Hand Right 1",
+          "SerialNumber": 624728
+        },
+      ],
+    },
+    //
+    // Initialize All Arms
+    //
+    {
+      "Name": "Initialize All Arms",
+      "Description": "Initialize All Arms",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        {
+          "Name": "Initialize Arm Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Initialize Arm Right 1",
+          "SerialNumber": 624728
+        },
+      ],
+    },
+    //
+    // Engage All Arms
+    //
+    {
+      "Name": "Engage All Arms",
+      "Description": "Engage and Center All Arms",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        {
+          "Name": "Engage Arm Left 1",
+          "SerialNumber": 624728
+        },
+        {
+          "Name": "Engage Arm Right 1",
+          "SerialNumber": 624728
+        },
+      ],
+    },
+    //
+    // Initialize Xylophone
+    //
+    {
+      "Name": "Initialize Xylophone",
+      "Description": "Initialize Xylophone",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Initialize Xylophone Arm"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Initialize Xylophone Mallet"
+        }
+      ]
+    },
+    //
+    // Engage Xylophone
+    //
+    {
+      "Name": "Engage Xylophone",
+      "Description": "Engage Xylophone",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 1,
+          "Name": "Engage Servo"
+        },
+        {
+          "ChannelClass": "RCServo",
+          "SerialNumber": 99415,
+          "HubPort": 0,
+          "Channel": 2,
+          "Name": "Engage Servo"
+        }
+      ]
+    },
+  ]
+}

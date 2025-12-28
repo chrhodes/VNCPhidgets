@@ -412,7 +412,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = $"ReloadPerformanceConfigFile Clicked - >{SelectedPerformanceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadPerformancesFromConfigFile(SelectedPerformanceConfigFile, reload: true);
+            if (SelectedPerformanceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadPerformancesFromConfigFile(SelectedPerformanceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -422,10 +425,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadDigitalInputConfigFile Clicked";
+            Message = $"ReloadDigitalInputConfigFile Clicked - >{SelectedDigitalInputSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadDigitalInputSequencesFromConfigFile(SelectedDigitalInputSequenceConfigFile, reload: true);
+            if (SelectedDigitalInputSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadDigitalInputSequencesFromConfigFile(SelectedDigitalInputSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -434,10 +440,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadDigitalOutputSequenceConfigFile Clicked";
+            Message = $"ReloadDigitalOutputSequenceConfigFile Clicked - >{SelectedDigitalOutputSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadDigitalOutputSequencesFromConfigFile(SelectedDigitalOutputSequenceConfigFile, reload: true);
+            if (SelectedDigitalOutputSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadDigitalOutputSequencesFromConfigFile(SelectedDigitalOutputSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -447,10 +456,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadRCServoSequenceConfigFile Clicked";
+            Message = $"ReloadRCServoSequenceConfigFile Clicked - >{SelectedRCServoSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadRCServoSequencesFromConfigFile(SelectedRCServoSequenceConfigFile, reload: true);
+            if (SelectedRCServoSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadRCServoSequencesFromConfigFile(SelectedRCServoSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -460,10 +472,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadStepperSequenceConfigFile Clicked";
+            Message = $"ReloadStepperSequenceConfigFile Clicked - >{SelectedStepperSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadStepperSequencesFromConfigFile(SelectedStepperSequenceConfigFile, reload: true);
+            if (SelectedStepperSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadStepperSequencesFromConfigFile(SelectedStepperSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -473,10 +488,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadVoltageInputConfigFile Clicked";
+            Message = $"ReloadVoltageInputConfigFile Clicked - >{SelectedVoltageInputSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadVoltageInputSequencesFromConfigFile(SelectedVoltageInputSequenceConfigFile, reload: true);
+            if (SelectedVoltageInputSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadVoltageInputSequencesFromConfigFile(SelectedVoltageInputSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -486,10 +504,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadVoltageRatioInputConfigFile Clicked";
+            Message = $"ReloadVoltageRatioInputConfigFile Clicked - >{SelectedVoltageRatioInputSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadVoltageRatioInputSequencesFromConfigFile(SelectedVoltageRatioInputSequenceConfigFile, reload: true);
+            if (SelectedVoltageRatioInputSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadVoltageRatioInputSequencesFromConfigFile(SelectedVoltageRatioInputSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -499,10 +520,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = "ReloadVoltageOutputSequenceConfigFile Clicked";
+            Message = $"ReloadVoltageOutputSequenceConfigFile Clicked - >{SelectedVoltageOutputSequenceConfigFile}<";
             PublishStatusMessage(Message);
 
-            Common.PerformanceLibrary.LoadVoltageOutputSequencesFromConfigFile(SelectedVoltageOutputSequenceConfigFile, reload: true);
+            if (SelectedVoltageOutputSequenceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadVoltageOutputSequencesFromConfigFile(SelectedVoltageOutputSequenceConfigFile, reload: true);
+            }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }

@@ -1,0 +1,100 @@
+// Performance - Test.json
+// Contains
+//  Open Test Phidgets
+//  Test Before, After, and Next Performance Sequences
+//  Close Test Phidgets
+//  99415 - Test Open, Engage, Move, Close Sequences
+{
+  "Name": "Performance_Test",
+  "Description": "Testing all the different things a Performance supports",
+  "Performances": [
+    {
+      "Name": "Open Test Phidgets",
+      "Description": "Open the Phidgets used in Test",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "DigitalOutput 124744 - Open"},
+        { "Name": "RCServos 99415 - Open and Engage A" },
+        { "Name": "Stepper 268213 - Open" },
+      ],
+      //"NextPerformance": { "Name": "Test Before, After, and Next Performance Sequences" }
+    },
+    {
+      "Name": "Test Before, After, and Next Performance Sequences",
+      "Description": "This uses Specific ChannelSequences",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "DigitalOutput 124744 - Parallel Sequences" },
+        { "Name": "Stepper 268213 - Sequential Sequences" },
+        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
+      ],
+      "Loops": 1,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 7, "Name": "Move Servo Min/Max" },
+      ],
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+
+        { "Name": "DigitalOutput 124744 - Sequential Sequences 1" },
+
+        { "Name": "RCServos 99415 - VelocityLimit (1000) Acceleration (2000)" },
+        { "Name": "RCServos 99415 - Sequential Sequence" },
+
+        { "Name": "DigitalOutput 124744 - Sequential Sequences 2" },
+
+        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
+        { "Name": "RCServos 99415 - Parallel Sequence" },
+
+        { "Name": "DigitalOutput 124744 - Sequential Sequences 1" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "Stepper 268213 - Sequential Sequences" },   
+        { "Name": "DigitalOutput 124744 - Parallel Sequences" }
+      ],
+      //"NextPerformance": { "Name": "Test Before, After, and Next Performance Sequences - Close Phidgets" }
+    },
+    {
+      "Name": "Close Test Phidgets",
+      "Description": "",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "DigitalOutput 124744 - Close"},
+        { "Name": "RCServos 99415 - Close A" },
+        { "Name": "Stepper 268213 - Close" },
+      ],
+    },
+    {
+      "Name": "99415 - Test Open, Engage, Move, Close Sequences",
+      "Description": "This uses a variety of SerialNumber, HubPort, and Channel overrides",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "Name": "RCServos 99415 - Open and Engage A" },
+        { "Name": "RCServos 99415 - Parallel Sequence" },
+        { "Name": "RCServos 99415 - Close A" },
+        { "Name": "RCServos 99415 - Open and Engage B" },
+        { "Name": "RCServos 99415 - Parallel Sequence" },
+        { "Name": "RCServos 99415 - Close B" },
+        { "Name": "RCServos 99415 - Open and Engage C" },
+        { "Name": "RCServos 99415 - Parallel Sequence" },
+        { "Name": "RCServos 99415 - Close A" },
+        { "Name": "RCServos 99415 - Open and Engage D" },
+        { "Name": "RCServos 99415 - Parallel Sequence" },
+        { "Name": "RCServos 99415 - Close A" },
+        { "Name": "RCServos 99415 - Open and Engage E" },
+        { "Name": "RCServos 99415 - Parallel Sequence" },
+        { "Name": "RCServos 99415 - Close A" }
+      ],
+    },
+  ]
+}
