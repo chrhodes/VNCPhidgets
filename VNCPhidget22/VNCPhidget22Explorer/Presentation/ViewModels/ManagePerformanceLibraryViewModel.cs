@@ -51,6 +51,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             
             SayHelloCommand = new DelegateCommand(SayHello, SayHelloCanExecute);
 
+            ReloadPerformanceConfigConfigFileCommand = new DelegateCommand(ReloadPerformanceConfigConfigFile);
             ReloadPerformanceConfigFileCommand = new DelegateCommand(ReloadPerformanceConfigFile);
 
             ReloadDigitalInputSequenceConfigFileCommand = new DelegateCommand(ReloadDigitalInputSequenceConfigFile);
@@ -63,6 +64,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             Message = "ManagePerformanceLibraryViewModel says hello";
             PublishStatusMessage(Message);
+
+            PerformanceConfigConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigConfigFiles();
+            PerformanceConfigs = PerformanceLibrary.AvailablePerformanceConfigs.Values.ToList();
 
             PerformanceConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigFiles();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
@@ -104,6 +108,41 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public ICommand? SayHelloCommand { get; private set; }
 
+        private IEnumerable<string>? _performanceConfigConfigFiles;
+        public IEnumerable<string>? PerformanceConfigConfigFiles
+        {
+            get => _performanceConfigConfigFiles;
+            set
+            {
+                _performanceConfigConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _selectedPerformanceConfigConfigFile;
+        public string? SelectedPerformanceConfigConfigFile
+        {
+            get => _selectedPerformanceConfigConfigFile;
+            set
+            {
+                if (_selectedPerformanceConfigConfigFile == value)
+                    return;
+                _selectedPerformanceConfigConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<Performance>? _performanceConfigs;
+        public IEnumerable<Performance>? PerformanceConfigs
+        {
+            get => _performanceConfigs;
+            set
+            {
+                _performanceConfigs = value;
+                OnPropertyChanged();
+            }
+        }
+
         private IEnumerable<string>? _performanceConfigFiles;
         public IEnumerable<string>? PerformanceConfigFiles
         {
@@ -126,7 +165,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 _selectedPerformanceConfigFile = value;
                 OnPropertyChanged();
             }
-        }        
+        }
 
         private IEnumerable<Performance>? _performances;
         public IEnumerable<Performance>? Performances
@@ -390,6 +429,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Reload Config Files
 
+        public ICommand? ReloadPerformanceConfigConfigFileCommand { get; private set; }
         public ICommand? ReloadPerformanceConfigFileCommand { get; private set; }
 
         public ICommand? ReloadDigitalInputSequenceConfigFileCommand { get; private set; }
@@ -403,6 +443,22 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // TODO(crhodes)
         // This could be ReloadConfigFile(string configCategory)
         // with a switch.  See ManagePerformanceLibrary.xaml
+
+        private void ReloadPerformanceConfigConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = $"ReloadPerformanceConfigConfigFile Clicked - >{SelectedPerformanceConfigConfigFile}<";
+            PublishStatusMessage(Message);
+
+            if (SelectedPerformanceConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadPerformanceConfigsFromConfigFile(SelectedPerformanceConfigConfigFile, reload: true);
+            }
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
 
         private void ReloadPerformanceConfigFile()
         {

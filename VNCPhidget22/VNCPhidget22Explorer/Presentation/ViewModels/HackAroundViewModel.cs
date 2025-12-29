@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using DevExpress.Mvvm.Native;
 
 using Prism.Commands;
 using Prism.Events;
@@ -15,17 +13,9 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22.Configuration;
-using VNC.Phidget22.Events;
+using VNC.Phidget22.Configuration.Performance;
 using VNC.Phidget22.Players;
 
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using VNC.Phidget22.Configuration.Performance;
-using DevExpress.CodeParser;
-using VNC.Phidget22;
-using System.Collections.ObjectModel;
-using DevExpress.Mvvm.POCO;
-using DevExpress.Mvvm.Native;
-using DevExpress.Xpf.Editors.DateNavigator;
 using VNCPhidget22Explorer.Core.Events;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
@@ -69,6 +59,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PlayPerformanceCommand = new DelegateCommand(PlayPerformance, PlayPerformanceCanExecute);
 
+            PlayPerformanceConfigCommand = new DelegateCommand(PlayPerformanceConfig, PlayPerformanceConfigCanExecute);
+
             PlayDigitalOutputSequenceCommand = new DelegateCommand(PlayDigitalOutputSequence, PlayDigitalOutputSequenceCanExecute);
 
             PlayRCServoSequenceCommand = new DelegateCommand(PlayRCServoSequence, PlayRCServoSequenceCanExecute);
@@ -92,7 +84,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadPerformances()
         {
+            PerformanceConfigs = PerformanceLibrary.AvailablePerformanceConfigs.Values.ToList();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+
 
             // TODO(crhodes)
             // Might be better to do this with an Event so gets called fewer times.
@@ -117,6 +111,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             switch (args.Name)
             {
+                case "PerformanceConfigs":
+                    PerformanceConfigs = PerformanceLibrary.AvailablePerformanceConfigs.Values.ToList();
+                    break;
+
                 case "Performances":
                     Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
                     break;
@@ -462,6 +460,89 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 if (_logActionVerification == value)
                     return;
                 _logActionVerification = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Performances
+
+        public string PerformanceConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
+
+        //private PerformancePlayer ActivePerformancePlayer { get; set; }
+        //private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
+
+        //private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
+
+        private IEnumerable<Performance>? _performanceConfigs;
+        public IEnumerable<Performance>? PerformanceConfigs
+        {
+            get => _performanceConfigs;
+            set
+            {
+                _performanceConfigs = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // TODO(crhodes)
+        // Try this to see if it helps when PerformanceLibrary changes
+
+        //private ObservableCollection<Performance> _performances;
+        //public ObservableCollection<Performance> Performances
+        //{
+        //    get => _performances;
+        //    set
+        //    {
+        //        _performances = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        private Performance? _selectedPerformanceConfig;
+        public Performance? SelectedPerformanceConfig
+        {
+            get => _selectedPerformanceConfig;
+            set
+            {
+                if (_selectedPerformanceConfig == value)
+                {
+                    return;
+                }
+
+                _selectedPerformance = value;
+                OnPropertyChanged();
+
+                PlayPerformanceConfigCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<Performance>? _selectedPerformanceConfigs;
+        public List<Performance>? SelectedPerformanceConfigs
+        {
+            get => _selectedPerformanceConfigs;
+            set
+            {
+                if (_selectedPerformanceConfigs == value)
+                {
+                    return;
+                }
+
+                _selectedPerformances = value;
+                OnPropertyChanged();
+
+                PlayPerformanceConfigCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
+        private Int32? _serialNumber2;
+        public Int32? SerialNumber2
+        {
+            get => _serialNumber2;
+            set
+            {
+                _serialNumber2 = value;
                 OnPropertyChanged();
             }
         }
@@ -1298,6 +1379,109 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PlayPerformance Command
 
+        public DelegateCommand? PlayPerformanceConfigCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
+        //public TYPE PlayPerformanceCommandParameter;
+        public string PlayPerformanceConfigContent { get; set; } = "PlayPerformanceConfig";
+        public string PlayPerformanceConfigToolTip { get; set; } = "PlayPerformanceConfig ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlayPerformanceContent { get; set; } = "ViewName_PlayPerformanceContent";
+        //public string PlayPerformanceToolTip { get; set; } = "ViewName_PlayPerformanceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlayPerformanceContent">PlayPerformance</system:String>
+        //    <system:String x:Key="ViewName_PlayPerformanceContentToolTip">PlayPerformance ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlayPerformance(TYPE value)
+
+        public async void PlayPerformanceConfig()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called PlayPerformance";
+
+            PerformancePlayer performancePlayer = GetNewPerformancePlayer();
+
+            // TODO(crhodes)
+            // Maybe this should be a do / while loop
+
+            if (LogPerformance) Log.TRACE($"Selected Performances:{SelectedPerformanceConfigs?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+
+            if (SelectedPerformanceConfigs is not null)
+            {
+                foreach (Performance performance in SelectedPerformanceConfigs)
+                {
+                    Performance? selectedPerformance = performance;
+
+                    if (SerialNumber is not null)
+                    {
+                        if (LogPerformance) Log.TRACE($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                        selectedPerformance.SerialNumber = SerialNumber;
+                    }
+
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
+                    {
+                        await performancePlayer.ExecutePerformance(selectedPerformance);
+                    });
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public Boolean PlayPerformanceConfigCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (SelectedPerformanceConfigs?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region PlayPerformance Command
+
         public DelegateCommand? PlayPerformanceCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
@@ -1350,44 +1534,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     {
                         await performancePlayer.ExecutePerformance(selectedPerformance);
                     });
-
-                    //await performancePlayer.RunPerformanceLoops(nextPerformance);
-
-                    // FIX(crhodes)
-                    // Don't think we need this as the foreach loop handles the selecting of muptile performances
-                    // and ExecutePerformance handles .NextPerformance
-
-                    //selectedPerformance = selectedPerformance?.NextPerformance;
-
-                    //while (selectedPerformance is not null)
-                    //{
-                    //    if (Common.PerformanceLibrary.AvailablePerformances.ContainsKey(selectedPerformance.Name ?? ""))
-                    //    {
-                    //        selectedPerformance = Common.PerformanceLibrary.AvailablePerformances[selectedPerformance.Name];
-
-                    //        if (SerialNumber is not null)
-                    //        {
-                    //            if (LogPerformance) Log.TRACE($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
-                    //            selectedPerformance.SerialNumber = SerialNumber;
-                    //        }
-
-                    //        // NOTE(crhodes)
-                    //        // Run on another thread to keep UI active
-                    //        await Task.Run(async () =>
-                    //        {
-                    //            await performancePlayer.ExecutePerformance(selectedPerformance);
-                    //        });
-
-                    //        //await performancePlayer.RunPerformanceLoops(nextPerformance);
-
-                    //        selectedPerformance = selectedPerformance?.NextPerformance;
-                    //    }
-                    //    else
-                    //    {
-                    //        Log.ERROR($"Cannot find performance:>{selectedPerformance.Name}<", Common.LOG_CATEGORY);
-                    //        selectedPerformance = null;
-                    //    }
-                    //}
                 }
             }
 

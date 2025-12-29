@@ -85,20 +85,20 @@
 
         <dxlc:LayoutControl  Padding="0" Orientation="Vertical" >
 
-            <dxlc:LayoutGroup x:Name="lgPerformances" View="GroupBox" Header="Performances"  
+            <dxlc:LayoutGroup x:Name="lgPerformanceConfigs" View="GroupBox" Header="PerformanceConfigs"  
                 Orientation="Vertical" VerticalAlignment="Top"
                 IsCollapsible="True" IsCollapsed="False">
-            
+
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                
+
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
-                        <!--<dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
-                                ItemsSource="{Binding Performances}" DisplayMember="Name" 
-                                SelectedItem="{Binding SelectedPerformance}"                                              
+                        <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit x:Name="cbePerformanceConfigs" Width="300" TextWrapping="Wrap"
+                                ItemsSource="{Binding PerformanceConfigs}" DisplayMember="Name"
+                                SelectedItem="{Binding SelectedPerformanceConfig}"                                              
                                 EditValue="{ Binding 
-                                    Path=SelectedPerformances,
+                                    Path=SelectedPerformanceConfigs,
                                     Mode=TwoWay,
                                     UpdateSourceTrigger=PropertyChanged,
                                     Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
@@ -106,22 +106,60 @@
                                     <dxe:CheckedComboBoxStyleSettings />
                                 </dxe:ComboBoxEdit.StyleSettings>
                             </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="SerialNumber#" LabelPosition="Left" HorizontalAlignment="Left" >
+                                <dxe:TextEdit Text="{Binding SerialNumber2}" NullText="serialnumber" 
+                                              MouseDoubleClick="TextEdit_MouseDoubleClick"/>
+                                <!--<dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding HubPorts}"
+                                    SelectedItem="{Binding SelectedHubPort}" >
+                                    -->
+                                <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
+                                <!--
+                                </dxe:ComboBoxEdit>-->
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <!--<dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding SelectedPerformance.Name }" HorizontalAlignment="Left" />
                         </dxlc:LayoutItem>-->
 
-                        <!-- HACK(crhodes)
-                         This was an attempt
-                        -->
-                        <!--DisplayMember="Value"
-                        ValueMember="Key"--><!--
-                        <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit x:Name="cbePerformances" Width="300" TextWrapping="Wrap"
-                                DisplayMember="Value.Name"
-                                SelectedItem="{Binding SelectedPerformance, Converter={StaticResource SelectedItemToXXXConverter}}"  >
-                                <dxe:ComboBoxEdit.StyleSettings>
-                                    <dxe:CheckedComboBoxStyleSettings />
-                                </dxe:ComboBoxEdit.StyleSettings>
-                            </dxe:ComboBoxEdit>
-                        </dxlc:LayoutItem>-->
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding SelectedPerformanceConfig.Description }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding SelectedPerformanceConfig.UsageNotes }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
+	                        Command="{Binding PlayPerformanceConfigCommand }"
+	                        Content="{Binding PlayPerformanceConfigContent, FallbackValue='PlayPerformanceConfig' }"
+	                        ToolTip="{Binding PlayPerformanceConfigToolTip, FallbackValue='PlayPerformanceConfig ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup x:Name="lgPerformances" View="GroupBox" Header="Performances"  
+                Orientation="Vertical" VerticalAlignment="Top"
+                IsCollapsible="True" IsCollapsed="False">
+            
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+                
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit x:Name="cbePerformances" Width="300" TextWrapping="Wrap"
@@ -181,7 +219,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup x:Name="lgChananelClassSequences"  Header="ChannelClass Sequences" View="GroupBox" 
+            <dxlc:LayoutGroup x:Name="lgChananelClassSequences" View="GroupBox"  Header="ChannelClass Sequences" 
                               Orientation="Vertical" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False">
 

@@ -2,20 +2,12 @@
 // Contains
 //  Consulting Skulls Say Yes
 //  Consulting Skulls Say No
-//  Skull 99220 012 and Skull 169501 012 Consult and Say Yes
-//  Skull 99220-012 and Skull 169501-012 Say Yes
-//  Skull 99220 456 and Skull 169501 012 Consult and Say Yes
-//  Skull 99220-456 and Skull 169501-012 Say Yes
-//  Skull 99220 012 and Skull 169501 012 Consult and Say No
-//  Skull 99220-456 and Skull 169501-012 Say No
-//  Skull 99220 456 and Skull 169501 012 Consult and Say No
-//  Skull 99220-012 and Skull 169501-012 Say No
 //  Skull 1 and Skull 2 Consult and Say Yes
 //  Skull 1 and Skull 2 Say Yes
 //  Skull 3 and Skull 2 Consult and Say Yes
 //  Skull 3 and Skull 2 Say Yes
-//  Skull 3 and Skull 2 Consult and Say No
-//  Skull 3 and Skull 2 Say No
+//  Skull 1 and Skull 2 Consult and Say No
+//  Skull 1 and Skull 2 Say No
 //  Skull 3 and Skull 2 Consult and Say No
 //  Skull 3 and Skull 2 Say No
 {
@@ -159,7 +151,7 @@
       "NextPerformance": { "Name": "Skull 3 and Skull 2 Say No" }
     },
     {
-      "Name": "Skull 3 and Skull 2 Say No",
+      "Name": "Skull 1 and Skull 2 Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
@@ -167,7 +159,7 @@
       "DeviceChannelSequences": [
         {
           "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull(X) No",
+          "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull(X) No",
         },
         {
           "ChannelClass": "RCServo",
@@ -194,7 +186,7 @@
       "NextPerformance": { "Name": "Skull 3 and Skull 2 Say No" }
     },
     {
-      "Name": "Skull 1 and Skull 2 Say No",
+      "Name": "Skull 3 and Skull 2 Say No",
       "Description": "",
       "UsageNotes": "",
       "Loops": 1,
@@ -202,7 +194,7 @@
       "DeviceChannelSequences": [
         {
           "ChannelClass": "RCServo",
-          "SerialNumberHubPortChannelName": "Skull 1 X Axis", "Name": "Skull(X) No",
+          "SerialNumberHubPortChannelName": "Skull 3 X Axis", "Name": "Skull(X) No",
         },
         {
           "ChannelClass": "RCServo",

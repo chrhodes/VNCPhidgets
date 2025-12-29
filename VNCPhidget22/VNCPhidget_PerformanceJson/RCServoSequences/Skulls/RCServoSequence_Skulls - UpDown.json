@@ -1,15 +1,15 @@
 // RCServoSequence_Skull - UpDown.json
 // Contains
-//  Skull Loop Up Stop
-//  Skull Look Up 20
-//  Skull Look Up 15
-//  Skull Look Up 10
-//  Skull Look Up 5
-//  Skull Look Down 5
-//  Skull Look Down 10
-//  Skull Look Down 15
-//  Skull Look Down 20
-//  Skull Look Down Stop
+//  Skull(X) Loop Up Stop
+//  Skull(X) Look Up 20
+//  Skull(X) Look Up 15
+//  Skull(X) Look Up 10
+//  Skull(X) Look Up 5
+//  Skull(X) Look Down 5
+//  Skull(X) Look Down 10
+//  Skull(X) Look Down 15
+//  Skull(X) Look Down 20
+//  Skull(X) Look Down Stop
 
 // Rotate Up(-)/Down(+) - X Axis
 {

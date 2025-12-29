@@ -133,7 +133,26 @@
         <dxlc:LayoutControl Orientation="Vertical" >
 
             <dxlc:LayoutGroup Header="Config Files" View="GroupBox" Orientation="Vertical" >
-             
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutItem Label="PerformanceConfig" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300" 
+                            ItemsSource="{Binding PerformanceConfigConfigFiles}"
+                            SelectedItem="{Binding SelectedPerformanceConfigConfigFile}" >
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <!-- TODO(crhodes)
+                     If make Reload generic, keep CommandParameter, otherwise not needed
+                    -->
+                    <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
+                        Command="{Binding ReloadPerformanceConfigConfigFileCommand}"
+                        CommandParameter="PerformanceConfig"
+                        ToolTip="Reload Config File" Width="20"/>
+
+                </dxlc:LayoutGroup>
+                
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
                     <dxlc:LayoutItem Label="Performance" HorizontalAlignment="Left" >

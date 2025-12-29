@@ -51,6 +51,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
             // NOTE(crhodes)
             // Put things here that initialize the View
 
+            lgPerformanceConfigs.IsCollapsed = true;
             lgPerformances.IsCollapsed = true;
             lgChananelClassSequences.IsCollapsed = true;
 

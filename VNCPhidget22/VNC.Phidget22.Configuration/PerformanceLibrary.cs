@@ -107,6 +107,9 @@ namespace VNC.Phidget22.Configuration
         public static Dictionary<string, SerialNumberHubPortChannel> SerialNumberHubPortChannels { get; private set; } = 
             new Dictionary<string, SerialNumberHubPortChannel>();
 
+        public static Dictionary<string, Performance.Performance> AvailablePerformanceConfigs { get; set; } =
+            new Dictionary<string, Performance.Performance>();
+
         public static Dictionary<string, Performance.Performance> AvailablePerformances { get; set; } =
             new Dictionary<string, Performance.Performance>();
 
@@ -251,6 +254,11 @@ namespace VNC.Phidget22.Configuration
                 LoadPerformancesFromConfigFile(configFile);
             }
 
+            foreach (string configFile in GetListOfPerformanceConfigConfigFiles())
+            {
+                LoadPerformanceConfigsFromConfigFile(configFile);
+            }
+
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -258,6 +266,62 @@ namespace VNC.Phidget22.Configuration
         // This allows easier reloading of a single file
         // TODO(crhodes)
         // Need to create for other ConfigFiles
+
+        public void LoadPerformanceConfigsFromConfigFile(string configFile, bool reload = false)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
+
+                PerformanceConfig? performanceConfig
+                    = JsonSerializer.Deserialize<PerformanceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (performanceConfig != null && performanceConfig.Performances is not null)
+                {
+                    foreach (var performance in performanceConfig.Performances)
+                    {
+                        try
+                        {
+                            if (performance.Name is not null)
+                            {
+                                if (reload)
+                                {
+                                    AvailablePerformanceConfigs.Remove(performance.Name);
+                                }
+
+                                AvailablePerformanceConfigs.Add(performance.Name, performance);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "PerformanceConfigs"
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
+            }
+        }
 
         public void LoadPerformancesFromConfigFile(string configFile, bool reload = false)
         {
@@ -794,7 +858,7 @@ namespace VNC.Phidget22.Configuration
             return files;
         }
 
-        public static IEnumerable<string> GetListOfPerformanceConfigFiles()
+        public static IEnumerable<string> GetListOfPerformanceConfigConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match
@@ -810,6 +874,68 @@ namespace VNC.Phidget22.Configuration
                 // This contains the Performance that initializes all devices
 
                 @"Performances\Performance - Initialization.json",
+
+                // These are the base routines used in the above Routines.
+                // They typically require a SerialNumber override
+
+                // Performances\Skulls\
+
+                @"Performances\Skulls\Performance_Skulls - Initialize.json",                                                          
+                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics_All.json",                                                        
+                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics.json",
+
+                // Performances\Arms\
+
+                @"Performances\Arms\Performance_Arms - Initialize.json",
+
+                // Performances\Hands\
+
+                @"Performances\Hands\Performance_Hands - Initialize.json",
+                @"Performances\Hands\Performance_Hands - MovementCharacteristics_All.json",
+                @"Performances\Hands\Performance_Hands - MovementCharacteristics.json",
+
+                // Performances\
+
+                @"Performances\Performance - Test.json",
+
+                @"Performances\Performance - Test AS Replacement.json",             
+
+                // Performances\DigitalOutput\
+
+
+                // Performances\RCServo\
+
+                @"Performances\RCServo\Performance_RCServo - 99415 OpenEngageDisengageClose.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 MovementCharacteristics.json",
+
+                @"Performances\RCServo\Performance_RCServo - 99415 PP1.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 PP2.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 PP3.json",
+                @"Performances\RCServo\Performance_RCServo - 99415 PP4.json",
+
+                // Performances\Stepper\
+
+                @"Performances\Stepper\Performance_Stepper - OpenEngageDisengageClose.json",
+                @"Performances\Stepper\Performance_Stepper - MovementCharacteristics.json",
+            };
+
+            return files;
+        }
+
+        public static IEnumerable<string> GetListOfPerformanceConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+            // Maybe just put in ConfigFiles.json
+
+            List<string> files = new List<string>
+            {
+                // Top Level Routines
+                // These go first to get on top of dropdown
+
+
 
                 // This is the Main Show
 
@@ -836,63 +962,28 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\Skulls\
 
-                @"Performances\Skulls\Performance_Skulls - Initialize.json",
-                                                          
                 @"Performances\Skulls\Performance_Skulls - Yes_No_Maybe_Sigh_Laugh.json",
                 @"Performances\Skulls\Performance_Skulls - RockOut.json",
-                                                         
+
                 @"Performances\Skulls\Performance_Skulls - Consulting.json",
-               @"Performances\Skulls\Performance_Skulls - MoveAllAxes.json",
+                @"Performances\Skulls\Performance_Skulls - MoveAllAxes.json",
 
                 @"Performances\Skulls\Performance_Skulls - MovementCharacteristics Progression.json",
-                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics_All.json",                                                          
- 
-                @"Performances\Skulls\Performance_Skulls - MovementCharacteristics.json",
+
                 @"Performances\Skulls\Performance_Skulls - MoveAngles.json",
 
                 // Performances\Arms\
 
-                @"Performances\Arms\Performance_Arms - Initialize.json",
 
                 // Performances\Hands\
 
-                @"Performances\Hands\Performance_Hands - Initialize.json",
+
                 @"Performances\Hands\Performance_Hands - Gestures.json",
                 @"Performances\Hands\Performance_Hands - Move.json",
-                @"Performances\Hands\Performance_Hands - MovementCharacteristics_All.json",
-                @"Performances\Hands\Performance_Hands - MovementCharacteristics.json",
 
                 // Performances\
 
-                @"Performances\Performance - Test.json",
-
-                @"Performances\Performance - Test AS Replacement.json",             
-
                 @"Performances\Performance - Movement Studies.json", 
-
-                // Performances\Skulls\Skull\
-
-                //@"Performances\Skulls\Skull\Performance_Skull_LeftRight.json",
-                //@"Performances\Skulls\Skull\Performance_Skull_TiltLeftRight.json",
-                //@"Performances\Skulls\Skull\Performance_Skull_UpDown.json",
-
-                //@"Performances\Skulls\Skull\Performance_Skull_012_LeftRight.json",
-                //@"Performances\Skulls\Skull\Performance_Skull_012_TiltLeftRight.json",
-                //@"Performances\Skulls\Skull\Performance_Skull_012_UpDown.json",
-
-                //@"Performances\Skulls\Skull\Performance_Skull_012_YesNoMaybeSighLaugh.json",
-
-                //@"Performances\Skulls\Skull\Performance_Skull_456_LeftRight.json",
-                //@"Performances\Skulls\Skull\Performance_Skull_456_TiltLeftRight.json",
-                //@"Performances\Skulls\Skull\Performance_Skull_456_UpDown.json",
-
-                //@"Performances\Skulls\Skull\Performance_Skull_456_YesNoMaybeSighLaugh.json",
-
-                // Performances\Skulls\Device\
-
-                //@"Performances\Skulls\Device\Performance_99220_Skull_012.json",
-                //@"Performances\Skulls\Device\Performance_99220_Skull_456.json",
-                //@"Performances\Skulls\Device\Performance_169501_Skull_012.json",
 
                 // Performances\DigitalOutput\
 
@@ -902,20 +993,9 @@ namespace VNC.Phidget22.Configuration
 
                 @"Performances\RCServo\Performance_RCServo - 99415 Routines.json",
 
-                @"Performances\RCServo\Performance_RCServo - 99415 MovementCharacteristics.json",
-                @"Performances\RCServo\Performance_RCServo - 99415 OpenEngageDisengageClose.json",
-
-                @"Performances\RCServo\Performance_RCServo - 99415 PP1.json",
-                @"Performances\RCServo\Performance_RCServo - 99415 PP2.json",
-                @"Performances\RCServo\Performance_RCServo - 99415 PP3.json",
-                @"Performances\RCServo\Performance_RCServo - 99415 PP4.json",
-
                 // Performances\Stepper\
 
                 @"Performances\Stepper\Performance_Stepper - Routines.json",
-
-                @"Performances\Stepper\Performance_Stepper - OpenEngageDisengageClose.json",
-                @"Performances\Stepper\Performance_Stepper - MovementCharacteristics.json",
             };
 
             return files;

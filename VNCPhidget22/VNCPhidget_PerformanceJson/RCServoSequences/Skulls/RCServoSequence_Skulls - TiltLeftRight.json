@@ -1,16 +1,16 @@
 // RCServoSequence_Skull TiltLeftRight.json
 // Contains
-//  Skull Tilt Left Stop
-//  Skull Tilt Left 20
-//  Skull Tilt Left 20
-//  Skull Tilt Left 15
-//  Skull Tilt Left 10
-//  Skull Tilt Left 5
-//  Skull Tilt Right 5
-//  Skull Tilt Right 10
-//  Skull Tilt Right 15
-//  Skull Tilt Right 20
-//  Skull Tilt Right Stop
+//  Skull(Y) Tilt Left Stop
+//  Skull(Y) Tilt Left 20
+//  Skull(Y) Tilt Left 20
+//  Skull(Y) Tilt Left 15
+//  Skull(Y) Tilt Left 10
+//  Skull(Y) Tilt Left 5
+//  Skull(Y) Tilt Right 5
+//  Skull(Y) Tilt Right 10
+//  Skull(Y) Tilt Right 15
+//  Skull(Y) Tilt Right 20
+//  Skull(Y) Tilt Right Stop
 
 // Tilt Left(-)/Right(+) - Y Axis
 {
