@@ -85,7 +85,7 @@
 
         <dxlc:LayoutControl  Padding="0" Orientation="Vertical" >
 
-            <dxlc:LayoutGroup x:Name="lgPerformanceConfigs" View="GroupBox" Header="PerformanceConfigs"  
+            <dxlc:LayoutGroup x:Name="lgDeviceSettings" View="GroupBox" Header="DeviceSettings"  
                 Orientation="Vertical" VerticalAlignment="Top"
                 IsCollapsible="True" IsCollapsed="False">
 
@@ -94,11 +94,11 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit x:Name="cbePerformanceConfigs" Width="300" TextWrapping="Wrap"
-                                ItemsSource="{Binding PerformanceConfigs}" DisplayMember="Name"
+                            <dxe:ComboBoxEdit x:Name="cbeDeviceSettings" Width="300" TextWrapping="Wrap"
+                                ItemsSource="{Binding DeviceSettings}" DisplayMember="Name"
                                 SelectedItem="{Binding SelectedPerformanceConfig}"                                              
                                 EditValue="{ Binding 
-                                    Path=SelectedPerformanceConfigs,
+                                    Path=SelectedDeviceSettings,
                                     Mode=TwoWay,
                                     UpdateSourceTrigger=PropertyChanged,
                                     Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >

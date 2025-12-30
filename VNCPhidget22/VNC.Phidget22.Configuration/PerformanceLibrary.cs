@@ -64,6 +64,7 @@ namespace VNC.Phidget22.Configuration
                 LoadHosts();
                 LoadSerialNumberHubPortChannels();
 
+                LoadDeviceSettings();
                 LoadPerformances();
 
                 LoadDigitalInputSequences();
@@ -107,7 +108,7 @@ namespace VNC.Phidget22.Configuration
         public static Dictionary<string, SerialNumberHubPortChannel> SerialNumberHubPortChannels { get; private set; } = 
             new Dictionary<string, SerialNumberHubPortChannel>();
 
-        public static Dictionary<string, Performance.Performance> AvailablePerformanceConfigs { get; set; } =
+        public static Dictionary<string, Performance.Performance> AvailableDeviceSettings { get; set; } =
             new Dictionary<string, Performance.Performance>();
 
         public static Dictionary<string, Performance.Performance> AvailablePerformances { get; set; } =
@@ -243,6 +244,20 @@ namespace VNC.Phidget22.Configuration
         // Remove reload parameter
         // reload is handled in LoadTYPEFromConfigFile
 
+        public void LoadDeviceSettings()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks
+                    = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            foreach (string configFile in GetListOfDeviceSettingsConfigFiles())
+            {
+                LoadDeviceSettingsFromConfigFile(configFile);
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         public void LoadPerformances()
         {
             Int64 startTicks = 0;
@@ -254,11 +269,6 @@ namespace VNC.Phidget22.Configuration
                 LoadPerformancesFromConfigFile(configFile);
             }
 
-            foreach (string configFile in GetListOfPerformanceConfigConfigFiles())
-            {
-                LoadPerformanceConfigsFromConfigFile(configFile);
-            }
-
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
@@ -267,7 +277,7 @@ namespace VNC.Phidget22.Configuration
         // TODO(crhodes)
         // Need to create for other ConfigFiles
 
-        public void LoadPerformanceConfigsFromConfigFile(string configFile, bool reload = false)
+        public void LoadDeviceSettingsFromConfigFile(string configFile, bool reload = false)
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
@@ -291,10 +301,10 @@ namespace VNC.Phidget22.Configuration
                             {
                                 if (reload)
                                 {
-                                    AvailablePerformanceConfigs.Remove(performance.Name);
+                                    AvailableDeviceSettings.Remove(performance.Name);
                                 }
 
-                                AvailablePerformanceConfigs.Add(performance.Name, performance);
+                                AvailableDeviceSettings.Add(performance.Name, performance);
                             }
                         }
                         catch (ArgumentException ax)
@@ -307,13 +317,13 @@ namespace VNC.Phidget22.Configuration
                     _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
                         new SelectedCollectionChangedEventArgs()
                         {
-                            Name = "PerformanceConfigs"
+                            Name = "DeviceSettings"
                         });
                 }
             }
             catch (FileNotFoundException fnfex)
             {
-                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfDeviceSettingsConfigFiles()", Common.LOG_CATEGORY);
                 Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
             }
             catch (Exception ex)
@@ -858,7 +868,7 @@ namespace VNC.Phidget22.Configuration
             return files;
         }
 
-        public static IEnumerable<string> GetListOfPerformanceConfigConfigFiles()
+        public static IEnumerable<string> GetListOfDeviceSettingsConfigFiles()
         {
             // HACK(crhodes)
             // Read a directory and return files, perhaps with RegEx name match

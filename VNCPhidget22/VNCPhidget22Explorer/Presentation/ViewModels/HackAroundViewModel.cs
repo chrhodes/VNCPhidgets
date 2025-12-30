@@ -84,7 +84,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         private void LoadPerformances()
         {
-            PerformanceConfigs = PerformanceLibrary.AvailablePerformanceConfigs.Values.ToList();
+            DeviceSettings = PerformanceLibrary.AvailableDeviceSettings.Values.ToList();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
 
@@ -111,8 +111,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             switch (args.Name)
             {
-                case "PerformanceConfigs":
-                    PerformanceConfigs = PerformanceLibrary.AvailablePerformanceConfigs.Values.ToList();
+                case "DeviceSettings":
+                    DeviceSettings = PerformanceLibrary.AvailableDeviceSettings.Values.ToList();
                     break;
 
                 case "Performances":
@@ -476,7 +476,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
 
         private IEnumerable<Performance>? _performanceConfigs;
-        public IEnumerable<Performance>? PerformanceConfigs
+        public IEnumerable<Performance>? DeviceSettings
         {
             get => _performanceConfigs;
             set
@@ -518,13 +518,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private List<Performance>? _selectedPerformanceConfigs;
-        public List<Performance>? SelectedPerformanceConfigs
+        private List<Performance>? _selectedDeviceSettings;
+        public List<Performance>? SelectedDeviceSettings
         {
-            get => _selectedPerformanceConfigs;
+            get => _selectedDeviceSettings;
             set
             {
-                if (_selectedPerformanceConfigs == value)
+                if (_selectedDeviceSettings == value)
                 {
                     return;
                 }
@@ -1411,11 +1411,11 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Maybe this should be a do / while loop
 
-            if (LogPerformance) Log.TRACE($"Selected Performances:{SelectedPerformanceConfigs?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+            if (LogPerformance) Log.TRACE($"Selected Performances:{SelectedDeviceSettings?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
 
-            if (SelectedPerformanceConfigs is not null)
+            if (SelectedDeviceSettings is not null)
             {
-                foreach (Performance performance in SelectedPerformanceConfigs)
+                foreach (Performance performance in SelectedDeviceSettings)
                 {
                     Performance? selectedPerformance = performance;
 
@@ -1468,7 +1468,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.
-            if (SelectedPerformanceConfigs?.Count > 0)
+            if (SelectedDeviceSettings?.Count > 0)
             {
                 return true;
             }

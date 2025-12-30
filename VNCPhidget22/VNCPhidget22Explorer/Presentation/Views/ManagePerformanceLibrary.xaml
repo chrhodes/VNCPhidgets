@@ -136,10 +136,10 @@
 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                    <dxlc:LayoutItem Label="PerformanceConfig" HorizontalAlignment="Left" >
+                    <dxlc:LayoutItem Label="DeviceSettings" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" 
-                            ItemsSource="{Binding PerformanceConfigConfigFiles}"
-                            SelectedItem="{Binding SelectedPerformanceConfigConfigFile}" >
+                            ItemsSource="{Binding DeviceSettingsConfigFiles}"
+                            SelectedItem="{Binding SelectedDeviceSettingsConfigFile}" >
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
 
@@ -147,8 +147,8 @@
                      If make Reload generic, keep CommandParameter, otherwise not needed
                     -->
                     <Button Content="+" FontWeight="ExtraBlack" Padding="-5,-10,-5,-5" FontSize="20" Foreground="Red" 
-                        Command="{Binding ReloadPerformanceConfigConfigFileCommand}"
-                        CommandParameter="PerformanceConfig"
+                        Command="{Binding ReloadDeviceSettingsConfigFileCommand}"
+                        CommandParameter="DeviceSettings"
                         ToolTip="Reload Config File" Width="20"/>
 
                 </dxlc:LayoutGroup>

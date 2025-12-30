@@ -51,7 +51,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             
             SayHelloCommand = new DelegateCommand(SayHello, SayHelloCanExecute);
 
-            ReloadPerformanceConfigConfigFileCommand = new DelegateCommand(ReloadPerformanceConfigConfigFile);
+            ReloadDeviceSettingsConfigFileCommand = new DelegateCommand(ReloadDeviceSettingsConfigFile);
             ReloadPerformanceConfigFileCommand = new DelegateCommand(ReloadPerformanceConfigFile);
 
             ReloadDigitalInputSequenceConfigFileCommand = new DelegateCommand(ReloadDigitalInputSequenceConfigFile);
@@ -65,8 +65,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             Message = "ManagePerformanceLibraryViewModel says hello";
             PublishStatusMessage(Message);
 
-            PerformanceConfigConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigConfigFiles();
-            PerformanceConfigs = PerformanceLibrary.AvailablePerformanceConfigs.Values.ToList();
+            DeviceSettingsConfigFiles = PerformanceLibrary.GetListOfDeviceSettingsConfigFiles();
+            DeviceSettings = PerformanceLibrary.AvailableDeviceSettings.Values.ToList();
 
             PerformanceConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigFiles();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
@@ -109,7 +109,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         public ICommand? SayHelloCommand { get; private set; }
 
         private IEnumerable<string>? _performanceConfigConfigFiles;
-        public IEnumerable<string>? PerformanceConfigConfigFiles
+        public IEnumerable<string>? DeviceSettingsConfigFiles
         {
             get => _performanceConfigConfigFiles;
             set
@@ -119,21 +119,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private string? _selectedPerformanceConfigConfigFile;
-        public string? SelectedPerformanceConfigConfigFile
+        private string? _selectedDeviceSettingsConfigFile;
+        public string? SelectedDeviceSettingsConfigFile
         {
-            get => _selectedPerformanceConfigConfigFile;
+            get => _selectedDeviceSettingsConfigFile;
             set
             {
-                if (_selectedPerformanceConfigConfigFile == value)
+                if (_selectedDeviceSettingsConfigFile == value)
                     return;
-                _selectedPerformanceConfigConfigFile = value;
+                _selectedDeviceSettingsConfigFile = value;
                 OnPropertyChanged();
             }
         }
 
         private IEnumerable<Performance>? _performanceConfigs;
-        public IEnumerable<Performance>? PerformanceConfigs
+        public IEnumerable<Performance>? DeviceSettings
         {
             get => _performanceConfigs;
             set
@@ -429,7 +429,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region Reload Config Files
 
-        public ICommand? ReloadPerformanceConfigConfigFileCommand { get; private set; }
+        public ICommand? ReloadDeviceSettingsConfigFileCommand { get; private set; }
         public ICommand? ReloadPerformanceConfigFileCommand { get; private set; }
 
         public ICommand? ReloadDigitalInputSequenceConfigFileCommand { get; private set; }
@@ -444,17 +444,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // This could be ReloadConfigFile(string configCategory)
         // with a switch.  See ManagePerformanceLibrary.xaml
 
-        private void ReloadPerformanceConfigConfigFile()
+        private void ReloadDeviceSettingsConfigFile()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
 
-            Message = $"ReloadPerformanceConfigConfigFile Clicked - >{SelectedPerformanceConfigConfigFile}<";
+            Message = $"ReloadDeviceSettingsConfigFile Clicked - >{SelectedDeviceSettingsConfigFile}<";
             PublishStatusMessage(Message);
 
             if (SelectedPerformanceConfigFile is not null)
             {
-                Common.PerformanceLibrary.LoadPerformanceConfigsFromConfigFile(SelectedPerformanceConfigConfigFile, reload: true);
+                Common.PerformanceLibrary.LoadDeviceSettingsFromConfigFile(SelectedDeviceSettingsConfigFile, reload: true);
             }
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
