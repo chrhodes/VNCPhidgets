@@ -93,10 +93,10 @@
 
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
-                        <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
+                        <dxlc:LayoutItem Label="Selected DeviceSetting(s)" HorizontalAlignment="Left" >
                             <dxe:ComboBoxEdit x:Name="cbeDeviceSettings" Width="300" TextWrapping="Wrap"
                                 ItemsSource="{Binding DeviceSettings}" DisplayMember="Name"
-                                SelectedItem="{Binding SelectedPerformanceConfig}"                                              
+                                SelectedItem="{Binding SelectedDeviceSetting}"                                              
                                 EditValue="{ Binding 
                                     Path=SelectedDeviceSettings,
                                     Mode=TwoWay,
@@ -131,25 +131,25 @@
                         </dxlc:LayoutItem>-->
 
                         <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformanceConfig.Description }" />
+                            <dxe:TextEdit Text="{Binding SelectedDeviceSettings.Description }" />
                         </dxlc:LayoutItem>
 
                         <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" >
-                            <dxe:TextEdit Text="{Binding SelectedPerformanceConfig.UsageNotes }" />
+                            <dxe:TextEdit Text="{Binding SelectedDeviceSettings.UsageNotes }" />
                         </dxlc:LayoutItem>
 
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
                         <Button 
-	                        Command="{Binding PlayPerformanceConfigCommand }"
-	                        Content="{Binding PlayPerformanceConfigContent, FallbackValue='PlayPerformanceConfig' }"
-	                        ToolTip="{Binding PlayPerformanceConfigToolTip, FallbackValue='PlayPerformanceConfig ToolTip' }" />
+	                        Command="{Binding PlayDeviceSettingsCommand }"
+	                        Content="{Binding PlayDeviceSettingsContent, FallbackValue='PlayDeviceSettings' }"
+	                        ToolTip="{Binding PlayDeviceSettingsToolTip, FallbackValue='PlayDeviceSettings ToolTip' }" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
 
-                <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
+                <views:PerformanceInfoControl DataContext="{Binding SelectedDeviceSetting}" />
 
             </dxlc:LayoutGroup>
 

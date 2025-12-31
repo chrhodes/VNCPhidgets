@@ -52,14 +52,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             ConfigFileName_DoubleClick_Command = new DelegateCommand(ConfigFileName_DoubleClick);
 
-            //ReloadPerformanceConfigFilesCommand = new DelegateCommand(ReloadPerformanceConfigFiles);
-            //ReloadAdvancedServoSequenceConfigFilesCommand = new DelegateCommand(ReloadAdvancedServoSequenceConfigFiles);
-            //ReloadInterfaceKitSequenceConfigFilesCommand = new DelegateCommand(ReloadInterfaceKitSequenceConfigFiles);
-            //ReloadStepperSequenceConfigFilesCommand = new DelegateCommand(ReloadStepperSequenceConfigFiles);
+            PlayDeviceSettingsCommand = new DelegateCommand(PlayDeviceSettings, PlayDeviceSettingsCanExecute);
 
             PlayPerformanceCommand = new DelegateCommand(PlayPerformance, PlayPerformanceCanExecute);
-
-            PlayPerformanceConfigCommand = new DelegateCommand(PlayPerformanceConfig, PlayPerformanceConfigCanExecute);
 
             PlayDigitalOutputSequenceCommand = new DelegateCommand(PlayDigitalOutputSequence, PlayDigitalOutputSequenceCanExecute);
 
@@ -87,7 +82,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             DeviceSettings = PerformanceLibrary.AvailableDeviceSettings.Values.ToList();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
 
-
             // TODO(crhodes)
             // Might be better to do this with an Event so gets called fewer times.
             // Currently called for each Performance in file.  Ideally just once per file.
@@ -98,8 +92,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         private void AvailablePerformances_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Log.TRACE("HackAroundViewModel notified AvailablePerformances_CollectionChanged", Common.LOG_CATEGORY);
-
-
 
             //Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToObservableCollection<Performance>();
             //Performances = Common.PerformanceLibrary.AvailablePerformances.Values.ToList();
@@ -466,14 +458,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region Performances
+        #region DeviceSettings
 
-        public string PerformanceConfigFileNameToolTip { get; set; } = "DoubleClick to select new file";
-
-        //private PerformancePlayer ActivePerformancePlayer { get; set; }
-        //private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
-
-        //private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
+        public string DeviceSettingsFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
         private IEnumerable<Performance>? _performanceConfigs;
         public IEnumerable<Performance>? DeviceSettings
@@ -486,35 +473,21 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        // TODO(crhodes)
-        // Try this to see if it helps when PerformanceLibrary changes
-
-        //private ObservableCollection<Performance> _performances;
-        //public ObservableCollection<Performance> Performances
-        //{
-        //    get => _performances;
-        //    set
-        //    {
-        //        _performances = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
-
-        private Performance? _selectedPerformanceConfig;
-        public Performance? SelectedPerformanceConfig
+        private Performance? _selectedDeviceSetting;
+        public Performance? SelectedDeviceSetting
         {
-            get => _selectedPerformanceConfig;
+            get => _selectedDeviceSetting;
             set
             {
-                if (_selectedPerformanceConfig == value)
+                if (_selectedDeviceSetting == value)
                 {
                     return;
                 }
 
-                _selectedPerformance = value;
+                _selectedDeviceSetting = value;
                 OnPropertyChanged();
 
-                PlayPerformanceConfigCommand?.RaiseCanExecuteChanged();
+                PlayDeviceSettingsCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -529,10 +502,10 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     return;
                 }
 
-                _selectedPerformances = value;
+                _selectedDeviceSettings = value;
                 OnPropertyChanged();
 
-                PlayPerformanceConfigCommand?.RaiseCanExecuteChanged();
+                PlayDeviceSettingsCommand?.RaiseCanExecuteChanged();
             }
         }
 
@@ -553,11 +526,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public string PerformanceFileNameToolTip { get; set; } = "DoubleClick to select new file";
 
-        //private PerformancePlayer ActivePerformancePlayer { get; set; }
-        //private PerformanceLibrary PerformanceLibrary { get; set; } = new PerformanceLibrary();
-
-        //private DeviceChannelSequencePlayer ActiveDeviceChannelSequencePlayer { get; set; }
-
         private IEnumerable<Performance>? _performances;
         public IEnumerable<Performance>? Performances
         {
@@ -568,20 +536,6 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        // TODO(crhodes)
-        // Try this to see if it helps when PerformanceLibrary changes
-
-        //private ObservableCollection<Performance> _performances;
-        //public ObservableCollection<Performance> Performances
-        //{
-        //    get => _performances;
-        //    set
-        //    {
-        //        _performances = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
 
         private Performance? _selectedPerformance;
         public Performance? SelectedPerformance
@@ -1272,99 +1226,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button3Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        //private void Button4Execute()
-        //{
-        //    Int64 startTicks = 0;
-        //    if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("(Button4Execute) Enter", Common.LOG_CATEGORY);
-
-        //    Message = "Button4 Clicked";
-
-        //    SequenceEventArgs sequenceEventArgs = new SequenceEventArgs();
-
-        //    sequenceEventArgs.AdvancedServoSequence = new VNCPhidgetConfig.AdvancedServoSequence
-        //    {
-        //        //SerialNumber = 99415,
-        //        Name = "psbc21_SequenceServo0",
-        //        Actions = new[]
-        //        {
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Acceleration = 5000, VelocityLimit = 200, Engaged = true },
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 110 },
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 100 },
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, TargetPosition = 90 },
-        //            new VNCPhidgetConfig.AdvancedServoServoAction { ServoIndex = 0, Engaged = false },
-        //        }
-        //    };
-
-        //    EventAggregator.GetEvent<VNC.Phidget22.Events.AdvancedServoSequenceEvent>().Publish(sequenceEventArgs);
-
-        //    if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button4Execute) Exit", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //#region Reload Config Files
-
-        //public ICommand ReloadPerformanceConfigFilesCommand { get; private set; }
-        //public ICommand ReloadAdvancedServoSequenceConfigFilesCommand { get; private set; }
-        //public ICommand ReloadInterfaceKitSequenceConfigFilesCommand { get; private set; }
-        //public ICommand ReloadStepperSequenceConfigFilesCommand { get; private set; }
-
-        //private void ReloadPerformanceConfigFiles()
-        //{
-        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
-
-        //    Message = "ReloadPerformanceConfigFiles Clicked";
-
-        //    //LoadPerformancesConfig();
-
-        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private void ReloadAdvancedServoSequenceConfigFiles()
-        //{
-        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
-
-        //    Message = "ReloadAdvancedServoSequenceConfigFiles Clicked";
-
-        //    // TODO(crhodes)
-        //    // Call something in PerformanceSequencePlayer
-
-        //    //LoadAdvanceServoConfig();
-
-        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private void ReloadInterfaceKitSequenceConfigFiles()
-        //{
-        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
-
-        //    Message = "ReloadInterfaceKitSequenceConfigFiles Clicked";
-
-        //    // TODO(crhodes)
-        //    // Call something in PerformanceSequencePlayer
-
-        //    //LoadInterfaceKitConfig();
-
-        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //private void ReloadStepperSequenceConfigFiles()
-        //{
-        //    Int64 startTicks = Log.INFO("Enter", Common.LOG_CATEGORY);
-
-        //    Message = "ReloadStepperSequenceConfigFiles Clicked";
-
-        //    // TODO(crhodes)
-        //    // Call something in PerformanceSequencePlayer
-
-        //    //LoadStepperConfig();
-
-        //    Log.INFO("End", Common.LOG_CATEGORY, startTicks);
-        //}
-
-        //#endregion
-
-        #region PerformanceFileName DoubleClick
+           #region PerformanceFileName DoubleClick
 
         public DelegateCommand? PerformanceFileName_DoubleClick_Command { get; set; }
 
@@ -1379,13 +1241,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #region PlayPerformance Command
 
-        public DelegateCommand? PlayPerformanceConfigCommand { get; set; }
+        public DelegateCommand? PlayDeviceSettingsCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
         // and remove above declaration
         //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
         //public TYPE PlayPerformanceCommandParameter;
-        public string PlayPerformanceConfigContent { get; set; } = "PlayPerformanceConfig";
-        public string PlayPerformanceConfigToolTip { get; set; } = "PlayPerformanceConfig ToolTip";
+        public string PlayDeviceSettingsContent { get; set; } = "Play DeviceSettings";
+        public string PlayDeviceSettingsToolTip { get; set; } = "Play DeviceSettings ToolTip";
 
         // Can get fancy and use Resources
         //public string PlayPerformanceContent { get; set; } = "ViewName_PlayPerformanceContent";
@@ -1398,13 +1260,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         // If using CommandParameter, figure out TYPE and fix above
         //public void PlayPerformance(TYPE value)
 
-        public async void PlayPerformanceConfig()
+        public async void PlayDeviceSettings()
         {
             Int64 startTicks = 0;
             if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
             // TODO(crhodes)
             // Do something amazing.
-            Message = "Cool, you called PlayPerformance";
+            Message = "Cool, you called PlayDeviceSettings";
 
             PerformancePlayer performancePlayer = GetNewPerformancePlayer();
 
@@ -1464,7 +1326,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-        public Boolean PlayPerformanceConfigCanExecute()
+        public Boolean PlayDeviceSettingsCanExecute()
         {
             // TODO(crhodes)
             // Add any before button is enabled logic.

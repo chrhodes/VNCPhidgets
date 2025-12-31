@@ -155,7 +155,7 @@
                 
                 <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
 
-                    <dxlc:LayoutItem Label="Performance" HorizontalAlignment="Left" >
+                    <dxlc:LayoutItem Label="Performances" HorizontalAlignment="Left" >
                         <dxe:ComboBoxEdit Width="300" 
                             ItemsSource="{Binding PerformanceConfigFiles}"
                             SelectedItem="{Binding SelectedPerformanceConfigFile}" >

@@ -49,8 +49,6 @@ namespace VNC.Phidget22.Configuration
             Log.TRACE("Collection Changed", Common.LOG_CATEGORY);
         }
 
-
-
         public void LoadConfigFiles()
         {
             long startTicks = 0;
@@ -108,10 +106,20 @@ namespace VNC.Phidget22.Configuration
         public static Dictionary<string, SerialNumberHubPortChannel> SerialNumberHubPortChannels { get; private set; } = 
             new Dictionary<string, SerialNumberHubPortChannel>();
 
+        // HACK(crhodes)
+        // We have created a problem here.  Half the performances are in DeviceSettings and half are in Performances.
+        // We can modify PerformancePlayer to check both dictionaries
+        // or we can create a combined dictionary here
+        // If we further separate DeviceSettings and Performances, we will have keep modifying PerformancePlayer
+        // Seems like combined dictionary is way to go
+
         public static Dictionary<string, Performance.Performance> AvailableDeviceSettings { get; set; } =
             new Dictionary<string, Performance.Performance>();
 
         public static Dictionary<string, Performance.Performance> AvailablePerformances { get; set; } =
+            new Dictionary<string, Performance.Performance>();
+
+        public static Dictionary<string, Performance.Performance> AllPerformances { get; set; } =
             new Dictionary<string, Performance.Performance>();
 
         public static Dictionary<string, DigitalInputSequence> AvailableDigitalInputSequences { get; set; } =
@@ -302,9 +310,11 @@ namespace VNC.Phidget22.Configuration
                                 if (reload)
                                 {
                                     AvailableDeviceSettings.Remove(performance.Name);
+                                    AllPerformances.Remove(performance.Name);
                                 }
 
                                 AvailableDeviceSettings.Add(performance.Name, performance);
+                                AllPerformances.Add(performance.Name, performance);
                             }
                         }
                         catch (ArgumentException ax)
@@ -358,9 +368,11 @@ namespace VNC.Phidget22.Configuration
                                 if (reload)
                                 { 
                                     AvailablePerformances.Remove(performance.Name);
+                                    AllPerformances.Remove(performance.Name);
                                 }
 
                                 AvailablePerformances.Add(performance.Name, performance);
+                                AllPerformances.Add(performance.Name, performance);
                             }
                         }
                         catch (ArgumentException ax)

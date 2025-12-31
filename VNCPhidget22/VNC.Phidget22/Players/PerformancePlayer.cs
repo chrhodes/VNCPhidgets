@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Documents;
 
 using Prism.Events;
@@ -288,9 +289,9 @@ namespace VNC.Phidget22.Players
 
                 if (performanceName != null)
                 {
-                    if (PerformanceLibrary.AvailablePerformances.ContainsKey(performanceName))
+                    if (PerformanceLibrary.AllPerformances.ContainsKey(performanceName))
                     {
-                        nextPerformance = PerformanceLibrary.AvailablePerformances[performanceName];
+                        nextPerformance = PerformanceLibrary.AllPerformances[performanceName];
 
                         await ExecutePerformance(nextPerformance);
 
@@ -581,8 +582,11 @@ namespace VNC.Phidget22.Players
         private Performance? RetrieveAndConfigurePerformance(string performanceName, Int32? serialNumber)
         {
             Int64 startTicks = 0;
+            var ads = PerformanceLibrary.AvailableDeviceSettings;
+            var ap = PerformanceLibrary.AvailablePerformances;
+            var aperf = PerformanceLibrary.AllPerformances;
 
-            if (PerformanceLibrary.AvailablePerformances.TryGetValue(performanceName, out Performance? retrievedPerfrormance))
+            if (PerformanceLibrary.AllPerformances.TryGetValue(performanceName, out Performance? retrievedPerfrormance))
             {
                 if (LogPerformance) startTicks = Log.TRACE($"Retrieved performance:>{retrievedPerfrormance.Name}<" +
                     $" serialNumber:>{retrievedPerfrormance.SerialNumber}< serialNumber?:>{serialNumber}<" +
@@ -625,7 +629,7 @@ namespace VNC.Phidget22.Players
                 // TODO(crhodes)
                 // Do we want to handle embedded InLine Performance without a name?
 
-                if (PerformanceLibrary.AvailablePerformances.TryGetValue(callPerformance.Name, out Performance? nextPerformance))
+                if (PerformanceLibrary.AllPerformances.TryGetValue(callPerformance.Name, out Performance? nextPerformance))
                 {
                     //nextPerformance = value;
 

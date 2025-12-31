@@ -156,13 +156,6 @@
       <FileName>VoltageRatioInput\VoltageRatioInputAction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.Performance.PerformanceLibrary">
-    <Position X="0.75" Y="0.5" Width="5.75" />
-    <TypeIdentifier>
-      <HashCode>AAQADAAhCAACDABAAAACAAAAAAEAEAAJnAUCAAAwBAA=</HashCode>
-      <FileName>Performance\PerformanceLibrary.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="VNC.Phidget22.Configuration.DeviceChannelSequence">
     <Position X="0.75" Y="13.75" Width="4" />
     <TypeIdentifier>
