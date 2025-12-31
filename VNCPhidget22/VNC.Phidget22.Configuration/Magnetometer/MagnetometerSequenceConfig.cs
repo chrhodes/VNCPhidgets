@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class MagnetometertSequenceConfig
+    public class MagnetometerSequenceConfig
     {
         public MagnetometerSequence[] MagnetometerSequences { get; set; } = new[]
         {

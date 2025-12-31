@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class FrequencyCountertSequenceConfig
+    public class FrequencyCounterSequenceConfig
     {
         public FrequencyCounterSequence[] FrequencyCounterSequences { get; set; } = new[]
         {

@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class PowerGuardtSequenceConfig
+    public class PowerGuardSequenceConfig
     {
         public PowerGuardSequence[] PowerGuardSequences { get; set; } = new[]
         {

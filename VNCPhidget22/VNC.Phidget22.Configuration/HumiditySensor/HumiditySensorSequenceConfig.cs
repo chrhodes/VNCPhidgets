@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class HumiditySensortSequenceConfig
+    public class HumiditySensorSequenceConfig
     {
         public HumiditySensorSequence[] HumiditySensorSequences { get; set; } = new[]
         {

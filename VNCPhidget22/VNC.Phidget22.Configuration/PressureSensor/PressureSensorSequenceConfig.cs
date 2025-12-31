@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class PressureSensortSequenceConfig
+    public class PressureSensorSequenceConfig
     {
         public PressureSensorSequence[] PressureSensorSequences { get; set; } = new[]
         {

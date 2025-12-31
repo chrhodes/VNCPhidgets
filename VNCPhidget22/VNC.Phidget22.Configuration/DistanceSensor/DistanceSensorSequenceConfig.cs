@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class DistanceSensortSequenceConfig
+    public class DistanceSensorSequenceConfig
     {
         public DistanceSensorSequence[] DistanceSensorSequences { get; set; } = new[]
         {

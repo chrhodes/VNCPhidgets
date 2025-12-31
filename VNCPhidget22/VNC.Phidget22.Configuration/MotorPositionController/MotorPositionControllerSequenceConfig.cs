@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class MotorPositionControllertSequenceConfig
+    public class MotorPositionControllerSequenceConfig
     {
         public MotorPositionControllerSequence[] MotorPositionControllerSequences { get; set; } = new[]
         {

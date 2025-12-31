@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class CurrentInputtSequenceConfig
+    public class CurrentInputSequenceConfig
     {
         public CurrentInputSequence[] CurrentInputSequences { get; set; } = new[]
         {

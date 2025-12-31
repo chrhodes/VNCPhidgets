@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class HubtSequenceConfig
+    public class HubSequenceConfig
     {
         public HubSequence[] HubSequences { get; set; } = new[]
         {

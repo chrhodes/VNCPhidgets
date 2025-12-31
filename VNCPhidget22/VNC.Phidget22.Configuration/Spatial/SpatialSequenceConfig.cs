@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class SpatialtSequenceConfig
+    public class SpatialSequenceConfig
     {
         public SpatialSequence[] SpatialSequences { get; set; } = new[]
         {

@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class ResistanceInputtSequenceConfig
+    public class ResistanceInputSequenceConfig
     {
         public ResistanceInputSequence[] ResistanceInputSequences { get; set; } = new[]
         {

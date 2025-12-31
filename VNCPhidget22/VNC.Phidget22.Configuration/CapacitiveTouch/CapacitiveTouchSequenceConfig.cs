@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class CapacitiveTouchtSequenceConfig
+    public class CapacitiveTouchSequenceConfig
     {
         public CapacitiveTouchSequence[] CapacitiveTouchSequences { get; set; } = new[]
         {

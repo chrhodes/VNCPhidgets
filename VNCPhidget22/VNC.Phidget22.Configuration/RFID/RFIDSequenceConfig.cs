@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class RFIDtSequenceConfig
+    public class RFIDSequenceConfig
     {
         public RFIDSequence[] RFIDSequences { get; set; } = new[]
         {

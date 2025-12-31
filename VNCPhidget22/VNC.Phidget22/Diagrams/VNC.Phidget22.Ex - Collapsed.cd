@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VNC.Phidget22.Ex.AccelerometerEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgICSIMBYEDASAkAEAIghgAIBCEBCEAAA=</HashCode>
+      <FileName>Ex\AccelerometerEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.BLDCMotorEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgKAQIIBYEDASAkEEAIghgAIACEJCEAAA=</HashCode>
+      <FileName>Ex\BLDCMotorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.CapacitiveTouchEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYEDESAkAEAIgpgAJACEBCEEAA=</HashCode>
+      <FileName>Ex\CapacitiveTouchEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.CurrentInputEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhAgDiAiAAAgKAQIIBYEDAyAkAEAIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\CurrentInputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.DCMotorEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAEAgIAQKIBYEDATAkAEAIghgAIACEBCEAgA=</HashCode>
+      <FileName>Ex\DCMotorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.DigitalOutputEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AlRiXiCCAQEwIAwIIBYEDCSAkKEIIwpggIBDFBCEAAE=</HashCode>
+      <FileName>Ex\DigitalOutputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.DigitalInputEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiQCgAAgIAQJIBYEDASAkAEAIglhiIACFFCEQQA=</HashCode>
+      <FileName>Ex\DigitalInputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.DistanceSensorEx" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYEDASAkAEAIihgAIACkFCEIAA=</HashCode>
+      <FileName>Ex\DistanceSensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.EncoderEx" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYFDASAkAEAIghgAICCEBCEAQA=</HashCode>
+      <FileName>Ex\EncoderEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.FrequencyCounterEx" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAgDiACAAAgIIQIIBYETASAkAkAIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\FrequencyCounterEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.GPSEx" Collapsed="true">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDqACAAAgIAQIIFYEDASAkAEAIghgAIICEBCEAAA=</HashCode>
+      <FileName>Ex\GPSEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.GyroscopeEx" Collapsed="true">
+    <Position X="4.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgAgDiACAAAgIAUIIBYEDASAkAEAIghgAIACEBCEgAI=</HashCode>
+      <FileName>Ex\GyroscopeEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.HubEx" Collapsed="true">
+    <Position X="4.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAgDiACAAAgJAQoIBYEDASAkAEAIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\HubEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.HumiditySensorEx" Collapsed="true">
+    <Position X="4.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYEDASAkAEAIgpgBMACEBSEAAA=</HashCode>
+      <FileName>Ex\HumiditySensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.IREx" Collapsed="true">
+    <Position X="4.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiAGAAAgIAQIIBYEDASEkAMAJghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\IREx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.LCDEx" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYEDASAkBEAIghgAIACEJCEAAA=</HashCode>
+      <FileName>Ex\LCDEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.LightSensorEx" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDyACAAAgIAQIIBYEDASAkAEAIghgAYACEJCEAQA=</HashCode>
+      <FileName>Ex\LightSensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.MagnetometerEx" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggBhDiACAAAgIAQIIBYEDASAkAEAIghgAIACEBCEQAA=</HashCode>
+      <FileName>Ex\MagnetometerEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.MotorPositionControllerEx" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AhAgDiADAAAgIAQIIBYEDASAkAEAIghgAIADEBCEAAA=</HashCode>
+      <FileName>Ex\MotorPositionControllerEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.PHSensorEx" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACACAgIAQIIBYEDASgkAEAIghgIIBCEBCEAAA=</HashCode>
+      <FileName>Ex\PHSensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.PowerGuardEx" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYEDASAkAFAIgxgAoACEBCEAgA=</HashCode>
+      <FileName>Ex\PowerGuardEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.PressureSensorEx" Collapsed="true">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQKYBYEDASEkAEAIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\PressureSensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.RCServoEx" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>K2JwnvFiAMAgIAyooJcOjSyAsQuaIy/wAcCWVDCVCR0=</HashCode>
+      <FileName>Ex\RCServoEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.ResistanceInputEx" Collapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIIBYEDASAkAEAIghgIKACUBCEAAA=</HashCode>
+      <FileName>Ex\ResistanceInputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.RFIDEx" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIAQIYBYEDAagkAEAIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\RFIDEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.SoundSensorEx" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAiIAQIIBYEDASAkAEgIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\SoundSensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.SpatialEx" Collapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiACAAAgIARIIBYEDASEsAMAIghgAIACEBCEAAA=</HashCode>
+      <FileName>Ex\SpatialEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.StepperEx" Collapsed="true">
+    <Position X="8.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>I+Bwnmli4LIgIASoK5YMnSyA8AsYIg/wQeU3FDC9IQk=</HashCode>
+      <FileName>Ex\StepperEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.TemperatureSensorEx" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAgDiAiAAAgIAQoIBYEDATAkAEAIghgAIACEJCEAAA=</HashCode>
+      <FileName>Ex\TemperatureSensorEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.VoltageInputEx" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>VgFgDiQCCAAmsIYLrDYMDEaBmAEAYhlgAYQCMDCMASI=</HashCode>
+      <FileName>Ex\VoltageInputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.VoltageOutputEx" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IkAgHiCCAAAgIAQKoBYEDCaAkAEIIhpgAIQCEDCEQAA=</HashCode>
+      <FileName>Ex\VoltageOutputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VNC.Phidget22.Ex.VoltageRatioInputEx" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FmFgjiRCQAAkIAQJKBYMDkSAmAEAYglgAYgTMRCNFCQ=</HashCode>
+      <FileName>Ex\VoltageRatioInputEx.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

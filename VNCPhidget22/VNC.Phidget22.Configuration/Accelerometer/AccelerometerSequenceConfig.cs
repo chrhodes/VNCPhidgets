@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class AccelerometertSequenceConfig
+    public class AccelerometerSequenceConfig
     {
         public AccelerometerSequence[] AccelerometerSequences { get; set; } = new[]
         {

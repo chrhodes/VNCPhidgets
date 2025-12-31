@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class IRtSequenceConfig
+    public class IRSequenceConfig
     {
         public IRSequence[] IRSequences { get; set; } = new[]
         {

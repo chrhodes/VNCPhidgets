@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class GPStSequenceConfig
+    public class GPSSequenceConfig
     {
         public GPSSequence[] GPSSequences { get; set; } = new[]
         {

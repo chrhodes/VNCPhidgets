@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class LCDtSequenceConfig
+    public class LCDSequenceConfig
     {
         public LCDSequence[] LCDSequences { get; set; } = new[]
         {

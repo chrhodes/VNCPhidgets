@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class SoundSensortSequenceConfig
+    public class SoundSensorSequenceConfig
     {
         public SoundSensorSequence[] SoundSensorSequences { get; set; } = new[]
         {

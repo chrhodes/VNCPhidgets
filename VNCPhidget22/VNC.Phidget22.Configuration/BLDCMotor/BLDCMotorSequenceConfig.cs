@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class BLDCMotortSequenceConfig
+    public class BLDCMotorSequenceConfig
     {
         public BLDCMotorSequence[] BLDCMotorSequences { get; set; } = new[]
         {

@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class GyroscopetSequenceConfig
+    public class GyroscopeSequenceConfig
     {
         public GyroscopeSequence[] GyroscopeSequences { get; set; } = new[]
         {

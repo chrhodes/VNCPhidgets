@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class TemperatureSensortSequenceConfig
+    public class TemperatureSensorSequenceConfig
     {
         public TemperatureSensorSequence[] TemperatureSensorSequences { get; set; } = new[]
         {

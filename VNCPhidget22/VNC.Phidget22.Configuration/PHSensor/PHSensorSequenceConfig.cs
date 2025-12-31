@@ -1,6 +1,6 @@
 ﻿namespace VNC.Phidget22.Configuration
 {
-    public class PHSensortSequenceConfig
+    public class PHSensorSequenceConfig
     {
         public PHSensorSequence[] PHSensorSequences { get; set; } = new[]
         {
