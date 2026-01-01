@@ -2,19 +2,16 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="VNC.Phidget22.Configuration.AccelerometerSequence" Collapsed="true">
     <Position X="0.5" Y="9.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.047" Y="14.75" />
-        <Point X="9.047" Y="14.041" />
-        <Point X="8.641" Y="14.041" />
-        <Point X="8.641" Y="10.595" />
-        <Point X="1.5" Y="10.595" />
-        <Point X="1.5" Y="10.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Accelerometer\AccelerometerSequence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.AccelerometerConfiguration" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\AccelerometerConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Configuration.AccelerometerAction" Collapsed="true">
@@ -24,6 +21,13 @@
       <FileName>Accelerometer\AccelerometerAction.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="VNC.Phidget22.Configuration.ChannelConfigurationBase" Collapsed="true">
+    <Position X="10" Y="4.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgDAAgAAAgIAAAAAAAAAAAABAAABBAAAAAAACAAAA=</HashCode>
+      <FileName>Configuration\ChannelConfigurationBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="VNC.Phidget22.Configuration.Performance.ChannelSequence" Collapsed="true">
     <Position X="8.5" Y="14.75" Width="1.5" />
     <TypeIdentifier>
@@ -31,8 +35,8 @@
       <FileName>Performance\ChannelSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.ActionBase" Collapsed="true">
-    <Position X="9.25" Y="21.25" Width="1.5" />
+  <Class Name="VNC.Phidget22.Configuration.ActionBase">
+    <Position X="9.25" Y="21.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAgDAAAAAAiIAAAAAAAAAAAAAAAAABAAAAAAACAAAA=</HashCode>
       <FileName>ActionBase.cs</FileName>
@@ -255,6 +259,223 @@
       <FileName>VoltageRatioInput\VoltageRatioInputAction.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="VNC.Phidget22.Configuration.BLDCMotorConfiguration" Collapsed="true">
+    <Position X="3" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\BLDCMotorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.CapacitiveTouchConfiguration" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\CapacitiveTouchConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.CurrentInputConfiguration" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\CurrentInputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.GPSConfiguration" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\GPSConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DCMotorConfiguration" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\DCMotorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DigitalInputConfiguration" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\DigitalInputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DigitalOutputConfiguration" Collapsed="true">
+    <Position X="17" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\DigitalOutputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DistanceSensorConfiguration" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\DistanceSensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.EncoderConfiguration" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\EncoderConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.FrequencyCounterConfiguration" Collapsed="true">
+    <Position X="3" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\FrequencyCounterConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.GyroscopeConfiguration" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\GyroscopeConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.HubConfiguration" Collapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\HubConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.HumiditySensorConfiguration" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\HumiditySensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.IRConfiguration" Collapsed="true">
+    <Position X="17" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\IRConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.LCDConfiguration" Collapsed="true">
+    <Position X="19.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\LCDConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.LightSensorConfiguration" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\LightSensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.MagnetometerConfiguration" Collapsed="true">
+    <Position X="3" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\MagnetometerConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.MotorPositionControllerConfiguration" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\MotorPositionControllerConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PHSensorConfiguration" Collapsed="true">
+    <Position X="8.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\PHSensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PowerGuardConfiguration" Collapsed="true">
+    <Position X="11.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\PowerGuardConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PressureSensorConfiguration" Collapsed="true">
+    <Position X="14.25" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\PressureSensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.RCServoConfiguration" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Configuration\RCServoConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.ResistanceInputConfiguration" Collapsed="true">
+    <Position X="19.5" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\ResistanceInputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.RFIDConfiguration" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\RFIDConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.SoundSensorConfiguration" Collapsed="true">
+    <Position X="3" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\SoundSensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.TemperatureSensorConfiguration" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\TemperatureSensorConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageInputConfiguration" Collapsed="true">
+    <Position X="14.25" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\VoltageInputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageOutputConfiguration" Collapsed="true">
+    <Position X="17" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\VoltageOutputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.StepperConfiguration" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Configuration\StepperConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputConfiguration" Collapsed="true">
+    <Position X="19.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\VoltageRatioInputConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.SpatialConfiguration" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Configuration\SpatialConfiguration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="VNC.Phidget22.Configuration.EncoderSequence" Collapsed="true">
     <Position X="0.5" Y="10.75" Width="1.5" />
     <TypeIdentifier>
@@ -271,16 +492,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.CapacitiveTouchSequence" Collapsed="true">
     <Position X="5.75" Y="9.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="8.641" Y="13.948" />
-        <Point X="8.641" Y="10.595" />
-        <Point X="6.75" Y="10.595" />
-        <Point X="6.75" Y="10.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CapacitiveTouch\CapacitiveTouchSequence.cs</FileName>
@@ -288,16 +499,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.CurrentInputSequence" Collapsed="true">
     <Position X="8.75" Y="9.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="8.844" Y="14.75" />
-        <Point X="8.844" Y="14.002" />
-        <Point X="8.601" Y="14.002" />
-        <Point X="8.601" Y="10.595" />
-        <Point X="9.75" Y="10.595" />
-        <Point X="9.75" Y="10.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CurrentInput\CurrentInputSequence.cs</FileName>
@@ -326,16 +527,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.DistanceSensorSequence" Collapsed="true">
     <Position X="19.75" Y="9.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.312" Y="14.75" />
-        <Point X="9.312" Y="14.01" />
-        <Point X="21.852" Y="14.01" />
-        <Point X="21.852" Y="10.595" />
-        <Point X="20.75" Y="10.595" />
-        <Point X="20.75" Y="10.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DistanceSensor\DistanceSensorSequence.cs</FileName>
@@ -343,16 +534,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.FrequencyCounterSequence" Collapsed="true">
     <Position X="3.25" Y="10.75" Width="2.25" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="8.641" Y="13.948" />
-        <Point X="8.641" Y="11.595" />
-        <Point X="4.375" Y="11.595" />
-        <Point X="4.375" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FrequenceyCounter\FrequencyCounterSequence.cs</FileName>
@@ -360,16 +541,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.GPSSequence" Collapsed="true">
     <Position X="5.75" Y="10.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="8.641" Y="13.948" />
-        <Point X="8.641" Y="11.595" />
-        <Point X="6.5" Y="11.595" />
-        <Point X="6.5" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GPS\GPSSequence.cs</FileName>
@@ -377,16 +548,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.GyroscopeSequence" Collapsed="true">
     <Position X="8.75" Y="10.75" Width="1.75" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.453" Y="14.75" />
-        <Point X="9.453" Y="14.002" />
-        <Point X="8.641" Y="14.002" />
-        <Point X="8.641" Y="11.595" />
-        <Point X="9.625" Y="11.595" />
-        <Point X="9.625" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Gyroscope\GyroscopeSequence.cs</FileName>
@@ -394,16 +555,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.HubSequence" Collapsed="true">
     <Position X="11.5" Y="10.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.312" Y="14.75" />
-        <Point X="9.312" Y="13.975" />
-        <Point X="11.398" Y="13.975" />
-        <Point X="11.398" Y="11.595" />
-        <Point X="12.25" Y="11.595" />
-        <Point X="12.25" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Hub\HubSequence.cs</FileName>
@@ -411,18 +562,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.HumiditySensorSequence" Collapsed="true">
     <Position X="14" Y="10.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="14.503" />
-        <Point X="9.273" Y="14.503" />
-        <Point X="9.273" Y="14.002" />
-        <Point X="13.898" Y="14.002" />
-        <Point X="13.898" Y="11.595" />
-        <Point X="15" Y="11.595" />
-        <Point X="15" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HumiditySensor\HumiditySensorSequence.cs</FileName>
@@ -430,16 +569,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.IRSequence" Collapsed="true">
     <Position X="17" Y="10.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="14.005" />
-        <Point X="16.517" Y="14.005" />
-        <Point X="16.517" Y="11.595" />
-        <Point X="17.75" Y="11.595" />
-        <Point X="17.75" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IR\IRSequence.cs</FileName>
@@ -447,16 +576,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.LCDSequence" Collapsed="true">
     <Position X="19.75" Y="10.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="19.398" Y="13.948" />
-        <Point X="19.398" Y="11.595" />
-        <Point X="20.5" Y="11.595" />
-        <Point X="20.5" Y="11.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LCD\LCDSequence.cs</FileName>
@@ -464,16 +583,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.LightSensorSequence" Collapsed="true">
     <Position X="0.5" Y="11.75" Width="1.75" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="8.641" Y="13.948" />
-        <Point X="8.641" Y="12.544" />
-        <Point X="1.375" Y="12.544" />
-        <Point X="1.375" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LightSensor\LightSensorSequence.cs</FileName>
@@ -481,16 +590,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.MagnetometerSequence" Collapsed="true">
     <Position X="3.25" Y="11.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="8.641" Y="13.948" />
-        <Point X="8.641" Y="12.544" />
-        <Point X="4.25" Y="12.544" />
-        <Point X="4.25" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Magnetometer\MagnetometerSequence.cs</FileName>
@@ -498,16 +597,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.MotorPositionControllerSequence" Collapsed="true">
     <Position X="5.75" Y="11.75" Width="2.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.312" Y="14.75" />
-        <Point X="9.312" Y="13.948" />
-        <Point X="8.641" Y="13.948" />
-        <Point X="8.641" Y="12.544" />
-        <Point X="7" Y="12.544" />
-        <Point X="7" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>MotorPositionController\MotorPositionControllerSequence.cs</FileName>
@@ -515,16 +604,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.PHSensorSequence" Collapsed="true">
     <Position X="8.75" Y="11.75" Width="1.75" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.656" Y="14.75" />
-        <Point X="9.656" Y="14.002" />
-        <Point X="8.646" Y="14.002" />
-        <Point X="8.646" Y="12.544" />
-        <Point X="9.625" Y="12.544" />
-        <Point X="9.625" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PHSensor\PHSensorSequence.cs</FileName>
@@ -532,18 +611,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.PowerGuardSequence" Collapsed="true">
     <Position X="11.5" Y="11.75" Width="1.75" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.375" Y="14.75" />
-        <Point X="9.375" Y="13.948" />
-        <Point X="10.602" Y="13.948" />
-        <Point X="10.602" Y="12.544" />
-        <Point X="11.314" Y="12.544" Type="JumpStart" />
-        <Point X="11.481" Y="12.544" Type="JumpEnd" />
-        <Point X="12.375" Y="12.544" />
-        <Point X="12.375" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PowerGuard\PowerGuardSequence.cs</FileName>
@@ -551,31 +618,13 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.PressureSensorSequence" Collapsed="true">
     <Position X="14" Y="11.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.312" Y="14.75" />
-        <Point X="9.312" Y="13.961" />
-        <Point X="13.887" Y="13.961" />
-        <Point X="13.887" Y="12.617" />
-        <Point X="15" Y="12.617" />
-        <Point X="15" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>PressureSensor\PressureSensorSequence.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.RCServoSequence" Collapsed="true">
-    <Position X="17" Y="11.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.98" />
-        <Point X="17.75" Y="13.98" />
-        <Point X="17.75" Y="12.441" />
-      </Path>
-    </InheritanceLine>
+  <Class Name="VNC.Phidget22.Configuration.RCServoSequence">
+    <Position X="17" Y="11.75" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RCServo\RCServoSequence.cs</FileName>
@@ -583,16 +632,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.ResistanceInputSequence" Collapsed="true">
     <Position X="19.5" Y="11.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="14.021" />
-        <Point X="19.398" Y="14.021" />
-        <Point X="19.398" Y="12.595" />
-        <Point X="20.5" Y="12.595" />
-        <Point X="20.5" Y="12.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ResistanceInput\ResistanceInputSequence.cs</FileName>
@@ -600,16 +639,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.RFIDSequence" Collapsed="true">
     <Position X="0.5" Y="12.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="14.032" />
-        <Point X="8.724" Y="14.032" Type="JumpStart" />
-        <Point X="8.557" Y="14.032" Type="JumpEnd" />
-        <Point X="1.25" Y="14.032" />
-        <Point X="1.25" Y="13.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RFID\RFIDSequence.cs</FileName>
@@ -617,16 +646,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.SoundSensorSequence" Collapsed="true">
     <Position X="3.25" Y="12.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.312" Y="14.75" />
-        <Point X="9.312" Y="14.041" />
-        <Point X="8.724" Y="14.041" Type="JumpStart" />
-        <Point X="8.557" Y="14.041" Type="JumpEnd" />
-        <Point X="4.25" Y="14.041" />
-        <Point X="4.25" Y="13.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SoundSensor\SoundSensorSequence.cs</FileName>
@@ -634,16 +653,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.SpatialSequence" Collapsed="true">
     <Position X="5.75" Y="12.75" Width="1.5" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="14.015" />
-        <Point X="8.724" Y="14.015" Type="JumpStart" />
-        <Point X="8.557" Y="14.015" Type="JumpEnd" />
-        <Point X="6.5" Y="14.015" />
-        <Point X="6.5" Y="13.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Spatial\SpatialSequence.cs</FileName>
@@ -658,14 +667,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.TemperatureSensorSequence" Collapsed="true">
     <Position X="11.5" Y="12.75" Width="2.25" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.312" Y="14.75" />
-        <Point X="9.312" Y="13.948" />
-        <Point X="12.625" Y="13.948" />
-        <Point X="12.625" Y="13.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TemperatureSensor\TemperatureSensorSequence.cs</FileName>
@@ -673,14 +674,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageInputSequence" Collapsed="true">
     <Position X="14" Y="12.75" Width="2" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" FixedFromPoint="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="13.948" />
-        <Point X="15" Y="13.948" />
-        <Point X="15" Y="13.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VoltageInput\VoltageInputSequence.cs</FileName>
@@ -695,14 +688,6 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputSequence" Collapsed="true">
     <Position X="19.5" Y="12.75" Width="2.25" />
-    <InheritanceLine Type="VNC.Phidget22.Configuration.Performance.ChannelSequence" ManuallyRouted="true">
-      <Path>
-        <Point X="9.25" Y="14.75" />
-        <Point X="9.25" Y="14.02" />
-        <Point X="20.625" Y="14.02" />
-        <Point X="20.625" Y="13.441" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VoltageRatioInput\VoltageRatioInputSequence.cs</FileName>
