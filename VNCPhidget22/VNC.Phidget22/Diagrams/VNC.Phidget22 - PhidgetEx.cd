@@ -15,52 +15,52 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.DigitalInputConfiguration">
+  <Class Name="VNC.Phidget22.ChannelConfiguration.DigitalInputConfiguration">
     <Position X="0.5" Y="10.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Configuration\DigitalInputConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\DigitalInputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.DigitalOutputConfiguration">
+  <Class Name="VNC.Phidget22.ChannelConfiguration.DigitalOutputConfiguration">
     <Position X="8.25" Y="13.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Configuration\DigitalOutputConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\DigitalOutputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.RCServoConfiguration">
+  <Class Name="VNC.Phidget22.ChannelConfiguration.RCServoConfiguration">
     <Position X="16.5" Y="26" Width="3.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
-      <FileName>Configuration\RCServoConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\RCServoConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.StepperConfiguration">
+  <Class Name="VNC.Phidget22.ChannelConfiguration.StepperConfiguration">
     <Position X="23.75" Y="25.75" Width="3" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAQAAAAAAA=</HashCode>
-      <FileName>Configuration\StepperConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\StepperConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.VoltageOutputConfiguration">
+  <Class Name="VNC.Phidget22.ChannelConfiguration.VoltageOutputConfiguration">
     <Position X="48" Y="10.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Configuration\VoltageOutputConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\VoltageOutputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputConfiguration">
-    <Position X="39.25" Y="16.75" Width="3" />
+  <Class Name="VNC.Phidget22.ChannelConfiguration.VoltageRatioInputConfiguration">
+    <Position X="39.25" Y="18.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Configuration\VoltageRatioInputConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\VoltageRatioInputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VNC.Phidget22.Ex.DigitalInputEx">
     <Position X="0.5" Y="0.5" Width="7.5" />
     <TypeIdentifier>
-      <HashCode>AgAgDgQCgAIgIAQBIAYEDACAkAAAAAFhiIAAFECEQQA=</HashCode>
+      <HashCode>AgAgDiQCgAAgIAQJIBYEDASAkAEAIglhiIACFFCEQQA=</HashCode>
       <FileName>Ex\DigitalInputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -68,7 +68,7 @@
   <Class Name="VNC.Phidget22.Ex.DigitalOutputEx">
     <Position X="8.25" Y="0.5" Width="7.75" />
     <TypeIdentifier>
-      <HashCode>AlRiXgCCAQMwIAwAIAYEDCCAkKAIAQJggIBBFACEAAE=</HashCode>
+      <HashCode>AlRiXiCCAQEwIAwIIBYEDCSAkKEIIwpggIBDFBCEAAE=</HashCode>
       <FileName>Ex\DigitalOutputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -76,7 +76,7 @@
   <Class Name="VNC.Phidget22.Ex.RCServoEx">
     <Position X="16.5" Y="0.5" Width="6.75" />
     <TypeIdentifier>
-      <HashCode>K2JwnvFiAMIgIAyooJcOjSyAsQubIy/wAcCWVCCVCR0=</HashCode>
+      <HashCode>K2JwnvFiAMAgIAyooJcOjSyAsQuaIy/wAcCWVDCVCR0=</HashCode>
       <FileName>Ex\RCServoEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -84,7 +84,7 @@
   <Class Name="VNC.Phidget22.Ex.StepperEx">
     <Position X="23.75" Y="0.5" Width="6.75" />
     <TypeIdentifier>
-      <HashCode>I+Bwnmli4LIgIASoK5YMnSyA8AsZIg/wQeU3FCC9IQk=</HashCode>
+      <HashCode>I+Bwnmli4LIgIASoK5YMnSyA8AsYIg/wQeU3FDC9IQk=</HashCode>
       <FileName>Ex\StepperEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -92,7 +92,7 @@
   <Class Name="VNC.Phidget22.Ex.VoltageInputEx">
     <Position X="31" Y="0.5" Width="7.5" />
     <TypeIdentifier>
-      <HashCode>VgFgDiQCCAImsIYLrDYMDEaBmAEAYhlgAYQCMCCMASI=</HashCode>
+      <HashCode>VgFgDiQCCAAmsIYLrDYMDEaBmAEAYhlgAYQCMDCMASI=</HashCode>
       <FileName>Ex\VoltageInputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -100,7 +100,7 @@
   <Class Name="VNC.Phidget22.Ex.VoltageOutputEx">
     <Position X="48" Y="0.5" Width="8" />
     <TypeIdentifier>
-      <HashCode>IkAgHgCCAAIgIAQCoAYEDCKAkAAIABJgAIQAECCEQAA=</HashCode>
+      <HashCode>IkAgHiCCAAAgIAQKoBYEDCaAkAEIIhpgAIQCEDCEQAA=</HashCode>
       <FileName>Ex\VoltageOutputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -108,16 +108,16 @@
   <Class Name="VNC.Phidget22.Ex.VoltageRatioInputEx">
     <Position X="39" Y="0.5" Width="8.5" />
     <TypeIdentifier>
-      <HashCode>BmFgjiRCQAIkIAQJKBYMDkSAmAEAYglgAYgTEQCNFCQ=</HashCode>
+      <HashCode>FmFgjiRCQAAkIAQJKBYMDkSAmAEAYglgAYgTMRCNFCQ=</HashCode>
       <FileName>Ex\VoltageRatioInputEx.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VNC.Phidget22.Configuration.VoltageInputConfiguration">
-    <Position X="31" Y="18" Width="3" />
+  <Class Name="VNC.Phidget22.ChannelConfiguration.VoltageInputConfiguration">
+    <Position X="31" Y="19" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Configuration\VoltageInputConfiguration.cs</FileName>
+      <FileName>ChannelConfiguration\VoltageInputConfiguration.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="VNC.Phidget22.SerialHost">

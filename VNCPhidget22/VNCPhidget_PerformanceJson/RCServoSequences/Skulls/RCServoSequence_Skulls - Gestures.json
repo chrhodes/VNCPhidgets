@@ -1,14 +1,14 @@
 // RCServoSequence_Skull Gestures.json
 // Contains
-//  Skull Yes
-//  Skull Big Yes
-//  Skull No
-//  Skull Big No
-//  Skull Maybe
-//  Skull Big Maybe
-//  Skull Sigh
-//  Skull Laugh
-//  Skull Big Laugh
+//  Skull(X) Yes
+//  Skull(X) Big Yes
+//  Skull(X) No
+//  Skull(X) Big No
+//  Skull(X) Maybe
+//  Skull(X) Big Maybe
+//  Skull(X) Sigh
+//  Skull(X) Laugh
+//  Skull(X) Big Laugh
   {
 
   "RCServoSequences": [

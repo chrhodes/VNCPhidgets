@@ -59,6 +59,16 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.DigitalOutputAction">
     <Position X="17.5" Y="0.5" Width="2.25" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.696" />
+        <Point X="17.25" Y="14.696" />
+        <Point X="17.25" Y="2.108" />
+        <Point X="18.625" Y="2.108" />
+        <Point X="18.625" Y="1.733" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>DigitalOutput\DigitalOutputAction.cs</FileName>
@@ -66,6 +76,16 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.DistanceSensorAction">
     <Position X="21.75" Y="0.5" Width="1.75" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.758" />
+        <Point X="21.5" Y="14.758" />
+        <Point X="21.5" Y="1.872" />
+        <Point X="22.625" Y="1.872" />
+        <Point X="22.625" Y="1.497" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DistanceSensor\DistanceSensorAction.cs</FileName>
@@ -108,6 +128,16 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.IRAction">
     <Position X="17.5" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.675" />
+        <Point X="17.25" Y="14.675" />
+        <Point X="17.25" Y="4.122" />
+        <Point X="18.25" Y="4.122" />
+        <Point X="18.25" Y="3.747" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IR\IRAction.cs</FileName>
@@ -115,6 +145,15 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.HumiditySensorAction">
     <Position X="13.75" Y="2.75" Width="2" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.664" />
+        <Point X="17.25" Y="14.664" />
+        <Point X="17.25" Y="3.249" />
+        <Point X="15.75" Y="3.249" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HumiditySensor\HumiditySensorAction.cs</FileName>
@@ -122,6 +161,18 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.LCDAction">
     <Position X="21.75" Y="2.75" Width="1.5" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.686" />
+        <Point X="19.417" Y="14.686" Type="JumpStart" />
+        <Point X="19.583" Y="14.686" Type="JumpEnd" />
+        <Point X="21.5" Y="14.686" />
+        <Point X="21.5" Y="4.122" />
+        <Point X="22.5" Y="4.122" />
+        <Point X="22.5" Y="3.747" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LCD\LCDAction.cs</FileName>
@@ -171,6 +222,16 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.RCServoAction">
     <Position X="17.5" Y="4.75" Width="3.5" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.779" />
+        <Point X="19.5" Y="14.779" />
+        <Point X="19.5" Y="9.242" />
+        <Point X="19.25" Y="9.242" />
+        <Point X="19.25" Y="8.867" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>ACAQAkEAAIAAAAAAIAAAA4AAAAAAACAQAAAUAAAAAEE=</HashCode>
       <FileName>RCServo\RCServoAction.cs</FileName>
@@ -178,6 +239,16 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.ResistanceInputAction">
     <Position X="21.75" Y="4.75" Width="1.75" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.716" />
+        <Point X="21.5" Y="14.716" />
+        <Point X="21.5" Y="6.122" />
+        <Point X="22.625" Y="6.122" />
+        <Point X="22.625" Y="5.747" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ResistanceInput\ResistanceInputAction.cs</FileName>
@@ -185,6 +256,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.RFIDAction">
     <Position X="0.5" Y="10.25" Width="1.5" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.728" />
+        <Point X="1.25" Y="14.728" />
+        <Point X="1.25" Y="11.247" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>RFID\RFIDAction.cs</FileName>
@@ -192,6 +271,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.SoundSensorAction">
     <Position X="2.75" Y="10.25" Width="1.75" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.686" />
+        <Point X="3.625" Y="14.686" />
+        <Point X="3.625" Y="11.247" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SoundSensor\SoundSensorAction.cs</FileName>
@@ -199,6 +286,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.SpatialAction">
     <Position X="5" Y="10.25" Width="1.5" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.685" />
+        <Point X="5.75" Y="14.685" />
+        <Point X="5.75" Y="11.247" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Spatial\SpatialAction.cs</FileName>
@@ -213,6 +308,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.TemperatureSensorAction">
     <Position X="11.5" Y="10.25" Width="2" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.697" />
+        <Point X="12.5" Y="14.697" />
+        <Point X="12.5" Y="11.247" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TemperatureSensor\TemperatureSensorAction.cs</FileName>
@@ -220,6 +323,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageInputAction">
     <Position X="13.75" Y="10.25" Width="3" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.716" />
+        <Point X="15.25" Y="14.716" />
+        <Point X="15.25" Y="11.675" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>VoltageInput\VoltageInputAction.cs</FileName>
@@ -227,6 +338,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageOutputAction">
     <Position X="17.5" Y="10.25" Width="1.75" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.727" />
+        <Point X="18.375" Y="14.727" />
+        <Point X="18.375" Y="11.247" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>VoltageOutput\VoltageOutputAction.cs</FileName>
@@ -234,6 +353,14 @@
   </Class>
   <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputAction">
     <Position X="21.75" Y="10.25" Width="3" />
+    <InheritanceLine Type="VNC.Phidget22.Configuration.ActionBase" ManuallyRouted="true">
+      <Path>
+        <Point X="11.125" Y="15.5" />
+        <Point X="11.125" Y="14.728" />
+        <Point X="23.25" Y="14.728" />
+        <Point X="23.25" Y="11.675" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
       <FileName>VoltageRatioInput\VoltageRatioInputAction.cs</FileName>

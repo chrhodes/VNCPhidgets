@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using Prism.Events;
 
+using VNC.Phidget22.ChannelConfiguration;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Events;
 using VNC.Phidget22.Players;

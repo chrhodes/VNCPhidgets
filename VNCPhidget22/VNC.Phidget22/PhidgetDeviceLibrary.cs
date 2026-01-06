@@ -6,6 +6,7 @@ using Phidget22;
 
 using Prism.Events;
 
+using VNC.Phidget22.ChannelConfiguration;
 using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
 
@@ -261,12 +262,12 @@ namespace VNC.Phidget22
             set => _motorPositionControllerChannels = value;
         }
 
-        private Dictionary<SerialHubPortChannel, PHSensorEx> _pHSensorChanels 
+        private Dictionary<SerialHubPortChannel, PHSensorEx> _pHSensorChannels 
             = new Dictionary<SerialHubPortChannel, PHSensorEx>();
-        public Dictionary<SerialHubPortChannel, PHSensorEx> PHSensorChanels
+        public Dictionary<SerialHubPortChannel, PHSensorEx> PHSensorChannels
         {
-            get => _pHSensorChanels;
-            set => _pHSensorChanels = value;
+            get => _pHSensorChannels;
+            set => _pHSensorChannels = value;
         }
 
         private Dictionary<SerialHubPortChannel, PowerGuardEx> _powerGuardChannels 
