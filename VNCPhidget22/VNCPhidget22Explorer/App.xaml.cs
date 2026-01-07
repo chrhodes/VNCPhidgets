@@ -37,12 +37,11 @@ namespace VNCPhidget22Explorer
             Thread.Sleep(250);
 
             if (Common.VNCLogging.Constructor) startTicks = Log.CONSTRUCTOR(String.Format("Enter"), Common.LOG_CATEGORY, startTicks);
+
 #if DEBUG
             Common.InitializeLogging(debugConfig: true);
-            VNC.Phidget22.Common.InitializeLogging(debugConfig: true);
 #else
             Common.InitializeLogging();
-            VNC.Phidget22.Common.InitializeLogging();
 #endif
 
             // NOTE(crhodes)

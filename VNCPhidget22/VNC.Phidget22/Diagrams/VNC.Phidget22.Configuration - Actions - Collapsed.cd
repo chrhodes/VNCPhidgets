@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="VNC.Phidget22.Configuration.AccelerometerSequence" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.AccelerometerAction" Collapsed="true">
+    <Position X="0.5" Y="16.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.Performance.ChannelSequence" Collapsed="true">
+    <Position X="8.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.ActionBase">
+    <Position X="5.75" Y="23.5" Width="3.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.BLDCMotorAction" Collapsed="true">
+    <Position X="3.25" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.CapacitiveTouchAction" Collapsed="true">
+    <Position X="5.75" Y="16.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.CurrentInputAction" Collapsed="true">
+    <Position X="8.5" Y="16.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DCMotorAction" Collapsed="true">
+    <Position X="11" Y="16.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DigitalInputAction" Collapsed="true">
+    <Position X="13.5" Y="16.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DigitalOutputAction" Collapsed="true">
+    <Position X="0.5" Y="17.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DistanceSensorAction" Collapsed="true">
+    <Position X="3.25" Y="17.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.EncoderAction" Collapsed="true">
+    <Position X="5.75" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.FrequencyCounterAction" Collapsed="true">
+    <Position X="8.5" Y="17.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.GPSAction" Collapsed="true">
+    <Position X="11" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.GyroscopeAction" Collapsed="true">
+    <Position X="13.5" Y="17.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.HubAction" Collapsed="true">
+    <Position X="0.5" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.IRAction" Collapsed="true">
+    <Position X="5.75" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.HumiditySensorAction" Collapsed="true">
+    <Position X="3.25" Y="18.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.LCDAction" Collapsed="true">
+    <Position X="8.5" Y="18.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.LightSensorAction" Collapsed="true">
+    <Position X="11" Y="18.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.MagnetometerAction" Collapsed="true">
+    <Position X="13.5" Y="18.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.MotorPositionControllerAction" Collapsed="true">
+    <Position X="0.5" Y="19.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PHSensorAction" Collapsed="true">
+    <Position X="3.25" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PowerGuardAction" Collapsed="true">
+    <Position X="5.75" Y="19.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PressureSensorAction" Collapsed="true">
+    <Position X="8.5" Y="19.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.RCServoAction" Collapsed="true">
+    <Position X="11" Y="19.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.ResistanceInputAction" Collapsed="true">
+    <Position X="13.5" Y="19.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.RFIDAction" Collapsed="true">
+    <Position X="0.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.SoundSensorAction" Collapsed="true">
+    <Position X="3.25" Y="20.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.SpatialAction" Collapsed="true">
+    <Position X="5.75" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.StepperAction" Collapsed="true">
+    <Position X="8.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.TemperatureSensorAction" Collapsed="true">
+    <Position X="11" Y="20.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageInputAction" Collapsed="true">
+    <Position X="13.5" Y="20.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageOutputAction" Collapsed="true">
+    <Position X="0.5" Y="21.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputAction" Collapsed="true">
+    <Position X="3.25" Y="21.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.EncoderSequence" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.BLDCMotorSequence" Collapsed="true">
+    <Position X="3.25" Y="9.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.CapacitiveTouchSequence" Collapsed="true">
+    <Position X="5.75" Y="9.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.CurrentInputSequence" Collapsed="true">
+    <Position X="8.75" Y="9.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DCMotorSequence" Collapsed="true">
+    <Position X="11.5" Y="9.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DigitalInputSequence" Collapsed="true">
+    <Position X="14" Y="9.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DigitalOutputSequence" Collapsed="true">
+    <Position X="17" Y="9.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.DistanceSensorSequence" Collapsed="true">
+    <Position X="19.75" Y="9.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.FrequencyCounterSequence" Collapsed="true">
+    <Position X="3.25" Y="10.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.GPSSequence" Collapsed="true">
+    <Position X="5.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.GyroscopeSequence" Collapsed="true">
+    <Position X="8.75" Y="10.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.HubSequence" Collapsed="true">
+    <Position X="11.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.HumiditySensorSequence" Collapsed="true">
+    <Position X="14" Y="10.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.IRSequence" Collapsed="true">
+    <Position X="17" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.LCDSequence" Collapsed="true">
+    <Position X="19.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.LightSensorSequence" Collapsed="true">
+    <Position X="0.5" Y="11.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.MagnetometerSequence" Collapsed="true">
+    <Position X="3.25" Y="11.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.MotorPositionControllerSequence" Collapsed="true">
+    <Position X="5.75" Y="11.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PHSensorSequence" Collapsed="true">
+    <Position X="8.75" Y="11.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PowerGuardSequence" Collapsed="true">
+    <Position X="11.5" Y="11.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.PressureSensorSequence" Collapsed="true">
+    <Position X="14" Y="11.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.RCServoSequence" Collapsed="true">
+    <Position X="17" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.ResistanceInputSequence" Collapsed="true">
+    <Position X="19.5" Y="11.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.RFIDSequence" Collapsed="true">
+    <Position X="0.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.SoundSensorSequence" Collapsed="true">
+    <Position X="3.25" Y="12.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.SpatialSequence" Collapsed="true">
+    <Position X="5.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.StepperSequence" Collapsed="true">
+    <Position X="8.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.TemperatureSensorSequence" Collapsed="true">
+    <Position X="11.5" Y="12.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageInputSequence" Collapsed="true">
+    <Position X="14" Y="12.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageOutputSequence" Collapsed="true">
+    <Position X="16.75" Y="12.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputSequence" Collapsed="true">
+    <Position X="19.5" Y="12.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageRatioInputSequenceConfig" Collapsed="true">
+    <Position X="18.25" Y="8" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageOutputSequenceConfig" Collapsed="true">
+    <Position X="15.25" Y="7.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.VoltageInputSequenceConfig" Collapsed="true">
+    <Position X="11.5" Y="7.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="VNC.Phidget22.Configuration.StepperSequenceConfig" Collapsed="true">
+    <Position X="7.5" Y="7.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

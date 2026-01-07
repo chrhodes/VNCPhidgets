@@ -134,10 +134,10 @@
                             </dxdo:LayoutPanel>
 
                             <!-- NOTE(crhodes)
-                             These LayoutPanels are loaded from the Views menu
+                             These LayoutPanels can also be loaded from the Views menu
                             -->
                             
-                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="False" MinWidth="680" >
+                            <dxdo:LayoutPanel Caption="AdvancedServo1061-1" AutoHidden="True" MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region1}"/>
                             </dxdo:LayoutPanel>
 
@@ -153,9 +153,9 @@
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.VINTHubRegion1}"/>
                             </dxdo:LayoutPanel>-->
 
-                            <!--<dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="True" MinWidth="700" >
+                            <dxdo:LayoutPanel Caption="EventCoordinator" AutoHidden="True" MinWidth="700" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.EventCoordinatorRegion}"  />
-                            </dxdo:LayoutPanel>-->
+                            </dxdo:LayoutPanel>
         
                             <!--<dxdo:LayoutPanel Caption="AdvancedServo1061-2" AutoHidden="False"  MinWidth="680" >
                                 <ContentControl prism:RegionManager.RegionName="{x:Static core:RegionNames.AdvancedServo1061Region2}"/>
