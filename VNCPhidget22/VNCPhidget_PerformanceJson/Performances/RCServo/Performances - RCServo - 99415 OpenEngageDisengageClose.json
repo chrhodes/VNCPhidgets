@@ -1,12 +1,12 @@
 // Performance_RFCServo - 99415 OpenClose.json
 // Contains
-//  RCServos 99415 - Open and Engage A
-//  RCServos 99415 - Open and Engage B
-//  RCServos 99415 - Open and Engage C
-//  RCServos 99415 - Open and Engage D
-//  RCServos 99415 - Open and Engage E
-//  RCServos 99415 - Close A
-//  RCServos 99415 - Close B
+//  RCServos 99415 - Open and Engage A - DCS S# - CC HP+Ch
+//  RCServos 99415 - Open and Engage B - S# Override - CC HP+Ch
+//  RCServos 99415 - Open and Engage C - DCS S#+HP+Ch
+//  RCServos 99415 - Open and Engage D - DCS S#+HP - CC Ch
+//  RCServos 99415 - Open and Engage E - DCS S#+Ch - CC HP
+//  RCServos 99415 - Close A - DCS S#+HP+Ch
+//  RCServos 99415 - Close B - S# Override - DCS HP+Ch
 //
 {
   "Name": "Performance_RCServos_OpenClose",
@@ -16,7 +16,7 @@
     // RCServos 99415 - Open and Engage
     //
     {
-      "Name": "RCServos 99415 - Open and Engage A",
+      "Name": "RCServos 99415 - Open and Engage A - DCS S# - CC HP+Ch",
       "Description": "DeviceChannelSequence SerialNumber and ChannelClasses that specify HubPort and Channel",
       "UsageNotes": "This is common when ChannelClassSequence is tied to a specific HubPort and Channel, e.g. Skull",
       "Loops": 1,
@@ -66,7 +66,7 @@
       "NextPerformance": null
     },
     {
-      "Name": "RCServos 99415 - Open and Engage B",
+      "Name": "RCServos 99415 - Open and Engage B - S# Override - CC HP+Ch",
       "Description": "Performance SerialNumber override and ChannelClasses that specify HubPort and Channel",
       "UsageNotes": "This tests being able to specify a SerialNumber that is passed into each DeviceChannelSequence",
       "Loops": 1,
@@ -109,7 +109,7 @@
       "NextPerformance": null
     },
     {
-      "Name": "RCServos 99415 - Open and Engage C",
+      "Name": "RCServos 99415 - Open and Engage C - DCS S#+HP+Ch",
       "Description": "DeviceChannelSequence SerialNumber and HubPort and Channel overrides",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -174,7 +174,7 @@
       "NextPerformance": null
     },
     {
-      "Name": "RCServos 99415 - Open and Engage D",
+      "Name": "RCServos 99415 - Open and Engage D - DCS S#+HP - CC Ch",
       "Description": "DeviceChannelSequence SerialNumber and HubPort override",
       "UsageNotes": "This tests being able to override just HubPort",
       "Loops": 1,
@@ -232,8 +232,8 @@
       "NextPerformance": null
     },
     {
-      "Name": "RCServos 99415 - Open and Engage E",
-      "Description": "DeviceChannelSequence SerialNumber and HubPort override",
+      "Name": "RCServos 99415 - Open and Engage E - DCS S#+Ch - CC HP",
+      "Description": "DeviceChannelSequence SerialNumber and Channel override",
       "UsageNotes": "This tests being able to override just Channel",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -293,7 +293,7 @@
     // RCServos 99415 - Close
     //
     {
-      "Name": "RCServos 99415 - Close A",
+      "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch",
       "Description": "DeviceChannelSequence SerialNumber and HubPort and Channel overrides",
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -358,7 +358,7 @@
       "NextPerformance": null
     },
     {
-      "Name": "RCServos 99415 - Close B",
+      "Name": "RCServos 99415 - Close B - S# Override - DCS HP+Ch",
       "Description": "Performance SerialNumber override and HubPort and Channel overrides",
       "SerialNumber": 99415,
       "Loops": 1,

@@ -94,7 +94,7 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
                         <dxlc:LayoutItem Label="Selected DeviceSetting(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit x:Name="cbeDeviceSettings" Width="300" TextWrapping="Wrap"
+                            <dxe:ComboBoxEdit x:Name="cbeDeviceSettings" Width="400" TextWrapping="Wrap"
                                 ItemsSource="{Binding DeviceSettings}" DisplayMember="Name"
                                 SelectedItem="{Binding SelectedDeviceSetting}"                                              
                                 EditValue="{ Binding 
@@ -162,7 +162,7 @@
                     <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
 
                         <dxlc:LayoutItem Label="Selected Performance(s)" HorizontalAlignment="Left" >
-                            <dxe:ComboBoxEdit x:Name="cbePerformances" Width="300" TextWrapping="Wrap"
+                            <dxe:ComboBoxEdit x:Name="cbePerformances" Width="400" TextWrapping="Wrap"
                                 ItemsSource="{Binding Performances}" DisplayMember="Name"
                                 SelectedItem="{Binding SelectedPerformance}"                                              
                                 EditValue="{ Binding 

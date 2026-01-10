@@ -1,11 +1,11 @@
 // Performance_RFCServo - 99415 Routines.json
 // Contains
-//  RCServos 99415 - Sequential Sequence
+//  RCServos 99415 - Min/Max - Sequential
 //  RCServos 99415 - Center Exact - Sequential
 //  RCServos 99415 - PositionMin - Sequential
 //  RCServos 99415 - Center - Sequential
 //  RCServos 99415 - PositionMax - Sequential
-//  RCServos 99415 - Parallel Sequence
+//  RCServos 99415 - Min/Max - Parallel
 //  RCServos 99415 - Center Exact - Parallel
 //  RCServos 99415 - PositionMin - Parallel
 //  RCServos 99415 - Center - Parallel
@@ -19,7 +19,7 @@
     // RCServos 99415 - Sequential Sequences
     //
     {
-      "Name": "RCServos 99415 - Sequential Sequence",
+      "Name": "RCServos 99415 - Min/Max - Sequential",
       "Description": "",
       "SerialNumber": 99415,
       "Loops": 1,
@@ -143,7 +143,7 @@
     //
     {
       "Name": "RCServos 99415 - PositionMin - Sequential",
-      "Description": "Center Servos 0,1,2,3,4,5,6,7 with 99415 Specific Values",
+      "Description": "Move Servos 0,1,2,3,4,5,6,7 to PositionMin",
       "UsageNotes": "",
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -201,7 +201,7 @@
     {
       "Name": "RCServos 99415 - Center - Sequential",
       "Description": "Center Servos 0,1,2,3,4,5,6,7",
-      "UsageNotes": "Tweak for exact postions as needed",
+      "UsageNotes": "",
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
@@ -257,7 +257,7 @@
     },
     {
       "Name": "RCServos 99415 - PositionMax - Sequential",
-      "Description": "Center Servos 0,1,2,3,4,5,6,7 with 99415 Specific Values",
+      "Description": "Center Servos 0,1,2,3,4,5,6,7 PositionMax",
       "UsageNotes": "",
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
@@ -316,7 +316,7 @@
     // RCServos 99415 - Parallel Sequences
     //
     {
-      "Name": "RCServos 99415 - Parallel Sequence",
+      "Name": "RCServos 99415 - Min/Max - Parallel",
       "Description": "",
       "SerialNumber": 99415,
       "Loops": 1,
@@ -440,7 +440,7 @@
     //
     {
       "Name": "RCServos 99415 - PositionMin - Parallel",
-      "Description": "Center Servos 0,1,2,3,4,5,6,7 with 99415 Specific Values",
+      "Description": "Center Servos 0,1,2,3,4,5,6,7 PositionMin",
       "UsageNotes": "",
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
@@ -498,7 +498,7 @@
     {
       "Name": "RCServos 99415 - Center - Parallel",
       "Description": "Center Servos 0,1,2,3,4,5,6,7",
-      "UsageNotes": "Tweak for exact postions as needed",
+      "UsageNotes": "",
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
@@ -554,7 +554,7 @@
     },
     {
       "Name": "RCServos 99415 - PositionMax - Parallel",
-      "Description": "Center Servos 0,1,2,3,4,5,6,7 with 99415 Specific Values",
+      "Description": "Center Servos 0,1,2,3,4,5,6,7 PositionMax",
       "UsageNotes": "",
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,

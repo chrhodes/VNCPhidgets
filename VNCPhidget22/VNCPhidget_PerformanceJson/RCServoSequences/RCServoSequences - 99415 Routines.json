@@ -1,6 +1,6 @@
 // RCServoSequence_OpenClose.json
 // Contains
-//  Move Servo 0-1-2-3
+//  99415-Move Servo 0-1-2-3
 //  Move Servo 1
 //  Move Servo 2
 //  Move Servo 3
@@ -61,21 +61,18 @@
 //  99415-PP4 LastStep
 //
 {
-  //
-  // TODO(crhodes)
-  // Don't think most of these will work as HubPort and Channel do not belong in Actions
-  // Need to do all this with Performance, ugh.  Smile.
-  //
   "RCServoSequences": [
     //
     // Servo0
     //
     {
-      "Name": "Move Servo 0-1-2-3", 
+      "Name": "99415-Move Servo 0-1-2-3", 
       "Description": "Moves Servo 0, then 1, then 2, then 3 using NextSequence - Three Loops",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
       "Loops": 3, 
       "ExecuteActionsInParallel": false,
+      "HubPort": 0,
+      "Channel": 0,
       "Actions": [
         { "TargetPosition": 90 },
         { "TargetPosition": 100 },
@@ -90,13 +87,15 @@
     //
     {
       "Name": "Move Servo1",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 1,
       "Actions": [
-        { "Channel":1, "TargetPosition": 90 },
-        { "Channel":1, "TargetPosition": 100 },
-        { "Channel":1, "TargetPosition": 110 },
-        { "Channel":1, "TargetPosition": 100  },
-        { "Channel":1, "TargetPosition": 90 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
       "NextSequence": { "Name": "Move Servo2", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
@@ -105,13 +104,15 @@
     //
     {
       "Name": "Move Servo2",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 2,
       "Actions": [
-        { "Channel":2, "TargetPosition": 90 },
-        { "Channel":2, "TargetPosition": 100 },
-        { "Channel":2, "TargetPosition": 110 },
-        { "Channel":2, "TargetPosition": 100  },
-        { "Channel":2, "TargetPosition": 90 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
       "NextSequence": { "Name": "Move Servo3", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
@@ -120,13 +121,15 @@
     //
     {
       "Name": "Move Servo3",
-      "UsageNotes": "Must provide HubPort and Channel in DeviceChannelSequence",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 3,
       "Actions": [
-        { "Channel":2, "TargetPosition": 90 },
-        { "Channel":2, "TargetPosition": 100 },
-        { "Channel":2, "TargetPosition": 110 },
-        { "Channel":2, "TargetPosition": 100  },
-        { "Channel":2, "TargetPosition": 90 },
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
     },
 
@@ -134,6 +137,12 @@
     // TODO(crhodes)
     // Fix all these.  Use HubPort and Channel
     // Keep what's visually interesting, toss rest
+    //
+    // TODO(crhodes)
+    // Don't think most of these will work as  ServoIndex no longer is part of Actions.
+    // No longer can have Parallel Actions across Servos in this way.
+    // Need to do all this with Performance, ugh.  Smile.
+    //
     //
 
     //********************************************************************************

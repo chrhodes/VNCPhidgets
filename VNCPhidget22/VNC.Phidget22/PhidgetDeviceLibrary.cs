@@ -464,7 +464,7 @@ namespace VNC.Phidget22
                     case Phidgets.DeviceClass.VINT:
                         // NOTE(crhodes)
                         // 
-                        // VINT's are just versital Phidgets that behave like PhidgetBoards
+                        // VINT's are just virtual Phidgets that behave like PhidgetBoards
                         AddPhidgetDevice(phidget);
                         break;
 
@@ -483,71 +483,97 @@ namespace VNC.Phidget22
         }
 
         private void AddPhidgetDevice(Phidgets.Phidget phidget)
-        { 
-            PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
-
-            phidgetDevice.IsLocal = phidget.IsLocal;
-            phidgetDevice.IsRemote = phidget.IsRemote;
-            phidgetDevice.GrandParent = phidget.Parent?.Parent?.ToString();
-            phidgetDevice.Parent = phidget.Parent?.ToString();
-
-            phidgetDevice.IsHubPortDevice = phidget.IsHubPortDevice;
-            phidgetDevice.HubPort = phidget.HubPort;
-
-            phidgetDevice.DeviceClass = phidget.DeviceClass.ToString();
-            phidgetDevice.DeviceName = phidget.DeviceName;
-            phidgetDevice.DeviceID = phidget.DeviceID.ToString();
-            phidgetDevice.DeviceVINTID = phidget.DeviceVINTID.ToString();
-            phidgetDevice.DeviceVersion = phidget.DeviceVersion.ToString();
-
-            phidgetDevice.IsChannel = phidget.IsChannel;
-            phidgetDevice.Channel = phidget.Channel;
-            phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
-            phidgetDevice.ChannelName = phidget.ChannelName.ToString();
-            phidgetDevice.ChannelSubclass = phidget.ChannelSubclass.ToString();
-
-            // NOTE(crhodes)
-            // Switched from Dictionary to List
-            // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
-
-            //ManagerAttachedPhidgetDevices.Add(serialHubChannel, phidgetDevice);
-
+        {
             try
             {
-                if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding AttachedPhidget" +
-                    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+                PhidgetDevice phidgetDevice;
 
-                // TODO(crhodes)
-                // Handle the case where device attaches for second time, e.g. after Close
-
-                ManagerAttachedPhidgetDevices.Add(phidgetDevice);
-
-                // This will not work as a phidgetDevice can have different DeviceClasses
-                // at same SerialNumber, HubPort, Channel
-                //if (!ManagerAttachedPhidgetDevices.Contains(phidgetDevice))
-                //{
-                //  ManagerAttachedPhidgetDevices.Add(phidgetDevice);
-                //}
-                //else
-                //{
-                //    Log.DEVICE_INITIALIZE_LOW($"Existing AttachedPhidget, skipping" +
-                //    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
-
-                //    return;
-                //}
-            }
-            catch (Exception ex)
-            {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
-            }
-
-            try
-            {
                 // NOTE(crhodes)
-                // Now add the Phidget to ChannelClass specific Dictionaries
-                // that are used to find the right Phidget to use
+                // Handle case where Phidget is attached to local computer
+                // and ServerPeerName is not valid
 
-                AddDeviceChannel(phidget, phidgetDevice);
+                try
+                {
+                    phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
+                }
+                catch (Exception ex)
+                {
+                    // NOTE(crhodes)
+                    // Turns out, for reasons I don't understand yet, we get an IsLocal attach and
+                    // a IsRemote attach for same computer at 127.0.0.1 with ServerPeerName filled in.
+                    // Ignore the IsLocal attach.
+
+                    //phidgetDevice = new PhidgetDevice("localhost", phidget.DeviceSerialNumber);
+                    return;
+                }                
+
+                phidgetDevice.IsLocal = phidget.IsLocal;
+                phidgetDevice.IsRemote = phidget.IsRemote;
+                phidgetDevice.GrandParent = phidget.Parent?.Parent?.ToString();
+                phidgetDevice.Parent = phidget.Parent?.ToString();
+
+                phidgetDevice.IsHubPortDevice = phidget.IsHubPortDevice;
+                phidgetDevice.HubPort = phidget.HubPort;
+
+                phidgetDevice.DeviceClass = phidget.DeviceClass.ToString();
+                phidgetDevice.DeviceName = phidget.DeviceName;
+                phidgetDevice.DeviceID = phidget.DeviceID.ToString();
+                phidgetDevice.DeviceVINTID = phidget.DeviceVINTID.ToString();
+                phidgetDevice.DeviceVersion = phidget.DeviceVersion.ToString();
+
+                phidgetDevice.IsChannel = phidget.IsChannel;
+                phidgetDevice.Channel = phidget.Channel;
+                phidgetDevice.ChannelClass = phidget.ChannelClass.ToString();
+                phidgetDevice.ChannelName = phidget.ChannelName.ToString();
+                phidgetDevice.ChannelSubclass = phidget.ChannelSubclass.ToString();
+
+                // NOTE(crhodes)
+                // Switched from Dictionary to List
+                // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
+
+                //ManagerAttachedPhidgetDevices.Add(serialHubChannel, phidgetDevice);
+
+                try
+                {
+                    if (Common.VNCLogging.DeviceInitializeLow) Log.DEVICE_INITIALIZE_LOW($"Adding AttachedPhidget" +
+                        $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+                    // TODO(crhodes)
+                    // Handle the case where device attaches for second time, e.g. after Close
+
+                    ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+
+                    // This will not work as a phidgetDevice can have different DeviceClasses
+                    // at same SerialNumber, HubPort, Channel
+                    //if (!ManagerAttachedPhidgetDevices.Contains(phidgetDevice))
+                    //{
+                    //  ManagerAttachedPhidgetDevices.Add(phidgetDevice);
+                    //}
+                    //else
+                    //{
+                    //    Log.DEVICE_INITIALIZE_LOW($"Existing AttachedPhidget, skipping" +
+                    //    $" {phidget.ServerPeerName}|{phidget.DeviceClass}|{phidget.DeviceSerialNumber}", Common.LOG_CATEGORY);
+
+                    //    return;
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                }
+
+                try
+                {
+                    // NOTE(crhodes)
+                    // Now add the Phidget to ChannelClass specific Dictionaries
+                    // that are used to find the right Phidget to use
+
+                    AddDeviceChannel(phidget, phidgetDevice);
+                }
+                catch (Exception ex)
+                {
+                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                }
             }
             catch (Exception ex)
             {
