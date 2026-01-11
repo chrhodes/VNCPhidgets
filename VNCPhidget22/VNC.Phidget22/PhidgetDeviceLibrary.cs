@@ -418,7 +418,18 @@ namespace VNC.Phidget22
 
             try
             {
-                if (Common.VNCLogging.DeviceInitializeLow) Log.EVENT_HANDLER($"|{phidget.ServerPeerName}" + // IPAddress,Port
+                // TODO(crhodes)
+                // See comments in AttachPhidgetDevice
+                // If Phidgets are attached locally Attach fires twice.  Once with no ServerPeerName (exception)
+                // and once with 127.0.0.1 IP.
+
+                // Maybe instead of handling in AttachPhidgetDevice we should handle/ignore here.
+                // Main problem here is phidget.ServerPeerName throws exceptions
+                // HACK(crhodes)
+                // For now just removing phidget.ServerPeerName
+
+                //if (Common.VNCLogging.DeviceInitializeLow) Log.EVENT_HANDLER($"|{phidget.ServerPeerName}" + // IPAddress,Port
+                if (Common.VNCLogging.DeviceInitializeLow) Log.EVENT_HANDLER($"" +
                     //$"|{phidget.ServerHostname}" + // IPAddress
                     $"|{phidget.DeviceSerialNumber}" +
                     $"|{phidget.IsLocal}|{phidget.IsRemote}|{phidget.Parent?.Parent}|{phidget.Parent}" +
@@ -1008,7 +1019,7 @@ namespace VNC.Phidget22
 
             // What to do about ManagerAttachedPhidgetDevices??
             // Same Host can have different DeviceClasses at same SerialNumber, HubPort, Channel
-            //PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
+            // PhidgetDevice phidgetDevice = new PhidgetDevice(phidget.ServerPeerName, phidget.DeviceSerialNumber);
 
             // This will not work as a phidgetDevice can have different DeviceClasses
             // at same SerialNumber, HubPort, Channel
