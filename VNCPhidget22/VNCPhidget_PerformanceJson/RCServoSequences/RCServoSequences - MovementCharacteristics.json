@@ -9,6 +9,24 @@
 //  VelocityLimit (1000) Acceleration (2000)
 //  VelocityLimit (2500) Acceleration (5000)
 //  VelocityLimit (5000) Acceleration (10000)
+//  VelocityLimit (10)
+//  VelocityLimit (25)
+//  VelocityLimit (50)
+//  VelocityLimit (100)
+//  VelocityLimit (250)
+//  VelocityLimit (500)
+//  VelocityLimit (1000)
+//  VelocityLimit (2500)
+//  VelocityLimit (5000)
+//  Acceleration (25)
+//  Acceleration (50)
+//  Acceleration (100)
+//  Acceleration (200)
+//  Acceleration (500)
+//  Acceleration (1000)
+//  Acceleration (2000)
+//  Acceleration (5000)
+//  Acceleration (10000)
 {
   "RCServoSequences": [
     //
@@ -21,10 +39,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 10,
-          "Acceleration": 25
-        }
+        { "VelocityLimit": 10, "Acceleration": 25 }
       ]
     },
     {
@@ -33,10 +48,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 25,
-          "Acceleration": 50
-        }
+        { "VelocityLimit": 25, "Acceleration": 50 }
       ]
     },
     {
@@ -45,10 +57,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 50,
-          "Acceleration": 100
-        }
+        { "VelocityLimit": 50, "Acceleration": 100 }
       ]
     },
     {
@@ -57,10 +66,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 100,
-          "Acceleration": 200
-        }
+        { "VelocityLimit": 100, "Acceleration": 200 }
       ]
     },
     {
@@ -69,10 +75,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 250,
-          "Acceleration": 500
-        }
+        { "VelocityLimit": 250, "Acceleration": 500 }
       ]
     },
     {
@@ -81,10 +84,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 500,
-          "Acceleration": 1000
-        }
+        { "VelocityLimit": 500, "Acceleration": 1000 }
       ]
     },
     {
@@ -93,10 +93,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 1000,
-          "Acceleration": 2000
-        }
+        { "VelocityLimit": 1000, "Acceleration": 2000 }
       ]
     },
     {
@@ -105,10 +102,7 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
-        {
-          "VelocityLimit": 2500,
-          "Acceleration": 5000
-        }
+        { "VelocityLimit": 2500, "Acceleration": 5000 }
       ]
     },
     {
@@ -117,10 +111,175 @@
       "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
       "ExecuteActionsInParallel": false,
       "Actions": [
+        { "VelocityLimit": 5000, "Acceleration": 10000 }
+      ]
+    },
+    //
+    // VelocityLimit Only
+    //
         {
-          "VelocityLimit": 5000,
-          "Acceleration": 10000
-        }
+      "Name": "VelocityLimit (10)",
+      "Description": "VelocityLimit (10)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 10}
+      ]
+    },
+    {
+      "Name": "VelocityLimit (25)",
+      "Description": "VelocityLimit (25)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 25 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (50)",
+      "Description": "VelocityLimit (50)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 50 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (100)",
+      "Description": "VelocityLimit (100)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 100 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (250)",
+      "Description": "VelocityLimit (250)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 250 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (500)",
+      "Description": "VelocityLimit (500)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 500 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (1000)",
+      "Description": "VelocityLimit (1000)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 1000 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (2500)",
+      "Description": "VelocityLimit (2500)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 2500 }
+      ]
+    },
+    {
+      "Name": "VelocityLimit (5000)",
+      "Description": "VelocityLimit (5000)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "VelocityLimit": 5000 }
+      ]
+    },
+    //
+    // Acceleration Only
+    //
+    {
+      "Name": "Acceleration (25)",
+      "Description": "Acceleration (25)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        {  "Acceleration": 25 }
+      ]
+    },
+    {
+      "Name": "Acceleration (50)",
+      "Description": "Acceleration (50)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 50 }
+      ]
+    },
+    {
+      "Name": "Acceleration (100)",
+      "Description": "Acceleration (100)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 100 }
+      ]
+    },
+    {
+      "Name": "Acceleration (200)",
+      "Description": "Acceleration (200)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 200 }
+      ]
+    },
+    {
+      "Name": "Acceleration (500)",
+      "Description": "Acceleration (500)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 500 }
+      ]
+    },
+    {
+      "Name": "Acceleration (1000)",
+      "Description": "Acceleration (1000)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 1000 }
+      ]
+    },
+    {
+      "Name": "Acceleration (2000)",
+      "Description": "Acceleration (2000)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 2000 }
+      ]
+    },
+    {
+      "Name": "Acceleration (5000)",
+      "Description": "Acceleration (5000)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 5000 }
+      ]
+    },
+    {
+      "Name": "Acceleration (10000)",
+      "Description": "Acceleration (10000)",
+      "UsageNotes": "Must provide SerialNumber, HubPort and Channel in DeviceChannelSequence",
+      "ExecuteActionsInParallel": false,
+      "Actions": [
+        { "Acceleration": 10000 }
       ]
     },
   ]

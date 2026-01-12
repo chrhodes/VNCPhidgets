@@ -154,7 +154,7 @@
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative -25" },
         { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative -25" }
       ],
-      "NextPerformance": { "Name": "RCServos 99415 - Center - Parallel" }
+      "NextPerformance": { "Name": "RCServos 99415 - Center Exact - Parallel" }
     },
   ]
 }

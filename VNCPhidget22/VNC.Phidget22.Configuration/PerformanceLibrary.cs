@@ -64,6 +64,7 @@ namespace VNC.Phidget22.Configuration
 
                 LoadDeviceSettings();
                 LoadPerformances();
+                LoadTests();
 
                 LoadDigitalInputSequences();
                 LoadDigitalOutputSequences();
@@ -117,6 +118,9 @@ namespace VNC.Phidget22.Configuration
             new Dictionary<string, Performance.Performance>();
 
         public static Dictionary<string, Performance.Performance> AvailablePerformances { get; set; } =
+            new Dictionary<string, Performance.Performance>();
+
+        public static Dictionary<string, Performance.Performance> AvailableTests { get; set; } =
             new Dictionary<string, Performance.Performance>();
 
         public static Dictionary<string, Performance.Performance> AllPerformances { get; set; } =
@@ -280,6 +284,20 @@ namespace VNC.Phidget22.Configuration
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
         }
 
+        public void LoadTests()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitialize) startTicks
+                    = Log.APPLICATION_INITIALIZE("Enter", Common.LOG_CATEGORY);
+
+            foreach (string configFile in GetListOfTestConfigFiles())
+            {
+                LoadTestsFromConfigFile(configFile);
+            }
+
+            if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
         // NOTE(crhodes)
         // This allows easier reloading of a single file
         // TODO(crhodes)
@@ -386,6 +404,64 @@ namespace VNC.Phidget22.Configuration
                         new SelectedCollectionChangedEventArgs()
                         { 
                             Name = "Performances" 
+                        });
+                }
+            }
+            catch (FileNotFoundException fnfex)
+            {
+                Log.ERROR($"Cannot find config file >{configFile}<  Check GetListOfPerformanceConfigFiles()", Common.LOG_CATEGORY);
+                Log.ERROR($"{fnfex}", Common.LOG_CATEGORY);
+            }
+            catch (Exception ex)
+            {
+                Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
+                Log.ERROR($"{ex}", Common.LOG_CATEGORY);
+            }
+        }
+
+        public void LoadTestsFromConfigFile(string configFile, bool reload = false)
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.ApplicationInitializeLow) startTicks =
+                    Log.APPLICATION_INITIALIZE_LOW($"Loading config file >{configFile}<", Common.LOG_CATEGORY);
+
+            try
+            {
+                string jsonString = File.ReadAllText($"{_performanceJsonPath}\\{configFile}");
+
+                PerformanceConfig? performanceConfig
+                    = JsonSerializer.Deserialize<PerformanceConfig>
+                    (jsonString, GetJsonSerializerOptions());
+
+                if (performanceConfig != null && performanceConfig.Performances is not null)
+                {
+                    foreach (var performance in performanceConfig.Performances)
+                    {
+                        try
+                        {
+                            if (performance.Name is not null)
+                            {
+                                if (reload)
+                                {
+                                    AvailableTests.Remove(performance.Name);
+                                    AllPerformances.Remove(performance.Name);
+                                }
+
+                                AvailableTests.Add(performance.Name, performance);
+                                AllPerformances.Add(performance.Name, performance);
+                            }
+                        }
+                        catch (ArgumentException ax)
+                        {
+                            Log.ERROR($"config file >{configFile}< Duplicate Key >{performance.Name}<", Common.LOG_CATEGORY);
+                            Log.ERROR($"{ax}", Common.LOG_CATEGORY);
+                        }
+                    }
+
+                    _eventAggregator.GetEvent<SelectedCollectionChangedEvent>().Publish(
+                        new SelectedCollectionChangedEventArgs()
+                        {
+                            Name = "Performances"
                         });
                 }
             }
@@ -918,20 +994,14 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\
 
-                @"Performances\Performances - 99415 Tests.json",           
+               
 
                 // Performances\DigitalOutput\
 
 
                 // Performances\RCServo\
 
-                @"Performances\RCServo\Performances - RCServo - 99415 OpenEngageDisengageClose.json",
-                @"Performances\RCServo\Performances - RCServo - 99415 MovementCharacteristics.json",
 
-                @"Performances\RCServo\Performances - RCServo - 99415 PP1.json",
-                @"Performances\RCServo\Performances - RCServo - 99415 PP2.json",
-                @"Performances\RCServo\Performances - RCServo - 99415 PP3.json",
-                @"Performances\RCServo\Performances - RCServo - 99415 PP4.json",
 
                 // Performances\Stepper\
 
@@ -997,13 +1067,11 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\Hands\
 
-
                 @"Performances\Hands\Performances - Hands - Gestures.json",
                 @"Performances\Hands\Performances - Hands - Move.json",
 
                 // Performances\
 
-                @"Performances\Performances - Movement Studies.json", 
 
                 // Performances\DigitalOutput\
 
@@ -1011,7 +1079,7 @@ namespace VNC.Phidget22.Configuration
 
                 // Performances\RCServo\
 
-                @"Performances\RCServo\Performances - RCServo - 99415 Routines.json",
+                //@"Performances\RCServo\Performances - RCServo - 99415 Routines.json",
 
                 // Performances\Stepper\
 
@@ -1020,6 +1088,48 @@ namespace VNC.Phidget22.Configuration
 
             return files;
         }
+
+        public static IEnumerable<string> GetListOfTestConfigFiles()
+        {
+            // HACK(crhodes)
+            // Read a directory and return files, perhaps with RegEx name match
+            // for now just hard code
+            // Would be nice to control order
+            // Maybe just put in ConfigFiles.json
+
+            List<string> files = new List<string>
+            {
+                // Top Level Routines
+                // These go first to get on top of dropdown
+
+                // Performances\
+
+                @"Performances\Performances - 99415 Tests.json",
+                @"Performances\Performances - Phidget Tests.json",  
+
+                // Performances\RCServo\
+
+                @"Performances\RCServo\Performances - RCServo - 99415 OpenEngageDisengageClose.json",
+
+                @"Performances\RCServo\Performances - RCServo - 99415 Routines.json",
+
+                @"Performances\RCServo\Performances - RCServo - 99415 MovementCharacteristics Studies.json",
+                @"Performances\RCServo\Performances - RCServo - 99415 Acceleration Studies.json",
+                @"Performances\RCServo\Performances - RCServo - 99415 VelocityLimit Studies.json",
+
+                @"Performances\RCServo\Performances - RCServo - 99415 MovementCharacteristics.json",
+
+                @"Performances\RCServo\Performances - RCServo - 99415 PP1.json",
+                @"Performances\RCServo\Performances - RCServo - 99415 PP2.json",
+                @"Performances\RCServo\Performances - RCServo - 99415 PP3.json",
+                @"Performances\RCServo\Performances - RCServo - 99415 PP4.json",
+                @"Performances\RCServo\Performances - RCServo - 99415 PP5.json",
+
+            };
+
+            return files;
+        }
+
 
         public static IEnumerable<string> GetListOfDigitalInputConfigFiles()
         {

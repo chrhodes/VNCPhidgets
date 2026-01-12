@@ -56,6 +56,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PlayPerformanceCommand = new DelegateCommand(PlayPerformance, PlayPerformanceCanExecute);
 
+            PlayTestsCommand = new DelegateCommand(PlayTests, PlayTestsCanExecute);
+
             PlayDigitalOutputSequenceCommand = new DelegateCommand(PlayDigitalOutputSequence, PlayDigitalOutputSequenceCanExecute);
 
             PlayRCServoSequenceCommand = new DelegateCommand(PlayRCServoSequence, PlayRCServoSequenceCanExecute);
@@ -81,6 +83,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             DeviceSettings = PerformanceLibrary.AvailableDeviceSettings.Values.ToList();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+            Tests = PerformanceLibrary.AvailableTests.Values.ToList();
 
             // TODO(crhodes)
             // Might be better to do this with an Event so gets called fewer times.
@@ -586,6 +589,76 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             set
             {
                 _serialNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        #endregion
+
+        #region Tests
+
+        public string TestFileNameToolTip { get; set; } = "DoubleClick to select new file";
+
+        private IEnumerable<Performance>? _tests;
+        public IEnumerable<Performance>? Tests
+        {
+            get => _tests;
+            set
+            {
+                _tests = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Performance? _selectedTest;
+        public Performance? SelectedTest
+        {
+            get => _selectedTest;
+            set
+            {
+                if (_selectedTest == value)
+                {
+                    return;
+                }
+
+                _selectedTest = value;
+                OnPropertyChanged();
+
+                PlayTestsCommand?.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
+        private List<Performance>? _selectedTests;
+        public List<Performance>? SelectedTests
+        {
+            get => _selectedTests;
+            set
+            {
+                if (_selectedTests == value)
+                {
+                    return;
+                }
+
+                _selectedTests = value;
+                OnPropertyChanged();
+
+                PlayTestsCommand?.RaiseCanExecuteChanged();
+                PlayDigitalOutputSequenceCommand?.RaiseCanExecuteChanged();
+                PlayRCServoSequenceCommand?.RaiseCanExecuteChanged();
+                PlayStepperSequenceCommand?.RaiseCanExecuteChanged();
+            }
+        }
+
+        private Int32? _serialNumber3;
+        public Int32? SerialNumber3
+        {
+            get => _serialNumber3;
+            set
+            {
+                _serialNumber3 = value;
                 OnPropertyChanged();
             }
         }
@@ -1226,7 +1299,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("(Button3Execute) Exit", Common.LOG_CATEGORY, startTicks);
         }
 
-           #region PerformanceFileName DoubleClick
+        #region PerformanceFileName DoubleClick
 
         public DelegateCommand? PerformanceFileName_DoubleClick_Command { get; set; }
 
@@ -1239,7 +1312,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         #endregion
 
-        #region PlayPerformance Command
+        #region PlayDeviceSettings Command
 
         public DelegateCommand? PlayDeviceSettingsCommand { get; set; }
         // If using CommandParameter, figure out TYPE here and above
@@ -1434,6 +1507,109 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             // TODO(crhodes)
             // Add any before button is enabled logic.
             if (SelectedPerformances?.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region PlayTests Command
+
+        public DelegateCommand? PlayTestsCommand { get; set; }
+        // If using CommandParameter, figure out TYPE here and above
+        // and remove above declaration
+        //public DelegateCommand<TYPE> PlayPerformanceCommand { get; set; }
+        //public TYPE PlayPerformanceCommandParameter;
+        public string PlayTestsContent { get; set; } = "Play Tests";
+        public string PlayTestsToolTip { get; set; } = "Play Tests ToolTip";
+
+        // Can get fancy and use Resources
+        //public string PlayPerformanceContent { get; set; } = "ViewName_PlayPerformanceContent";
+        //public string PlayPerformanceToolTip { get; set; } = "ViewName_PlayPerformanceContentToolTip";
+
+        // Put these in Resource File
+        //    <system:String x:Key="ViewName_PlayPerformanceContent">PlayPerformance</system:String>
+        //    <system:String x:Key="ViewName_PlayPerformanceContentToolTip">PlayPerformance ToolTip</system:String>  
+
+        // If using CommandParameter, figure out TYPE and fix above
+        //public void PlayPerformance(TYPE value)
+
+        public async void PlayTests()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+            // TODO(crhodes)
+            // Do something amazing.
+            Message = "Cool, you called PlayTests";
+
+            PerformancePlayer performancePlayer = GetNewPerformancePlayer();
+
+            // TODO(crhodes)
+            // Maybe this should be a do / while loop
+
+            if (LogPerformance) Log.TRACE($"Selected Performances:{SelectedTests?.Count} serialNumber:{SerialNumber}", Common.LOG_CATEGORY);
+
+            if (SelectedTests is not null)
+            {
+                foreach (Performance performance in SelectedTests)
+                {
+                    Performance? selectedPerformance = performance;
+
+                    if (SerialNumber is not null)
+                    {
+                        if (LogPerformance) Log.TRACE($"Setting serialNumber:{SerialNumber} on nextPerformance:{selectedPerformance.Name}", Common.LOG_CATEGORY);
+                        selectedPerformance.SerialNumber = SerialNumber;
+                    }
+
+                    // NOTE(crhodes)
+                    // Run on another thread to keep UI active
+                    await Task.Run(async () =>
+                    {
+                        await performancePlayer.ExecutePerformance(selectedPerformance);
+                    });
+                }
+            }
+
+            // Uncomment this if you are telling someone else to handle this
+
+            // Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Publish();
+
+            // May want EventArgs
+
+            //  EventAggregator.GetEvent<PlayPerformanceEvent>().Publish(
+            //      new PlayPerformanceEventArgs()
+            //      {
+            //            Organization = _collectionMainViewModel.SelectedCollection.Organization,
+            //            Process = _contextMainViewModel.Context.SelectedProcess
+            //      });
+
+            // Start Cut Three - Put this in PrismEvents
+
+            // public class PlayPerformanceEvent : PubSubEvent { }
+
+            // End Cut Three
+
+            // Start Cut Four - Put this in places that listen for event
+
+            //Common.EventAggregator.GetEvent<PlayPerformanceEvent>().Subscribe(PlayPerformance);
+
+            // End Cut Four
+
+            //Log.EVENT("Exit", Common.LOG_CATEGORY, startTicks);
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
+        public Boolean PlayTestsCanExecute()
+        {
+            // TODO(crhodes)
+            // Add any before button is enabled logic.
+            if (SelectedTests?.Count > 0)
             {
                 return true;
             }

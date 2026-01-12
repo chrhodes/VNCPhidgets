@@ -25,54 +25,14 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "Move Servo Min/Max"
-        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Servo Min/Max" },
       ],
       "NextPerformance": null
     },
@@ -86,56 +46,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        // TODO(crhodes)
-        // Update with exact positions
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "RCServoSequence": { "Actions": [ { "TargetPosition": 84 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": { "Actions": [ { "TargetPosition": 96 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "RCServoSequence": { "Actions": [ { "TargetPosition": 96 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "RCServoSequence": { "Actions": [ { "TargetPosition": 82 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "RCServoSequence": { "Actions": [ { "TargetPosition": 84 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "RCServoSequence": { "Actions": [ { "TargetPosition": 94 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "RCServoSequence": { "Actions": [ { "TargetPosition": 98 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "RCServoSequence": { "Actions": [ { "TargetPosition": 83 } ] } }
       ]
     },
     //
@@ -148,54 +66,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "RCServo - Move to Min"
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "RCServo - Move to Min" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "RCServo - Move to Min" }
       ]
     },
     {
@@ -205,54 +83,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "RCServo - Move to Center"
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "RCServo - Move to Center" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "RCServo - Move to Center" }
       ]
     },
     {
@@ -262,54 +100,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": false,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "RCServo - Move to Max"
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "RCServo - Move to Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "RCServo - Move to Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "RCServo - Move to Max" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "RCServo - Move to Max" }
       ]
     },
     //
@@ -322,54 +120,14 @@
       "Loops": 1,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "Move Servo Min/Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "Move Servo Min/Max"
-        },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Servo Min/Max" },
       ],
       "NextPerformance": null
     },
@@ -383,56 +141,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        // TODO(crhodes)
-        // Update with exact positions
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "RCServoSequence": { "Actions": [ { "TargetPosition": 90 } ] }
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "RCServoSequence": { "Actions": [ { "TargetPosition": 84 } ] } }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "RCServoSequence": { "Actions": [ { "TargetPosition": 96 } ] } }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "RCServoSequence": { "Actions": [ { "TargetPosition": 96 } ] } }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "RCServoSequence": { "Actions": [ { "TargetPosition": 82 } ] } }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "RCServoSequence": { "Actions": [ { "TargetPosition": 84 } ] } }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "RCServoSequence": { "Actions": [ { "TargetPosition": 94 } ] } },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "RCServoSequence": { "Actions": [ { "TargetPosition": 98 } ] } }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "RCServoSequence": { "Actions": [ { "TargetPosition": 83 } ] } }
       ]
     },
     //
@@ -445,54 +161,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "RCServo - Move to Min"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "RCServo - Move to Min"
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "RCServo - Move to Min" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "RCServo - Move to Min" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "RCServo - Move to Min" }
       ]
     },
     {
@@ -502,54 +178,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "RCServo - Move to Center"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "RCServo - Move to Center"
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "RCServo - Move to Center" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "RCServo - Move to Center" }
       ]
     },
     {
@@ -559,54 +195,14 @@
       "SerialNumber": 99415,
       "ExecuteDeviceChannelSequencesInParallel": true,
       "DeviceChannelSequences": [
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 0,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 1,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 2,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 3,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 4,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 5,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 6,
-          "Name": "RCServo - Move to Max"
-        },
-        {
-          "ChannelClass": "RCServo",
-          "HubPort": 0,
-          "Channel": 7,
-          "Name": "RCServo - Move to Max"
-        }
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "RCServo - Move to Max" }, 
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "RCServo - Move to Max" }
       ]
     },
   ]

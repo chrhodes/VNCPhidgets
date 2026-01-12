@@ -1,72 +1,20 @@
 // RCServoSequence_OpenClose.json
 // Contains
-//  99415-Move Servo 0-1-2-3
+//  99415-Move Servo 0-1-2-3-4-5-6-7
 //  Move Servo 1
 //  Move Servo 2
 //  Move Servo 3
-//  99415-Parallel All (PA)
-//  99415-PA Step2
-//  99415-PA Step3
-//  99415-PA Step4
-//  99415-PA Step5
-//  99415-PA Step6
-//  99415-PA Step7
-//  99415-PA Step8
-//  99415-Debug Sequence
-//  99415-Debug Sequence Step1
-//  99415-Parallel Pairs 1 (PP1)
-//  99415-PP1 Step2
-//  99415-PP1 Step3
-//  99415-PP1 Step4
-//  99415-PP1 Step5
-//  99415-PP1 Step6
-//  99415-PP1 Step7
-//  99415-PP1 Step8
-//  99415-PP1 Step9
-//  99415-PP1 Step10
-//  99415-Parallel Pairs 2 (PP2)
-//  99415-PP2 Step2
-//  99415-PP2 Step3
-//  99415-PP2 Step4
-//  99415-PP2 Step5
-//  99415-PP2 Step6
-//  99415-PP2 Step7
-//  99415-PP2 Step8
-//  99415-PP2 Step9
-//  99415-PP2 Step10
-//  99415-Parallel Pairs 3 (PP3)
-//  99415-PP3 Step2
-//  99415-PP3 Step3
-//  99415-PP3 Step4
-//  99415-PP3 Step5
-//  99415-PP3 Step6
-//  99415-PP3 Step7
-//  99415-PP3 Step8
-//  99415-PP3 Step9
-//  99415-PP3 Step10
-//  99415-PP3 Step11
-//  99415-PP3 Step12
-//  99415-PP3 Step13
-//  99415-Parallel Pairs 4 (PP4)
-//  99415-PP4 Step2
-//  99415-PP4 Step3
-//  99415-PP4 Step4
-//  99415-PP4 Step5
-//  99415-PP4 Step6
-//  99415-PP4 Step7
-//  99415-PP4 Step8
-//  99415-PP4 Step9
-//  99415-PP4 Step10
-//  99415-PP4 Step11
-//  99415-PP4 LastStep
-//
+//  Move Servo 4
+//  Move Servo 5
+//  Move Servo 6
+//  Move Servo 7
 {
   "RCServoSequences": [
     //
     // Servo0
     //
     {
-      "Name": "99415-Move Servo 0-1-2-3", 
+      "Name": "99415-Move Servo 0-1-2-3-4-5-6-7", 
       "Description": "Moves Servo 0, then 1, then 2, then 3 using NextSequence - Three Loops",
       "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
       "Loops": 3, 
@@ -131,602 +79,75 @@
         { "TargetPosition": 100  },
         { "TargetPosition": 90 },
       ],
-    },
-
+      "NextSequence": { "Name": "Move Servo4", "ChannelClass": "RCServo", "SerialNumber": 99415 }
+    },   
     //
-    // TODO(crhodes)
-    // Fix all these.  Use HubPort and Channel
-    // Keep what's visually interesting, toss rest
-    //
-    // TODO(crhodes)
-    // Don't think most of these will work as  ServoIndex no longer is part of Actions.
-    // No longer can have Parallel Actions across Servos in this way.
-    // Need to do all this with Performance, ugh.  Smile.
-    //
-    //
-
-    //********************************************************************************
-    //
-    // Parallel All (PA)
-    //
-    //********************************************************************************
-    {
-
-      "Name": "99415-Parallel All (PA)", 
-      "Description": "SEQUENCE DESCRIPTION",
-      "UsageNotes": "Servos expected to be Centered and Engaged",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -20 },
-        { "ServoIndex": 1, "RelativePosition": -40 },
-        { "ServoIndex": 2, "RelativePosition": -60 },
-        { "ServoIndex": 4, "RelativePosition": 20 },
-        { "ServoIndex": 5, "RelativePosition": 40 },
-        { "ServoIndex": 6, "RelativePosition": 60 }
-      ],
-     "NextSequence": { "Name": "99415-PA Step2", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PA Step2", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 5 },
-        { "ServoIndex": 1, "RelativePosition": 5 },
-        { "ServoIndex": 2, "RelativePosition": 5 },
-        { "ServoIndex": 4, "RelativePosition": -5 },
-        { "ServoIndex": 5, "RelativePosition": -5 },
-        { "ServoIndex": 6, "RelativePosition": -5 }
-      ],
-      "NextSequence": { "Name": "99415-PA Step3", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PA Step3", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -5 },
-        { "ServoIndex": 1, "RelativePosition": -5 },
-        { "ServoIndex": 2, "RelativePosition": -5 },
-        { "ServoIndex": 4, "RelativePosition": 5},
-        { "ServoIndex": 5, "RelativePosition": 5},
-        { "ServoIndex": 6, "RelativePosition": 5}
-      ],
-      "NextSequence": { "Name": "99415-PA Step4", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PA Step4",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 5 },
-        { "ServoIndex": 1, "RelativePosition": 5 },
-        { "ServoIndex": 2, "RelativePosition": 5 },
-        { "ServoIndex": 4, "RelativePosition": -5 },
-        { "ServoIndex": 5, "RelativePosition": -5 },
-        { "ServoIndex": 6, "RelativePosition": -5 }
-      ],
-      "NextSequence": { "Name": "99415-PA Step5", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PA Step5", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -5 },
-        { "ServoIndex": 1, "RelativePosition": -5 },
-        { "ServoIndex": 2, "RelativePosition": -5 },
-        { "ServoIndex": 4, "RelativePosition": 5},
-        { "ServoIndex": 5, "RelativePosition": 5},
-        { "ServoIndex": 6, "RelativePosition": 5}
-      ],
-      "NextSequence": { "Name": "99415-PA Step6", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PA Step6", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -10 },
-        { "ServoIndex": 1, "RelativePosition": -20 },
-        { "ServoIndex": 2, "RelativePosition": -30 },
-        { "ServoIndex": 4, "RelativePosition": 10 },
-        { "ServoIndex": 5, "RelativePosition": 20 },
-        { "ServoIndex": 6, "RelativePosition": 30 }
-      ],
-      "NextSequence": { "Name": "99415-PA Step7", "SequenceType": "AS" }
-    },
-    {
-      "Name": "99415-PA Step7", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 10 },
-        { "ServoIndex": 1, "RelativePosition": 20 },
-        { "ServoIndex": 2, "RelativePosition": 30 },
-        { "ServoIndex": 4, "RelativePosition": -10 },
-        { "ServoIndex": 5, "RelativePosition": -20 },
-        { "ServoIndex": 6, "RelativePosition": -30 }
-      ],
-      "NextSequence": { "Name": "99415-PA Step8", "SequenceType": "AS" }
-    },
-    {
-      "Name": "99415-PA Step8", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 20 },
-        { "ServoIndex": 1, "RelativePosition": 40 },
-        { "ServoIndex": 2, "RelativePosition": 60 },
-        { "ServoIndex": 4, "RelativePosition": -20 },
-        { "ServoIndex": 5, "RelativePosition": -40 },
-        { "ServoIndex": 6, "RelativePosition": -60 }
-      ]
-    },
-    //
-    // Debug Sequence
-    //
-    { 
-
-      "Name": "99415-Debug Sequence",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 1, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 2, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 3, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 4, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 5, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 6, "MinPositionStop": -1, "MaxPositionStop": -1 },
-        { "ServoIndex": 7, "MinPositionStop": -1, "MaxPositionStop": -1 },
-      ],
-      "NextSequence": { "Name": "99415-Debug Sequence Step1", "SequenceType": "AS" },
-    },
-    {
-
-      "Name": "99415-Debug Sequence Step1",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 1, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 2, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 3, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 4, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 5, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 6, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 },
-        { "ServoIndex": 7, "Engaged": true, "Acceleration": 25, "VelocityLimit": 10 }
-      ],
-      "NextSequence": { "Name": "99415-Parallel Pairs 1 (PP1)", "SequenceType": "AS" }
-    },
-    //
-    // Parallel Pairs 1 (PP1)
+    // Servo4
     //
     {
-
-      "Name": "99415-Parallel Pairs 1 (PP1)",
-      "ExecuteActionsInParallel": true,
+      "Name": "Move Servo4",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 4,
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-        { "ServoIndex": 4, "Engaged": true },
-        { "ServoIndex": 5, "Engaged": true },
-        { "ServoIndex": 6, "Engaged": true }
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
-      "NextSequence": { "Name": "99415-PP1 Step2", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step2",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -20 },
-        { "ServoIndex": 4, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step3", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step3",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -30 },
-        { "ServoIndex": 5, "RelativePosition": 30 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step4", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step4",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -40 },
-        { "ServoIndex": 6, "RelativePosition": 40 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step5", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step5",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -10 },
-        { "ServoIndex": 4, "RelativePosition": 10 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step6", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step6",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -15 },
-        { "ServoIndex": 5, "RelativePosition": 15 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step7", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step7",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -20 },
-        { "ServoIndex": 6, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step8", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step8",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -10 },
-        { "ServoIndex": 4, "RelativePosition": 10 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step9", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step9",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -15 },
-        { "ServoIndex": 5, "RelativePosition": 15 }
-      ],
-      "NextSequence": { "Name": "99415-PP1 Step10", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP1 Step10",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -20 },
-        { "ServoIndex": 6, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" }
+      "NextSequence": { "Name": "Move Servo5", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
     //
-    // Parallel Pairs 2 (PP2)
+    // Servo5
     //
     {
-
-      "Name": "99415-Parallel Pairs 2 (PP2)", 
-      "ExecuteActionsInParallel": true,
+      "Name": "Move Servo5",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 5,
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-        { "ServoIndex": 4, "Engaged": true },
-        { "ServoIndex": 5, "Engaged": true },
-        { "ServoIndex": 6, "Engaged": true }
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
-      "NextSequence": { "Name": "99415-PP2 Step2", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step2", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 20 },
-        { "ServoIndex": 4, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step3", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "PP2 Step3", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": 30 },
-        { "ServoIndex": 5, "RelativePosition": 30 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step4", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step4", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": 40 },
-        { "ServoIndex": 6, "RelativePosition": 40 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step5", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step5", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 10 },
-        { "ServoIndex": 4, "RelativePosition": 10 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step6", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step6", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": 15 },
-        { "ServoIndex": 5, "RelativePosition": 15 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step7", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step7", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": 20 },
-        { "ServoIndex": 6, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step8", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step8", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -10 },
-        { "ServoIndex": 4, "RelativePosition": -10 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step9", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step9", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -15 },
-        { "ServoIndex": 5, "RelativePosition": -15 }
-      ],
-      "NextSequence": { "Name": "99415-PP2 Step10", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP2 Step10",
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -20 },
-        { "ServoIndex": 6, "RelativePosition": -20 }
-      ],
-      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" }
+      "NextSequence": { "Name": "Move Servo6", "ChannelClass": "RCServo", "SerialNumber": 99415 }
     },
     //
-    // Parallel Pairs 3 (PP3)
+    // Servo6
     //
     {
-
-      "Name": "99415-Parallel Pairs 3 (PP3)",
-      "ExecuteActionsInParallel": true,
+      "Name": "Move Servo6",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 6,
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true },
-        { "ServoIndex": 1, "Engaged": true },
-        { "ServoIndex": 2, "Engaged": true },
-        { "ServoIndex": 4, "Engaged": true },
-        { "ServoIndex": 5, "Engaged": true },
-        { "ServoIndex": 6, "Engaged": true }
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
-      "NextSequence": { "Name": "99415-PP3 Step2", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step2", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 20 },
-        { "ServoIndex": 4, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step3", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step3", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": 30 },
-        { "ServoIndex": 5, "RelativePosition": 30 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step4", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step4", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": 40 },
-        { "ServoIndex": 6, "RelativePosition": 40 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step5", "SequenceType": "AS" },
-    },
-    { 
-      "Name": "99415-PP3 Step5", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -20 },
-        { "ServoIndex": 4, "RelativePosition": -20 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step6", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step6", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -30 },
-        { "ServoIndex": 5, "RelativePosition": -30 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step7", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step7", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -40 },
-        { "ServoIndex": 6, "RelativePosition": -40 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step8", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step8", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": 40 },
-        { "ServoIndex": 4, "RelativePosition": 40 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step9", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step9", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": 30 },
-        { "ServoIndex": 5, "RelativePosition": 30 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step10", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step10", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": 20 },
-        { "ServoIndex": 6, "RelativePosition": 20 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step11", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP3 Step11", "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -40 },
-        { "ServoIndex": 4, "RelativePosition": -40 }
-      ],
-      "NextSequence": { "Name": "99415-PP3 Step12", "SequenceType": "AS" }
-    },
-    { "Name": "99415-PP3 Step12", 
-      "ExecuteActionsInParallel": true,
-      "NextSequence": { "Name": "99415-PP3 Step13", "SequenceType": "AS" },
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -30 },
-        { "ServoIndex": 5, "RelativePosition": -30 }
-      ]
-    },
-    { 
-      "Name": "99415-PP3 Step13", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -20 },
-        { "ServoIndex": 6, "RelativePosition": -20 }
-      ],
-      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" }
-    },
+      "NextSequence": { "Name": "Move Servo7", "ChannelClass": "RCServo", "SerialNumber": 99415 }
+    }, 
     //
-    // Parallel Pairs 4 (PP4)
+    // Servo7
     //
     {
-
-      "Name": "99415-Parallel Pairs 4 (PP4)",
-      "Description": "SEQUENCE DESCRIPTION",
-      "Loops": 1,
-      "ExecuteActionsInParallel": true,
+      "Name": "Move Servo7",
+      "UsageNotes": "Must provide SerialNumber in DeviceChannelSequence",
+      "HubPort": 0,
+      "Channel": 7,
       "Actions": [
-        { "ServoIndex": 0, "Engaged": true, "VelocityLimit": 75 },
-        { "ServoIndex": 1, "Engaged": true, "VelocityLimit": 150 },
-        { "ServoIndex": 2, "Engaged": true, "VelocityLimit": 300},
-        { "ServoIndex": 4, "Engaged": true, "VelocityLimit": 75 },
-        { "ServoIndex": 5, "Engaged": true, "VelocityLimit": 150 },
-        { "ServoIndex": 6, "Engaged": true, "VelocityLimit": 300 }
+        { "TargetPosition": 90 },
+        { "TargetPosition": 100 },
+        { "TargetPosition": 110 },
+        { "TargetPosition": 100  },
+        { "TargetPosition": 90 },
       ],
-      "NextSequence": { "Name": "99415-PP4 Step2", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step2", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 6, "TargetPosition": -1 },
-        { "ServoIndex": 2, "TargetPosition": -2 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step3", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step3", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 5, "TargetPosition": -1 },
-        { "ServoIndex": 1, "TargetPosition": -2 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step4", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step4", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 4, "TargetPosition": -1, "Duration": 500 },
-        { "ServoIndex": 0, "TargetPosition": -2, "Duration": 500}
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step5", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step5", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -90},
-        { "ServoIndex": 6, "RelativePosition": 90 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step6", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step6", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -90 },
-        { "ServoIndex": 5, "RelativePosition": 90 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step7", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step7", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -90 },
-        { "ServoIndex": 4, "RelativePosition": 90 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step8", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step8", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "RelativePosition": -90 },
-        { "ServoIndex": 4, "RelativePosition": 90 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step9", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step9", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 1, "RelativePosition": -90 },
-        { "ServoIndex": 5, "RelativePosition": 90 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step10", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step10", "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 2, "RelativePosition": -95, "Duration": 1000 },
-        { "ServoIndex": 6, "RelativePosition": 95, "Duration": 1000 }
-      ],
-      "NextSequence": { "Name": "99415-PP4 Step11", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 Step11", 
-      "ExecuteActionsInParallel": true,
-      "Actions": [
-        { "ServoIndex": 0, "VelocityLimit": 50 },
-        { "ServoIndex": 1, "VelocityLimit": 100 },
-        { "ServoIndex": 2, "VelocityLimit": 200 },
-        { "ServoIndex": 4, "VelocityLimit": 200 },
-        { "ServoIndex": 5, "VelocityLimit": 100},
-        { "ServoIndex": 6, "VelocityLimit": 50 },
-      ],
-      "NextSequence": { "Name": "99415-PP4 LastStep", "SequenceType": "AS" }
-    },
-    { 
-      "Name": "99415-PP4 LastStep", 
-      "ExecuteActionsInParallel": true,
-      "NextSequence": { "Name": "99415-Engage and Center Servos", "SequenceType": "AS" },
-    },
-    
+      //"NextSequence": { "Name": "Move Servo7", "ChannelClass": "RCServo", "SerialNumber": 99415 }
+    }, 
   ]
 }

@@ -1,0 +1,223 @@
+// Performance_RFCServo - 99415 PP1.json
+// Contains
+//  99415-Parallel Pairs 5 (PP5)
+//  99415-PP5 Step2
+//  99415-PP5 Step3
+//  99415-PP5 Step4
+//  99415-PP5 Step5
+//  99415-PP5 Step6
+//  99415-PP5 Step7
+//  99415-PP5 Step8
+//  99415-PP5 Step9
+//
+{
+  "Name": "Performance_RCServo_PP1",
+  "Description": "Parallel Pair Performances for RCServos",
+  "Performances": [
+    //
+    // Parallel Pairs 1 (PP5)
+    //
+    {
+      "Name": "99415-Parallel Pairs 5 (PP5)",
+      "Description": "", 
+      "UsageNotes": "",
+      "SerialNumber": 99415,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Open and Engage Servo" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Open and Engage Servo" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step2" }
+    },
+    { 
+      "Name": "99415-PP5 Step2",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (100) Acceleration (200)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -50" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 50" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step3" }
+    },
+    { 
+      "Name": "99415-PP5 Step3",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (100) Acceleration (200)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 50" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -50" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step4" }
+    },
+    { 
+      "Name": "99415-PP5 Step4",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (100) Acceleration (200)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -80" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 80" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step5" }
+    },
+    { 
+      "Name": "99415-PP5 Step5",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 80" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -80" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step6" }
+    },
+    { 
+      "Name": "99415-PP5 Step6",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (100) Acceleration (200)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative -50" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative 50" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step7" }
+    },
+    { 
+      "Name": "99415-PP5 Step7",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -30" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative 50" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative -50" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step8" }
+    },
+    { 
+      "Name": "99415-PP5 Step8",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (100) Acceleration (200)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative -60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative 60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative -80" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative 80" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415-PP5 Step9" }
+    },
+    {     
+      "Name": "99415-PP5 Step9",
+      "SerialNumber": 99415,
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
+      ],
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 0, "Name": "Move Relative 20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 4, "Name": "Move Relative -20" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 1, "Name": "Move Relative 40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 5, "Name": "Move Relative -40" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 2, "Name": "Move Relative 60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 6, "Name": "Move Relative -60" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 3, "Name": "Move Relative 80" },
+        { "ChannelClass": "RCServo", "HubPort": 0, "Channel": 7, "Name": "Move Relative -80" }
+      ],
+      "AfterPerformanceLoopPerformances": [
+
+        { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      //"NextPerformance": { "Name": "99415-PP5 Step10" }
+    },
+  ]
+}

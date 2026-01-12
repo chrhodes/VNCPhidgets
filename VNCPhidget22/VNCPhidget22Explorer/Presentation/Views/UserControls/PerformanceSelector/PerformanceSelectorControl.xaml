@@ -219,6 +219,74 @@
 
             </dxlc:LayoutGroup>
 
+            <dxlc:LayoutGroup x:Name="lgTests" View="GroupBox" Header="Tests"  
+                Orientation="Vertical" VerticalAlignment="Top"
+                IsCollapsible="True" IsCollapsed="False">
+
+                <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
+
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Top" >
+
+                        <dxlc:LayoutItem Label="Selected Test(s)" HorizontalAlignment="Left" >
+                            <dxe:ComboBoxEdit x:Name="cbeTests" Width="400" TextWrapping="Wrap"
+                                ItemsSource="{Binding Tests}" DisplayMember="Name"
+                                SelectedItem="{Binding SelectedTest}"                                              
+                                EditValue="{ Binding 
+                                    Path=SelectedTests,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource SelectedItemsToListOfPerformanceConverter} }" >
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:CheckedComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup View="GroupBox" Header="Overrides" Orientation="Horizontal" >
+
+                            <dxlc:LayoutItem Label="SerialNumber#" LabelPosition="Left" HorizontalAlignment="Left" >
+                                <dxe:TextEdit Text="{Binding SerialNumber3}" NullText="serialnumber" 
+                                              MouseDoubleClick="TextEdit_MouseDoubleClick"/>
+                                <!--<dxe:ComboBoxEdit HorizontalAlignment="Left"
+                                    ItemsSource="{Binding HubPorts}"
+                                    SelectedItem="{Binding SelectedHubPort}" >
+                                    -->
+                                <!--<dxe:ComboBoxEdit.StyleSettings>
+                                        <dxe:CheckedComboBoxStyleSettings />
+                                    </dxe:ComboBoxEdit.StyleSettings>-->
+                                <!--
+                                </dxe:ComboBoxEdit>-->
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+
+                        <!--<dxlc:LayoutItem Label="Name" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding SelectedPerformance.Name }" HorizontalAlignment="Left" />
+                        </dxlc:LayoutItem>-->
+
+                        <dxlc:LayoutItem Label="Description" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding SelectedTests.Description }" />
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="UsageNotes" HorizontalAlignment="Left" >
+                            <dxe:TextEdit Text="{Binding Tests.UsageNotes }" />
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem VerticalAlignment="Stretch" HorizontalAlignment="Right">
+                        <Button 
+	                        Command="{Binding PlayTestsCommand }"
+	                        Content="{Binding PlayTestsContent, FallbackValue='PlayTests' }"
+	                        ToolTip="{Binding PlayTestsToolTip, FallbackValue='PlayTests ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <views:PerformanceInfoControl DataContext="{Binding SelectedTest}" />
+
+            </dxlc:LayoutGroup>
+
             <dxlc:LayoutGroup x:Name="lgChananelClassSequences" View="GroupBox"  Header="ChannelClass Sequences" 
                               Orientation="Vertical" VerticalAlignment="Top"
                               IsCollapsible="True" IsCollapsed="False">

@@ -53,6 +53,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             lgDeviceSettings.IsCollapsed = true;
             lgPerformances.IsCollapsed = true;
+            lgTests.IsCollapsed = true;
             lgChananelClassSequences.IsCollapsed = true;
 
             //lgDigitalOutputSequences.IsCollapsed = true;

@@ -1,107 +1,114 @@
 // Performances - 99415 Tests.json
 // Contains
-//  Open Test Phidgets
-//  Test Before, After, and Next Performance Sequences
-//  Close Test Phidgets
 //  99415 - Test Open, Engage, Move, Close Sequences
+//  99415 - Play PPx Performances
 {
   "Name": "Performances - 99415 Tests",
-  "Description": "Testing all the different things a Performance supports",
+  "Description": "",
   "Performances": [
-    {
-      "Name": "Open Test Phidgets",
-      "Description": "Open the Phidgets used in Test",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-        { "Name": "DigitalOutput 124744 - Open"},
-        { "Name": "RCServos 99415 - Open and Engage A - DCS S# - CC HP+Ch" },
-        { "Name": "Stepper 268213 - Open" },
-      ],
-      //"NextPerformance": { "Name": "Test Before, After, and Next Performance Sequences" }
-    },
-    {
-      "Name": "Test Before, After, and Next Performance Sequences",
-      "Description": "This uses Specific ChannelSequences",
-      "BeforePerformanceLoopPerformances": [
-        { "Name": "DigitalOutput 124744 - Parallel Sequences" },
-        { "Name": "Stepper 268213 - Sequential Sequences" },
-        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
-      ],
-      "Loops": 1,
-      "ExecuteDeviceChannelSequencesInParallel": true,
-      "DeviceChannelSequences": [
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 0, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 1, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 2, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 3, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 4, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 5, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 6, "Name": "Move Servo Min/Max" },
-        { "ChannelClass": "RCServo", "SerialNumber": 99415, "HubPort": 0, "Channel": 7, "Name": "Move Servo Min/Max" },
-      ],
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-
-        { "Name": "DigitalOutput 124744 - Sequential Sequences 1" },
-
-        { "Name": "RCServos 99415 - VelocityLimit (1000) Acceleration (2000)" },
-        { "Name": "RCServos 99415 - Min/Max - Sequential" },
-
-        { "Name": "DigitalOutput 124744 - Sequential Sequences 2" },
-
-        { "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)" },
-        { "Name": "RCServos 99415 - Min/Max - Parallel" },
-
-        { "Name": "DigitalOutput 124744 - Sequential Sequences 1" },
-      ],
-      "AfterPerformanceLoopPerformances": [
-
-        { "Name": "Stepper 268213 - Sequential Sequences" },   
-        { "Name": "DigitalOutput 124744 - Parallel Sequences" }
-      ],
-      //"NextPerformance": { "Name": "Test Before, After, and Next Performance Sequences - Close Phidgets" }
-    },
-    {
-      "Name": "Close Test Phidgets",
-      "Description": "",
-      "Loops": 1,
-      "ExecutePerformancesInParallel": false,
-      "Performances": [
-        { "Name": "DigitalOutput 124744 - Close"},
-        { "Name": "RCServos 99415 - Close A" },
-        { "Name": "Stepper 268213 - Close" },
-      ],
-    },
     // NOTE(crhodes)
     // Add a delay after Open/Close to see if exception in VelocityChanged event goes away
     // Seems to help.  Seems to be worse with Acceleration/Velocity changes
+    // Come back to this when we can plug 99145 into a SBC.
     {
       "Name": "RCServos 99415 - Test Open and Engage, Move, and Close Sequences",
       "Description": "This uses a variety of SerialNumber, HubPort, and Channel overrides",
       "Loops": 1,
       "ExecutePerformancesInParallel": false,
       "Performances": [
-        { "Name": "RCServos 99415 - Open and Engage A - DCS S# - CC HP+Ch", "Duration": 1000 },
+        {
+          "Name": "RCServos 99415 - Open and Engage A - DCS S# - CC HP+Ch",
+          "Duration": 1000
+        },
         //{ "Name": "RCServos 99415 - VelocityLimit (250) Acceleration (500)", "Duration": 500 },
-        { "Name": "RCServos 99415 - Min/Max - Parallel", "Duration": 500 },
-        { "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch", "Duration": 1000},
-        { "Name": "RCServos 99415 - Open and Engage B - S# Override - CC HP+Ch", "Duration": 1000 },
+        {
+          "Name": "RCServos 99415 - Min/Max - Parallel",
+          "Duration": 500
+        },
+        {
+          "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch",
+          "Duration": 1000
+        },
+        {
+          "Name": "RCServos 99415 - Open and Engage B - S# Override - CC HP+Ch",
+          "Duration": 1000
+        },
         //{ "Name": "RCServos 99415 - VelocityLimit (250) Acceleration (500)", "Duration": 500 },
-        { "Name": "RCServos 99415 - Min/Max - Parallel", "Duration": 500 },
-        { "Name": "RCServos 99415 - Close B - S# Override - DCS HP+Ch", "Duration": 1000 },
-        { "Name": "RCServos 99415 - Open and Engage C - DCS S#+HP+Ch", "Duration": 1000 },
+        {
+          "Name": "RCServos 99415 - Min/Max - Parallel",
+          "Duration": 500
+        },
+        {
+          "Name": "RCServos 99415 - Close B - S# Override - DCS HP+Ch",
+          "Duration": 1000
+        },
+        {
+          "Name": "RCServos 99415 - Open and Engage C - DCS S#+HP+Ch",
+          "Duration": 1000
+        },
         //{ "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)", "Duration": 500 },
-        { "Name": "RCServos 99415 - Min/Max - Parallel", "Duration": 500 },
-        { "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch", "Duration": 1000 },
-        { "Name": "RCServos 99415 - Open and Engage D - DCS S#+HP - CC Ch", "Duration": 1000 },
+        {
+          "Name": "RCServos 99415 - Min/Max - Parallel",
+          "Duration": 500
+        },
+        {
+          "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch",
+          "Duration": 1000
+        },
+        {
+          "Name": "RCServos 99415 - Open and Engage D - DCS S#+HP - CC Ch",
+          "Duration": 1000
+        },
         //{ "Name": "RCServos 99415 - VelocityLimit (500) Acceleration (1000)", "Duration": 500 },
-        { "Name": "RCServos 99415 - Min/Max - Parallel", "Duration": 500 },
-        { "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch", "Duration": 1000 },
-        { "Name": "RCServos 99415 - Open and Engage E - DCS S#+Ch - CC HP", "Duration": 1000 },
+        {
+          "Name": "RCServos 99415 - Min/Max - Parallel",
+          "Duration": 500
+        },
+        {
+          "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch",
+          "Duration": 1000
+        },
+        {
+          "Name": "RCServos 99415 - Open and Engage E - DCS S#+Ch - CC HP",
+          "Duration": 1000
+        },
         //{ "Name": "RCServos 99415 - VelocityLimit (1000) Acceleration (2000)", "Duration": 500 },
-        { "Name": "RCServos 99415 - Min/Max - Parallel", "Duration": 500 },
-        { "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch", "Duration": 1000 }
+        {
+          "Name": "RCServos 99415 - Min/Max - Parallel",
+          "Duration": 500
+        },
+        {
+          "Name": "RCServos 99415 - Close A - DCS S#+HP+Ch",
+          "Duration": 1000
+        }
+      ],
+    },
+    {
+      "Name": "RCServos 99415 - Play PPx Performances",
+      "Description": "Plays PP1, PP2, PP3, PP4, PP5",
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        {
+          "Name": "99415-Parallel Pairs 1 (PP1)",
+          "Duration": 1000
+        },
+        {
+          "Name": "99415-Parallel Pairs 2 (PP2)",
+          "Duration": 1000
+        },
+        {
+          "Name": "99415-Parallel Pairs 3 (PP3)",
+          "Duration": 1000
+        },
+        {
+          "Name": "99415-Parallel Pairs 4 (PP4)",
+          "Duration": 1000
+        },
+        {
+          "Name": "99415-Parallel Pairs 5 (PP5)",
+          "Duration": 1000
+        },
       ],
     },
   ]

@@ -53,6 +53,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             ReloadDeviceSettingsConfigFileCommand = new DelegateCommand(ReloadDeviceSettingsConfigFile);
             ReloadPerformanceConfigFileCommand = new DelegateCommand(ReloadPerformanceConfigFile);
+            ReloadTestConfigFileCommand = new DelegateCommand(ReloadTestConfigFile);
 
             ReloadDigitalInputSequenceConfigFileCommand = new DelegateCommand(ReloadDigitalInputSequenceConfigFile);
             ReloadDigitalOutputSequenceConfigFileCommand = new DelegateCommand(ReloadDigitalOutputSequenceConfigFile);
@@ -70,6 +71,9 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             PerformanceConfigFiles = PerformanceLibrary.GetListOfPerformanceConfigFiles();
             Performances = PerformanceLibrary.AvailablePerformances.Values.ToList();
+
+            TestConfigFiles = PerformanceLibrary.GetListOfTestConfigFiles();
+            Tests = PerformanceLibrary.AvailableTests.Values.ToList();
 
             DigitalInputSequenceConfigFiles = PerformanceLibrary.GetListOfDigitalInputConfigFiles();
             DigitalInputSequences = PerformanceLibrary.AvailableDigitalInputSequences.Values.ToList();
@@ -108,13 +112,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public ICommand? SayHelloCommand { get; private set; }
 
-        private IEnumerable<string>? _performanceConfigConfigFiles;
+        private IEnumerable<string>? _deviceSettingsConfigFiles;
         public IEnumerable<string>? DeviceSettingsConfigFiles
         {
-            get => _performanceConfigConfigFiles;
+            get => _deviceSettingsConfigFiles;
             set
             {
-                _performanceConfigConfigFiles = value;
+                _deviceSettingsConfigFiles = value;
                 OnPropertyChanged();
             }
         }
@@ -132,13 +136,13 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        private IEnumerable<Performance>? _performanceConfigs;
+        private IEnumerable<Performance>? _deviceSettings;
         public IEnumerable<Performance>? DeviceSettings
         {
-            get => _performanceConfigs;
+            get => _deviceSettings;
             set
             {
-                _performanceConfigs = value;
+                _deviceSettings = value;
                 OnPropertyChanged();
             }
         }
@@ -174,6 +178,41 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             set
             {
                 _performances = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<string>? _testConfigFiles;
+        public IEnumerable<string>? TestConfigFiles
+        {
+            get => _testConfigFiles;
+            set
+            {
+                _testConfigFiles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _selectedTestConfigFile;
+        public string? SelectedTestConfigFile
+        {
+            get => _selectedTestConfigFile;
+            set
+            {
+                if (_selectedTestConfigFile == value)
+                    return;
+                _selectedTestConfigFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private IEnumerable<Performance>? _tests;
+        public IEnumerable<Performance>? Tests
+        {
+            get => _tests;
+            set
+            {
+                _tests = value;
                 OnPropertyChanged();
             }
         }
@@ -431,6 +470,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public ICommand? ReloadDeviceSettingsConfigFileCommand { get; private set; }
         public ICommand? ReloadPerformanceConfigFileCommand { get; private set; }
+        public ICommand? ReloadTestConfigFileCommand { get; private set; }
 
         public ICommand? ReloadDigitalInputSequenceConfigFileCommand { get; private set; }
         public ICommand? ReloadDigitalOutputSequenceConfigFileCommand { get; private set; }
@@ -475,6 +515,23 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
             if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
         }
+
+        private void ReloadTestConfigFile()
+        {
+            Int64 startTicks = 0;
+            if (Common.VNCLogging.EventHandler) startTicks = Log.EVENT_HANDLER("Enter", Common.LOG_CATEGORY);
+
+            Message = $"ReloadTestConfigFile Clicked - >{SelectedTestConfigFile}<";
+            PublishStatusMessage(Message);
+
+            if (SelectedTestConfigFile is not null)
+            {
+                Common.PerformanceLibrary.LoadTestsFromConfigFile(SelectedTestConfigFile, reload: true);
+            }
+
+            if (Common.VNCLogging.EventHandler) Log.EVENT_HANDLER("Exit", Common.LOG_CATEGORY, startTicks);
+        }
+
 
         private void ReloadDigitalInputSequenceConfigFile()
         {

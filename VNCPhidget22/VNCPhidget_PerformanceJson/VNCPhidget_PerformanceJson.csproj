@@ -56,10 +56,14 @@
     <None Include="Performances\Music\Performances - Xylophone.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Performances\Performances - Phidget Tests.json" />
     <None Include="Performances\Performances - Initialization.json" />
     <None Include="Performances\Performances - MainShow.json" />
-    <None Include="Performances\Performances - Movement Studies.json" />
+    <None Include="Performances\RCServo\Performances - RCServo - 99415 Acceleration Studies.json" />
+    <None Include="Performances\RCServo\Performances - RCServo - 99415 VelocityLimit Studies.json" />
+    <None Include="Performances\RCServo\Performances - RCServo - 99415 MovementCharacteristics Studies.json" />
     <None Include="Performances\Performances - 99415 Tests.json" />
+    <None Include="Performances\RCServo\Performances - RCServo - 99415 PP5.json" />
     <None Include="Performances\RCServo\Performances - RCServo - 99415 Routines.json" />
     <None Include="Performances\RCServo\Performances - RCServo - 99415 MovementCharacteristics.json" />
     <None Include="Performances\RCServo\Performances - RCServo - 99415 OpenEngageDisengageClose.json" />

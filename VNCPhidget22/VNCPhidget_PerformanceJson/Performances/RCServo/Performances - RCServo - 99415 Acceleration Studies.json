@@ -1,0 +1,195 @@
+// Performances - RCServo - 99415 Acceleration Studies.json
+// Contains
+//  99415 - Movement Studies - Acceleration Progression
+//  99415 - Movement Studies - Acceleration (25)
+//  99415 - Movement Studies - Acceleration (50)
+//  99415 - Movement Studies - Acceleration (100)
+//  99415 - Movement Studies - Acceleration (200)
+//  99415 - Movement Studies - Acceleration (500)
+//  99415 - Movement Studies - Acceleration (1000)
+//  99415 - Movement Studies - Acceleration (2500)
+//  99415 - Movement Studies - Acceleration (5000)
+//  99415 - Movement Studies - Acceleration (10000)
+{
+  "Name": "Performances - RCServo - 99415 Acceleration Studies",
+  "Description": "Testing",
+  "Performances": [
+    {
+      "Name": "99415 - MovementCharacteristics Studies - Acceleration Progression",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (25)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": true,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (50)" }
+    },
+    //
+    // Acceleration (50)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (50)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (50)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (100)" }
+    },
+    //
+    // Acceleration (100)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (100)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (100)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (200)" }
+    },
+    //
+    // Acceleration (200)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (200)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (200)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (500)" }
+    },
+    //
+    // Acceleration (500)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (500)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (500)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (1000)" }
+    },
+    //
+    // Acceleration (1000)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (1000)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (1000)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (2000)" }
+    },
+    //
+    // Acceleration (2000)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (2000)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (2000)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (5000)" }
+    },
+    //
+    // Acceleration (5000)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (5000)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (5000)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      "NextPerformance": { "Name": "99415 - Movement Studies - Acceleration (10000)" }
+    },
+    //
+    // Acceleration (10000)
+    //
+    {
+      "Name": "99415 - Movement Studies - Acceleration (10000)",
+      "Description": "",
+      "BeforePerformanceLoopPerformances": [
+        { "Name": "RCServos 99415 - Center Exact - Parallel" },
+        { "Name": "RCServos 99415 - Acceleration (10000)" }
+      ],
+      "Loops": 1,
+      "ExecutePerformancesInParallel": false,
+      "Performances": [
+        { "ChannelClass": "RCServo", "Name": "RCServos 99415 - Min/Max - Parallel" },
+      ],
+      "AfterPerformanceLoopPerformances": [
+         { "Name": "RCServos 99415 - Center Exact - Parallel" }
+      ],
+      //"NextPerformance": { "Name": "99415 - Movement Studies - VelocityLimit (5000) Acceleration (10000)" }
+    },
+  ]
+}
