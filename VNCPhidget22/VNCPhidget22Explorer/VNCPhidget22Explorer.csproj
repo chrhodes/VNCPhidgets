@@ -6,9 +6,9 @@
     <UseWPF>true</UseWPF>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>indevelopment-2025</VersionSuffix>
+    <VersionSuffix>indevelopment-2026</VersionSuffix>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-    <FileVersion>2026.01.11</FileVersion>
+    <FileVersion>2026.01.13</FileVersion>
     <Description>Phidget22 Explorer</Description>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
@@ -29,7 +29,7 @@
   <!-- <PackageIcon>VNC.png</PackageIcon> -->
   <!-- <Authors>Christopher Rhodes</Authors> -->
   <!-- <Company>VNC</Company> -->
-  <!-- <Copyright>Copyright VNC 2024 - 2</Copyright> -->
+  <!-- <Copyright>Copyright VNC 2026 - 2</Copyright> -->
   <!-- <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> -->
   <!-- </PropertyGroup> -->
     

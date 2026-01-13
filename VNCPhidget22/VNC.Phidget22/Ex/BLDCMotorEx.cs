@@ -510,10 +510,20 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{bldcMotorSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(bldcMotorSequence.Actions, action =>
+                            // Parallel.ForEachAsync automatically waits for all iterations
+                            // Requires a CancellationToken parameter in the lambda
+
+                            CancellationToken cancellationToken = CancellationToken.None;
+                            await Parallel.ForEachAsync(bldcMotorSequence.Actions, cancellationToken, async (action, token) =>
                             {
                                 ExecuteAction(action);
+                                await Task.CompletedTask;
                             });
+
+                            //Parallel.ForEach(bldcMotorSequence.Actions, action =>
+                            //{
+                            //    ExecuteAction(action);
+                            //});
                         }
                         else
                         {

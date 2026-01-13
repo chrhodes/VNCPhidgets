@@ -1,7 +1,6 @@
 // Performances - RCServo - 99415 MovementCharacteristics Studies.json
 // Contains
-//  99415 - Movement Studies - VelocityLimit/Acceleration Progression
-//  99415 - Movement Studies - VelocityLimit (10) Acceleration (25)
+//  99415 - Movement Studies - VelocityLimit (10) Acceleration (25)  Progression
 //  99415 - Movement Studies - VelocityLimit (25) Acceleration (50)
 //  99415 - Movement Studies - VelocityLimit (50) Acceleration (100)
 //  99415 - Movement Studies - VelocityLimit (100) Acceleration (200)
@@ -15,7 +14,7 @@
   "Description": "Testing",
   "Performances": [
     {
-      "Name": "99415 - Movement Studies - VelocityLimit/Acceleration Progression",
+      "Name": "99415 - Movement Studies - VelocityLimit (10) Acceleration (25) Progression",
       "Description": "",
       "BeforePerformanceLoopPerformances": [
         { "Name": "RCServos 99415 - Center Exact - Parallel" },

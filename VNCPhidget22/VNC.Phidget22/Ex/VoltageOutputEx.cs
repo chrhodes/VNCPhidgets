@@ -603,10 +603,20 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{voltageOutputSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(voltageOutputSequence.Actions, action =>
+                            // Parallel.ForEachAsync automatically waits for all iterations
+                            // Requires a CancellationToken parameter in the lambda
+
+                            CancellationToken cancellationToken = CancellationToken.None;
+                            await Parallel.ForEachAsync(voltageOutputSequence.Actions, cancellationToken, async (action, token) =>
                             {
                                 ExecuteAction(action);
+                                await Task.CompletedTask;
                             });
+
+                            //Parallel.ForEach(voltageOutputSequence.Actions, action =>
+                            //{
+                            //    ExecuteAction(action);
+                            //});
                         }
                         else
                         {

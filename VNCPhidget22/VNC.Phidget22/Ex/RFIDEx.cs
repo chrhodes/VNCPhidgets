@@ -511,10 +511,20 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{rfidSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(rfidSequence.Actions, action =>
+                            // Parallel.ForEachAsync automatically waits for all iterations
+                            // Requires a CancellationToken parameter in the lambda
+
+                            CancellationToken cancellationToken = CancellationToken.None;
+                            await Parallel.ForEachAsync(rfidSequence.Actions, cancellationToken, async (action, token) =>
                             {
                                 ExecuteAction(action);
+                                await Task.CompletedTask;
+
                             });
+                            //Parallel.ForEach(rfidSequence.Actions, action =>
+                            //{
+                            //    ExecuteAction(action);
+                            //});
                         }
                         else
                         {

@@ -508,11 +508,20 @@ namespace VNC.Phidget22.Ex
                             if (LogChannelAction) Log.TRACE($"Parallel Actions Loop:>{actionLoop + 1}<" +
                                 $" actions:{currentInputSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
+                            // Parallel.ForEachAsync automatically waits for all iterations
+                            // Requires a CancellationToken parameter in the lambda
 
-                            Parallel.ForEach(currentInputSequence.Actions, action =>
+                            CancellationToken cancellationToken = CancellationToken.None;
+                            await Parallel.ForEachAsync(currentInputSequence.Actions, cancellationToken, async (action, token) =>
                             {
                                 ExecuteAction(action);
+                                await Task.CompletedTask;
                             });
+
+                            //Parallel.ForEach(currentInputSequence.Actions, action =>
+                            //{
+                            //    ExecuteAction(action);
+                            //});
                         }
                         else
                         {

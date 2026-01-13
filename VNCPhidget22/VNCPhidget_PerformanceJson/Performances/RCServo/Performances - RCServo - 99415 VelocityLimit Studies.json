@@ -55,7 +55,7 @@
     // VelocityLimit (50)
     //
     {
-      "Name": "99415 - Movement Studies - VelocityLimit (50))",
+      "Name": "99415 - Movement Studies - VelocityLimit (50)",
       "Description": "",
       "BeforePerformanceLoopPerformances": [
         { "Name": "RCServos 99415 - Center Exact - Parallel" },

@@ -4,24 +4,13 @@
     <TargetFramework>net8.0-windows</TargetFramework>
       <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
       <VersionPrefix>1.0.0</VersionPrefix>
-      <VersionSuffix>indevelopment-2025</VersionSuffix>
-      <FileVersion>2026.01.11</FileVersion>
+      <VersionSuffix>indevelopment-2026</VersionSuffix>
+      <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>      
+      <FileVersion>2026.01.13</FileVersion>
       <Description>Phidget22 Explorer Configuration</Description>
       <Nullable>enable</Nullable>
       <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="AdvancedServo\**" />
-    <Compile Remove="Dictionary\**" />
-    <Compile Remove="InterfaceKit\**" />
-    <EmbeddedResource Remove="AdvancedServo\**" />
-    <EmbeddedResource Remove="Dictionary\**" />
-    <EmbeddedResource Remove="InterfaceKit\**" />
-    <None Remove="AdvancedServo\**" />
-    <None Remove="Dictionary\**" />
-    <None Remove="InterfaceKit\**" />
-  </ItemGroup>
 
     <!-- This is for NuGet Packages -->
     <!-- <PropertyGroup> -->
@@ -36,7 +25,7 @@
     <!-- <PackageIcon>VNC.png</PackageIcon> -->
     <!-- <Authors>Christopher Rhodes</Authors> -->
     <!-- <Company>VNC</Company> -->
-    <!-- <Copyright>Copyright © VNC 2024</Copyright> -->
+    <!-- <Copyright>Copyright © VNC 2026</Copyright> -->
     <!-- <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance> -->
     <!-- </PropertyGroup> -->    
 

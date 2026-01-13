@@ -512,10 +512,20 @@ namespace VNC.Phidget22.Ex
                                 $" actions:{spatialSequence.Actions.Count()}" +
                                 $" thread:>{System.Environment.CurrentManagedThreadId}<", Common.LOG_CATEGORY);
 
-                            Parallel.ForEach(spatialSequence.Actions, action =>
+                            // Parallel.ForEachAsync automatically waits for all iterations
+                            // Requires a CancellationToken parameter in the lambda
+
+                            CancellationToken cancellationToken = CancellationToken.None;
+                            await Parallel.ForEachAsync(spatialSequence.Actions, cancellationToken, async (action, token) =>
                             {
                                 ExecuteAction(action);
+                                await Task.CompletedTask;
                             });
+
+                            //Parallel.ForEach(spatialSequence.Actions, action =>
+                            //{
+                            //    ExecuteAction(action);
+                            //});
                         }
                         else
                         {

@@ -362,8 +362,15 @@ namespace VNC.Phidget22.Players
                 for (Int32 performanceLoop = 0; performanceLoop < configuredPerf.PerformanceLoops; performanceLoop++)
                 {
                     if (configuredPerf.ExecuteDeviceChannelSequencesInParallel)
-                    {                       
-                        Parallel.ForEach(configuredPerf.DeviceChannelSequences, async deviceChannelSequence =>
+                    {
+                        //Parallel.ForEach(configuredPerf.DeviceChannelSequences, async deviceChannelSequence =>
+
+                        // Parallel.ForEachAsync automatically waits for all iterations
+                        // Requires a CancellationToken parameter in the lambda
+
+                        CancellationToken cancellationToken = CancellationToken.None;
+
+                        await Parallel.ForEachAsync(configuredPerf.DeviceChannelSequences, async (deviceChannelSequence, cancellationToken) =>
                         {
                             // TODO(crhodes)
                             // If we have configured a SerialNumber override, we need to use that
@@ -402,7 +409,7 @@ namespace VNC.Phidget22.Players
                             else
                             {
                                 // TODO(crhodes)
-                                // Throw error no serial number
+                                // Throw error. no serial number
                             }
 
                             DeviceChannelSequencePlayer deviceChannelSequencePlayer = GetNewDeviceChannelSequencePlayer(
@@ -494,7 +501,14 @@ namespace VNC.Phidget22.Players
                 {
                     if (configuredPerf.ExecutePerformancesInParallel)
                     {
-                        Parallel.ForEach(configuredPerf.Performances, async perf =>
+                        //Parallel.ForEach(configuredPerf.Performances, async perf =>
+
+                        // Parallel.ForEachAsync automatically waits for all iterations
+                        // Requires a CancellationToken parameter in the lambda
+
+                        CancellationToken cancellationToken = CancellationToken.None;
+
+                        await Parallel.ForEachAsync(configuredPerf.Performances, async (perf, cancellationToken) =>
                         {
                             PerformancePlayer performancePlayer = GetNewPerformancePlayer(perf.SerialNumber);
 
