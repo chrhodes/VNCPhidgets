@@ -69,6 +69,12 @@ namespace VNC.Phidget22.Configuration.Performance
         public Int32? Channel { get; set; } = null;
 
         /// <summary>
+        /// Indicates whether this channel is a VINT Hub port channel,
+        /// or part of a VINT device attached to a hub port.
+        /// </summary>
+        public Boolean? IsHubPortDevice { get; set; } = null;
+
+        /// <summary>
         /// PerformanceSequence[] to call before executing Actions
         /// </summary>
         public DeviceChannelSequence[]? BeforeActionLoopSequences { get; set; }
@@ -120,6 +126,9 @@ namespace VNC.Phidget22.Configuration.Performance
         /// </summary>
         public DeviceChannelSequence? NextSequence { get; set; }
     }
+
+    // TODO(crhodes)
+    // Does this get used ???
 
     public class CopyOfChannelSequence
     {

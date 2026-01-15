@@ -192,5 +192,59 @@
       ],
       "NextPerformance": null
     },
+    //
+    // DigitalOutput SBC41 - Open 3,4
+    //
+    {
+      "Name": "DigitalOutput SBC41 - Open 3,4",
+      "Description": "Blink Lights in Parallel",
+      "SerialNumber": 624728,
+      "Loops": 3,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 3,
+          "Channel": 0,
+          "IsHubPortDevice": true,
+          "Name": "Open DigitalOutput"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 4,
+          "Channel": 0,
+          "IsHubPortDevice": true,
+          "Name": "Open DigitalOutput"
+        },
+      ],
+      "NextPerformance": null
+    },
+    //
+    // DigitalOutput SBC41 - Parallel Sequences
+    //
+    {
+      "Name": "DigitalOutput SBC41 - Blink 3,4",
+      "Description": "Blink Lights in Parallel",
+      "SerialNumber": 624728,
+      "Loops": 3,
+      "ExecuteDeviceChannelSequencesInParallel": true,
+      "DeviceChannelSequences": [
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 3,
+          "Channel": 0,
+          "IsHubPortDevice": true,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+        {
+          "ChannelClass": "DigitalOutput",
+          "HubPort": 4,
+          "Channel": 0,
+          "IsHubPortDevice": true,
+          "Name": "Blink DigitalOutput 500ms"
+        },
+      ],
+      "NextPerformance": null
+    },
   ]
 }

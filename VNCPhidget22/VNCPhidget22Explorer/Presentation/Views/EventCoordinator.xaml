@@ -96,6 +96,37 @@
 
         <dxlc:LayoutControl View="Group" Orientation="Vertical">
 
+            <dxlc:LayoutGroup Header="Device Settings" View="GroupBox" Orientation="Vertical"  >
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+
+                    <dxlc:LayoutItem Label="Select Performance" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
+                                        ItemsSource="{Binding DeviceSettings}" DisplayMember="Name" 
+                                        SelectedItem="{Binding SelectedDeviceSetting}" >
+                            <!--<dxe:ComboBoxEdit.StyleSettings>-->
+                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            <!--</dxe:ComboBoxEdit.StyleSettings>-->
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <Button 
+                            Command="{Binding PlayDeviceSettingEventCommand }"
+                            Content="{Binding PlayDeviceSettingEventContent, FallbackValue='Raise Device Setting Event' }"
+                            ToolTip="{Binding PlayDeviceSettingEventToolTip, FallbackValue='Raise Device Setting Event ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <views:PerformanceInfoControl DataContext="{Binding SelectedDeviceSetting}" />
+
+            </dxlc:LayoutGroup>
+
             <dxlc:LayoutGroup Header="Performance" View="GroupBox" Orientation="Vertical"  >
 
                 <dxlc:LayoutGroup Orientation="Horizontal">
@@ -116,14 +147,45 @@
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <Button 
-                            Command="{Binding RaisePlayPerformanceEventCommand }"
-                            Content="{Binding RaisePlayPerformanceEventContent, FallbackValue='Raise PlayPerformance Event' }"
-                            ToolTip="{Binding RaisePlayPerformanceEventToolTip, FallbackValue='Raise PlayPerformance Event ToolTip' }" />
+                            Command="{Binding PlayPerformanceEventCommand }"
+                            Content="{Binding PlayPerformanceEventContent, FallbackValue='Raise PlayPerformance Event' }"
+                            ToolTip="{Binding PlayPerformanceEventToolTip, FallbackValue='Raise PlayPerformance Event ToolTip' }" />
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
 
                 <views:PerformanceInfoControl DataContext="{Binding SelectedPerformance}" />
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Header="Tests" View="GroupBox" Orientation="Vertical"  >
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+
+                    <dxlc:LayoutItem Label="Select Performance" HorizontalAlignment="Left" >
+                        <dxe:ComboBoxEdit Width="300" TextWrapping="Wrap"
+                                        ItemsSource="{Binding Tests}" DisplayMember="Name" 
+                                        SelectedItem="{Binding SelectedTest}" >
+                            <!--<dxe:ComboBoxEdit.StyleSettings>-->
+                            <!--<dxe:CheckedTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:CheckedComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioComboBoxStyleSettings/>-->
+                            <!--<dxe:RadioTokenComboBoxStyleSettings/>-->
+                            <!--<dxe:TokenComboBoxStyleSettings/>-->
+                            <!--</dxe:ComboBoxEdit.StyleSettings>-->
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <Button 
+                            Command="{Binding PlayTestEventCommand }"
+                            Content="{Binding PlayTestEventContent, FallbackValue='Raise Play Test Event' }"
+                            ToolTip="{Binding PlayTestEventToolTip, FallbackValue='Raise Play Test Event ToolTip' }" />
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+
+                <views:PerformanceInfoControl DataContext="{Binding SelectedTest}" />
 
             </dxlc:LayoutGroup>
 

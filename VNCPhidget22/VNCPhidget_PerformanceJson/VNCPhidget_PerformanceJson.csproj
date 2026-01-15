@@ -39,7 +39,7 @@
     <None Include="App.config" />
     <None Include="DigitalInputSequences\DigitalInputSequences - Routines.json" />
     <None Include="DigitalOutputSequences\DigitalOutputSequences - Routines.json" />
-    <None Include="DigitalOutputSequences\DigitalOutputSequences - OpenEngageDisengageClose.json" />
+    <None Include="DigitalOutputSequences\DigitalOutputSequences - OpenClose.json" />
     <None Include="Hosts.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

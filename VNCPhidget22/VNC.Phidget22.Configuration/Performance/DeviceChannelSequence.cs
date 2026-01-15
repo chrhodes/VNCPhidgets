@@ -49,6 +49,13 @@ namespace VNC.Phidget22.Configuration
         /// </summary>
         public Int32? Channel { get; set; } = null;
 
+        /// <summary>
+        /// Indicates whether this channel is a VINT Hub port channel,
+        /// or part of a VINT device attached to a hub port.
+        /// If null, Name is used to lookup sequence 
+        /// which must specify setting is necessary  
+        /// </summary>
+        public Boolean? IsHubPortDevice { get; set; } = null;
         // NOTE(crhodes)
         // May want to bring more parameters up here, e.g. Logging
         // DataRate DataInterval, etc.

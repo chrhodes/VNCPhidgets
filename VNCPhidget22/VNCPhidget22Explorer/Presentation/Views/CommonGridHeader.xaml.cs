@@ -68,7 +68,6 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         protected virtual void OnCountChanged(string oldValue, string newValue)
         {
-            //Count = newValue;
             tbCount.Text = newValue;
 
             // TODO: Add your property changed side-effects. Descendants can override as well.

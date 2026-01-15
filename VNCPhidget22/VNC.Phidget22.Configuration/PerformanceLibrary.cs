@@ -1155,7 +1155,7 @@ namespace VNC.Phidget22.Configuration
 
             List<string> files = new List<string>
             {
-                @"DigitalOutputSequences\DigitalOutputSequences - OpenEngageDisengageClose.json",
+                @"DigitalOutputSequences\DigitalOutputSequences - OpenClose.json",
                 @"DigitalOutputSequences\DigitalOutputSequences - Routines.json",
             };
 

@@ -16,7 +16,7 @@ namespace VNC.Phidget22
     }
 
     // NOTE(crhodes)
-    // Making this a class caused the PhidgetDevice dicitonary
+    // Making this a class caused the PhidgetDevice dictionary
     // to fail during Key lookups.
     // Need to override Equals
 

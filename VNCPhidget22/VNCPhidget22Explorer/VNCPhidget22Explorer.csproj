@@ -8,7 +8,7 @@
     <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix>indevelopment-2026</VersionSuffix>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-    <FileVersion>2026.01.13</FileVersion>
+    <FileVersion>2026.01.15</FileVersion>
     <Description>Phidget22 Explorer</Description>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
