@@ -190,7 +190,8 @@
                     EditValueChanged="SensorType_EditValueChanged" />
         </dxlc:LayoutItem>
 
-        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
+        <dxe:TextEdit Text="{Binding SensorDescription, Mode=OneWay}" IsReadOnly="True" 
+                      Width="200" Height="60" VerticalAlignment="Top" TextWrapping="Wrap"/>
 
         <dxlc:LayoutGroup x:Name="lgVoltage" View="Group" Orientation="Horizontal"  HorizontalAlignment="Stretch">
 

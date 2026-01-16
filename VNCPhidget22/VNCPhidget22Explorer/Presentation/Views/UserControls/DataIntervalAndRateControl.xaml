@@ -34,7 +34,6 @@
     Background="{StaticResource DataIntervalAndRateControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
-
 >
     <!-- d:DesignWidth="800" d:DesignHeight="450"
         MinHeight="90"-->
@@ -72,12 +71,10 @@
     <!-- <DockPanel> -->
         
         <!-- <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/> -->
-        <dxlc:LayoutGroup x:Name="lgMain" Header="Data Rate / Interval" View="GroupBox" Orientation="Vertical"  
+    <dxlc:LayoutGroup x:Name="lgMain" Header="Data Rate / Interval" View="GroupBox" Orientation="Vertical"  
                       IsCollapsible="True" IsCollapsed="False" Padding="-10"  >
 
-            <!-- Paste content HERE and update lgMain infra -->
-
-            
+        <!-- Paste content HERE and update lgMain infra -->  
 
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch" >
 
@@ -89,7 +86,7 @@
 
                 <dxe:SpinEdit 
                     Value="{Binding DataRate, Mode=TwoWay}" 
-                    Increment="10"
+                    Increment="1"
                     MinValue="{Binding MinDataRate, Mode=OneWay}" 
                     MaxValue="{Binding MaxDataRate, Mode=OneWay}" 
                     IsFloatValue="False"

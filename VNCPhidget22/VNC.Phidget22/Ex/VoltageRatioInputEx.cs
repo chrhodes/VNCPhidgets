@@ -226,6 +226,12 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.DataInterval = (Int32)value;
+
+                    // NOTE(crhodes)
+                    // DataInterval changes DataRate
+                    // Get new value
+
+                    DataRate = base.DataRate;
                 }
 
                 OnPropertyChanged();
@@ -267,6 +273,12 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.DataRate = (Int32)value;
+
+                    // NOTE(crhodes)
+                    // DataRate changes DataInterval
+                    // Get new value
+
+                    DataInterval = base.DataInterval;
                 }
 
                 OnPropertyChanged();
@@ -307,7 +319,11 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
+                    var suBefore = base.SensorUnit;
+
                     base.SensorType = (VoltageRatioSensorType)value;
+
+                    var suAfter = base.SensorUnit;
 
                     // Update values, SensorType changed
 
@@ -566,7 +582,7 @@ namespace VNC.Phidget22.Ex
                     break;
 
                 default:
-                    Log.EVENT_HANDLER($"VoltageRatioInputEx_PropertyChange: sender:{sender} {e.PropertyName} - Update switch()", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageRatioInputEx_PropertyChange: sender:>{sender}< propertyName:>{e.PropertyName}< - Update switch()", Common.LOG_CATEGORY);
                     break;
             }
         }
@@ -577,8 +593,10 @@ namespace VNC.Phidget22.Ex
             {
                 try
                 {
-                    Log.EVENT_HANDLER($"VoltageRatioInputEx_SensorChange: sender:{sender} {e.SensorValue}" +
-                        $" {e.SensorUnit.Name} {e.SensorUnit.Unit} {e.SensorUnit.Symbol}", Common.LOG_CATEGORY);
+                    Log.EVENT_HANDLER($"VoltageRatioInputEx_SensorChange:" +
+                        $" sender:>{sender}< sensorValue:>{e.SensorValue}<" +
+                        $" name:>{e.SensorUnit.Name}< unit:>{e.SensorUnit.Unit}< symbol:>{e.SensorUnit.Symbol}<" +
+                        $" name:>{SensorUnit_Name}< unit:>{SensorUnit_Unit}< symbol:>{SensorUnit_Symbol}<", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -587,6 +605,10 @@ namespace VNC.Phidget22.Ex
             }
 
             SensorValue = e.SensorValue;
+
+            SensorUnit_Name = e.SensorUnit.Name;
+            SensorUnit_Unit = e.SensorUnit.Unit;
+            SensorUnit_Symbol = e.SensorUnit.Symbol;
 
             if (SensorValueOutOfRange) SensorValueOutOfRange = false;
         }

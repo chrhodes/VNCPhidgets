@@ -212,6 +212,12 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.DataInterval = (Int32)value;
+
+                    // NOTE(crhodes)
+                    // DataInterval changes DataRate
+                    // Get new value
+
+                    DataRate = base.DataRate;
                 }
 
                 OnPropertyChanged();
@@ -253,6 +259,12 @@ namespace VNC.Phidget22.Ex
                 if (Attached)
                 {
                     base.DataRate = (Int32)value;
+
+                    // NOTE(crhodes)
+                    // DataRate changes DataInterval
+                    // Get new value
+
+                    DataInterval = base.DataInterval;
                 }
 
                 OnPropertyChanged();
@@ -271,7 +283,6 @@ namespace VNC.Phidget22.Ex
         }
 
         #endregion
-
 
         #region CapacitiveTouchEx
 

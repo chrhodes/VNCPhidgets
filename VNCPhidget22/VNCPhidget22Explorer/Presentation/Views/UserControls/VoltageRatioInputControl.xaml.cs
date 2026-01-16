@@ -1885,7 +1885,9 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             var sensorType = e.NewValue;
 
-            SensorDescription = ((Phidgets.VoltageSensorType)sensorType).AsString(EnumFormat.Description);
+            SensorDescription = ((Phidgets.VoltageRatioSensorType)sensorType).AsString(EnumFormat.Description);
+
+            SensorUnit_Unit = SensorUnit.AsString(EnumFormat.Description);
 
             // TODO(crhodes)
             // Can get fancy and use colors, etc.
