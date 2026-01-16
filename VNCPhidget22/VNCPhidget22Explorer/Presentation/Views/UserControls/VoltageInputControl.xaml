@@ -228,8 +228,20 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
+            <dxlc:LayoutItem Label="UnitInfo" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem Label="UnitInfo.Name" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="UnitInfo.Unit" LabelPosition="Left">
                 <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="UnitInfo.Symbol" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>

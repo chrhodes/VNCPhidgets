@@ -115,18 +115,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPhidgetEvents(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceLogPhidgetEvents((Boolean)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceLogPhidgetEvents((Boolean)value);
             else
                 return value;
         }
 
         private static void OnLogPhidgetEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnLogPhidgetEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceLogPhidgetEvents(Boolean value)
@@ -164,18 +164,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogErrorEvents(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceLogErrorEvents((Boolean)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceLogErrorEvents((Boolean)value);
             else
                 return value;
         }
 
         private static void OnLogErrorEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnLogErrorEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceLogErrorEvents(Boolean value)
@@ -211,18 +211,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceLogPropertyChangeEvents(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceLogPropertyChangeEvents((Boolean)value);
             else
                 return value;
         }
 
         private static void OnLogPropertyChangeEventsChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnLogPropertyChangeEventsChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceLogPropertyChangeEvents(Boolean value)
@@ -359,18 +359,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceControlTitle(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceControlTitle((string)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceControlTitle((string)value);
             else
                 return value;
         }
 
         private static void OnControlTitleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnControlTitleChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceControlTitle(string value)
@@ -408,18 +408,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSerialHubPortChannel(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSerialHubPortChannel((SerialHubPortChannel)value);
             else
                 return value;
         }
 
         private static void OnSerialHubPortChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSerialHubPortChannelChanged((SerialHubPortChannel)e.OldValue, (SerialHubPortChannel)e.NewValue);
         }
 
         protected virtual SerialHubPortChannel OnCoerceSerialHubPortChannel(SerialHubPortChannel value)
@@ -457,18 +457,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSerialNumber(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSerialNumber((Int32)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSerialNumber((Int32)value);
             else
                 return value;
         }
 
         private static void OnSerialNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSerialNumberChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
 
         protected virtual Int32 OnCoerceSerialNumber(Int32 value)
@@ -506,18 +506,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceHubPort(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceHubPort((Int32)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceHubPort((Int32)value);
             else
                 return value;
         }
 
         private static void OnHubPortChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnHubPortChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
 
         protected virtual Int32 OnCoerceHubPort(Int32 value)
@@ -555,18 +555,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceChannel(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceChannel((Int32)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceChannel((Int32)value);
             else
                 return value;
         }
 
         private static void OnChannelChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnChannelChanged((Int32)e.OldValue, (Int32)e.NewValue);
         }
 
         protected virtual Int32 OnCoerceChannel(Int32 value)
@@ -604,18 +604,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceChannelNumber(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceChannelNumber((string)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceChannelNumber((string)value);
             else
                 return value;
         }
 
         private static void OnChannelNumberChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnChannelNumberChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceChannelNumber(string value)
@@ -652,18 +652,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceAttached(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceAttached((Boolean)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceAttached((Boolean)value);
             else
                 return value;
         }
 
         private static void OnAttachedChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnAttachedChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceAttached(Boolean value)
@@ -749,18 +749,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorDescription(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSensorDescription((string)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSensorDescription((string)value);
             else
                 return value;
         }
 
         private static void OnSensorDescriptionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSensorDescriptionChanged((string)e.OldValue, (string)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSensorDescriptionChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceSensorDescription(string value)
@@ -779,20 +779,20 @@ namespace VNCPhidget22Explorer.Presentation.Views
         #region SensorUnit
 
         public static readonly DependencyProperty SensorUnitProperty = DependencyProperty.Register(
-            "SensorUnit", 
-            typeof(Phidgets.Unit), 
-            typeof(VoltageInputControl), 
+            "SensorUnit",
+            typeof(Phidgets.UnitInfo),
+            typeof(VoltageInputControl),
             new FrameworkPropertyMetadata(
-                Phidgets.Unit.Volt, 
-                new PropertyChangedCallback(OnSensorUnitChanged), 
+                new Phidgets.UnitInfo(),
+                new PropertyChangedCallback(OnSensorUnitChanged),
                 new CoerceValueCallback(OnCoerceSensorUnit)
                 )
             );
 
-        public Phidgets.Unit SensorUnit
+        public Phidgets.UnitInfo SensorUnit
         {
             // IMPORTANT: To maintain parity between setting a property in XAML and procedural code, do not touch the getter and setter inside this dependency property!
-            get => (Phidgets.Unit)GetValue(SensorUnitProperty);
+            get => (Phidgets.UnitInfo)GetValue(SensorUnitProperty);
             set => SetValue(SensorUnitProperty, value);
         }
 
@@ -800,7 +800,7 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             VoltageInputControl voltageInputControl = (VoltageInputControl)o;
             if (voltageInputControl != null)
-                return voltageInputControl.OnCoerceSensorUnit((Phidgets.Unit)value);
+                return voltageInputControl.OnCoerceSensorUnit((Phidgets.UnitInfo)value);
             else
                 return value;
         }
@@ -809,21 +809,29 @@ namespace VNCPhidget22Explorer.Presentation.Views
         {
             VoltageInputControl voltageInputControl = (VoltageInputControl)o;
             if (voltageInputControl != null)
-                voltageInputControl.OnSensorUnitChanged((Phidgets.Unit)e.OldValue, (Phidgets.Unit)e.NewValue);
+                voltageInputControl.OnSensorUnitChanged((Phidgets.UnitInfo)e.OldValue, (Phidgets.UnitInfo)e.NewValue);
         }
 
-        protected virtual Phidgets.Unit OnCoerceSensorUnit(Phidgets.Unit value)
+        protected virtual Phidgets.UnitInfo OnCoerceSensorUnit(Phidgets.UnitInfo value)
         {
             // TODO: Keep the proposed value within the desired range.
             return value;
         }
 
-        protected virtual void OnSensorUnitChanged(Phidgets.Unit oldValue, Phidgets.Unit newValue)
+        protected virtual void OnSensorUnitChanged(Phidgets.UnitInfo oldValue, Phidgets.UnitInfo newValue)
         {
             // TODO: Add your property changed side-effects. Descendants can override as well.
+
+            // We can only bind to properties in UI - not e.g. SensorUnit.Name
+            // so set the Property Based backing fields
+
+            SensorUnit_Name = SensorUnit.Name;
+            SensorUnit_Unit = SensorUnit.Unit.ToString();
+            SensorUnit_Symbol = SensorUnit.Symbol;
         }
 
         #endregion
+
 
         #region SensorUnit_Unit
 
@@ -846,18 +854,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit_Unit(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSensorUnit_Unit((string)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSensorUnit_Unit((string)value);
             else
                 return value;
         }
 
         private static void OnSensorUnit_UnitChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSensorUnit_UnitChanged((string)e.OldValue, (string)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSensorUnit_UnitChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceSensorUnit_Unit(string value)
@@ -894,18 +902,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit_Name(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSensorUnit_Name((string)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSensorUnit_Name((string)value);
             else
                 return value;
         }
 
         private static void OnSensorUnit_NameChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSensorUnit_NameChanged((string)e.OldValue, (string)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSensorUnit_NameChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceSensorUnit_Name(string value)
@@ -942,18 +950,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorUnit_Symbol(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSensorUnit_Symbol((string)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSensorUnit_Symbol((string)value);
             else
                 return value;
         }
 
         private static void OnSensorUnit_SymbolChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSensorUnit_SymbolChanged((string)e.OldValue, (string)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSensorUnit_SymbolChanged((string)e.OldValue, (string)e.NewValue);
         }
 
         protected virtual string OnCoerceSensorUnit_Symbol(string value)
@@ -1137,18 +1145,18 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
         private static object OnCoerceSensorValueOutOfRange(DependencyObject o, object value)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                return VoltageInputControl.OnCoerceSensorValueOutOfRange((Boolean)value);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                return voltageInputControl.OnCoerceSensorValueOutOfRange((Boolean)value);
             else
                 return value;
         }
 
         private static void OnSensorValueOutOfRangeChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            VoltageInputControl VoltageInputControl = (VoltageInputControl)o;
-            if (VoltageInputControl != null)
-                VoltageInputControl.OnSensorValueOutOfRangeChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
+            VoltageInputControl voltageInputControl = (VoltageInputControl)o;
+            if (voltageInputControl != null)
+                voltageInputControl.OnSensorValueOutOfRangeChanged((Boolean)e.OldValue, (Boolean)e.NewValue);
         }
 
         protected virtual Boolean OnCoerceSensorValueOutOfRange(Boolean value)
@@ -1832,7 +1840,8 @@ namespace VNCPhidget22Explorer.Presentation.Views
 
             SensorDescription = ((Phidgets.VoltageSensorType)sensorType).AsString(EnumFormat.Description);
 
-            SensorUnit_Unit = SensorUnit.AsString(EnumFormat.Description);
+            //SensorUnit = ((VoltageInputControl)sender).SensorUnit;
+            //SensorUnit_Unit = SensorUnit.AsString(EnumFormat.Description);
 
             // TODO(crhodes)
             // Can get fancy and use colors, etc.

@@ -590,20 +590,23 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void ConfigureInitialLogging(StepperEx stepper)
+        void ConfigureInitialLogging(StepperEx phidgetEx)
         {
-            stepper.LogPhidgetEvents = LogPhidgetEvents;
-            stepper.LogErrorEvents = LogErrorEvents;
-            stepper.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            stepper.LogPositionChangeEvents = LogPositionChangeEvents;
-            stepper.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            stepper.LogStoppedEvents = LogStoppedEvents;
+            //if (LogCurrentChangeEvents) phidgetEx.LogCurrentChangeEvents = true;
+            if (LogPositionChangeEvents) phidgetEx.LogPositionChangeEvents = true;
+            if (LogVelocityChangeEvents) phidgetEx.LogVelocityChangeEvents = true;
+            if (LogStoppedEvents) phidgetEx.LogStoppedEvents = true;
 
-            stepper.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            stepper.LogChannelAction = LogChannelAction;
-            stepper.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         public Boolean OpenStepperCanExecute(SerialHubPortChannel? serialHubPortChannel)

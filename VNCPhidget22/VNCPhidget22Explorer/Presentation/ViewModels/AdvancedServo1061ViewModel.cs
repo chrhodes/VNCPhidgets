@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows.Input;
-
-using Phidgets = Phidget22;
-using PhidgetsEvents = Phidget22.Events;
+using System.Windows;
 
 using Prism.Commands;
 using Prism.Events;
@@ -16,12 +11,7 @@ using Prism.Services.Dialogs;
 using VNC;
 using VNC.Core.Mvvm;
 using VNC.Phidget22;
-
-using VNCPhidgetConfig = VNC.Phidget22.Configuration;
-using VNC.Phidget22.Configuration;
 using VNC.Phidget22.Ex;
-
-using System.Windows;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
@@ -963,21 +953,23 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             }
         }
 
-        void ConfigureInitialLogging(RCServoEx? rcServo)
+        void ConfigureInitialLogging(RCServoEx phidgetEx)
         {
-            rcServo.LogPhidgetEvents = LogPhidgetEvents;
-            rcServo.LogErrorEvents = LogErrorEvents;
-            rcServo.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            rcServo.LogPositionChangeEvents = LogPositionChangeEvents;
-            rcServo.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            rcServo.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
+            //if (LogCurrentChangeEvents) phidgetEx.LogCurrentChangeEvents = true;
+            if (LogPositionChangeEvents) phidgetEx.LogPositionChangeEvents = true;
+            if (LogVelocityChangeEvents) phidgetEx.LogVelocityChangeEvents = true;
+            if (LogTargetPositionReachedEvents) phidgetEx.LogTargetPositionReachedEvents = true;
 
-            rcServo.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            rcServo.LogChannelAction = LogChannelAction;
-            rcServo.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         // If using CommandParameter, figure out TYPE and fix above

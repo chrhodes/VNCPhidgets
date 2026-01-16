@@ -569,9 +569,8 @@
                                 LogVoltageChangeEvents="{Binding VoltageInput0.LogVoltageChangeEvents,Mode=TwoWay}"
                                                           
                                 SensorType="{Binding VoltageInput0.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit_Unit="{Binding VoltageInput0.SensorUnit_Unit,Mode=TwoWay}"
-                                SensorUnit_Symbol="{Binding VoltageInput0.SensorUnit_Symbol,Mode=TwoWay}" 
-                            
+                                SensorUnit="{Binding VoltageInput0.SensorUnit,Mode=TwoWay}"
+
                                 MinDataInterval="{Binding VoltageInput0.MinDataInterval,Mode=OneWay}"
                                 DataInterval="{Binding VoltageInput0.DataInterval,Mode=TwoWay}"
                                 MaxDataInterval="{Binding VoltageInput0.MaxDataInterval,Mode=OneWay}"
@@ -606,9 +605,8 @@
                                 LogVoltageRatioChangeEvents="{Binding VoltageRatioInput0.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
                                 SensorType="{Binding VoltageRatioInput0.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit_Unit="{Binding VoltageRatioInput0.SensorUnit_Unit,Mode=TwoWay}"
-                                SensorUnit_Symbol="{Binding VoltageRatioInput0.SensorUnit_Symbol,Mode=TwoWay}"                                                      
- 
+                                SensorUnit="{Binding VoltageRatioInput0.SensorUnit,Mode=TwoWay}"
+
                                 MinDataInterval="{Binding VoltageRatioInput0.MinDataInterval,Mode=OneWay}"
                                 DataInterval="{Binding VoltageRatioInput0.DataInterval,Mode=TwoWay}"
                                 MaxDataInterval="{Binding VoltageRatioInput0.MaxDataInterval,Mode=OneWay}"
@@ -641,8 +639,7 @@
                                 LogVoltageChangeEvents="{Binding VoltageInput1.LogVoltageChangeEvents,Mode=TwoWay}"
                                                           
                                 SensorType="{Binding VoltageInput1.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit_Unit="{Binding VoltageInput1.SensorUnit_Unit,Mode=TwoWay}"
-                                SensorUnit_Symbol="{Binding VoltageInput1.SensorUnit_Symbol,Mode=TwoWay}" 
+                                SensorUnit="{Binding VoltageInput1.SensorUnit,Mode=TwoWay}"
                             
                                 MinDataInterval="{Binding VoltageInput1.MinDataInterval,Mode=OneWay}"
                                 DataInterval="{Binding VoltageInput1.DataInterval,Mode=TwoWay}"
@@ -678,9 +675,8 @@
                                 LogVoltageRatioChangeEvents="{Binding VoltageRatioInput1.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
                                 SensorType="{Binding VoltageRatioInput1.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit_Unit="{Binding VoltageRatioInput1.SensorUnit_Unit,Mode=TwoWay}"
-                                SensorUnit_Symbol="{Binding VoltageRatioInput1.SensorUnit_Symbol,Mode=TwoWay}"                                                      
- 
+                                SensorUnit="{Binding VoltageRatioInput1.SensorUnit,Mode=TwoWay}"
+
                                 MinDataInterval="{Binding VoltageRatioInput1.MinDataInterval,Mode=OneWay}"
                                 DataInterval="{Binding VoltageRatioInput1.DataInterval,Mode=TwoWay}"
                                 MaxDataInterval="{Binding VoltageRatioInput1.MaxDataInterval,Mode=OneWay}"

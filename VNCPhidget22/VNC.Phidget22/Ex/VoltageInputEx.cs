@@ -319,47 +319,62 @@ namespace VNC.Phidget22.Ex
 
                     // Update values, SensorType changed
 
-                    SensorUnit_Unit = base.SensorUnit.Unit;
-                    SensorUnit_Name = base.SensorUnit.Name;
-                    SensorUnit_Symbol = base.SensorUnit.Symbol;
+                    //SensorUnit_Unit = base.SensorUnit.Unit;
+                    //SensorUnit_Name = base.SensorUnit.Name;
+                    //SensorUnit_Symbol = base.SensorUnit.Symbol;
+
+                    // Update Units, SensorType changed
+
+                    SensorUnit = base.SensorUnit;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private Unit? _sensorUnit_Unit;
-        public Unit? SensorUnit_Unit
+        private UnitInfo? _sensorUnit;
+        public new UnitInfo? SensorUnit
         {
-            get => _sensorUnit_Unit;
+            get => _sensorUnit;
             set
             {
-                _sensorUnit_Unit = value;
+                _sensorUnit = value;
                 OnPropertyChanged();
             }
         }
 
-        private string? _sensorUnit_Name;
-        public string? SensorUnit_Name
-        {
-            get => _sensorUnit_Name;
-            set
-            {
-                _sensorUnit_Name = value;
-                OnPropertyChanged();
-            }
-        }
+        //private Unit? _sensorUnit_Unit;
+        //public Unit? SensorUnit_Unit
+        //{
+        //    get => _sensorUnit_Unit;
+        //    set
+        //    {
+        //        _sensorUnit_Unit = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private string? _sensorUnit_Symbol;
-        public string? SensorUnit_Symbol
-        {
-            get => _sensorUnit_Symbol;
-            set
-            {
-                _sensorUnit_Symbol = value;
-                OnPropertyChanged();
-            }
-        }
+        //private string? _sensorUnit_Name;
+        //public string? SensorUnit_Name
+        //{
+        //    get => _sensorUnit_Name;
+        //    set
+        //    {
+        //        _sensorUnit_Name = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private string? _sensorUnit_Symbol;
+        //public string? SensorUnit_Symbol
+        //{
+        //    get => _sensorUnit_Symbol;
+        //    set
+        //    {
+        //        _sensorUnit_Symbol = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Double _minVoltage;
         public new Double MinVoltage
@@ -632,6 +647,7 @@ namespace VNC.Phidget22.Ex
             }
 
             SensorValue = e.SensorValue;
+            SensorUnit = e.SensorUnit;
         }
 
         private void VoltageInputEx_VoltageChange(object sender, PhidgetsEvents.VoltageInputVoltageChangeEventArgs e)
@@ -735,7 +751,12 @@ namespace VNC.Phidget22.Ex
                 // Set properties to values from Phidget
                 // We do not use Attach Event as some Phidgets do not provide values until Open
 
-                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
+                SensorType = base.SensorType;
+                SensorUnit = base.SensorUnit;
+
+                //SensorUnit_Unit = base.SensorUnit.Unit;
+                //SensorUnit_Name = base.SensorUnit.Name;
+                //SensorUnit_Symbol = base.SensorUnit.Symbol;
 
                 MinDataInterval = base.MinDataInterval;
                 DataInterval = base.DataInterval;
@@ -749,12 +770,14 @@ namespace VNC.Phidget22.Ex
 
                 MinVoltage = base.MinVoltage;
                 Voltage = base.Voltage;
-                SensorValue = base.SensorValue;
                 MaxVoltage = base.MaxVoltage;
 
                 MinVoltageChangeTrigger = base.MinVoltageChangeTrigger;
                 VoltageChangeTrigger = base.VoltageChangeTrigger;
                 MaxVoltageChangeTrigger = base.MaxVoltageChangeTrigger;
+
+                SensorValue = base.SensorValue;
+                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
             }
             catch (Phidgets.PhidgetException pex)
             {

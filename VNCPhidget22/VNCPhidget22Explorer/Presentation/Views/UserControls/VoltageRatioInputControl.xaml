@@ -204,7 +204,7 @@
         <dxlc:LayoutGroup x:Name="lgSensor" View="Group" Orientation="Vertical"  HorizontalAlignment="Stretch">
 
             <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-                
+
                 <dxlc:LayoutItem Label="SensorValue" LabelPosition="Left" HorizontalAlignment="Left">
                     <dxe:TextEdit Text="{Binding SensorValue, Mode=OneWay}" IsReadOnly="True"
                               Mask="F4" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
@@ -219,8 +219,20 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="Unit" LabelPosition="Left">
+            <dxlc:LayoutItem Label="UnitInfo" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+            
+            <dxlc:LayoutItem Label="UnitInfo.Name" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="UnitInfo.Unit" LabelPosition="Left">
                 <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="UnitInfo.Symbol" LabelPosition="Left">
+                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
             </dxlc:LayoutItem>
 
         </dxlc:LayoutGroup>

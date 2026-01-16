@@ -114,7 +114,8 @@ namespace VNC.Phidget22.Ex
 
         // NOTE(crhodes)
         // UI binds to these properties so need to use INPC
-        // as UI is bound before Attach fires to update properties from Phidget
+        // as UI is bound before Attach fires
+        // to update properties from Phidget
 
         #region Logging
 
@@ -304,6 +305,7 @@ namespace VNC.Phidget22.Ex
         // 
         // There are two more properties that are not available on InterfaceKit1018
         // Implement when we get a board that supports them
+
         // BridgeEnabled
         // BridgeGain
 
@@ -319,55 +321,74 @@ namespace VNC.Phidget22.Ex
 
                 if (Attached)
                 {
-                    var suBefore = base.SensorUnit;
+                    //Log.EVENT_HANDLER($"Before Set sensorType:" +
+                    //     $" b.name:>{base.SensorUnit.Name}< " +
+                    //     $" b.unit:>{base.SensorUnit.Unit}<" +
+                    //     $" b.symbol:>{base.SensorUnit.Symbol}<", Common.LOG_CATEGORY);
 
                     base.SensorType = (VoltageRatioSensorType)value;
 
-                    var suAfter = base.SensorUnit;
+                    //Log.EVENT_HANDLER($"After Set sensorType:" +
+                    //    $" b.name:>{base.SensorUnit.Name}< " +
+                    //    $" b.unit:>{base.SensorUnit.Unit}<" +
+                    //    $" b.symbol:>{base.SensorUnit.Symbol}<", Common.LOG_CATEGORY);
 
-                    // Update values, SensorType changed
+                    // Update Units, SensorType changed
 
-                    SensorUnit_Unit = base.SensorUnit.Unit;
-                    SensorUnit_Name = base.SensorUnit.Name;
-                    SensorUnit_Symbol = base.SensorUnit.Symbol;
+                    SensorUnit = base.SensorUnit;
+
+                    //SensorUnit_Name = base.SensorUnit.Name;
+                    //SensorUnit_Unit = base.SensorUnit.Unit;
+                    //SensorUnit_Symbol = base.SensorUnit.Symbol;
                 }
 
                 OnPropertyChanged();
             }
         }
 
-        private Unit? _sensorUnit_Unit;
-        public Unit? SensorUnit_Unit
+        private UnitInfo? _sensorUnit;
+        public new UnitInfo? SensorUnit
         {
-            get => _sensorUnit_Unit;
+            get => _sensorUnit;
             set
             {
-                _sensorUnit_Unit = value;
+                _sensorUnit = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _sensorUnit_Name;
-        public string SensorUnit_Name
-        {
-            get => _sensorUnit_Name;
-            set
-            {
-                _sensorUnit_Name = value;
-                OnPropertyChanged();
-            }
-        }
+        //private string _sensorUnit_Name;
+        //public string SensorUnit_Name
+        //{
+        //    get => _sensorUnit_Name;
+        //    set
+        //    {
+        //        _sensorUnit_Name = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
-        private string? _sensorUnit_Symbol;
-        public string? SensorUnit_Symbol
-        {
-            get => _sensorUnit_Symbol;
-            set
-            {
-                _sensorUnit_Symbol = value;
-                OnPropertyChanged();
-            }
-        }
+        //private Unit? _sensorUnit_Unit;
+        //public Unit? SensorUnit_Unit
+        //{
+        //    get => _sensorUnit_Unit;
+        //    set
+        //    {
+        //        _sensorUnit_Unit = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        //private string? _sensorUnit_Symbol;
+        //public string? SensorUnit_Symbol
+        //{
+        //    get => _sensorUnit_Symbol;
+        //    set
+        //    {
+        //        _sensorUnit_Symbol = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
 
         private Double _minVoltageRatio;
         public new Double MinVoltageRatio
@@ -595,8 +616,9 @@ namespace VNC.Phidget22.Ex
                 {
                     Log.EVENT_HANDLER($"VoltageRatioInputEx_SensorChange:" +
                         $" sender:>{sender}< sensorValue:>{e.SensorValue}<" +
-                        $" name:>{e.SensorUnit.Name}< unit:>{e.SensorUnit.Unit}< symbol:>{e.SensorUnit.Symbol}<" +
-                        $" name:>{SensorUnit_Name}< unit:>{SensorUnit_Unit}< symbol:>{SensorUnit_Symbol}<", Common.LOG_CATEGORY);
+                        $" e.name:>{e.SensorUnit.Name}< b.name:>{base.SensorUnit.Name}< " +
+                        $" e.unit:>{e.SensorUnit.Unit}< b.unit:>{base.SensorUnit.Unit}<" +
+                        $" e.symbol:>{e.SensorUnit.Symbol}< b.symbol:>{base.SensorUnit.Symbol}<", Common.LOG_CATEGORY);
                 }
                 catch (Exception ex)
                 {
@@ -605,10 +627,11 @@ namespace VNC.Phidget22.Ex
             }
 
             SensorValue = e.SensorValue;
+            SensorUnit = e.SensorUnit;
 
-            SensorUnit_Name = e.SensorUnit.Name;
-            SensorUnit_Unit = e.SensorUnit.Unit;
-            SensorUnit_Symbol = e.SensorUnit.Symbol;
+            //SensorUnit_Name = e.SensorUnit.Name;
+            //SensorUnit_Unit = e.SensorUnit.Unit;
+            //SensorUnit_Symbol = e.SensorUnit.Symbol;
 
             if (SensorValueOutOfRange) SensorValueOutOfRange = false;
         }
@@ -727,6 +750,11 @@ namespace VNC.Phidget22.Ex
                 // We do not use Attach Event as some Phidgets do not provide values until Open
 
                 SensorType = base.SensorType;
+                SensorUnit = base.SensorUnit;
+
+                //SensorUnit_Unit = base.SensorUnit.Unit;
+                //SensorUnit_Name = base.SensorUnit.Name;
+                //SensorUnit_Symbol = base.SensorUnit.Symbol;
 
                 MinDataInterval = base.MinDataInterval;
                 DataInterval = base.DataInterval;
@@ -740,19 +768,14 @@ namespace VNC.Phidget22.Ex
 
                 MinVoltageRatio = base.MinVoltageRatio;
                 VoltageRatio = base.VoltageRatio;
-                //SensorValue = base.SensorValue;
                 MaxVoltageRatio = base.MaxVoltageRatio;
 
                 MinVoltageRatioChangeTrigger = base.MinVoltageRatioChangeTrigger;
                 VoltageRatioChangeTrigger = base.VoltageRatioChangeTrigger;
                 MaxVoltageRatioChangeTrigger = base.MaxVoltageRatioChangeTrigger;
 
-                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
                 SensorValue = base.SensorValue;
-
-                SensorUnit_Unit = base.SensorUnit.Unit;
-                SensorUnit_Name = base.SensorUnit.Name;
-                SensorUnit_Symbol = base.SensorUnit.Symbol;
+                SensorValueChangeTrigger = base.SensorValueChangeTrigger;
             }
             catch (Phidgets.PhidgetException pex)
             {

@@ -2219,19 +2219,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         void ConfigureInitialLogging(DigitalInputEx phidgetEx)
         {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         public Boolean OpenDigitalInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
@@ -2555,19 +2553,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         void ConfigureInitialLogging(DigitalOutputEx phidgetEx)
         {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         public Boolean OpenDigitalOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
@@ -2856,19 +2852,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         void ConfigureInitialLogging(VoltageInputEx phidgetEx)
         {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         public Boolean OpenVoltageInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
@@ -3317,19 +3311,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         void ConfigureInitialLogging(VoltageRatioInputEx phidgetEx)
         {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         public Boolean OpenVoltageRatioInputCanExecute(SerialHubPortChannel? serialHubPortChannel)
@@ -3779,19 +3771,17 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         void ConfigureInitialLogging(VoltageOutputEx phidgetEx)
         {
-            phidgetEx.LogPhidgetEvents = LogPhidgetEvents;
-            phidgetEx.LogErrorEvents = LogErrorEvents;
-            phidgetEx.LogPropertyChangeEvents = LogPropertyChangeEvents;
+            // NOTE(crhodes)
+            // If the global logging is set, override the phidget specific settings
 
-            //rcServoHot.LogCurrentChangeEvents = LogCurrentChangeEvents;
-            //phidgetEx.LogPositionChangeEvents = LogPositionChangeEvents;
-            //phidgetEx.LogVelocityChangeEvents = LogVelocityChangeEvents;
+            if (LogPhidgetEvents) phidgetEx.LogPhidgetEvents = true;
+            if (LogErrorEvents) phidgetEx.LogErrorEvents = true;
+            if (LogPropertyChangeEvents) phidgetEx.LogPropertyChangeEvents = true;
 
-            //stepper.LogTargetPositionReachedEvents = LogTargetPositionReachedEvents;
 
-            phidgetEx.LogDeviceChannelSequence = LogDeviceChannelSequence;
-            phidgetEx.LogChannelAction = LogChannelAction;
-            phidgetEx.LogActionVerification = LogActionVerification;
+            if (LogDeviceChannelSequence) phidgetEx.LogDeviceChannelSequence = true;
+            if (LogChannelAction) phidgetEx.LogChannelAction = true;
+            if (LogActionVerification) phidgetEx.LogActionVerification = true;
         }
 
         public Boolean OpenVoltageOutputCanExecute(SerialHubPortChannel? serialHubPortChannel)
