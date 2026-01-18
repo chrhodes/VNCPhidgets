@@ -16,7 +16,7 @@ using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer
 {
-    public class Common : VNC.WPF.Presentation.Common //VNC.Core.Common
+    public class Common : VNC.WPF.Presentation.Dx.Common //VNC.Core.Common
     {
         //private static string _fileVersion;
         //private static string _productName;
@@ -31,8 +31,15 @@ namespace VNCPhidget22Explorer
         public static string PERFORMANCEJSONPATH = string.Empty;
 
         // NOTE(crhodes)
+        // T
         // Add new VNC.Core.Information InformationXXX
         // for other Assemblies that should provide Info
+        // Other VNC Assemblies include VNC.Core.Information and will be available
+        // if their Common class is included, No need to include here.
+        //
+        //public static VNC.Core.Information? InformationVNCPresentationWpfDx;
+        //public static VNC.Core.Information? InformationVNCPresentationWpf;
+        //
         // Initialize in App.xaml.cs GetAndSetInformation()
         //
         // Extend Views\AppVersionInfo.xaml as needed
@@ -45,6 +52,8 @@ namespace VNCPhidget22Explorer
         public static VNC.Core.Information? InformationVNCPhidget;
         public static VNC.Core.Information? InformationVNCPhidgetConfiguration;
         public static VNC.Core.Information? InformationPhidget22;
+
+        // NOTE(crhodes)
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 

@@ -402,7 +402,7 @@ namespace VNCPhidget22Explorer
                     vncPhidgetConfigurationFileVersionInfo);
             }
 
-            // Get Information about Phidget assembly
+            // Get Information about Phidget22 assembly
 
             var phidget22Assembly = Assembly.GetAssembly(typeof(Phidget22.Phidget));
 
@@ -414,6 +414,36 @@ namespace VNCPhidget22Explorer
                 Common.InformationPhidget22 = Common.GetInformation(
                     phidget22Assembly, 
                     phidget22FileVersionInfo);
+            }
+
+            // Get Information about VNCWPFPresentation assembly
+
+            var VNCWPFPresentationAssembly = Assembly.GetAssembly(typeof(VNC.WPF.Presentation.Common));
+            if (VNCWPFPresentationAssembly is not null)
+            {
+                var VNCWPFPresentationFileVersionInfo = System.Diagnostics.FileVersionInfo
+                    .GetVersionInfo(VNCWPFPresentationAssembly.Location);
+
+                Common.InformationVNCWPFPresentation = Common.GetInformation(
+                    VNCWPFPresentationAssembly,
+                    VNCWPFPresentationFileVersionInfo);
+            }
+
+            // Get Information about VNCWPFPresentationDx assembly
+
+            // TODO(crhodes)
+            // Change TYPE to a type in VNCWPFPresentationDx
+
+            var VNCWPFPresentationDxAssembly = Assembly.GetAssembly(typeof(VNC.WPF.Presentation.Dx.Common));
+
+            if (VNCWPFPresentationDxAssembly is not null)
+            {
+                var VNCWPFPresentationDxFileVersionInfo = System.Diagnostics.FileVersionInfo
+                    .GetVersionInfo(VNCWPFPresentationDxAssembly.Location);
+
+                Common.InformationVNCWPFPresentationDx = Common.GetInformation(
+                    VNCWPFPresentationDxAssembly,
+                    VNCWPFPresentationDxFileVersionInfo);
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
