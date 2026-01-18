@@ -1,5 +1,7 @@
 # Ignore Folders until ready to commit
 
+# Previous Versions
+Versions/
 # Ignore Zip Files
 *.zip
 
