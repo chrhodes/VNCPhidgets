@@ -75,6 +75,7 @@
 
     <SolidColorBrush x:Key="DigitalInputControlBackground" Color="#B0D0B0" />
     <SolidColorBrush x:Key="DigitalOutputControlBackground" Color="#C0C0C0" />
+    <SolidColorBrush x:Key="UnitInfoControlBackground" Color="#709070" />
     <SolidColorBrush x:Key="VoltageInputControlBackground" Color="#C0A0C0" />
     <SolidColorBrush x:Key="VoltageRatioInputControlBackground" Color="#A0A080" />    
     <SolidColorBrush x:Key="VoltageOutputControlBackground" Color="#C080C0" />

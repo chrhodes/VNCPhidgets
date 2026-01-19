@@ -16,11 +16,11 @@ using VNCPhidget22Explorer.Presentation.Views;
 
 namespace VNCPhidget22Explorer.Presentation.ViewModels
 {
-    public class FullRibbonViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
+    public class RibbonFullViewModel : EventViewModelBase, IRibbonViewModel, IInstanceCountVM
     {
         #region Constructors, Initialization, and Load
 
-        public FullRibbonViewModel(
+        public RibbonFullViewModel(
             IEventAggregator eventAggregator,
             IDialogService dialogService) : base(eventAggregator, dialogService)
         {

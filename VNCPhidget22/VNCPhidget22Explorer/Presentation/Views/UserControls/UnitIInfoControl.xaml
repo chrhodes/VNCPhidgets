@@ -1,5 +1,5 @@
 ﻿<vncmvvm:ViewBase
-    x:Class="VNCPhidget22Explorer.Presentation.Views.DataIntervalAndRateControl"
+    x:Class="VNCPhidget22Explorer.Presentation.Views.UnitInfoControl"
     x:Name="thisControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -31,7 +31,7 @@
     xmlns:prism="http://prismlibrary.com/"   
     prism:ViewModelLocator.AutoWireViewModel="False"
 
-    Background="{StaticResource DataIntervalAndRateControlBackground}"
+    Background="{StaticResource UnitInfoControlBackground}"
     
     d:DesignStyle="{StaticResource vncDesignStyleUC}" 
 >
@@ -70,56 +70,23 @@
     <!-- Use DockPanel if want DeveloperUIInfo -->
     <!-- <DockPanel> -->
         <!-- <vncviews:DeveloperUIInfo x:Name="spDeveloperInfo" DockPanel.Dock="Bottom"/> -->
-    <dxlc:LayoutGroup x:Name="lgMain" Header="Data Rate / Interval" View="GroupBox" Orientation="Vertical"  
-                      IsCollapsible="True" IsCollapsed="False" Padding="-10"  >
+    <dxlc:LayoutGroup x:Name="lgMain" Header="UnitInfo" View="GroupBox" Orientation="Horizontal"  
+                      IsCollapsible="True" IsCollapsed="False" Padding="-10" >
 
-         <!-- Paste content HERE and update lgMain infra -->  
+         <!-- Paste content HERE and update lgMain infra -->
 
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch" >
+        <dxlc:LayoutItem Label="Name" LabelPosition="Top" >
+            <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left" Width="40">
-                <dxe:TextEdit Text="{Binding MinDataRate, Mode=OneWay}"  IsReadOnly="True" 
-                              Mask="F3" MaskType="Numeric" MaskUseAsDisplayFormat="True" />
-            </dxlc:LayoutItem>
+        <dxlc:LayoutItem Label="Unit" LabelPosition="Top" HorizontalAlignment="Right" >
+            <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem Label="Rate (Hz)" LabelPosition="Top" HorizontalAlignment="Left" LabelHorizontalAlignment="Center" Width="65">
+        <dxlc:LayoutItem Label="Symbol" LabelPosition="Top" HorizontalAlignment="Right">
+            <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
+        </dxlc:LayoutItem>
 
-                <dxe:SpinEdit 
-                    Value="{Binding DataRate, Mode=TwoWay}" 
-                    Increment="1"
-                    MinValue="{Binding MinDataRate, Mode=OneWay}" 
-                    MaxValue="{Binding MaxDataRate, Mode=OneWay}" 
-                    IsFloatValue="False"
-                    ToolTip="DataRate in Hz"/>
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Left" LabelHorizontalAlignment="Right">
-                <dxe:TextEdit Text="{Binding MaxDataRate, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
-
-        <dxlc:LayoutGroup View="Group" Orientation="Horizontal" HorizontalAlignment="Stretch">
-
-            <dxlc:LayoutItem Label="Min" LabelPosition="Top" HorizontalAlignment="Left" Width="40" >
-                <dxe:TextEdit Text="{Binding MinDataInterval, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Interval (ms)" LabelPosition="Top" HorizontalAlignment="Left" Width="65">
-                <dxe:SpinEdit
-                    Value="{Binding DataInterval, Mode=TwoWay}"
-                    Increment="10"                         
-                    MinValue="{Binding MinDataInterval, Mode=OneWay}" 
-                    MaxValue="{Binding MaxDataInterval, Mode=OneWay}" 
-                    IsFloatValue="False"
-                    ToolTip="Data Interval in ms"/>
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="Max" LabelPosition="Top" HorizontalAlignment="Left" LabelHorizontalAlignment="Right">
-                <dxe:TextEdit Text="{Binding MaxDataInterval, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-
-        </dxlc:LayoutGroup>
 
     </dxlc:LayoutGroup>
 

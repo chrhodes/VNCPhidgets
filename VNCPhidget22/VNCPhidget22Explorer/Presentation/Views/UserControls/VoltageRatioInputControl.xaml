@@ -77,7 +77,6 @@
     <dxlc:LayoutGroup x:Name="lgMain" View="Group" Orientation="Vertical" 
                       HorizontalAlignment="Left" VerticalAlignment="Top">
 
-
         <Label Content="{Binding SerialHubPortChannel}" />
         
         <!-- Logging -->
@@ -90,6 +89,7 @@
             Background="{StaticResource LoggingBackground}"
             MouseRightButtonDown="LayoutGroup_MouseRightButtonDown"
             ToolTip="LeftCtrl-Right Click to Check All\nLeftAlt-Right Click to UnCheck All">
+            
             <dxe:CheckEdit
                 Content="Phidget"
                 IsChecked="{Binding LogPhidgetEvents, Mode=TwoWay}"
@@ -116,8 +116,8 @@
         <!--Open/Close-->
         
         <dxlc:LayoutGroup View="Group" Orientation="Horizontal" >
-            
-            <dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Padding="-2" VerticalAlignment="Stretch">
                 <Button x:Name="btnOpenVoltageRatioInputCommand" 
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
@@ -127,17 +127,31 @@
       		                ToolTip="{Binding OpenVoltageRatioInputToolTip, FallbackValue='OpenVoltageRatioInput ToolTip' }" />   
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem  VerticalAlignment="Center" HorizontalAlignment="Center" >
-                <Button x:Name="btnRefreshVoltageRatioInputCommand" Padding="0"
+            <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+
+                <dxlc:LayoutItem  Padding="-2" VerticalAlignment="Center" >
+                    <Button x:Name="btnRefreshVoltageRatioInputCommand" Padding="1"
                         DataContext="{Binding DataContext, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
       		            Command="{Binding RefreshVoltageRatioInputCommand }"
                         CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
       		                Content="{Binding RefreshVoltageRatioInputContent, FallbackValue='Refresh' }"
       		                ToolTip="{Binding RefreshVoltageRatioInputToolTip, FallbackValue='RefreshVoltageRatioInput Properties ToolTip' }" />
-            </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
 
-            <dxlc:LayoutItem>
+                <dxlc:LayoutItem Padding="-2" VerticalAlignment="Center">
+                    <Button x:Name="btnRaisePerformanceEventCommand" Padding="1"
+                        DataContext="{Binding DataContext, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
+      		            Command="{Binding RaisePerformanceEventCommand }"
+                        CommandParameter="{Binding ElementName=thisControl, Path=SerialHubPortChannel}"                
+      		                Content="{Binding RaisePerformanceEventContent, FallbackValue='Raise Event' }"
+      		                ToolTip="{Binding RaisePerformanceEventToolTip, FallbackValue='Raise Performance Event ToolTip' }" />
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem Padding="-2" VerticalAlignment="Stretch">
                 <Button x:Name="btnCloseVoltageRatioInputCommand" 
                         DataContext="{Binding DataContext, 
                                         RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"
@@ -149,29 +163,11 @@
 
         </dxlc:LayoutGroup>
 
-        <!--<dxlc:LayoutItem Label="{Binding ControlTitle}" LabelPosition="Left">
-
-        </dxlc:LayoutItem>-->
-
-        <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
+        <!--<dxlc:LayoutGroup View="Group" Orientation="Vertical" >
 
             <dxe:TextEdit Text="{Binding ControlTitle, Mode=OneWay}" IsReadOnly="True" VerticalAlignment="Top" />
 
-            <!--<views:SerialHubPortControl />-->
-            
-            <!--<dxlc:LayoutItem HorizontalAlignment="Left" Label="SerialNumber" LabelPosition="Top">
-                <dxe:TextEdit Text="{Binding SerialNumber}" />
-            </dxlc:LayoutItem>
-            
-            <dxlc:LayoutItem HorizontalAlignment="Left" Label="HubPort" LabelPosition="Top">
-                <dxe:TextEdit Text="{Binding HubPort}" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem HorizontalAlignment="Center" Label="Channel" LabelPosition="Top">
-                <dxe:TextEdit Text="{Binding Channel}" />
-            </dxlc:LayoutItem>-->
-
-        </dxlc:LayoutGroup>        
+        </dxlc:LayoutGroup>-->        
 
         <dxlc:LayoutItem Label="Sensor Type" LabelPosition="Left" >
             <dxe:ComboBoxEdit 
@@ -219,21 +215,7 @@
 
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem Label="UnitInfo" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-            
-            <dxlc:LayoutItem Label="UnitInfo.Name" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Name, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="UnitInfo.Unit" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Unit, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutItem Label="UnitInfo.Symbol" LabelPosition="Left">
-                <dxe:TextEdit Text="{Binding SensorUnit_Symbol, Mode=OneWay}" IsReadOnly="True" />
-            </dxlc:LayoutItem>
+            <views:UnitInfoControl VerticalAlignment="Top" />
 
         </dxlc:LayoutGroup>
 

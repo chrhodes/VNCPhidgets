@@ -56,7 +56,7 @@ namespace VNCPhidget22Explorer
 
             // If you are using the RibbonShell and the RibbonRegion
 
-            containerRegistry.RegisterSingleton<IRibbonViewModel, FullRibbonViewModel>();
+            containerRegistry.RegisterSingleton<IRibbonViewModel, RibbonFullViewModel>();
 
 
             // Pick one of these for the MainRegion
