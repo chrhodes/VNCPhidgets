@@ -44,6 +44,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             InformationPhidget22 = Common.InformationPhidget22;
 
             InformationVNCCore = Common.InformationVNCCore;
+            InformationVNCWPFPresentation = Common.InformationVNCWPFPresentation;
+            InformationVNCWPFPresentationDx = Common.InformationVNCWPFPresentationDx;
 
             if (Common.VNCLogging.ViewLow) Log.VIEWMODEL_LOW("Exit", Common.LOG_CATEGORY, startTicks);
         }
@@ -64,10 +66,14 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
 
         public Information? InformationApplication { get; set; }
         public Information? InformationApplicationCore { get; set; }
-        public Information? InformationVNCCore { get; set; }
+
         public Information? InformationVNCPhidget { get; set; }
         public Information? InformationVNCPhidgetConfiguration { get; set; }
         public Information? InformationPhidget22 { get; set; }
+
+        public Information? InformationVNCCore { get; set; }
+        public Information? InformationVNCWPFPresentation { get; set; }
+        public Information? InformationVNCWPFPresentationDx { get; set; }
 
         #endregion
 
