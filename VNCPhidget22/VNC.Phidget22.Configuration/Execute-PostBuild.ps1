@@ -64,9 +64,7 @@ command includes the Role parameter of Get-Help.
 The intended use of the function. This content appears when the Get-Help
 command includes the Functionality parameter of Get-Help.
 
-
-Execute-PreBuild.ps1
-
+Execute-PostBuild.ps1
 #>
 
 ##############################################
@@ -78,9 +76,10 @@ param
 (
     [string] $ProjectFileName
     , [string] $TargetName
-    , [string] $Configuration
-    , [string] $Platform
-    , [switch] $Contents
+    , [string] $PackageVersion
+    # , [string] $Configuration
+    # , [string] $Platform
+    # , [switch] $Contents
     # , [switch] $Verbose
 )
 
@@ -88,17 +87,7 @@ param
 # Script Level Variables
 ##############################################
 
-<#
-$ScriptVar1 = "Foo"
-$ScriptVar2 = 42
-$ScriptVar3 = @(
-    ("Apple")
-    ,("Pear")
-    ,("Yoghurt")
-)
-#>
-
-$SCRIPTNAME = $MyInvocation.MyCommand.Name
+$SCRIPTNAME = $myInvocation.InvocationName
 $SCRIPTPATH = & { $myInvocation.ScriptName }
 $CURRENTDIRECTORY = $PSScriptRoot
 
@@ -116,37 +105,23 @@ function Main
 
         "ProjectFileName    = $ProjectFileName"
         "TargetName         = $TargetName"
-        "Configuration      = $Configuration"
-        "Platform           = $Platform"
-
-        "`$Verbose          = $Verbose"
+        "PackageVersion     = $PackageVersion"
     }
 
     Set-Location $CURRENTDIRECTORY
 
-    Write-Verbose "Calling Update-MSBuildFileVersion $ProjectFileName"
-    
-    Update-MSBuildFileVersion $ProjectFileName
-    # UpdateFileVersion
-
-    # $message = "Ending   " + $SCRIPTNAME + ": " + (Get-Date)
-    # LogMessage $message "Main" "Info"
+    Write-Verbose "Update-VNCNugetPackage $ProjectFileName $TargetName $PackageVersion"
+    Update-VNCNugetPackage $ProjectFileName $TargetName $PackageVersion
 }
 
 ##############################
 # Internal Functions
 ##############################
 
-if ($SCRIPT:Contents)
-{
-    $myInvocation.MyCommand.ScriptBlock
-    exit
-}
-
 # Call the main function.  Use Dot Sourcing to ensure executed in Script scope.
 
 . Main
 
 #
-# End Execute-PreBuild.ps1
+# End Execute-PostBuild.ps1
 #

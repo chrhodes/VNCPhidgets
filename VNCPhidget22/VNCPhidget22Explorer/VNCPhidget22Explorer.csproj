@@ -8,7 +8,7 @@
     <VersionPrefix>1.0.0</VersionPrefix>
     <VersionSuffix>indevelopment-2026</VersionSuffix>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-    <FileVersion>2026.01.19</FileVersion>
+    <FileVersion>2026.02.11</FileVersion>
     <Description>Phidget22 Explorer</Description>
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
@@ -102,8 +102,8 @@
     </When>
     <When Condition="'!$(DefineConstants.Contains(VNCPROJECTREF))'">
       <ItemGroup>
-        <PackageReference Include="VNC.Core" Version="3.2.0" />
-        <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.2.0" />
+        <PackageReference Include="VNC.Core" Version="3.3.0" />
+        <PackageReference Include="VNC.WPF.Presentation.Dx" Version="3.3.0" />
       </ItemGroup>
     </When>
   </Choose>
@@ -178,7 +178,7 @@
     <!--This updates the file version to the current date.-->
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
+        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; $(ProjectFileName)" />
     </Target>
 
     <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Release'">

@@ -560,581 +560,629 @@
                         <StackPanel Orientation="Horizontal">
                    
                             <!-- Voltage Input 0-->
-                            
-                            <views:VoltageInputControl x:Name="vic0" ControlTitle="Voltage Input 0" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput0.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput0.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput0.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput0.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput0.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput0.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput0.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput0.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput0.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageInput0.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput0.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput0.MaxDataInterval,Mode=OneWay}"
+                            <Border BorderBrush="Black" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+                                    
+                                    <views:VoltageInputControl x:Name="vic0" ControlTitle="Voltage Input 0" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput0.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput0.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput0.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput0.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput0.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput0.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput0.LogVoltageChangeEvents,Mode=TwoWay}"
+                                                          
+                                        SensorType="{Binding VoltageInput0.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput0.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput0.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput0.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput0.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput0.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput0.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput0.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput0.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput0.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput0.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput0.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput0.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput0.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput0.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput0.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput0.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput0.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput0.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput0.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput0.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput0.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput0.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput0.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput0.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput0.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput0.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput0.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput0.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput0.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput0.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput0.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput0.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric0"  ControlTitle="VoltageRatio Input 0" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput0.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput0.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput0.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput0.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput0.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput0.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput0.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric0"  ControlTitle="VoltageRatio Input 0" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput0.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput0.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput0.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput0.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput0.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput0.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput0.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput0.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput0.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput0.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput0.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput0.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput0.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput0.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput0.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput0.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput0.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput0.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput0.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput0.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput0.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput0.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput0.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput0.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput0.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput0.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput0.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput0.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput0.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput0.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput0.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput0.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput0.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput0.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput0.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput0.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput0.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput0.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput0.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput0.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput0.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput0.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput0.SensorValueOutOfRange,Mode=OneWay}" />
+                                    
+                                </StackPanel>
 
+                            </Border>
+                            
                             <!-- Voltage Input 1 -->
-                            
-                            <views:VoltageInputControl x:Name="vic1" ControlTitle="Voltage Input 1" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput1.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput1.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput1.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput1.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput1.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput1.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput1.LogVoltageChangeEvents,Mode=TwoWay}"
+
+                            <Border BorderBrush="Black" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <views:VoltageInputControl x:Name="vic1" ControlTitle="Voltage Input 1" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput1.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput1.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput1.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput1.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput1.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput1.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput1.LogVoltageChangeEvents,Mode=TwoWay}"
                                                           
-                                SensorType="{Binding VoltageInput1.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput1.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageInput1.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput1.SensorUnit,Mode=TwoWay}"
                             
-                                MinDataInterval="{Binding VoltageInput1.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput1.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput1.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageInput1.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput1.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput1.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput1.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput1.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput1.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput1.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput1.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput1.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput1.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput1.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput1.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput1.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput1.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput1.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput1.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput1.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput1.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput1.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput1.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput1.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput1.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput1.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput1.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput1.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput1.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput1.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput1.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput1.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput1.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput1.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric1"  ControlTitle="VoltageRatio Input 1" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput1.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput1.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput1.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput1.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput1.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput1.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput1.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric1"  ControlTitle="VoltageRatio Input 1" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput1.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput1.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput1.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput1.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput1.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput1.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput1.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput1.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput1.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput1.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput1.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput1.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput1.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput1.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput1.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput1.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput1.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput1.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput1.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput1.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput1.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput1.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput1.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput1.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput1.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput1.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput1.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput1.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput1.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput1.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput1.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput1.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput1.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput1.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput1.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput1.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput1.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput1.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput1.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput1.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput1.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput1.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput1.SensorValueOutOfRange,Mode=OneWay}" />
+                                    
+                                </StackPanel>
+                            </Border>
 
                             <!-- Voltage Input 2 -->
-                            
-                            <views:VoltageInputControl x:Name="vic2" ControlTitle="Voltage Input 2" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput2.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput2.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput2.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput2.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput2.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput2.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput2.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput2.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput2.SensorUnit,Mode=TwoWay}"
+                            <Border BorderBrush="Black" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
 
-                                MinDataInterval="{Binding VoltageInput2.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput2.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput2.MaxDataInterval,Mode=OneWay}"
+                                    <views:VoltageInputControl x:Name="vic2" ControlTitle="Voltage Input 2" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput2.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput2.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput2.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput2.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput2.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput2.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput2.LogVoltageChangeEvents,Mode=TwoWay}"
+                                                          
+                                        SensorType="{Binding VoltageInput2.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput2.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput2.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput2.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput2.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput2.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput2.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput2.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput2.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput2.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput2.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput2.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput2.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput2.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput2.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput2.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput2.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput2.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput2.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput2.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput2.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput2.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput2.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput2.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput2.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput2.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput2.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput2.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput2.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput2.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput2.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput2.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput2.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric2"  ControlTitle="VoltageRatio Input 2" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput2.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput2.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput2.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput2.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput2.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput2.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput2.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric2"  ControlTitle="VoltageRatio Input 2" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput2.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput2.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput2.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput2.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput2.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput2.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput2.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput2.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput2.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput2.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput2.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput2.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput2.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput2.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput2.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput2.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput2.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput2.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput2.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput2.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput2.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput2.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput2.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput2.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput2.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput2.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput2.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput2.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput2.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput2.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput2.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput2.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput2.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput2.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput2.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput2.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput2.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput2.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput2.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput2.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput2.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput2.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput2.SensorValueOutOfRange,Mode=OneWay}" />
+
+                                </StackPanel>
+                            </Border>
 
                             <!-- Voltage Input 3 -->
-                            
-                            <views:VoltageInputControl x:Name="vic3" ControlTitle="Voltage Input 3" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput3.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput3.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput3.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput3.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput3.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput3.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput3.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput3.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput3.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageInput3.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput3.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput3.MaxDataInterval,Mode=OneWay}"
+                            <Border BorderBrush="Black" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <views:VoltageInputControl x:Name="vic3" ControlTitle="Voltage Input 3" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput3.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput3.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput3.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput3.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput3.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput3.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput3.LogVoltageChangeEvents,Mode=TwoWay}"
+                                                          
+                                        SensorType="{Binding VoltageInput3.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput3.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput3.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput3.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput3.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput3.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput3.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput3.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput3.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput3.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput3.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput3.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput3.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput3.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput3.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput3.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput3.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput3.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput3.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput3.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput3.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput3.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput3.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput3.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput3.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput3.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput3.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput3.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput3.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput3.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput3.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput3.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput3.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric3"  ControlTitle="VoltageRatio Input 3" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput3.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput3.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput3.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput3.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput3.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput3.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput3.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric3"  ControlTitle="VoltageRatio Input 3" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput3.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput3.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput3.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput3.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput3.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput3.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput3.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput3.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput3.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput3.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput3.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput3.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput3.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput3.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput3.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput3.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput3.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput3.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput3.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput3.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput3.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput3.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput3.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput3.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput3.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput3.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput3.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput3.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput3.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput3.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput3.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput3.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput3.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput3.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput3.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput3.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput3.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput3.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput3.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput3.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput3.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput3.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput3.SensorValueOutOfRange,Mode=OneWay}" />
+
+                                </StackPanel>
+                            </Border>
 
                             <!-- Voltage Input 4 -->
-                            
-                            <views:VoltageInputControl x:Name="vic4" ControlTitle="Voltage Input 4" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput4.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput4.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput4.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput4.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput4.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput4.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput4.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput4.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput4.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageInput4.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput4.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput4.MaxDataInterval,Mode=OneWay}"
+                            <Border BorderBrush="Red" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <views:VoltageInputControl x:Name="vic4" ControlTitle="Voltage Input 4" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput4.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput4.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput4.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput4.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput4.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput4.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput4.LogVoltageChangeEvents,Mode=TwoWay}"
+                                                          
+                                        SensorType="{Binding VoltageInput4.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput4.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput4.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput4.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput4.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput4.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput4.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput4.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput4.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput4.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput4.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput4.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput4.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput4.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput4.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput4.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput4.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput4.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput4.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput4.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput4.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput4.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput4.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput4.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput4.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput4.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput4.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput4.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput4.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput4.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput4.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput4.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput4.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric4"  ControlTitle="VoltageRatio Input 4" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput4.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput4.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput4.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput4.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput4.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput4.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput4.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric4"  ControlTitle="VoltageRatio Input 4" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput4.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput4.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput4.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput4.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput4.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput4.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput4.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput4.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput4.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput4.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput4.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput4.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput4.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput4.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput4.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput4.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput4.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput4.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput4.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput4.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput4.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput4.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput4.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput4.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput4.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput4.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput4.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput4.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput4.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput4.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput4.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput4.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput4.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput4.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput4.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput4.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput4.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput4.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput4.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput4.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput4.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput4.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput4.SensorValueOutOfRange,Mode=OneWay}" />
+
+                                </StackPanel>
+                            </Border>
 
                             <!-- Voltage Input 5 -->
-                            
-                            <views:VoltageInputControl x:Name="vic5" ControlTitle="Voltage Input 5" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput5.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput5.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput5.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput5.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput5.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput5.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput5.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput5.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput5.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageInput5.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput5.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput5.MaxDataInterval,Mode=OneWay}"
-                            
-                                MinDataRate="{Binding VoltageInput5.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput5.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput5.MaxDataRate,Mode=OneWay}"
-                            
-                                MinVoltage="{Binding VoltageInput5.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput5.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput5.MaxVoltage,Mode=TwoWay}"
-                                                        
-                                MinVoltageChangeTrigger="{Binding VoltageInput5.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput5.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput5.MaxVoltageChangeTrigger,Mode=TwoWay}"
-                            
-                                SensorValue="{Binding VoltageInput5.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput5.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput5.SensorValueOutOfRange,Mode=OneWay}"
+                            <Border BorderBrush="Red" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <views:VoltageInputControl x:Name="vic5" ControlTitle="Voltage Input 5" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput5.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput5.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput5.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput5.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput5.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput5.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput5.LogVoltageChangeEvents,Mode=TwoWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput5.VoltageRange,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageInput5.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput5.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput5.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput5.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput5.MaxDataInterval,Mode=OneWay}"
+                            
+                                        MinDataRate="{Binding VoltageInput5.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput5.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput5.MaxDataRate,Mode=OneWay}"
+                            
+                                        MinVoltage="{Binding VoltageInput5.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput5.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput5.MaxVoltage,Mode=TwoWay}"
+                                                        
+                                        MinVoltageChangeTrigger="{Binding VoltageInput5.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput5.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput5.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                            
+                                        SensorValue="{Binding VoltageInput5.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput5.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput5.SensorValueOutOfRange,Mode=OneWay}"
+                                                          
+                                        VoltageRange="{Binding VoltageInput5.VoltageRange,Mode=TwoWay}"
                                                                                
                                 PowerSupply="{Binding VoltageInput5.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric5"  ControlTitle="VoltageRatio Input 5" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput5.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput5.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput5.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput5.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput5.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput5.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput5.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric5"  ControlTitle="VoltageRatio Input 5" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput5.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput5.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput5.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput5.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput5.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput5.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput5.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput5.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput5.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput5.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput5.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput5.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput5.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput5.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput5.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput5.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput5.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput5.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput5.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput5.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput5.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput5.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput5.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput5.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput5.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput5.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput5.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput5.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput5.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput5.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput5.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput5.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput5.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput5.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput5.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput5.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput5.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput5.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput5.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput5.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput5.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput5.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput5.SensorValueOutOfRange,Mode=OneWay}" />
+                                    
+                                </StackPanel>
+                            </Border>
 
                             <!-- Voltage Input 6 -->
-                            
-                            <views:VoltageInputControl x:Name="vic6" ControlTitle="Voltage Input 6" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput6.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput6.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput6.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput6.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput6.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput6.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput6.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput6.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput6.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageInput6.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput6.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput6.MaxDataInterval,Mode=OneWay}"
+                            <Border BorderBrush="Red" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <views:VoltageInputControl x:Name="vic6" ControlTitle="Voltage Input 6" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput6.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput6.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput6.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput6.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput6.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput6.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput6.LogVoltageChangeEvents,Mode=TwoWay}"
+                                                          
+                                        SensorType="{Binding VoltageInput6.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput6.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput6.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput6.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput6.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput6.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput6.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput6.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput6.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput6.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput6.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput6.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput6.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput6.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput6.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput6.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput6.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput6.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput6.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput6.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput6.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput6.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput6.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput6.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput6.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput6.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput6.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput6.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput6.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput6.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput6.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput6.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput6.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric6"  ControlTitle="VoltageRatio Input 6" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput6.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput6.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput6.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput6.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput6.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput6.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput6.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric6"  ControlTitle="VoltageRatio Input 6" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput6.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput6.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput6.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput6.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput6.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput6.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput6.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput6.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput6.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput6.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput6.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput6.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput6.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput6.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput6.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput6.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput6.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput6.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput6.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput6.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput6.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput6.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput6.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput6.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput6.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput6.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput6.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput6.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput6.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput6.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput6.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput6.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput6.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput6.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput6.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput6.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput6.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput6.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput6.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput6.SensorValueOutOfRange,Mode=OneWay}" />
+                                        SensorValue="{Binding VoltageRatioInput6.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput6.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput6.SensorValueOutOfRange,Mode=OneWay}" />
+
+                                </StackPanel>
+                            </Border>
 
                             <!-- Voltage Input  7-->
-                            
-                            <views:VoltageInputControl x:Name="vic7" ControlTitle="Voltage Input 7" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageInput7.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageInput7.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageInput7.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageInput7.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageInput7.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageInput7.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageChangeEvents="{Binding VoltageInput7.LogVoltageChangeEvents,Mode=TwoWay}"
-                                                          
-                                SensorType="{Binding VoltageInput7.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageInput7.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageInput7.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageInput7.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageInput7.MaxDataInterval,Mode=OneWay}"
+                            <Border BorderBrush="Red" BorderThickness="2" Margin="2,0,2,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <views:VoltageInputControl x:Name="vic7" ControlTitle="Voltage Input 7" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageInput7.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageInput7.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageInput7.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageInput7.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageInput7.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageInput7.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageChangeEvents="{Binding VoltageInput7.LogVoltageChangeEvents,Mode=TwoWay}"
+                                                          
+                                        SensorType="{Binding VoltageInput7.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageInput7.SensorUnit,Mode=TwoWay}"
+
+                                        MinDataInterval="{Binding VoltageInput7.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageInput7.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageInput7.MaxDataInterval,Mode=OneWay}"
                             
-                                MinDataRate="{Binding VoltageInput7.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageInput7.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageInput7.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageInput7.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageInput7.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageInput7.MaxDataRate,Mode=OneWay}"
                             
-                                MinVoltage="{Binding VoltageInput7.MinVoltage,Mode=TwoWay}"
-                                Voltage="{Binding VoltageInput7.Voltage,Mode=TwoWay}"
-                                MaxVoltage="{Binding VoltageInput7.MaxVoltage,Mode=TwoWay}"
+                                        MinVoltage="{Binding VoltageInput7.MinVoltage,Mode=TwoWay}"
+                                        Voltage="{Binding VoltageInput7.Voltage,Mode=TwoWay}"
+                                        MaxVoltage="{Binding VoltageInput7.MaxVoltage,Mode=TwoWay}"
                                                         
-                                MinVoltageChangeTrigger="{Binding VoltageInput7.MinVoltageChangeTrigger,Mode=TwoWay}"
-                                VoltageChangeTrigger="{Binding VoltageInput7.VoltageChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageChangeTrigger="{Binding VoltageInput7.MaxVoltageChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageChangeTrigger="{Binding VoltageInput7.MinVoltageChangeTrigger,Mode=TwoWay}"
+                                        VoltageChangeTrigger="{Binding VoltageInput7.VoltageChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageChangeTrigger="{Binding VoltageInput7.MaxVoltageChangeTrigger,Mode=TwoWay}"
                             
-                                SensorValue="{Binding VoltageInput7.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageInput7.SensorValueChangeTrigger,Mode=TwoWay}"
-                                SensorValueOutOfRange="{Binding VoltageInput7.SensorValueOutOfRange,Mode=OneWay}"
+                                        SensorValue="{Binding VoltageInput7.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageInput7.SensorValueChangeTrigger,Mode=TwoWay}"
+                                        SensorValueOutOfRange="{Binding VoltageInput7.SensorValueOutOfRange,Mode=OneWay}"
                                                           
-                                VoltageRange="{Binding VoltageInput7.VoltageRange,Mode=TwoWay}"
+                                        VoltageRange="{Binding VoltageInput7.VoltageRange,Mode=TwoWay}"
                                                                                
-                                PowerSupply="{Binding VoltageInput7.PowerSupply,Mode=TwoWay}" />
+                                        PowerSupply="{Binding VoltageInput7.PowerSupply,Mode=TwoWay}" />
 
-                            <views:VoltageRatioInputControl x:Name="vric7"  ControlTitle="VoltageRatio Input 7" Margin="1"
-                                SerialHubPortChannel="{Binding VoltageRatioInput7.SerialHubPortChannel, Mode=TwoWay}" 
-                                Attached="{Binding VoltageRatioInput7.Attached, Mode=TwoWay}"
-                                LogPhidgetEvents="{Binding VoltageRatioInput7.LogPhidgetEvents,Mode=TwoWay}"
-                                LogErrorEvents="{Binding VoltageRatioInput7.LogErrorEvents,Mode=TwoWay}"
-                                LogPropertyChangeEvents="{Binding VoltageRatioInput7.LogPropertyChangeEvents,Mode=TwoWay}"
-                                LogSensorChangeEvents="{Binding VoltageRatioInput7.LogSensorChangeEvents,Mode=TwoWay}"
-                                LogVoltageRatioChangeEvents="{Binding VoltageRatioInput7.LogVoltageRatioChangeEvents,Mode=TwoWay}"
+                                    <views:VoltageRatioInputControl x:Name="vric7"  ControlTitle="VoltageRatio Input 7" Margin="1"
+                                        SerialHubPortChannel="{Binding VoltageRatioInput7.SerialHubPortChannel, Mode=TwoWay}" 
+                                        Attached="{Binding VoltageRatioInput7.Attached, Mode=TwoWay}"
+                                        LogPhidgetEvents="{Binding VoltageRatioInput7.LogPhidgetEvents,Mode=TwoWay}"
+                                        LogErrorEvents="{Binding VoltageRatioInput7.LogErrorEvents,Mode=TwoWay}"
+                                        LogPropertyChangeEvents="{Binding VoltageRatioInput7.LogPropertyChangeEvents,Mode=TwoWay}"
+                                        LogSensorChangeEvents="{Binding VoltageRatioInput7.LogSensorChangeEvents,Mode=TwoWay}"
+                                        LogVoltageRatioChangeEvents="{Binding VoltageRatioInput7.LogVoltageRatioChangeEvents,Mode=TwoWay}"
                                                               
-                                SensorType="{Binding VoltageRatioInput7.SensorType,Mode=TwoWay}"                                                         
-                                SensorUnit="{Binding VoltageRatioInput7.SensorUnit,Mode=TwoWay}"
+                                        SensorType="{Binding VoltageRatioInput7.SensorType,Mode=TwoWay}"                                                         
+                                        SensorUnit="{Binding VoltageRatioInput7.SensorUnit,Mode=TwoWay}"
 
-                                MinDataInterval="{Binding VoltageRatioInput7.MinDataInterval,Mode=OneWay}"
-                                DataInterval="{Binding VoltageRatioInput7.DataInterval,Mode=TwoWay}"
-                                MaxDataInterval="{Binding VoltageRatioInput7.MaxDataInterval,Mode=OneWay}"
+                                        MinDataInterval="{Binding VoltageRatioInput7.MinDataInterval,Mode=OneWay}"
+                                        DataInterval="{Binding VoltageRatioInput7.DataInterval,Mode=TwoWay}"
+                                        MaxDataInterval="{Binding VoltageRatioInput7.MaxDataInterval,Mode=OneWay}"
  
-                                MinDataRate="{Binding VoltageRatioInput7.MinDataRate,Mode=OneWay}"
-                                DataRate="{Binding VoltageRatioInput7.DataRate,Mode=TwoWay}"
-                                MaxDataRate="{Binding VoltageRatioInput7.MaxDataRate,Mode=OneWay}"
+                                        MinDataRate="{Binding VoltageRatioInput7.MinDataRate,Mode=OneWay}"
+                                        DataRate="{Binding VoltageRatioInput7.DataRate,Mode=TwoWay}"
+                                        MaxDataRate="{Binding VoltageRatioInput7.MaxDataRate,Mode=OneWay}"
  
-                                MinVoltageRatio="{Binding VoltageRatioInput7.MinVoltageRatio,Mode=OneWay}"
-                                VoltageRatio="{Binding VoltageRatioInput7.VoltageRatio,Mode=TwoWay}"
-                                MaxVoltageRatio="{Binding VoltageRatioInput7.MaxVoltageRatio,Mode=OneWay}"
+                                        MinVoltageRatio="{Binding VoltageRatioInput7.MinVoltageRatio,Mode=OneWay}"
+                                        VoltageRatio="{Binding VoltageRatioInput7.VoltageRatio,Mode=TwoWay}"
+                                        MaxVoltageRatio="{Binding VoltageRatioInput7.MaxVoltageRatio,Mode=OneWay}"
                              
-                                MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput7.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
-                                VoltageRatioChangeTrigger="{Binding VoltageRatioInput7.VoltageRatioChangeTrigger,Mode=TwoWay}"
-                                MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput7.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MinVoltageRatioChangeTrigger="{Binding VoltageRatioInput7.MinVoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        VoltageRatioChangeTrigger="{Binding VoltageRatioInput7.VoltageRatioChangeTrigger,Mode=TwoWay}"
+                                        MaxVoltageRatioChangeTrigger="{Binding VoltageRatioInput7.MaxVoltageRatioChangeTrigger,Mode=TwoWay}"
                                                               
-                                PowerSupply="{Binding VoltageRatioInput7.PowerSupply,Mode=TwoWay}"
+                                        PowerSupply="{Binding VoltageRatioInput7.PowerSupply,Mode=TwoWay}"
                                 
-                                SensorValue="{Binding VoltageRatioInput7.SensorValue,Mode=TwoWay}"
-                                SensorValueChangeTrigger="{Binding VoltageRatioInput7.SensorValueChangeTrigger,Mode=TwoWay}"                              
-                                SensorValueOutOfRange="{Binding VoltageRatioInput7.SensorValueOutOfRange,Mode=OneWay}" />
-                        
+                                        SensorValue="{Binding VoltageRatioInput7.SensorValue,Mode=TwoWay}"
+                                        SensorValueChangeTrigger="{Binding VoltageRatioInput7.SensorValueChangeTrigger,Mode=TwoWay}"                              
+                                        SensorValueOutOfRange="{Binding VoltageRatioInput7.SensorValueOutOfRange,Mode=OneWay}" />
+
+                                </StackPanel>
+                            </Border>
+
                         </StackPanel>
                         
                     </ScrollViewer>

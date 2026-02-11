@@ -2799,6 +2799,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             OpenVoltageRatioInputCommand?.RaiseCanExecuteChanged();
 
             RefreshVoltageInputCommand?.RaiseCanExecuteChanged();
+            RefreshVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+
             RaisePerformanceEventCommand?.RaiseCanExecuteChanged();
 
             CloseVoltageInputCommand?.RaiseCanExecuteChanged();
@@ -2882,7 +2884,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
                 .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out hostRatioInput)) return false;
 
-            if (hostRatioInput.IsOpen)
+            if (hostInput.IsOpen || hostRatioInput.IsOpen)
             {
                 return false;
             }
@@ -3040,12 +3042,16 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         {
             if (serialHubPortChannel is null) return false;
 
-            VoltageInputEx? host;
+            VoltageInputEx? hostInput;
+            VoltageRatioInputEx? hostRatioInput;
 
             if (!Common.PhidgetDeviceLibrary.VoltageInputChannels
-                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out host)) return false;
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out hostInput)) return false;
 
-            if (host.IsOpen)
+            if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
+                .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out hostRatioInput)) return false;
+
+            if (hostInput.IsOpen)
             {
                 return true;
             }
@@ -3095,6 +3101,8 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                 OpenVoltageRatioInputCommand?.RaiseCanExecuteChanged();
 
                 RefreshVoltageInputCommand?.RaiseCanExecuteChanged();
+                RefreshVoltageRatioInputCommand?.RaiseCanExecuteChanged();
+
                 RaisePerformanceEventCommand?.RaiseCanExecuteChanged();
 
                 CloseVoltageInputCommand?.RaiseCanExecuteChanged();
@@ -3357,7 +3365,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
             if (!Common.PhidgetDeviceLibrary.VoltageRatioInputChannels
                 .TryGetValue((SerialHubPortChannel)serialHubPortChannel, out hostRatioInput)) return false;
 
-            if (hostInput.IsOpen)
+            if (hostInput.IsOpen || hostRatioInput.IsOpen)
             {
                 return false;
             }
