@@ -505,7 +505,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
 
@@ -517,7 +517,8 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR(pex, "ERRORS");
+
                 if (pex.ErrorCode != Phidgets.ErrorCode.Unsupported)
                 {
                     throw;
@@ -525,7 +526,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             if (LogPhidgetEvents)
@@ -536,7 +537,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
         }
@@ -551,7 +552,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
 
@@ -581,7 +582,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
 
@@ -598,7 +599,7 @@ namespace VNC.Phidget22.Ex
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
         }
@@ -670,11 +671,11 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                Log.ERROR(pex, Common.LOG_CATEGORY);
+                Log.ERROR(pex, "ERRORS");
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             if (LogPhidgetEvents) Log.TRACE($"Exit attached:{Attached} isOpen:{IsOpen}", Common.LOG_CATEGORY, startTicks);
@@ -788,7 +789,7 @@ namespace VNC.Phidget22.Ex
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
         }
 
@@ -897,17 +898,17 @@ namespace VNC.Phidget22.Ex
             }
             catch (Phidgets.PhidgetException pex)
             {
-                //Log.ERROR(pex, Common.LOG_CATEGORY);
+                //Log.ERROR(pex, "ERRORS")
                 Log.ERROR($"PhidgetException deviceSerialNumber:>{DeviceSerialNumber}<" +
                     $" hubPort:>{HubPort}< channel:>{Channel}<" +
                     $" {actionMessage}" +
                     $" source:{pex.Source}" +
                     $" description:{pex.Description}" +
-                    $" inner:{pex.InnerException}", Common.LOG_CATEGORY);
+                    $" inner:{pex.InnerException}", "ERRORS");
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
             finally
             {

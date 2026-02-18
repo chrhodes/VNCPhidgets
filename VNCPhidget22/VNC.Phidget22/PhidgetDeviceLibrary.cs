@@ -489,7 +489,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
         }
 
@@ -570,7 +570,7 @@ namespace VNC.Phidget22
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
 
                 try
@@ -583,12 +583,12 @@ namespace VNC.Phidget22
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
         }
 
@@ -1036,7 +1036,7 @@ namespace VNC.Phidget22
                 }
                 catch (Exception ex)
                 {
-                    Log.ERROR(ex, Common.LOG_CATEGORY);
+                    Log.ERROR(ex, "ERRORS");
                 }
             }
 
@@ -1099,7 +1099,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             // NOTE(crhodes)
@@ -1111,7 +1111,7 @@ namespace VNC.Phidget22
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
         }
 

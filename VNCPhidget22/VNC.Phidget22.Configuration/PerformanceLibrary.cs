@@ -81,7 +81,7 @@ namespace VNC.Phidget22.Configuration
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
@@ -181,7 +181,7 @@ namespace VNC.Phidget22.Configuration
             catch (Exception ex)
             {
                 Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             if (Common.VNCLogging.ApplicationInitialize) Log.APPLICATION_INITIALIZE("Exit", Common.LOG_CATEGORY, startTicks);
@@ -242,7 +242,7 @@ namespace VNC.Phidget22.Configuration
             catch (Exception ex)
             {
                 Log.ERROR($"Error processing config file >{configFile}<", Common.LOG_CATEGORY);
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             if (Common.VNCLogging.ApplicationInitializeLow) Log.APPLICATION_INITIALIZE_LOW("Exit", Common.LOG_CATEGORY, startTicks);

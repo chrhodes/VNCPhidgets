@@ -1696,7 +1696,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Log.ERROR(ex, Common.LOG_CATEGORY);
+                        Log.ERROR(ex, "ERRORS");
                     }
                 }
             }
@@ -2014,7 +2014,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Log.ERROR(ex, Common.LOG_CATEGORY);
+                        Log.ERROR(ex, "ERRORS");
                     }
                 }
             }
@@ -2140,7 +2140,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        Log.ERROR(ex, Common.LOG_CATEGORY);
+                        Log.ERROR(ex, "ERRORS");
                     }
                 }
             }
@@ -2314,7 +2314,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //    catch (Exception ex)
         //    {
-        //        Log.ERROR(ex, Common.LOG_CATEGORY);
+        //        Log.ERROR(ex, "ERRORS");
         //    }
         //}
 
@@ -2346,7 +2346,7 @@ namespace VNCPhidget22Explorer.Presentation.ViewModels
         //    }
         //    catch (Exception ex)
         //    {
-        //        Log.ERROR(ex, Common.LOG_CATEGORY);
+        //        Log.ERROR(ex, "ERRORS");
         //    }
         //}
 

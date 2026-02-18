@@ -194,7 +194,7 @@ namespace VNC.Phidget22.Players
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             if (LogDeviceChannelSequence)
@@ -309,7 +309,7 @@ namespace VNC.Phidget22.Players
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             return nextDeviceChannelSequence;
@@ -473,7 +473,7 @@ namespace VNC.Phidget22.Players
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             return nextDeviceChannelSequence;
@@ -631,7 +631,7 @@ namespace VNC.Phidget22.Players
             }
             catch (Exception ex)
             {
-                Log.ERROR(ex, Common.LOG_CATEGORY);
+                Log.ERROR(ex, "ERRORS");
             }
 
             return nextDeviceChannelSequence;
