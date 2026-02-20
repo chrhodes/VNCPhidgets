@@ -7,7 +7,7 @@
         <VersionPrefix>1.0.0</VersionPrefix>
         <VersionSuffix>indevelopment-2026</VersionSuffix>
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-        <FileVersion>2026.02.18</FileVersion>
+        <FileVersion>2026.02.19</FileVersion>
         <Company>VNC</Company>
         <Description>Phidget22 Explorer Core</Description>
     </PropertyGroup>
@@ -60,17 +60,28 @@
     </Choose>
 
     <!--This updates the file version to the current date.-->
+    <!--Only run for one TargetFramework.  No need to run twice. Update TargetFramework as needed.-->
 
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; $(ProjectFileName)" />
+    <Target Name="MyBeforeBuild" BeforeTargets="BeforeBuild" Condition="'$(TargetFramework)'=='net8.0-windows'">
+        <!--<Message Text="*** Target BeforeBuild *** ProjectDir $(ProjectDir) ProjectFileName $(ProjectFileName)" Importance="high" />
+        <Message Text="*** Target BeforeBuild *** TargetFramework $(TargetFramework) TargetName $(TargetName) TargetPath $(TargetPath) Target $(Target)" Importance="high" />
+        <Message Text="*** Target BeforeBuild *** MSBuildThisFile $(MSBuildThisFile) MSBuildThisFileFullPath $(MSBuildThisFileFullPath) MSBuildProjectDirectory $(MSBuildProjectDirectory)" Importance="high" />
+        <Message Text="*** Target BeforeBuild *** MSBuildProjectDirectory $(MSBuildProjectDirectory)" Importance="high" />
+        <Message Text="*** Target BeforeBuild *** Package $(Package) PackageName $(PackageName) PackageVersion $(PackageVersion)" Importance="high" />
+        <Message Text="*** Target BeforeBuild *** AssemblyName $(AssemblyName) OutDir $(OutDir)" Importance="high" />-->
+        <Exec Command="powershell.exe -File B:\bin\PowerShell\Update-MSBuildFileVersion.ps1 $(MSBuildThisFileFullPath)" />
     </Target>
 
-    <!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="'$(Configuration)'=='Release'">
-        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PreBuild.ps1&quot; -Verbose $(ProjectFileName)" />
-    </Target>-->
+    <!--This deploys a new NuGet package-->
 
-    <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="powershell.exe -File &quot;$(ProjectDir)\Execute-PostBuild.ps1&quot; -Verbose $(ProjectFileName)" />
-    </Target>-->
+    <Target Name="MyPack" AfterTargets="Pack" Condition="'$(Configuration)'=='Release'">
+        <!--<Message Text="*** Target Pack *** ProjectDir $(ProjectDir) ProjectFileName $(ProjectFileName)" Importance="high" />
+        <Message Text="*** Target Pack *** TargetFramework $(TargetFramework) TargetName $(TargetName) TargetPath $(TargetPath) Target $(Target)" Importance="high" />
+        <Message Text="*** Target Pack *** MSBuildThisFile $(MSBuildThisFile) MSBuildThisFileFullPath $(MSBuildThisFileFullPath) MSBuildProjectDirectory $(MSBuildProjectDirectory)" Importance="high" />
+        <Message Text="*** Target Pack *** MSBuildProjectDirectory $(MSBuildProjectDirectory)" Importance="high" />
+        <Message Text="*** Target Pack *** Package $(Package) PackageName $(PackageName) PackageVersion $(PackageVersion)" Importance="high" />
+        <Message Text="*** Target Pack *** AssemblyName $(AssemblyName) OutDir $(OutDir)" Importance="high" />-->
+        <Exec Command="powershell.exe -File B:\bin\PowerShell\Update-VNCNuGetPackage.ps1 $(MSBuildProjectDirectory) $(AssemblyName) $(PackageVersion) -v" />
+    </Target>
     
 </Project>
